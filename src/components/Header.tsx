@@ -54,22 +54,18 @@ export default function Header() {
             >
               Photovoltaik
             </button>
+            <Link to="/gewerbestrom" className="font-paragraph text-base text-foreground hover:text-primary transition-colors">
+              Gewerbestrom
+            </Link>
+            <Link to="/gewerbegas" className="font-paragraph text-base text-foreground hover:text-primary transition-colors">
+              Gewerbegas
+            </Link>
             <button
               onClick={() => scrollToSection('faq')}
               className="font-paragraph text-base text-foreground hover:text-primary transition-colors"
             >
               FAQ
             </button>
-            <Link to="/gewerbestrom">
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                Gewerbestrom
-              </Button>
-            </Link>
-            <Link to="/gewerbegas">
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                Gewerbegas
-              </Button>
-            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -104,22 +100,18 @@ export default function Header() {
               >
                 Photovoltaik
               </button>
+              <Link to="/gewerbestrom" onClick={() => setMobileMenuOpen(false)} className="font-paragraph text-base text-foreground hover:text-primary transition-colors text-left">
+                Gewerbestrom
+              </Link>
+              <Link to="/gewerbegas" onClick={() => setMobileMenuOpen(false)} className="font-paragraph text-base text-foreground hover:text-primary transition-colors text-left">
+                Gewerbegas
+              </Link>
               <button
                 onClick={() => scrollToSection('faq')}
                 className="font-paragraph text-base text-foreground hover:text-primary transition-colors text-left"
               >
                 FAQ
               </button>
-              <Link to="/gewerbestrom" onClick={() => setMobileMenuOpen(false)}>
-                <Button variant="outline" className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                  Gewerbestrom
-                </Button>
-              </Link>
-              <Link to="/gewerbegas" onClick={() => setMobileMenuOpen(false)}>
-                <Button variant="outline" className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                  Gewerbegas
-                </Button>
-              </Link>
             </div>
           </nav>
         )}
