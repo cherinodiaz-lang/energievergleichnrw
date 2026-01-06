@@ -1,16 +1,15 @@
 // HPI 1.6-G
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { Zap, Flame, CheckCircle, Sun, Download, ChevronDown, Send, ArrowRight, Leaf, Home, Building2, ShieldCheck, MousePointerClick, HelpCircle } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Zap, Flame, CheckCircle, Sun, Download, ChevronDown, Send, ArrowRight, Leaf, Home, Building2, ShieldCheck, MousePointerClick } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { BaseCrudService } from '@/integrations';
@@ -26,67 +25,31 @@ type AnimatedElementProps = {
 };
 
 const AnimatedElement: React.FC<AnimatedElementProps> = ({ children, className, delay = 0 }) => {
-    const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const element = ref.current;
-        if (!element) return;
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
 
-        const observer = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting) {
-                setTimeout(() => {
-                    element.classList.add('is-visible');
-                }, delay);
-                observer.unobserve(element); 
-            }
-        }, { threshold: 0.1 });
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          element.classList.add('is-visible');
+        }, delay);
+        observer.unobserve(element);
+      }
+    }, { threshold: 0.1 });
 
-        observer.observe(element);
-        return () => observer.disconnect();
-    }, [delay]);
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [delay]);
 
-    return <div ref={ref} className={`${className || ''} animate-reveal`}>{children}</div>;
+  return <div ref={ref} className={`${className || ''} animate-reveal`}>{children}</div>;
 };
 
 // --- Main Component ---
 
 export default function HomePage() {
-  // --- SEO Meta Tags ---
-  useEffect(() => {
-    document.title = 'Energievergleich NRW - Strom & Gas Tarife vergleichen und sparen';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Vergleichen Sie Strom- und Gastarife in Nordrhein-Westfalen. Finden Sie die besten Angebote für Privat- und Gewerbekunden. Kostenlos und unabhängig.');
-    }
-  }, []);
-
-  // --- FAQ Schema (JSON-LD) ---
-  useEffect(() => {
-    const faqSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: faqs.map(faq => ({
-        '@type': 'Question',
-        name: faq.question,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: faq.answer
-        }
-      }))
-    };
-    
-    let script = document.getElementById('faq-schema');
-    if (!script) {
-      script = document.createElement('script');
-      script.id = 'faq-schema';
-      script.type = 'application/ld+json';
-      script.textContent = JSON.stringify(faqSchema);
-      document.head.appendChild(script);
-    } else {
-      script.textContent = JSON.stringify(faqSchema);
-    }
-  }, [faqs]);
-
   // --- Data Fidelity Protocol: Canonical Data Sources ---
   const [faqs, setFaqs] = useState<HufiggestellteFragen[]>([]);
   const [vorteile, setVorteile] = useState<Wechselvorteile[]>([]);
@@ -132,6 +95,16 @@ export default function HomePage() {
   const heroY = useTransform(scrollY, [0, 1000], [0, 400]);
   const heroOpacity = useTransform(scrollY, [0, 500], [1, 0]);
 
+  // --- SEO Meta Tags ---
+  useEffect(() => {
+    document.title = 'Energievergleich NRW - Strom & Gas Tarife vergleichen und sparen';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Vergleichen Sie Strom- und Gastarife in Nordrhein-Westfalen. Finden Sie die besten Angebote für Privat- und Gewerbekunden. Kostenlos und unabhängig.');
+    }
+  }, []);
+
+  // --- Load Data from CMS ---
   useEffect(() => {
     loadData();
   }, []);
@@ -158,6 +131,35 @@ export default function HomePage() {
       setLoading(false);
     }
   };
+
+  // --- FAQ Schema (JSON-LD) - Now faqs is defined before this effect ---
+  useEffect(() => {
+    if (faqs.length === 0) return;
+
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map(faq => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer
+        }
+      }))
+    };
+
+    let script = document.getElementById('faq-schema');
+    if (!script) {
+      script = document.createElement('script');
+      script.id = 'faq-schema';
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify(faqSchema);
+      document.head.appendChild(script);
+    } else {
+      script.textContent = JSON.stringify(faqSchema);
+    }
+  }, [faqs]);
 
   // Sample tariff data
   const sampleTariffs = {
@@ -314,17 +316,6 @@ export default function HomePage() {
           opacity: 1;
           transform: translateY(0);
         }
-        .clip-diagonal {
-          clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-        }
-        .clip-diagonal-reverse {
-          clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
-        }
-        .glass-panel {
-          background: rgba(255, 255, 255, 0.8);
-          backdrop-filter: blur(12px);
-          border: 1px solid rgba(255, 255, 255, 0.3);
-        }
       `}</style>
 
       <Header />
@@ -332,7 +323,7 @@ export default function HomePage() {
       {/* --- HERO SECTION --- */}
       <section className="relative w-full h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
         {/* Parallax Background */}
-        <motion.div 
+        <motion.div
           style={{ y: heroY, opacity: heroOpacity }}
           className="absolute inset-0 z-0"
         >
@@ -354,7 +345,7 @@ export default function HomePage() {
                 <span>Die Nr. 1 für Energievergleiche in NRW</span>
               </div>
             </AnimatedElement>
-            
+
             <AnimatedElement delay={100}>
               <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.1] mb-8 drop-shadow-lg">
                 Energie wechseln.<br />
@@ -364,7 +355,7 @@ export default function HomePage() {
 
             <AnimatedElement delay={200}>
               <p className="font-paragraph text-lg md:text-2xl text-white/90 mb-10 max-w-2xl leading-relaxed drop-shadow-md">
-                Der einfache Weg zu günstigerem Strom und Gas für Haushalte und Gewerbe in Nordrhein-Westfalen. Transparent, regional, nachhaltig.
+                Der einfache Weg zu günstigerem Strom und Gas für Haushalte und Gewerbe in Nordrhein-Westfalen. Transparent, regional, nachhaltig. Mit unserem unabhängigen Vergleichsrechner finden Sie schnell die besten Tarife in Ihrer Region.
               </p>
             </AnimatedElement>
 
@@ -389,7 +380,7 @@ export default function HomePage() {
         </div>
 
         {/* Scroll Indicator */}
-        <motion.div 
+        <motion.div
           style={{ opacity: heroOpacity }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
         >
@@ -437,14 +428,11 @@ export default function HomePage() {
 
       {/* --- CALCULATOR SECTION --- */}
       <section id="vergleichsrechner" className="w-full py-24 bg-background relative overflow-hidden">
-        {/* Decorative Background Elements */}
         <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-[100rem] mx-auto px-6 lg:px-12 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-            
-            {/* Left Column: Text */}
             <div className="lg:col-span-5 sticky top-32">
               <AnimatedElement>
                 <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary mb-6">
@@ -454,7 +442,7 @@ export default function HomePage() {
                 <p className="font-paragraph text-lg text-gray-600 mb-8 leading-relaxed">
                   Egal ob für Ihr Zuhause oder Ihr Gewerbe – unser Vergleichsrechner findet sekundenschnell die passenden Angebote in Ihrer Region. Geben Sie einfach Ihre Daten ein.
                 </p>
-                
+
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
                     <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm mt-1">1</div>
@@ -483,7 +471,6 @@ export default function HomePage() {
               </AnimatedElement>
             </div>
 
-            {/* Right Column: Calculator Interface */}
             <div className="lg:col-span-7">
               <AnimatedElement delay={200}>
                 <Card className="border-none shadow-2xl overflow-hidden">
@@ -491,12 +478,12 @@ export default function HomePage() {
                     <h3 className="font-heading text-2xl font-bold">Tarifrechner NRW</h3>
                     <p className="text-white/80 text-sm">Aktuelle Konditionen für {new Date().getFullYear()}</p>
                   </div>
-                  
+
                   <Tabs defaultValue="strom" className="w-full">
                     <div className="bg-gray-50 border-b px-6 pt-4">
                       <TabsList className="grid w-full grid-cols-3 bg-transparent h-auto p-0 gap-4">
-                        <TabsTrigger 
-                          value="strom" 
+                        <TabsTrigger
+                          value="strom"
                           className="data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm data-[state=active]:border-t-4 data-[state=active]:border-primary rounded-none py-4 transition-all"
                         >
                           <div className="flex flex-col items-center gap-2">
@@ -504,8 +491,8 @@ export default function HomePage() {
                             <span>Strom</span>
                           </div>
                         </TabsTrigger>
-                        <TabsTrigger 
-                          value="gas" 
+                        <TabsTrigger
+                          value="gas"
                           className="data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm data-[state=active]:border-t-4 data-[state=active]:border-primary rounded-none py-4 transition-all"
                         >
                           <div className="flex flex-col items-center gap-2">
@@ -513,8 +500,8 @@ export default function HomePage() {
                             <span>Gas</span>
                           </div>
                         </TabsTrigger>
-                        <TabsTrigger 
-                          value="kombi" 
+                        <TabsTrigger
+                          value="kombi"
                           className="data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm data-[state=active]:border-t-4 data-[state=active]:border-primary rounded-none py-4 transition-all"
                         >
                           <div className="flex flex-col items-center gap-2">
@@ -841,7 +828,7 @@ export default function HomePage() {
       </section>
 
       {/* --- VORTEILE SECTION (CMS DATA) --- */}
-      <section id="vorteile" className="w-full py-32 bg-primary text-white clip-diagonal">
+      <section id="vorteile" className="w-full py-32 bg-primary text-white">
         <div className="max-w-[100rem] mx-auto px-6 lg:px-12 pb-20">
           <div className="text-center mb-20">
             <AnimatedElement>
@@ -887,12 +874,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* --- PHOTOVOLTAIK SECTION (Sticky Layout) --- */}
+      {/* --- PHOTOVOLTAIK SECTION --- */}
       <section id="photovoltaik" className="w-full bg-white pt-24 pb-32">
         <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            
-            {/* Left Content */}
             <div className="relative h-full">
               <div className="sticky top-32">
                 <AnimatedElement>
@@ -906,7 +891,7 @@ export default function HomePage() {
                   <p className="font-paragraph text-xl text-gray-600 mb-10 leading-relaxed">
                     Machen Sie sich unabhängig von steigenden Strompreisen. Mit einer Photovoltaik-Anlage produzieren Sie Ihren eigenen grünen Strom – direkt auf Ihrem Dach in NRW.
                   </p>
-                  
+
                   <div className="space-y-6 mb-10">
                     <div className="flex items-center gap-4 p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors">
                       <Sun className="w-8 h-8 text-secondary" />
@@ -925,7 +910,6 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right Content: Form */}
             <div className="pt-12 lg:pt-0">
               <AnimatedElement delay={200}>
                 <Card className="border-none shadow-2xl overflow-hidden">
@@ -933,10 +917,9 @@ export default function HomePage() {
                     <h3 className="font-heading text-2xl font-bold">Kostenlose Beratung</h3>
                     <p className="text-white/80 text-sm">Füllen Sie das Formular aus und wir melden uns schnellstmöglich</p>
                   </div>
-                  
+
                   <CardContent className="p-8">
                     <form onSubmit={handlePvSubmit} className="space-y-6">
-                      {/* Eigentumsart */}
                       <div className="space-y-2">
                         <Label htmlFor="pv-eigentumsart" className="text-base font-medium">Eigentumsart</Label>
                         <Select value={pvEigentumsart} onValueChange={setPvEigentumsart} required>
@@ -952,7 +935,6 @@ export default function HomePage() {
                         </Select>
                       </div>
 
-                      {/* Dachform */}
                       <div className="space-y-2">
                         <Label htmlFor="pv-dachform" className="text-base font-medium">Dachform</Label>
                         <Select value={pvDachform} onValueChange={setPvDachform} required>
@@ -970,7 +952,6 @@ export default function HomePage() {
                         </Select>
                       </div>
 
-                      {/* Anzahl Personen */}
                       <div className="space-y-2">
                         <Label htmlFor="pv-personen" className="text-base font-medium">Anzahl Personen im Haushalt</Label>
                         <Input
@@ -983,7 +964,6 @@ export default function HomePage() {
                         />
                       </div>
 
-                      {/* Adresse */}
                       <div className="space-y-3 border-t pt-6">
                         <h4 className="font-bold text-gray-900">Adresse</h4>
                         <div className="grid grid-cols-2 gap-3">
@@ -1030,7 +1010,6 @@ export default function HomePage() {
                         </div>
                       </div>
 
-                      {/* Dachfoto */}
                       <div className="space-y-2 border-t pt-6">
                         <Label htmlFor="pv-foto" className="text-base font-medium">Dachfoto (Optional)</Label>
                         <Input
@@ -1043,7 +1022,6 @@ export default function HomePage() {
                         <p className="text-xs text-gray-500">Laden Sie ein Foto Ihres Daches hoch für eine bessere Analyse</p>
                       </div>
 
-                      {/* Kontaktinformationen */}
                       <div className="space-y-3 border-t pt-6">
                         <h4 className="font-bold text-gray-900">Kontaktinformationen</h4>
                         <div className="space-y-2">
@@ -1093,7 +1071,6 @@ export default function HomePage() {
                 </Card>
               </AnimatedElement>
             </div>
-
           </div>
         </div>
       </section>
@@ -1210,13 +1187,10 @@ export default function HomePage() {
 
       {/* --- CONTACT SECTION --- */}
       <section id="kontakt" className="w-full py-32 bg-primary relative overflow-hidden">
-        {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
-        
+
         <div className="max-w-[100rem] mx-auto px-6 lg:px-12 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            
-            {/* Left: Info */}
             <div className="text-white">
               <AnimatedElement>
                 <h2 className="font-heading text-5xl md:text-6xl font-bold mb-8">
@@ -1225,7 +1199,7 @@ export default function HomePage() {
                 <p className="font-paragraph text-xl text-white/80 mb-12 max-w-lg">
                   Haben Sie Fragen zu Ihrem Tarif oder interessieren Sie sich für eine Solaranlage? Schreiben Sie uns.
                 </p>
-                
+
                 <div className="space-y-8">
                   <div className="flex items-center gap-6">
                     <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center border border-white/20">
@@ -1249,7 +1223,6 @@ export default function HomePage() {
               </AnimatedElement>
             </div>
 
-            {/* Right: Form */}
             <AnimatedElement delay={200}>
               <Card className="border-none shadow-2xl bg-white/95 backdrop-blur-sm p-2">
                 <CardContent className="pt-8 px-8 pb-8">
@@ -1317,7 +1290,6 @@ export default function HomePage() {
                 </CardContent>
               </Card>
             </AnimatedElement>
-
           </div>
         </div>
       </section>
