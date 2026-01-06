@@ -1,7 +1,7 @@
 // HPI 1.6-G
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { Zap, Flame, CheckCircle, Sun, Download, ChevronDown, Send, ArrowRight, Leaf, Home, Building2, ShieldCheck, MousePointerClick } from 'lucide-react';
+import { Zap, Flame, CheckCircle, Sun, Download, ChevronDown, Send, ArrowRight, Leaf, Home, Building2, ShieldCheck, MousePointerClick, HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -10,6 +10,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { BaseCrudService } from '@/integrations';
@@ -50,6 +51,42 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({ children, className, 
 // --- Main Component ---
 
 export default function HomePage() {
+  // --- SEO Meta Tags ---
+  useEffect(() => {
+    document.title = 'Energievergleich NRW - Strom & Gas Tarife vergleichen und sparen';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Vergleichen Sie Strom- und Gastarife in Nordrhein-Westfalen. Finden Sie die besten Angebote für Privat- und Gewerbekunden. Kostenlos und unabhängig.');
+    }
+  }, []);
+
+  // --- FAQ Schema (JSON-LD) ---
+  useEffect(() => {
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map(faq => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer
+        }
+      }))
+    };
+    
+    let script = document.getElementById('faq-schema');
+    if (!script) {
+      script = document.createElement('script');
+      script.id = 'faq-schema';
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify(faqSchema);
+      document.head.appendChild(script);
+    } else {
+      script.textContent = JSON.stringify(faqSchema);
+    }
+  }, [faqs]);
+
   // --- Data Fidelity Protocol: Canonical Data Sources ---
   const [faqs, setFaqs] = useState<HufiggestellteFragen[]>([]);
   const [vorteile, setVorteile] = useState<Wechselvorteile[]>([]);
