@@ -1,0 +1,129 @@
+import { Link, useLocation } from 'react-router-dom';
+import { Zap, Menu, X } from 'lucide-react';
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+
+export default function Header() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const scrollToSection = (sectionId: string) => {
+    if (location.pathname !== '/') {
+      window.location.href = `/#${sectionId}`;
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    setMobileMenuOpen(false);
+  };
+
+  return (
+    <header className="bg-white shadow-sm sticky top-0 z-50">
+      <div className="max-w-[120rem] mx-auto px-6 lg:px-12">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-3 group">
+            <div className="bg-primary p-2 rounded-lg group-hover:bg-primary/90 transition-colors">
+              <Zap className="w-6 h-6 text-primary-foreground" />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-heading font-bold text-xl text-primary">energievergleich</span>
+              <span className="font-paragraph text-xs text-foreground/60">.nrw</span>
+            </div>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-8">
+            <button
+              onClick={() => scrollToSection('vergleichsrechner')}
+              className="font-paragraph text-base text-foreground hover:text-primary transition-colors"
+            >
+              Vergleichsrechner
+            </button>
+            <button
+              onClick={() => scrollToSection('vorteile')}
+              className="font-paragraph text-base text-foreground hover:text-primary transition-colors"
+            >
+              Vorteile
+            </button>
+            <button
+              onClick={() => scrollToSection('photovoltaik')}
+              className="font-paragraph text-base text-foreground hover:text-primary transition-colors"
+            >
+              Photovoltaik
+            </button>
+            <button
+              onClick={() => scrollToSection('faq')}
+              className="font-paragraph text-base text-foreground hover:text-primary transition-colors"
+            >
+              FAQ
+            </button>
+            <Link to="/gewerbestrom">
+              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                Gewerbestrom
+              </Button>
+            </Link>
+            <Link to="/gewerbegas">
+              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                Gewerbegas
+              </Button>
+            </Link>
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+
+        {/* Mobile Navigation */}
+        {mobileMenuOpen && (
+          <nav className="md:hidden py-6 border-t border-light-grey">
+            <div className="flex flex-col gap-4">
+              <button
+                onClick={() => scrollToSection('vergleichsrechner')}
+                className="font-paragraph text-base text-foreground hover:text-primary transition-colors text-left"
+              >
+                Vergleichsrechner
+              </button>
+              <button
+                onClick={() => scrollToSection('vorteile')}
+                className="font-paragraph text-base text-foreground hover:text-primary transition-colors text-left"
+              >
+                Vorteile
+              </button>
+              <button
+                onClick={() => scrollToSection('photovoltaik')}
+                className="font-paragraph text-base text-foreground hover:text-primary transition-colors text-left"
+              >
+                Photovoltaik
+              </button>
+              <button
+                onClick={() => scrollToSection('faq')}
+                className="font-paragraph text-base text-foreground hover:text-primary transition-colors text-left"
+              >
+                FAQ
+              </button>
+              <Link to="/gewerbestrom" onClick={() => setMobileMenuOpen(false)}>
+                <Button variant="outline" className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                  Gewerbestrom
+                </Button>
+              </Link>
+              <Link to="/gewerbegas" onClick={() => setMobileMenuOpen(false)}>
+                <Button variant="outline" className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                  Gewerbegas
+                </Button>
+              </Link>
+            </div>
+          </nav>
+        )}
+      </div>
+    </header>
+  );
+}
