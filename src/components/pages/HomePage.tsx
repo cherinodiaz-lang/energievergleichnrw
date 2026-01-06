@@ -69,6 +69,27 @@ export default function HomePage() {
   const [contactMessage, setContactMessage] = useState('');
   const [contactType, setContactType] = useState('privat');
 
+  // Photovoltaik form states
+  const [pvEigentumsart, setPvEigentumsart] = useState('');
+  const [pvDachform, setPvDachform] = useState('');
+  const [pvPersonen, setPvPersonen] = useState('');
+  const [pvStrasse, setPvStrasse] = useState('');
+  const [pvHausnummer, setPvHausnummer] = useState('');
+  const [pvPlz, setPvPlz] = useState('');
+  const [pvOrt, setPvOrt] = useState('');
+  const [pvFoto, setPvFoto] = useState<File | null>(null);
+  const [pvName, setPvName] = useState('');
+  const [pvEmail, setPvEmail] = useState('');
+  const [pvTelefon, setPvTelefon] = useState('');
+
+  // Tariff results states
+  const [stromResults, setStromResults] = useState<any[]>([]);
+  const [gasResults, setGasResults] = useState<any[]>([]);
+  const [kombiResults, setKombiResults] = useState<any[]>([]);
+  const [showStromResults, setShowStromResults] = useState(false);
+  const [showGasResults, setShowGasResults] = useState(false);
+  const [showKombiResults, setShowKombiResults] = useState(false);
+
   // --- Scroll Hooks for Parallax ---
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 1000], [0, 400]);
@@ -101,8 +122,117 @@ export default function HomePage() {
     }
   };
 
+  // Sample tariff data
+  const sampleTariffs = {
+    strom: [
+      {
+        id: 1,
+        provider: 'GrünerStrom NRW',
+        logo: '⚡',
+        jahreskosten: 1245,
+        arbeitspreis: 0.32,
+        grundpreis: 12.50,
+        vertragslaufzeit: '12 Monate',
+        preisgarantie: '12 Monate',
+      },
+      {
+        id: 2,
+        provider: 'EnergiePlus Rheinland',
+        logo: '🔋',
+        jahreskosten: 1189,
+        arbeitspreis: 0.30,
+        grundpreis: 11.99,
+        vertragslaufzeit: '24 Monate',
+        preisgarantie: '24 Monate',
+      },
+      {
+        id: 3,
+        provider: 'NRW Energie AG',
+        logo: '⚙️',
+        jahreskosten: 1312,
+        arbeitspreis: 0.35,
+        grundpreis: 13.00,
+        vertragslaufzeit: '12 Monate',
+        preisgarantie: '6 Monate',
+      },
+    ],
+    gas: [
+      {
+        id: 1,
+        provider: 'WärmeWechsel NRW',
+        logo: '🔥',
+        jahreskosten: 1890,
+        arbeitspreis: 0.085,
+        grundpreis: 15.00,
+        vertragslaufzeit: '12 Monate',
+        preisgarantie: '12 Monate',
+      },
+      {
+        id: 2,
+        provider: 'KlimaGas Westfalen',
+        logo: '♻️',
+        jahreskosten: 1756,
+        arbeitspreis: 0.078,
+        grundpreis: 14.50,
+        vertragslaufzeit: '24 Monate',
+        preisgarantie: '24 Monate',
+      },
+      {
+        id: 3,
+        provider: 'Heizenergie Plus',
+        logo: '🌡️',
+        jahreskosten: 1945,
+        arbeitspreis: 0.092,
+        grundpreis: 15.50,
+        vertragslaufzeit: '12 Monate',
+        preisgarantie: '6 Monate',
+      },
+    ],
+    kombi: [
+      {
+        id: 1,
+        provider: 'AllEnergy NRW',
+        logo: '⚡',
+        jahreskosten: 3089,
+        arbeitspreis: 0.32,
+        grundpreis: 27.50,
+        vertragslaufzeit: '12 Monate',
+        preisgarantie: '12 Monate',
+      },
+      {
+        id: 2,
+        provider: 'DualPower Rheinland',
+        logo: '🔋',
+        jahreskosten: 2945,
+        arbeitspreis: 0.30,
+        grundpreis: 26.49,
+        vertragslaufzeit: '24 Monate',
+        preisgarantie: '24 Monate',
+      },
+      {
+        id: 3,
+        provider: 'Kombi Energie AG',
+        logo: '⚙️',
+        jahreskosten: 3257,
+        arbeitspreis: 0.35,
+        grundpreis: 28.50,
+        vertragslaufzeit: '12 Monate',
+        preisgarantie: '6 Monate',
+      },
+    ],
+  };
+
   const handleCalculate = (type: string) => {
-    alert(`Berechnung für ${type} wird durchgeführt. Diese Funktion wird mit einem externen Vergleichsrechner verbunden.`);
+    if (type === 'Strom') {
+      setStromResults(sampleTariffs.strom.sort((a, b) => a.jahreskosten - b.jahreskosten));
+      setShowStromResults(true);
+    } else if (type === 'Gas') {
+      setGasResults(sampleTariffs.gas.sort((a, b) => a.jahreskosten - b.jahreskosten));
+      setShowGasResults(true);
+    } else if (type === 'Kombi') {
+      setKombiResults(sampleTariffs.kombi.sort((a, b) => a.jahreskosten - b.jahreskosten));
+      setShowKombiResults(true);
+    }
   };
 
   const handleContactSubmit = (e: React.FormEvent) => {
@@ -112,6 +242,22 @@ export default function HomePage() {
     setContactEmail('');
     setContactPhone('');
     setContactMessage('');
+  };
+
+  const handlePvSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    alert(`Vielen Dank für Ihre Anfrage, ${pvName}! Wir werden uns in Kürze bei Ihnen melden.`);
+    setPvEigentumsart('');
+    setPvDachform('');
+    setPvPersonen('');
+    setPvStrasse('');
+    setPvHausnummer('');
+    setPvPlz('');
+    setPvOrt('');
+    setPvFoto(null);
+    setPvName('');
+    setPvEmail('');
+    setPvTelefon('');
   };
 
   const scrollToSection = (id: string) => {
@@ -344,138 +490,309 @@ export default function HomePage() {
 
                     <div className="p-8 bg-white">
                       <TabsContent value="strom" className="mt-0 space-y-8">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div className="space-y-3">
-                            <Label htmlFor="strom-plz" className="text-base font-medium">Postleitzahl</Label>
-                            <Input
-                              id="strom-plz"
-                              placeholder="z.B. 40210"
-                              value={postleitzahl}
-                              onChange={(e) => setPostleitzahl(e.target.value)}
-                              className="h-12 text-lg"
-                            />
-                          </div>
-                          <div className="space-y-3">
-                            <Label htmlFor="strom-personen" className="text-base font-medium">Haushaltsgröße</Label>
-                            <Select value={personenAnzahl} onValueChange={setPersonenAnzahl}>
-                              <SelectTrigger id="strom-personen" className="h-12 text-lg">
-                                <SelectValue placeholder="Bitte wählen" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="1">1 Person (ca. 1.500 kWh)</SelectItem>
-                                <SelectItem value="2">2 Personen (ca. 2.500 kWh)</SelectItem>
-                                <SelectItem value="3">3 Personen (ca. 3.500 kWh)</SelectItem>
-                                <SelectItem value="4">4+ Personen (ca. 4.250 kWh)</SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </div>
-                          <div className="space-y-3 md:col-span-2">
-                            <Label htmlFor="strom-verbrauch" className="text-base font-medium">Jahresverbrauch (kWh) <span className="text-gray-400 font-normal text-sm">(Optional)</span></Label>
-                            <Input
-                              id="strom-verbrauch"
-                              type="number"
-                              placeholder="Genauen Verbrauch eingeben"
-                              value={stromVerbrauch}
-                              onChange={(e) => setStromVerbrauch(e.target.value)}
-                              className="h-12 text-lg"
-                            />
-                          </div>
-                        </div>
-                        <Button
-                          onClick={() => handleCalculate('Strom')}
-                          className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
-                        >
-                          Stromtarife vergleichen
-                        </Button>
+                        {!showStromResults ? (
+                          <>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                              <div className="space-y-3">
+                                <Label htmlFor="strom-plz" className="text-base font-medium">Postleitzahl</Label>
+                                <Input
+                                  id="strom-plz"
+                                  placeholder="z.B. 40210"
+                                  value={postleitzahl}
+                                  onChange={(e) => setPostleitzahl(e.target.value)}
+                                  className="h-12 text-lg"
+                                />
+                              </div>
+                              <div className="space-y-3">
+                                <Label htmlFor="strom-personen" className="text-base font-medium">Haushaltsgröße</Label>
+                                <Select value={personenAnzahl} onValueChange={setPersonenAnzahl}>
+                                  <SelectTrigger id="strom-personen" className="h-12 text-lg">
+                                    <SelectValue placeholder="Bitte wählen" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    <SelectItem value="1">1 Person (ca. 1.500 kWh)</SelectItem>
+                                    <SelectItem value="2">2 Personen (ca. 2.500 kWh)</SelectItem>
+                                    <SelectItem value="3">3 Personen (ca. 3.500 kWh)</SelectItem>
+                                    <SelectItem value="4">4+ Personen (ca. 4.250 kWh)</SelectItem>
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                              <div className="space-y-3 md:col-span-2">
+                                <Label htmlFor="strom-verbrauch" className="text-base font-medium">Jahresverbrauch (kWh) <span className="text-gray-400 font-normal text-sm">(Optional)</span></Label>
+                                <Input
+                                  id="strom-verbrauch"
+                                  type="number"
+                                  placeholder="Genauen Verbrauch eingeben"
+                                  value={stromVerbrauch}
+                                  onChange={(e) => setStromVerbrauch(e.target.value)}
+                                  className="h-12 text-lg"
+                                />
+                              </div>
+                            </div>
+                            <Button
+                              onClick={() => handleCalculate('Strom')}
+                              className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
+                            >
+                              Stromtarife vergleichen
+                            </Button>
+                          </>
+                        ) : (
+                          <>
+                            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                              <p className="text-sm text-blue-800 font-medium">ℹ️ Dies sind Beispielwerte. Eine echte API-Verbindung wird in Kürze implementiert.</p>
+                            </div>
+                            <div className="space-y-4">
+                              {stromResults.map((tariff) => (
+                                <div key={tariff.id} className="border rounded-lg p-6 hover:shadow-lg transition-shadow">
+                                  <div className="flex items-start justify-between mb-4">
+                                    <div className="flex items-center gap-4">
+                                      <div className="text-4xl">{tariff.logo}</div>
+                                      <div>
+                                        <h4 className="font-bold text-lg text-gray-900">{tariff.provider}</h4>
+                                        <p className="text-sm text-gray-500">Stromversorger</p>
+                                      </div>
+                                    </div>
+                                    <div className="text-right">
+                                      <p className="text-3xl font-bold text-primary">{tariff.jahreskosten.toFixed(2)}€</p>
+                                      <p className="text-xs text-gray-500">pro Jahr</p>
+                                    </div>
+                                  </div>
+                                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 py-4 border-y border-gray-200">
+                                    <div>
+                                      <p className="text-xs text-gray-500 uppercase font-bold">Arbeitspreis</p>
+                                      <p className="text-lg font-bold text-gray-900">{tariff.arbeitspreis.toFixed(2)}€/kWh</p>
+                                    </div>
+                                    <div>
+                                      <p className="text-xs text-gray-500 uppercase font-bold">Grundpreis</p>
+                                      <p className="text-lg font-bold text-gray-900">{tariff.grundpreis.toFixed(2)}€/Monat</p>
+                                    </div>
+                                    <div>
+                                      <p className="text-xs text-gray-500 uppercase font-bold">Vertragslaufzeit</p>
+                                      <p className="text-lg font-bold text-gray-900">{tariff.vertragslaufzeit}</p>
+                                    </div>
+                                    <div>
+                                      <p className="text-xs text-gray-500 uppercase font-bold">Preisgarantie</p>
+                                      <p className="text-lg font-bold text-gray-900">{tariff.preisgarantie}</p>
+                                    </div>
+                                  </div>
+                                  <Button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 font-bold rounded-lg">
+                                    Tarif wählen
+                                  </Button>
+                                </div>
+                              ))}
+                            </div>
+                            <Button
+                              onClick={() => setShowStromResults(false)}
+                              variant="outline"
+                              className="w-full mt-6"
+                            >
+                              Neue Berechnung
+                            </Button>
+                          </>
+                        )}
                       </TabsContent>
 
                       <TabsContent value="gas" className="mt-0 space-y-8">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div className="space-y-3">
-                            <Label htmlFor="gas-plz" className="text-base font-medium">Postleitzahl</Label>
-                            <Input
-                              id="gas-plz"
-                              placeholder="z.B. 40210"
-                              value={postleitzahl}
-                              onChange={(e) => setPostleitzahl(e.target.value)}
-                              className="h-12 text-lg"
-                            />
-                          </div>
-                          <div className="space-y-3">
-                            <Label htmlFor="gas-wohnflaeche" className="text-base font-medium">Wohnfläche (m²)</Label>
-                            <Select value={personenAnzahl} onValueChange={setPersonenAnzahl}>
-                              <SelectTrigger id="gas-wohnflaeche" className="h-12 text-lg">
-                                <SelectValue placeholder="Bitte wählen" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="30">30 m²</SelectItem>
-                                <SelectItem value="50">50 m²</SelectItem>
-                                <SelectItem value="100">100 m²</SelectItem>
-                                <SelectItem value="150">150 m²</SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </div>
-                          <div className="space-y-3 md:col-span-2">
-                            <Label htmlFor="gas-verbrauch" className="text-base font-medium">Jahresverbrauch (kWh) <span className="text-gray-400 font-normal text-sm">(Optional)</span></Label>
-                            <Input
-                              id="gas-verbrauch"
-                              type="number"
-                              placeholder="Genauen Verbrauch eingeben"
-                              value={gasVerbrauch}
-                              onChange={(e) => setGasVerbrauch(e.target.value)}
-                              className="h-12 text-lg"
-                            />
-                          </div>
-                        </div>
-                        <Button
-                          onClick={() => handleCalculate('Gas')}
-                          className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
-                        >
-                          Gastarife vergleichen
-                        </Button>
+                        {!showGasResults ? (
+                          <>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                              <div className="space-y-3">
+                                <Label htmlFor="gas-plz" className="text-base font-medium">Postleitzahl</Label>
+                                <Input
+                                  id="gas-plz"
+                                  placeholder="z.B. 40210"
+                                  value={postleitzahl}
+                                  onChange={(e) => setPostleitzahl(e.target.value)}
+                                  className="h-12 text-lg"
+                                />
+                              </div>
+                              <div className="space-y-3">
+                                <Label htmlFor="gas-wohnflaeche" className="text-base font-medium">Wohnfläche (m²)</Label>
+                                <Select value={personenAnzahl} onValueChange={setPersonenAnzahl}>
+                                  <SelectTrigger id="gas-wohnflaeche" className="h-12 text-lg">
+                                    <SelectValue placeholder="Bitte wählen" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    <SelectItem value="30">30 m²</SelectItem>
+                                    <SelectItem value="50">50 m²</SelectItem>
+                                    <SelectItem value="100">100 m²</SelectItem>
+                                    <SelectItem value="150">150 m²</SelectItem>
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                              <div className="space-y-3 md:col-span-2">
+                                <Label htmlFor="gas-verbrauch" className="text-base font-medium">Jahresverbrauch (kWh) <span className="text-gray-400 font-normal text-sm">(Optional)</span></Label>
+                                <Input
+                                  id="gas-verbrauch"
+                                  type="number"
+                                  placeholder="Genauen Verbrauch eingeben"
+                                  value={gasVerbrauch}
+                                  onChange={(e) => setGasVerbrauch(e.target.value)}
+                                  className="h-12 text-lg"
+                                />
+                              </div>
+                            </div>
+                            <Button
+                              onClick={() => handleCalculate('Gas')}
+                              className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
+                            >
+                              Gastarife vergleichen
+                            </Button>
+                          </>
+                        ) : (
+                          <>
+                            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                              <p className="text-sm text-blue-800 font-medium">ℹ️ Dies sind Beispielwerte. Eine echte API-Verbindung wird in Kürze implementiert.</p>
+                            </div>
+                            <div className="space-y-4">
+                              {gasResults.map((tariff) => (
+                                <div key={tariff.id} className="border rounded-lg p-6 hover:shadow-lg transition-shadow">
+                                  <div className="flex items-start justify-between mb-4">
+                                    <div className="flex items-center gap-4">
+                                      <div className="text-4xl">{tariff.logo}</div>
+                                      <div>
+                                        <h4 className="font-bold text-lg text-gray-900">{tariff.provider}</h4>
+                                        <p className="text-sm text-gray-500">Gasversorger</p>
+                                      </div>
+                                    </div>
+                                    <div className="text-right">
+                                      <p className="text-3xl font-bold text-primary">{tariff.jahreskosten.toFixed(2)}€</p>
+                                      <p className="text-xs text-gray-500">pro Jahr</p>
+                                    </div>
+                                  </div>
+                                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 py-4 border-y border-gray-200">
+                                    <div>
+                                      <p className="text-xs text-gray-500 uppercase font-bold">Arbeitspreis</p>
+                                      <p className="text-lg font-bold text-gray-900">{tariff.arbeitspreis.toFixed(3)}€/kWh</p>
+                                    </div>
+                                    <div>
+                                      <p className="text-xs text-gray-500 uppercase font-bold">Grundpreis</p>
+                                      <p className="text-lg font-bold text-gray-900">{tariff.grundpreis.toFixed(2)}€/Monat</p>
+                                    </div>
+                                    <div>
+                                      <p className="text-xs text-gray-500 uppercase font-bold">Vertragslaufzeit</p>
+                                      <p className="text-lg font-bold text-gray-900">{tariff.vertragslaufzeit}</p>
+                                    </div>
+                                    <div>
+                                      <p className="text-xs text-gray-500 uppercase font-bold">Preisgarantie</p>
+                                      <p className="text-lg font-bold text-gray-900">{tariff.preisgarantie}</p>
+                                    </div>
+                                  </div>
+                                  <Button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 font-bold rounded-lg">
+                                    Tarif wählen
+                                  </Button>
+                                </div>
+                              ))}
+                            </div>
+                            <Button
+                              onClick={() => setShowGasResults(false)}
+                              variant="outline"
+                              className="w-full mt-6"
+                            >
+                              Neue Berechnung
+                            </Button>
+                          </>
+                        )}
                       </TabsContent>
 
                       <TabsContent value="kombi" className="mt-0 space-y-8">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div className="space-y-3 md:col-span-2">
-                            <Label htmlFor="kombi-plz" className="text-base font-medium">Postleitzahl</Label>
-                            <Input
-                              id="kombi-plz"
-                              placeholder="z.B. 40210"
-                              value={postleitzahl}
-                              onChange={(e) => setPostleitzahl(e.target.value)}
-                              className="h-12 text-lg"
-                            />
-                          </div>
-                          <div className="space-y-3">
-                            <Label htmlFor="kombi-strom" className="text-base font-medium">Stromverbrauch (kWh)</Label>
-                            <Input
-                              id="kombi-strom"
-                              type="number"
-                              placeholder="z.B. 3500"
-                              value={stromVerbrauch}
-                              onChange={(e) => setStromVerbrauch(e.target.value)}
-                              className="h-12 text-lg"
-                            />
-                          </div>
-                          <div className="space-y-3">
-                            <Label htmlFor="kombi-gas" className="text-base font-medium">Gasverbrauch (kWh)</Label>
-                            <Input
-                              id="kombi-gas"
-                              type="number"
-                              placeholder="z.B. 20000"
-                              value={gasVerbrauch}
-                              onChange={(e) => setGasVerbrauch(e.target.value)}
-                              className="h-12 text-lg"
-                            />
-                          </div>
-                        </div>
-                        <Button
-                          onClick={() => handleCalculate('Kombi')}
-                          className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
-                        >
-                          Kombitarife vergleichen
-                        </Button>
+                        {!showKombiResults ? (
+                          <>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                              <div className="space-y-3 md:col-span-2">
+                                <Label htmlFor="kombi-plz" className="text-base font-medium">Postleitzahl</Label>
+                                <Input
+                                  id="kombi-plz"
+                                  placeholder="z.B. 40210"
+                                  value={postleitzahl}
+                                  onChange={(e) => setPostleitzahl(e.target.value)}
+                                  className="h-12 text-lg"
+                                />
+                              </div>
+                              <div className="space-y-3">
+                                <Label htmlFor="kombi-strom" className="text-base font-medium">Stromverbrauch (kWh)</Label>
+                                <Input
+                                  id="kombi-strom"
+                                  type="number"
+                                  placeholder="z.B. 3500"
+                                  value={stromVerbrauch}
+                                  onChange={(e) => setStromVerbrauch(e.target.value)}
+                                  className="h-12 text-lg"
+                                />
+                              </div>
+                              <div className="space-y-3">
+                                <Label htmlFor="kombi-gas" className="text-base font-medium">Gasverbrauch (kWh)</Label>
+                                <Input
+                                  id="kombi-gas"
+                                  type="number"
+                                  placeholder="z.B. 20000"
+                                  value={gasVerbrauch}
+                                  onChange={(e) => setGasVerbrauch(e.target.value)}
+                                  className="h-12 text-lg"
+                                />
+                              </div>
+                            </div>
+                            <Button
+                              onClick={() => handleCalculate('Kombi')}
+                              className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
+                            >
+                              Kombitarife vergleichen
+                            </Button>
+                          </>
+                        ) : (
+                          <>
+                            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                              <p className="text-sm text-blue-800 font-medium">ℹ️ Dies sind Beispielwerte. Eine echte API-Verbindung wird in Kürze implementiert.</p>
+                            </div>
+                            <div className="space-y-4">
+                              {kombiResults.map((tariff) => (
+                                <div key={tariff.id} className="border rounded-lg p-6 hover:shadow-lg transition-shadow">
+                                  <div className="flex items-start justify-between mb-4">
+                                    <div className="flex items-center gap-4">
+                                      <div className="text-4xl">{tariff.logo}</div>
+                                      <div>
+                                        <h4 className="font-bold text-lg text-gray-900">{tariff.provider}</h4>
+                                        <p className="text-sm text-gray-500">Kombi-Angebot</p>
+                                      </div>
+                                    </div>
+                                    <div className="text-right">
+                                      <p className="text-3xl font-bold text-primary">{tariff.jahreskosten.toFixed(2)}€</p>
+                                      <p className="text-xs text-gray-500">pro Jahr</p>
+                                    </div>
+                                  </div>
+                                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 py-4 border-y border-gray-200">
+                                    <div>
+                                      <p className="text-xs text-gray-500 uppercase font-bold">Arbeitspreis</p>
+                                      <p className="text-lg font-bold text-gray-900">{tariff.arbeitspreis.toFixed(2)}€/kWh</p>
+                                    </div>
+                                    <div>
+                                      <p className="text-xs text-gray-500 uppercase font-bold">Grundpreis</p>
+                                      <p className="text-lg font-bold text-gray-900">{tariff.grundpreis.toFixed(2)}€/Monat</p>
+                                    </div>
+                                    <div>
+                                      <p className="text-xs text-gray-500 uppercase font-bold">Vertragslaufzeit</p>
+                                      <p className="text-lg font-bold text-gray-900">{tariff.vertragslaufzeit}</p>
+                                    </div>
+                                    <div>
+                                      <p className="text-xs text-gray-500 uppercase font-bold">Preisgarantie</p>
+                                      <p className="text-lg font-bold text-gray-900">{tariff.preisgarantie}</p>
+                                    </div>
+                                  </div>
+                                  <Button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 font-bold rounded-lg">
+                                    Tarif wählen
+                                  </Button>
+                                </div>
+                              ))}
+                            </div>
+                            <Button
+                              onClick={() => setShowKombiResults(false)}
+                              variant="outline"
+                              className="w-full mt-6"
+                            >
+                              Neue Berechnung
+                            </Button>
+                          </>
+                        )}
                       </TabsContent>
                     </div>
                   </Tabs>
@@ -538,7 +855,7 @@ export default function HomePage() {
         <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             
-            {/* Sticky Left Content */}
+            {/* Left Content */}
             <div className="relative h-full">
               <div className="sticky top-32">
                 <AnimatedElement>
@@ -567,54 +884,177 @@ export default function HomePage() {
                       <span className="font-bold text-gray-800">Aktiver Klimaschutz</span>
                     </div>
                   </div>
-
-                  <Button
-                    onClick={() => scrollToSection('kontakt')}
-                    className="bg-primary text-white hover:bg-primary/90 h-14 px-8 rounded-full text-lg font-medium shadow-lg hover:shadow-primary/30 transition-all"
-                  >
-                    Kostenlose Beratung anfragen
-                  </Button>
                 </AnimatedElement>
               </div>
             </div>
 
-            {/* Right Content: Visuals */}
-            <div className="space-y-8 pt-12 lg:pt-0">
+            {/* Right Content: Form */}
+            <div className="pt-12 lg:pt-0">
               <AnimatedElement delay={200}>
-                <div className="relative rounded-3xl overflow-hidden aspect-[4/3] shadow-2xl group">
-                  <Image
-                    src="https://static.wixstatic.com/media/32e7c0_253e4a0907724a25a70c9022433aed9d~mv2.png?originWidth=768&originHeight=576"
-                    alt="Modernes Haus mit Solaranlage"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    width={800}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
-                    <p className="text-white font-bold text-xl">Individuelle Planung für Ihr Dach</p>
+                <Card className="border-none shadow-2xl overflow-hidden">
+                  <div className="bg-primary p-6 text-white">
+                    <h3 className="font-heading text-2xl font-bold">Kostenlose Beratung</h3>
+                    <p className="text-white/80 text-sm">Füllen Sie das Formular aus und wir melden uns schnellstmöglich</p>
                   </div>
-                </div>
+                  
+                  <CardContent className="p-8">
+                    <form onSubmit={handlePvSubmit} className="space-y-6">
+                      {/* Eigentumsart */}
+                      <div className="space-y-2">
+                        <Label htmlFor="pv-eigentumsart" className="text-base font-medium">Eigentumsart</Label>
+                        <Select value={pvEigentumsart} onValueChange={setPvEigentumsart} required>
+                          <SelectTrigger id="pv-eigentumsart" className="h-12 bg-gray-50 border-gray-200">
+                            <SelectValue placeholder="Bitte wählen" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="einfamilienhaus">Einfamilienhaus</SelectItem>
+                            <SelectItem value="mehrfamilienhaus">Mehrfamilienhaus</SelectItem>
+                            <SelectItem value="gewerbe">Gewerbe</SelectItem>
+                            <SelectItem value="wohnung_miete">Wohnung zur Miete</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      {/* Dachform */}
+                      <div className="space-y-2">
+                        <Label htmlFor="pv-dachform" className="text-base font-medium">Dachform</Label>
+                        <Select value={pvDachform} onValueChange={setPvDachform} required>
+                          <SelectTrigger id="pv-dachform" className="h-12 bg-gray-50 border-gray-200">
+                            <SelectValue placeholder="Bitte wählen" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="satteldach">Satteldach</SelectItem>
+                            <SelectItem value="flachdach">Flachdach</SelectItem>
+                            <SelectItem value="pultdach">Pultdach</SelectItem>
+                            <SelectItem value="mansardendach">Mansardendach</SelectItem>
+                            <SelectItem value="walmdach">Walmdach</SelectItem>
+                            <SelectItem value="andere">Andere</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      {/* Anzahl Personen */}
+                      <div className="space-y-2">
+                        <Label htmlFor="pv-personen" className="text-base font-medium">Anzahl Personen im Haushalt</Label>
+                        <Input
+                          id="pv-personen"
+                          type="number"
+                          placeholder="z.B. 4"
+                          value={pvPersonen}
+                          onChange={(e) => setPvPersonen(e.target.value)}
+                          className="h-12 bg-gray-50 border-gray-200"
+                        />
+                      </div>
+
+                      {/* Adresse */}
+                      <div className="space-y-3 border-t pt-6">
+                        <h4 className="font-bold text-gray-900">Adresse</h4>
+                        <div className="grid grid-cols-2 gap-3">
+                          <div className="space-y-2 col-span-2">
+                            <Label htmlFor="pv-strasse" className="text-sm font-medium">Straße</Label>
+                            <Input
+                              id="pv-strasse"
+                              placeholder="Musterstraße"
+                              value={pvStrasse}
+                              onChange={(e) => setPvStrasse(e.target.value)}
+                              className="h-10 bg-gray-50 border-gray-200 text-sm"
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="pv-hausnummer" className="text-sm font-medium">Hausnummer</Label>
+                            <Input
+                              id="pv-hausnummer"
+                              placeholder="123"
+                              value={pvHausnummer}
+                              onChange={(e) => setPvHausnummer(e.target.value)}
+                              className="h-10 bg-gray-50 border-gray-200 text-sm"
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="pv-plz" className="text-sm font-medium">PLZ</Label>
+                            <Input
+                              id="pv-plz"
+                              placeholder="40210"
+                              value={pvPlz}
+                              onChange={(e) => setPvPlz(e.target.value)}
+                              className="h-10 bg-gray-50 border-gray-200 text-sm"
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="pv-ort" className="text-sm font-medium">Ort</Label>
+                            <Input
+                              id="pv-ort"
+                              placeholder="Düsseldorf"
+                              value={pvOrt}
+                              onChange={(e) => setPvOrt(e.target.value)}
+                              className="h-10 bg-gray-50 border-gray-200 text-sm"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Dachfoto */}
+                      <div className="space-y-2 border-t pt-6">
+                        <Label htmlFor="pv-foto" className="text-base font-medium">Dachfoto (Optional)</Label>
+                        <Input
+                          id="pv-foto"
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => setPvFoto(e.target.files?.[0] || null)}
+                          className="h-10 bg-gray-50 border-gray-200 text-sm"
+                        />
+                        <p className="text-xs text-gray-500">Laden Sie ein Foto Ihres Daches hoch für eine bessere Analyse</p>
+                      </div>
+
+                      {/* Kontaktinformationen */}
+                      <div className="space-y-3 border-t pt-6">
+                        <h4 className="font-bold text-gray-900">Kontaktinformationen</h4>
+                        <div className="space-y-2">
+                          <Label htmlFor="pv-name" className="text-sm font-medium">Name</Label>
+                          <Input
+                            id="pv-name"
+                            placeholder="Max Mustermann"
+                            value={pvName}
+                            onChange={(e) => setPvName(e.target.value)}
+                            required
+                            className="h-10 bg-gray-50 border-gray-200 text-sm"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="pv-email" className="text-sm font-medium">E-Mail</Label>
+                          <Input
+                            id="pv-email"
+                            type="email"
+                            placeholder="max@beispiel.de"
+                            value={pvEmail}
+                            onChange={(e) => setPvEmail(e.target.value)}
+                            required
+                            className="h-10 bg-gray-50 border-gray-200 text-sm"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="pv-telefon" className="text-sm font-medium">Telefon</Label>
+                          <Input
+                            id="pv-telefon"
+                            type="tel"
+                            placeholder="+49 211 1234 5678"
+                            value={pvTelefon}
+                            onChange={(e) => setPvTelefon(e.target.value)}
+                            className="h-10 bg-gray-50 border-gray-200 text-sm"
+                          />
+                        </div>
+                      </div>
+
+                      <Button
+                        type="submit"
+                        className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 text-base font-bold rounded-lg mt-6"
+                      >
+                        Kostenlose Beratung anfragen
+                      </Button>
+                    </form>
+                  </CardContent>
+                </Card>
               </AnimatedElement>
-              
-              <div className="grid grid-cols-2 gap-8">
-                <AnimatedElement delay={300}>
-                  <div className="relative rounded-3xl overflow-hidden aspect-square shadow-xl group">
-                    <Image
-                      src="https://static.wixstatic.com/media/32e7c0_10aa7de8dab34f96947b67bfd747529e~mv2.png?originWidth=768&originHeight=576"
-                      alt="Techniker bei der Installation"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      width={400}
-                    />
-                  </div>
-                </AnimatedElement>
-                <AnimatedElement delay={400}>
-                  <div className="bg-secondary rounded-3xl p-8 flex flex-col justify-between h-full shadow-xl">
-                    <Sun className="w-12 h-12 text-white mb-4" />
-                    <div>
-                      <p className="text-white/90 font-medium mb-2">Förderung</p>
-                      <p className="text-white font-bold text-2xl">NRW Bonus sichern</p>
-                    </div>
-                  </div>
-                </AnimatedElement>
-              </div>
             </div>
 
           </div>
