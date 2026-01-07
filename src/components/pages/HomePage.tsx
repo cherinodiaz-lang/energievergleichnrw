@@ -333,28 +333,28 @@ export default function HomePage() {
             className="w-full h-full object-cover"
             width={1920}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background" />
         </motion.div>
 
         {/* Hero Content */}
         <div className="relative z-10 w-full max-w-[120rem] mx-auto px-6 lg:px-12 pt-0">
           <div className="max-w-4xl">
             <AnimatedElement>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/90 text-secondary-foreground text-sm font-medium mb-6 backdrop-blur-sm">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-sm font-bold mb-6 backdrop-blur-sm shadow-lg">
                 <Leaf className="w-4 h-4" />
                 <span>Die Nr. 1 für Energievergleiche in NRW</span>
               </div>
             </AnimatedElement>
 
             <AnimatedElement delay={100}>
-              <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.1] mb-8 drop-shadow-lg">
+              <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.1] mb-8" style={{ textShadow: '0 4px 20px rgba(0, 0, 0, 0.8), 0 2px 10px rgba(0, 0, 0, 0.6)' }}>
                 Energie wechseln.<br />
                 <span className="text-secondary">Zukunft sichern.</span>
               </h1>
             </AnimatedElement>
 
             <AnimatedElement delay={200}>
-              <p className="font-paragraph text-lg md:text-2xl text-white/90 mb-10 max-w-2xl leading-relaxed drop-shadow-md">
+              <p className="font-paragraph text-lg md:text-2xl text-white font-medium mb-10 max-w-2xl leading-relaxed" style={{ textShadow: '0 3px 15px rgba(0, 0, 0, 0.8), 0 1px 5px rgba(0, 0, 0, 0.6)' }}>
                 Der einfache Weg zu günstigerem Strom und Gas für Haushalte und Gewerbe in Nordrhein-Westfalen. Transparent, regional, nachhaltig. Mit unserem unabhängigen Vergleichsrechner finden Sie schnell die besten Tarife in Ihrer Region.
               </p>
             </AnimatedElement>
@@ -391,6 +391,7 @@ export default function HomePage() {
         </motion.div>
       </section>
 
+      {/* ... keep existing code (rest of the sections remain the same) ... */}
       {/* --- TRUST & STATS BAR --- */}
       <section className="relative z-20 -mt-20 w-full max-w-[100rem] mx-auto px-6 lg:px-12 mb-24">
         <AnimatedElement delay={400}>
