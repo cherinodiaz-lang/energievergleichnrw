@@ -1,0 +1,24 @@
+# Robots.txt for energievergleich.nrw
+# This file tells search engines which pages to crawl and index
+
+User-agent: *
+Allow: /
+Allow: /gewerbestrom
+Allow: /gewerbegas
+Disallow: /admin
+Disallow: /private
+Disallow: /*.json$
+Disallow: /*.xml$
+
+# Specific rules for Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Specific rules for Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://energievergleich.nrw/sitemap.xml
