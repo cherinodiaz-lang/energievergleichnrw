@@ -51,7 +51,7 @@ export default function GewerbestromPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="w-full bg-primary text-primary-foreground py-24">
+      <section id="hero" className="w-full bg-primary text-primary-foreground py-24">
         <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -75,7 +75,7 @@ export default function GewerbestromPage() {
       </section>
 
       {/* Benefits Section */}
-      <section className="w-full bg-white py-24">
+      <section id="vorteile" className="w-full bg-white py-24">
         <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
           <div className="text-center mb-16">
             <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary mb-4">
@@ -191,7 +191,7 @@ export default function GewerbestromPage() {
       </section>
 
       {/* Info Section */}
-      <section className="w-full bg-background py-24">
+      <section id="info" className="w-full bg-background py-24">
         <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -246,7 +246,7 @@ export default function GewerbestromPage() {
       </section>
 
       {/* Request Form Section */}
-      <section className="w-full bg-white py-24">
+      <section id="anfrage" className="w-full bg-white py-24">
         <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
           <div className="text-center mb-16">
             <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary mb-4">
