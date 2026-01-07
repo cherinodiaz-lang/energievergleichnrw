@@ -1,12 +1,26 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Zap, Mail, Phone, MapPin, Facebook, Twitter, Linkedin } from 'lucide-react';
 
 export default function Footer() {
+  const navigate = useNavigate();
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const navigateToSection = (sectionId: string) => {
+    // Navigate to home first, then scroll to section
+    navigate('/');
+    // Use setTimeout to ensure navigation completes before scrolling
+    setTimeout(() => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
   };
 
   return (
@@ -35,7 +49,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <button
-                  onClick={() => scrollToSection('vergleichsrechner')}
+                  onClick={() => navigateToSection('vergleichsrechner')}
                   className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
                 >
                   Vergleichsrechner
@@ -43,7 +57,7 @@ export default function Footer() {
               </li>
               <li>
                 <button
-                  onClick={() => scrollToSection('vorteile')}
+                  onClick={() => navigateToSection('vorteile')}
                   className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
                 >
                   Vorteile
@@ -51,7 +65,7 @@ export default function Footer() {
               </li>
               <li>
                 <button
-                  onClick={() => scrollToSection('photovoltaik')}
+                  onClick={() => navigateToSection('photovoltaik')}
                   className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
                 >
                   Photovoltaik
@@ -59,7 +73,7 @@ export default function Footer() {
               </li>
               <li>
                 <button
-                  onClick={() => scrollToSection('informationsmaterial')}
+                  onClick={() => navigateToSection('informationsmaterial')}
                   className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
                 >
                   Informationsmaterial
@@ -67,7 +81,7 @@ export default function Footer() {
               </li>
               <li>
                 <button
-                  onClick={() => scrollToSection('faq')}
+                  onClick={() => navigateToSection('faq')}
                   className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
                 >
                   FAQ
