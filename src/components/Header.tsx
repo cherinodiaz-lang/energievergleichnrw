@@ -9,11 +9,16 @@ export default function Header() {
 
   const scrollToSection = (sectionId: string) => {
     if (location.pathname !== '/') {
+      // Navigiere zur Homepage mit dem Anchor
       window.location.href = `/#${sectionId}`;
     } else {
+      // Wir sind bereits auf der Homepage - scrolle zum Element
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        // Fallback: Wenn das Element nicht existiert, scrolle nach oben
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
     setMobileMenuOpen(false);
