@@ -23,15 +23,15 @@ export default {
                 paragraph: "poppins-v2"
             },
             colors: {
-                'light-grey': '#EAEAEA',
-                destructive: '#D32F2F',
-                'destructive-foreground': '#FFFFFF',
-                background: '#F5F7F9',
-                secondary: '#FFB703',
-                foreground: '#000000',
-                'secondary-foreground': '#000000',
-                'primary-foreground': '#FFFFFF',
-                primary: '#2C6E49'
+                primary: "#2C6E49",
+                "primary-foreground": "#FFFFFF",
+                secondary: "#ebb630ff",
+                "secondary-foreground": "#000000",
+                background: "#F5F7F9",
+                "light-grey": "#EAEAEA",
+                destructive: "#D32F2F",
+                "destructive-foreground": "#FFFFFF",
+                foreground: "#000000"
             },
         },
     },
