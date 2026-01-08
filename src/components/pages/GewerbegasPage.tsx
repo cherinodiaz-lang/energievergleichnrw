@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Flame, Building2, TrendingDown, Shield, Clock, Send } from 'lucide-react';
+import { Flame, Building2, TrendingDown, Shield, Clock, Send, Sun, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -9,8 +9,10 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { useNavigate } from 'react-router-dom';
 
 export default function GewerbegasPage() {
+  const navigate = useNavigate();
   // --- SEO Meta Tags ---
   useEffect(() => {
     document.title = 'Gewerbegas NRW - Gastarife für Unternehmen vergleichen';
@@ -53,7 +55,7 @@ export default function GewerbegasPage() {
       <Header />
 
       {/* Hero Section */}
-      <section id="hero" className="w-full bg-primary text-primary-foreground py-24">
+      <section id="hero" className="w-full bg-primary text-primary-foreground py-32">
         <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -61,17 +63,35 @@ export default function GewerbegasPage() {
             transition={{ duration: 0.5 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <div className="flex justify-center mb-6">
-              <div className="bg-primary-foreground p-4 rounded-2xl">
+            <div className="flex justify-center mb-8">
+              <div className="bg-secondary p-4 rounded-2xl shadow-lg">
                 <Flame className="w-16 h-16 text-primary" />
               </div>
             </div>
-            <h1 className="font-heading text-5xl md:text-6xl font-bold mb-6">
+            <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
               Gewerbegas für Ihr Unternehmen
             </h1>
-            <p className="font-paragraph text-xl opacity-90 max-w-3xl mx-auto">
+            <p className="font-paragraph text-lg md:text-xl text-white font-medium max-w-3xl mx-auto leading-relaxed">
               Profitieren Sie von maßgeschneiderten Gastarifen für Gewerbekunden in NRW. Senken Sie Ihre Heizkosten und setzen Sie auf nachhaltige Energie.
             </p>
+            
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
+              <Button
+                onClick={() => document.getElementById('anfrage')?.scrollIntoView({ behavior: 'smooth' })}
+                className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 px-8 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
+              >
+                Angebot anfordern
+              </Button>
+              <Button
+                onClick={() => navigate('/#photovoltaik')}
+                variant="outline"
+                className="bg-white/10 border-white/30 text-white hover:bg-white/20 h-14 px-8 rounded-full text-lg font-medium backdrop-blur-md transition-all"
+              >
+                <Sun className="w-5 h-5 mr-2" />
+                Photovoltaik Beratung
+              </Button>
+            </div>
           </motion.div>
         </div>
       </section>
