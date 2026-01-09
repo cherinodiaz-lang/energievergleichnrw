@@ -6,6 +6,12 @@ import ErrorPage from '@/integrations/errorHandlers/ErrorPage';
 import HomePage from '@/components/pages/HomePage';
 import GewerbestromPage from '@/components/pages/GewerbestromPage';
 import GewerbegasPage from '@/components/pages/GewerbegasPage';
+import StromvergleichNrwPage from '@/components/pages/StromvergleichNrwPage';
+import GasvergleichNrwPage from '@/components/pages/GasvergleichNrwPage';
+import PhotovoltaikNrwPage from '@/components/pages/PhotovoltaikNrwPage';
+import KontaktPage from '@/components/pages/KontaktPage';
+import ImpressumPage from '@/components/pages/ImpressumPage';
+import DatenschutzPage from '@/components/pages/DatenschutzPage';
 import OrganizationSchema from '@/components/OrganizationSchema';
 import WebsiteSchema from '@/components/WebsiteSchema';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
@@ -52,6 +58,48 @@ const router = createBrowserRouter([
         element: <GewerbegasPage />,
         routeMetadata: {
           pageIdentifier: 'gewerbegas',
+        },
+      },
+      {
+        path: "stromvergleich-nrw",
+        element: <StromvergleichNrwPage />,
+        routeMetadata: {
+          pageIdentifier: 'stromvergleich-nrw',
+        },
+      },
+      {
+        path: "gasvergleich-nrw",
+        element: <GasvergleichNrwPage />,
+        routeMetadata: {
+          pageIdentifier: 'gasvergleich-nrw',
+        },
+      },
+      {
+        path: "photovoltaik-nrw",
+        element: <PhotovoltaikNrwPage />,
+        routeMetadata: {
+          pageIdentifier: 'photovoltaik-nrw',
+        },
+      },
+      {
+        path: "kontakt",
+        element: <KontaktPage />,
+        routeMetadata: {
+          pageIdentifier: 'kontakt',
+        },
+      },
+      {
+        path: "impressum",
+        element: <ImpressumPage />,
+        routeMetadata: {
+          pageIdentifier: 'impressum',
+        },
+      },
+      {
+        path: "datenschutz",
+        element: <DatenschutzPage />,
+        routeMetadata: {
+          pageIdentifier: 'datenschutz',
         },
       },
       {
