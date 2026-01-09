@@ -12,6 +12,9 @@ import PhotovoltaikNrwPage from '@/components/pages/PhotovoltaikNrwPage';
 import KontaktPage from '@/components/pages/KontaktPage';
 import ImpressumPage from '@/components/pages/ImpressumPage';
 import DatenschutzPage from '@/components/pages/DatenschutzPage';
+import RatgeberPage from '@/components/pages/RatgeberPage';
+import StromCategoryPage from '@/components/pages/ratgeber/StromCategoryPage';
+import StromGrundversorgungArticle from '@/components/pages/ratgeber/articles/StromGrundversorgungArticle';
 import OrganizationSchema from '@/components/OrganizationSchema';
 import WebsiteSchema from '@/components/WebsiteSchema';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
@@ -102,6 +105,27 @@ const router = createBrowserRouter([
         element: <DatenschutzPage />,
         routeMetadata: {
           pageIdentifier: 'datenschutz',
+        },
+      },
+      {
+        path: "ratgeber",
+        element: <RatgeberPage />,
+        routeMetadata: {
+          pageIdentifier: 'ratgeber',
+        },
+      },
+      {
+        path: "ratgeber/strom",
+        element: <StromCategoryPage />,
+        routeMetadata: {
+          pageIdentifier: 'ratgeber-strom',
+        },
+      },
+      {
+        path: "ratgeber/strom/grundversorgung",
+        element: <StromGrundversorgungArticle />,
+        routeMetadata: {
+          pageIdentifier: 'ratgeber-strom-grundversorgung',
         },
       },
       {
