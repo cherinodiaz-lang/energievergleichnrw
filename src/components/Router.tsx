@@ -14,6 +14,10 @@ import ImpressumPage from '@/components/pages/ImpressumPage';
 import DatenschutzPage from '@/components/pages/DatenschutzPage';
 import RatgeberPage from '@/components/pages/RatgeberPage';
 import StromCategoryPage from '@/components/pages/ratgeber/StromCategoryPage';
+import GasCategoryPage from '@/components/pages/ratgeber/GasCategoryPage';
+import GewerbeCategoryPage from '@/components/pages/ratgeber/GewerbeCategoryPage';
+import PhotovoltaikCategoryPage from '@/components/pages/ratgeber/PhotovoltaikCategoryPage';
+import WechselwissenCategoryPage from '@/components/pages/ratgeber/WechselwissenCategoryPage';
 import StromGrundversorgungArticle from '@/components/pages/ratgeber/articles/StromGrundversorgungArticle';
 import OrganizationSchema from '@/components/OrganizationSchema';
 import WebsiteSchema from '@/components/WebsiteSchema';
@@ -126,6 +130,34 @@ const router = createBrowserRouter([
         element: <StromGrundversorgungArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-strom-grundversorgung',
+        },
+      },
+      {
+        path: "ratgeber/gas",
+        element: <GasCategoryPage />,
+        routeMetadata: {
+          pageIdentifier: 'ratgeber-gas',
+        },
+      },
+      {
+        path: "ratgeber/gewerbe",
+        element: <GewerbeCategoryPage />,
+        routeMetadata: {
+          pageIdentifier: 'ratgeber-gewerbe',
+        },
+      },
+      {
+        path: "ratgeber/photovoltaik",
+        element: <PhotovoltaikCategoryPage />,
+        routeMetadata: {
+          pageIdentifier: 'ratgeber-photovoltaik',
+        },
+      },
+      {
+        path: "ratgeber/wechselwissen",
+        element: <WechselwissenCategoryPage />,
+        routeMetadata: {
+          pageIdentifier: 'ratgeber-wechselwissen',
         },
       },
       {
