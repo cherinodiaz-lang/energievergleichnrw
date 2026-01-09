@@ -1,73 +1,25 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sun, ArrowRight } from 'lucide-react';
+import { Sun, Clock, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import { Link } from 'react-router-dom';
+import { getArticlesByCategory } from '@/lib/ratgeber-map';
 
 export default function PhotovoltaikCategoryPage() {
-  const articles = [
-    {
-      id: 'photovoltaik-lohnt-sich',
-      title: 'Lohnt sich Photovoltaik in NRW?',
-      description: 'Wirtschaftlichkeitsanalyse und Amortisationsrechnung für Solaranlagen in Nordrhein-Westfalen.',
-      date: '2026-01-09',
-      readTime: '8 min'
-    },
-    {
-      id: 'solaranlage-kosten-planung',
-      title: 'Solaranlage: Kosten und Planung',
-      description: 'Übersicht über Kosten, Größe und Planung einer Photovoltaikanlage für Ihr Dach.',
-      date: '2026-01-08',
-      readTime: '7 min'
-    },
-    {
-      id: 'stromspeicher-sinnvoll',
-      title: 'Stromspeicher: Sinnvoll oder nicht?',
-      description: 'Analyse von Batteriespeichern und deren Einfluss auf Ihre Unabhängigkeit.',
-      date: '2026-01-07',
-      readTime: '7 min'
-    },
-    {
-      id: 'einspeiseverguetung-erklaert',
-      title: 'Einspeisevergütung erklärt',
-      description: 'Wie die Einspeisevergütung funktioniert und wie Sie damit Geld verdienen.',
-      date: '2026-01-06',
-      readTime: '6 min'
-    },
-    {
-      id: 'photovoltaik-foerderung-kfw',
-      title: 'KfW-Förderung für Photovoltaik',
-      description: 'Übersicht über KfW-Programme und Fördermöglichkeiten für Solaranlagen.',
-      date: '2026-01-05',
-      readTime: '6 min'
-    }
-  ];
-
-  const relatedCategories = [
-    {
-      title: 'Stromvergleich & Tarife',
-      link: '/ratgeber/strom',
-      icon: '⚡'
-    },
-    {
-      title: 'Wechselwissen',
-      link: '/ratgeber/wechselwissen',
-      icon: '🔄'
-    }
-  ];
+  const articles = getArticlesByCategory('photovoltaik');
 
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Photovoltaik Ratgeber | Solaranlagen in NRW - Kosten & Förderung"
-        description="Umfassender Ratgeber zu Photovoltaik und Solaranlagen in NRW. Erfahren Sie alles über Kosten, Förderung und Wirtschaftlichkeit."
-        keywords="Photovoltaik, Solaranlage, Solarenergie, Kosten, Förderung, KfW, Einspeisevergütung"
-        ogTitle="Photovoltaik Ratgeber | Energievergleich"
-        ogDescription="Alles über Solaranlagen und Photovoltaik in NRW"
+        title="Photovoltaik & Solar | Ratgeber | Energievergleich"
+        description="Ratgeber zu Solaranlagen, Photovoltaik-Kosten und Förderungen in NRW. Erfahren Sie alles über Solarenergie."
+        keywords="Photovoltaik, Solaranlage, Solarenergie, PV-Anlage, Einspeisevergütung"
+        ogTitle="Photovoltaik & Solar | Ratgeber"
+        ogDescription="Umfassender Ratgeber zu Solaranlagen und Photovoltaik in NRW"
       />
       <Header />
 
@@ -81,40 +33,32 @@ export default function PhotovoltaikCategoryPage() {
             className="max-w-3xl"
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center">
-                <Sun className="w-6 h-6 text-secondary" />
-              </div>
-              <span className="text-secondary font-bold uppercase text-sm">Ratgeber</span>
+              <Sun className="w-8 h-8" />
+              <span className="text-sm font-bold uppercase tracking-wider">Ratgeber</span>
             </div>
             <h1 className="font-heading text-5xl md:text-7xl font-bold mb-6 leading-tight">
               Photovoltaik & Solar
             </h1>
-            <p className="font-paragraph text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
-              Leitfaden zu Solaranlagen, Wirtschaftlichkeit und Förderungen. Alles was Sie über Photovoltaik in NRW wissen müssen.
+            <p className="font-paragraph text-lg md:text-xl text-white/90">
+              Leitfaden zu Solaranlagen, Wirtschaftlichkeit und Förderungen
             </p>
-            <Button
-              onClick={() => document.getElementById('artikel')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 px-6 rounded-full font-semibold"
-            >
-              Artikel durchsuchen
-            </Button>
           </motion.div>
         </div>
       </section>
 
-      {/* Articles Section */}
-      <section id="artikel" className="w-full py-24 bg-white">
+      {/* Articles Grid */}
+      <section className="w-full py-24 bg-white">
         <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
-          <div className="mb-16">
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary mb-4">
-              {articles.length} Artikel zu Photovoltaik
+          <div className="mb-12">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary mb-4">
+              {articles.length} Artikel in dieser Kategorie
             </h2>
-            <p className="font-paragraph text-lg text-gray-600">
-              Alles über Solaranlagen, Kosten und Förderungen
+            <p className="font-paragraph text-gray-600">
+              Lesen Sie unsere Ratgeber und erfahren Sie alles über Solaranlagen.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {articles.map((article, index) => (
               <motion.div
                 key={article.id}
@@ -123,62 +67,26 @@ export default function PhotovoltaikCategoryPage() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Link to={`/ratgeber/photovoltaik/${article.id}`} className="group h-full">
-                  <Card className="h-full hover:shadow-xl transition-all duration-300 border-none overflow-hidden">
-                    <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 p-6 text-white">
-                      <Sun className="w-8 h-8 mb-3 group-hover:scale-110 transition-transform" />
-                      <h3 className="font-heading text-xl font-bold group-hover:text-secondary transition-colors">
+                <Link to={`/${article.slug}`} className="group h-full">
+                  <Card className="h-full hover:shadow-lg transition-all duration-300 border-none overflow-hidden flex flex-col">
+                    <CardHeader className="pb-3">
+                      <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors line-clamp-2">
                         {article.title}
-                      </h3>
-                    </div>
-                    <CardContent className="p-6">
-                      <p className="font-paragraph text-gray-600 mb-6 line-clamp-2">
-                        {article.description}
-                      </p>
-                      <div className="flex items-center justify-between text-sm text-gray-500">
-                        <span>{article.readTime} Lesezeit</span>
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Related Categories Section */}
-      <section className="w-full py-24 bg-background">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary mb-12">
-            Verwandte Kategorien
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {relatedCategories.map((category, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Link to={category.link} className="group">
-                  <Card className="h-full hover:shadow-lg transition-all duration-300">
-                    <CardHeader>
-                      <div className="flex items-center gap-3 mb-4">
-                        <span className="text-3xl">{category.icon}</span>
-                        <CardTitle className="font-heading text-xl group-hover:text-primary transition-colors">
-                          {category.title}
-                        </CardTitle>
-                      </div>
+                      </CardTitle>
                     </CardHeader>
-                    <CardContent>
-                      <Button variant="outline" size="sm" className="group-hover:border-primary group-hover:text-primary">
-                        Zur Kategorie
-                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                      </Button>
+                    <CardContent className="flex-1 flex flex-col pb-6">
+                      <p className="font-paragraph text-sm text-gray-600 mb-6 line-clamp-3 flex-1">
+                        {article.teaser}
+                      </p>
+                      <div className="flex items-center justify-between text-xs text-gray-500 border-t pt-4">
+                        <div className="flex items-center gap-1">
+                          <Clock className="w-4 h-4" />
+                          <span>{article.readingTime} Min. Lesezeit</span>
+                        </div>
+                        <span className="text-gray-400">
+                          {new Date(article.lastUpdated).toLocaleDateString('de-DE')}
+                        </span>
+                      </div>
                     </CardContent>
                   </Card>
                 </Link>
@@ -189,29 +97,20 @@ export default function PhotovoltaikCategoryPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="w-full py-24 bg-primary text-primary-foreground">
+      <section className="w-full py-16 bg-primary text-primary-foreground">
         <div className="max-w-[100rem] mx-auto px-6 lg:px-12 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6">
-              Bereit für Ihre eigene Solaranlage?
-            </h2>
-            <p className="font-paragraph text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-              Erhalten Sie eine kostenlose Beratung und ein individuelles Angebot für Ihre Photovoltaikanlage.
-            </p>
-            <Button
-              asChild
-              className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 px-8 rounded-full font-semibold"
-            >
-              <Link to="/photovoltaik-nrw">
-                Kostenlose Beratung anfragen
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
-            </Button>
-          </motion.div>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6">
+            Interessiert an einer Solaranlage?
+          </h2>
+          <p className="font-paragraph text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+            Nutzen Sie unsere kostenlose Beratung und erfahren Sie, wie viel Sie mit einer Solaranlage sparen können.
+          </p>
+          <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 px-8 rounded-lg font-bold">
+            <Link to="/photovoltaik-nrw">
+              Kostenlose Beratung
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Link>
+          </Button>
         </div>
       </section>
 
