@@ -1,36 +1,12 @@
 /**
  * SEO Redirects Configuration
- * Handles 301 redirects for domain variations and URL canonicalization
+ * NOTE: Domain redirects (energievergleich.shop -> energievergleich.nrw) should be handled
+ * via Wix Domain Settings and Server-side Redirects, NOT client-side.
+ * This file is kept for reference only.
  */
 
-export const SEO_REDIRECTS = {
-  // Domain redirects (.shop -> .nrw)
-  'energievergleich.shop': 'https://energievergleich.nrw',
-  'www.energievergleich.shop': 'https://energievergleich.nrw',
-  
-  // WWW redirects (optional - uncomment if needed)
-  // 'www.energievergleich.nrw': 'https://energievergleich.nrw',
-};
-
 /**
- * Check if current domain needs redirect
- * This function should be called on app initialization
- */
-export function checkAndApplyRedirects() {
-  const currentHost = window.location.hostname;
-  
-  // Check if current host matches any redirect rule
-  for (const [fromDomain, toUrl] of Object.entries(SEO_REDIRECTS)) {
-    if (currentHost === fromDomain || currentHost === fromDomain.replace('www.', '')) {
-      // Perform 301 redirect
-      window.location.href = toUrl + window.location.pathname + window.location.search + window.location.hash;
-      return;
-    }
-  }
-}
-
-/**
- * Generate canonical URL for current page
+ * Get canonical URL for current page
  */
 export function getCanonicalUrl(pathname: string): string {
   const baseUrl = 'https://energievergleich.nrw';
@@ -38,7 +14,7 @@ export function getCanonicalUrl(pathname: string): string {
 }
 
 /**
- * Ensure all links use the canonical domain
+ * Normalize URL to canonical domain
  */
 export function normalizeUrl(url: string): string {
   if (!url.startsWith('http')) {
@@ -47,4 +23,14 @@ export function normalizeUrl(url: string): string {
   
   // Replace any non-canonical domains with canonical domain
   return url.replace(/https?:\/\/(www\.)?energievergleich\.(shop|de|com)/, 'https://energievergleich.nrw');
+}
+
+/**
+ * Check for redirects on app initialization
+ * NOTE: This function is deprecated. Use Wix server-side redirects instead.
+ */
+export function checkAndApplyRedirects() {
+  // Server-side redirects should handle domain redirects
+  // This is kept for backwards compatibility but should not be used
+  console.log('Note: Domain redirects should be configured via Wix Domain Settings');
 }

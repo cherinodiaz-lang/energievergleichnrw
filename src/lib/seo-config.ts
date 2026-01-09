@@ -9,18 +9,10 @@ export const SEO_CONFIG = {
   siteUrl: 'https://energievergleich.nrw',
   siteDescription: 'Vergleichen Sie Strom- und Gastarife in Nordrhein-Westfalen. Finden Sie die besten Angebote für Privat- und Gewerbekunden. Kostenlos und unabhängig.',
   
-  // Organization Information
+  // Organization Information (NO postal address - only essential fields)
   organization: {
     name: 'energievergleich.nrw',
-    address: {
-      streetAddress: 'Musterstraße 123',
-      addressLocality: 'Düsseldorf',
-      postalCode: '40210',
-      addressCountry: 'DE',
-    },
-    phone: '+49-211-1234-5678',
-    email: 'kontakt@energievergleich.nrw',
-    areaServed: 'Nordrhein-Westfalen, Deutschland',
+    areaServed: 'Nordrhein-Westfalen',
   },
   
   // Social Media

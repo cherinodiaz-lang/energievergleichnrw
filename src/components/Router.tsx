@@ -1,23 +1,16 @@
 import { MemberProvider } from '@/integrations';
 import { createBrowserRouter, RouterProvider, Navigate, Outlet } from 'react-router-dom';
 import { ScrollToTop } from '@/lib/scroll-to-top';
-import { checkAndApplyRedirects } from '@/lib/seo-redirects';
 import { SEO_CONFIG } from '@/lib/seo-config';
 import ErrorPage from '@/integrations/errorHandlers/ErrorPage';
 import HomePage from '@/components/pages/HomePage';
 import GewerbestromPage from '@/components/pages/GewerbestromPage';
 import GewerbegasPage from '@/components/pages/GewerbegasPage';
-import Breadcrumbs from '@/components/Breadcrumbs';
 import OrganizationSchema from '@/components/OrganizationSchema';
 import WebsiteSchema from '@/components/WebsiteSchema';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import SearchConsoleVerification from '@/components/SearchConsoleVerification';
 import SitemapNotification from '@/components/SitemapNotification';
-
-// Check for redirects on app initialization
-if (typeof window !== 'undefined') {
-  checkAndApplyRedirects();
-}
 
 // Layout component that includes ScrollToTop and SEO components
 function Layout() {
@@ -29,7 +22,6 @@ function Layout() {
       <GoogleAnalytics measurementId={SEO_CONFIG.googleAnalyticsId} />
       <SearchConsoleVerification verificationCode={SEO_CONFIG.googleSearchConsoleVerification} />
       <SitemapNotification />
-      <Breadcrumbs />
       <Outlet />
     </>
   );
