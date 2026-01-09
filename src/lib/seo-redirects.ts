@@ -1,8 +1,18 @@
 /**
  * SEO Redirects Configuration
- * NOTE: Domain redirects (energievergleich.shop -> energievergleich.nrw) should be handled
- * via Wix Domain Settings and Server-side Redirects, NOT client-side.
- * This file is kept for reference only.
+ * 
+ * IMPORTANT: Domain redirects (energievergleich.shop -> energievergleich.nrw) are handled
+ * via Wix Domain Settings with 301 redirects, NOT client-side.
+ * 
+ * Configuration Steps in Wix Dashboard:
+ * 1. Go to Settings → Domains & URLs
+ * 2. Set energievergleich.nrw as the PRIMARY DOMAIN
+ * 3. Add energievergleich.shop as a Parked Domain with 301 Redirect to energievergleich.nrw
+ * 4. In Google Search Console:
+ *    - Add both domains as properties
+ *    - Set energievergleich.nrw as the preferred domain
+ *    - Remove energievergleich.shop from indexing
+ * 5. Update robots.txt and sitemap.xml to reference energievergleich.nrw only
  */
 
 /**
