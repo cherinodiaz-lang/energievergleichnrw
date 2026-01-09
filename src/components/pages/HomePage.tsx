@@ -301,7 +301,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background overflow-clip selection:bg-primary selection:text-white">
       <SEOHead
-        title="Energievergleich NRW: Strom & Gas Tarife vergleichen & sparen"
+        title="Energievergleich NRW: Strom & Gas Tarife vergleichen"
         description="Vergleichen Sie Strom- und Gastarife in Nordrhein-Westfalen. Finden Sie schnell und einfach den besten Anbieter für Ihr Zuhause oder Unternehmen. Jetzt wechseln & Kosten senken!"
         keywords="Energievergleich NRW, Stromvergleich, Gasvergleich, Strom sparen, Gas sparen, Tarife NRW"
         ogTitle="Energievergleich NRW - Die beste Wahl für Ihre Energieversorgung"
