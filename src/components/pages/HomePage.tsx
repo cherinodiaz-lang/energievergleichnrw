@@ -12,6 +12,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SEOHead from '@/components/SEOHead';
 import { BaseCrudService } from '@/integrations';
 import { HufiggestellteFragen, Wechselvorteile, Informationsmaterial } from '@/entities';
 import { Image } from '@/components/ui/image';
@@ -95,14 +96,7 @@ export default function HomePage() {
   const heroY = useTransform(scrollY, [0, 1000], [0, 400]);
   const heroOpacity = useTransform(scrollY, [0, 500], [1, 0]);
 
-  // --- SEO Meta Tags ---
-  useEffect(() => {
-    document.title = 'Energievergleich NRW - Strom & Gas Tarife vergleichen und sparen';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Vergleichen Sie Strom- und Gastarife in Nordrhein-Westfalen. Finden Sie die besten Angebote für Privat- und Gewerbekunden. Kostenlos und unabhängig.');
-    }
-  }, []);
+  // ... keep existing code (state declarations) ...
 
   // --- Load Data from CMS ---
   useEffect(() => {
@@ -306,6 +300,13 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background overflow-clip selection:bg-primary selection:text-white">
+      <SEOHead
+        title="Energievergleich NRW - Strom & Gas Tarife vergleichen und sparen"
+        description="Vergleichen Sie Strom- und Gastarife in Nordrhein-Westfalen. Finden Sie die besten Angebote für Privat- und Gewerbekunden. Kostenlos und unabhängig."
+        keywords="Energievergleich NRW, Stromvergleich, Gasvergleich, Strom sparen, Gas sparen, Tarife NRW"
+        ogTitle="Energievergleich NRW - Die beste Wahl für Ihre Energieversorgung"
+        ogDescription="Sparen Sie bis zu 30% bei Strom und Gas. Kostenlos und unabhängig vergleichen."
+      />
       <style>{`
         .animate-reveal {
           opacity: 0;

@@ -9,16 +9,9 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SEOHead from '@/components/SEOHead';
 
 export default function GewerbestromPage() {
-  // --- SEO Meta Tags ---
-  useEffect(() => {
-    document.title = 'Gewerbestrom NRW - Stromtarife für Unternehmen vergleichen';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Gewerbestrom für Ihr Unternehmen in Nordrhein-Westfalen. Maßgeschneiderte Tarife mit Kostenersparnis und Planungssicherheit. Jetzt Angebot anfordern.');
-    }
-  }, []);
   const [companyName, setCompanyName] = useState('');
   const [contactPerson, setContactPerson] = useState('');
   const [email, setEmail] = useState('');
@@ -48,6 +41,13 @@ export default function GewerbestromPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Gewerbestrom NRW - Stromtarife für Unternehmen vergleichen"
+        description="Gewerbestrom für Ihr Unternehmen in Nordrhein-Westfalen. Maßgeschneiderte Tarife mit Kostenersparnis und Planungssicherheit. Jetzt Angebot anfordern."
+        keywords="Gewerbestrom NRW, Stromtarife Unternehmen, Gewerbekunden, Stromvergleich Gewerbe"
+        ogTitle="Gewerbestrom NRW - Maßgeschneiderte Tarife für Ihr Unternehmen"
+        ogDescription="Sparen Sie bis zu 30% bei Gewerbestrom. Kostenlose Beratung für Unternehmen in NRW."
+      />
       <Header />
 
       {/* Hero Section */}

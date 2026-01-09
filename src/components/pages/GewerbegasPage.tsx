@@ -9,18 +9,12 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SEOHead from '@/components/SEOHead';
 import { useNavigate } from 'react-router-dom';
 
 export default function GewerbegasPage() {
   const navigate = useNavigate();
-  // --- SEO Meta Tags ---
-  useEffect(() => {
-    document.title = 'Gewerbegas NRW - Gastarife für Unternehmen vergleichen';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Gewerbegas für Ihr Unternehmen in Nordrhein-Westfalen. Maßgeschneiderte Gastarife mit Kostenersparnis und Planungssicherheit. Jetzt Angebot anfordern.');
-    }
-  }, []);
+  // ... keep existing code (state declarations) ...
   const [companyName, setCompanyName] = useState('');
   const [contactPerson, setContactPerson] = useState('');
   const [email, setEmail] = useState('');
@@ -52,6 +46,13 @@ export default function GewerbegasPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Gewerbegas NRW - Gastarife für Unternehmen vergleichen"
+        description="Gewerbegas für Ihr Unternehmen in Nordrhein-Westfalen. Maßgeschneiderte Gastarife mit Kostenersparnis und Planungssicherheit. Jetzt Angebot anfordern."
+        keywords="Gewerbegas NRW, Gastarife Unternehmen, Gewerbekunden, Gasvergleich Gewerbe"
+        ogTitle="Gewerbegas NRW - Maßgeschneiderte Tarife für Ihr Unternehmen"
+        ogDescription="Sparen Sie bis zu 25% bei Gewerbegas. Kostenlose Beratung für Unternehmen in NRW."
+      />
       <Header />
 
       {/* Hero Section */}
