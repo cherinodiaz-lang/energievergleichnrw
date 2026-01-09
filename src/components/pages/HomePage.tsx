@@ -301,11 +301,11 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background overflow-clip selection:bg-primary selection:text-white">
       <SEOHead
-        title="Energievergleich NRW: Strom & Gas Tarife vergleichen"
-        description="Vergleichen Sie Strom- und Gastarife in Nordrhein-Westfalen. Finden Sie schnell und einfach den besten Anbieter für Ihr Zuhause oder Unternehmen. Jetzt wechseln & Kosten senken!"
+        title="Strom & Gas Tarife vergleichen | Energievergleich"
+        description="Vergleichen Sie Strom- und Gastarife in NRW kostenlos und unabhängig. Finden Sie den besten Anbieter für Ihr Zuhause. Jetzt vergleichen!"
         keywords="Energievergleich NRW, Stromvergleich, Gasvergleich, Strom sparen, Gas sparen, Tarife NRW"
-        ogTitle="Energievergleich NRW - Die beste Wahl für Ihre Energieversorgung"
-        ogDescription="Sparen Sie bis zu 30% bei Strom und Gas. Kostenlos und unabhängig vergleichen."
+        ogTitle="Strom & Gas Tarife vergleichen | Energievergleich"
+        ogDescription="Kostenlos Strom- und Gastarife in NRW vergleichen. Unabhängig und transparent."
       />
       <style>{`
         .animate-reveal {

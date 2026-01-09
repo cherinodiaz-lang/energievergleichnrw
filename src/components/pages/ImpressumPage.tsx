@@ -8,10 +8,10 @@ export default function ImpressumPage() {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Impressum - Energievergleich NRW"
-        description="Impressum und rechtliche Informationen von Energievergleich NRW."
+        title="Impressum | Energievergleich"
+        description="Impressum und rechtliche Informationen von Energievergleich."
         keywords="Impressum, Rechtliche Informationen"
-        ogTitle="Impressum - Energievergleich NRW"
+        ogTitle="Impressum | Energievergleich"
         ogDescription="Impressum und rechtliche Informationen."
       />
       <Header />
@@ -44,33 +44,52 @@ export default function ImpressumPage() {
             transition={{ duration: 0.5 }}
             className="prose prose-lg max-w-none"
           >
+            {/* Checklist */}
+            <div className="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-6 mb-8">
+              <h3 className="font-heading text-lg font-bold text-yellow-900 mb-4">⚠️ Bitte ausfüllen - Erforderliche Informationen</h3>
+              <ul className="space-y-2 text-sm text-yellow-800">
+                <li>☐ Unternehmensname und Rechtsform</li>
+                <li>☐ Vollständige Adresse (Straße, Hausnummer, PLZ, Stadt)</li>
+                <li>☐ Telefonnummer</li>
+                <li>☐ E-Mail-Adresse</li>
+                <li>☐ Umsatzsteuer-ID (falls vorhanden)</li>
+                <li>☐ Handelsregister-Eintrag (falls vorhanden)</li>
+                <li>☐ Verantwortliche Person(en)</li>
+              </ul>
+            </div>
+
             <h2 className="font-heading text-3xl font-bold text-primary mb-6">Angaben gemäß § 5 TMG</h2>
 
             <div className="space-y-8">
               <div>
-                <h3 className="font-heading text-2xl font-bold text-primary mb-4">Verantwortliche Person</h3>
-                <p className="font-paragraph text-gray-700 mb-2">
-                  [Name des Unternehmens]<br />
-                  [Straße und Hausnummer]<br />
-                  [Postleitzahl] [Stadt]<br />
-                  Deutschland
-                </p>
+                <h3 className="font-heading text-2xl font-bold text-primary mb-4">Verantwortliche Person / Unternehmen</h3>
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 space-y-3 font-paragraph text-gray-700">
+                  <p><strong>Unternehmensname:</strong> [Bitte eintragen]</p>
+                  <p><strong>Rechtsform:</strong> [z.B. GmbH, Einzelunternehmen, etc.]</p>
+                  <p><strong>Geschäftsführer/Inhaber:</strong> [Name eintragen]</p>
+                  <p><strong>Straße und Hausnummer:</strong> [Bitte eintragen]</p>
+                  <p><strong>Postleitzahl und Stadt:</strong> [Bitte eintragen]</p>
+                  <p><strong>Land:</strong> Deutschland</p>
+                </div>
               </div>
 
               <div>
                 <h3 className="font-heading text-2xl font-bold text-primary mb-4">Kontaktinformationen</h3>
-                <p className="font-paragraph text-gray-700">
-                  Telefon: +49 211 1234567<br />
-                  E-Mail: kontakt@energievergleich.nrw
-                </p>
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 space-y-3 font-paragraph text-gray-700">
+                  <p><strong>Telefon:</strong> [Bitte eintragen]</p>
+                  <p><strong>E-Mail:</strong> [Bitte eintragen]</p>
+                  <p><strong>Website:</strong> energievergleich.shop</p>
+                </div>
               </div>
 
               <div>
-                <h3 className="font-heading text-2xl font-bold text-primary mb-4">Umsatzsteuer-ID</h3>
-                <p className="font-paragraph text-gray-700">
-                  Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br />
-                  [USt-ID-Nummer]
-                </p>
+                <h3 className="font-heading text-2xl font-bold text-primary mb-4">Umsatzsteuer-ID und Registrierung</h3>
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 space-y-3 font-paragraph text-gray-700">
+                  <p><strong>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:</strong></p>
+                  <p>[Bitte eintragen, falls vorhanden]</p>
+                  <p><strong>Handelsregister-Eintrag:</strong></p>
+                  <p>[Bitte eintragen, falls vorhanden - z.B. "Amtsgericht [Stadt], HRB [Nummer]"]</p>
+                </div>
               </div>
 
               <div>
@@ -97,14 +116,14 @@ export default function ImpressumPage() {
               <div>
                 <h3 className="font-heading text-2xl font-bold text-primary mb-4">Datenschutz</h3>
                 <p className="font-paragraph text-gray-700">
-                  Die Nutzung unserer Website ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben.
+                  Die Nutzung unserer Website ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben. Weitere Informationen finden Sie in unserer <a href="/datenschutz" className="text-primary hover:underline font-bold">Datenschutzerklärung</a>.
                 </p>
               </div>
 
               <div>
                 <h3 className="font-heading text-2xl font-bold text-primary mb-4">Streitbeilegung</h3>
                 <p className="font-paragraph text-gray-700">
-                  Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr/. Unsere E-Mail-Adresse finden Sie oben im Impressum.
+                  Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">https://ec.europa.eu/consumers/odr/</a>. Unsere E-Mail-Adresse finden Sie oben in den Kontaktinformationen.
                 </p>
               </div>
 
@@ -112,12 +131,6 @@ export default function ImpressumPage() {
                 <h3 className="font-heading text-2xl font-bold text-primary mb-4">Verbraucherstreitbeilegung / Universalschiedsverfahren</h3>
                 <p className="font-paragraph text-gray-700">
                   Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
-                </p>
-              </div>
-
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mt-8">
-                <p className="font-paragraph text-sm text-gray-700">
-                  <strong>Hinweis:</strong> Dieses Impressum ist ein Muster und muss mit den tatsächlichen Daten des Unternehmens aktualisiert werden. Bitte ergänzen Sie alle mit [Klammern] gekennzeichneten Felder mit den korrekten Informationen.
                 </p>
               </div>
             </div>

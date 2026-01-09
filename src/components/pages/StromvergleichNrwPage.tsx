@@ -138,11 +138,11 @@ export default function StromvergleichNrwPage() {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Stromvergleich NRW: Günstige Tarife für Privatkunden vergleichen"
-        description="Vergleichen Sie Stromtarife in Nordrhein-Westfalen und sparen Sie bis zu 30%. Kostenlos, unabhängig und transparent. Jetzt Tarife vergleichen und wechseln!"
+        title="Stromvergleich NRW | Energievergleich"
+        description="Stromtarife in NRW kostenlos vergleichen und wechseln. Unabhängig, transparent und ohne Verpflichtung. Jetzt Tarife vergleichen!"
         keywords="Stromvergleich NRW, Stromtarife, Strom sparen, Stromanbieter wechseln, günstige Stromtarife"
-        ogTitle="Stromvergleich NRW - Die besten Tarife für Privatkunden"
-        ogDescription="Sparen Sie bis zu 30% bei Ihrem Stromverbrauch. Kostenloser Vergleich für NRW."
+        ogTitle="Stromvergleich NRW | Energievergleich"
+        ogDescription="Kostenlos Stromtarife in NRW vergleichen. Unabhängig und transparent."
       />
       <Header />
 
@@ -408,47 +408,43 @@ export default function StromvergleichNrwPage() {
             {[
               {
                 q: 'Wie oft kann ich meinen Stromanbieter wechseln?',
-                a: 'Sie können Ihren Stromanbieter jederzeit wechseln, sofern Sie die Kündigungsfrist einhalten. Bei den meisten Verträgen beträgt diese 4 Wochen zum Ende eines Kalendermonats. Nach einem Wechsel können Sie frühestens nach 12 Monaten erneut wechseln, es sei denn, Sie haben einen Vertrag mit kürzerer Laufzeit abgeschlossen.'
+                a: 'Sie können jederzeit wechseln, müssen aber die Kündigungsfrist (meist 4 Wochen zum Monatsende) einhalten. Nach einem Wechsel können Sie frühestens nach 12 Monaten erneut wechseln.'
               },
               {
-                q: 'Ist der Stromwechsel in NRW kostenlos?',
-                a: 'Ja, der Wechsel zu einem neuen Stromanbieter ist völlig kostenlos. Es fallen keine Gebühren für die Kündigung beim alten Anbieter oder für die Anmeldung beim neuen Anbieter an. Der Wechsel wird von uns komplett übernommen.'
+                q: 'Ist der Stromwechsel kostenlos?',
+                a: 'Ja, völlig kostenlos. Es fallen keine Gebühren für Kündigung oder Anmeldung an. Wir kümmern uns um alle Formalitäten.'
               },
               {
                 q: 'Wie lange dauert ein Stromwechsel?',
-                a: 'Ein Stromwechsel dauert in der Regel 4-6 Wochen. Dies ist die gesetzliche Kündigungsfrist. Während dieser Zeit wird Ihre Stromversorgung nicht unterbrochen. Der neue Anbieter kümmert sich um alle notwendigen Formalitäten.'
+                a: 'In der Regel 4-6 Wochen. Ihre Stromversorgung wird nicht unterbrochen. Der neue Anbieter kümmert sich um alle notwendigen Schritte.'
               },
               {
-                q: 'Kann ich während eines Wechsels ohne Strom sein?',
-                a: 'Nein, das ist nicht möglich. Ihre Stromversorgung ist gesetzlich geschützt und wird nicht unterbrochen. Selbst wenn es zu Verzögerungen kommt, springt der Grundversorger ein und beliefert Sie mit Strom.'
+                q: 'Kann ich während des Wechsels ohne Strom sein?',
+                a: 'Nein. Ihre Stromversorgung ist gesetzlich geschützt. Im Notfall springt der Grundversorger ein.'
               },
               {
-                q: 'Welche Daten benötige ich für einen Stromwechsel?',
-                a: 'Sie benötigen Ihre Postleitzahl, Ihren jährlichen Stromverbrauch (in kWh) und optional Ihre Zählernummer. Den Stromverbrauch finden Sie auf Ihrer letzten Stromrechnung. Mit diesen Informationen können wir Ihnen die besten Tarife anzeigen.'
-              },
-              {
-                q: 'Wie viel kann ich durch einen Stromwechsel sparen?',
-                a: 'Die Einsparungen variieren je nach Ihrem Verbrauch und Ihrer Region in NRW. Im Durchschnitt sparen Haushalte 200-400 Euro pro Jahr durch einen Wechsel zu einem günstigeren Anbieter. Mit unserem Vergleichsrechner sehen Sie sofort, wie viel Sie sparen können.'
+                q: 'Welche Daten benötige ich für einen Vergleich?',
+                a: 'Postleitzahl und Stromverbrauch (in kWh). Den Verbrauch finden Sie auf Ihrer letzten Rechnung. Optional: Zählernummer.'
               },
               {
                 q: 'Sind Ökostrom-Tarife teurer?',
-                a: 'Nein, nicht unbedingt. Es gibt mittlerweile viele Ökostrom-Tarife, die genauso günstig oder sogar günstiger sind als konventionelle Tarife. Mit unserem Vergleichsrechner können Sie gezielt nach Ökostrom-Optionen filtern.'
+                a: 'Nein. Es gibt viele Ökostrom-Tarife, die genauso günstig oder günstiger sind. Mit unserem Rechner können Sie gezielt filtern.'
               },
               {
                 q: 'Was ist eine Preisgarantie?',
-                a: 'Eine Preisgarantie bedeutet, dass der Strompreis für einen bestimmten Zeitraum nicht erhöht wird, auch wenn die Marktpreise steigen. Dies gibt Ihnen Planungssicherheit. Beachten Sie: Steuern und Abgaben können trotzdem erhöht werden.'
+                a: 'Der Strompreis wird für einen bestimmten Zeitraum nicht erhöht, auch wenn Marktpreise steigen. Steuern und Abgaben können sich aber ändern.'
               },
               {
                 q: 'Kann ich meinen Vertrag vorzeitig kündigen?',
-                a: 'Die Möglichkeit zur vorzeitigen Kündigung hängt von Ihrem Vertrag ab. Viele Anbieter erlauben eine Kündigung mit 4 Wochen Frist zum Ende eines Kalendermonats. Einige Verträge haben auch Sonderkündigungsrechte bei Preiserhöhungen.'
+                a: 'Das hängt vom Vertrag ab. Viele erlauben Kündigung mit 4 Wochen Frist. Manche haben Sonderkündigungsrechte bei Preiserhöhungen.'
               },
               {
                 q: 'Wie funktioniert der Vergleichsrechner?',
-                a: 'Geben Sie Ihre Postleitzahl und Ihren Stromverbrauch ein. Der Rechner zeigt Ihnen dann alle verfügbaren Tarife in Ihrer Region, sortiert nach Preis. Sie sehen alle wichtigen Informationen wie Arbeitspreis, Grundpreis, Laufzeit und Preisgarantie auf einen Blick.'
+                a: 'Geben Sie Postleitzahl und Verbrauch ein. Der Rechner zeigt alle Tarife sortiert nach Preis mit Arbeitspreis, Grundpreis, Laufzeit und Garantie.'
               },
               {
-                q: 'Gibt es versteckte Gebühren beim Wechsel?',
-                a: 'Nein. Der Wechsel ist komplett kostenlos. Es gibt keine versteckten Gebühren. Alle Kosten sind transparent in den Tarifdetails aufgeführt. Wir zeigen Ihnen immer die Gesamtkosten pro Jahr.'
+                q: 'Gibt es versteckte Gebühren?',
+                a: 'Nein. Der Wechsel ist komplett kostenlos. Alle Kosten sind transparent aufgeführt. Wir zeigen immer die Gesamtkosten pro Jahr.'
               }
             ].map((item, index) => (
               <Accordion key={index} type="single" collapsible className="bg-white rounded-lg border">

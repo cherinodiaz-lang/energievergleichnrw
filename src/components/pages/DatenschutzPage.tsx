@@ -8,10 +8,10 @@ export default function DatenschutzPage() {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Datenschutz - Energievergleich NRW"
-        description="Datenschutzerklärung von Energievergleich NRW. Erfahren Sie, wie wir Ihre Daten schützen."
+        title="Datenschutz | Energievergleich"
+        description="Datenschutzerklärung von Energievergleich. Erfahren Sie, wie wir Ihre Daten schützen."
         keywords="Datenschutz, Datenschutzerklärung, DSGVO"
-        ogTitle="Datenschutz - Energievergleich NRW"
+        ogTitle="Datenschutz | Energievergleich"
         ogDescription="Datenschutzerklärung und Informationen zum Datenschutz."
       />
       <Header />
@@ -44,96 +44,125 @@ export default function DatenschutzPage() {
             transition={{ duration: 0.5 }}
             className="prose prose-lg max-w-none"
           >
+            {/* Checklist */}
+            <div className="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-6 mb-8">
+              <h3 className="font-heading text-lg font-bold text-yellow-900 mb-4">⚠️ Bitte ausfüllen - Erforderliche Informationen</h3>
+              <ul className="space-y-2 text-sm text-yellow-800">
+                <li>☐ Verantwortlicher (Name, Adresse, Kontakt)</li>
+                <li>☐ Datenschutzbeauftragter (falls vorhanden)</li>
+                <li>☐ Hosting-Provider und Datenspeicherort</li>
+                <li>☐ Verwendete Cookies und Tracking-Tools</li>
+                <li>☐ Externe Dienste und deren Datenschutzrichtlinien</li>
+                <li>☐ Kontaktformular-Verarbeitung dokumentieren</li>
+              </ul>
+            </div>
+
             <h2 className="font-heading text-3xl font-bold text-primary mb-6">Datenschutzerklärung</h2>
 
             <div className="space-y-8">
               <div>
-                <h3 className="font-heading text-2xl font-bold text-primary mb-4">1. Datenschutz auf einen Blick</h3>
+                <h3 className="font-heading text-2xl font-bold text-primary mb-4">1. Verantwortlicher und Kontakt</h3>
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 space-y-3 font-paragraph text-gray-700">
+                  <p><strong>Verantwortlicher für die Datenverarbeitung:</strong></p>
+                  <p>[Unternehmensname]<br />[Straße und Hausnummer]<br />[PLZ] [Stadt]<br />Telefon: [Bitte eintragen]<br />E-Mail: [Bitte eintragen]</p>
+                  <p><strong>Datenschutzbeauftragter (falls vorhanden):</strong></p>
+                  <p>[Name und Kontakt eintragen oder "nicht vorhanden"]</p>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="font-heading text-2xl font-bold text-primary mb-4">2. Datenschutz auf einen Blick</h3>
                 <p className="font-paragraph text-gray-700">
-                  Die folgenden Informationen geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie unsere Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text aufgelisteten Datenschutzerklärung.
+                  Die folgenden Informationen geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie unsere Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.
                 </p>
               </div>
 
               <div>
-                <h3 className="font-heading text-2xl font-bold text-primary mb-4">2. Datenerfassung auf unserer Website</h3>
-                <h4 className="font-heading text-xl font-bold text-gray-800 mb-3">Wer ist verantwortlich für die Datenerfassung auf dieser Website?</h4>
+                <h3 className="font-heading text-2xl font-bold text-primary mb-4">3. Datenerfassung auf unserer Website</h3>
+                <h4 className="font-heading text-xl font-bold text-gray-800 mb-3">Wer ist verantwortlich für die Datenerfassung?</h4>
                 <p className="font-paragraph text-gray-700">
-                  Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen.
+                  Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber (siehe Abschnitt 1).
                 </p>
               </div>
 
               <div>
-                <h3 className="font-heading text-2xl font-bold text-primary mb-4">3. Wie erfassen wir Ihre Daten?</h3>
+                <h3 className="font-heading text-2xl font-bold text-primary mb-4">4. Hosting und Speicherung</h3>
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 space-y-3 font-paragraph text-gray-700">
+                  <p><strong>Hosting-Provider:</strong></p>
+                  <p>[Name des Hosting-Anbieters eintragen]</p>
+                  <p><strong>Datenspeicherort:</strong></p>
+                  <p>[Land/Region eintragen, z.B. "Deutschland" oder "EU"]</p>
+                  <p><strong>Datenschutzrichtlinie des Providers:</strong></p>
+                  <p>[Link zur Datenschutzrichtlinie eintragen]</p>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="font-heading text-2xl font-bold text-primary mb-4">5. Kontaktformulare</h3>
                 <p className="font-paragraph text-gray-700 mb-4">
-                  Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z.B. um Daten handeln, die Sie in ein Kontaktformular eingeben.
+                  Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert.
                 </p>
-                <p className="font-paragraph text-gray-700">
-                  Andere Daten werden automatisch beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z.B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenzugriffs). Die Erfassung dieser Daten erfolgt automatisch, sobald Sie unsere Website betreten.
-                </p>
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 space-y-3 font-paragraph text-gray-700">
+                  <p><strong>Verarbeitete Daten:</strong> Name, E-Mail, Telefon, Nachricht</p>
+                  <p><strong>Rechtsgrundlage:</strong> Ihre Einwilligung (Art. 6 Abs. 1 a DSGVO)</p>
+                  <p><strong>Speicherdauer:</strong> [Bitte eintragen, z.B. "12 Monate nach Bearbeitung"]</p>
+                  <p><strong>Empfänger:</strong> [Bitte eintragen, z.B. "Nur interne Bearbeitung"]</p>
+                </div>
               </div>
 
               <div>
-                <h3 className="font-heading text-2xl font-bold text-primary mb-4">4. Wofür nutzen wir Ihre Daten?</h3>
-                <p className="font-paragraph text-gray-700">
-                  Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden.
-                </p>
+                <h3 className="font-heading text-2xl font-bold text-primary mb-4">6. Cookies und Tracking (Optional)</h3>
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 space-y-3 font-paragraph text-gray-700">
+                  <p><strong>Verwendete Cookies:</strong></p>
+                  <p>[Bitte eintragen oder "Keine Cookies verwendet"]</p>
+                  <p><strong>Tracking-Tools:</strong></p>
+                  <p>[z.B. Google Analytics, Matomo, etc. - bitte eintragen oder "Nicht verwendet"]</p>
+                  <p><strong>Externe Dienste:</strong></p>
+                  <p>[z.B. YouTube, Google Maps, etc. - bitte eintragen oder "Nicht verwendet"]</p>
+                </div>
               </div>
 
               <div>
-                <h3 className="font-heading text-2xl font-bold text-primary mb-4">5. Welche Rechte haben Sie bezüglich Ihrer Daten?</h3>
-                <p className="font-paragraph text-gray-700 mb-4">
-                  Sie haben jederzeit das Recht unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung, Sperrung oder Löschung dieser Daten zu verlangen. Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit unter der im Impressum angegebenen Adresse an uns wenden.
-                </p>
-                <p className="font-paragraph text-gray-700">
-                  Des Weiteren steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-heading text-2xl font-bold text-primary mb-4">6. Analyse-Tools und Tools von Drittanbietern</h3>
-                <p className="font-paragraph text-gray-700">
-                  Beim Besuch unserer Website kann Ihr Surf-Verhalten statistisch ausgewertet werden. Das geschieht vor allem mit Cookies und mit sogenannten Analyseprogrammen. Die Analyse Ihres Surf-Verhaltens erfolgt in der Regel anonym; das Surf-Verhalten kann nicht zu Ihnen zurückverfolgt werden.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-heading text-2xl font-bold text-primary mb-4">7. Cookies</h3>
-                <p className="font-paragraph text-gray-700 mb-4">
-                  Die Internetseiten verwenden an mehreren Stellen sogenannte Cookies. Sie ermöglichen es uns, die Benutzung unserer Website nutzerfreundlicher, effektiver und sicherer zu machen. Cookies sind kleine Textdateien, die auf Ihrem Rechner abgelegt werden und die Ihr Browser speichert.
-                </p>
-                <p className="font-paragraph text-gray-700">
-                  Die meisten der von uns verwendeten Cookies sind sogenannte „Session-Cookies". Sie werden nach Ende Ihres Besuchs automatisch gelöscht. Andere Cookies bleiben auf Ihrem Endgerät gespeichert bis Sie diese löschen. Diese Cookies ermöglichen es uns, Ihren Browser beim nächsten Besuch wiederzuerkennen.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-heading text-2xl font-bold text-primary mb-4">8. Kontaktformulare</h3>
-                <p className="font-paragraph text-gray-700">
-                  Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-heading text-2xl font-bold text-primary mb-4">9. Ihre Rechte nach der DSGVO</h3>
+                <h3 className="font-heading text-2xl font-bold text-primary mb-4">7. Ihre Rechte nach der DSGVO</h3>
                 <p className="font-paragraph text-gray-700 mb-4">
                   Sie haben das Recht:
                 </p>
                 <ul className="font-paragraph text-gray-700 space-y-2 ml-6">
-                  <li>• Auskunft über die bei uns gespeicherten Daten zu erhalten</li>
-                  <li>• Berichtigung unrichtiger Daten zu verlangen</li>
-                  <li>• Löschung Ihrer Daten zu verlangen</li>
-                  <li>• Einschränkung der Verarbeitung zu verlangen</li>
-                  <li>• Datenübertragbarkeit zu verlangen</li>
-                  <li>• Widerspruch gegen die Verarbeitung einzulegen</li>
-                  <li>• Beschwerde bei einer Aufsichtsbehörde einzureichen</li>
+                  <li>• <strong>Auskunft:</strong> Sie können jederzeit Auskunft über die bei uns gespeicherten Daten erhalten</li>
+                  <li>• <strong>Berichtigung:</strong> Sie können unrichtige Daten berichtigen lassen</li>
+                  <li>• <strong>Löschung:</strong> Sie können die Löschung Ihrer Daten verlangen ("Recht auf Vergessenwerden")</li>
+                  <li>• <strong>Einschränkung:</strong> Sie können die Einschränkung der Verarbeitung verlangen</li>
+                  <li>• <strong>Datenübertragbarkeit:</strong> Sie können Ihre Daten in einem strukturierten Format erhalten</li>
+                  <li>• <strong>Widerspruch:</strong> Sie können der Verarbeitung widersprechen</li>
+                  <li>• <strong>Beschwerde:</strong> Sie können sich bei einer Aufsichtsbehörde beschweren</li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="font-heading text-2xl font-bold text-primary mb-4">10. Kontakt zum Datenschutzbeauftragten</h3>
+                <h3 className="font-heading text-2xl font-bold text-primary mb-4">8. Kontakt zum Datenschutz</h3>
                 <p className="font-paragraph text-gray-700">
-                  Bei Fragen zum Datenschutz kontaktieren Sie bitte den Datenschutzbeauftragten unter der im Impressum angegebenen Adresse oder per E-Mail.
+                  Bei Fragen zum Datenschutz kontaktieren Sie bitte:
                 </p>
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 space-y-2 font-paragraph text-gray-700 mt-4">
+                  <p><strong>E-Mail:</strong> [Bitte eintragen]</p>
+                  <p><strong>Telefon:</strong> [Bitte eintragen]</p>
+                  <p><strong>Adresse:</strong> [Bitte eintragen]</p>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="font-heading text-2xl font-bold text-primary mb-4">9. Zuständige Aufsichtsbehörde</h3>
+                <p className="font-paragraph text-gray-700">
+                  Die zuständige Datenschutzbehörde für Nordrhein-Westfalen ist:
+                </p>
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 space-y-2 font-paragraph text-gray-700 mt-4">
+                  <p><strong>Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW)</strong><br />
+                  Kavalleriestraße 8<br />
+                  40213 Düsseldorf<br />
+                  Telefon: +49 211 38424-0<br />
+                  E-Mail: poststelle@ldi.nrw.de<br />
+                  Website: www.ldi.nrw.de</p>
+                </div>
               </div>
 
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mt-8">

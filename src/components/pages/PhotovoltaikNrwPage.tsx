@@ -160,11 +160,11 @@ export default function PhotovoltaikNrwPage() {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Photovoltaik NRW: Solaranlagen für Privathaushalte - Kostenlose Beratung"
-        description="Nutzen Sie die Kraft der Sonne! Kostenlose Beratung für Solaranlagen in NRW. Bis zu 80% Autarkie möglich. Jetzt unverbindlich anfragen!"
+        title="Photovoltaik NRW | Energievergleich"
+        description="Solaranlagen in NRW kostenlos beraten. Unabhängige Beratung für Privathaushalte. Jetzt unverbindlich anfragen!"
         keywords="Photovoltaik NRW, Solaranlage, Solarenergie, Sonnenenergie, Solaranlage kaufen"
-        ogTitle="Photovoltaik NRW - Ihre Solaranlage für Unabhängigkeit"
-        ogDescription="Werden Sie unabhängig von Strompreisen. Kostenlose Beratung für Solaranlagen in NRW."
+        ogTitle="Photovoltaik NRW | Energievergleich"
+        ogDescription="Kostenlose Beratung für Solaranlagen in NRW. Unabhängig und transparent."
       />
       <Header />
 
@@ -550,52 +550,52 @@ export default function PhotovoltaikNrwPage() {
           <div className="space-y-4">
             {[
               {
-                q: 'Lohnt sich eine Photovoltaikanlage in NRW?',
-                a: 'Ja, auch in NRW lohnt sich eine Photovoltaikanlage. Durch die Einspeisevergütung und die Eigennutzung des Stroms amortisiert sich die Anlage in der Regel nach 8-12 Jahren. Danach produzieren Sie kostenlosen Strom für weitere 15-20 Jahre.'
+                q: 'Lohnt sich eine Solaranlage?',
+                a: 'Ja. Durch Einspeisevergütung und Eigennutzung amortisiert sich die Anlage meist nach 8-12 Jahren. Danach produzieren Sie kostenlosen Strom für 15-20 Jahre.'
               },
               {
-                q: 'Wie viel Strom produziert eine Solaranlage in NRW?',
-                a: 'Eine typische 5-kW-Anlage produziert in NRW etwa 4.500-5.000 kWh pro Jahr. Dies hängt von der Ausrichtung, dem Neigungswinkel und der Verschattung ab. Mit unserem Beratungsgespräch ermitteln wir die optimale Größe für Ihren Bedarf.'
+                q: 'Wie viel Strom produziert eine Anlage?',
+                a: 'Eine 5-kW-Anlage produziert in NRW etwa 4.500-5.000 kWh pro Jahr. Das hängt von Ausrichtung, Neigung und Verschattung ab.'
               },
               {
-                q: 'Welche Förderungen gibt es für Photovoltaik in NRW?',
-                a: 'Es gibt verschiedene Förderungsmöglichkeiten: die KfW-Förderung für Solaranlagen, die Einspeisevergütung für Überschussstrom und regionale Förderprogramme in NRW. Wir informieren Sie über alle verfügbaren Optionen.'
+                q: 'Welche Förderungen gibt es?',
+                a: 'KfW-Förderung, Einspeisevergütung und regionale Programme. Wir informieren Sie über alle verfügbaren Optionen.'
               },
               {
                 q: 'Wie lange hält eine Solaranlage?',
-                a: 'Hochwertige Solarmodule halten 25-30 Jahre oder länger. Die meisten Hersteller geben eine Leistungsgarantie von 25 Jahren. Der Wechselrichter sollte nach etwa 10-15 Jahren ausgetauscht werden.'
+                a: 'Module halten 25-30 Jahre. Die meisten Hersteller geben 25 Jahre Leistungsgarantie. Der Wechselrichter sollte nach 10-15 Jahren ausgetauscht werden.'
               },
               {
-                q: 'Benötige ich einen Stromspeicher?',
-                a: 'Ein Stromspeicher ist optional, erhöht aber Ihre Unabhängigkeit und Eigennutzungsquote. Mit einem Speicher können Sie bis zu 80% Autarkie erreichen. Wir beraten Sie, ob ein Speicher für Ihre Situation sinnvoll ist.'
+                q: 'Brauche ich einen Stromspeicher?',
+                a: 'Optional. Ein Speicher erhöht Ihre Unabhängigkeit und Eigennutzung. Mit Speicher erreichen Sie bis zu 80% Autarkie.'
               },
               {
-                q: 'Wie viel kostet eine Photovoltaikanlage?',
-                a: 'Eine 5-kW-Anlage kostet in NRW etwa 8.000-12.000 Euro (netto). Mit Förderungen und der Einspeisevergütung reduziert sich die Amortisationszeit erheblich. Wir erstellen Ihnen ein individuelles Angebot.'
+                q: 'Was kostet eine Solaranlage?',
+                a: 'Eine 5-kW-Anlage kostet etwa 8.000-12.000 Euro (netto). Mit Förderungen reduziert sich die Amortisationszeit erheblich.'
               },
               {
-                q: 'Kann ich eine Solaranlage mieten?',
-                a: 'Ja, es gibt Mietmodelle für Solaranlagen. Dabei zahlen Sie eine monatliche Rate, ohne die Anlage zu kaufen. Dies ist eine gute Option, wenn Sie wenig Kapital investieren möchten.'
+                q: 'Kann ich eine Anlage mieten?',
+                a: 'Ja. Mit Mietmodellen zahlen Sie monatlich, ohne die Anlage zu kaufen. Gut für weniger Kapitalaufwand.'
               },
               {
                 q: 'Wie lange dauert die Installation?',
-                a: 'Die Installation einer Solaranlage dauert in der Regel 1-3 Tage. Vorher benötigen Sie eine Genehmigung vom Netzbetreiber, was etwa 4-8 Wochen dauert. Insgesamt sollten Sie mit 2-3 Monaten rechnen.'
+                a: 'Installation: 1-3 Tage. Genehmigung: 4-8 Wochen. Insgesamt: 2-3 Monate bis zur Inbetriebnahme.'
               },
               {
-                q: 'Brauche ich eine Versicherung für meine Solaranlage?',
-                a: 'Ja, eine Versicherung ist empfehlenswert. Sie schützt vor Schäden durch Hagel, Blitzschlag oder Diebstahl. Die Kosten liegen bei etwa 100-200 Euro pro Jahr.'
+                q: 'Brauche ich eine Versicherung?',
+                a: 'Ja, empfohlen. Sie schützt vor Hagel, Blitzschlag und Diebstahl. Kosten: etwa 100-200 Euro pro Jahr.'
               },
               {
                 q: 'Wie funktioniert die Einspeisevergütung?',
-                a: 'Für jeden Kilowattstunde Strom, den Sie ins Netz einspeisen, erhalten Sie eine Vergütung. Diese wird monatlich oder jährlich ausbezahlt. Die aktuelle Vergütung liegt bei etwa 8-10 Cent pro kWh.'
+                a: 'Sie erhalten Vergütung für Strom, den Sie ins Netz einspeisen. Aktuelle Rate: etwa 8-10 Cent pro kWh.'
               },
               {
-                q: 'Kann ich meine Solaranlage später erweitern?',
-                a: 'Ja, Sie können Ihre Anlage später erweitern. Dies ist besonders sinnvoll, wenn Sie einen Stromspeicher oder ein Elektroauto anschaffen. Wir beraten Sie zu den Möglichkeiten.'
+                q: 'Kann ich die Anlage später erweitern?',
+                a: 'Ja. Erweiterung ist sinnvoll bei Stromspeicher oder Elektroauto. Wir beraten Sie zu den Möglichkeiten.'
               },
               {
                 q: 'Wie funktioniert die Beratung?',
-                a: 'Wir führen ein kostenloses Beratungsgespräch durch, analysieren Ihr Dach und Ihren Stromverbrauch, und erstellen ein individuelles Angebot. Danach kümmern wir uns um alle Formalitäten und die Installation.'
+                a: 'Kostenlose Beratung, Dachanalyse, Stromverbrauchsanalyse und individuelles Angebot. Wir kümmern uns um Formalitäten und Installation.'
               }
             ].map((item, index) => (
               <Accordion key={index} type="single" collapsible className="bg-background rounded-lg border">

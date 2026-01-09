@@ -138,11 +138,11 @@ export default function GasvergleichNrwPage() {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Gasvergleich NRW: Günstige Gastarife für Privatkunden vergleichen"
-        description="Vergleichen Sie Gastarife in Nordrhein-Westfalen und sparen Sie bis zu 25%. Kostenlos, unabhängig und transparent. Jetzt Tarife vergleichen und wechseln!"
+        title="Gasvergleich NRW | Energievergleich"
+        description="Gastarife in NRW kostenlos vergleichen und wechseln. Unabhängig, transparent und ohne Verpflichtung. Jetzt Tarife vergleichen!"
         keywords="Gasvergleich NRW, Gastarife, Gas sparen, Gasanbieter wechseln, günstige Gastarife"
-        ogTitle="Gasvergleich NRW - Die besten Tarife für Privatkunden"
-        ogDescription="Sparen Sie bis zu 25% bei Ihrem Gasverbrauch. Kostenloser Vergleich für NRW."
+        ogTitle="Gasvergleich NRW | Energievergleich"
+        ogDescription="Kostenlos Gastarife in NRW vergleichen. Unabhängig und transparent."
       />
       <Header />
 
@@ -407,47 +407,43 @@ export default function GasvergleichNrwPage() {
             {[
               {
                 q: 'Wie oft kann ich meinen Gasanbieter wechseln?',
-                a: 'Sie können Ihren Gasanbieter jederzeit wechseln, sofern Sie die Kündigungsfrist einhalten. Bei den meisten Verträgen beträgt diese 4 Wochen zum Ende eines Kalendermonats. Nach einem Wechsel können Sie frühestens nach 12 Monaten erneut wechseln.'
+                a: 'Sie können jederzeit wechseln, müssen aber die Kündigungsfrist (meist 4 Wochen zum Monatsende) einhalten. Nach einem Wechsel können Sie frühestens nach 12 Monaten erneut wechseln.'
               },
               {
-                q: 'Ist der Gaswechsel in NRW kostenlos?',
-                a: 'Ja, der Wechsel zu einem neuen Gasanbieter ist völlig kostenlos. Es fallen keine Gebühren für die Kündigung beim alten Anbieter oder für die Anmeldung beim neuen Anbieter an. Der Wechsel wird von uns komplett übernommen.'
+                q: 'Ist der Gaswechsel kostenlos?',
+                a: 'Ja, völlig kostenlos. Es fallen keine Gebühren für Kündigung oder Anmeldung an. Wir kümmern uns um alle Formalitäten.'
               },
               {
                 q: 'Wie lange dauert ein Gaswechsel?',
-                a: 'Ein Gaswechsel dauert in der Regel 4-6 Wochen. Dies ist die gesetzliche Kündigungsfrist. Während dieser Zeit wird Ihre Gasversorgung nicht unterbrochen. Der neue Anbieter kümmert sich um alle notwendigen Formalitäten.'
+                a: 'In der Regel 4-6 Wochen. Ihre Gasversorgung wird nicht unterbrochen. Der neue Anbieter kümmert sich um alle notwendigen Schritte.'
               },
               {
-                q: 'Kann ich während eines Wechsels ohne Gas sein?',
-                a: 'Nein, das ist nicht möglich. Ihre Gasversorgung ist gesetzlich geschützt und wird nicht unterbrochen. Selbst wenn es zu Verzögerungen kommt, springt der Grundversorger ein und beliefert Sie mit Gas.'
+                q: 'Kann ich während des Wechsels ohne Gas sein?',
+                a: 'Nein. Ihre Gasversorgung ist gesetzlich geschützt. Im Notfall springt der Grundversorger ein.'
               },
               {
-                q: 'Welche Daten benötige ich für einen Gaswechsel?',
-                a: 'Sie benötigen Ihre Postleitzahl, Ihre Wohnfläche oder Ihren jährlichen Gasverbrauch (in kWh). Den Gasverbrauch finden Sie auf Ihrer letzten Gasrechnung. Mit diesen Informationen können wir Ihnen die besten Tarife anzeigen.'
-              },
-              {
-                q: 'Wie viel kann ich durch einen Gaswechsel sparen?',
-                a: 'Die Einsparungen variieren je nach Ihrem Verbrauch und Ihrer Region in NRW. Im Durchschnitt sparen Haushalte 150-300 Euro pro Jahr durch einen Wechsel zu einem günstigeren Anbieter. Mit unserem Vergleichsrechner sehen Sie sofort, wie viel Sie sparen können.'
+                q: 'Welche Daten benötige ich für einen Vergleich?',
+                a: 'Postleitzahl und Gasverbrauch (in kWh) oder Wohnfläche. Den Verbrauch finden Sie auf Ihrer letzten Rechnung. Optional: Zählernummer.'
               },
               {
                 q: 'Sind Biogas-Tarife teurer?',
-                a: 'Nein, nicht unbedingt. Es gibt mittlerweile viele Biogas-Tarife, die genauso günstig oder sogar günstiger sind als konventionelle Tarife. Mit unserem Vergleichsrechner können Sie gezielt nach nachhaltigen Optionen filtern.'
+                a: 'Nein. Es gibt viele Biogas-Tarife, die genauso günstig oder günstiger sind. Mit unserem Rechner können Sie gezielt filtern.'
               },
               {
-                q: 'Was ist eine Preisgarantie bei Gas?',
-                a: 'Eine Preisgarantie bedeutet, dass der Gaspreis für einen bestimmten Zeitraum nicht erhöht wird, auch wenn die Marktpreise steigen. Dies gibt Ihnen Planungssicherheit. Beachten Sie: Steuern und Abgaben können trotzdem erhöht werden.'
+                q: 'Was ist eine Preisgarantie?',
+                a: 'Der Gaspreis wird für einen bestimmten Zeitraum nicht erhöht, auch wenn Marktpreise steigen. Steuern und Abgaben können sich aber ändern.'
               },
               {
-                q: 'Kann ich meinen Gasvertrag vorzeitig kündigen?',
-                a: 'Die Möglichkeit zur vorzeitigen Kündigung hängt von Ihrem Vertrag ab. Viele Anbieter erlauben eine Kündigung mit 4 Wochen Frist zum Ende eines Kalendermonats. Einige Verträge haben auch Sonderkündigungsrechte bei Preiserhöhungen.'
+                q: 'Kann ich meinen Vertrag vorzeitig kündigen?',
+                a: 'Das hängt vom Vertrag ab. Viele erlauben Kündigung mit 4 Wochen Frist. Manche haben Sonderkündigungsrechte bei Preiserhöhungen.'
               },
               {
-                q: 'Wie funktioniert der Gasvergleichsrechner?',
-                a: 'Geben Sie Ihre Postleitzahl und Ihre Wohnfläche oder Ihren Gasverbrauch ein. Der Rechner zeigt Ihnen dann alle verfügbaren Tarife in Ihrer Region, sortiert nach Preis. Sie sehen alle wichtigen Informationen wie Arbeitspreis, Grundpreis, Laufzeit und Preisgarantie auf einen Blick.'
+                q: 'Wie funktioniert der Vergleichsrechner?',
+                a: 'Geben Sie Postleitzahl und Verbrauch ein. Der Rechner zeigt alle Tarife sortiert nach Preis mit Arbeitspreis, Grundpreis, Laufzeit und Garantie.'
               },
               {
-                q: 'Gibt es versteckte Gebühren beim Gaswechsel?',
-                a: 'Nein. Der Wechsel ist komplett kostenlos. Es gibt keine versteckten Gebühren. Alle Kosten sind transparent in den Tarifdetails aufgeführt. Wir zeigen Ihnen immer die Gesamtkosten pro Jahr.'
+                q: 'Gibt es versteckte Gebühren?',
+                a: 'Nein. Der Wechsel ist komplett kostenlos. Alle Kosten sind transparent aufgeführt. Wir zeigen immer die Gesamtkosten pro Jahr.'
               }
             ].map((item, index) => (
               <Accordion key={index} type="single" collapsible className="bg-white rounded-lg border">

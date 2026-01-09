@@ -31,11 +31,11 @@ export default function KontaktPage() {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Kontakt - Energievergleich NRW"
-        description="Kontaktieren Sie uns für Fragen zu Strom-, Gas- und Photovoltaik-Angeboten in NRW. Wir helfen Ihnen gerne weiter!"
+        title="Kontakt | Energievergleich"
+        description="Kontaktieren Sie uns für Fragen zu Strom-, Gas- und Photovoltaik-Angeboten in NRW. Wir helfen gerne weiter!"
         keywords="Kontakt, Energievergleich, NRW, Kundenservice"
-        ogTitle="Kontakt - Energievergleich NRW"
-        ogDescription="Haben Sie Fragen? Kontaktieren Sie uns direkt. Wir sind für Sie da!"
+        ogTitle="Kontakt | Energievergleich"
+        ogDescription="Kontaktieren Sie uns. Wir sind für Sie da!"
       />
       <Header />
 
