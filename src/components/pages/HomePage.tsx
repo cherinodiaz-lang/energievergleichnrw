@@ -13,9 +13,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import FormSubmissionDialog from '@/components/FormSubmissionDialog';
 import { BaseCrudService } from '@/integrations';
 import { HufiggestellteFragen, Wechselvorteile, Informationsmaterial } from '@/entities';
 import { Image } from '@/components/ui/image';
+import { trackCTAClick } from '@/services/form-submission';
 
 // --- Utility Components ---
 
@@ -268,9 +270,15 @@ export default function HomePage() {
     }
   };
 
+  const [showContactDialog, setShowContactDialog] = useState(false);
+  const [showPvDialog, setShowPvDialog] = useState(false);
+
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Vielen Dank für Ihre Anfrage, ${contactName}! Wir werden uns in Kürze bei Ihnen melden.`);
+    setShowContactDialog(true);
+  };
+
+  const handleContactSuccess = () => {
     setContactName('');
     setContactEmail('');
     setContactPhone('');
@@ -279,7 +287,10 @@ export default function HomePage() {
 
   const handlePvSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Vielen Dank für Ihre Anfrage, ${pvName}! Wir werden uns in Kürze bei Ihnen melden.`);
+    setShowPvDialog(true);
+  };
+
+  const handlePvSuccess = () => {
     setPvEigentumsart('');
     setPvDachform('');
     setPvPersonen('');
@@ -364,13 +375,19 @@ export default function HomePage() {
             <AnimatedElement delay={300}>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pb-8 sm:pb-0">
                 <Button
-                  onClick={() => scrollToSection('vergleichsrechner')}
+                  onClick={() => {
+                    trackCTAClick('hero-tarife-vergleichen', window.location.pathname);
+                    scrollToSection('vergleichsrechner');
+                  }}
                   className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 sm:h-14 px-6 sm:px-8 rounded-full text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 w-full sm:w-auto"
                 >
                   Jetzt Tarife vergleichen
                 </Button>
                 <Button
-                  onClick={() => scrollToSection('photovoltaik')}
+                  onClick={() => {
+                    trackCTAClick('hero-photovoltaik', window.location.pathname);
+                    scrollToSection('photovoltaik');
+                  }}
                   className="bg-white/20 border border-white/40 text-white hover:bg-white/30 h-12 sm:h-14 px-6 sm:px-8 rounded-full text-base sm:text-lg font-medium backdrop-blur-md transition-all w-full sm:w-auto"
                 >
                   <Sun className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
@@ -1296,6 +1313,45 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Contact Form Dialog */}
+      <FormSubmissionDialog
+        isOpen={showContactDialog}
+        onClose={() => setShowContactDialog(false)}
+        formType="kontakt"
+        formData={{
+          name: contactName,
+          email: contactEmail,
+          phone: contactPhone,
+          message: contactMessage,
+          type: contactType
+        }}
+        requiredFields={['name', 'email', 'message']}
+        onSuccess={handleContactSuccess}
+        title="Kontaktanfrage senden"
+      />
+
+      {/* Photovoltaik Form Dialog */}
+      <FormSubmissionDialog
+        isOpen={showPvDialog}
+        onClose={() => setShowPvDialog(false)}
+        formType="photovoltaik"
+        formData={{
+          name: pvName,
+          email: pvEmail,
+          phone: pvTelefon,
+          eigentumsart: pvEigentumsart,
+          dachform: pvDachform,
+          personen: pvPersonen,
+          strasse: pvStrasse,
+          hausnummer: pvHausnummer,
+          plz: pvPlz,
+          ort: pvOrt
+        }}
+        requiredFields={['name', 'email', 'eigentumsart', 'dachform', 'plz', 'ort']}
+        onSuccess={handlePvSuccess}
+        title="Kostenlose PV-Beratung"
+      />
 
       <Footer />
     </div>

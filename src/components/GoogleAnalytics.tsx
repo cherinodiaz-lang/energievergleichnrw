@@ -1,16 +1,49 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 interface GoogleAnalyticsProps {
   measurementId?: string;
 }
 
+interface ConsentState {
+  analytics?: boolean;
+  marketing?: boolean;
+  necessary?: boolean;
+}
+
 export default function GoogleAnalytics({ measurementId }: GoogleAnalyticsProps) {
   const location = useLocation();
+  const [hasConsent, setHasConsent] = useState(false);
 
+  // Check consent on mount and listen for updates
   useEffect(() => {
-    // Only add GA if measurement ID is provided
-    if (!measurementId) return;
+    const checkConsent = () => {
+      const consentStr = localStorage.getItem('wix-consent-preferences');
+      if (consentStr) {
+        try {
+          const consent: ConsentState = JSON.parse(consentStr);
+          setHasConsent(consent.analytics === true);
+        } catch (error) {
+          console.error('Error parsing consent:', error);
+        }
+      }
+    };
+
+    checkConsent();
+
+    // Listen for consent updates
+    const handleConsentUpdate = (event: Event) => {
+      const customEvent = event as CustomEvent;
+      setHasConsent(customEvent.detail?.analytics === true);
+    };
+
+    window.addEventListener('consent-updated', handleConsentUpdate);
+    return () => window.removeEventListener('consent-updated', handleConsentUpdate);
+  }, []);
+
+  // Load GA4 only if consent is given
+  useEffect(() => {
+    if (!measurementId || !hasConsent) return;
 
     // Add Google Analytics script
     const script = document.createElement('script');
@@ -23,9 +56,12 @@ export default function GoogleAnalytics({ measurementId }: GoogleAnalyticsProps)
     function gtag(...args: any[]) {
       window.dataLayer.push(arguments);
     }
+    (window as any).gtag = gtag;
     gtag('js', new Date());
     gtag('config', measurementId, {
       page_path: location.pathname,
+      'anonymize_ip': true,
+      'allow_google_signals': true
     });
 
     // Track page views on route change
@@ -33,7 +69,15 @@ export default function GoogleAnalytics({ measurementId }: GoogleAnalyticsProps)
       page_path: location.pathname,
       page_title: document.title,
     });
-  }, [measurementId, location.pathname]);
+
+    return () => {
+      try {
+        document.head.removeChild(script);
+      } catch (error) {
+        // Script might have already been removed
+      }
+    };
+  }, [measurementId, hasConsent, location.pathname]);
 
   return null;
 }

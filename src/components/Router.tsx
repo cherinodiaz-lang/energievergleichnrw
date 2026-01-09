@@ -17,6 +17,7 @@ import WebsiteSchema from '@/components/WebsiteSchema';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import SearchConsoleVerification from '@/components/SearchConsoleVerification';
 import SitemapNotification from '@/components/SitemapNotification';
+import ConsentBanner from '@/components/ConsentBanner';
 
 // Layout component that includes ScrollToTop and SEO components
 function Layout() {
@@ -28,6 +29,7 @@ function Layout() {
       <GoogleAnalytics measurementId={SEO_CONFIG.googleAnalyticsId} />
       <SearchConsoleVerification verificationCode={SEO_CONFIG.googleSearchConsoleVerification} />
       <SitemapNotification />
+      <ConsentBanner />
       <Outlet />
     </>
   );

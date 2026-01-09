@@ -10,6 +10,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import FormSubmissionDialog from '@/components/FormSubmissionDialog';
+import { trackCTAClick } from '@/services/form-submission';
 import { Link } from 'react-router-dom';
 
 export default function KontaktPage() {
@@ -21,10 +23,18 @@ export default function KontaktPage() {
     message: '',
     type: 'allgemein',
   });
+  const [showDialog, setShowDialog] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Vielen Dank für Ihre Nachricht, ${formData.name}! Wir werden uns in Kürze bei Ihnen melden.`);
+    // Track CTA click
+    trackCTAClick('contact-form-submit', window.location.pathname);
+    // Show dialog instead of alert
+    setShowDialog(true);
+  };
+
+  const handleDialogSuccess = () => {
+    // Reset form after successful submission
     setFormData({ name: '', email: '', phone: '', subject: '', message: '', type: 'allgemein' });
   };
 
@@ -229,13 +239,20 @@ export default function KontaktPage() {
                       <Send className="w-5 h-5 mr-2" />
                       Nachricht senden
                     </Button>
-
-                    <p className="font-paragraph text-xs text-gray-500 text-center">
-                      Mit dem Absenden des Formulars stimmen Sie unserer Datenschutzerklärung zu.
-                    </p>
                   </form>
                 </CardContent>
               </Card>
+
+              {/* Form Submission Dialog */}
+              <FormSubmissionDialog
+                isOpen={showDialog}
+                onClose={() => setShowDialog(false)}
+                formType="kontakt"
+                formData={formData}
+                requiredFields={['name', 'email', 'subject', 'message']}
+                onSuccess={handleDialogSuccess}
+                title="Nachricht senden"
+              />
             </div>
 
             <div className="space-y-6">
