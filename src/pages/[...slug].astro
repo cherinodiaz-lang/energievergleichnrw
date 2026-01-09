@@ -7,13 +7,13 @@ import "@wix/wix-vibe-plugins/plugins-vars.css";
 import "@wix/wix-vibe-plugins/plugins-theme.css";
 import "@/styles/global.css";
 
-// CRITICAL: Exclude static files from catch-all route
-// These must be served as static files, not as HTML pages
+// CRITICAL: Exclude API routes from catch-all route
+// These are handled by dedicated endpoint files (sitemap.xml.ts, robots.txt.ts)
 const pathname = new URL(Astro.request.url).pathname;
 const excludedPaths = ['/sitemap.xml', '/robots.txt'];
 
 if (excludedPaths.includes(pathname)) {
-  // Return 404 to allow Astro to serve the static file from /public
+  // Return 404 to allow Astro to serve the API endpoint
   return Astro.response.status = 404;
 }
 
