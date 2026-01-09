@@ -191,15 +191,21 @@ export default function Footer() {
               © {new Date().getFullYear()} energievergleich.nrw. Alle Rechte vorbehalten.
             </p>
             <div className="flex items-center gap-6">
-              <a href="#" className="font-paragraph text-sm opacity-80 hover:opacity-100 transition-opacity">
+              <Link to="/datenschutz" className="font-paragraph text-sm opacity-80 hover:opacity-100 transition-opacity">
                 Datenschutz
-              </a>
-              <a href="#" className="font-paragraph text-sm opacity-80 hover:opacity-100 transition-opacity">
+              </Link>
+              <Link to="/impressum" className="font-paragraph text-sm opacity-80 hover:opacity-100 transition-opacity">
                 Impressum
-              </a>
-              <a href="#" className="font-paragraph text-sm opacity-80 hover:opacity-100 transition-opacity">
-                AGB
-              </a>
+              </Link>
+              <button
+                onClick={() => {
+                  localStorage.removeItem('energievergleich_consent');
+                  window.location.reload();
+                }}
+                className="font-paragraph text-sm opacity-80 hover:opacity-100 transition-opacity"
+              >
+                Cookie-Einstellungen
+              </button>
             </div>
           </div>
         </div>
