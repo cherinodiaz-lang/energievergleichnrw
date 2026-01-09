@@ -25,5 +25,52 @@
     <priority>0.8</priority>
   </url>
   
+  <!-- Stromvergleich NRW Page -->
+  <url>
+    <loc>https://energievergleich.shop/stromvergleich-nrw</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Gasvergleich NRW Page -->
+  <url>
+    <loc>https://energievergleich.shop/gasvergleich-nrw</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Photovoltaik NRW Page -->
+  <url>
+    <loc>https://energievergleich.shop/photovoltaik-nrw</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Kontakt Page -->
+  <url>
+    <loc>https://energievergleich.shop/kontakt</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Impressum Page -->
+  <url>
+    <loc>https://energievergleich.shop/impressum</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <!-- Datenschutz Page -->
+  <url>
+    <loc>https://energievergleich.shop/datenschutz</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
 </urlset>
-
