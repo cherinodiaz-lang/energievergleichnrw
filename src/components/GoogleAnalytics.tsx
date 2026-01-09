@@ -5,33 +5,48 @@ interface GoogleAnalyticsProps {
   measurementId?: string;
 }
 
-interface ConsentState {
-  analytics?: boolean;
-  marketing?: boolean;
-  necessary?: boolean;
+declare global {
+  interface Window {
+    dataLayer?: any[];
+    gtag?: (...args: any[]) => void;
+    consentManager?: {
+      getConsentData: () => any;
+      addEventListener: (event: string, callback: (consent: any) => void) => void;
+    };
+  }
 }
 
 export default function GoogleAnalytics({ measurementId }: GoogleAnalyticsProps) {
   const location = useLocation();
   const [hasConsent, setHasConsent] = useState(false);
+  const [scriptLoaded, setScriptLoaded] = useState(false);
 
-  // Check consent on mount and listen for updates
+  // Check consent from Wix Privacy Center and listen for updates
   useEffect(() => {
-    const checkConsent = () => {
-      const consentStr = localStorage.getItem('wix-consent-preferences');
-      if (consentStr) {
+    const checkWixConsent = () => {
+      if (typeof window !== 'undefined' && window.consentManager) {
         try {
-          const consent: ConsentState = JSON.parse(consentStr);
-          setHasConsent(consent.analytics === true);
+          const consentData = window.consentManager.getConsentData?.();
+          const analyticsConsent = consentData?.categories?.analytics?.consent === true;
+          setHasConsent(analyticsConsent);
         } catch (error) {
-          console.error('Error parsing consent:', error);
+          console.error('Error checking Wix consent:', error);
         }
       }
     };
 
-    checkConsent();
+    // Check initial consent
+    checkWixConsent();
 
-    // Listen for consent updates
+    // Listen for Wix Privacy Center consent changes
+    if (typeof window !== 'undefined' && window.consentManager) {
+      window.consentManager.addEventListener('consent', (consent: any) => {
+        const analyticsConsent = consent?.categories?.analytics?.consent === true;
+        setHasConsent(analyticsConsent);
+      });
+    }
+
+    // Also listen for custom consent-updated events (fallback)
     const handleConsentUpdate = (event: Event) => {
       const customEvent = event as CustomEvent;
       setHasConsent(customEvent.detail?.analytics === true);
@@ -43,7 +58,7 @@ export default function GoogleAnalytics({ measurementId }: GoogleAnalyticsProps)
 
   // Load GA4 only if consent is given
   useEffect(() => {
-    if (!measurementId || !hasConsent) return;
+    if (!measurementId || !hasConsent || scriptLoaded) return;
 
     // Add Google Analytics script
     const script = document.createElement('script');
@@ -51,24 +66,29 @@ export default function GoogleAnalytics({ measurementId }: GoogleAnalyticsProps)
     script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
     document.head.appendChild(script);
 
-    // Initialize gtag
-    window.dataLayer = window.dataLayer || [];
-    function gtag(...args: any[]) {
-      window.dataLayer.push(arguments);
-    }
-    (window as any).gtag = gtag;
-    gtag('js', new Date());
-    gtag('config', measurementId, {
-      page_path: location.pathname,
-      'anonymize_ip': true,
-      'allow_google_signals': true
-    });
+    script.onload = () => {
+      // Initialize gtag
+      window.dataLayer = window.dataLayer || [];
+      function gtag(...args: any[]) {
+        window.dataLayer!.push(arguments);
+      }
+      (window as any).gtag = gtag;
+      
+      gtag('js', new Date());
+      gtag('config', measurementId, {
+        page_path: location.pathname,
+        'anonymize_ip': true,
+        'allow_google_signals': false
+      });
 
-    // Track page views on route change
-    gtag('event', 'page_view', {
-      page_path: location.pathname,
-      page_title: document.title,
-    });
+      // Track page view
+      gtag('event', 'page_view', {
+        page_path: location.pathname,
+        page_title: document.title,
+      });
+
+      setScriptLoaded(true);
+    };
 
     return () => {
       try {
@@ -77,15 +97,17 @@ export default function GoogleAnalytics({ measurementId }: GoogleAnalyticsProps)
         // Script might have already been removed
       }
     };
-  }, [measurementId, hasConsent, location.pathname]);
+  }, [measurementId, hasConsent, scriptLoaded]);
+
+  // Track page views on route change (only if GA4 is loaded)
+  useEffect(() => {
+    if (!scriptLoaded || !window.gtag) return;
+
+    window.gtag('event', 'page_view', {
+      page_path: location.pathname,
+      page_title: document.title,
+    });
+  }, [location.pathname, scriptLoaded]);
 
   return null;
-}
-
-// Extend window interface for TypeScript
-declare global {
-  interface Window {
-    dataLayer: any[];
-    gtag: (...args: any[]) => void;
-  }
 }
