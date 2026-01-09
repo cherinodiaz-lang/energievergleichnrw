@@ -42,8 +42,8 @@ export default function GewerbestromPage() {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Gewerbestrom NRW - Stromtarife für Unternehmen vergleichen"
-        description="Gewerbestrom für Ihr Unternehmen in Nordrhein-Westfalen. Maßgeschneiderte Tarife mit Kostenersparnis und Planungssicherheit. Jetzt Angebot anfordern."
+        title="Gewerbestrom NRW: Günstige Tarife für Unternehmen finden"
+        description="Optimieren Sie Ihre Energiekosten! Vergleichen Sie Gewerbestrom-Tarife in NRW und sichern Sie sich die besten Konditionen für Ihr Unternehmen. Unverbindlich & transparent."
         keywords="Gewerbestrom NRW, Stromtarife Unternehmen, Gewerbekunden, Stromvergleich Gewerbe"
         ogTitle="Gewerbestrom NRW - Maßgeschneiderte Tarife für Ihr Unternehmen"
         ogDescription="Sparen Sie bis zu 30% bei Gewerbestrom. Kostenlose Beratung für Unternehmen in NRW."
