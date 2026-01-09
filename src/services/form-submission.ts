@@ -1,7 +1,11 @@
 /**
  * Form Submission Service
  * Handles all form submissions to Wix Collections
- * Integrates with email automations and GA4 tracking
+ * Integrates with email automations and GTM tracking (via dataLayer)
+ * 
+ * IMPORTANT: All tracking goes through Google Tag Manager (GTM) only.
+ * No PII (email, name, phone) is sent to analytics.
+ * Events are only tracked after Analytics consent is granted via Wix Privacy Center.
  */
 
 import { BaseCrudService } from '@/integrations';
@@ -67,8 +71,8 @@ export async function submitForm(
     // This will trigger automations configured in Wix Dashboard
     const result = await BaseCrudService.create('formsubmissions', data);
 
-    // Track event in GA4 if available
-    trackFormSubmission(data.type, data.email);
+    // Track event in GTM (via dataLayer) - NO PII included
+    trackFormSubmission(data.type);
 
     return {
       success: true,
@@ -86,24 +90,27 @@ export async function submitForm(
 }
 
 /**
- * Track form submission in GA4
+ * Track form submission in GTM (via dataLayer)
+ * NO PII is included - only form_type, page_location, and timestamp
  */
-export function trackFormSubmission(formType: string, email: string) {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', 'form_submit', {
+export function trackFormSubmission(formType: string) {
+  if (typeof window !== 'undefined' && window.dataLayer) {
+    window.dataLayer.push({
+      event: 'form_submit',
       form_type: formType,
-      user_email: email,
+      page_location: window.location.pathname,
       timestamp: new Date().toISOString()
     });
   }
 }
 
 /**
- * Track CTA button clicks in GA4
+ * Track CTA button clicks in GTM (via dataLayer)
  */
 export function trackCTAClick(buttonName: string, location: string) {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', 'cta_click', {
+  if (typeof window !== 'undefined' && window.dataLayer) {
+    window.dataLayer.push({
+      event: 'cta_click',
       button_name: buttonName,
       page_location: location,
       timestamp: new Date().toISOString()
