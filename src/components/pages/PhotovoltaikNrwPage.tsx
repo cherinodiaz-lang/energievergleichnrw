@@ -10,6 +10,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import PassendeRatgeber from '@/components/PassendeRatgeber';
 import { Link } from 'react-router-dom';
 
 export default function PhotovoltaikNrwPage() {
@@ -612,6 +613,9 @@ export default function PhotovoltaikNrwPage() {
           </div>
         </div>
       </section>
+
+      {/* Passende Ratgeber */}
+      <PassendeRatgeber moneyPageId="photovoltaik-nrw" limit={4} />
 
       {/* Internal Links Section */}
       <section className="w-full py-16 bg-white border-t">

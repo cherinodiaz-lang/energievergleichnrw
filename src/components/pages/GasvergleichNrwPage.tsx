@@ -11,6 +11,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import PassendeRatgeber from '@/components/PassendeRatgeber';
 import { Link } from 'react-router-dom';
 
 export default function GasvergleichNrwPage() {
@@ -460,6 +461,9 @@ export default function GasvergleichNrwPage() {
           </div>
         </div>
       </section>
+
+      {/* Passende Ratgeber */}
+      <PassendeRatgeber moneyPageId="gasvergleich-nrw" limit={4} />
 
       {/* Internal Links Section */}
       <section className="w-full py-16 bg-white border-t">

@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import PassendeRatgeber from '@/components/PassendeRatgeber';
 import FormSubmissionDialog from '@/components/FormSubmissionDialog';
 import { trackCTAClick } from '@/services/form-submission';
 import { Link } from 'react-router-dom';
@@ -293,6 +294,9 @@ export default function KontaktPage() {
           </div>
         </div>
       </section>
+
+      {/* Passende Ratgeber */}
+      <PassendeRatgeber moneyPageId="kontakt" limit={4} />
 
       <Footer />
     </div>

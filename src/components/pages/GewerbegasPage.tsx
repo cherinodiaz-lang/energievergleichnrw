@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import PassendeRatgeber from '@/components/PassendeRatgeber';
 import { useNavigate } from 'react-router-dom';
 
 export default function GewerbegasPage() {
@@ -494,6 +495,9 @@ export default function GewerbegasPage() {
           </Card>
         </div>
       </section>
+
+      {/* Passende Ratgeber */}
+      <PassendeRatgeber moneyPageId="gewerbegas" limit={4} />
 
       <Footer />
     </div>

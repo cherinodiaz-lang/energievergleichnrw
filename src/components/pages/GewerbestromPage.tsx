@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import PassendeRatgeber from '@/components/PassendeRatgeber';
 
 export default function GewerbestromPage() {
   const [companyName, setCompanyName] = useState('');
@@ -454,6 +455,9 @@ export default function GewerbestromPage() {
           </Card>
         </div>
       </section>
+
+      {/* Passende Ratgeber */}
+      <PassendeRatgeber moneyPageId="gewerbestrom" limit={4} />
 
       <Footer />
     </div>
