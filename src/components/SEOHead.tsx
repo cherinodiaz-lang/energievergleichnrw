@@ -148,6 +148,15 @@ export default function SEOHead({
       metaTag.setAttribute('content', content);
     });
 
+    // Google Site Verification
+    let metaGoogleVerification = document.querySelector('meta[name="google-site-verification"]');
+    if (!metaGoogleVerification) {
+      metaGoogleVerification = document.createElement('meta');
+      metaGoogleVerification.setAttribute('name', 'google-site-verification');
+      metaGoogleVerification.setAttribute('content', 'DTgXuzzEJV2pPqM4FoF_kIkhnUXVuVgmblskXZzdrpQ');
+      document.head.appendChild(metaGoogleVerification);
+    }
+
     // Language
     let htmlLang = document.documentElement.getAttribute('lang');
     if (!htmlLang) {
