@@ -44,47 +44,37 @@ export default function ImpressumPage() {
             transition={{ duration: 0.5 }}
             className="space-y-8"
           >
-            {/* Checklist */}
-            <div className="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-6">
-              <h3 className="font-heading text-lg font-bold text-yellow-900 mb-4">⚠️ Erforderliche Informationen zum Ausfüllen</h3>
-              <ul className="space-y-2 text-sm text-yellow-800 font-paragraph">
-                <li>☐ [UNTERNEHMENSNAME] - Name und Rechtsform des Unternehmens</li>
-                <li>☐ [STRASSE_HAUSNUMMER] - Straße und Hausnummer</li>
-                <li>☐ [PLZ_STADT] - Postleitzahl und Stadt</li>
-                <li>☐ [GESCHAEFTSFUEHRER_NAME] - Name des Geschäftsführers/Inhabers</li>
-                <li>☐ [TELEFON] - Telefonnummer</li>
-                <li>☐ [EMAIL] - E-Mail-Adresse</li>
-                <li>☐ [UMSATZSTEUER_ID] - Umsatzsteuer-ID (falls vorhanden)</li>
-                <li>☐ [HANDELSREGISTER_EINTRAG] - Handelsregister-Eintrag (falls vorhanden)</li>
-                <li>☐ [BERUFSRECHTLICHE_ANGABEN] - Falls zutreffend (z.B. Kammer-Mitgliedschaft)</li>
-                <li>☐ [VERBRAUCHERSTREITBEILEGUNG] - Ja/Nein - Teilnahme an Verbraucherstreitbeilegung</li>
-              </ul>
+            {/* Hinweis */}
+            <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-6">
+              <p className="font-paragraph text-sm text-blue-800">
+                <strong>Hinweis:</strong> Dies ist eine Muster-Vorlage. Unternehmensdaten werden ergänzt.
+              </p>
             </div>
 
             {/* 1. Betreiber */}
             <div>
-              <h2 className="font-heading text-3xl font-bold text-primary mb-6">1. Angaben gemäß § 5 TMG</h2>
+              <h2 className="font-heading text-3xl font-bold text-primary mb-6">1. Angaben gemäß § 5 DDG</h2>
               
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-gray-700">
                 <div>
                   <p className="font-bold mb-2">Betreiber der Website:</p>
-                  <p>[UNTERNEHMENSNAME]</p>
-                  <p>Rechtsform: [z.B. GmbH, Einzelunternehmen, Partnerschaft]</p>
+                  <p>Energievergleich Muster GmbH</p>
+                  <p>Rechtsform: Gesellschaft mit beschränkter Haftung (GmbH)</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Anschrift:</p>
-                  <p>[STRASSE_HAUSNUMMER]<br />[PLZ_STADT]<br />Deutschland</p>
+                  <p>Musterstraße 1<br />40210 Düsseldorf<br />Deutschland</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Kontaktinformationen:</p>
-                  <p>Telefon: [TELEFON]<br />E-Mail: [EMAIL]<br />Website: energievergleich.shop</p>
+                  <p>Telefon: +49 000 0000000<br />E-Mail: kontakt@energievergleich.shop<br />Website: energievergleich.shop</p>
                 </div>
 
                 <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Geschäftsführer / Inhaber:</p>
-                  <p>[GESCHAEFTSFUEHRER_NAME]</p>
+                  <p className="font-bold mb-2">Geschäftsführer:</p>
+                  <p>Max Mustermann</p>
                 </div>
               </div>
             </div>
@@ -96,13 +86,12 @@ export default function ImpressumPage() {
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-gray-700">
                 <div>
                   <p className="font-bold mb-2">Umsatzsteuer-Identifikationsnummer (gemäß § 27 a UStG):</p>
-                  <p>[UMSATZSTEUER_ID] (falls vorhanden)</p>
+                  <p>DE000000000</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Handelsregister-Eintrag:</p>
-                  <p>[HANDELSREGISTER_EINTRAG]</p>
-                  <p className="text-sm text-gray-500 mt-2">z.B. „Amtsgericht [Stadt], HRB [Nummer]" oder „nicht erforderlich"</p>
+                  <p>Amtsgericht Düsseldorf, HRB 00000</p>
                 </div>
               </div>
             </div>
@@ -115,34 +104,27 @@ export default function ImpressumPage() {
                 <p className="text-sm text-gray-500 mb-4">Redaktionell verantwortliche Person für die Inhalte dieser Website:</p>
                 <div>
                   <p className="font-bold mb-2">Name:</p>
-                  <p>[GESCHAEFTSFUEHRER_NAME]</p>
+                  <p>Max Mustermann</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Anschrift:</p>
-                  <p>[STRASSE_HAUSNUMMER]<br />[PLZ_STADT]<br />Deutschland</p>
+                  <p>Musterstraße 1<br />40210 Düsseldorf<br />Deutschland</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Erreichbarkeit:</p>
-                  <p>Telefon: [TELEFON]<br />E-Mail: [EMAIL]</p>
+                  <p>Telefon: +49 000 0000000<br />E-Mail: kontakt@energievergleich.shop</p>
                 </div>
               </div>
             </div>
 
             {/* 4. Berufsrechtliche Angaben (optional) */}
             <div>
-              <h2 className="font-heading text-2xl font-bold text-primary mb-4">4. Berufsrechtliche Angaben (falls zutreffend)</h2>
+              <h2 className="font-heading text-2xl font-bold text-primary mb-4">4. Berufsrechtliche Angaben</h2>
               
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 font-paragraph text-gray-700">
-                <p className="text-sm text-gray-500 mb-4">Falls das Unternehmen einer Kammer oder Berufsorganisation angehört:</p>
-                <p>[BERUFSRECHTLICHE_ANGABEN]</p>
-                <p className="text-sm text-gray-500 mt-4">Beispiele:</p>
-                <ul className="list-disc list-inside text-sm text-gray-500 space-y-1 mt-2">
-                  <li>Mitglied der [Handwerkskammer / Industrie- und Handelskammer]</li>
-                  <li>Berufsbezeichnung und Zulassungsstaat (bei reglementierten Berufen)</li>
-                  <li>Berufsregeln und Links zu diesen</li>
-                </ul>
+                <p className="text-sm text-gray-500 mb-4">Energievergleich Muster GmbH ist nicht Mitglied einer Handwerkskammer oder Industrie- und Handelskammer und unterliegt keinen besonderen berufsrechtlichen Regelungen.</p>
               </div>
             </div>
 
@@ -211,8 +193,7 @@ export default function ImpressumPage() {
               
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 font-paragraph text-gray-700">
                 <p className="font-bold mb-2">Teilnahme an Verbraucherstreitbeilegung:</p>
-                <p>[VERBRAUCHERSTREITBEILEGUNG]</p>
-                <p className="text-sm text-gray-500 mt-4">Bitte ausfüllen mit: „Ja, wir nehmen teil" oder „Nein, wir nehmen nicht teil"</p>
+                <p>Wir sind nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
               </div>
             </div>
 
