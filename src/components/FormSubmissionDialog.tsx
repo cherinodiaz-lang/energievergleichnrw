@@ -15,6 +15,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Link } from 'react-router-dom';
 import { submitForm, trackFormSubmission, validateForm } from '@/services/form-submission';
+import { ROUTES } from '@/lib/routes';
 
 export interface FormSubmissionDialogProps {
   isOpen: boolean;
@@ -192,7 +193,7 @@ export default function FormSubmissionDialog({
                       >
                         Ich habe die{' '}
                         <Link
-                          to="/datenschutz"
+                          to={ROUTES.DATENSCHUTZ}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-primary hover:underline font-bold"

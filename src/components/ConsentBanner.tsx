@@ -16,6 +16,7 @@
 import React, { useEffect, useState } from 'react';
 import { Settings, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { ROUTES } from '@/lib/routes';
 
 declare global {
   interface Window {
@@ -243,13 +244,13 @@ export default function ConsentBanner() {
             {/* Links */}
             <div className="border-t pt-4 space-y-2">
               <a
-                href="/datenschutz"
+                href={ROUTES.DATENSCHUTZ}
                 className="block font-paragraph text-xs sm:text-sm text-primary hover:underline"
               >
                 Datenschutzerklärung
               </a>
               <a
-                href="/impressum"
+                href={ROUTES.IMPRESSUM}
                 className="block font-paragraph text-xs sm:text-sm text-primary hover:underline"
               >
                 Impressum

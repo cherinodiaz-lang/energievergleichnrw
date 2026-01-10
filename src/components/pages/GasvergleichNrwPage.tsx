@@ -13,6 +13,7 @@ import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import { Link } from 'react-router-dom';
+import { ROUTES } from '@/lib/routes';
 
 export default function GasvergleichNrwPage() {
   const [formData, setFormData] = useState({

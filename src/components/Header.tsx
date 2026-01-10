@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Zap, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { ROUTES } from '@/lib/routes';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -63,13 +64,13 @@ export default function Header() {
             >
               Photovoltaik
             </button>
-            <Link to="/ratgeber" className="font-paragraph text-base text-foreground hover:text-primary transition-colors">
+            <Link to={ROUTES.RATGEBER} className="font-paragraph text-base text-foreground hover:text-primary transition-colors">
               Ratgeber
             </Link>
-            <Link to="/gewerbestrom" className="font-paragraph text-base text-foreground hover:text-primary transition-colors">
+            <Link to={ROUTES.GEWERBESTROM} className="font-paragraph text-base text-foreground hover:text-primary transition-colors">
               Gewerbestrom
             </Link>
-            <Link to="/gewerbegas" className="font-paragraph text-base text-foreground hover:text-primary transition-colors">
+            <Link to={ROUTES.GEWERBEGAS} className="font-paragraph text-base text-foreground hover:text-primary transition-colors">
               Gewerbegas
             </Link>
             <button
@@ -112,13 +113,13 @@ export default function Header() {
               >
                 Photovoltaik
               </button>
-              <Link to="/ratgeber" onClick={() => setMobileMenuOpen(false)} className="font-paragraph text-sm text-foreground hover:text-primary transition-colors text-left py-2">
+              <Link to={ROUTES.RATGEBER} onClick={() => setMobileMenuOpen(false)} className="font-paragraph text-sm text-foreground hover:text-primary transition-colors text-left py-2">
                 Ratgeber
               </Link>
-              <Link to="/gewerbestrom" onClick={() => setMobileMenuOpen(false)} className="font-paragraph text-sm text-foreground hover:text-primary transition-colors text-left py-2">
+              <Link to={ROUTES.GEWERBESTROM} onClick={() => setMobileMenuOpen(false)} className="font-paragraph text-sm text-foreground hover:text-primary transition-colors text-left py-2">
                 Gewerbestrom
               </Link>
-              <Link to="/gewerbegas" onClick={() => setMobileMenuOpen(false)} className="font-paragraph text-sm text-foreground hover:text-primary transition-colors text-left py-2">
+              <Link to={ROUTES.GEWERBEGAS} onClick={() => setMobileMenuOpen(false)} className="font-paragraph text-sm text-foreground hover:text-primary transition-colors text-left py-2">
                 Gewerbegas
               </Link>
               <button

@@ -14,6 +14,7 @@ import PassendeRatgeber from '@/components/PassendeRatgeber';
 import FormSubmissionDialog from '@/components/FormSubmissionDialog';
 import { trackCTAClick } from '@/services/form-submission';
 import { Link } from 'react-router-dom';
+import { ROUTES } from '@/lib/routes';
 
 export default function KontaktPage() {
   const [formData, setFormData] = useState({
@@ -273,19 +274,19 @@ export default function KontaktPage() {
                   <CardTitle className="font-heading text-lg text-primary">Weitere Seiten</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <Link to="/stromvergleich-nrw" className="block text-primary hover:underline font-paragraph text-sm">
+                  <Link to={ROUTES.STROMVERGLEICH_NRW} className="block text-primary hover:underline font-paragraph text-sm">
                     → Stromvergleich NRW
                   </Link>
-                  <Link to="/gasvergleich-nrw" className="block text-primary hover:underline font-paragraph text-sm">
+                  <Link to={ROUTES.GASVERGLEICH_NRW} className="block text-primary hover:underline font-paragraph text-sm">
                     → Gasvergleich NRW
                   </Link>
-                  <Link to="/photovoltaik-nrw" className="block text-primary hover:underline font-paragraph text-sm">
+                  <Link to={ROUTES.PHOTOVOLTAIK_NRW} className="block text-primary hover:underline font-paragraph text-sm">
                     → Photovoltaik NRW
                   </Link>
-                  <Link to="/impressum" className="block text-primary hover:underline font-paragraph text-sm">
+                  <Link to={ROUTES.IMPRESSUM} className="block text-primary hover:underline font-paragraph text-sm">
                     → Impressum
                   </Link>
-                  <Link to="/datenschutz" className="block text-primary hover:underline font-paragraph text-sm">
+                  <Link to={ROUTES.DATENSCHUTZ} className="block text-primary hover:underline font-paragraph text-sm">
                     → Datenschutz
                   </Link>
                 </CardContent>

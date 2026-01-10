@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { Zap, Mail, Phone, MapPin, Facebook, Twitter, Linkedin } from 'lucide-react';
+import { ROUTES } from '@/lib/routes';
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -96,7 +97,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <Link
-                  to="/gewerbestrom"
+                  to={ROUTES.GEWERBESTROM}
                   className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
                 >
                   Gewerbestrom
@@ -104,7 +105,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  to="/gewerbegas"
+                  to={ROUTES.GEWERBEGAS}
                   className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
                 >
                   Gewerbegas
@@ -112,7 +113,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  to="/kontakt"
+                  to={ROUTES.KONTAKT}
                   className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
                 >
                   Kontakt
@@ -191,10 +192,10 @@ export default function Footer() {
               © {new Date().getFullYear()} energievergleich.nrw. Alle Rechte vorbehalten.
             </p>
             <div className="flex items-center gap-6">
-              <Link to="/datenschutz" className="font-paragraph text-sm opacity-80 hover:opacity-100 transition-opacity">
+              <Link to={ROUTES.DATENSCHUTZ} className="font-paragraph text-sm opacity-80 hover:opacity-100 transition-opacity">
                 Datenschutz
               </Link>
-              <Link to="/impressum" className="font-paragraph text-sm opacity-80 hover:opacity-100 transition-opacity">
+              <Link to={ROUTES.IMPRESSUM} className="font-paragraph text-sm opacity-80 hover:opacity-100 transition-opacity">
                 Impressum
               </Link>
               <button
