@@ -9,7 +9,7 @@ Disallow: /danke
 Disallow: /thank-you
 
 # Sitemap location
-Sitemap: https://www.energievergleich.shop/sitemap.xml
+Sitemap: https://energievergleich.shop/sitemap.xml
 `;
 
 export const GET: APIRoute = () => {
