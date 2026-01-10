@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { ratgeberArticles } from '@/lib/ratgeber-map';
 
-const DOMAIN = 'https://energievergleich.nrw';
+const DOMAIN = 'https://energievergleich.shop';
 
 // All indexable pages and routes
 const pages = [

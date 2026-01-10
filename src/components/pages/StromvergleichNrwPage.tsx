@@ -463,9 +463,6 @@ export default function StromvergleichNrwPage() {
         </div>
       </section>
 
-      {/* Passende Ratgeber */}
-      <PassendeRatgeber moneyPageId="stromvergleich-nrw" limit={4} />
-
       {/* Internal Links Section */}
       <section className="w-full py-16 bg-white border-t">
         <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
@@ -507,6 +504,9 @@ export default function StromvergleichNrwPage() {
           </div>
         </div>
       </section>
+
+      {/* Passende Ratgeber */}
+      <PassendeRatgeber moneyPageId="stromvergleich-nrw" limit={4} />
 
       <Footer />
     </div>
