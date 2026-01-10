@@ -63,6 +63,9 @@ export default function Header() {
             >
               Photovoltaik
             </button>
+            <Link to="/ratgeber" className="font-paragraph text-base text-foreground hover:text-primary transition-colors">
+              Ratgeber
+            </Link>
             <Link to="/gewerbestrom" className="font-paragraph text-base text-foreground hover:text-primary transition-colors">
               Gewerbestrom
             </Link>
@@ -109,6 +112,9 @@ export default function Header() {
               >
                 Photovoltaik
               </button>
+              <Link to="/ratgeber" onClick={() => setMobileMenuOpen(false)} className="font-paragraph text-sm text-foreground hover:text-primary transition-colors text-left py-2">
+                Ratgeber
+              </Link>
               <Link to="/gewerbestrom" onClick={() => setMobileMenuOpen(false)} className="font-paragraph text-sm text-foreground hover:text-primary transition-colors text-left py-2">
                 Gewerbestrom
               </Link>

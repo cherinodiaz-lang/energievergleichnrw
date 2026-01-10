@@ -111,12 +111,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <button
-                  onClick={() => scrollToSection('kontakt')}
+                <Link
+                  to="/kontakt"
                   className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
                 >
                   Kontakt
-                </button>
+                </Link>
               </li>
             </ul>
           </div>
