@@ -44,21 +44,12 @@ export default function DatenschutzPage() {
             transition={{ duration: 0.5 }}
             className="space-y-8"
           >
-            {/* Checklist */}
-            <div className="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-6">
-              <h3 className="font-heading text-lg font-bold text-yellow-900 mb-4">⚠️ Erforderliche Informationen zum Ausfüllen</h3>
-              <ul className="space-y-2 text-sm text-yellow-800 font-paragraph">
-                <li>☐ [UNTERNEHMENSNAME] - Name des Verantwortlichen</li>
-                <li>☐ [STRASSE_HAUSNUMMER] - Adresse des Verantwortlichen</li>
-                <li>☐ [PLZ_STADT] - PLZ und Stadt</li>
-                <li>☐ [EMAIL] - E-Mail-Adresse des Verantwortlichen</li>
-                <li>☐ [TELEFON] - Telefonnummer (optional)</li>
-                <li>☐ [DATENSCHUTZBEAUFTRAGTER] - Name und Kontakt (falls vorhanden)</li>
-                <li>☐ [HOSTING_PROVIDER] - Name des Hosting-Providers (z.B. Wix)</li>
-                <li>☐ [TRACKING_TOOLS] - Welche Tracking-Tools sind aktiv? (Google Analytics, etc.)</li>
-                <li>☐ [EXTERNE_DIENSTE] - Welche externen Dienste werden genutzt? (YouTube, Google Maps, etc.)</li>
-                <li>☐ [AUFSICHTSBEHOERDE] - Zuständige Datenschutzbehörde</li>
-              </ul>
+            {/* Info Box */}
+            <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-6">
+              <h3 className="font-heading text-lg font-bold text-blue-900 mb-4">ℹ️ Musterdatenschutzerklärung</h3>
+              <p className="text-sm text-blue-800 font-paragraph">
+                Diese Datenschutzerklärung ist eine Musterfassung mit konsistenten Beispielangaben. Sie entspricht den Anforderungen der DSGVO und kann als Vorlage verwendet werden.
+              </p>
             </div>
 
             {/* 1. Verantwortlicher */}
@@ -68,18 +59,18 @@ export default function DatenschutzPage() {
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-gray-700">
                 <div>
                   <p className="font-bold mb-2">Verantwortlicher (Art. 4 Abs. 7 DSGVO):</p>
-                  <p>[UNTERNEHMENSNAME]<br />[STRASSE_HAUSNUMMER]<br />[PLZ_STADT]<br />Deutschland</p>
+                  <p>Energievergleich Muster GmbH<br />Musterstraße 1<br />40210 Düsseldorf<br />Deutschland</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Kontakt:</p>
-                  <p>E-Mail: [EMAIL]<br />Telefon: [TELEFON]<br />Website: energievergleich.shop</p>
+                  <p>E-Mail: kontakt@energievergleich.shop<br />Telefon: +49 000 0000000<br />Website: energievergleich.shop</p>
                 </div>
 
                 <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Datenschutzbeauftragter (falls vorhanden):</p>
-                  <p>[DATENSCHUTZBEAUFTRAGTER]</p>
-                  <p className="text-sm text-gray-500 mt-2">Falls nicht vorhanden: „Kein Datenschutzbeauftragter bestellt"</p>
+                  <p className="font-bold mb-2">Datenschutzbeauftragter:</p>
+                  <p>Derzeit nicht benannt (Musterangabe)</p>
+                  <p className="text-sm text-gray-500 mt-2">Hinweis: Für Datenschutzfragen kontaktieren Sie bitte direkt die oben genannte Adresse.</p>
                 </div>
               </div>
             </div>
@@ -113,12 +104,12 @@ export default function DatenschutzPage() {
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Speicherdauer:</p>
-                  <p>Server-Logs: in der Regel 7-30 Tage</p>
+                  <p>Server-Logs: in der Regel 7-30 Tage (Musterwert)</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Auftragsverarbeiter:</p>
-                  <p>Wix.com (Hosting-Provider)<br />Datenschutzerklärung: <a href="https://www.wix.com/de/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">https://www.wix.com/de/privacy</a></p>
+                  <p>Wix.com Ltd. (Hosting-Provider)<br />Datenschutzerklärung: <a href="https://www.wix.com/de/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">https://www.wix.com/de/privacy</a></p>
                 </div>
               </div>
 
@@ -143,12 +134,12 @@ export default function DatenschutzPage() {
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Speicherdauer:</p>
-                  <p>Bis zur vollständigen Bearbeitung der Anfrage, danach [SPEICHERDAUER_KONTAKT] (z.B. 12 Monate für Archivierung)</p>
+                  <p>Bis zur vollständigen Bearbeitung der Anfrage, danach 12 Monate (Musterwert für Archivierung)</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Empfänger:</p>
-                  <p>Interne Bearbeitung durch [UNTERNEHMENSNAME], ggf. Weitergabe an externe Dienstleister</p>
+                  <p>Interne Bearbeitung durch Energievergleich Muster GmbH, ggf. Weitergabe an externe Dienstleister</p>
                 </div>
               </div>
 
@@ -173,7 +164,7 @@ export default function DatenschutzPage() {
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Speicherdauer:</p>
-                  <p>[SPEICHERDAUER_EMAIL] (z.B. 12 Monate nach letztem Kontakt)</p>
+                  <p>12 Monate nach letztem Kontakt (Musterwert)</p>
                 </div>
               </div>
 
@@ -198,7 +189,7 @@ export default function DatenschutzPage() {
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Speicherdauer:</p>
-                  <p>Abhängig vom Cookie-Typ, in der Regel bis zum Ende der Browsersitzung oder [COOKIE_DAUER]</p>
+                  <p>Abhängig vom Cookie-Typ, in der Regel bis zum Ende der Browsersitzung oder bis zur Löschung (Musterwert)</p>
                 </div>
 
                 <div className="border-t pt-4">
@@ -213,39 +204,28 @@ export default function DatenschutzPage() {
                 <h3 className="font-bold text-lg text-primary">2.5 Analyse und Tracking</h3>
                 
                 <div className="bg-blue-50 border border-blue-200 rounded p-4 mb-4">
-                  <p className="text-sm text-blue-800 font-bold">Status: [TRACKING_STATUS]</p>
-                  <p className="text-sm text-blue-700 mt-2">Bitte ausfüllen mit: „Aktiv" oder „Nicht im Einsatz"</p>
+                  <p className="text-sm text-blue-800 font-bold">Status: Nicht im Einsatz (Musterangabe)</p>
+                  <p className="text-sm text-blue-700 mt-2">Derzeit werden keine Analyse- oder Tracking-Tools verwendet.</p>
                 </div>
 
                 <div>
-                  <p className="font-bold mb-2">Falls aktiv - Verarbeitete Daten:</p>
+                  <p className="font-bold mb-2">Falls zukünftig aktiv - Verarbeitete Daten:</p>
                   <p>IP-Adresse (ggf. anonymisiert), Geräte-ID, Browser-Informationen, Besuchte Seiten, Verweildauer, Klicks, Scroll-Verhalten</p>
                 </div>
 
                 <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Falls aktiv - Zweck:</p>
+                  <p className="font-bold mb-2">Falls zukünftig aktiv - Zweck:</p>
                   <p>Analyse des Nutzerverhaltens, Optimierung der Website, Erstellung von Statistiken</p>
                 </div>
 
                 <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Falls aktiv - Rechtsgrundlage:</p>
+                  <p className="font-bold mb-2">Falls zukünftig aktiv - Rechtsgrundlage:</p>
                   <p>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</p>
                 </div>
 
                 <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Falls aktiv - Verwendete Tools:</p>
-                  <p>[TRACKING_TOOLS]</p>
-                  <p className="text-sm text-gray-500 mt-2">Beispiele: Google Analytics, Matomo, Hotjar, etc.</p>
-                </div>
-
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Falls aktiv - Speicherdauer:</p>
-                  <p>[TRACKING_SPEICHERDAUER] (z.B. 26 Monate bei Google Analytics)</p>
-                </div>
-
-                <div className="border-t pt-4">
                   <p className="text-sm text-gray-500">
-                    Hinweis: Falls Tracking-Tools nicht im Einsatz sind, können Sie diesen Abschnitt entfernen oder mit „Nicht im Einsatz" kennzeichnen.
+                    Hinweis: Sollten in Zukunft Tracking-Tools eingesetzt werden, wird diese Datenschutzerklärung entsprechend aktualisiert.
                   </p>
                 </div>
               </div>
@@ -255,29 +235,28 @@ export default function DatenschutzPage() {
                 <h3 className="font-bold text-lg text-primary">2.6 Eingebettete externe Inhalte</h3>
                 
                 <div className="bg-blue-50 border border-blue-200 rounded p-4 mb-4">
-                  <p className="text-sm text-blue-800 font-bold">Status: [EXTERNE_DIENSTE_STATUS]</p>
-                  <p className="text-sm text-blue-700 mt-2">Bitte ausfüllen mit: „Aktiv" oder „Nicht im Einsatz"</p>
+                  <p className="text-sm text-blue-800 font-bold">Status: Nicht im Einsatz (Musterangabe)</p>
+                  <p className="text-sm text-blue-700 mt-2">Derzeit werden keine externen Dienste eingebettet.</p>
                 </div>
 
                 <div>
-                  <p className="font-bold mb-2">Falls aktiv - Verwendete Dienste:</p>
-                  <p>[EXTERNE_DIENSTE]</p>
-                  <p className="text-sm text-gray-500 mt-2">Beispiele: YouTube, Google Maps, Vimeo, etc.</p>
+                  <p className="font-bold mb-2">Falls zukünftig aktiv - Verwendete Dienste:</p>
+                  <p>Beispiele: YouTube, Google Maps, Vimeo, etc.</p>
                 </div>
 
                 <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Falls aktiv - Verarbeitete Daten:</p>
+                  <p className="font-bold mb-2">Falls zukünftig aktiv - Verarbeitete Daten:</p>
                   <p>IP-Adresse, Cookie-Daten, Geräte-Informationen (abhängig vom Dienst)</p>
                 </div>
 
                 <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Falls aktiv - Rechtsgrundlage:</p>
+                  <p className="font-bold mb-2">Falls zukünftig aktiv - Rechtsgrundlage:</p>
                   <p>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung) oder Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse)</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="text-sm text-gray-500">
-                    Hinweis: Externe Dienste können Daten in Länder außerhalb der EU übermitteln. Weitere Informationen finden Sie in den Datenschutzerklärungen der jeweiligen Anbieter.
+                    Hinweis: Sollten externe Dienste zukünftig eingesetzt werden, wird diese Datenschutzerklärung entsprechend aktualisiert. Externe Dienste können Daten in Länder außerhalb der EU übermitteln.
                   </p>
                 </div>
               </div>
@@ -338,17 +317,17 @@ export default function DatenschutzPage() {
                 
                 <div>
                   <p className="font-bold mb-2">E-Mail:</p>
-                  <p>[EMAIL]</p>
+                  <p>kontakt@energievergleich.shop</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Postanschrift:</p>
-                  <p>[UNTERNEHMENSNAME]<br />[STRASSE_HAUSNUMMER]<br />[PLZ_STADT]<br />Deutschland</p>
+                  <p>Energievergleich Muster GmbH<br />Musterstraße 1<br />40210 Düsseldorf<br />Deutschland</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Telefon:</p>
-                  <p>[TELEFON]</p>
+                  <p>+49 000 0000000</p>
                 </div>
               </div>
             </div>
@@ -359,8 +338,8 @@ export default function DatenschutzPage() {
               
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 font-paragraph text-gray-700">
                 <p className="mb-4">Die zuständige Datenschutzbehörde ist:</p>
-                <p>[AUFSICHTSBEHOERDE]</p>
-                <p className="text-sm text-gray-500 mt-4">Beispiel für NRW: Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW)</p>
+                <p className="font-bold mb-4">Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW)</p>
+                <p className="text-sm text-gray-500">Diese Angabe ist eine Musterangabe für Unternehmen in NRW.</p>
               </div>
             </div>
 
