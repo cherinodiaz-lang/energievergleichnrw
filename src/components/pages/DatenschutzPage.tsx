@@ -1,8 +1,8 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import { ROUTES } from '@/lib/routes';
 
 export default function DatenschutzPage() {
   return (
@@ -19,31 +19,21 @@ export default function DatenschutzPage() {
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
         <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-3xl"
-          >
+          <div className="max-w-3xl">
             <h1 className="font-heading text-5xl md:text-7xl font-bold mb-6 leading-tight">
               Datenschutz
             </h1>
             <p className="font-paragraph text-lg md:text-xl text-white/90">
               Ihre Privatsphäre ist uns wichtig
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Content Section */}
       <section className="w-full py-24 bg-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="space-y-8"
-          >
+          <div className="space-y-8">
             {/* Info Box */}
             <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-6">
               <h3 className="font-heading text-lg font-bold text-blue-900 mb-4">ℹ️ Musterdatenschutzerklärung</h3>
@@ -353,12 +343,12 @@ export default function DatenschutzPage() {
             </div>
 
             {/* Hinweis */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mt-8">
+            <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-6 mt-8">
               <p className="font-paragraph text-sm text-gray-700">
                 <strong>Hinweis:</strong> Diese Datenschutzerklärung ist ein Muster und muss an die spezifischen Anforderungen und Praktiken Ihres Unternehmens angepasst werden. Bitte konsultieren Sie einen Rechtsanwalt, um sicherzustellen, dass Ihre Datenschutzerklärung vollständig und konform mit der DSGVO ist.
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
