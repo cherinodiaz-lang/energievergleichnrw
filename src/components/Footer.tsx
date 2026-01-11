@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { Zap, Mail, Phone, MapPin, Facebook, Twitter, Linkedin } from 'lucide-react';
-import { ROUTES } from '@/lib/routes';
+import { ROUTES, NAV_SECONDARY, NAV_LEGAL } from '@/lib/routes';
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ export default function Footer() {
 
   const navigateToSection = (sectionId: string) => {
     // Navigate to home first, then scroll to section
-    navigate('/');
+    navigate(ROUTES.home);
     // Use setTimeout to ensure navigation completes before scrolling
     setTimeout(() => {
       const element = document.getElementById(sectionId);
@@ -30,7 +30,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand Section */}
           <div>
-            <Link to="/" className="flex items-center gap-3 mb-6">
+            <Link to={ROUTES.home} className="flex items-center gap-3 mb-6">
               <div className="bg-primary-foreground p-2 rounded-lg">
                 <Zap className="w-6 h-6 text-primary" />
               </div>
@@ -97,7 +97,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <Link
-                  to={ROUTES.GEWERBESTROM}
+                  to={ROUTES.gewerbestrom}
                   className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
                 >
                   Gewerbestrom
@@ -105,7 +105,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  to={ROUTES.GEWERBEGAS}
+                  to={ROUTES.gewerbegas}
                   className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
                 >
                   Gewerbegas
@@ -113,7 +113,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  to={ROUTES.KONTAKT}
+                  to={ROUTES.kontakt}
                   className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
                 >
                   Kontakt
@@ -192,12 +192,15 @@ export default function Footer() {
               © {new Date().getFullYear()} energievergleich.nrw. Alle Rechte vorbehalten.
             </p>
             <div className="flex items-center gap-6">
-              <Link to={ROUTES.DATENSCHUTZ} className="font-paragraph text-sm opacity-80 hover:opacity-100 transition-opacity">
-                Datenschutz
-              </Link>
-              <Link to={ROUTES.IMPRESSUM} className="font-paragraph text-sm opacity-80 hover:opacity-100 transition-opacity">
-                Impressum
-              </Link>
+              {NAV_LEGAL.map((item) => (
+                <Link
+                  key={item.key}
+                  to={item.to}
+                  className="font-paragraph text-sm opacity-80 hover:opacity-100 transition-opacity"
+                >
+                  {item.label}
+                </Link>
+              ))}
               <button
                 onClick={() => {
                   localStorage.removeItem('energievergleich_consent');
