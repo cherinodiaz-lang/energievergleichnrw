@@ -160,7 +160,7 @@ export default function ImpressumPage() {
               <h2 className="font-heading text-2xl font-bold text-primary mb-4">8. Datenschutz</h2>
               
               <p className="font-paragraph text-gray-700 leading-relaxed">
-                Die Nutzung unserer Website ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben. Weitere Informationen finden Sie in unserer <a href={ROUTES.DATENSCHUTZ} className="text-primary hover:underline font-bold">Datenschutzerklärung</a>.
+                Die Nutzung unserer Website ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben. Weitere Informationen finden Sie in unserer <a href={ROUTES.datenschutz} className="text-primary hover:underline font-bold">Datenschutzerklärung</a>.
               </p>
             </div>
 
