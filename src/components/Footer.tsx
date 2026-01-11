@@ -91,34 +91,20 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Business Customers */}
+          {/* Ratgeber & Links (from NAV_SECONDARY) */}
           <div>
-            <h3 className="font-heading font-semibold text-lg mb-6">Gewerbekunden</h3>
+            <h3 className="font-heading font-semibold text-lg mb-6">Ratgeber</h3>
             <ul className="space-y-3">
-              <li>
-                <Link
-                  to={ROUTES.gewerbestrom}
-                  className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
-                >
-                  Gewerbestrom
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to={ROUTES.gewerbegas}
-                  className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
-                >
-                  Gewerbegas
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to={ROUTES.kontakt}
-                  className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
-                >
-                  Kontakt
-                </Link>
-              </li>
+              {NAV_SECONDARY.map((item) => (
+                <li key={item.key}>
+                  <Link
+                    to={item.to}
+                    className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
