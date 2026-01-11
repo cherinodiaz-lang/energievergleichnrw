@@ -1,15 +1,15 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import { ROUTES } from '@/lib/routes';
 
 export default function ImpressumPage() {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
         title="Impressum | Energievergleich"
-        description="Impressum und rechtliche Informationen von Energievergleich.shop"
+        description="Impressum und rechtliche Informationen von Energievergleich"
         keywords="Impressum, Rechtliche Informationen, Kontakt"
         ogTitle="Impressum | Energievergleich"
         ogDescription="Impressum und rechtliche Informationen."
@@ -19,62 +19,52 @@ export default function ImpressumPage() {
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
         <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-3xl"
-          >
+          <div className="max-w-3xl">
             <h1 className="font-heading text-5xl md:text-7xl font-bold mb-6 leading-tight">
               Impressum
             </h1>
             <p className="font-paragraph text-lg md:text-xl text-white/90">
               Rechtliche Informationen gemäß § 5 TMG und § 18 MStV
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Content Section */}
       <section className="w-full py-24 bg-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="space-y-8"
-          >
+          <div className="space-y-8">
             {/* Hinweis */}
             <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-6">
               <p className="font-paragraph text-sm text-blue-800">
-                <strong>Hinweis:</strong> Dies ist eine Muster-Vorlage. Unternehmensdaten werden ergänzt.
+                <strong>Hinweis:</strong> Dieses Impressum enthält Platzhalter. Bitte ersetzen Sie diese mit den tatsächlichen Unternehmensdaten.
               </p>
             </div>
 
             {/* 1. Betreiber */}
             <div>
-              <h2 className="font-heading text-3xl font-bold text-primary mb-6">1. Angaben gemäß § 5 DDG</h2>
+              <h2 className="font-heading text-3xl font-bold text-primary mb-6">1. Angaben gemäß § 5 TMG</h2>
               
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-gray-700">
                 <div>
                   <p className="font-bold mb-2">Betreiber der Website:</p>
-                  <p>Energievergleich Muster GmbH</p>
-                  <p>Rechtsform: Gesellschaft mit beschränkter Haftung (GmbH)</p>
+                  <p>[UNTERNEHMEN_NAME]</p>
+                  <p>Rechtsform: [RECHTSFORM]</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Anschrift:</p>
-                  <p>Musterstraße 1<br />40210 Düsseldorf<br />Deutschland</p>
+                  <p>[STRASSE] [HAUSNUMMER]<br />[POSTLEITZAHL] [STADT]<br />[LAND]</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Kontaktinformationen:</p>
-                  <p>Telefon: +49 000 0000000<br />E-Mail: kontakt@energievergleich.shop<br />Website: energievergleich.shop</p>
+                  <p>Telefon: [TELEFON]<br />E-Mail: [EMAIL]<br />Website: [WEBSITE]</p>
                 </div>
 
                 <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Geschäftsführer:</p>
-                  <p>Max Mustermann</p>
+                  <p className="font-bold mb-2">Geschäftsführer/Inhaber:</p>
+                  <p>[GESCHAEFTSFUEHRER_NAME]</p>
                 </div>
               </div>
             </div>
@@ -86,12 +76,17 @@ export default function ImpressumPage() {
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-gray-700">
                 <div>
                   <p className="font-bold mb-2">Umsatzsteuer-Identifikationsnummer (gemäß § 27 a UStG):</p>
-                  <p>DE000000000</p>
+                  <p>[UST_ID_NUMMER]</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Handelsregister-Eintrag:</p>
-                  <p>Amtsgericht Düsseldorf, HRB 00000</p>
+                  <p>[AMTSGERICHT], [HANDELSREGISTER_NUMMER]</p>
+                </div>
+
+                <div className="border-t pt-4">
+                  <p className="font-bold mb-2">Steuernummer:</p>
+                  <p>[STEUERNUMMER]</p>
                 </div>
               </div>
             </div>
@@ -104,31 +99,32 @@ export default function ImpressumPage() {
                 <p className="text-sm text-gray-500 mb-4">Redaktionell verantwortliche Person für die Inhalte dieser Website:</p>
                 <div>
                   <p className="font-bold mb-2">Name:</p>
-                  <p>Max Mustermann</p>
+                  <p>[REDAKTION_NAME]</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Anschrift:</p>
-                  <p>Musterstraße 1<br />40210 Düsseldorf<br />Deutschland</p>
+                  <p>[STRASSE] [HAUSNUMMER]<br />[POSTLEITZAHL] [STADT]<br />[LAND]</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Erreichbarkeit:</p>
-                  <p>Telefon: +49 000 0000000<br />E-Mail: kontakt@energievergleich.shop</p>
+                  <p>Telefon: [TELEFON]<br />E-Mail: [EMAIL]</p>
                 </div>
               </div>
             </div>
 
-            {/* 4. Berufsrechtliche Angaben (optional) */}
+            {/* 4. Berufsrechtliche Angaben */}
             <div>
               <h2 className="font-heading text-2xl font-bold text-primary mb-4">4. Berufsrechtliche Angaben</h2>
               
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 font-paragraph text-gray-700">
-                <p className="text-sm text-gray-500 mb-4">Energievergleich Muster GmbH ist nicht Mitglied einer Handwerkskammer oder Industrie- und Handelskammer und unterliegt keinen besonderen berufsrechtlichen Regelungen.</p>
+                <p className="text-sm text-gray-500 mb-4">Berufsrechtliche Regelungen und Zugehörigkeiten:</p>
+                <p>[BERUFSRECHTLICHE_INFORMATIONEN]</p>
               </div>
             </div>
 
-            {/* 5. Haftung */}
+            {/* 5. Haftung für Inhalte */}
             <div>
               <h2 className="font-heading text-2xl font-bold text-primary mb-4">5. Haftung für Inhalte</h2>
               
@@ -164,7 +160,7 @@ export default function ImpressumPage() {
               <h2 className="font-heading text-2xl font-bold text-primary mb-4">8. Datenschutz</h2>
               
               <p className="font-paragraph text-gray-700 leading-relaxed">
-                Die Nutzung unserer Website ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben. Weitere Informationen finden Sie in unserer <a href="/datenschutz" className="text-primary hover:underline font-bold">Datenschutzerklärung</a>.
+                Die Nutzung unserer Website ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben. Weitere Informationen finden Sie in unserer <a href={ROUTES.DATENSCHUTZ} className="text-primary hover:underline font-bold">Datenschutzerklärung</a>.
               </p>
             </div>
 
@@ -193,17 +189,17 @@ export default function ImpressumPage() {
               
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 font-paragraph text-gray-700">
                 <p className="font-bold mb-2">Teilnahme an Verbraucherstreitbeilegung:</p>
-                <p>Wir sind nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+                <p>[VERBRAUCHERSTREITBEILEGUNG_INFO]</p>
               </div>
             </div>
 
             {/* Hinweis */}
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mt-8">
               <p className="font-paragraph text-sm text-gray-700">
-                <strong>Hinweis:</strong> Dieses Impressum ist ein rechtlich verbindliches Dokument. Bitte stellen Sie sicher, dass alle Angaben korrekt und vollständig sind. Im Zweifelsfall konsultieren Sie einen Rechtsanwalt.
+                <strong>Hinweis:</strong> Dieses Impressum ist ein rechtlich verbindliches Dokument. Bitte stellen Sie sicher, dass alle Platzhalter mit den tatsächlichen Daten ersetzt werden. Im Zweifelsfall konsultieren Sie einen Rechtsanwalt.
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
