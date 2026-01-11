@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Zap, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { ROUTES } from '@/lib/routes';
+import { NAV_MAIN, ROUTES } from '@/lib/routes';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -30,7 +30,7 @@ export default function Header() {
       <div className="max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 sm:gap-3 group flex-shrink-0">
+          <Link to={ROUTES.home} className="flex items-center gap-2 sm:gap-3 group flex-shrink-0">
             <div className="bg-primary p-1.5 sm:p-2 rounded-lg group-hover:bg-primary/90 transition-colors">
               <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-primary-foreground" />
             </div>
@@ -46,33 +46,15 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            <button
-              onClick={() => scrollToSection('vergleichsrechner')}
-              className="font-paragraph text-base text-foreground hover:text-primary transition-colors"
-            >
-              Vergleichsrechner
-            </button>
-            <button
-              onClick={() => scrollToSection('vorteile')}
-              className="font-paragraph text-base text-foreground hover:text-primary transition-colors"
-            >
-              Vorteile
-            </button>
-            <button
-              onClick={() => scrollToSection('photovoltaik')}
-              className="font-paragraph text-base text-foreground hover:text-primary transition-colors"
-            >
-              Photovoltaik
-            </button>
-            <Link to={ROUTES.RATGEBER} className="font-paragraph text-base text-foreground hover:text-primary transition-colors">
-              Ratgeber
-            </Link>
-            <Link to={ROUTES.GEWERBESTROM} className="font-paragraph text-base text-foreground hover:text-primary transition-colors">
-              Gewerbestrom
-            </Link>
-            <Link to={ROUTES.GEWERBEGAS} className="font-paragraph text-base text-foreground hover:text-primary transition-colors">
-              Gewerbegas
-            </Link>
+            {NAV_MAIN.map((item) => (
+              <Link
+                key={item.key}
+                to={item.to}
+                className="font-paragraph text-base text-foreground hover:text-primary transition-colors"
+              >
+                {item.label}
+              </Link>
+            ))}
             <button
               onClick={() => scrollToSection('faq')}
               className="font-paragraph text-base text-foreground hover:text-primary transition-colors"
@@ -95,33 +77,16 @@ export default function Header() {
         {mobileMenuOpen && (
           <nav className="md:hidden py-4 border-t border-light-grey">
             <div className="flex flex-col gap-3">
-              <button
-                onClick={() => scrollToSection('vergleichsrechner')}
-                className="font-paragraph text-sm text-foreground hover:text-primary transition-colors text-left py-2"
-              >
-                Vergleichsrechner
-              </button>
-              <button
-                onClick={() => scrollToSection('vorteile')}
-                className="font-paragraph text-sm text-foreground hover:text-primary transition-colors text-left py-2"
-              >
-                Vorteile
-              </button>
-              <button
-                onClick={() => scrollToSection('photovoltaik')}
-                className="font-paragraph text-sm text-foreground hover:text-primary transition-colors text-left py-2"
-              >
-                Photovoltaik
-              </button>
-              <Link to={ROUTES.RATGEBER} onClick={() => setMobileMenuOpen(false)} className="font-paragraph text-sm text-foreground hover:text-primary transition-colors text-left py-2">
-                Ratgeber
-              </Link>
-              <Link to={ROUTES.GEWERBESTROM} onClick={() => setMobileMenuOpen(false)} className="font-paragraph text-sm text-foreground hover:text-primary transition-colors text-left py-2">
-                Gewerbestrom
-              </Link>
-              <Link to={ROUTES.GEWERBEGAS} onClick={() => setMobileMenuOpen(false)} className="font-paragraph text-sm text-foreground hover:text-primary transition-colors text-left py-2">
-                Gewerbegas
-              </Link>
+              {NAV_MAIN.map((item) => (
+                <Link
+                  key={item.key}
+                  to={item.to}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="font-paragraph text-sm text-foreground hover:text-primary transition-colors text-left py-2"
+                >
+                  {item.label}
+                </Link>
+              ))}
               <button
                 onClick={() => scrollToSection('faq')}
                 className="font-paragraph text-sm text-foreground hover:text-primary transition-colors text-left py-2"
