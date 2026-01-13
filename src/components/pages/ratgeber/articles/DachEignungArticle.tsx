@@ -8,6 +8,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import { Link } from 'react-router-dom';
+import { ROUTES } from '@/lib/routes';
 
 export default function DachEignungArticle() {
   useEffect(() => {
@@ -210,7 +211,7 @@ export default function DachEignungArticle() {
               Nutzen Sie unsere kostenlose Beratung und lassen Sie Ihr Dach prüfen.
             </p>
             <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
-              <Link to="/photovoltaik-nrw">
+              <Link to={ROUTES.photovoltaik}>
                 Zur Photovoltaik-Beratung
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>

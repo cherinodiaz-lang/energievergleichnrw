@@ -7,6 +7,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import { Link } from 'react-router-dom';
+import { ROUTES } from '@/lib/routes';
 import { getArticlesByCategory } from '@/lib/ratgeber-map';
 
 export default function PhotovoltaikCategoryPage() {
@@ -106,7 +107,7 @@ export default function PhotovoltaikCategoryPage() {
             Nutzen Sie unsere kostenlose Beratung und erfahren Sie, wie viel Sie mit einer Solaranlage sparen können.
           </p>
           <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 px-8 rounded-lg font-bold">
-            <Link to="/photovoltaik-nrw">
+            <Link to={ROUTES.photovoltaik}>
               Kostenlose Beratung
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
