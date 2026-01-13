@@ -243,7 +243,7 @@ export default function GrundversorgungGasSondervertragArticle() {
               Nutzen Sie unseren kostenlosen Vergleichsrechner und finden Sie den günstigsten Gastarif in Ihrer Region.
             </p>
             <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
-              <Link to={ROUTES.GASVERGLEICH_NRW}>
+              <Link to={ROUTES.gasvergleich}>
                 Zum Gasvergleich
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
