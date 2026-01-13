@@ -8,6 +8,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import { Link } from 'react-router-dom';
+import { ROUTES } from '@/lib/routes';
 
 export default function LieferantenwechselAblaufArticle() {
   useEffect(() => {
@@ -210,7 +211,7 @@ export default function LieferantenwechselAblaufArticle() {
               Nutzen Sie unser Vergleichstool und finden Sie bessere Tarife.
             </p>
             <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
-              <Link to="/stromvergleich-nrw">
+              <Link to={ROUTES.stromvergleich}>
                 Zum Stromvergleich
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>

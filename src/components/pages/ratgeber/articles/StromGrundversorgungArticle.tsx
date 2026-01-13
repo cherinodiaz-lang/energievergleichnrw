@@ -8,6 +8,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import { Link } from 'react-router-dom';
+import { ROUTES } from '@/lib/routes';
 
 export default function StromGrundversorgungArticle() {
   useEffect(() => {
@@ -290,7 +291,7 @@ export default function StromGrundversorgungArticle() {
               <p className="font-paragraph text-gray-700 mb-6">
                 Nutzen Sie unseren kostenlosen Vergleichsrechner und finden Sie den besten Stromtarif für Ihre Situation. Sparen Sie bis zu 400 Euro pro Jahr!
               </p>
-              <Link to="/stromvergleich-nrw">
+              <Link to={ROUTES.stromvergleich}>
                 <Button className="bg-primary text-white hover:bg-primary/90 h-12 px-8 font-bold">
                   Jetzt Stromtarife vergleichen
                   <ArrowRight className="w-5 h-5 ml-2" />
