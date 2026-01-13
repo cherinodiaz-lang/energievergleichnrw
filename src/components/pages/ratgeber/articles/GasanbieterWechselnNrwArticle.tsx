@@ -8,6 +8,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import { Link } from 'react-router-dom';
+import { ROUTES } from '@/lib/routes';
 
 export default function GasanbieterWechselnNrwArticle() {
   useEffect(() => {
@@ -232,7 +233,7 @@ export default function GasanbieterWechselnNrwArticle() {
               Nutzen Sie unseren kostenlosen Vergleichsrechner und finden Sie den günstigsten Gastarif in Ihrer Region.
             </p>
             <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
-              <Link to="/gasvergleich-nrw">
+              <Link to={ROUTES.gasvergleich}>
                 Zum Gasvergleich
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>

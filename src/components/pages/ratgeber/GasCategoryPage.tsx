@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import { Link } from 'react-router-dom';
 import { getArticlesByCategory } from '@/lib/ratgeber-map';
+import { ROUTES } from '@/lib/routes';
 
 export default function GasCategoryPage() {
   const articles = getArticlesByCategory('gas');
@@ -106,7 +107,7 @@ export default function GasCategoryPage() {
             Nutzen Sie unseren Vergleichsrechner und finden Sie den besten Gastarif für Ihre Region.
           </p>
           <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 px-8 rounded-lg font-bold">
-            <Link to="/gasvergleich-nrw">
+            <Link to={ROUTES.gasvergleich}>
               Gastarife vergleichen
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
