@@ -2,6 +2,7 @@ import { MemberProvider } from '@/integrations';
 import { createBrowserRouter, RouterProvider, Navigate, Outlet } from 'react-router-dom';
 import { ScrollToTop } from '@/lib/scroll-to-top';
 import { SEO_CONFIG } from '@/lib/seo-config';
+import { ROUTES } from '@/lib/routes';
 import ErrorPage from '@/integrations/errorHandlers/ErrorPage';
 import HomePage from '@/components/pages/HomePage';
 import GewerbestromPage from '@/components/pages/GewerbestromPage';
@@ -122,14 +123,14 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "impressum",
+        path: ROUTES.impressum.slice(1),
         element: <ImpressumPage />,
         routeMetadata: {
           pageIdentifier: 'impressum',
         },
       },
       {
-        path: "datenschutz",
+        path: ROUTES.datenschutz.slice(1),
         element: <DatenschutzPage />,
         routeMetadata: {
           pageIdentifier: 'datenschutz',
