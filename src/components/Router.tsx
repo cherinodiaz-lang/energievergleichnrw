@@ -355,7 +355,7 @@ const router = createBrowserRouter([
       },
       {
         path: "*",
-        element: <Navigate to="/" replace />,
+        element: <Navigate to={ROUTES.home} replace />,
       },
     ],
   },
