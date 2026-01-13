@@ -12,6 +12,7 @@ import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import { Link } from 'react-router-dom';
+import { ROUTES } from '@/lib/routes';
 
 export default function PhotovoltaikNrwPage() {
   const [formData, setFormData] = useState({
@@ -622,7 +623,7 @@ export default function PhotovoltaikNrwPage() {
         <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
           <h3 className="font-heading text-2xl font-bold text-primary mb-8">Weitere Informationen</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Link to="/stromvergleich-nrw" className="group">
+            <Link to={ROUTES.stromvergleich} className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Stromvergleich NRW</CardTitle>
@@ -633,7 +634,7 @@ export default function PhotovoltaikNrwPage() {
                 </CardContent>
               </Card>
             </Link>
-            <Link to="/gasvergleich-nrw" className="group">
+            <Link to={ROUTES.gasvergleich} className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Gasvergleich NRW</CardTitle>
@@ -644,7 +645,7 @@ export default function PhotovoltaikNrwPage() {
                 </CardContent>
               </Card>
             </Link>
-            <Link to="/kontakt" className="group">
+            <Link to={ROUTES.kontakt} className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Kontakt</CardTitle>
