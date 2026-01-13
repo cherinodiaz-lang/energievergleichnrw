@@ -211,7 +211,7 @@ export default function GaspreisgarantieArticle() {
               Nutzen Sie unser Vergleichstool und finden Sie den besten Tarif mit Preisgarantie.
             </p>
             <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
-              <Link to="/gasvergleich-nrw">
+              <Link to={ROUTES.GASVERGLEICH_NRW}>
                 Zum Gasvergleich
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
