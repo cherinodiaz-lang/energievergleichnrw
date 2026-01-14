@@ -172,7 +172,7 @@ export default function PhotovoltaikNrwPage() {
 
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -197,7 +197,7 @@ export default function PhotovoltaikNrwPage() {
 
       {/* Benefits Section */}
       <section className="w-full py-24 bg-white">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary mb-16 text-center">
             Warum Photovoltaik in NRW?
           </h2>
@@ -261,7 +261,7 @@ export default function PhotovoltaikNrwPage() {
 
       {/* So funktioniert's Section */}
       <section className="w-full py-24 bg-background">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary mb-16 text-center">
             So funktioniert die Installation
           </h2>
@@ -325,7 +325,7 @@ export default function PhotovoltaikNrwPage() {
 
       {/* Comparison Criteria Section */}
       <section className="w-full py-24 bg-white">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary mb-16 text-center">
             Worauf achten wir beim Vergleich?
           </h2>
@@ -362,7 +362,7 @@ export default function PhotovoltaikNrwPage() {
 
       {/* Consultation Form Section */}
       <section id="beratung" className="w-full py-24 bg-background">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
             <div className="lg:col-span-2">
               <Card className="shadow-xl">
@@ -544,7 +544,7 @@ export default function PhotovoltaikNrwPage() {
 
       {/* FAQ Section */}
       <section className="w-full py-24 bg-white">
-        <div className="max-w-4xl mx-auto px-6 lg:px-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary mb-16 text-center">
             Häufig gestellte Fragen
           </h2>
@@ -620,7 +620,7 @@ export default function PhotovoltaikNrwPage() {
 
       {/* Internal Links Section */}
       <section className="w-full py-16 bg-white border-t">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <h3 className="font-heading text-2xl font-bold text-primary mb-8">Weitere Informationen</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Link to={ROUTES.stromvergleich} className="group">

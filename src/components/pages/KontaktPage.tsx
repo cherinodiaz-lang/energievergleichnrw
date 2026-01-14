@@ -53,7 +53,7 @@ export default function KontaktPage() {
 
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -72,7 +72,7 @@ export default function KontaktPage() {
 
       {/* Contact Information Section */}
       <section className="w-full py-24 bg-white">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -149,7 +149,7 @@ export default function KontaktPage() {
 
       {/* Contact Form Section */}
       <section className="w-full py-24 bg-background">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
             <div className="lg:col-span-2">
               <Card className="shadow-xl">

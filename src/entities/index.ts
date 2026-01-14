@@ -42,7 +42,7 @@ export interface Informationsmaterial {
   fileUrl?: string;
   /** @wixFieldType text */
   targetAudience?: string;
-  /** @wixFieldType image */
+  /** @wixFieldType image - Contains image URL, render with <Image> component, NOT as text */
   thumbnail?: string;
   /** @wixFieldType date */
   publicationDate?: Date | string;
@@ -61,7 +61,7 @@ export interface Wechselvorteile {
   title?: string;
   /** @wixFieldType text */
   description?: string;
-  /** @wixFieldType image */
+  /** @wixFieldType image - Contains image URL, render with <Image> component, NOT as text */
   icon?: string;
   /** @wixFieldType number */
   displayOrder?: number;

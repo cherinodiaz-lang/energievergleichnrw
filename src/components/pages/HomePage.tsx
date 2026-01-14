@@ -412,10 +412,11 @@ export default function HomePage() {
       </section>
 
       {/* --- TRUST & STATS BAR --- */}
-      <section className="relative z-20 -mt-16 sm:-mt-20 w-full max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-12 mb-16 sm:mb-24">
-        <AnimatedElement delay={400}>
-          <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-100">
-            <div className="flex items-center gap-3 sm:gap-4 justify-center md:justify-start p-3 sm:p-4">
+      <section className="relative z-20 -mt-16 sm:-mt-20 w-full mb-16 sm:mb-24">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <AnimatedElement delay={400}>
+            <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-100">
+              <div className="flex items-center gap-3 sm:gap-4 justify-center md:justify-start p-3 sm:p-4">
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
                 <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
@@ -451,7 +452,7 @@ export default function HomePage() {
         <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
             <div className="lg:col-span-5 lg:sticky lg:top-32">
               <AnimatedElement>
@@ -849,7 +850,7 @@ export default function HomePage() {
 
       {/* --- VORTEILE SECTION (CMS DATA) --- */}
       <section id="vorteile" className="w-full py-24 sm:py-32 bg-primary text-white">
-        <div className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-12 pb-16 sm:pb-20">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20">
           <div className="text-center mb-16 sm:mb-20">
             <AnimatedElement>
               <h2 className="font-heading text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6">
@@ -896,7 +897,7 @@ export default function HomePage() {
 
       {/* --- PHOTOVOLTAIK SECTION --- */}
       <section id="photovoltaik" className="w-full bg-white pt-16 sm:pt-24 pb-24 sm:pb-32">
-        <div className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-12">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
             <div className="relative h-full">
               <div className="lg:sticky lg:top-32">
@@ -1097,7 +1098,7 @@ export default function HomePage() {
 
       {/* --- INFORMATIONS MATERIAL (CMS DATA) --- */}
       <section id="informationsmaterial" className="w-full py-24 sm:py-32 bg-gray-50">
-        <div className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-12">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 sm:mb-16 gap-4 sm:gap-6">
             <AnimatedElement>
               <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-primary">
@@ -1209,7 +1210,7 @@ export default function HomePage() {
       <section id="kontakt" className="w-full py-24 sm:py-32 bg-primary relative overflow-hidden">
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
 
-        <div className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <div className="text-white">
               <AnimatedElement>

@@ -82,7 +82,7 @@ export default function StromanbieterwechselnNrwArticle() {
 
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

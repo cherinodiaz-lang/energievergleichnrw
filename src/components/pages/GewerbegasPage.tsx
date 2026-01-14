@@ -58,7 +58,7 @@ export default function GewerbegasPage() {
 
       {/* Hero Section */}
       <section id="hero" className="w-full bg-primary text-primary-foreground py-32">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -100,7 +100,7 @@ export default function GewerbegasPage() {
 
       {/* Benefits Section */}
       <section id="vorteile" className="w-full bg-white py-24">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary mb-4">
               Ihre Vorteile als Gewerbekunde
@@ -216,7 +216,7 @@ export default function GewerbegasPage() {
 
       {/* Info Section */}
       <section id="info" className="w-full bg-background py-24">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -271,7 +271,7 @@ export default function GewerbegasPage() {
 
       {/* Request Form Section */}
       <section id="anfrage" className="w-full bg-white py-24">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary mb-4">
               Jetzt Angebot anfordern

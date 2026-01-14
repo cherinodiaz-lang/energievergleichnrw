@@ -26,7 +26,7 @@ export default function GasCategoryPage() {
 
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -49,7 +49,7 @@ export default function GasCategoryPage() {
 
       {/* Articles Grid */}
       <section className="w-full py-24 bg-white">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12">
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary mb-4">
               {articles.length} Artikel in dieser Kategorie
@@ -99,7 +99,7 @@ export default function GasCategoryPage() {
 
       {/* CTA Section */}
       <section className="w-full py-16 bg-primary text-primary-foreground">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-12 text-center">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6">
             Bereit für einen Gaswechsel?
           </h2>
