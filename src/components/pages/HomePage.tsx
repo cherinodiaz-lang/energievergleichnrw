@@ -445,6 +445,7 @@ export default function HomePage() {
             </div>
           </div>
         </AnimatedElement>
+        </div>
       </section>
 
       {/* --- CALCULATOR SECTION --- */}
