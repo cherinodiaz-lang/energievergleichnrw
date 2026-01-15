@@ -100,7 +100,7 @@ export default function StromCategoryPage() {
       {/* CTA Section */}
       <section className="w-full py-16 bg-primary text-primary-foreground">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6">
+          <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight mb-6">
             Bereit für einen Stromwechsel?
           </h2>
           <p className="font-paragraph text-lg text-white/90 mb-8 max-w-2xl mx-auto">
