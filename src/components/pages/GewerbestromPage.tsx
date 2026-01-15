@@ -65,7 +65,7 @@ export default function GewerbestromPage() {
                 <Building2 className="w-16 h-16 text-primary" />
               </div>
             </div>
-            <h1 className="font-heading text-5xl md:text-6xl font-bold mb-6">
+            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-6 max-w-[22ch] sm:max-w-none break-words">
               Gewerbestrom für Ihr Unternehmen
             </h1>
             <p className="font-paragraph text-xl opacity-90 max-w-3xl mx-auto">
@@ -79,7 +79,7 @@ export default function GewerbestromPage() {
       <section id="vorteile" className="w-full bg-white py-24">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary mb-4">
+            <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary mb-4">
               Ihre Vorteile als Gewerbekunde
             </h2>
             <p className="font-paragraph text-lg text-foreground/80 max-w-3xl mx-auto">
@@ -201,7 +201,7 @@ export default function GewerbestromPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary mb-6">
+              <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary mb-6">
                 Maßgeschneiderte Lösungen für Ihr Gewerbe
               </h2>
               <div className="space-y-6">
@@ -250,7 +250,7 @@ export default function GewerbestromPage() {
       <section id="anfrage" className="w-full bg-white py-24">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary mb-4">
+            <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary mb-4">
               Jetzt Angebot anfordern
             </h2>
             <p className="font-paragraph text-lg text-foreground/80 max-w-3xl mx-auto">

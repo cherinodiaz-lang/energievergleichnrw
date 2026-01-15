@@ -157,7 +157,7 @@ export default function StromvergleichNrwPage() {
             transition={{ duration: 0.5 }}
             className="max-w-3xl"
           >
-            <h1 className="font-heading text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-6 leading-tight max-w-[22ch] sm:max-w-none break-words">
               Stromvergleich für NRW
             </h1>
             <p className="font-paragraph text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
@@ -300,7 +300,7 @@ export default function StromvergleichNrwPage() {
       {/* So funktioniert's Section */}
       <section className="w-full py-24 bg-background">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary mb-16 text-center">
+          <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary mb-16 text-center">
             So funktioniert der Stromwechsel
           </h2>
 
@@ -365,7 +365,7 @@ export default function StromvergleichNrwPage() {
       {/* Comparison Criteria Section */}
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary mb-16 text-center">
+          <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary mb-16 text-center">
             Worauf achten wir beim Vergleich?
           </h2>
 
@@ -402,7 +402,7 @@ export default function StromvergleichNrwPage() {
       {/* FAQ Section */}
       <section className="w-full py-24 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary mb-16 text-center">
+          <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary mb-16 text-center">
             Häufig gestellte Fragen
           </h2>
 

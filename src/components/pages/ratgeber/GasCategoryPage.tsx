@@ -37,7 +37,7 @@ export default function GasCategoryPage() {
               <Flame className="w-8 h-8" />
               <span className="text-sm font-bold uppercase tracking-wider">Ratgeber</span>
             </div>
-            <h1 className="font-heading text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-6 leading-tight max-w-[22ch] sm:max-w-none break-words">
               Gasvergleich & Heizung
             </h1>
             <p className="font-paragraph text-lg md:text-xl text-white/90">
@@ -51,7 +51,7 @@ export default function GasCategoryPage() {
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary mb-4">
+            <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary mb-4">
               {articles.length} Artikel in dieser Kategorie
             </h2>
             <p className="font-paragraph text-gray-600">

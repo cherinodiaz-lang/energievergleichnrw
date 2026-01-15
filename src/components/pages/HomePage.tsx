@@ -360,7 +360,7 @@ export default function HomePage() {
             </AnimatedElement>
 
             <AnimatedElement delay={100}>
-              <h1 className="font-heading text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight sm:leading-[1.1] mb-4 sm:mb-6 md:mb-8">
+              <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white leading-tight sm:leading-[1.1] mb-4 sm:mb-6 md:mb-8 max-w-[22ch] sm:max-w-none break-words">
                 Energie wechseln.<br />
                 <span className="text-secondary">Zukunft sichern.</span>
               </h1>
@@ -457,7 +457,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
             <div className="lg:col-span-5 lg:sticky lg:top-32">
               <AnimatedElement>
-                <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4 sm:mb-6">
+                <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary mb-4 sm:mb-6">
                   Ihr Weg zum <br/>
                   <span className="text-secondary">besten Tarif.</span>
                 </h2>
@@ -854,7 +854,7 @@ export default function HomePage() {
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20">
           <div className="text-center mb-16 sm:mb-20">
             <AnimatedElement>
-              <h2 className="font-heading text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6">
+              <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight mb-4 sm:mb-6">
                 Warum wechseln?
               </h2>
               <p className="font-paragraph text-base sm:text-xl text-white/80 max-w-2xl mx-auto">
@@ -906,7 +906,7 @@ export default function HomePage() {
                   <div className="inline-block px-3 sm:px-4 py-2 rounded-full bg-orange-100 text-orange-700 font-bold text-xs sm:text-sm mb-4 sm:mb-6">
                     Zukunftstechnologie
                   </div>
-                  <h2 className="font-heading text-3xl sm:text-5xl md:text-6xl font-bold text-primary mb-6 sm:mb-8 leading-tight">
+                  <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary mb-6 sm:mb-8 leading-tight">
                     Ihre eigene <br/>
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-orange-500">Energiequelle.</span>
                   </h2>
@@ -1102,7 +1102,7 @@ export default function HomePage() {
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 sm:mb-16 gap-4 sm:gap-6">
             <AnimatedElement>
-              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-primary">
+              <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary">
                 Wissen zum <br/>Downloaden
               </h2>
             </AnimatedElement>
@@ -1179,7 +1179,7 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-12">
           <AnimatedElement>
             <div className="text-center mb-12 sm:mb-16">
-              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-3 sm:mb-4">
+              <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary mb-3 sm:mb-4">
                 Häufige Fragen
               </h2>
               <p className="font-paragraph text-base sm:text-lg text-gray-600">
@@ -1215,7 +1215,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <div className="text-white">
               <AnimatedElement>
-                <h2 className="font-heading text-3xl sm:text-5xl md:text-6xl font-bold mb-6 sm:mb-8">
+                <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight mb-6 sm:mb-8">
                   Wir sind für <br/>Sie da.
                 </h2>
                 <p className="font-paragraph text-base sm:text-xl text-white/80 mb-8 sm:mb-12 max-w-lg">

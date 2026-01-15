@@ -70,7 +70,7 @@ export default function GewerbegasPage() {
                 <Flame className="w-16 h-16 text-primary" />
               </div>
             </div>
-            <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-8 leading-tight max-w-[22ch] sm:max-w-none break-words">
               Gewerbegas für Ihr Unternehmen
             </h1>
             <p className="font-paragraph text-lg md:text-xl text-white font-medium max-w-3xl mx-auto leading-relaxed">

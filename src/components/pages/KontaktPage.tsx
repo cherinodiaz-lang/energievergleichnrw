@@ -60,7 +60,7 @@ export default function KontaktPage() {
             transition={{ duration: 0.5 }}
             className="max-w-3xl"
           >
-            <h1 className="font-heading text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-6 leading-tight max-w-[22ch] sm:max-w-none break-words">
               Kontakt
             </h1>
             <p className="font-paragraph text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
