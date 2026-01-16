@@ -373,7 +373,7 @@ export default function HomePage() {
             </AnimatedElement>
 
             <AnimatedElement delay={300}>
-              <div className="flex flex-col sm:flex-row gap-3 pb-8 sm:pb-0">
+              <div className="flex flex-col sm:flex-row gap-4 pb-8 sm:pb-0">
                 <Button
                   onClick={() => {
                     trackCTAClick('hero-tarife-vergleichen', window.location.pathname);

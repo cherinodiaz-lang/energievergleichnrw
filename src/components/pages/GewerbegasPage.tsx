@@ -81,14 +81,14 @@ export default function GewerbegasPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
               <Button
                 onClick={() => document.getElementById('anfrage')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 px-8 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
+                className="bg-secondary text-secondary-foreground hover:bg-secondary/90 min-h-[44px] h-12 sm:h-14 px-6 sm:px-8 rounded-full text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 w-full sm:w-auto"
               >
                 Angebot anfordern
               </Button>
               <Button
                 onClick={() => navigate('/#photovoltaik')}
                 variant="outline"
-                className="bg-white/10 border-white/30 text-white hover:bg-white/20 h-14 px-8 rounded-full text-lg font-medium backdrop-blur-md transition-all"
+                className="bg-white/10 border-white/30 text-white hover:bg-white/20 min-h-[44px] h-12 sm:h-14 px-6 sm:px-8 rounded-full text-base sm:text-lg font-medium backdrop-blur-md transition-all w-full sm:w-auto"
               >
                 <Sun className="w-5 h-5 mr-2" />
                 Photovoltaik Beratung
