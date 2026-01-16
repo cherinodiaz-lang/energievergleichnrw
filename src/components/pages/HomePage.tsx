@@ -373,13 +373,13 @@ export default function HomePage() {
             </AnimatedElement>
 
             <AnimatedElement delay={300}>
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pb-8 sm:pb-0">
+              <div className="flex flex-col sm:flex-row gap-3 pb-8 sm:pb-0">
                 <Button
                   onClick={() => {
                     trackCTAClick('hero-tarife-vergleichen', window.location.pathname);
                     scrollToSection('vergleichsrechner');
                   }}
-                  className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 sm:h-14 px-6 sm:px-8 rounded-full text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 w-full sm:w-auto"
+                  className="bg-secondary text-secondary-foreground hover:bg-secondary/90 min-h-[44px] h-12 sm:h-14 px-6 sm:px-8 rounded-full text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 w-full sm:w-auto"
                 >
                   Jetzt Tarife vergleichen
                 </Button>
@@ -388,7 +388,7 @@ export default function HomePage() {
                     trackCTAClick('hero-photovoltaik', window.location.pathname);
                     scrollToSection('photovoltaik');
                   }}
-                  className="bg-white/20 border border-white/40 text-white hover:bg-white/30 h-12 sm:h-14 px-6 sm:px-8 rounded-full text-base sm:text-lg font-medium backdrop-blur-md transition-all w-full sm:w-auto"
+                  className="bg-white/20 border border-white/40 text-white hover:bg-white/30 min-h-[44px] h-12 sm:h-14 px-6 sm:px-8 rounded-full text-base sm:text-lg font-medium backdrop-blur-md transition-all w-full sm:w-auto"
                 >
                   <Sun className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                   <span className="hidden sm:inline">Photovoltaik Beratung</span>
