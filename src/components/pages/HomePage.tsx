@@ -329,9 +329,7 @@ export default function HomePage() {
           transform: translateY(0);
         }
       `}</style>
-
       <Header />
-
       {/* --- HERO SECTION --- */}
       <section className="relative w-full min-h-screen md:h-screen flex items-center justify-center overflow-hidden bg-primary">
         {/* Parallax Background */}
@@ -354,7 +352,7 @@ export default function HomePage() {
             <AnimatedElement>
               <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-xs sm:text-sm font-bold mb-4 sm:mb-6 backdrop-blur-sm shadow-lg">
                 <Leaf className="w-3 h-3 sm:w-4 sm:h-4" />
-                <span className="hidden sm:inline">Die Nr. 1 für Energievergleiche in NRW</span>
+                <span className="hidden sm:inline font-heading">Die Nr. 1 für Energievergleiche in NRW</span>
                 <span className="sm:hidden">Energievergleiche NRW</span>
               </div>
             </AnimatedElement>
@@ -410,7 +408,6 @@ export default function HomePage() {
           </div>
         </motion.div>
       </section>
-
       {/* --- TRUST & STATS BAR --- */}
       <section className="relative z-20 -mt-16 sm:-mt-20 w-full mb-16 sm:mb-24">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -447,7 +444,6 @@ export default function HomePage() {
         </AnimatedElement>
         </div>
       </section>
-
       {/* --- CALCULATOR SECTION --- */}
       <section id="vergleichsrechner" className="w-full py-16 sm:py-24 bg-background relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none" />
@@ -848,7 +844,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* --- VORTEILE SECTION (CMS DATA) --- */}
       <section id="vorteile" className="w-full py-24 sm:py-32 bg-primary text-white">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20">
@@ -895,7 +890,6 @@ export default function HomePage() {
           )}
         </div>
       </section>
-
       {/* --- PHOTOVOLTAIK SECTION --- */}
       <section id="photovoltaik" className="w-full bg-white pt-16 sm:pt-24 pb-24 sm:pb-32">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -1096,7 +1090,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* --- INFORMATIONS MATERIAL (CMS DATA) --- */}
       <section id="informationsmaterial" className="w-full py-24 sm:py-32 bg-gray-50">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -1173,7 +1166,6 @@ export default function HomePage() {
           )}
         </div>
       </section>
-
       {/* --- FAQ SECTION (CMS DATA) --- */}
       <section id="faq" className="w-full py-24 sm:py-32 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-12">
@@ -1206,7 +1198,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* --- CONTACT SECTION --- */}
       <section id="kontakt" className="w-full py-24 sm:py-32 bg-primary relative overflow-hidden">
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
@@ -1315,7 +1306,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* Contact Form Dialog */}
       <FormSubmissionDialog
         isOpen={showContactDialog}
@@ -1332,7 +1322,6 @@ export default function HomePage() {
         onSuccess={handleContactSuccess}
         title="Kontaktanfrage senden"
       />
-
       {/* Photovoltaik Form Dialog */}
       <FormSubmissionDialog
         isOpen={showPvDialog}
@@ -1354,7 +1343,6 @@ export default function HomePage() {
         onSuccess={handlePvSuccess}
         title="Kostenlose PV-Beratung"
       />
-
       <Footer />
     </div>
   );
