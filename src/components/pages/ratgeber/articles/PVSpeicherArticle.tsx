@@ -112,7 +112,7 @@ export default function PVSpeicherArticle() {
             </div>
 
             <div className="prose prose-lg max-w-none space-y-8">
-              <div>
+              <div className="space-y-4">
                 <h2 className="font-heading text-3xl font-bold text-primary mb-4">
                   Vorteile eines Stromspeichers
                 </h2>
@@ -136,7 +136,7 @@ export default function PVSpeicherArticle() {
                 </ul>
               </div>
 
-              <div>
+              <div className="space-y-4">
                 <h2 className="font-heading text-3xl font-bold text-primary mb-4">
                   Kosten und Amortisation
                 </h2>
@@ -145,7 +145,7 @@ export default function PVSpeicherArticle() {
                 </p>
               </div>
 
-              <div>
+              <div className="space-y-4">
                 <h2 className="font-heading text-3xl font-bold text-primary mb-4">
                   Speichergröße wählen
                 </h2>
@@ -154,7 +154,7 @@ export default function PVSpeicherArticle() {
                 </p>
               </div>
 
-              <div>
+              <div className="space-y-4">
                 <h2 className="font-heading text-3xl font-bold text-primary mb-4">
                   Haltbarkeit und Garantie
                 </h2>
@@ -163,7 +163,7 @@ export default function PVSpeicherArticle() {
                 </p>
               </div>
 
-              <div>
+              <div className="space-y-4">
                 <h2 className="font-heading text-3xl font-bold text-primary mb-4">
                   Häufige Fragen
                 </h2>
@@ -259,7 +259,10 @@ export default function PVSpeicherArticle() {
           </div>
 
           <div className="mt-12 pt-6 border-t text-center">
-            <p className="font-paragraph text-sm text-gray-500">
+            <Link to="/ratgeber/photovoltaik" className="tap-target text-sm mt-4 mb-4 inline-block text-primary hover:text-primary/80 transition-colors">
+              ← Zurück zum Ratgeber
+            </Link>
+            <p className="font-paragraph text-sm text-gray-500 mt-4">
               Zuletzt aktualisiert: 09. Januar 2026 | Redaktion Energievergleich
             </p>
           </div>
