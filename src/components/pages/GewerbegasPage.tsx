@@ -215,7 +215,7 @@ export default function GewerbegasPage() {
       </section>
 
       {/* Info Section */}
-      <section id="info" className="w-full bg-background py-24">
+      <section id="info" className="w-full bg-cover bg-center ox-hidden py-24" style={{ backgroundImage: 'linear-gradient(rgba(44, 110, 73, 0.85), rgba(44, 110, 73, 0.85))' }}>
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -281,7 +281,7 @@ export default function GewerbegasPage() {
             </p>
           </div>
 
-          <Card className="max-w-4xl mx-auto">
+          <Card className="max-w-4xl mx-auto shadow-sm md:shadow">
             <CardHeader>
               <CardTitle className="font-heading text-2xl">Anfrage für Gewerbegas</CardTitle>
               <CardDescription className="font-paragraph">
@@ -296,7 +296,7 @@ export default function GewerbegasPage() {
                     Unternehmensinformationen
                   </h3>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="company-name" className="font-paragraph">Firmenname *</Label>
                       <Input
@@ -306,13 +306,13 @@ export default function GewerbegasPage() {
                         value={companyName}
                         onChange={(e) => setCompanyName(e.target.value)}
                         required
-                        className="font-paragraph"
+                        className="font-paragraph w-full"
                       />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="company-type" className="font-paragraph">Branche *</Label>
                       <Select value={companyType} onValueChange={setCompanyType} required>
-                        <SelectTrigger id="company-type" className="font-paragraph">
+                        <SelectTrigger id="company-type" className="font-paragraph w-full">
                           <SelectValue placeholder="Wählen Sie..." />
                         </SelectTrigger>
                         <SelectContent>
@@ -335,7 +335,7 @@ export default function GewerbegasPage() {
                     Ansprechpartner
                   </h3>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="contact-person" className="font-paragraph">Name *</Label>
                       <Input
@@ -345,7 +345,7 @@ export default function GewerbegasPage() {
                         value={contactPerson}
                         onChange={(e) => setContactPerson(e.target.value)}
                         required
-                        className="font-paragraph"
+                        className="font-paragraph w-full"
                       />
                     </div>
                     <div className="space-y-2">
@@ -357,7 +357,7 @@ export default function GewerbegasPage() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
-                        className="font-paragraph"
+                        className="font-paragraph w-full"
                       />
                     </div>
                     <div className="space-y-2">
@@ -369,7 +369,7 @@ export default function GewerbegasPage() {
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         required
-                        className="font-paragraph"
+                        className="font-paragraph w-full"
                       />
                     </div>
                   </div>
@@ -390,11 +390,11 @@ export default function GewerbegasPage() {
                       value={address}
                       onChange={(e) => setAddress(e.target.value)}
                       required
-                      className="font-paragraph"
+                      className="font-paragraph w-full"
                     />
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="postcode" className="font-paragraph">Postleitzahl *</Label>
                       <Input
@@ -404,7 +404,7 @@ export default function GewerbegasPage() {
                         value={postcode}
                         onChange={(e) => setPostcode(e.target.value)}
                         required
-                        className="font-paragraph"
+                        className="font-paragraph w-full"
                       />
                     </div>
                     <div className="space-y-2">
@@ -416,7 +416,7 @@ export default function GewerbegasPage() {
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
                         required
-                        className="font-paragraph"
+                        className="font-paragraph w-full"
                       />
                     </div>
                   </div>
@@ -428,7 +428,7 @@ export default function GewerbegasPage() {
                     Verbrauchsinformationen
                   </h3>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="consumption" className="font-paragraph">
                         Jährlicher Gasverbrauch (kWh) *
@@ -440,7 +440,7 @@ export default function GewerbegasPage() {
                         value={consumption}
                         onChange={(e) => setConsumption(e.target.value)}
                         required
-                        className="font-paragraph"
+                        className="font-paragraph w-full"
                       />
                       <p className="font-paragraph text-sm text-foreground/60">
                         Sie finden diese Information auf Ihrer letzten Gasrechnung
@@ -449,7 +449,7 @@ export default function GewerbegasPage() {
                     <div className="space-y-2">
                       <Label htmlFor="heating-type" className="font-paragraph">Heizungsart *</Label>
                       <Select value={heatingType} onValueChange={setHeatingType} required>
-                        <SelectTrigger id="heating-type" className="font-paragraph">
+                        <SelectTrigger id="heating-type" className="font-paragraph w-full">
                           <SelectValue placeholder="Wählen Sie..." />
                         </SelectTrigger>
                         <SelectContent>
@@ -475,7 +475,7 @@ export default function GewerbegasPage() {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     rows={4}
-                    className="font-paragraph"
+                    className="font-paragraph w-full"
                   />
                 </div>
 
