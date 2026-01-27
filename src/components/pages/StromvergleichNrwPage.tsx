@@ -182,7 +182,7 @@ export default function StromvergleichNrwPage() {
                 <CardHeader className="bg-primary text-white">
                   <CardTitle className="font-heading text-2xl">Stromtarife vergleichen</CardTitle>
                 </CardHeader>
-                <CardContent className="p-8">
+                <CardContent className="p-8 ox-hidden">
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
@@ -193,13 +193,13 @@ export default function StromvergleichNrwPage() {
                           value={formData.postleitzahl}
                           onChange={(e) => setFormData({ ...formData, postleitzahl: e.target.value })}
                           required
-                          className="font-paragraph"
+                          className="font-paragraph w-full"
                         />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="haushalt" className="font-paragraph">Haushaltsgröße *</Label>
                         <Select value={formData.haushaltsgröße} onValueChange={(value) => setFormData({ ...formData, haushaltsgröße: value })} required>
-                          <SelectTrigger id="haushalt" className="font-paragraph">
+                          <SelectTrigger id="haushalt" className="font-paragraph w-full">
                             <SelectValue placeholder="Wählen Sie..." />
                           </SelectTrigger>
                           <SelectContent>
@@ -220,7 +220,7 @@ export default function StromvergleichNrwPage() {
                         placeholder="z.B. 3500"
                         value={formData.verbrauch}
                         onChange={(e) => setFormData({ ...formData, verbrauch: e.target.value })}
-                        className="font-paragraph"
+                        className="font-paragraph w-full"
                       />
                     </div>
 
@@ -233,7 +233,7 @@ export default function StromvergleichNrwPage() {
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           required
-                          className="font-paragraph"
+                          className="font-paragraph w-full"
                         />
                       </div>
                       <div className="space-y-2">
@@ -245,7 +245,7 @@ export default function StromvergleichNrwPage() {
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           required
-                          className="font-paragraph"
+                          className="font-paragraph w-full"
                         />
                       </div>
                       <div className="space-y-2">
@@ -256,15 +256,17 @@ export default function StromvergleichNrwPage() {
                           placeholder="+49 211 1234 5678"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="font-paragraph"
+                          className="font-paragraph w-full"
                         />
                       </div>
                     </div>
 
-                    <Button type="submit" className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 font-bold text-lg rounded-lg">
-                      <Send className="w-5 h-5 mr-2" />
-                      Tarife vergleichen
-                    </Button>
+                    <div className="flex justify-stretch sm:justify-start">
+                      <Button type="submit" className="w-full sm:w-auto bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 font-bold text-lg rounded-lg">
+                        <Send className="w-5 h-5 mr-2" />
+                        Tarife vergleichen
+                      </Button>
+                    </div>
                   </form>
                 </CardContent>
               </Card>
@@ -320,7 +322,6 @@ export default function StromvergleichNrwPage() {
                   Geben Sie Ihre Postleitzahl und Ihren Stromverbrauch ein. Das dauert nur wenige Sekunden.
                 </p>
               </div>
-              {/* ... keep existing code (connector line) ... */}
             </motion.div>
 
             <motion.div
