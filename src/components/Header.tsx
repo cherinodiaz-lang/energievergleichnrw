@@ -76,24 +76,27 @@ export default function Header() {
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <nav className="md:hidden py-4 border-t border-light-grey">
-            <div className="flex flex-col gap-3">
+            <ul className="flex flex-col divide-y divide-gray-200/60">
               {NAV_MAIN.map((item) => (
-                <Link
-                  key={item.key}
-                  to={item.to}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="font-paragraph text-sm text-foreground hover:text-primary transition-colors text-left py-2"
-                >
-                  {item.label}
-                </Link>
+                <li key={item.key}>
+                  <Link
+                    to={item.to}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="font-paragraph font-medium text-base text-foreground hover:text-primary transition-colors text-left py-3 px-4 block"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
               ))}
-              <button
-                onClick={() => scrollToSection('faq')}
-                className="font-paragraph text-sm text-foreground hover:text-primary transition-colors text-left py-2"
-              >
-                FAQ
-              </button>
-            </div>
+              <li>
+                <button
+                  onClick={() => scrollToSection('faq')}
+                  className="font-paragraph font-medium text-base text-foreground hover:text-primary transition-colors text-left py-3 px-4 w-full text-left"
+                >
+                  FAQ
+                </button>
+              </li>
+            </ul>
           </nav>
         )}
       </div>

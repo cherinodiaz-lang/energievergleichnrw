@@ -12,6 +12,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
+import ResponsiveEmbed from '@/components/ui/ResponsiveEmbed';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 
