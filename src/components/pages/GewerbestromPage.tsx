@@ -41,7 +41,7 @@ export default function GewerbestromPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background break-words leading-mobile">
+    <div className="min-h-screen bg-background break-words leading-relaxed">
       <SEOHead
         title="Gewerbestrom NRW: Günstige Tarife für Unternehmen finden"
         description="Optimieren Sie Ihre Energiekosten! Vergleichen Sie Gewerbestrom-Tarife in NRW und sichern Sie sich die besten Konditionen für Ihr Unternehmen. Unverbindlich & transparent."
