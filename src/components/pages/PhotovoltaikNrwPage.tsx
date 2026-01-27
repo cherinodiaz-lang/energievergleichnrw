@@ -182,15 +182,17 @@ export default function PhotovoltaikNrwPage() {
             <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-6 leading-tight max-w-[22ch] sm:max-w-none break-words">
               Photovoltaik für NRW
             </h1>
-            <p className="font-paragraph text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
+            <p className="font-paragraph text-[15px] sm:text-base md:text-xl text-white/90 mb-8 max-w-2xl">
               Nutzen Sie die Kraft der Sonne und werden Sie unabhängig von steigenden Strompreisen. Kostenlose Beratung für Ihre Solaranlage.
             </p>
-            <Button
-              onClick={() => document.getElementById('beratung')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 px-8 rounded-full text-lg font-semibold shadow-lg"
-            >
-              Kostenlose Beratung
-            </Button>
+            <div className="flex gap-3 flex-wrap">
+              <Button
+                onClick={() => document.getElementById('beratung')?.scrollIntoView({ behavior: 'smooth' })}
+                className="w-full sm:w-auto bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 px-8 rounded-full text-lg font-semibold shadow-lg"
+              >
+                Kostenlose Beratung
+              </Button>
+            </div>
           </motion.div>
         </div>
       </section>
