@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { BookOpen, Zap, Flame, Building2, Sun, ArrowRight } from 'lucide-react';
+import { BookOpen, Zap, Flame, Building2, Sun, ArrowRight, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
@@ -9,6 +9,8 @@ import SEOHead from '@/components/SEOHead';
 import { Link } from 'react-router-dom';
 
 export default function RatgeberPage() {
+  const [searchQuery, setSearchQuery] = useState('');
+
   const categories = [
     {
       id: 'strom',
@@ -57,6 +59,16 @@ export default function RatgeberPage() {
     }
   ];
 
+  const filteredCategories = useMemo(() => {
+    if (!searchQuery.trim()) return categories;
+    
+    const query = searchQuery.toLowerCase();
+    return categories.filter(category =>
+      category.title.toLowerCase().includes(query) ||
+      category.description.toLowerCase().includes(query)
+    );
+  }, [searchQuery]);
+
   return (
     <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
@@ -90,8 +102,23 @@ export default function RatgeberPage() {
       {/* Categories Grid */}
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {categories.map((category, index) => {
+          {/* Search Bar */}
+          <div className="flex gap-3 mb-12">
+            <div className="relative w-full">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Kategorien durchsuchen..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full h-12 text-base pl-12 pr-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              />
+            </div>
+          </div>
+
+          {/* Categories Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            {filteredCategories.map((category, index) => {
               const IconComponent = category.icon;
               return (
                 <motion.div
@@ -120,6 +147,15 @@ export default function RatgeberPage() {
               );
             })}
           </div>
+
+          {/* No Results Message */}
+          {filteredCategories.length === 0 && (
+            <div className="text-center py-12">
+              <p className="font-paragraph text-lg text-gray-600">
+                Keine Kategorien gefunden. Bitte versuchen Sie eine andere Suche.
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
