@@ -331,7 +331,7 @@ export default function HomePage() {
       `}</style>
       <Header />
       {/* --- HERO SECTION --- */}
-      <section className="relative w-full min-h-screen md:h-screen flex items-center justify-center overflow-hidden bg-primary">
+      <section className="hero-section relative w-full min-h-screen md:h-screen flex items-center justify-center overflow-hidden bg-primary ox-hidden">
         {/* Parallax Background */}
         <motion.div
           style={{ y: heroY, opacity: heroOpacity }}
@@ -340,7 +340,7 @@ export default function HomePage() {
           <Image
             src="https://static.wixstatic.com/media/32e7c0_8cede5e338be484bb8dcaad81c053c82~mv2.png?originWidth=1920&originHeight=1024"
             alt="Grüne Landschaft in Nordrhein-Westfalen mit Windrädern"
-            className="w-full h-full object-cover"
+            className="max-w-full h-auto block w-full h-full object-cover"
             width={1920}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background" />

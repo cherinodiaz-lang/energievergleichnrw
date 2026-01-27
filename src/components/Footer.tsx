@@ -139,7 +139,7 @@ export default function Footer() {
             </ul>
 
             {/* Social Media */}
-            <div className="flex items-center gap-3 md:gap-4 mt-6">
+            <div className="flex items-center gap-3 md:gap-3 mt-6">
               <a
                 href="https://facebook.com"
                 target="_blank"
