@@ -31,9 +31,9 @@ export default function DatenschutzPage() {
       </section>
 
       {/* Content Section */}
-      <section className="w-full py-24 bg-white">
+      <section className="w-full py-24 bg-white pb-10">
         <div className="max-w-4xl mx-auto px-6 lg:px-12">
-          <div className="space-y-8">
+          <div className="space-y-8 break-words">
             {/* Info Box */}
             <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-6">
               <h3 className="font-heading text-lg font-bold text-blue-900 mb-4">ℹ️ Musterdatenschutzerklärung</h3>
@@ -44,9 +44,9 @@ export default function DatenschutzPage() {
 
             {/* 1. Verantwortlicher */}
             <div>
-              <h2 className="font-heading text-3xl font-bold text-primary mb-6">1. Verantwortlicher für die Datenverarbeitung</h2>
+              <h2 className="font-heading text-3xl font-bold text-primary mb-6 mt-6">1. Verantwortlicher für die Datenverarbeitung</h2>
               
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-gray-700">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 break-words">
                 <div>
                   <p className="font-bold mb-2">Verantwortlicher (Art. 4 Abs. 7 DSGVO):</p>
                   <p>Energievergleich Muster GmbH<br />Musterstraße 1<br />40210 Düsseldorf<br />Deutschland</p>
@@ -67,14 +67,14 @@ export default function DatenschutzPage() {
 
             {/* 2. Übersicht der Verarbeitungen */}
             <div>
-              <h2 className="font-heading text-3xl font-bold text-primary mb-6">2. Übersicht der Datenverarbeitungen</h2>
+              <h2 className="font-heading text-3xl font-bold text-primary mb-6 mt-6">2. Übersicht der Datenverarbeitungen</h2>
               
-              <p className="font-paragraph text-gray-700 mb-6">
+              <p className="font-paragraph text-slate-900 mb-6">
                 Wir verarbeiten personenbezogene Daten nur, wenn dies rechtlich zulässig ist. Nachfolgend erhalten Sie einen Überblick über die Verarbeitungen:
               </p>
 
               {/* 2.1 Hosting & Server-Logs */}
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-gray-700 mb-6">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 mb-6 break-words">
                 <h3 className="font-bold text-lg text-primary">2.1 Hosting und Server-Logs</h3>
                 
                 <div>
@@ -99,12 +99,12 @@ export default function DatenschutzPage() {
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Auftragsverarbeiter:</p>
-                  <p>Wix.com Ltd. (Hosting-Provider)<br />Datenschutzerklärung: <a href="https://www.wix.com/de/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">https://www.wix.com/de/privacy</a></p>
+                  <p>Wix.com Ltd. (Hosting-Provider)<br />Datenschutzerklärung: <a href="https://www.wix.com/de/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline break-all">https://www.wix.com/de/privacy</a></p>
                 </div>
               </div>
 
               {/* 2.2 Kontaktformular */}
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-gray-700 mb-6">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 mb-6 break-words">
                 <h3 className="font-bold text-lg text-primary">2.2 Kontaktformular</h3>
                 
                 <div>
@@ -134,7 +134,7 @@ export default function DatenschutzPage() {
               </div>
 
               {/* 2.3 E-Mail und Telefon */}
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-gray-700 mb-6">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 mb-6 break-words">
                 <h3 className="font-bold text-lg text-primary">2.3 Direktkontakt per E-Mail oder Telefon</h3>
                 
                 <div>
@@ -159,7 +159,7 @@ export default function DatenschutzPage() {
               </div>
 
               {/* 2.4 Cookies - Technisch notwendig */}
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-gray-700 mb-6">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 mb-6 break-words">
                 <h3 className="font-bold text-lg text-primary">2.4 Cookies (technisch notwendig)</h3>
                 
                 <div>
@@ -190,7 +190,7 @@ export default function DatenschutzPage() {
               </div>
 
               {/* 2.5 Analyse und Tracking */}
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-gray-700 mb-6">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 mb-6 break-words">
                 <h3 className="font-bold text-lg text-primary">2.5 Analyse und Tracking</h3>
                 
                 <div className="bg-blue-50 border border-blue-200 rounded p-4 mb-4">
@@ -221,7 +221,7 @@ export default function DatenschutzPage() {
               </div>
 
               {/* 2.6 Externe Dienste */}
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-gray-700 mb-6">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 mb-6 break-words">
                 <h3 className="font-bold text-lg text-primary">2.6 Eingebettete externe Inhalte</h3>
                 
                 <div className="bg-blue-50 border border-blue-200 rounded p-4 mb-4">
@@ -254,13 +254,13 @@ export default function DatenschutzPage() {
 
             {/* 3. Betroffenenrechte */}
             <div>
-              <h2 className="font-heading text-3xl font-bold text-primary mb-6">3. Ihre Rechte nach der DSGVO (Art. 15-22 DSGVO)</h2>
+              <h2 className="font-heading text-3xl font-bold text-primary mb-6 mt-6">3. Ihre Rechte nach der DSGVO (Art. 15-22 DSGVO)</h2>
               
-              <p className="font-paragraph text-gray-700 mb-6">
+              <p className="font-paragraph text-slate-900 mb-6">
                 Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:
               </p>
 
-              <div className="space-y-4 font-paragraph text-gray-700">
+              <div className="space-y-4 font-paragraph text-slate-900">
                 <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
                   <p className="font-bold mb-2">1. Auskunftsrecht (Art. 15 DSGVO)</p>
                   <p>Sie können jederzeit Auskunft darüber verlangen, welche personenbezogenen Daten wir über Sie speichern, woher diese stammen und wie wir sie verwenden.</p>
@@ -300,9 +300,9 @@ export default function DatenschutzPage() {
 
             {/* 4. Kontakt für Datenschutz */}
             <div>
-              <h2 className="font-heading text-3xl font-bold text-primary mb-6">4. Kontakt für Datenschutzfragen</h2>
+              <h2 className="font-heading text-3xl font-bold text-primary mb-6 mt-6">4. Kontakt für Datenschutzfragen</h2>
               
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-gray-700">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 break-words">
                 <p>Wenn Sie Fragen zum Datenschutz haben oder Ihre Rechte ausüben möchten, kontaktieren Sie uns bitte:</p>
                 
                 <div>
@@ -324,9 +324,9 @@ export default function DatenschutzPage() {
 
             {/* 5. Zuständige Aufsichtsbehörde */}
             <div>
-              <h2 className="font-heading text-3xl font-bold text-primary mb-6">5. Zuständige Datenschutzbehörde</h2>
+              <h2 className="font-heading text-3xl font-bold text-primary mb-6 mt-6">5. Zuständige Datenschutzbehörde</h2>
               
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 font-paragraph text-gray-700">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 font-paragraph text-slate-900 break-words">
                 <p className="mb-4">Die zuständige Datenschutzbehörde ist:</p>
                 <p className="font-bold mb-4">Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW)</p>
                 <p className="text-sm text-gray-500">Diese Angabe ist eine Musterangabe für Unternehmen in NRW.</p>
@@ -335,16 +335,16 @@ export default function DatenschutzPage() {
 
             {/* 6. Änderungen */}
             <div>
-              <h2 className="font-heading text-3xl font-bold text-primary mb-6">6. Änderungen dieser Datenschutzerklärung</h2>
+              <h2 className="font-heading text-3xl font-bold text-primary mb-6 mt-6">6. Änderungen dieser Datenschutzerklärung</h2>
               
-              <p className="font-paragraph text-gray-700">
+              <p className="font-paragraph text-slate-900">
                 Wir behalten uns das Recht vor, diese Datenschutzerklärung jederzeit zu ändern. Die aktuelle Fassung finden Sie immer auf dieser Seite. Wesentliche Änderungen werden wir Ihnen per E-Mail oder durch einen prominenten Hinweis auf unserer Website mitteilen.
               </p>
             </div>
 
             {/* Hinweis */}
             <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-6 mt-8">
-              <p className="font-paragraph text-sm text-gray-700">
+              <p className="font-paragraph text-sm text-slate-900">
                 <strong>Hinweis:</strong> Diese Datenschutzerklärung ist ein Muster und muss an die spezifischen Anforderungen und Praktiken Ihres Unternehmens angepasst werden. Bitte konsultieren Sie einen Rechtsanwalt, um sicherzustellen, dass Ihre Datenschutzerklärung vollständig und konform mit der DSGVO ist.
               </p>
             </div>
