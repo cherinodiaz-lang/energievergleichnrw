@@ -156,7 +156,7 @@ export default function KontaktPage() {
                 <CardHeader className="bg-primary text-white">
                   <CardTitle className="font-heading text-2xl">Kontaktformular</CardTitle>
                 </CardHeader>
-                <CardContent className="p-8">
+                <CardContent className="p-8 ox-hidden">
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
@@ -167,7 +167,7 @@ export default function KontaktPage() {
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           required
-                          className="font-paragraph"
+                          className="font-paragraph w-full"
                         />
                       </div>
                       <div className="space-y-2">
@@ -179,7 +179,7 @@ export default function KontaktPage() {
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           required
-                          className="font-paragraph"
+                          className="font-paragraph w-full"
                         />
                       </div>
                     </div>
@@ -193,13 +193,13 @@ export default function KontaktPage() {
                           placeholder="+49 211 1234 5678"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="font-paragraph"
+                          className="font-paragraph w-full"
                         />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="type" className="font-paragraph">Anfrage zu *</Label>
                         <Select value={formData.type} onValueChange={(value) => setFormData({ ...formData, type: value })} required>
-                          <SelectTrigger id="type" className="font-paragraph">
+                          <SelectTrigger id="type" className="font-paragraph w-full">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -220,7 +220,7 @@ export default function KontaktPage() {
                         value={formData.subject}
                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                         required
-                        className="font-paragraph"
+                        className="font-paragraph w-full"
                       />
                     </div>
 
@@ -233,14 +233,16 @@ export default function KontaktPage() {
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         required
                         rows={6}
-                        className="font-paragraph"
+                        className="font-paragraph w-full"
                       />
                     </div>
 
-                    <Button type="submit" className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 font-bold text-lg rounded-lg">
-                      <Send className="w-5 h-5 mr-2" />
-                      Nachricht senden
-                    </Button>
+                    <div className="flex justify-stretch sm:justify-start">
+                      <Button type="submit" className="w-full sm:w-auto bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 font-bold text-lg rounded-lg">
+                        <Send className="w-5 h-5 mr-2" />
+                        Nachricht senden
+                      </Button>
+                    </div>
                   </form>
                 </CardContent>
               </Card>
