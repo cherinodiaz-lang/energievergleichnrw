@@ -70,7 +70,7 @@ export default function PreiserhoeungGasRechteArticle() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Gaspreiserhöhung: Ihre Rechte | Energievergleich"
         description="Was Sie bei Gaspreiserhöhungen tun können. Erfahren Sie Ihre Rechte und wie Sie richtig reagieren."

@@ -70,7 +70,7 @@ export default function StromtarifVertragslaufzeitArticle() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Stromtarif und Vertragslaufzeit | Energievergleich"
         description="Wie lange sollte Ihre Stromvertragslaufzeit sein? Vor- und Nachteile von 12, 24 Monaten und flexiblen Verträgen."

@@ -70,7 +70,7 @@ export default function StromGrundversorgungArticle() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Stromgrundversorgung: Was Sie wissen müssen | Ratgeber"
         description="Alles über Stromgrundversorgung: Wie sie funktioniert, wer Ihr Grundversorger ist und wie Sie Geld sparen durch einen Wechsel."

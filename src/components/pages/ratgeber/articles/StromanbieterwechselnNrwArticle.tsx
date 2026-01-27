@@ -70,7 +70,7 @@ export default function StromanbieterwechselnNrwArticle() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Stromanbieter wechseln in NRW | Energievergleich"
         description="Schritt-für-Schritt Anleitung zum Stromanbieterwechsel in NRW. Erfahren Sie, wie Sie richtig wechseln und Kosten sparen."

@@ -70,7 +70,7 @@ export default function GrundversorgungVsSondervertragArticle() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Grundversorgung vs. Sondervertrag | Energievergleich"
         description="Unterschiede zwischen Stromgrundversorgung und Sonderverträgen. Welcher Tarif passt zu Ihnen? Vor- und Nachteile im Vergleich."

@@ -70,7 +70,7 @@ export default function KuendigungsfristenArticle() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Kündigungsfristen Strom & Gas: Übersicht | Energievergleich"
         description="Kündigungsfristen bei Strom und Gas verstehen. Erfahren Sie, wann und wie Sie kündigen können."

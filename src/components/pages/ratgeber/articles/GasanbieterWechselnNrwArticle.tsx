@@ -70,7 +70,7 @@ export default function GasanbieterWechselnNrwArticle() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Gasanbieter wechseln in NRW | Energievergleich"
         description="Schritt-für-Schritt Anleitung zum Gasanbieterwechsel in NRW. Erfahren Sie, wie Sie richtig wechseln und Kosten sparen."

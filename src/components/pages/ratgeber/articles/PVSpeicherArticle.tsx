@@ -70,7 +70,7 @@ export default function PVSpeicherArticle() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="PV-Speicher: Lohnt sich das? | Energievergleich"
         description="Stromspeicher für Solaranlagen: Kosten, Nutzen und Wirtschaftlichkeit. Erfahren Sie, ob ein Speicher für Sie sinnvoll ist."

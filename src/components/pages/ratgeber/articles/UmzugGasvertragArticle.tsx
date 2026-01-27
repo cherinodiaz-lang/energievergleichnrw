@@ -70,7 +70,7 @@ export default function UmzugGasvertragArticle() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Gasvertrag bei Umzug: Was Sie wissen müssen | Energievergleich"
         description="Gasvertrag bei Umzug kündigen und neuen abschließen. Tipps und Checkliste für den Wechsel."

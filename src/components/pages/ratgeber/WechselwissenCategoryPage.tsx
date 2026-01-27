@@ -14,7 +14,7 @@ export default function WechselwissenCategoryPage() {
   const articles = getArticlesByCategory('wechselwissen');
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Wechselwissen | Ratgeber | Energievergleich"
         description="Ratgeber zum Anbieterwechsel: Kündigungsfristen, Ablauf und Tipps für Strom- und Gaswechsel in NRW."

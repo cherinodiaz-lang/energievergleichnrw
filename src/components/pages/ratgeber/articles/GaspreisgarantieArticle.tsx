@@ -70,7 +70,7 @@ export default function GaspreisgarantieArticle() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Gaspreisgarantie: Worauf achten? | Energievergleich"
         description="Gaspreisgarantie verstehen. Erfahren Sie, worauf Sie bei Preisgarantien achten sollten und wie lange sie sinnvoll sind."

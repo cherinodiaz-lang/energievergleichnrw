@@ -69,7 +69,7 @@ export default function GewerbestromVertragArticle() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Gewerbestromvertrag: Worauf achten? | Energievergleich"
         description="Gewerbestromvertrag richtig bewerten. Erfahren Sie, worauf Sie bei Laufzeit, Preis und Bedingungen achten sollten."

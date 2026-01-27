@@ -70,7 +70,7 @@ export default function GrundversorgungGasSondervertragArticle() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Gasgrundversorgung vs. Sondervertrag | Energievergleich"
         description="Unterschiede zwischen Gasgrundversorgung und Sonderverträgen. Welcher Tarif passt zu Ihnen? Vor- und Nachteile im Vergleich."

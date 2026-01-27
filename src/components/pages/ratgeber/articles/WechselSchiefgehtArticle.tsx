@@ -69,7 +69,7 @@ export default function WechselSchiefgehtArticle() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Wechsel schiefgegangen: Was tun? | Energievergleich"
         description="Probleme beim Lieferantenwechsel? Erfahren Sie, was Sie tun können und wer Ihnen hilft."

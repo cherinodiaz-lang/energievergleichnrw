@@ -70,7 +70,7 @@ export default function PVKostenNrwArticle() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="PV-Kosten NRW: Wovon hängen sie ab? | Energievergleich"
         description="Photovoltaik-Kosten in NRW verstehen. Erfahren Sie, welche Faktoren die Preise beeinflussen und wie Sie sparen können."

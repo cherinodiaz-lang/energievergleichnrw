@@ -70,7 +70,7 @@ export default function NeukndenbonusFallenArticle() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Neukundenbonus und versteckte Fallen | Energievergleich"
         description="Wie Neukundenboni funktionieren und welche Fallen Sie vermeiden sollten. Tipps für echte Ersparnisse beim Stromwechsel."

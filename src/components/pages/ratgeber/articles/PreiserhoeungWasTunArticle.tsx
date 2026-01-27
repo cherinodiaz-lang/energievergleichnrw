@@ -70,7 +70,7 @@ export default function PreiserhoeungWasTunArticle() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Strompreiserhöhung: Was können Sie tun? | Energievergleich"
         description="Ihre Rechte bei Strompreiserhöhungen und wie Sie reagieren sollten. Sonderkündigungsrecht und Alternativen."

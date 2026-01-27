@@ -70,7 +70,7 @@ export default function MaloIdZaehlernummerArticle() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="MALO-ID und Zählernummer erklärt | Energievergleich"
         description="Was sind MALO-ID und Zählernummer? Warum brauchen Sie diese beim Stromwechsel und wo finden Sie sie?"

@@ -70,7 +70,7 @@ export default function UmzugStromvertragArticle() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Stromvertrag beim Umzug | Energievergleich"
         description="Was passiert mit Ihrem Stromvertrag beim Umzug? Kündigungsfristen, Neukunden-Angebote und wichtige Tipps."

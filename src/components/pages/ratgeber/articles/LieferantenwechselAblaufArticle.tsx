@@ -70,7 +70,7 @@ export default function LieferantenwechselAblaufArticle() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Lieferantenwechsel: Ablauf & Tipps | Energievergleich"
         description="Lieferantenwechsel Schritt für Schritt erklärt. Erfahren Sie, wie Sie richtig wechseln und worauf Sie achten sollten."

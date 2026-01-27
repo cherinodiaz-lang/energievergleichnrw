@@ -69,7 +69,7 @@ export default function GewerbegasBeschaffungArticle() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Gewerbegas Beschaffung: Tipps & Strategie | Energievergleich"
         description="Gewerbegas richtig beschaffen. Tipps zur Auswahl des besten Anbieters und zum Wechsel für Ihr Unternehmen."

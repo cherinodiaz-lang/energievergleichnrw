@@ -70,7 +70,7 @@ export default function HeizungsartVerbrauchArticle() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Heizungsart und Gasverbrauch: Wie viel verbrauchen Sie? | Energievergleich"
         description="Erfahren Sie, wie Sie Ihren Gasverbrauch berechnen und welche Heizungsart am effizientesten ist."

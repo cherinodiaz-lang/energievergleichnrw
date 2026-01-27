@@ -69,7 +69,7 @@ export default function LastprofilLeistungspreisArticle() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Lastprofil & Leistungspreis: Erklärung | Energievergleich"
         description="Lastprofil und Leistungspreis verstehen. Erfahren Sie, wie diese Faktoren Ihre Stromkosten beeinflussen."
