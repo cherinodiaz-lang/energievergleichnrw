@@ -139,12 +139,12 @@ export default function Footer() {
             </ul>
 
             {/* Social Media */}
-            <div className="flex items-center gap-3 md:gap-3 mt-6">
+            <div className="flex items-center gap-4 mt-6">
               <a
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="tap-target opacity-90 hover:opacity-100 transition-opacity"
+                className="inline-flex items-center justify-center w-11 h-11 opacity-90 hover:opacity-100 transition-opacity"
                 aria-label="Facebook"
               >
                 <Facebook className="w-5 h-5" />
@@ -153,7 +153,7 @@ export default function Footer() {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="tap-target opacity-90 hover:opacity-100 transition-opacity"
+                className="inline-flex items-center justify-center w-11 h-11 opacity-90 hover:opacity-100 transition-opacity"
                 aria-label="Twitter"
               >
                 <Twitter className="w-5 h-5" />
@@ -162,7 +162,7 @@ export default function Footer() {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="tap-target opacity-90 hover:opacity-100 transition-opacity"
+                className="inline-flex items-center justify-center w-11 h-11 opacity-90 hover:opacity-100 transition-opacity"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />

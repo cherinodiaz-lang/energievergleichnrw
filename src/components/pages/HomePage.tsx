@@ -335,7 +335,7 @@ export default function HomePage() {
         {/* Parallax Background */}
         <motion.div
           style={{ y: heroY, opacity: heroOpacity }}
-          className="absolute inset-0 z-0"
+          className="absolute inset-0 z-0 overflow-x-hidden min-w-0"
         >
           <Image
             src="https://static.wixstatic.com/media/32e7c0_8cede5e338be484bb8dcaad81c053c82~mv2.png?originWidth=1920&originHeight=1024"
