@@ -3,3 +3,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Mobile safety defaults */
+img, video { max-width: 100%; height: auto; display: block; }
+iframe { max-width: 100%; }
+
+/* Responsive embed helper (16:9) */
+.ratio-16by9 { position: relative; width: 100%; }
+.ratio-16by9 > * { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* Horizontal overflow guard */
+.ox-hidden { overflow-x: hidden; }
+
+/* Tap target helper (min 48px) */
+.tap-target { min-width: 48px; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; }
+
+/* Typography safety on mobile */
+.break-words { overflow-wrap: break-word; word-break: break-word; }
+.leading-mobile { line-height: 1.6; }
+
+/* Table wrapper for horizontal scroll on mobile */
+.table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* Lists left padding responsive */
+ul.mobile-safe, ol.mobile-safe { padding-left: 1.125rem; }

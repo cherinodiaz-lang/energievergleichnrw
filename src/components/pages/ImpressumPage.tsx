@@ -6,7 +6,7 @@ import { ROUTES } from '@/lib/routes';
 
 export default function ImpressumPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Impressum | Energievergleich"
         description="Impressum und rechtliche Informationen von Energievergleich"

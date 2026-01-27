@@ -41,7 +41,7 @@ export default function KontaktPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Kontakt | Energievergleich"
         description="Kontaktieren Sie uns für Fragen zu Strom-, Gas- und Photovoltaik-Angeboten in NRW. Wir helfen gerne weiter!"

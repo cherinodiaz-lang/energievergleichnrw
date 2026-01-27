@@ -160,7 +160,7 @@ export default function PhotovoltaikNrwPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Photovoltaik NRW | Energievergleich"
         description="Solaranlagen in NRW kostenlos beraten. Unabhängige Beratung für Privathaushalte. Jetzt unverbindlich anfragen!"

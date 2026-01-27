@@ -13,7 +13,7 @@ export default function GewerbeCategoryPage() {
   const articles = getArticlesByCategory('gewerbe');
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Gewerbeenergie | Ratgeber | Energievergleich"
         description="Ratgeber für Gewerbekunden: Gewerbestrom, Gewerbegas und Energieoptimierung für Unternehmen in NRW."

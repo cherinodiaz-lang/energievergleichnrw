@@ -138,7 +138,7 @@ export default function GasvergleichNrwPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Gasvergleich NRW | Energievergleich"
         description="Gastarife in NRW kostenlos vergleichen und wechseln. Unabhängig, transparent und ohne Verpflichtung. Jetzt Tarife vergleichen!"

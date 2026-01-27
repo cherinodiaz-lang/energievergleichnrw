@@ -58,7 +58,7 @@ export default function RatgeberPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Ratgeber | Energievergleich NRW - Tipps & Wissen"
         description="Umfassender Ratgeber zu Strom, Gas, Photovoltaik und Gewerbeenergie. Erfahren Sie alles über Tarife, Wechsel und Sparpotenziale in NRW."

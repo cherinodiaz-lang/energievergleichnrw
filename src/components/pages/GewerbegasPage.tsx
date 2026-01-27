@@ -46,7 +46,7 @@ export default function GewerbegasPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Gewerbegas NRW: Gastarife für Unternehmen vergleichen"
         description="Senken Sie Ihre Gaskosten! Finden Sie günstige Gewerbegas-Tarife in Nordrhein-Westfalen. Einfacher Vergleich und Wechsel für maximale Ersparnis. Jetzt informieren!"

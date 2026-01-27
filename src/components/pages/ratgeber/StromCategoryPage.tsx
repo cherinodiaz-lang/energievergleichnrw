@@ -14,7 +14,7 @@ export default function StromCategoryPage() {
   const articles = getArticlesByCategory('strom');
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Stromvergleich & Tarife | Ratgeber | Energievergleich"
         description="Ratgeber zu Stromtarifen, Stromwechsel und Sparpotenziale in NRW. Erfahren Sie alles über Grundversorgung, Sonderverträge und mehr."

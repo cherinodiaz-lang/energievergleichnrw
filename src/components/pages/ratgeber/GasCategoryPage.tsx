@@ -14,7 +14,7 @@ export default function GasCategoryPage() {
   const articles = getArticlesByCategory('gas');
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Gasvergleich & Heizung | Ratgeber | Energievergleich"
         description="Ratgeber zu Gastarifen, Heizkosten und Wechseloptionen in NRW. Erfahren Sie alles über Gasversorger und Sparpotenziale."

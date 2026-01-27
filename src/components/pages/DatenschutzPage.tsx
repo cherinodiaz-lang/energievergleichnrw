@@ -6,7 +6,7 @@ import { ROUTES } from '@/lib/routes';
 
 export default function DatenschutzPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Datenschutz | Energievergleich"
         description="Datenschutzerklärung von Energievergleich.shop - DSGVO konform"

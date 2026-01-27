@@ -310,7 +310,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-background overflow-clip selection:bg-primary selection:text-white">
+    <div className="min-h-screen bg-background overflow-clip selection:bg-primary selection:text-white break-words leading-mobile">
       <SEOHead
         title="Strom & Gas Tarife vergleichen | Energievergleich"
         description="Vergleichen Sie Strom- und Gastarife in NRW kostenlos und unabhängig. Finden Sie den besten Anbieter für Ihr Zuhause. Jetzt vergleichen!"
