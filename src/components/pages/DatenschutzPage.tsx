@@ -33,7 +33,7 @@ export default function DatenschutzPage() {
       {/* Content Section */}
       <section className="w-full py-24 bg-white pb-10">
         <div className="max-w-4xl mx-auto px-6 lg:px-12">
-          <div className="space-y-8 break-words">
+          <div className="space-y-8 break-words overflow-x-hidden min-w-0">
             {/* Info Box */}
             <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-6">
               <h3 className="font-heading text-lg font-bold text-blue-900 mb-4">ℹ️ Musterdatenschutzerklärung</h3>

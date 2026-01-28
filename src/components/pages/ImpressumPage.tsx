@@ -33,7 +33,7 @@ export default function ImpressumPage() {
       {/* Content Section */}
       <section className="w-full py-24 bg-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-12">
-          <div className="space-y-8 break-words">
+          <div className="space-y-8 break-words overflow-x-hidden min-w-0">
             {/* Hinweis */}
             <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-6">
               <p className="font-paragraph text-sm text-blue-800">

@@ -54,7 +54,7 @@ import ConsentBanner from '@/components/ConsentBanner';
 // Layout component that includes ScrollToTop and SEO components
 function Layout() {
   return (
-    <div className="ox-hidden">
+    <div className="min-w-0 overflow-x-hidden ox-hidden">
       <ScrollToTop />
       <OrganizationSchema />
       <WebsiteSchema />
