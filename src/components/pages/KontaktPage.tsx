@@ -90,8 +90,8 @@ export default function KontaktPage() {
                   <p className="font-paragraph text-gray-600 mb-2">
                     Schreiben Sie uns eine E-Mail und wir antworten schnellstmöglich.
                   </p>
-                  <a href="mailto:kontakt@energievergleich.nrw" className="font-bold text-primary hover:underline">
-                    kontakt@energievergleich.nrw
+                  <a href="mailto:support@energievergleich.nrw" className="font-bold text-primary hover:underline">
+                    support@energievergleich.nrw
                   </a>
                 </CardContent>
               </Card>

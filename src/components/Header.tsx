@@ -50,9 +50,14 @@ export default function Header() {
             <div className="bg-primary p-1.5 sm:p-2 rounded-lg group-hover:bg-primary/90 transition-colors flex-shrink-0">
               <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-primary-foreground" />
             </div>
-            <span className="font-heading font-semibold text-sm sm:text-lg text-primary break-words whitespace-normal">
-              Energievergleich NRW
-            </span>
+            <div className="min-w-0 flex flex-col">
+              <span className="font-heading font-semibold text-xs sm:text-lg text-primary leading-tight whitespace-normal break-words">
+                Energievergleich
+              </span>
+              <span className="font-heading font-semibold text-xs sm:text-lg text-primary leading-tight">
+                NRW
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}

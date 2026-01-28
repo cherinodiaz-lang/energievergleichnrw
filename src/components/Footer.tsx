@@ -121,10 +121,10 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <Mail className="w-5 h-5 mt-0.5 flex-shrink-0" />
                 <a
-                  href="mailto:info@energievergleich.nrw"
+                  href="mailto:support@energievergleich.nrw"
                   className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
                 >
-                  info@energievergleich.nrw
+                  support@energievergleich.nrw
                 </a>
               </li>
               <li className="flex items-start gap-3">
@@ -173,16 +173,16 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-primary-foreground/20 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <p className="font-paragraph text-sm opacity-80">
               © {new Date().getFullYear()} energievergleich.nrw. Alle Rechte vorbehalten.
             </p>
-            <div className="flex items-center gap-6">
+            <div className="flex flex-wrap gap-x-4 gap-y-2">
               {NAV_LEGAL.map((item) => (
                 <Link
                   key={item.key}
                   to={item.to}
-                  className="font-paragraph text-sm opacity-80 hover:opacity-100 transition-opacity"
+                  className="font-paragraph text-sm opacity-80 hover:opacity-100 transition-opacity whitespace-normal break-words leading-snug"
                 >
                   {item.label}
                 </Link>
@@ -192,7 +192,7 @@ export default function Footer() {
                   localStorage.removeItem('energievergleich_consent');
                   window.location.reload();
                 }}
-                className="font-paragraph text-sm opacity-80 hover:opacity-100 transition-opacity"
+                className="font-paragraph text-sm opacity-80 hover:opacity-100 transition-opacity whitespace-normal break-words leading-snug"
               >
                 Cookie-Einstellungen
               </button>
