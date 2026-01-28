@@ -46,18 +46,13 @@ export default function Header() {
       <div className="max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
-          <Link to={ROUTES.home} className="flex items-center gap-2 sm:gap-3 group flex-shrink-0">
-            <div className="bg-primary p-1.5 sm:p-2 rounded-lg group-hover:bg-primary/90 transition-colors">
+          <Link to={ROUTES.home} className="flex items-center gap-2 sm:gap-3 group min-w-0">
+            <div className="bg-primary p-1.5 sm:p-2 rounded-lg group-hover:bg-primary/90 transition-colors flex-shrink-0">
               <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-primary-foreground" />
             </div>
-            <div className="flex flex-col hidden sm:flex">
-              <span className="font-heading font-bold text-lg sm:text-xl text-primary">energievergleich</span>
-              <span className="font-paragraph text-xs text-foreground/60">.nrw</span>
-            </div>
-            <div className="flex flex-col sm:hidden">
-              <span className="font-heading font-bold text-sm text-primary">energie</span>
-              <span className="font-paragraph text-xs text-foreground/60">.nrw</span>
-            </div>
+            <span className="font-heading font-semibold text-sm sm:text-lg text-primary break-words whitespace-normal">
+              Energievergleich NRW
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
