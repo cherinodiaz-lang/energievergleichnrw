@@ -1,76 +1,174 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
-  <!-- Homepage -->
+  <!-- Static Pages -->
   <url>
     <loc>https://energievergleich.shop/</loc>
-    <lastmod>2026-01-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-01-28</lastmod>
   </url>
-  
-  <!-- Gewerbestrom Page -->
-  <url>
-    <loc>https://energievergleich.shop/gewerbestrom</loc>
-    <lastmod>2026-01-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- Gewerbegas Page -->
-  <url>
-    <loc>https://energievergleich.shop/gewerbegas</loc>
-    <lastmod>2026-01-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- Stromvergleich NRW Page -->
   <url>
     <loc>https://energievergleich.shop/stromvergleich-nrw</loc>
-    <lastmod>2026-01-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-01-28</lastmod>
   </url>
-  
-  <!-- Gasvergleich NRW Page -->
   <url>
     <loc>https://energievergleich.shop/gasvergleich-nrw</loc>
-    <lastmod>2026-01-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-01-28</lastmod>
   </url>
-  
-  <!-- Photovoltaik NRW Page -->
   <url>
     <loc>https://energievergleich.shop/photovoltaik-nrw</loc>
-    <lastmod>2026-01-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-01-28</lastmod>
   </url>
-  
-  <!-- Kontakt Page -->
+  <url>
+    <loc>https://energievergleich.shop/gewerbestrom</loc>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/gewerbegas</loc>
+    <lastmod>2026-01-28</lastmod>
+  </url>
   <url>
     <loc>https://energievergleich.shop/kontakt</loc>
-    <lastmod>2026-01-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-01-28</lastmod>
   </url>
-  
-  <!-- Impressum Page -->
+  <url>
+    <loc>https://energievergleich.shop/ratgeber</loc>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/strom</loc>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/gas</loc>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/gewerbe</loc>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/photovoltaik</loc>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/wechselwissen</loc>
+    <lastmod>2026-01-28</lastmod>
+  </url>
   <url>
     <loc>https://energievergleich.shop/impressum</loc>
-    <lastmod>2026-01-09</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <lastmod>2026-01-28</lastmod>
   </url>
-  
-  <!-- Datenschutz Page -->
   <url>
     <loc>https://energievergleich.shop/datenschutz</loc>
-    <lastmod>2026-01-09</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <lastmod>2026-01-28</lastmod>
   </url>
-  
+
+  <!-- Strom Articles (8) -->
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/strom/grundversorgung</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/strom/stromanbieterwechsel-nrw</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/strom/grundversorgung-vs-sondervertrag</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/strom/neukundenboni-fallen</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/strom/preiserhoeung-was-tun</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/strom/umzug-stromvertrag</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/strom/stromtarif-vertragslaufzeit</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/strom/malo-id-zaehlernummer</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+
+  <!-- Gas Articles (6) -->
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/gas/gasanbieter-wechseln-nrw</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/gas/grundversorgung-gas-sondervertrag</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/gas/preiserhoeung-gas-rechte</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/gas/umzug-gasvertrag</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/gas/heizungsart-verbrauch</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/gas/gaspreisgarantie-worauf-achten</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+
+  <!-- Gewerbe Articles (3) -->
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/gewerbe/gewerbestrom-vertrag-worauf-achten</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/gewerbe/gewerbegas-beschaffung-tipps</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/gewerbe/lastprofil-leistungspreis-arbeitspreis</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+
+  <!-- Photovoltaik Articles (5) -->
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/photovoltaik/pv-kosten-nrw-wovon-abhaengig</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/photovoltaik/pv-speicher-lohnt-sich</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/photovoltaik/einspeiseverguetung-verstehen</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/photovoltaik/dach-eignung-checkliste</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/photovoltaik/angebote-vergleichen-fehler</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+
+  <!-- Wechselwissen Articles (3) -->
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/wechselwissen/kuendigungsfristen-strom-gas</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/wechselwissen/lieferantenwechsel-ablauf</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
+  <url>
+    <loc>https://energievergleich.shop/ratgeber/wechselwissen/was-tun-wenn-wechsel-schiefgeht</loc>
+    <lastmod>2026-01-09</lastmod>
+  </url>
 </urlset>
