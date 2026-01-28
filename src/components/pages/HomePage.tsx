@@ -1097,9 +1097,11 @@ export default function HomePage() {
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 sm:mb-16 gap-6 sm:gap-8">
             <AnimatedElement>
-              <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary text-center md:text-left">
-                Wissen zum <br/>Downloaden
-              </h2>
+              <div className="space-y-3 w-full md:w-auto">
+                <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary text-center md:text-left">
+                  Wissen zum <br/>Downloaden
+                </h2>
+              </div>
             </AnimatedElement>
             <AnimatedElement delay={100}>
               <p className="font-paragraph text-base sm:text-lg text-gray-600 max-w-md text-center md:text-left">
