@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Zap, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -7,6 +7,7 @@ import { NAV_MAIN, ROUTES } from '@/lib/routes';
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const scrollToSection = (sectionId: string) => {
     if (location.pathname !== '/') {
@@ -25,8 +26,23 @@ export default function Header() {
     setMobileMenuOpen(false);
   };
 
+  // Determine CTA link based on current page
+  const getCtaLink = () => {
+    const pathname = location.pathname;
+    if (pathname.includes('strom')) return ROUTES.stromvergleich;
+    if (pathname.includes('gas')) return ROUTES.gasvergleich;
+    if (pathname.includes('photovoltaik')) return ROUTES.photovoltaik;
+    if (pathname.includes('gewerbe')) return ROUTES.gewerbestrom;
+    return ROUTES.stromvergleich; // Default fallback
+  };
+
+  const handleCtaClick = () => {
+    navigate(getCtaLink());
+    setMobileMenuOpen(false);
+  };
+
   return (
-    <header className="bg-white shadow-sm md:sticky top-0 z-50">
+    <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
@@ -55,13 +71,15 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
-            <button
-              onClick={() => scrollToSection('faq')}
-              className="font-paragraph text-base text-foreground hover:text-primary transition-colors"
-            >
-              FAQ
-            </button>
           </nav>
+
+          {/* Desktop CTA Button */}
+          <Button
+            onClick={handleCtaClick}
+            className="hidden md:flex bg-secondary hover:bg-secondary/90 text-secondary-foreground font-paragraph font-semibold px-6 py-2 rounded-lg transition-colors"
+          >
+            Kostenlos vergleichen
+          </Button>
 
           {/* Mobile Menu Button */}
           <button
@@ -88,15 +106,16 @@ export default function Header() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <button
-                  onClick={() => scrollToSection('faq')}
-                  className="font-paragraph font-medium text-base text-foreground hover:text-primary transition-colors text-left py-3 px-4 w-full text-left"
-                >
-                  FAQ
-                </button>
-              </li>
             </ul>
+            {/* Mobile CTA Button */}
+            <div className="mt-4 px-4 pt-4 border-t border-light-grey">
+              <Button
+                onClick={handleCtaClick}
+                className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-paragraph font-semibold py-3 rounded-lg transition-colors"
+              >
+                Kostenlos vergleichen
+              </Button>
+            </div>
           </nav>
         )}
       </div>
