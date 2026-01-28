@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Flame, CheckCircle, TrendingDown, Shield, Clock, Send, ArrowRight } from 'lucide-react';
+import { Flame, CheckCircle, TrendingDown, Shield, Clock, Send, ArrowRight, Globe, DollarSign, MapPin, BarChart3, Rocket, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';

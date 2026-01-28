@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Zap, CheckCircle, TrendingDown, Shield, Clock, Send, ArrowRight, AlertCircle } from 'lucide-react';
+import { Zap, CheckCircle, TrendingDown, Shield, Clock, Send, ArrowRight, AlertCircle, Globe, DollarSign, MapPin, BarChart3, Rocket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -406,6 +406,87 @@ export default function StromvergleichNrwPage() {
                 </ul>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Switch Section */}
+      <section className="w-full py-24 bg-white">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-primary mb-4">
+              Warum wechseln?
+            </h2>
+            <p className="font-paragraph text-lg text-gray-600 max-w-2xl mx-auto">
+              Das bringt Ihnen ein Tarifwechsel – klar & einfach erklärt.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                icon: Zap,
+                title: 'Schnell & unkompliziert',
+                description: 'Alle günstigen Tarife auf einen Blick.'
+              },
+              {
+                icon: Globe,
+                title: 'Unabhängig & neutral',
+                description: 'Ergebnisse ohne Anbieter-Bias.'
+              },
+              {
+                icon: DollarSign,
+                title: 'Kostenlos für Sie',
+                description: 'Unser Service kostet Sie keinen Cent.'
+              },
+              {
+                icon: MapPin,
+                title: 'Lokal für NRW',
+                description: 'Speziell für Nordrhein-Westfalen.'
+              },
+              {
+                icon: BarChart3,
+                title: 'Individuell passend',
+                description: 'Tarife abgestimmt auf Ihren Verbrauch.'
+              },
+              {
+                icon: Rocket,
+                title: 'Sofort entscheidbar',
+                description: 'Direkte Weiterleitung zum Anbieter.'
+              },
+            ].map((item, index) => {
+              const IconComponent = item.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0">
+                        <IconComponent className="w-8 h-8 md:w-10 md:h-10 text-primary" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-heading font-semibold text-lg text-primary mb-2">
+                          {item.title}
+                        </h3>
+                        <p className="font-paragraph text-base text-gray-600 leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
