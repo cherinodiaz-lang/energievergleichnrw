@@ -1095,16 +1095,16 @@ export default function HomePage() {
       {/* --- INFORMATIONS MATERIAL (CMS DATA) --- */}
       <section id="informationsmaterial" className="w-full py-24 sm:py-32 bg-gray-50">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 sm:mb-16 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start mb-12 sm:mb-16">
             <AnimatedElement>
-              <div className="space-y-3 w-full md:w-auto">
-                <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary text-center md:text-left">
+              <div className="space-y-3 text-left">
+                <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary">
                   Wissen zum <br/>Downloaden
                 </h2>
               </div>
             </AnimatedElement>
             <AnimatedElement delay={100}>
-              <p className="font-paragraph text-base sm:text-lg text-gray-600 max-w-md text-center md:text-left">
+              <p className="font-paragraph text-base sm:text-lg text-gray-600 max-w-md text-left md:text-right">
                 Unsere Experten haben die wichtigsten Informationen für Sie zusammengefasst. Kostenlos und direkt verfügbar.
               </p>
             </AnimatedElement>
@@ -1114,61 +1114,74 @@ export default function HomePage() {
             <div>Lädt...</div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-              {materials.map((material, index) => (
-                <AnimatedElement key={material._id} delay={index * 100}>
-                  <Link to={ROUTES.ratgeberHub} className="block h-full">
-                    <Card className="h-full hover:shadow-xl transition-all duration-300 border-none bg-white overflow-hidden group cursor-pointer">
-                      <div className="relative aspect-video overflow-hidden">
-                        {material.thumbnail ? (
-                          <Image
-                            src={material.thumbnail}
-                            alt={material.title || 'Material Thumbnail'}
-                            width={400}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          />
-                        ) : (
-                          <div className="w-full h-full bg-primary/10 flex items-center justify-center">
-                            <Download className="w-10 h-10 sm:w-12 sm:h-12 text-primary/40" />
-                          </div>
-                        )}
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                          <div className="bg-white rounded-full p-2 sm:p-3">
-                            <Download className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-                          </div>
-                        </div>
-                      </div>
-                      <CardHeader className="p-4 sm:p-6">
-                        <div className="flex justify-between items-start mb-2 gap-2">
-                          <span className="text-xs font-bold text-secondary uppercase tracking-wider">PDF Guide</span>
-                          {material.publicationDate && (
-                            <span className="text-xs text-gray-400 flex-shrink-0">{new Date(material.publicationDate).toLocaleDateString('de-DE')}</span>
+              {materials.map((material, index) => {
+                let linkPath = ROUTES.ratgeberHub;
+                const title = material.title?.toLowerCase() || '';
+                
+                if (title.includes('strom')) {
+                  linkPath = ROUTES.ratgeberStrom;
+                } else if (title.includes('gas')) {
+                  linkPath = ROUTES.ratgeberGas;
+                } else if (title.includes('photovoltaik') || title.includes('pv') || title.includes('solar')) {
+                  linkPath = ROUTES.ratgeberPhotovoltaik;
+                }
+                
+                return (
+                  <AnimatedElement key={material._id} delay={index * 100}>
+                    <Link to={linkPath} className="block h-full">
+                      <Card className="h-full hover:shadow-xl transition-all duration-300 border-none bg-white overflow-hidden group cursor-pointer">
+                        <div className="relative aspect-video overflow-hidden">
+                          {material.thumbnail ? (
+                            <Image
+                              src={material.thumbnail}
+                              alt={material.title || 'Material Thumbnail'}
+                              width={400}
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
+                          ) : (
+                            <div className="w-full h-full bg-primary/10 flex items-center justify-center">
+                              <Download className="w-10 h-10 sm:w-12 sm:h-12 text-primary/40" />
+                            </div>
                           )}
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                            <div className="bg-white rounded-full p-2 sm:p-3">
+                              <Download className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+                            </div>
+                          </div>
                         </div>
-                        <CardTitle className="font-heading text-base sm:text-xl text-gray-900 group-hover:text-primary transition-colors">
-                          {material.title}
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="p-4 sm:p-6 pt-0">
-                        <p className="font-paragraph text-gray-600 text-xs sm:text-sm mb-4 sm:mb-6 line-clamp-3">
-                          {material.description}
-                        </p>
-                        {material.fileUrl && (
-                          <Button
-                            asChild
-                            variant="outline"
-                            className="w-full border-gray-200 hover:border-primary hover:text-primary hover:bg-primary/5 text-xs sm:text-sm h-9 sm:h-10"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <a href={material.fileUrl} target="_blank" rel="noopener noreferrer">
-                              Jetzt herunterladen
-                            </a>
-                          </Button>
-                        )}
-                      </CardContent>
-                    </Card>
-                  </Link>
-                </AnimatedElement>
-              ))}
+                        <CardHeader className="p-4 sm:p-6">
+                          <div className="flex justify-between items-start mb-2 gap-2">
+                            <span className="text-xs font-bold text-secondary uppercase tracking-wider">PDF Guide</span>
+                            {material.publicationDate && (
+                              <span className="text-xs text-gray-400 flex-shrink-0">{new Date(material.publicationDate).toLocaleDateString('de-DE')}</span>
+                            )}
+                          </div>
+                          <CardTitle className="font-heading text-base sm:text-xl text-gray-900 group-hover:text-primary transition-colors">
+                            {material.title}
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent className="p-4 sm:p-6 pt-0">
+                          <p className="font-paragraph text-gray-600 text-xs sm:text-sm mb-4 sm:mb-6 line-clamp-3">
+                            {material.description}
+                          </p>
+                          {material.fileUrl && (
+                            <Button
+                              asChild
+                              variant="outline"
+                              className="w-full border-gray-200 hover:border-primary hover:text-primary hover:bg-primary/5 text-xs sm:text-sm h-9 sm:h-10"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <a href={material.fileUrl} target="_blank" rel="noopener noreferrer">
+                                Jetzt herunterladen
+                              </a>
+                            </Button>
+                          )}
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  </AnimatedElement>
+                );
+              })}
             </div>
           )}
         </div>
