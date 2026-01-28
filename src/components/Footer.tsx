@@ -177,12 +177,12 @@ export default function Footer() {
             <p className="font-paragraph text-sm opacity-80">
               © {new Date().getFullYear()} energievergleich.nrw. Alle Rechte vorbehalten.
             </p>
-            <div className="flex flex-wrap gap-x-4 gap-y-2">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm leading-snug py-3">
               {NAV_LEGAL.map((item) => (
                 <Link
                   key={item.key}
                   to={item.to}
-                  className="font-paragraph text-sm opacity-80 hover:opacity-100 transition-opacity whitespace-normal break-words leading-snug"
+                  className="font-paragraph opacity-80 hover:opacity-100 transition-opacity whitespace-normal break-words py-2"
                 >
                   {item.label}
                 </Link>
@@ -192,7 +192,7 @@ export default function Footer() {
                   localStorage.removeItem('energievergleich_consent');
                   window.location.reload();
                 }}
-                className="font-paragraph text-sm opacity-80 hover:opacity-100 transition-opacity whitespace-normal break-words leading-snug"
+                className="font-paragraph opacity-80 hover:opacity-100 transition-opacity whitespace-normal break-words py-2"
               >
                 Cookie-Einstellungen
               </button>
