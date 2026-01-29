@@ -22,6 +22,8 @@ import WechselwissenCategoryPage from '@/components/pages/ratgeber/Wechselwissen
 import StromGrundversorgungArticle from '@/components/pages/ratgeber/articles/StromGrundversorgungArticle';
 import StromanbieterwechselnNrwArticle from '@/components/pages/ratgeber/articles/StromanbieterwechselnNrwArticle';
 import GrundversorgungVsSondervertragArticle from '@/components/pages/ratgeber/articles/GrundversorgungVsSondervertragArticle';
+import SofortSparmoeglichkeitenArticle from '@/components/pages/ratgeber/articles/SofortSparmoeglichkeitenArticle';
+import MethodologyPage from '@/components/pages/MethodologyPage';
 import NeukndenbonusFallenArticle from '@/components/pages/ratgeber/articles/NeukndenbonusFallenArticle';
 import PreiserhoeungWasTunArticle from '@/components/pages/ratgeber/articles/PreiserhoeungWasTunArticle';
 import UmzugStromvertragArticle from '@/components/pages/ratgeber/articles/UmzugStromvertragArticle';
@@ -137,6 +139,13 @@ const router = createBrowserRouter([
         },
       },
       {
+        path: "methodik",
+        element: <MethodologyPage />,
+        routeMetadata: {
+          pageIdentifier: 'methodik',
+        },
+      },
+      {
         path: "ratgeber",
         element: <RatgeberPage />,
         routeMetadata: {
@@ -155,6 +164,13 @@ const router = createBrowserRouter([
         element: <StromGrundversorgungArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-strom-grundversorgung',
+        },
+      },
+      {
+        path: "ratgeber/strom/sofortige-sparmoeglichkeiten",
+        element: <SofortSparmoeglichkeitenArticle />,
+        routeMetadata: {
+          pageIdentifier: 'ratgeber-strom-sparmoeglichkeiten',
         },
       },
       {

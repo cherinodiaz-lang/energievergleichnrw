@@ -169,10 +169,10 @@ export default function GasvergleichNrwPage() {
     <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title="Gasvergleich NRW – Günstige Gastarife vergleichen"
-        description="Gasttarife in NRW vergleichen: Anbieter, Preise, Vertragsdetails. Schnell wechseln und sparen – kostenlos."
+        description="Gastarife in NRW vergleichen: Anbieter, Preise, Vertragsdetails. Schnell wechseln und sparen – kostenlos."
         keywords="Gasvergleich NRW, Gastarife, Gas sparen, Gasanbieter wechseln, günstige Gastarife"
         ogTitle="Gasvergleich NRW – Günstige Gastarife vergleichen"
-        ogDescription="Gasttarife in NRW vergleichen: Anbieter, Preise, Vertragsdetails. Schnell wechseln und sparen – kostenlos."
+        ogDescription="Gastarife in NRW vergleichen: Anbieter, Preise, Vertragsdetails. Schnell wechseln und sparen – kostenlos."
       />
       <Header />
 
@@ -484,6 +484,87 @@ export default function GasvergleichNrwPage() {
         </div>
       </section>
 
+      {/* Why Switch Section */}
+      <section className="w-full py-24 bg-white">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-primary mb-4">
+              Warum wechseln?
+            </h2>
+            <p className="font-paragraph text-lg text-gray-600 max-w-2xl mx-auto">
+              Das bringt Ihnen ein Tarifwechsel – klar & einfach erklärt.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                icon: Flame,
+                title: 'Schnell & unkompliziert',
+                description: 'Alle günstigen Tarife auf einen Blick.'
+              },
+              {
+                icon: Globe,
+                title: 'Unabhängig & neutral',
+                description: 'Ergebnisse ohne Anbieter-Bias.'
+              },
+              {
+                icon: DollarSign,
+                title: 'Kostenlos für Sie',
+                description: 'Unser Service kostet Sie keinen Cent.'
+              },
+              {
+                icon: MapPin,
+                title: 'Lokal für NRW',
+                description: 'Speziell für Nordrhein-Westfalen.'
+              },
+              {
+                icon: BarChart3,
+                title: 'Individuell passend',
+                description: 'Tarife abgestimmt auf Ihren Verbrauch.'
+              },
+              {
+                icon: Rocket,
+                title: 'Sofort entscheidbar',
+                description: 'Direkte Weiterleitung zum Anbieter.'
+              },
+            ].map((item, index) => {
+              const IconComponent = item.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0">
+                        <IconComponent className="w-8 h-8 md:w-10 md:h-10 text-primary" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-heading font-semibold text-lg text-primary mb-2">
+                          {item.title}
+                        </h3>
+                        <p className="font-paragraph text-base text-gray-600 leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* So funktioniert's Section */}
       <section className="w-full py-24 bg-background">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -650,15 +731,12 @@ export default function GasvergleichNrwPage() {
         </div>
       </section>
 
-      {/* Passende Ratgeber */}
-      <PassendeRatgeber moneyPageId="gasvergleich-nrw" limit={4} />
-
       {/* Internal Links Section */}
       <section className="w-full py-16 bg-white border-t">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <h3 className="font-heading text-2xl font-bold text-primary mb-8">Weitere Informationen</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Link to={ROUTES.stromvergleich} className="group">
+            <Link to={ROUTES.STROMVERGLEICH_NRW} className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Stromvergleich NRW</CardTitle>
@@ -669,7 +747,7 @@ export default function GasvergleichNrwPage() {
                 </CardContent>
               </Card>
             </Link>
-            <Link to={ROUTES.photovoltaik} className="group">
+            <Link to={ROUTES.PHOTOVOLTAIK_NRW} className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Photovoltaik NRW</CardTitle>
@@ -680,7 +758,7 @@ export default function GasvergleichNrwPage() {
                 </CardContent>
               </Card>
             </Link>
-            <Link to={ROUTES.kontakt} className="group">
+            <Link to={ROUTES.KONTAKT} className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Kontakt</CardTitle>
@@ -694,6 +772,9 @@ export default function GasvergleichNrwPage() {
           </div>
         </div>
       </section>
+
+      {/* Passende Ratgeber */}
+      <PassendeRatgeber moneyPageId="gasvergleich-nrw" limit={4} />
 
       <Footer />
     </div>

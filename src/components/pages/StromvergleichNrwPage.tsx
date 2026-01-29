@@ -18,11 +18,8 @@ import { ROUTES } from '@/lib/routes';
 export default function StromvergleichNrwPage() {
   const [formData, setFormData] = useState({
     postleitzahl: '',
-    haushaltsgröße: '',
     verbrauch: '',
     name: '',
-    email: '',
-    phone: '',
   });
   const [showResults, setShowResults] = useState(false);
   const [calculatedConsumption, setCalculatedConsumption] = useState(0);
@@ -141,23 +138,13 @@ export default function StromvergleichNrwPage() {
       alert('Bitte geben Sie eine Postleitzahl ein.');
       return;
     }
-    if (!formData.haushaltsgröße) {
-      alert('Bitte wählen Sie eine Haushaltsgröße.');
-      return;
-    }
 
-    // Calculate consumption based on household size or use custom value
+    // Use custom value or default
     let consumption = 0;
     if (formData.verbrauch && parseInt(formData.verbrauch) > 0) {
       consumption = parseInt(formData.verbrauch);
     } else {
-      const householdMap: { [key: string]: number } = {
-        '1': 1500,
-        '2': 2500,
-        '3': 3500,
-        '4': 4250,
-      };
-      consumption = householdMap[formData.haushaltsgröße] || 3500;
+      consumption = 3500; // Default value
     }
 
     setCalculatedConsumption(consumption);
@@ -224,68 +211,28 @@ export default function StromvergleichNrwPage() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="haushalt" className="font-paragraph">Haushaltsgröße *</Label>
-                        <Select value={formData.haushaltsgröße} onValueChange={(value) => setFormData({ ...formData, haushaltsgröße: value })} required>
-                          <SelectTrigger id="haushalt" className="font-paragraph w-full">
-                            <SelectValue placeholder="Wählen Sie..." />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="1">1 Person (ca. 1.500 kWh)</SelectItem>
-                            <SelectItem value="2">2 Personen (ca. 2.500 kWh)</SelectItem>
-                            <SelectItem value="3">3 Personen (ca. 3.500 kWh)</SelectItem>
-                            <SelectItem value="4">4+ Personen (ca. 4.250 kWh)</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <Label htmlFor="verbrauch" className="font-paragraph">Jahresverbrauch (kWh) <span className="text-gray-400 text-sm">(optional)</span></Label>
+                        <Input
+                          id="verbrauch"
+                          type="number"
+                          placeholder="z.B. 3500"
+                          value={formData.verbrauch}
+                          onChange={(e) => setFormData({ ...formData, verbrauch: e.target.value })}
+                          className="font-paragraph w-full"
+                        />
                       </div>
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="verbrauch" className="font-paragraph">Jahresverbrauch (kWh) <span className="text-gray-400 text-sm">(optional)</span></Label>
+                      <Label htmlFor="name" className="font-paragraph">Name *</Label>
                       <Input
-                        id="verbrauch"
-                        type="number"
-                        placeholder="z.B. 3500"
-                        value={formData.verbrauch}
-                        onChange={(e) => setFormData({ ...formData, verbrauch: e.target.value })}
+                        id="name"
+                        placeholder="Max Mustermann"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        required
                         className="font-paragraph w-full"
                       />
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      <div className="space-y-2">
-                        <Label htmlFor="name" className="font-paragraph">Name *</Label>
-                        <Input
-                          id="name"
-                          placeholder="Max Mustermann"
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          required
-                          className="font-paragraph w-full"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="email" className="font-paragraph">E-Mail *</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="max@beispiel.de"
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          required
-                          className="font-paragraph w-full"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="phone" className="font-paragraph">Telefon</Label>
-                        <Input
-                          id="phone"
-                          type="tel"
-                          placeholder="+49 211 1234 5678"
-                          value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="font-paragraph w-full"
-                        />
-                      </div>
                     </div>
 
                     <div className="flex justify-stretch sm:justify-start">
@@ -455,6 +402,9 @@ export default function StromvergleichNrwPage() {
               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Stromvergleich speziell für NRW</h3>
               <p className="font-paragraph text-gray-700 mb-4">
                 Nordrhein-Westfalen ist das bevölkerungsreichste Bundesland Deutschlands und hat einen großen Strommarkt mit vielen Anbietern. Die Strompreise in NRW variieren je nach Postleitzahl und Netzbetreiber. Unser Stromvergleich berücksichtigt alle regionalen Besonderheiten und zeigt Ihnen die besten Tarife für Ihre genaue Adresse – ob in Düsseldorf, Köln, Essen, Dortmund oder einer anderen Stadt in NRW.
+              </p>
+              <p className="font-paragraph text-gray-700 mb-4">
+                Mit unserem kostenlosen Vergleichsrechner finden Sie in wenigen Minuten den optimalen Tarif. Wir berücksichtigen dabei nicht nur den Preis, sondern auch Vertragslaufzeiten, Kündigungsfristen, Preisgarantien und verfügbare Neukundenboni. Erfahren Sie mehr über <Link to="/ratgeber/strom/sofortige-sparmoeglichkeiten" className="text-primary font-bold hover:underline">sofortige Sparmöglichkeiten beim Stromtarif</Link>.
               </p>
             </div>
 
