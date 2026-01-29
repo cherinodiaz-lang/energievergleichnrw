@@ -1,4 +1,5 @@
 @import './fonts.css';
+@import './fonts.swap.css';
 
 @tailwind base;
 @tailwind components;
