@@ -36,11 +36,11 @@ export const Head = () => {
       <link rel="canonical" href="https://energievergleich.nrw" />
       
       {/* Fonts - Preconnect for performance */}
-      <link rel="preconnect" href="https://static.parastorage.com" />
+      <link rel="preconnect" href="https://static.parastorage.com" crossOrigin="anonymous" />
       <link rel="dns-prefetch" href="https://static.parastorage.com" />
       
       {/* Image CDN Preconnect */}
-      <link rel="preconnect" href="https://static.wixstatic.com" />
+      <link rel="preconnect" href="https://static.wixstatic.com" crossOrigin="anonymous" />
       <link rel="dns-prefetch" href="https://static.wixstatic.com" />
 
       {/* Google Tag Manager (GTM) - Async loading for non-blocking */}
