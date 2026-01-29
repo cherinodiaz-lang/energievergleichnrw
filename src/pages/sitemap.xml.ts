@@ -9,8 +9,8 @@ import { ratgeberArticles } from '@/lib/ratgeber-map';
 
 const DOMAIN = 'https://energievergleich.shop';
 
-// Get current date in ISO format (YYYY-MM-DD)
-const todayISO = () => new Date().toISOString().slice(0, 10);
+// Static lastmod date for all static URLs (YYYY-MM-DD)
+const LASTMOD_STATIC = new Date().toISOString().slice(0, 10);
 
 // All indexable pages and routes
 const pages = [
@@ -19,7 +19,7 @@ const pages = [
     url: '/',
     priority: '1.0',
     changefreq: 'weekly',
-    lastmod: todayISO()
+    lastmod: LASTMOD_STATIC
   },
 
   // ===== COMPARISON PAGES (Priority: 0.8) =====
@@ -27,19 +27,19 @@ const pages = [
     url: '/stromvergleich-nrw',
     priority: '0.8',
     changefreq: 'weekly',
-    lastmod: todayISO()
+    lastmod: LASTMOD_STATIC
   },
   {
     url: '/gasvergleich-nrw',
     priority: '0.8',
     changefreq: 'weekly',
-    lastmod: todayISO()
+    lastmod: LASTMOD_STATIC
   },
   {
     url: '/photovoltaik-nrw',
     priority: '0.8',
     changefreq: 'monthly',
-    lastmod: todayISO()
+    lastmod: LASTMOD_STATIC
   },
 
   // ===== BUSINESS PAGES (Priority: 0.8) =====
@@ -47,13 +47,13 @@ const pages = [
     url: '/gewerbestrom',
     priority: '0.8',
     changefreq: 'monthly',
-    lastmod: todayISO()
+    lastmod: LASTMOD_STATIC
   },
   {
     url: '/gewerbegas',
     priority: '0.8',
     changefreq: 'monthly',
-    lastmod: todayISO()
+    lastmod: LASTMOD_STATIC
   },
 
   // ===== UTILITY PAGES (Priority: 0.7) =====
@@ -61,7 +61,7 @@ const pages = [
     url: '/kontakt',
     priority: '0.7',
     changefreq: 'monthly',
-    lastmod: todayISO()
+    lastmod: LASTMOD_STATIC
   },
 
   // ===== RATGEBER HUB (Priority: 0.9) =====
@@ -69,7 +69,7 @@ const pages = [
     url: '/ratgeber',
     priority: '0.9',
     changefreq: 'monthly',
-    lastmod: todayISO()
+    lastmod: LASTMOD_STATIC
   },
 
   // ===== RATGEBER CATEGORY PAGES (Priority: 0.8) =====
@@ -77,31 +77,31 @@ const pages = [
     url: '/ratgeber/strom',
     priority: '0.8',
     changefreq: 'monthly',
-    lastmod: todayISO()
+    lastmod: LASTMOD_STATIC
   },
   {
     url: '/ratgeber/gas',
     priority: '0.8',
     changefreq: 'monthly',
-    lastmod: todayISO()
+    lastmod: LASTMOD_STATIC
   },
   {
     url: '/ratgeber/gewerbe',
     priority: '0.8',
     changefreq: 'monthly',
-    lastmod: todayISO()
+    lastmod: LASTMOD_STATIC
   },
   {
     url: '/ratgeber/photovoltaik',
     priority: '0.8',
     changefreq: 'monthly',
-    lastmod: todayISO()
+    lastmod: LASTMOD_STATIC
   },
   {
     url: '/ratgeber/wechselwissen',
     priority: '0.8',
     changefreq: 'monthly',
-    lastmod: todayISO()
+    lastmod: LASTMOD_STATIC
   },
 
   // ===== DYNAMIC RATGEBER ARTICLES (Priority: 0.7) =====
@@ -118,13 +118,13 @@ const pages = [
     url: '/impressum',
     priority: '0.5',
     changefreq: 'yearly',
-    lastmod: todayISO()
+    lastmod: LASTMOD_STATIC
   },
   {
     url: '/datenschutz',
     priority: '0.5',
     changefreq: 'yearly',
-    lastmod: todayISO()
+    lastmod: LASTMOD_STATIC
   }
 ];
 
