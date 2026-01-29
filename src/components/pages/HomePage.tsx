@@ -337,17 +337,18 @@ export default function HomePage() {
         {/* Parallax Background */}
         <motion.div
           style={{ y: heroY, opacity: heroOpacity }}
-          className="absolute inset-0 z-0 overflow-hidden"
+          className="absolute inset-0 z-0 overflow-hidden will-change-transform"
         >
           <Image
-            src="https://static.wixstatic.com/media/32e7c0_8cede5e338be484bb8dcaad81c053c82~mv2.png?originWidth=1920&originHeight=1024"
+            src="https://static.wixstatic.com/media/32e7c0_5f85b8d9458c4ccbafdde2a4f3bc3cce~mv2.png?originWidth=1920&originHeight=1024"
             alt="Grüne Landschaft in Nordrhein-Westfalen mit Windrädern"
             className="w-full h-full object-cover"
             width={1920}
             height={1024}
             priority
+            fetchPriority="high"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background pointer-events-none" />
         </motion.div>
 
         {/* Hero Content */}
