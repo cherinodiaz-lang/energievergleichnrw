@@ -312,7 +312,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-background overflow-clip selection:bg-primary selection:text-white break-words leading-mobile">
+    <div className="min-h-screen bg-background overflow-x-hidden selection:bg-primary selection:text-white">
       <SEOHead
         title="Strom- & Gasvergleich NRW – Günstige Tarife finden"
         description="Strom und Gas in NRW vergleichen – kostenlos, schnell und unabhängig. Jetzt Tarifrechner starten und sparen."
@@ -333,41 +333,41 @@ export default function HomePage() {
       `}</style>
       <Header />
       {/* --- HERO SECTION --- */}
-      <section className="hero-section relative w-full min-h-screen md:h-screen flex items-center justify-center overflow-hidden bg-primary ox-hidden">
+      <section className="hero-section relative w-full min-h-[100vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-primary">
         {/* Parallax Background */}
         <motion.div
           style={{ y: heroY, opacity: heroOpacity }}
-          className="absolute inset-0 z-0 overflow-x-hidden min-w-0"
+          className="absolute inset-0 z-0 overflow-hidden"
         >
           <Image
             src="https://static.wixstatic.com/media/32e7c0_8cede5e338be484bb8dcaad81c053c82~mv2.png?originWidth=1920&originHeight=1024"
             alt="Grüne Landschaft in Nordrhein-Westfalen mit Windrädern"
-            className="max-w-full h-auto block w-full h-full object-cover"
+            className="w-full h-full object-cover"
             width={1920}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background" />
         </motion.div>
 
         {/* Hero Content */}
-        <div className="relative z-10 w-full max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-12 py-16 sm:py-20 md:py-0 flex items-center justify-center min-h-screen md:min-h-0">
+        <div className="relative z-10 w-full max-w-[120rem] mx-auto px-3 sm:px-6 lg:px-12 py-16 sm:py-20 flex items-center justify-center min-h-[100vh] md:min-h-screen">
           <div className="max-w-4xl w-full">
             <AnimatedElement>
-              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-xs sm:text-sm font-bold mb-4 sm:mb-6 backdrop-blur-sm shadow-lg">
-                <Leaf className="w-3 h-3 sm:w-4 sm:h-4" />
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-xs sm:text-sm font-bold mb-4 sm:mb-6 backdrop-blur-sm">
+                <Leaf className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" aria-hidden="true" />
                 <span className="hidden sm:inline font-heading">Die Nr. 1 für Energievergleiche in NRW</span>
-                <span className="sm:hidden">Energievergleiche NRW</span>
+                <span className="sm:hidden font-heading">Energievergleiche NRW</span>
               </div>
             </AnimatedElement>
 
             <AnimatedElement delay={100}>
-              <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white leading-tight sm:leading-[1.1] mb-4 sm:mb-6 md:mb-8 max-w-[22ch] sm:max-w-none break-words">
+              <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white leading-tight mb-4 sm:mb-6 md:mb-8">
                 Energie wechseln.<br />
                 <span className="text-secondary">Zukunft sichern.</span>
               </h1>
             </AnimatedElement>
 
             <AnimatedElement delay={200}>
-              <p className="font-paragraph text-sm sm:text-lg md:text-2xl text-white font-medium mb-6 sm:mb-8 md:mb-10 max-w-2xl leading-relaxed">
+              <p className="font-paragraph text-sm sm:text-lg lg:text-xl text-white/95 mb-6 sm:mb-8 md:mb-10 max-w-2xl leading-relaxed">
                 Der einfache Weg zu günstigerem Strom und Gas in NRW. Mit unserem Vergleichsrechner finden Sie schnell die besten Tarife.
               </p>
             </AnimatedElement>
@@ -379,7 +379,7 @@ export default function HomePage() {
                     trackCTAClick('hero-tarife-vergleichen', window.location.pathname);
                     scrollToSection('vergleichsrechner');
                   }}
-                  className="bg-secondary text-secondary-foreground hover:bg-secondary/90 min-h-[44px] h-12 sm:h-14 px-6 sm:px-8 rounded-full text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 w-full sm:w-auto"
+                  className="bg-secondary text-secondary-foreground hover:bg-secondary/90 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 h-12 sm:h-14 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-bold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
                 >
                   Jetzt Tarife vergleichen
                 </Button>
@@ -388,9 +388,9 @@ export default function HomePage() {
                     trackCTAClick('hero-photovoltaik', window.location.pathname);
                     scrollToSection('photovoltaik');
                   }}
-                  className="bg-white/20 border border-white/40 text-white hover:bg-white/30 min-h-[44px] h-12 sm:h-14 px-6 sm:px-8 rounded-full text-base sm:text-lg font-medium backdrop-blur-md transition-all w-full sm:w-auto"
+                  className="bg-white/20 border-2 border-white text-white hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary h-12 sm:h-14 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-semibold backdrop-blur-md transition-all w-full sm:w-auto"
                 >
-                  <Sun className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                  <Sun className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" aria-hidden="true" />
                   <span className="hidden sm:inline">Photovoltaik Beratung</span>
                   <span className="sm:hidden">Photovoltaik</span>
                 </Button>
@@ -406,7 +406,7 @@ export default function HomePage() {
         >
           <div className="flex flex-col items-center gap-2 text-white/80">
             <span className="text-xs uppercase tracking-widest font-medium">Scrollen</span>
-            <ChevronDown className="w-6 h-6 animate-bounce" />
+            <ChevronDown className="w-6 h-6 animate-bounce" aria-hidden="true" />
           </div>
         </motion.div>
       </section>

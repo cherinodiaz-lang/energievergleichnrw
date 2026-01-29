@@ -13,9 +13,7 @@ export default function Footer() {
   };
 
   const navigateToSection = (sectionId: string) => {
-    // Navigate to home first, then scroll to section
     navigate(ROUTES.home);
-    // Use setTimeout to ensure navigation completes before scrolling
     setTimeout(() => {
       const element = document.getElementById(sectionId);
       if (element) {
@@ -26,32 +24,32 @@ export default function Footer() {
 
   return (
     <footer className="bg-primary text-primary-foreground">
-      <div className="max-w-[120rem] mx-auto px-6 lg:px-12 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16 lg:py-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12">
           {/* Brand Section */}
           <div>
-            <Link to={ROUTES.home} className="flex items-center gap-3 mb-6">
-              <div className="bg-primary-foreground p-2 rounded-lg">
-                <Zap className="w-6 h-6 text-primary" />
+            <Link to={ROUTES.home} className="flex items-center gap-2 sm:gap-3 mb-6" aria-label="Energievergleich NRW - Startseite">
+              <div className="bg-primary-foreground p-1.5 sm:p-2 rounded-lg flex-shrink-0">
+                <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-primary" aria-hidden="true" />
               </div>
               <div className="flex flex-col">
-                <span className="font-heading font-bold text-xl">energievergleich</span>
+                <span className="font-heading font-bold text-base sm:text-lg">energievergleich</span>
                 <span className="font-paragraph text-xs opacity-80">.nrw</span>
               </div>
             </Link>
-            <p className="font-paragraph text-sm opacity-90 leading-relaxed">
+            <p className="font-paragraph text-xs sm:text-sm opacity-90 leading-relaxed">
               Ihr vertrauenswürdiger Partner für Energievergleiche in Nordrhein-Westfalen. Sparen Sie Geld und schützen Sie die Umwelt.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-heading font-semibold text-lg mb-6">Schnellzugriff</h3>
-            <ul className="space-y-3">
+            <h3 className="font-heading font-semibold text-base sm:text-lg mb-4 sm:mb-6">Schnellzugriff</h3>
+            <ul className="space-y-2 sm:space-y-3">
               <li>
                 <Link
                   to={ROUTES.stromvergleich}
-                  className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
+                  className="font-paragraph text-xs sm:text-sm opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity"
                 >
                   Stromvergleich
                 </Link>
@@ -59,7 +57,7 @@ export default function Footer() {
               <li>
                 <Link
                   to={ROUTES.gasvergleich}
-                  className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
+                  className="font-paragraph text-xs sm:text-sm opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity"
                 >
                   Gasvergleich
                 </Link>
@@ -67,7 +65,7 @@ export default function Footer() {
               <li>
                 <Link
                   to={ROUTES.photovoltaik}
-                  className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
+                  className="font-paragraph text-xs sm:text-sm opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity"
                 >
                   Photovoltaik
                 </Link>
@@ -75,7 +73,7 @@ export default function Footer() {
               <li>
                 <Link
                   to={ROUTES.ratgeberHub}
-                  className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
+                  className="font-paragraph text-xs sm:text-sm opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity"
                 >
                   Ratgeber
                 </Link>
@@ -83,7 +81,7 @@ export default function Footer() {
               <li>
                 <Link
                   to={ROUTES.kontakt}
-                  className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
+                  className="font-paragraph text-xs sm:text-sm opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity"
                 >
                   Kontakt
                 </Link>
@@ -93,13 +91,13 @@ export default function Footer() {
 
           {/* Ratgeber & Links (from NAV_SECONDARY) */}
           <div>
-            <h3 className="font-heading font-semibold text-lg mb-6">Ratgeber</h3>
-            <ul className="space-y-3">
+            <h3 className="font-heading font-semibold text-base sm:text-lg mb-4 sm:mb-6">Ratgeber</h3>
+            <ul className="space-y-2 sm:space-y-3">
               {NAV_SECONDARY.map((item) => (
                 <li key={item.key}>
                   <Link
                     to={item.to}
-                    className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
+                    className="font-paragraph text-xs sm:text-sm opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity"
                   >
                     {item.label}
                   </Link>
@@ -110,28 +108,28 @@ export default function Footer() {
 
           {/* Contact Information */}
           <div>
-            <h3 className="font-heading font-semibold text-lg mb-6">Kontakt</h3>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0" />
-                <span className="font-paragraph text-sm opacity-90">
+            <h3 className="font-heading font-semibold text-base sm:text-lg mb-4 sm:mb-6">Kontakt</h3>
+            <ul className="space-y-3 sm:space-y-4">
+              <li className="flex items-start gap-2 sm:gap-3">
+                <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                <span className="font-paragraph text-xs sm:text-sm opacity-90">
                   Nordrhein-Westfalen, Deutschland
                 </span>
               </li>
-              <li className="flex items-start gap-3">
-                <Mail className="w-5 h-5 mt-0.5 flex-shrink-0" />
+              <li className="flex items-start gap-2 sm:gap-3">
+                <Mail className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <a
                   href="mailto:support@energievergleich.nrw"
-                  className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
+                  className="font-paragraph text-xs sm:text-sm opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity break-all"
                 >
                   support@energievergleich.nrw
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <Phone className="w-5 h-5 mt-0.5 flex-shrink-0" />
+              <li className="flex items-start gap-2 sm:gap-3">
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <a
                   href="tel:+4921112345678"
-                  className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
+                  className="font-paragraph text-xs sm:text-sm opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity"
                 >
                   +49 211 1234 5678
                 </a>
@@ -139,50 +137,50 @@ export default function Footer() {
             </ul>
 
             {/* Social Media */}
-            <div className="flex items-center gap-4 mt-6">
+            <div className="flex items-center gap-3 mt-4 sm:mt-6">
               <a
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center w-11 h-11 opacity-90 hover:opacity-100 transition-opacity"
+                className="inline-flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded transition-opacity"
                 aria-label="Facebook"
               >
-                <Facebook className="w-5 h-5" />
+                <Facebook className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
               </a>
               <a
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center w-11 h-11 opacity-90 hover:opacity-100 transition-opacity"
+                className="inline-flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded transition-opacity"
                 aria-label="Twitter"
               >
-                <Twitter className="w-5 h-5" />
+                <Twitter className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
               </a>
               <a
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center w-11 h-11 opacity-90 hover:opacity-100 transition-opacity"
+                className="inline-flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded transition-opacity"
                 aria-label="LinkedIn"
               >
-                <Linkedin className="w-5 h-5" />
+                <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
               </a>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-primary-foreground/20 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-            <p className="font-paragraph text-sm opacity-80">
+        <div className="border-t border-primary-foreground/20 mt-8 sm:mt-12 pt-6 sm:pt-8">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-6">
+            <p className="font-paragraph text-xs sm:text-sm opacity-80">
               © {new Date().getFullYear()} energievergleich.nrw. Alle Rechte vorbehalten.
             </p>
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm leading-snug">
+            <div className="flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-2 text-xs sm:text-sm leading-snug">
               {NAV_LEGAL.map((item) => (
                 <Link
                   key={item.key}
                   to={item.to}
-                  className="font-paragraph opacity-80 hover:opacity-100 transition-opacity whitespace-normal break-words"
+                  className="font-paragraph opacity-80 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity"
                 >
                   {item.label}
                 </Link>
@@ -192,7 +190,8 @@ export default function Footer() {
                   localStorage.removeItem('energievergleich_consent');
                   window.location.reload();
                 }}
-                className="font-paragraph opacity-80 hover:opacity-100 transition-opacity whitespace-normal break-words"
+                className="font-paragraph opacity-80 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity"
+                aria-label="Cookie-Einstellungen zurücksetzen"
               >
                 Cookie-Einstellungen
               </button>
