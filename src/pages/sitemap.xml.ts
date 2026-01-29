@@ -9,8 +9,11 @@ import { ratgeberArticles } from '@/lib/ratgeber-map';
 
 const DOMAIN = 'https://energievergleich.shop';
 
+// Helper function to get today's date in ISO format (YYYY-MM-DD)
+const todayISO = () => new Date().toISOString().slice(0, 10);
+
 // Static lastmod date for all static URLs (YYYY-MM-DD)
-const LASTMOD_STATIC = new Date().toISOString().slice(0, 10);
+const LASTMOD_STATIC = todayISO();
 
 // All indexable pages and routes
 const pages = [
@@ -110,7 +113,7 @@ const pages = [
     url: `/${article.slug}`,
     priority: '0.7',
     changefreq: 'monthly',
-    lastmod: article.lastUpdated
+    lastmod: article.lastUpdated?.slice(0, 10) ?? todayISO()
   })),
 
   // ===== LEGAL PAGES (Priority: 0.5) =====
