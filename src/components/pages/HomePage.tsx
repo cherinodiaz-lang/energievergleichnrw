@@ -1,7 +1,7 @@
 // HPI 1.6-G
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Zap, Flame, CheckCircle, Sun, Download, ChevronDown, Send, ArrowRight, Leaf, Home, Building2, ShieldCheck, MousePointerClick } from 'lucide-react';
+import { Zap, Flame, CheckCircle, Sun, Download, ChevronDown, Send, ArrowRight, Leaf, Home, Building2, ShieldCheck, MousePointerClick, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -843,6 +843,92 @@ export default function HomePage() {
                 </Card>
               </AnimatedElement>
             </div>
+          </div>
+        </div>
+      </section>
+      {/* --- CUSTOMER REVIEWS SECTION --- */}
+      <section className="w-full py-16 sm:py-24 bg-white relative overflow-hidden">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 sm:mb-16">
+            <AnimatedElement>
+              <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary mb-3 sm:mb-4">
+                Das sagen unsere Kunden
+              </h2>
+              <p className="font-paragraph text-base sm:text-lg text-gray-600">
+                Echte Erfahrungen von zufriedenen Kundinnen und Kunden
+              </p>
+            </AnimatedElement>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            {/* Review 1 */}
+            <AnimatedElement delay={100}>
+              <div className="bg-gray-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 h-full hover:shadow-lg transition-shadow duration-300 border border-gray-100">
+                <div className="flex items-center gap-1 mb-4 sm:mb-6">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 sm:w-6 sm:h-6 fill-secondary text-secondary" />
+                  ))}
+                </div>
+                <p className="font-paragraph text-sm sm:text-base text-gray-700 mb-6 sm:mb-8 leading-relaxed">
+                  "Dank EnergievergleichNRW konnten wir unsere Stromkosten erheblich senken. Der Service war hervorragend und die Beratung sehr kompetent. Absolut empfehlenswert!"
+                </p>
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <span className="font-bold text-primary text-sm sm:text-base">AM</span>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-heading font-semibold text-sm sm:text-base text-gray-900">Anna Müller</p>
+                    <p className="text-xs sm:text-sm text-gray-500">Stromkunde</p>
+                  </div>
+                </div>
+              </div>
+            </AnimatedElement>
+
+            {/* Review 2 */}
+            <AnimatedElement delay={200}>
+              <div className="bg-gray-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 h-full hover:shadow-lg transition-shadow duration-300 border border-gray-100">
+                <div className="flex items-center gap-1 mb-4 sm:mb-6">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 sm:w-6 sm:h-6 fill-secondary text-secondary" />
+                  ))}
+                </div>
+                <p className="font-paragraph text-sm sm:text-base text-gray-700 mb-6 sm:mb-8 leading-relaxed">
+                  "Der Gasvergleich war super einfach und hat uns viel Geld gespart. Wir sind sehr zufrieden mit dem neuen Anbieter und dem reibungslosen Wechsel."
+                </p>
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <span className="font-bold text-primary text-sm sm:text-base">MS</span>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-heading font-semibold text-sm sm:text-base text-gray-900">Max Schmidt</p>
+                    <p className="text-xs sm:text-sm text-gray-500">Gaskunde</p>
+                  </div>
+                </div>
+              </div>
+            </AnimatedElement>
+
+            {/* Review 3 */}
+            <AnimatedElement delay={300}>
+              <div className="bg-gray-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 h-full hover:shadow-lg transition-shadow duration-300 border border-gray-100">
+                <div className="flex items-center gap-1 mb-4 sm:mb-6">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 sm:w-6 sm:h-6 fill-secondary text-secondary" />
+                  ))}
+                </div>
+                <p className="font-paragraph text-sm sm:text-base text-gray-700 mb-6 sm:mb-8 leading-relaxed">
+                  "Die Photovoltaik-Beratung war top! Wir haben jetzt unsere eigene Solaranlage und sind begeistert von der Unabhängigkeit und den Einsparungen."
+                </p>
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <span className="font-bold text-primary text-sm sm:text-base">LM</span>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-heading font-semibold text-sm sm:text-base text-gray-900">Lisa Meier</p>
+                    <p className="text-xs sm:text-sm text-gray-500">Photovoltaik-Kunde</p>
+                  </div>
+                </div>
+              </div>
+            </AnimatedElement>
           </div>
         </div>
       </section>
