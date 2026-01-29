@@ -43,24 +43,28 @@ export default function ConsentBanner() {
     necessary: true,
   });
 
-  // Initialize banner on mount
+  // Initialize banner on mount - defer to avoid blocking render
   useEffect(() => {
-    const storedConsent = localStorage.getItem(CONSENT_STORAGE_KEY);
-    
-    if (!storedConsent) {
-      // No consent stored, show banner
-      setShowBanner(true);
-    } else {
-      try {
-        const parsed = JSON.parse(storedConsent);
-        setConsent(parsed);
-        // Apply stored consent
-        applyConsent(parsed);
-      } catch (error) {
-        console.error('Error parsing stored consent:', error);
+    const timer = requestIdleCallback(() => {
+      const storedConsent = localStorage.getItem(CONSENT_STORAGE_KEY);
+      
+      if (!storedConsent) {
+        // No consent stored, show banner
         setShowBanner(true);
+      } else {
+        try {
+          const parsed = JSON.parse(storedConsent);
+          setConsent(parsed);
+          // Apply stored consent
+          applyConsent(parsed);
+        } catch (error) {
+          console.error('Error parsing stored consent:', error);
+          setShowBanner(true);
+        }
       }
-    }
+    }, { timeout: 2000 });
+    
+    return () => cancelIdleCallback(timer);
   }, []);
 
   const applyConsent = (consentState: ConsentState) => {

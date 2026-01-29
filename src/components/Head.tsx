@@ -35,13 +35,18 @@ export const Head = () => {
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       <link rel="canonical" href="https://energievergleich.nrw" />
       
-      {/* Fonts */}
+      {/* Fonts - Preconnect for performance */}
       <link rel="preconnect" href="https://static.parastorage.com" />
       <link rel="dns-prefetch" href="https://static.parastorage.com" />
+      
+      {/* Image CDN Preconnect */}
+      <link rel="preconnect" href="https://static.wixstatic.com" />
+      <link rel="dns-prefetch" href="https://static.wixstatic.com" />
 
-      {/* Google Tag Manager (GTM) */}
+      {/* Google Tag Manager (GTM) - Async loading for non-blocking */}
       {/* Replace GTM-XXXXXXX with your actual GTM Container ID */}
       <script
+        async
         dangerouslySetInnerHTML={{
           __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

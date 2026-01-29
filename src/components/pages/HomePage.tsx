@@ -344,6 +344,8 @@ export default function HomePage() {
             alt="Grüne Landschaft in Nordrhein-Westfalen mit Windrädern"
             className="w-full h-full object-cover"
             width={1920}
+            height={1024}
+            priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background" />
         </motion.div>
@@ -959,7 +961,9 @@ export default function HomePage() {
                           src={vorteil.icon}
                           alt={vorteil.title || 'Icon'}
                           width={32}
+                          height={32}
                           className="w-7 h-7 sm:w-8 sm:h-8 object-contain brightness-0 invert"
+                          loading="lazy"
                         />
                       ) : (
                         <CheckCircle className="w-7 h-7 sm:w-8 sm:h-8 text-secondary" />
@@ -1222,7 +1226,9 @@ export default function HomePage() {
                               src={material.thumbnail}
                               alt={material.title || 'Material Thumbnail'}
                               width={400}
+                              height={225}
                               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                              loading="lazy"
                             />
                           ) : (
                             <div className="w-full h-full bg-primary/10 flex items-center justify-center">
