@@ -167,11 +167,11 @@ export default function StromvergleichNrwPage() {
   return (
     <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
-        title="Stromvergleich NRW | Energievergleich"
-        description="Stromtarife in NRW kostenlos vergleichen und wechseln. Unabhängig, transparent und ohne Verpflichtung. Jetzt Tarife vergleichen!"
+        title="Stromvergleich NRW – Günstige Stromtarife finden"
+        description="Stromtarife in NRW vergleichen: Preise, Anbieter und Optionen. In 2 Minuten zum passenden Tarif – kostenlos."
         keywords="Stromvergleich NRW, Stromtarife, Strom sparen, Stromanbieter wechseln, günstige Stromtarife"
-        ogTitle="Stromvergleich NRW | Energievergleich"
-        ogDescription="Kostenlos Stromtarife in NRW vergleichen. Unabhängig und transparent."
+        ogTitle="Stromvergleich NRW – Günstige Stromtarife finden"
+        ogDescription="Stromtarife in NRW vergleichen: Preise, Anbieter und Optionen. In 2 Minuten zum passenden Tarif – kostenlos."
       />
       <Header />
 

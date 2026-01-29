@@ -314,11 +314,11 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background overflow-clip selection:bg-primary selection:text-white break-words leading-mobile">
       <SEOHead
-        title="Strom & Gas Tarife vergleichen | Energievergleich"
-        description="Vergleichen Sie Strom- und Gastarife in NRW kostenlos und unabhängig. Finden Sie den besten Anbieter für Ihr Zuhause. Jetzt vergleichen!"
+        title="Strom- & Gasvergleich NRW – Günstige Tarife finden"
+        description="Strom und Gas in NRW vergleichen – kostenlos, schnell und unabhängig. Jetzt Tarifrechner starten und sparen."
         keywords="Energievergleich NRW, Stromvergleich, Gasvergleich, Strom sparen, Gas sparen, Tarife NRW"
-        ogTitle="Strom & Gas Tarife vergleichen | Energievergleich"
-        ogDescription="Kostenlos Strom- und Gastarife in NRW vergleichen. Unabhängig und transparent."
+        ogTitle="Strom- & Gasvergleich NRW – Günstige Tarife finden"
+        ogDescription="Strom und Gas in NRW vergleichen – kostenlos, schnell und unabhängig. Jetzt Tarifrechner starten und sparen."
       />
       <style>{`
         .animate-reveal {

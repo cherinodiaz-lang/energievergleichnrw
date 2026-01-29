@@ -162,11 +162,11 @@ export default function PhotovoltaikNrwPage() {
   return (
     <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
-        title="Photovoltaik NRW | Energievergleich"
-        description="Solaranlagen in NRW kostenlos beraten. Unabhängige Beratung für Privathaushalte. Jetzt unverbindlich anfragen!"
+        title="Photovoltaik NRW – Angebote vergleichen & anfragen"
+        description="Photovoltaik-Angebote in NRW vergleichen. Unverbindlich anfragen, passende Lösung finden – schnell und kostenlos."
         keywords="Photovoltaik NRW, Solaranlage, Solarenergie, Sonnenenergie, Solaranlage kaufen"
-        ogTitle="Photovoltaik NRW | Energievergleich"
-        ogDescription="Kostenlose Beratung für Solaranlagen in NRW. Unabhängig und transparent."
+        ogTitle="Photovoltaik NRW – Angebote vergleichen & anfragen"
+        ogDescription="Photovoltaik-Angebote in NRW vergleichen. Unverbindlich anfragen, passende Lösung finden – schnell und kostenlos."
       />
       <Header />
 
