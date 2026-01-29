@@ -410,6 +410,81 @@ export default function StromvergleichNrwPage() {
         </div>
       </section>
 
+      {/* Content Section */}
+      <section className="w-full py-24 bg-white">
+        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="space-y-8">
+            <div>
+              <h2 className="font-heading text-3xl font-bold text-primary mb-6">Stromvergleich in NRW – Sparen Sie bis zu 400 Euro pro Jahr</h2>
+              
+              <p className="font-paragraph text-lg text-gray-700 mb-6">
+                Der Stromvergleich ist der erste Schritt zu niedrigeren Energiekosten. In Nordrhein-Westfalen haben Haushalte die Wahl zwischen hunderten von Stromanbietern und Tarifen. Mit unserem kostenlosen Stromvergleich finden Sie in wenigen Minuten den günstigsten Tarif für Ihren Haushalt.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Wie funktioniert der Stromwechsel in NRW?</h3>
+              <p className="font-paragraph text-gray-700 mb-4">
+                Der Wechsel zu einem neuen Stromanbieter ist einfacher als Sie denken. Geben Sie Ihre Postleitzahl und Ihren jährlichen Stromverbrauch in unseren Vergleichsrechner ein. Innerhalb von Sekunden sehen Sie alle verfügbaren Stromtarife in Ihrer Region, sortiert nach Preis. Wählen Sie Ihren Wunsch-Tarif aus und wir kümmern uns um alle Formalitäten – kostenlos und ohne Risiko.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Welche Vorteile bietet ein Stromwechsel?</h3>
+              <ul className="font-paragraph text-gray-700 space-y-3 mb-6">
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Kostenersparnis:</strong> Durchschnittlich 200-400 Euro pro Jahr durch optimierte Tarife</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Ökostrom-Optionen:</strong> Viele günstige Tarife mit 100% erneuerbaren Energien</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Preisgarantie:</strong> Schutz vor Preiserhöhungen für 12-24 Monate</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Flexible Laufzeiten:</strong> Verträge ab 12 Monaten mit kurzen Kündigungsfristen</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Stromvergleich speziell für NRW</h3>
+              <p className="font-paragraph text-gray-700 mb-4">
+                Nordrhein-Westfalen ist das bevölkerungsreichste Bundesland Deutschlands und hat einen großen Strommarkt mit vielen Anbietern. Die Strompreise in NRW variieren je nach Postleitzahl und Netzbetreiber. Unser Stromvergleich berücksichtigt alle regionalen Besonderheiten und zeigt Ihnen die besten Tarife für Ihre genaue Adresse – ob in Düsseldorf, Köln, Essen, Dortmund oder einer anderen Stadt in NRW.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Häufige Fragen zum Stromvergleich</h3>
+              <div className="space-y-4 mb-6">
+                <div>
+                  <p className="font-paragraph font-bold text-gray-800 mb-2">Wie oft kann ich meinen Stromanbieter wechseln?</p>
+                  <p className="font-paragraph text-gray-700">Sie können jederzeit wechseln, müssen aber die Kündigungsfrist (meist 4 Wochen zum Monatsende) einhalten. Nach einem Wechsel können Sie frühestens nach 12 Monaten erneut wechseln – es sei denn, Sie haben einen Vertrag mit kürzerer Laufzeit.</p>
+                </div>
+                <div>
+                  <p className="font-paragraph font-bold text-gray-800 mb-2">Ist der Stromwechsel wirklich kostenlos?</p>
+                  <p className="font-paragraph text-gray-700">Ja, völlig kostenlos. Es fallen keine Gebühren für die Kündigung beim alten Anbieter oder die Anmeldung beim neuen an. Wir kümmern uns um alle Formalitäten ohne zusätzliche Kosten.</p>
+                </div>
+                <div>
+                  <p className="font-paragraph font-bold text-gray-800 mb-2">Kann ich während des Wechsels ohne Strom sein?</p>
+                  <p className="font-paragraph text-gray-700">Nein. Ihre Stromversorgung ist gesetzlich geschützt und wird nicht unterbrochen. Selbst bei Verzögerungen springt der Grundversorger ein.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-secondary/10 border-l-4 border-secondary p-6 rounded">
+              <p className="font-paragraph text-gray-700 italic">
+                Mit unserem Stromvergleich für NRW finden Sie garantiert den besten Tarif. Nutzen Sie unseren kostenlosen Vergleichsrechner und sparen Sie ab sofort Geld bei Ihren Stromkosten!
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Why Switch Section */}
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">

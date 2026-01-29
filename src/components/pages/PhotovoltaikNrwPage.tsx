@@ -197,6 +197,85 @@ export default function PhotovoltaikNrwPage() {
         </div>
       </section>
 
+       {/* Content Section */}
+       <section className="w-full py-24 bg-white">
+         <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+           <div className="space-y-8">
+             <div>
+               <h2 className="font-heading text-3xl font-bold text-primary mb-6">Photovoltaik in NRW – Nutzen Sie die Kraft der Sonne</h2>
+               
+               <p className="font-paragraph text-lg text-gray-700 mb-6">
+                 Photovoltaik ist eine zukunftssichere Investition für Hausbesitzer in Nordrhein-Westfalen. Mit einer Solaranlage produzieren Sie Ihren eigenen Strom, senken Ihre Energiekosten und tragen zum Klimaschutz bei. Auch in NRW lohnt sich eine Photovoltaikanlage – dank Einspeisevergütung, KfW-Förderung und sinkenden Anlagenkosten.
+               </p>
+             </div>
+
+             <div>
+               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Wie funktioniert eine Photovoltaikanlage?</h3>
+               <p className="font-paragraph text-gray-700 mb-4">
+                 Eine Photovoltaikanlage wandelt Sonnenlicht direkt in Strom um. Die Solarmodule auf Ihrem Dach erzeugen Gleichstrom, der durch einen Wechselrichter in Wechselstrom umgewandelt wird. Diesen Strom können Sie selbst nutzen oder ins Netz einspeisen. Mit einem Stromspeicher können Sie den Strom auch für die Nacht speichern und Ihre Unabhängigkeit erhöhen.
+               </p>
+             </div>
+
+             <div>
+               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Welche Vorteile bietet Photovoltaik in NRW?</h3>
+               <ul className="font-paragraph text-gray-700 space-y-3 mb-6">
+                 <li className="flex items-start gap-3">
+                   <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                   <span><strong>Kostenersparnis:</strong> Sparen Sie bis zu 50% Ihrer Stromkosten durch Eigennutzung</span>
+                 </li>
+                 <li className="flex items-start gap-3">
+                   <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                   <span><strong>Einspeisevergütung:</strong> Erhalten Sie Geld für Strom, den Sie ins Netz einspeisen</span>
+                 </li>
+                 <li className="flex items-start gap-3">
+                   <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                   <span><strong>Förderungen:</strong> KfW-Kredite und Zuschüsse reduzieren Ihre Investitionskosten</span>
+                 </li>
+                 <li className="flex items-start gap-3">
+                   <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                   <span><strong>Wertsteigerung:</strong> Eine Solaranlage erhöht den Wert Ihrer Immobilie um 5-10%</span>
+                 </li>
+                 <li className="flex items-start gap-3">
+                   <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                   <span><strong>Langlebigkeit:</strong> 25-30 Jahre Lebensdauer mit Herstellergarantie</span>
+                 </li>
+               </ul>
+             </div>
+
+             <div>
+               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Photovoltaik speziell für NRW</h3>
+               <p className="font-paragraph text-gray-700 mb-4">
+                 Auch wenn NRW nicht die sonnigste Region Deutschlands ist, lohnt sich eine Photovoltaikanlage. Eine typische 5-kW-Anlage produziert in NRW etwa 4.500-5.000 kWh pro Jahr. Mit unserer kostenlosen Beratung analysieren wir Ihr Dach, Ihren Stromverbrauch und erstellen ein individuelles Angebot. Wir berücksichtigen alle regionalen Besonderheiten und Fördermöglichkeiten für Ihre Stadt in NRW.
+               </p>
+             </div>
+
+             <div>
+               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Häufige Fragen zu Photovoltaik</h3>
+               <div className="space-y-4 mb-6">
+                 <div>
+                   <p className="font-paragraph font-bold text-gray-800 mb-2">Lohnt sich eine Solaranlage in NRW?</p>
+                   <p className="font-paragraph text-gray-700">Ja. Durch Einspeisevergütung und Eigennutzung amortisiert sich die Anlage meist nach 8-12 Jahren. Danach produzieren Sie kostenlosen Strom für 15-20 Jahre.</p>
+                 </div>
+                 <div>
+                   <p className="font-paragraph font-bold text-gray-800 mb-2">Wie viel Strom produziert eine Anlage?</p>
+                   <p className="font-paragraph text-gray-700">Eine 5-kW-Anlage produziert in NRW etwa 4.500-5.000 kWh pro Jahr. Das hängt von Ausrichtung, Neigung und Verschattung ab.</p>
+                 </div>
+                 <div>
+                   <p className="font-paragraph font-bold text-gray-800 mb-2">Welche Förderungen gibt es?</p>
+                   <p className="font-paragraph text-gray-700">KfW-Förderung, Einspeisevergütung und regionale Programme. Wir informieren Sie über alle verfügbaren Optionen.</p>
+                 </div>
+               </div>
+             </div>
+
+             <div className="bg-secondary/10 border-l-4 border-secondary p-6 rounded">
+               <p className="font-paragraph text-gray-700 italic">
+                 Mit unserer kostenlosen Beratung finden Sie die perfekte Photovoltaiklösung für Ihr Zuhause. Nutzen Sie die Kraft der Sonne und werden Sie unabhängig von steigenden Strompreisen!
+               </p>
+             </div>
+           </div>
+         </div>
+       </section>
+
       {/* Benefits Section */}
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">

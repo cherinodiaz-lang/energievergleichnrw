@@ -409,6 +409,81 @@ export default function GasvergleichNrwPage() {
         </div>
       </section>
 
+      {/* Content Section */}
+      <section className="w-full py-24 bg-white">
+        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="space-y-8">
+            <div>
+              <h2 className="font-heading text-3xl font-bold text-primary mb-6">Gasvergleich in NRW – Sparen Sie bis zu 300 Euro pro Jahr</h2>
+              
+              <p className="font-paragraph text-lg text-gray-700 mb-6">
+                Der Gasvergleich ist der erste Schritt zu niedrigeren Heizkosten. In Nordrhein-Westfalen haben Haushalte die Wahl zwischen vielen Gasanbietern und Tarifen. Mit unserem kostenlosen Gasvergleich finden Sie in wenigen Minuten den günstigsten Gastarif für Ihren Haushalt.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Wie funktioniert der Gaswechsel in NRW?</h3>
+              <p className="font-paragraph text-gray-700 mb-4">
+                Der Wechsel zu einem neuen Gasanbieter ist einfacher als Sie denken. Geben Sie Ihre Postleitzahl und Ihre Wohnfläche oder Ihren jährlichen Gasverbrauch in unseren Vergleichsrechner ein. Innerhalb von Sekunden sehen Sie alle verfügbaren Gastarife in Ihrer Region, sortiert nach Preis. Wählen Sie Ihren Wunsch-Tarif aus und wir kümmern uns um alle Formalitäten – kostenlos und ohne Risiko.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Welche Vorteile bietet ein Gaswechsel?</h3>
+              <ul className="font-paragraph text-gray-700 space-y-3 mb-6">
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Kostenersparnis:</strong> Durchschnittlich 150-300 Euro pro Jahr durch optimierte Tarife</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Biogas-Optionen:</strong> Viele günstige Tarife mit nachhaltigen Energiequellen</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Preisgarantie:</strong> Schutz vor Preiserhöhungen für 12-24 Monate</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Flexible Laufzeiten:</strong> Verträge ab 12 Monaten mit kurzen Kündigungsfristen</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Gasvergleich speziell für NRW</h3>
+              <p className="font-paragraph text-gray-700 mb-4">
+                Nordrhein-Westfalen ist das bevölkerungsreichste Bundesland Deutschlands und hat einen großen Gasmarkt mit vielen Anbietern. Die Gaspreise in NRW variieren je nach Postleitzahl und Netzbetreiber. Unser Gasvergleich berücksichtigt alle regionalen Besonderheiten und zeigt Ihnen die besten Tarife für Ihre genaue Adresse – ob in Düsseldorf, Köln, Essen, Dortmund oder einer anderen Stadt in NRW.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Häufige Fragen zum Gasvergleich</h3>
+              <div className="space-y-4 mb-6">
+                <div>
+                  <p className="font-paragraph font-bold text-gray-800 mb-2">Wie oft kann ich meinen Gasanbieter wechseln?</p>
+                  <p className="font-paragraph text-gray-700">Sie können jederzeit wechseln, müssen aber die Kündigungsfrist (meist 4 Wochen zum Monatsende) einhalten. Nach einem Wechsel können Sie frühestens nach 12 Monaten erneut wechseln – es sei denn, Sie haben einen Vertrag mit kürzerer Laufzeit.</p>
+                </div>
+                <div>
+                  <p className="font-paragraph font-bold text-gray-800 mb-2">Ist der Gaswechsel wirklich kostenlos?</p>
+                  <p className="font-paragraph text-gray-700">Ja, völlig kostenlos. Es fallen keine Gebühren für die Kündigung beim alten Anbieter oder die Anmeldung beim neuen an. Wir kümmern uns um alle Formalitäten ohne zusätzliche Kosten.</p>
+                </div>
+                <div>
+                  <p className="font-paragraph font-bold text-gray-800 mb-2">Kann ich während des Wechsels ohne Gas sein?</p>
+                  <p className="font-paragraph text-gray-700">Nein. Ihre Gasversorgung ist gesetzlich geschützt und wird nicht unterbrochen. Selbst bei Verzögerungen springt der Grundversorger ein.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-secondary/10 border-l-4 border-secondary p-6 rounded">
+              <p className="font-paragraph text-gray-700 italic">
+                Mit unserem Gasvergleich für NRW finden Sie garantiert den besten Tarif. Nutzen Sie unseren kostenlosen Vergleichsrechner und sparen Sie ab sofort Geld bei Ihren Gaskosten!
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* So funktioniert's Section */}
       <section className="w-full py-24 bg-background">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
