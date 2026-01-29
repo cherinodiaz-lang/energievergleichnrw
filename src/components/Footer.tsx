@@ -49,44 +49,44 @@ export default function Footer() {
             <h3 className="font-heading font-semibold text-lg mb-6">Schnellzugriff</h3>
             <ul className="space-y-3">
               <li>
-                <button
-                  onClick={() => navigateToSection('vergleichsrechner')}
+                <Link
+                  to={ROUTES.stromvergleich}
                   className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
                 >
-                  Vergleichsrechner
-                </button>
+                  Stromvergleich
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => navigateToSection('vorteile')}
+                <Link
+                  to={ROUTES.gasvergleich}
                   className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
                 >
-                  Vorteile
-                </button>
+                  Gasvergleich
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => navigateToSection('photovoltaik')}
+                <Link
+                  to={ROUTES.photovoltaik}
                   className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
                 >
                   Photovoltaik
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => navigateToSection('informationsmaterial')}
+                <Link
+                  to={ROUTES.ratgeberHub}
                   className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
                 >
-                  Informationsmaterial
-                </button>
+                  Ratgeber
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => navigateToSection('faq')}
+                <Link
+                  to={ROUTES.kontakt}
                   className="font-paragraph text-sm opacity-90 hover:opacity-100 transition-opacity"
                 >
-                  FAQ
-                </button>
+                  Kontakt
+                </Link>
               </li>
             </ul>
           </div>
@@ -177,12 +177,12 @@ export default function Footer() {
             <p className="font-paragraph text-sm opacity-80">
               © {new Date().getFullYear()} energievergleich.nrw. Alle Rechte vorbehalten.
             </p>
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm leading-snug py-3">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm leading-snug">
               {NAV_LEGAL.map((item) => (
                 <Link
                   key={item.key}
                   to={item.to}
-                  className="font-paragraph opacity-80 hover:opacity-100 transition-opacity whitespace-normal break-words py-2"
+                  className="font-paragraph opacity-80 hover:opacity-100 transition-opacity whitespace-normal break-words"
                 >
                   {item.label}
                 </Link>
@@ -192,7 +192,7 @@ export default function Footer() {
                   localStorage.removeItem('energievergleich_consent');
                   window.location.reload();
                 }}
-                className="font-paragraph opacity-80 hover:opacity-100 transition-opacity whitespace-normal break-words py-2"
+                className="font-paragraph opacity-80 hover:opacity-100 transition-opacity whitespace-normal break-words"
               >
                 Cookie-Einstellungen
               </button>
