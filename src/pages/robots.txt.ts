@@ -7,9 +7,13 @@ Disallow: /private
 Disallow: /preview
 Disallow: /danke
 Disallow: /thank-you
+Disallow: /checkout
+Disallow: /cart
+Disallow: /login
+Disallow: /account
 
 # Sitemap location
-Sitemap: https://energievergleich.shop/sitemap.xml
+Sitemap: https://www.energievergleich.shop/sitemap.xml
 `;
 
 export const GET: APIRoute = () => {

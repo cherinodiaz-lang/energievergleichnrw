@@ -18,7 +18,7 @@ interface SEOHeadProps {
   author?: string;
 }
 
-const SITE_URL = 'https://energievergleich.shop';
+const SITE_URL = 'https://www.energievergleich.shop';
 const SITE_NAME = 'energievergleich.shop';
 const DEFAULT_IMAGE = 'https://static.wixstatic.com/media/32e7c0_8cede5e338be484bb8dcaad81c053c82~mv2.png?originWidth=1920&originHeight=1024';
 
@@ -35,7 +35,7 @@ export default function SEOHead({
   twitterDescription,
   twitterImage = DEFAULT_IMAGE,
   keywords,
-  robots = 'index, follow',
+  robots = 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
   author = 'energievergleich.shop',
 }: SEOHeadProps) {
   const location = useLocation();
@@ -53,7 +53,7 @@ export default function SEOHead({
     }
     metaDescription.setAttribute('content', description);
 
-    // Set canonical URL
+    // Set canonical URL - ALWAYS with www prefix
     const canonicalUrl = canonical || `${SITE_URL}${location.pathname}`;
     let canonicalLink = document.querySelector('link[rel="canonical"]');
     if (!canonicalLink) {
@@ -74,7 +74,7 @@ export default function SEOHead({
       metaKeywords.setAttribute('content', keywords);
     }
 
-    // Set robots
+    // Set robots - ALWAYS index, follow for content pages
     let metaRobots = document.querySelector('meta[name="robots"]');
     if (!metaRobots) {
       metaRobots = document.createElement('meta');

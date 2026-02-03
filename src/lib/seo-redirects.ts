@@ -21,6 +21,6 @@
  * @returns Full canonical URL pointing to energievergleich.shop
  */
 export function getCanonicalUrl(pathname: string): string {
-  const baseUrl = 'https://energievergleich.shop';
+  const baseUrl = 'https://www.energievergleich.shop';
   return `${baseUrl}${pathname}`;
 }

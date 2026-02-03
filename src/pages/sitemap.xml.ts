@@ -7,7 +7,7 @@ import { ratgeberArticles } from '@/lib/ratgeber-map';
  * Updated: 2026-01-13
  */
 
-const DOMAIN = 'https://energievergleich.shop';
+const DOMAIN = 'https://www.energievergleich.shop';
 
 // Helper function to get today's date in ISO format (YYYY-MM-DD)
 const todayISO = () => new Date().toISOString().slice(0, 10);

@@ -6,7 +6,7 @@
 export const SEO_CONFIG = {
   // Site Information
   siteName: 'energievergleich.shop',
-  siteUrl: 'https://energievergleich.shop',
+  siteUrl: 'https://www.energievergleich.shop',
   siteDescription: 'Vergleichen Sie Strom- und Gastarife in Nordrhein-Westfalen. Finden Sie die besten Angebote für Privat- und Gewerbekunden. Kostenlos und unabhängig.',
   
   // Organization Information (NO postal address - only essential fields)
