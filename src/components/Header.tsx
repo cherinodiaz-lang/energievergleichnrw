@@ -3,6 +3,7 @@ import { Zap, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { NAV_MAIN, ROUTES } from '@/lib/routes';
+import { trackCTAClick } from '@/services/form-submission';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -49,6 +50,7 @@ export default function Header() {
   };
 
   const handleCtaClick = () => {
+    trackCTAClick('Kostenlos vergleichen');
     navigate(getCtaLink());
     setMobileMenuOpen(false);
   };

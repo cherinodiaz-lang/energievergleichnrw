@@ -1,0 +1,163 @@
+/**
+ * GA4 Tracking Service
+ * Handles all Google Analytics 4 tracking with consent management
+ * 
+ * CRITICAL: All events are only tracked AFTER Analytics consent is granted
+ * Events are queued if consent is not yet determined, then flushed when consent is given
+ */
+
+declare global {
+  interface Window {
+    dataLayer?: any[];
+    gtag?: (...args: any[]) => void;
+  }
+}
+
+interface QueuedEvent {
+  eventName: string;
+  eventData: Record<string, any>;
+}
+
+let eventQueue: QueuedEvent[] = [];
+let consentGranted = false;
+
+/**
+ * Initialize GA4 with consent mode
+ * Must be called early in app lifecycle
+ */
+export function initializeGA4(measurementId: string) {
+  if (typeof window === 'undefined') return;
+
+  // Initialize dataLayer if not present
+  if (!window.dataLayer) {
+    window.dataLayer = [];
+  }
+
+  // Set default consent to 'denied' until user makes a choice
+  window.gtag?.('consent', 'default', {
+    'analytics_storage': 'denied',
+    'marketing_storage': 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+  });
+
+  // Load GA4 script
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+  document.head.appendChild(script);
+
+  // Initialize gtag function
+  window.gtag = function () {
+    window.dataLayer?.push(arguments);
+  };
+
+  // Configure GA4
+  window.gtag('js', new Date());
+  window.gtag('config', measurementId, {
+    'anonymize_ip': true,
+    'allow_google_signals': false,
+  });
+}
+
+/**
+ * Update consent status and flush queued events
+ */
+export function updateConsent(analyticsConsent: boolean, marketingConsent: boolean) {
+  if (typeof window === 'undefined') return;
+
+  consentGranted = analyticsConsent;
+
+  // Update GA4 consent mode
+  window.gtag?.('consent', 'update', {
+    'analytics_storage': analyticsConsent ? 'granted' : 'denied',
+    'marketing_storage': marketingConsent ? 'granted' : 'denied',
+    'ad_storage': marketingConsent ? 'granted' : 'denied',
+    'ad_user_data': marketingConsent ? 'granted' : 'denied',
+    'ad_personalization': marketingConsent ? 'granted' : 'denied',
+  });
+
+  // Flush queued events if consent is granted
+  if (analyticsConsent) {
+    flushEventQueue();
+  }
+}
+
+/**
+ * Track event in GA4 (only if analytics consent is granted)
+ * Events are queued if consent is not yet determined
+ */
+export function trackEvent(eventName: string, eventData: Record<string, any> = {}) {
+  if (typeof window === 'undefined') return;
+
+  // If consent not yet determined, queue the event
+  if (!consentGranted && eventQueue.length < 50) {
+    eventQueue.push({ eventName, eventData });
+    return;
+  }
+
+  // Only send event if consent is granted
+  if (!consentGranted) {
+    return;
+  }
+
+  window.gtag?.('event', eventName, {
+    ...eventData,
+    'timestamp': new Date().toISOString(),
+  });
+}
+
+/**
+ * Track form submission as conversion
+ */
+export function trackFormSubmit(formType: string) {
+  trackEvent('form_submit', {
+    'form_type': formType,
+    'page_location': window.location.pathname,
+    'event_category': 'form',
+    'event_label': formType,
+  });
+}
+
+/**
+ * Track CTA button clicks as conversion
+ */
+export function trackCTAClick(buttonName: string, ctaType: string) {
+  trackEvent('cta_click', {
+    'button_name': buttonName,
+    'cta_type': ctaType,
+    'page_location': window.location.pathname,
+    'event_category': 'cta',
+    'event_label': buttonName,
+  });
+}
+
+/**
+ * Flush all queued events
+ */
+function flushEventQueue() {
+  while (eventQueue.length > 0) {
+    const event = eventQueue.shift();
+    if (event) {
+      window.gtag?.('event', event.eventName, {
+        ...event.eventData,
+        'timestamp': new Date().toISOString(),
+      });
+    }
+  }
+}
+
+/**
+ * Check if analytics consent is granted
+ */
+export function isAnalyticsConsented(): boolean {
+  return consentGranted;
+}
+
+/**
+ * Get queued events count (for debugging)
+ */
+export function getQueuedEventsCount(): number {
+  return eventQueue.length;
+}

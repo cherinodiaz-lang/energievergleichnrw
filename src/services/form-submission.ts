@@ -1,14 +1,15 @@
 /**
  * Form Submission Service
  * Handles all form submissions to Wix Collections
- * Integrates with email automations and GTM tracking (via dataLayer)
+ * Integrates with GA4 tracking (consent-safe)
  * 
- * IMPORTANT: All tracking goes through Google Tag Manager (GTM) only.
+ * IMPORTANT: All tracking goes through GA4 only.
  * No PII (email, name, phone) is sent to analytics.
- * Events are only tracked after Analytics consent is granted via Wix Privacy Center.
+ * Events are only tracked after Analytics consent is granted.
  */
 
 import { BaseCrudService } from '@/integrations';
+import { trackFormSubmit } from '@/services/ga4-tracking';
 
 export interface FormSubmissionData {
   _id?: string;
@@ -71,8 +72,8 @@ export async function submitForm(
     // This will trigger automations configured in Wix Dashboard
     const result = await BaseCrudService.create('formsubmissions', data);
 
-    // Track event in GTM (via dataLayer) - NO PII included
-    trackFormSubmission(data.type);
+    // Track event in GA4 (consent-safe) - NO PII included
+    trackFormSubmit(data.type);
 
     return {
       success: true,
@@ -90,32 +91,19 @@ export async function submitForm(
 }
 
 /**
- * Track form submission in GTM (via dataLayer)
+ * Track form submission in GA4 (consent-safe)
  * NO PII is included - only form_type, page_location, and timestamp
  */
 export function trackFormSubmission(formType: string) {
-  if (typeof window !== 'undefined' && window.dataLayer) {
-    window.dataLayer.push({
-      event: 'form_submit',
-      form_type: formType,
-      page_location: window.location.pathname,
-      timestamp: new Date().toISOString()
-    });
-  }
+  trackFormSubmit(formType);
 }
 
 /**
- * Track CTA button clicks in GTM (via dataLayer)
+ * Track CTA button clicks (consent-safe)
  */
-export function trackCTAClick(buttonName: string, location: string) {
-  if (typeof window !== 'undefined' && window.dataLayer) {
-    window.dataLayer.push({
-      event: 'cta_click',
-      button_name: buttonName,
-      page_location: location,
-      timestamp: new Date().toISOString()
-    });
-  }
+export function trackCTAClick(buttonName: string) {
+  const { trackCTAClick: trackCTAClickGA4 } = require('@/services/ga4-tracking');
+  trackCTAClickGA4(buttonName, 'cta_button');
 }
 
 /**

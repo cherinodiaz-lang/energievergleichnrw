@@ -4,7 +4,7 @@
  * - Privacy checkbox (GDPR compliant)
  * - Form validation
  * - Thank you state
- * - GA4 tracking
+ * - GA4 tracking (consent-safe)
  */
 
 import React, { useState } from 'react';
@@ -69,8 +69,8 @@ export default function FormSubmissionDialog({
       });
 
       if (result.success) {
-        // Track in GA4
-        trackFormSubmission(formType, formData.email);
+        // Track in GA4 (consent-safe)
+        trackFormSubmission(formType);
 
         // Show thank you state
         setSubmitted(true);

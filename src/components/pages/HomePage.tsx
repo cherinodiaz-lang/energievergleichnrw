@@ -379,7 +379,7 @@ export default function HomePage() {
               <div className="flex flex-col sm:flex-row gap-3 pb-8 sm:pb-0">
                 <Button
                   onClick={() => {
-                    trackCTAClick('hero-tarife-vergleichen', window.location.pathname);
+                    trackCTAClick('Jetzt Tarife vergleichen');
                     scrollToSection('vergleichsrechner');
                   }}
                   className="bg-secondary text-secondary-foreground hover:bg-secondary/90 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 h-12 sm:h-14 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-bold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
@@ -388,7 +388,7 @@ export default function HomePage() {
                 </Button>
                 <Button
                   onClick={() => {
-                    trackCTAClick('hero-photovoltaik', window.location.pathname);
+                    trackCTAClick('Photovoltaik Beratung');
                     scrollToSection('photovoltaik');
                   }}
                   className="bg-white/20 border-2 border-white text-white hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary h-12 sm:h-14 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-semibold backdrop-blur-md transition-all w-full sm:w-auto"

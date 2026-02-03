@@ -10,20 +10,15 @@
  * - Only appears on first visit
  * - Disappears after consent is given
  * - Small "Privacy Settings" link to reopen
- * - GA4 integration for consent tracking
+ * - GA4 integration with consent-safe tracking
+ * - Events only tracked AFTER Analytics consent is granted
  */
 
 import React, { useEffect, useState } from 'react';
 import { Settings, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ROUTES } from '@/lib/routes';
-
-declare global {
-  interface Window {
-    dataLayer?: any[];
-    gtag?: (...args: any[]) => void;
-  }
-}
+import { updateConsent } from '@/services/ga4-tracking';
 
 interface ConsentState {
   analytics: boolean;
@@ -68,13 +63,8 @@ export default function ConsentBanner() {
   }, []);
 
   const applyConsent = (consentState: ConsentState) => {
-    // Update GA4 consent mode
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('consent', 'update', {
-        'analytics_storage': consentState.analytics ? 'granted' : 'denied',
-        'marketing_storage': consentState.marketing ? 'granted' : 'denied',
-      });
-    }
+    // Update GA4 consent mode via service
+    updateConsent(consentState.analytics, consentState.marketing);
 
     // Dispatch custom event for other components
     window.dispatchEvent(

@@ -31,7 +31,7 @@ export const SEO_CONFIG = {
   
   // Search Console & Analytics (add your IDs here)
   googleSearchConsoleVerification: '', // Add your verification code
-  googleAnalyticsId: '', // Add your GA4 ID
+  googleAnalyticsId: 'G-XXXXXXXXXX', // Add your GA4 Measurement ID (format: G-XXXXXXXXXX)
   
   // Robots Meta
   robots: 'index, follow',

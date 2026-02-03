@@ -1,6 +1,6 @@
 import { MemberProvider } from '@/integrations';
 import { createBrowserRouter, RouterProvider, Navigate, Outlet } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { ScrollToTop } from '@/lib/scroll-to-top';
 import { SEO_CONFIG } from '@/lib/seo-config';
 import { ROUTES } from '@/lib/routes';
@@ -11,6 +11,7 @@ import WebsiteSchema from '@/components/WebsiteSchema';
 import SearchConsoleVerification from '@/components/SearchConsoleVerification';
 import SitemapNotification from '@/components/SitemapNotification';
 import ConsentBanner from '@/components/ConsentBanner';
+import { initializeGA4 } from '@/services/ga4-tracking';
 
 // Lazy load non-critical pages for code-splitting
 const GewerbestromPage = lazy(() => import('@/components/pages/GewerbestromPage'));
@@ -60,6 +61,13 @@ const LazyFallback = () => <div className="min-h-screen flex items-center justif
 
 // Layout component that includes ScrollToTop and SEO components
 function Layout() {
+  // Initialize GA4 on app load (consent mode enabled by default)
+  useEffect(() => {
+    if (SEO_CONFIG.googleAnalyticsId) {
+      initializeGA4(SEO_CONFIG.googleAnalyticsId);
+    }
+  }, []);
+
   return (
     <div className="min-w-0 overflow-x-hidden ox-hidden">
       <ScrollToTop />

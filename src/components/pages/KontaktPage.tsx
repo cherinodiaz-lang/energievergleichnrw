@@ -30,7 +30,7 @@ export default function KontaktPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Track CTA click
-    trackCTAClick('contact-form-submit', window.location.pathname);
+    trackCTAClick('Kontaktformular');
     // Show dialog instead of alert
     setShowDialog(true);
   };
