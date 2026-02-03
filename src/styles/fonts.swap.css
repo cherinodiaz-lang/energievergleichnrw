@@ -1,4 +1,4 @@
-/* This file contains font-face declarations with font-display: swap for optimal font loading performance */
+/* This file contains all font faces with font-display: swap for improved font loading performance */
 /* heading - montserrat */
 @font-face {font-family: 'montserrat'; font-style: normal; font-weight: 400; font-display: swap; src: url('//static.parastorage.com/tag-bundler/api/v1/fonts-cache/googlefont/woff2/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459WZhyyTh89ZNpQ.woff2') format('woff2'); unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;}
 @font-face {font-family: 'montserrat'; font-style: italic; font-weight: 400; font-display: swap; src: url('//static.parastorage.com/tag-bundler/api/v1/fonts-cache/googlefont/woff2/s/montserrat/v14/JTUQjIg1_i6t8kCHKm459WxRxi7m0dR9pBOi.woff2') format('woff2'); unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;}
