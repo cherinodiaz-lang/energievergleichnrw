@@ -15,7 +15,14 @@ export type RouteKey =
   | "ratgeberWechselwissen"
   | "kontakt"
   | "impressum"
-  | "datenschutz";
+  | "datenschutz"
+  // Legacy uppercase variants (for backward compatibility with existing code)
+  | "STROMVERGLEICH_NRW"
+  | "GASVERGLEICH_NRW"
+  | "PHOTOVOLTAIK_NRW"
+  | "KONTAKT"
+  | "IMPRESSUM"
+  | "DATENSCHUTZ";
 
 /**
  * Zentrale Pfade (keine hardcodierten Strings mehr in Header/Footer/Buttons/CTAs).
@@ -37,6 +44,13 @@ export const ROUTES: Record<RouteKey, string> = {
   kontakt: "/kontakt",
   impressum: "/impressum",
   datenschutz: "/datenschutz",
+  // Legacy uppercase variants (for backward compatibility)
+  STROMVERGLEICH_NRW: "/stromvergleich-nrw",
+  GASVERGLEICH_NRW: "/gasvergleich-nrw",
+  PHOTOVOLTAIK_NRW: "/photovoltaik-nrw",
+  KONTAKT: "/kontakt",
+  IMPRESSUM: "/impressum",
+  DATENSCHUTZ: "/datenschutz",
 };
 
 export type NavItem = {
