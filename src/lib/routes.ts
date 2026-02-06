@@ -59,6 +59,7 @@ export type NavItem = {
   to: string;
   description?: string;
   icon?: ReactNode;
+  submenu?: NavItem[];
 };
 
 /**
@@ -70,7 +71,15 @@ export const NAV_MAIN: NavItem[] = [
   { key: "stromvergleich", label: "Strom", to: ROUTES.stromvergleich },
   { key: "gasvergleich", label: "Gas", to: ROUTES.gasvergleich },
   { key: "photovoltaik", label: "Photovoltaik", to: ROUTES.photovoltaik },
-  { key: "gewerbestrom", label: "Gewerbe", to: ROUTES.gewerbestrom },
+  {
+    key: "gewerbe",
+    label: "Gewerbe",
+    to: ROUTES.gewerbestrom,
+    submenu: [
+      { key: "gewerbestrom", label: "Gewerbestrom", to: ROUTES.gewerbestrom },
+      { key: "gewerbegas", label: "Gewerbegas", to: ROUTES.gewerbegas },
+    ],
+  },
   { key: "ratgeber", label: "Ratgeber", to: ROUTES.ratgeberHub },
 ];
 

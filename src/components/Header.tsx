@@ -1,12 +1,14 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Zap, Menu, X } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { Zap, Menu, X, ChevronDown } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { NAV_MAIN, ROUTES } from '@/lib/routes';
 import { trackCTAClick } from '@/services/form-submission';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -18,13 +20,29 @@ export default function Header() {
   // Close mobile menu on Escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setMobileMenuOpen(false);
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+        setOpenDropdown(null);
+      }
     };
-    if (mobileMenuOpen) {
+    if (mobileMenuOpen || openDropdown) {
       document.addEventListener('keydown', handleEscape);
       return () => document.removeEventListener('keydown', handleEscape);
     }
-  }, [mobileMenuOpen]);
+  }, [mobileMenuOpen, openDropdown]);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+    if (openDropdown) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [openDropdown]);
 
   const scrollToSection = (sectionId: string) => {
     if (location.pathname !== '/') {
@@ -55,6 +73,14 @@ export default function Header() {
     setMobileMenuOpen(false);
   };
 
+  const isActive = (path: string) => {
+    return location.pathname === path || location.pathname.startsWith(path + '/');
+  };
+
+  const toggleDropdown = (key: string) => {
+    setOpenDropdown(openDropdown === key ? null : key);
+  };
+
   return (
     <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
       <div className="max-w-[120rem] mx-auto px-3 sm:px-6 lg:px-12">
@@ -81,13 +107,56 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-6 xl:gap-8" aria-label="Hauptnavigation">
             {NAV_MAIN.map((item) => (
-              <Link
-                key={item.key}
-                to={item.to}
-                className="font-paragraph text-sm xl:text-base text-foreground hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1 transition-colors"
-              >
-                {item.label}
-              </Link>
+              <div key={item.key} className="relative group">
+                {item.submenu ? (
+                  <>
+                    <button
+                      onClick={() => toggleDropdown(item.key)}
+                      onMouseEnter={() => setOpenDropdown(item.key)}
+                      className={`font-paragraph text-sm xl:text-base flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1 transition-colors ${
+                        isActive(item.to) ? 'text-primary font-semibold' : 'text-foreground hover:text-primary'
+                      }`}
+                    >
+                      {item.label}
+                      <ChevronDown className={`w-4 h-4 transition-transform ${openDropdown === item.key ? 'rotate-180' : ''}`} />
+                    </button>
+                    {/* Desktop Dropdown */}
+                    <div
+                      ref={dropdownRef}
+                      onMouseLeave={() => setOpenDropdown(null)}
+                      className={`absolute left-0 mt-0 w-48 bg-white border border-gray-100 rounded-lg shadow-lg transition-all duration-200 ${
+                        openDropdown === item.key
+                          ? 'opacity-100 visible'
+                          : 'opacity-0 invisible'
+                      }`}
+                    >
+                      {item.submenu.map((subitem) => (
+                        <Link
+                          key={subitem.key}
+                          to={subitem.to}
+                          onClick={() => setOpenDropdown(null)}
+                          className={`block px-4 py-3 font-paragraph text-sm first:rounded-t-lg last:rounded-b-lg transition-colors ${
+                            isActive(subitem.to)
+                              ? 'bg-primary/10 text-primary font-semibold'
+                              : 'text-foreground hover:bg-gray-50'
+                          }`}
+                        >
+                          {subitem.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <Link
+                    to={item.to}
+                    className={`font-paragraph text-sm xl:text-base focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1 transition-colors ${
+                      isActive(item.to) ? 'text-primary font-semibold' : 'text-foreground hover:text-primary'
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                )}
+              </div>
             ))}
           </nav>
 
@@ -125,7 +194,9 @@ export default function Header() {
                   <Link
                     to={item.to}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="font-paragraph font-medium text-sm sm:text-base text-foreground hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset transition-colors text-left py-3 sm:py-4 px-3 sm:px-4 block"
+                    className={`font-paragraph font-medium text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset transition-colors text-left py-3 sm:py-4 px-3 sm:px-4 block ${
+                      isActive(item.to) ? 'text-primary' : 'text-foreground hover:text-primary'
+                    }`}
                   >
                     {item.label}
                   </Link>
