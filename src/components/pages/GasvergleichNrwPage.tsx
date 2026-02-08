@@ -448,6 +448,17 @@ export default function GasvergleichNrwPage() {
             </div>
 
             <div>
+              <h3 className="font-heading text-xl font-bold text-primary mb-4">Gasanbieter wechseln in 5 Schritten</h3>
+              <ol className="font-paragraph text-gray-700 space-y-3 mb-6 list-decimal list-inside">
+                <li><strong>Aktuelle Gasrechnung bereitstellen:</strong> Suchen Sie Ihre letzte Gasrechnung heraus, um Ihren Verbrauch und Ihre Zählernummer zu finden.</li>
+                <li><strong>Neuen Anbieter auswählen:</strong> Nutzen Sie unseren Vergleichsrechner, um den günstigsten Tarif für Ihre Situation zu finden.</li>
+                <li><strong>Wechsel beauftragen:</strong> Geben Sie Ihre Daten ein und beauftragen Sie den Wechsel – wir kümmern uns um die Kündigung beim alten Anbieter.</li>
+                <li><strong>Kündigungsfrist einhalten:</strong> Der neue Anbieter kümmert sich um die Einhaltung der Kündigungsfrist (meist 4 Wochen zum Monatsende).</li>
+                <li><strong>Wechsel abgeschlossen:</strong> Nach 4-6 Wochen ist der Wechsel komplett – Sie zahlen ab sofort den neuen, günstigeren Tarif.</li>
+              </ol>
+            </div>
+
+            <div>
               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Welche Angaben du brauchst</h3>
               <ul className="font-paragraph text-gray-700 space-y-2 mb-6">
                 <li className="flex items-start gap-3">
