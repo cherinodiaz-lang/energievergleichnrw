@@ -63,6 +63,76 @@ export default function GewerbeCategoryPage() {
         </div>
       </section>
 
+      {/* Introductory Section */}
+      <section className="w-full py-16 bg-white border-b border-light-grey">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="max-w-3xl">
+              <h2 className="font-heading text-2xl sm:text-3xl font-semibold tracking-tight text-primary mb-6">
+                Energieversorgung für Gewerbebetriebe
+              </h2>
+              <p className="font-paragraph text-base text-gray-700 mb-6 leading-relaxed">
+                Als Gewerbetreibender oder Unternehmer haben Sie spezifische Anforderungen an Ihre Energieversorgung. Gewerbestrom und Gewerbegas unterscheiden sich grundlegend von Privatkundentarifen – sowohl in der Preisgestaltung als auch in den vertraglichen Bedingungen. Unser Ratgeber bietet Ihnen umfassende Informationen, um fundierte Entscheidungen zu treffen und Ihre Energiekosten zu optimieren. Erfahren Sie, worauf Sie bei der Auswahl Ihres Energieanbieters achten sollten und wie Sie von besseren Konditionen profitieren können.
+              </p>
+
+              <div className="mb-8">
+                <h3 className="font-heading text-lg font-semibold text-foreground mb-4">
+                  Häufige Fragen von Gewerbetreibenden:
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary font-bold mt-1">•</span>
+                    <span className="font-paragraph text-gray-700">Welche Unterschiede gibt es zwischen Gewerbestrom und Haushaltsstrom?</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary font-bold mt-1">•</span>
+                    <span className="font-paragraph text-gray-700">Wie kann ich die Energiekosten meines Betriebs senken?</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary font-bold mt-1">•</span>
+                    <span className="font-paragraph text-gray-700">Worauf sollte ich bei Gewerbegas-Verträgen achten?</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary font-bold mt-1">•</span>
+                    <span className="font-paragraph text-gray-700">Wie funktioniert der Wechsel zu einem neuen Energieanbieter?</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary font-bold mt-1">•</span>
+                    <span className="font-paragraph text-gray-700">Welche Vertragslaufzeiten sind für Gewerbetreibende üblich?</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="https://www.energievergleich.shop/gewerbestrom"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-primary font-semibold hover:text-primary/80 transition-colors underline"
+                >
+                  Gewerbestrom anfragen
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+                <a
+                  href="https://www.energievergleich.shop/gewerbegas"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-primary font-semibold hover:text-primary/80 transition-colors underline"
+                >
+                  Gewerbegas anfragen
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Articles Grid */}
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
