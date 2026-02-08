@@ -34,7 +34,7 @@ export default function Footer() {
               </div>
               <div className="flex flex-col">
                 <span className="font-heading font-bold text-base sm:text-lg">energievergleich</span>
-                <span className="font-paragraph text-xs opacity-80">.nrw</span>
+                <span className="font-paragraph text-xs opacity-80">.shop</span>
               </div>
             </Link>
             <p className="font-paragraph text-xs sm:text-sm opacity-90 leading-relaxed">
@@ -173,7 +173,7 @@ export default function Footer() {
         <div className="border-t border-primary-foreground/20 mt-8 sm:mt-12 pt-6 sm:pt-8">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-6">
             <p className="font-paragraph text-xs sm:text-sm opacity-80">
-              © {new Date().getFullYear()} energievergleich.nrw. Alle Rechte vorbehalten.
+              © {new Date().getFullYear()} energievergleich.shop. Alle Rechte vorbehalten.
             </p>
             <div className="flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-2 text-xs sm:text-sm leading-snug">
               {NAV_LEGAL.map((item) => (

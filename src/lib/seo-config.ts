@@ -5,7 +5,8 @@
 
 export const SEO_CONFIG = {
   // Site Information
-  siteName: 'energievergleich.shop',
+  // PRIMARY DOMAIN: https://www.energievergleich.shop
+  siteName: 'www.energievergleich.shop',
   siteUrl: 'https://www.energievergleich.shop',
   siteDescription: 'Vergleichen Sie Strom- und Gastarife in Nordrhein-Westfalen. Finden Sie die besten Angebote für Privat- und Gewerbekunden. Kostenlos und unabhängig.',
   
