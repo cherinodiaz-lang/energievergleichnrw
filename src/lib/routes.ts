@@ -101,4 +101,5 @@ export const NAV_SECONDARY: NavItem[] = [
 export const NAV_LEGAL: NavItem[] = [
   { key: "impressum", label: "Impressum", to: ROUTES.impressum },
   { key: "datenschutz", label: "Datenschutz", to: ROUTES.datenschutz },
+  { key: "methodik", label: "So vergleichen wir", to: "/methodik" },
 ];
