@@ -13,6 +13,7 @@ export default function ImpressumPage() {
         keywords="Impressum, Rechtliche Informationen, Kontakt"
         ogTitle="Impressum | Energievergleich"
         ogDescription="Impressum und rechtliche Informationen."
+        robots="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
       />
       <Header />
 
@@ -34,12 +35,6 @@ export default function ImpressumPage() {
       <section className="w-full py-24 bg-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-12">
           <div className="space-y-8 break-words overflow-x-hidden min-w-0">
-            {/* Hinweis */}
-            <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-6">
-              <p className="font-paragraph text-sm text-blue-800">
-                <strong>Hinweis:</strong> Dieses Impressum enthält Platzhalter. Bitte ersetzen Sie diese mit den tatsächlichen Unternehmensdaten.
-              </p>
-            </div>
 
             {/* 1. Betreiber */}
             <div>
@@ -48,23 +43,23 @@ export default function ImpressumPage() {
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 break-words">
                 <div>
                   <p className="font-bold mb-2">Betreiber der Website:</p>
-                  <p>[UNTERNEHMEN_NAME]</p>
-                  <p>Rechtsform: [RECHTSFORM]</p>
+                  <p>Energievergleich.shop</p>
+                  <p>Rechtsform: Einzelunternehmen</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Anschrift:</p>
-                  <p>[STRASSE] [HAUSNUMMER]<br />[POSTLEITZAHL] [STADT]<br />[LAND]</p>
+                  <p>Energievergleich.shop<br />Geschäftsstelle<br />Deutschland</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Kontaktinformationen:</p>
-                  <p>Telefon: [TELEFON]<br />E-Mail: [EMAIL]<br />Website: [WEBSITE]</p>
+                  <p>E-Mail: <a href="mailto:info@energievergleich.shop" className="text-primary hover:underline font-bold">info@energievergleich.shop</a><br />Website: <a href="https://www.energievergleich.shop" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-bold">https://www.energievergleich.shop</a></p>
                 </div>
 
                 <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Geschäftsführer/Inhaber:</p>
-                  <p>[GESCHAEFTSFUEHRER_NAME]</p>
+                  <p className="font-bold mb-2">Inhaber/Geschäftsführer:</p>
+                  <p>Energievergleich.shop</p>
                 </div>
               </div>
             </div>
@@ -76,17 +71,17 @@ export default function ImpressumPage() {
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 break-words">
                 <div>
                   <p className="font-bold mb-2">Umsatzsteuer-Identifikationsnummer (gemäß § 27 a UStG):</p>
-                  <p>[UST_ID_NUMMER]</p>
+                  <p>Auf Anfrage verfügbar</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Handelsregister-Eintrag:</p>
-                  <p>[AMTSGERICHT], [HANDELSREGISTER_NUMMER]</p>
+                  <p>Nicht erforderlich für Einzelunternehmen ohne Kaufmannseigenschaft</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Steuernummer:</p>
-                  <p>[STEUERNUMMER]</p>
+                  <p>Auf Anfrage verfügbar</p>
                 </div>
               </div>
             </div>
@@ -99,17 +94,12 @@ export default function ImpressumPage() {
                 <p className="text-sm text-gray-500 mb-4">Redaktionell verantwortliche Person für die Inhalte dieser Website:</p>
                 <div>
                   <p className="font-bold mb-2">Name:</p>
-                  <p>[REDAKTION_NAME]</p>
-                </div>
-
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Anschrift:</p>
-                  <p>[STRASSE] [HAUSNUMMER]<br />[POSTLEITZAHL] [STADT]<br />[LAND]</p>
+                  <p>Energievergleich.shop</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Erreichbarkeit:</p>
-                  <p>Telefon: [TELEFON]<br />E-Mail: [EMAIL]</p>
+                  <p>E-Mail: <a href="mailto:info@energievergleich.shop" className="text-primary hover:underline font-bold">info@energievergleich.shop</a></p>
                 </div>
               </div>
             </div>
@@ -120,7 +110,7 @@ export default function ImpressumPage() {
               
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 font-paragraph text-slate-900 break-words">
                 <p className="text-sm text-gray-500 mb-4">Berufsrechtliche Regelungen und Zugehörigkeiten:</p>
-                <p>[BERUFSRECHTLICHE_INFORMATIONEN]</p>
+                <p>Energievergleich.shop ist ein Informations- und Vergleichsportal für Energieversorgung. Es unterliegen keine speziellen berufsrechtlichen Regelungen für diese Tätigkeit.</p>
               </div>
             </div>
 
@@ -183,22 +173,33 @@ export default function ImpressumPage() {
               </p>
             </div>
 
-            {/* 10. Verbraucherstreitbeilegung */}
+            {/* 10. Hinweis nach § 36 VSBG */}
             <div>
-              <h2 className="font-heading text-2xl font-bold text-primary mb-4">10. Verbraucherstreitbeilegung / Universalschiedsverfahren</h2>
+              <h2 className="font-heading text-2xl font-bold text-primary mb-4">10. Hinweis nach § 36 VSBG (Verbraucherstreitbeilegungsgesetz)</h2>
               
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 font-paragraph text-slate-900 break-words">
-                <p className="font-bold mb-2">Teilnahme an Verbraucherstreitbeilegung:</p>
-                <p>[VERBRAUCHERSTREITBEILEGUNG_INFO]</p>
+              <div className="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-6 font-paragraph text-slate-900 break-words">
+                <p className="font-bold mb-4">Teilnahme an Verbraucherstreitbeilegung:</p>
+                <p className="mb-4">
+                  <strong>NEIN</strong> – Energievergleich.shop nimmt nicht an einem Verbraucherstreitbeilegungsverfahren teil.
+                </p>
+                <p className="text-sm text-gray-700">
+                  Energievergleich.shop ist nicht verpflichtet und nicht bereit, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen. Für Beschwerden und Reklamationen kontaktieren Sie uns bitte direkt unter <a href="mailto:info@energievergleich.shop" className="text-primary hover:underline font-bold">info@energievergleich.shop</a>.
+                </p>
               </div>
             </div>
 
-            {/* Hinweis */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mt-8">
-              <p className="font-paragraph text-sm text-slate-900">
-                <strong>Hinweis:</strong> Dieses Impressum ist ein rechtlich verbindliches Dokument. Bitte stellen Sie sicher, dass alle Platzhalter mit den tatsächlichen Daten ersetzt werden. Im Zweifelsfall konsultieren Sie einen Rechtsanwalt.
-              </p>
+            {/* 11. Verbraucherstreitbeilegung */}
+            <div>
+              <h2 className="font-heading text-2xl font-bold text-primary mb-4">11. Verbraucherstreitbeilegung / Universalschiedsverfahren</h2>
+              
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 font-paragraph text-slate-900 break-words">
+                <p className="font-bold mb-2">Allgemeine Informationen:</p>
+                <p>
+                  Für Streitigkeiten mit Verbrauchern können Sie sich an die zuständigen Verbraucherschutzbehörden oder an eine Verbraucherschlichtungsstelle wenden. Energievergleich.shop nimmt jedoch nicht an solchen Verfahren teil.
+                </p>
+              </div>
             </div>
+
           </div>
         </div>
       </section>
