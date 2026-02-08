@@ -16,7 +16,65 @@ import { getPageSEO } from '@/lib/seo-config';
 
 export default function GewerbegasPage() {
   const navigate = useNavigate();
-  // ... keep existing code (state declarations) ...
+
+  useEffect(() => {
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Wie oft kann ich meinen Gewerbegas-Anbieter wechseln?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sie können Ihren Gewerbegas-Anbieter jederzeit wechseln, sofern Sie die Kündigungsfrist einhalten. Bei den meisten Verträgen beträgt diese 4 Wochen zum Ende eines Kalendermonats. Nach einem Wechsel können Sie frühestens nach 12 Monaten erneut wechseln.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Ist der Wechsel des Gewerbegas-Anbieters kostenlos?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Ja, völlig kostenlos. Es fallen keine Gebühren für die Kündigung beim alten Anbieter oder die Anmeldung beim neuen an. Wir kümmern uns um alle Formalitäten.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Wie lange dauert ein Gewerbegas-Wechsel?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'In der Regel 4-6 Wochen. Ihre Gasversorgung wird nicht unterbrochen. Der neue Anbieter kümmert sich um alle notwendigen Schritte.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Kann ich während des Wechsels ohne Gas sein?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Nein. Ihre Gasversorgung ist gesetzlich geschützt. Im Notfall springt der Grundversorger ein.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Welche Daten benötige ich für einen Gewerbegas-Vergleich?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Postleitzahl und Gasverbrauch (in kWh). Den Verbrauch finden Sie auf Ihrer letzten Rechnung. Optional: Zählernummer und Heizungsart.'
+          }
+        }
+      ]
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(faqSchema);
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
   const [companyName, setCompanyName] = useState('');
   const [contactPerson, setContactPerson] = useState('');
   const [email, setEmail] = useState('');

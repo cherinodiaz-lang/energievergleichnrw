@@ -15,6 +15,64 @@ import { Link } from 'react-router-dom';
 import { getPageSEO } from '@/lib/seo-config';
 
 export default function GewerbestromPage() {
+  useEffect(() => {
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Wie oft kann ich meinen Gewerbestrom-Anbieter wechseln?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sie können Ihren Gewerbestrom-Anbieter jederzeit wechseln, sofern Sie die Kündigungsfrist einhalten. Bei den meisten Verträgen beträgt diese 4 Wochen zum Ende eines Kalendermonats. Nach einem Wechsel können Sie frühestens nach 12 Monaten erneut wechseln.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Ist der Wechsel des Gewerbestrom-Anbieters kostenlos?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Ja, völlig kostenlos. Es fallen keine Gebühren für die Kündigung beim alten Anbieter oder die Anmeldung beim neuen an. Wir kümmern uns um alle Formalitäten.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Wie lange dauert ein Gewerbestrom-Wechsel?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'In der Regel 4-6 Wochen. Ihre Stromversorgung wird nicht unterbrochen. Der neue Anbieter kümmert sich um alle notwendigen Schritte.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Kann ich während des Wechsels ohne Strom sein?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Nein. Ihre Stromversorgung ist gesetzlich geschützt. Im Notfall springt der Grundversorger ein.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Welche Daten benötige ich für einen Gewerbestrom-Vergleich?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Postleitzahl und Stromverbrauch (in kWh). Den Verbrauch finden Sie auf Ihrer letzten Rechnung. Optional: Zählernummer und Lastprofil.'
+          }
+        }
+      ]
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(faqSchema);
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
   const [companyName, setCompanyName] = useState('');
   const [contactPerson, setContactPerson] = useState('');
   const [email, setEmail] = useState('');
