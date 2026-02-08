@@ -379,76 +379,96 @@ export default function StromvergleichNrwPage() {
         <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-8">
             <div>
-              <h2 className="font-heading text-3xl font-bold text-primary mb-6">Stromvergleich in NRW – Sparen Sie bis zu 400 Euro pro Jahr</h2>
+              <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Stromvergleich für NRW</h2>
               
               <p className="font-paragraph text-lg text-gray-700 mb-6">
-                Der Stromvergleich ist der erste Schritt zu niedrigeren Energiekosten. In Nordrhein-Westfalen haben Haushalte die Wahl zwischen hunderten von Stromanbietern und Tarifen. Mit unserem kostenlosen Stromvergleich finden Sie in wenigen Minuten den günstigsten Tarif für Ihren Haushalt.
+                Mit unserem Stromvergleich finden Sie in wenigen Minuten den günstigsten Stromtarif für Ihren Haushalt in Nordrhein-Westfalen. Der Vergleich ist völlig kostenlos und unverbindlich – Sie geben nur Ihre Postleitzahl und Ihren Stromverbrauch ein und erhalten sofort alle verfügbaren Tarife übersichtlich sortiert. Sparen Sie durchschnittlich 200–400 Euro pro Jahr durch einen Wechsel zu einem besseren Anbieter.
               </p>
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Wie funktioniert der Stromwechsel in NRW?</h3>
-              <p className="font-paragraph text-gray-700 mb-4">
-                Der Wechsel zu einem neuen Stromanbieter ist einfacher als Sie denken. Geben Sie Ihre Postleitzahl und Ihren jährlichen Stromverbrauch in unseren Vergleichsrechner ein. Innerhalb von Sekunden sehen Sie alle verfügbaren Stromtarife in Ihrer Region, sortiert nach Preis. Wählen Sie Ihren Wunsch-Tarif aus und wir kümmern uns um alle Formalitäten – kostenlos und ohne Risiko.
-              </p>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">So funktioniert der Vergleich – 5 einfache Schritte</h3>
+              <ol className="font-paragraph text-gray-700 space-y-3 mb-6 list-decimal list-inside">
+                <li><strong>Postleitzahl eingeben:</strong> Geben Sie Ihre PLZ ein, um Tarife für Ihren Netzbereich zu sehen</li>
+                <li><strong>Stromverbrauch angeben:</strong> Tragen Sie Ihren jährlichen Verbrauch in kWh ein (zu finden auf der Stromrechnung)</li>
+                <li><strong>Tarife vergleichen:</strong> Sehen Sie alle verfügbaren Angebote mit Preis, Laufzeit und Preisgarantie</li>
+                <li><strong>Wunsch-Tarif wählen:</strong> Entscheiden Sie sich für den besten Tarif nach Ihren Kriterien</li>
+                <li><strong>Wechsel abschließen:</strong> Wir kümmern uns um die Kündigung beim alten Anbieter und den Wechsel – kostenlos und sicher</li>
+              </ol>
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Welche Vorteile bietet ein Stromwechsel?</h3>
-              <ul className="font-paragraph text-gray-700 space-y-3 mb-6">
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Welche Angaben du brauchst</h3>
+              <ul className="font-paragraph text-gray-700 space-y-2 mb-6">
                 <li className="flex items-start gap-3">
-                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
-                  <span><strong>Kostenersparnis:</strong> Durchschnittlich 200-400 Euro pro Jahr durch optimierte Tarife</span>
+                  <span className="text-secondary font-bold flex-shrink-0">•</span>
+                  <span><strong>Postleitzahl:</strong> Bestimmt Ihren Stromnetzbetreiber und verfügbare Tarife</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
-                  <span><strong>Ökostrom-Optionen:</strong> Viele günstige Tarife mit 100% erneuerbaren Energien</span>
+                  <span className="text-secondary font-bold flex-shrink-0">•</span>
+                  <span><strong>Jahresverbrauch in kWh:</strong> Finden Sie auf Ihrer letzten Stromrechnung unter „Verbrauch"</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
-                  <span><strong>Preisgarantie:</strong> Schutz vor Preiserhöhungen für 12-24 Monate</span>
+                  <span className="text-secondary font-bold flex-shrink-0">•</span>
+                  <span><strong>Zählernummer (optional):</strong> Hilft bei der genauen Tarifberechnung</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
-                  <span><strong>Flexible Laufzeiten:</strong> Verträge ab 12 Monaten mit kurzen Kündigungsfristen</span>
+                  <span className="text-secondary font-bold flex-shrink-0">•</span>
+                  <span><strong>Name und E-Mail:</strong> Für die Kontaktaufnahme durch Anbieter</span>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4" id="so-funktioniert-unser-vergleich">So funktioniert unser Vergleich</h3>
-              <p className="font-paragraph text-gray-700 mb-4">
-                Nordrhein-Westfalen ist das bevölkerungsreichste Bundesland Deutschlands und hat einen großen Strommarkt mit vielen Anbietern. Die Strompreise in NRW variieren je nach Postleitzahl und Netzbetreiber. Unser Stromvergleich berücksichtigt alle regionalen Besonderheiten und zeigt Ihnen die besten Tarife für Ihre genaue Adresse – ob in Düsseldorf, Köln, Essen, Dortmund oder einer anderen Stadt in NRW.
-              </p>
-              <p className="font-paragraph text-gray-700 mb-4">
-                Mit unserem kostenlosen Vergleichsrechner finden Sie in wenigen Minuten den optimalen Tarif. Wir berücksichtigen dabei nicht nur den Preis, sondern auch Vertragslaufzeiten, Kündigungsfristen, Preisgarantien und verfügbare Neukundenboni. Erfahren Sie mehr über <Link to="/ratgeber/strom/sofortige-sparmoeglichkeiten" className="text-primary font-bold hover:underline">sofortige Sparmöglichkeiten beim Stromtarif</Link>.
-              </p>
-              <p className="font-paragraph text-gray-700 text-sm mt-4">
-                <strong>Transparenz:</strong> Erfahren Sie <Link to="/methodik#so-funktioniert-unser-vergleich" className="text-primary font-bold hover:underline">wie unser Vergleich funktioniert</Link> und welche Kriterien wir für die Bewertung nutzen.
-              </p>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Worauf du achten solltest</h3>
+              <ul className="font-paragraph text-gray-700 space-y-3 mb-6">
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Laufzeit:</strong> Kurze Laufzeiten (12 Monate) bieten mehr Flexibilität als längere Verträge</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Preisgarantie:</strong> Achten Sie auf die Dauer der Preisgarantie – mindestens 12 Monate sind empfehlenswert</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Neukundenbonus:</strong> Viele Anbieter bieten Wechselboni, die die Gesamtkosten senken</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Abschlag und Kündigungsfristen:</strong> Prüfen Sie die Höhe der monatlichen Abschläge und die Kündigungsfrist zum Vertragsende</span>
+                </li>
+              </ul>
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Häufige Fragen zum Stromvergleich</h3>
-              <div className="space-y-4 mb-6">
-                <div>
-                  <p className="font-paragraph font-bold text-gray-800 mb-2">Wie oft kann ich meinen Stromanbieter wechseln?</p>
-                  <p className="font-paragraph text-gray-700">Sie können jederzeit wechseln, müssen aber die Kündigungsfrist (meist 4 Wochen zum Monatsende) einhalten. Nach einem Wechsel können Sie frühestens nach 12 Monaten erneut wechseln – es sei denn, Sie haben einen Vertrag mit kürzerer Laufzeit.</p>
-                </div>
-                <div>
-                  <p className="font-paragraph font-bold text-gray-800 mb-2">Ist der Stromwechsel wirklich kostenlos?</p>
-                  <p className="font-paragraph text-gray-700">Ja, völlig kostenlos. Es fallen keine Gebühren für die Kündigung beim alten Anbieter oder die Anmeldung beim neuen an. Wir kümmern uns um alle Formalitäten ohne zusätzliche Kosten.</p>
-                </div>
-                <div>
-                  <p className="font-paragraph font-bold text-gray-800 mb-2">Kann ich während des Wechsels ohne Strom sein?</p>
-                  <p className="font-paragraph text-gray-700">Nein. Ihre Stromversorgung ist gesetzlich geschützt und wird nicht unterbrochen. Selbst bei Verzögerungen springt der Grundversorger ein.</p>
-                </div>
-              </div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Häufige Fehler beim Stromwechsel</h3>
+              <ul className="font-paragraph text-gray-700 space-y-3 mb-6">
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✗</span>
+                  <span><strong>Nur auf den Preis schauen:</strong> Der niedrigste Preis ist nicht immer die beste Wahl – achten Sie auch auf Laufzeit, Preisgarantie und Kündigungsfristen</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✗</span>
+                  <span><strong>Verbrauch falsch eingeben:</strong> Ein falscher Verbrauch führt zu unrealistischen Tarifangeboten – überprüfen Sie die Zahl auf Ihrer Rechnung</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✗</span>
+                  <span><strong>Kündigungsfristen ignorieren:</strong> Verpassen Sie nicht die Kündigungsfrist beim alten Anbieter – wir kümmern uns darum, aber informieren Sie sich selbst</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Stromvergleich speziell für NRW</h3>
+              <p className="font-paragraph text-gray-700 mb-4">
+                Nordrhein-Westfalen ist das bevölkerungsreichste Bundesland Deutschlands mit großer Vielfalt bei Stromanbietern und Tarifen. Die Strompreise variieren je nach Postleitzahl und Netzbetreiber – in Düsseldorf können die Tarife anders ausfallen als in Köln, Essen oder Dortmund. Unser Vergleich berücksichtigt diese regionalen Unterschiede und zeigt Ihnen die besten Tarife speziell für Ihren Standort in NRW.
+              </p>
             </div>
 
             <div className="bg-secondary/10 border-l-4 border-secondary p-6 rounded">
               <p className="font-paragraph text-gray-700 italic">
-                Mit unserem Stromvergleich für NRW finden Sie garantiert den besten Tarif. Nutzen Sie unseren kostenlosen Vergleichsrechner und sparen Sie ab sofort Geld bei Ihren Stromkosten!
+                Jetzt kostenlos vergleichen und sparen Sie ab sofort bei Ihren Stromkosten!
               </p>
             </div>
           </div>
