@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Zap, Menu, X } from 'lucide-react';
+import { Zap, Menu, X, ChevronDown } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { NAV_MAIN, ROUTES } from '@/lib/routes';
@@ -7,6 +7,7 @@ import { trackCTAClick } from '@/services/form-submission';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -70,7 +71,7 @@ export default function Header() {
             </div>
             <div className="min-w-0 flex flex-col leading-tight">
               <span className="font-heading font-semibold text-xs sm:text-sm lg:text-lg text-primary">
-                Energie
+                Energievergleich
               </span>
               <span className="font-heading font-semibold text-xs sm:text-sm lg:text-lg text-primary">
                 NRW
@@ -81,13 +82,32 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-6 xl:gap-8" aria-label="Hauptnavigation">
             {NAV_MAIN.map((item) => (
-              <Link
-                key={item.key}
-                to={item.to}
-                className="font-paragraph text-sm xl:text-base text-foreground hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1 transition-colors"
-              >
-                {item.label}
-              </Link>
+              <div key={item.key} className="relative group">
+                <Link
+                  to={item.to}
+                  className="font-paragraph text-sm xl:text-base text-foreground hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1 transition-colors flex items-center gap-1"
+                >
+                  {item.label}
+                  {item.submenu && (
+                    <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" aria-hidden="true" />
+                  )}
+                </Link>
+                
+                {/* Desktop Submenu */}
+                {item.submenu && (
+                  <div className="absolute left-0 mt-0 w-48 bg-white border border-gray-100 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+                    {item.submenu.map((subitem) => (
+                      <Link
+                        key={subitem.key}
+                        to={subitem.to}
+                        className="block px-4 py-2 font-paragraph text-sm text-foreground hover:bg-primary/5 hover:text-primary transition-colors"
+                      >
+                        {subitem.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </nav>
 
@@ -122,13 +142,41 @@ export default function Header() {
             <ul className="flex flex-col divide-y divide-gray-100">
               {NAV_MAIN.map((item) => (
                 <li key={item.key}>
-                  <Link
-                    to={item.to}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="font-paragraph font-medium text-sm sm:text-base text-foreground hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset transition-colors text-left py-3 sm:py-4 px-3 sm:px-4 block"
+                  <button
+                    onClick={() => {
+                      if (item.submenu) {
+                        setOpenSubmenu(openSubmenu === item.key ? null : item.key);
+                      } else {
+                        setMobileMenuOpen(false);
+                      }
+                    }}
+                    className="w-full text-left font-paragraph font-medium text-sm sm:text-base text-foreground hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset transition-colors py-3 sm:py-4 px-3 sm:px-4 flex items-center justify-between"
                   >
-                    {item.label}
-                  </Link>
+                    <span>{item.label}</span>
+                    {item.submenu && (
+                      <ChevronDown 
+                        className={`w-4 h-4 transition-transform ${openSubmenu === item.key ? 'rotate-180' : ''}`}
+                        aria-hidden="true"
+                      />
+                    )}
+                  </button>
+                  
+                  {/* Mobile Submenu */}
+                  {item.submenu && openSubmenu === item.key && (
+                    <ul className="bg-gray-50 divide-y divide-gray-100">
+                      {item.submenu.map((subitem) => (
+                        <li key={subitem.key}>
+                          <Link
+                            to={subitem.to}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="block font-paragraph text-sm text-foreground hover:text-primary hover:bg-primary/5 transition-colors py-3 sm:py-4 px-6 sm:px-8"
+                          >
+                            {subitem.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </li>
               ))}
             </ul>
