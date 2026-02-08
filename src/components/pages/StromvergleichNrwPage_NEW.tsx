@@ -620,6 +620,20 @@ export default function StromvergleichNrwPage() {
         </div>
       </section>
 
+      {/* Featured Snippet Section */}
+      <section className="w-full py-24 bg-white">
+        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+          <h3 className="font-heading text-2xl font-bold text-primary mb-8">Stromanbieter wechseln in 5 Schritten</h3>
+          <ol className="font-paragraph text-gray-700 space-y-4 list-decimal list-inside">
+            <li><strong>Postleitzahl und Verbrauch eingeben:</strong> Nutzen Sie unseren Vergleichsrechner mit Ihren Basisdaten.</li>
+            <li><strong>Tarife vergleichen:</strong> Sehen Sie alle verfügbaren Angebote sortiert nach Preis und Konditionen.</li>
+            <li><strong>Wunsch-Tarif wählen:</strong> Entscheiden Sie sich für den Tarif, der am besten zu Ihnen passt.</li>
+            <li><strong>Angebot anfordern:</strong> Kontaktieren Sie den Anbieter oder lassen Sie sich von uns beraten.</li>
+            <li><strong>Wechsel abschließen:</strong> Wir kümmern uns um die Kündigung und den Wechsel – kostenlos und sicher.</li>
+          </ol>
+        </div>
+      </section>
+
       {/* Comparison Criteria Section */}
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
