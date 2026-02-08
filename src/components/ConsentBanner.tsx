@@ -40,7 +40,7 @@ export default function ConsentBanner() {
 
   // Initialize banner on mount - defer to avoid blocking render
   useEffect(() => {
-    const timer = requestIdleCallback(() => {
+    const timer = setTimeout(() => {
       const storedConsent = localStorage.getItem(CONSENT_STORAGE_KEY);
       
       if (!storedConsent) {
@@ -57,9 +57,9 @@ export default function ConsentBanner() {
           setShowBanner(true);
         }
       }
-    }, { timeout: 2000 });
+    }, 100);
     
-    return () => cancelIdleCallback(timer);
+    return () => clearTimeout(timer);
   }, []);
 
   const applyConsent = (consentState: ConsentState) => {
