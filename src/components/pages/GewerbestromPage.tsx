@@ -158,73 +158,104 @@ export default function GewerbestromPage() {
         <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-8">
             <div>
-              <h2 className="font-heading text-3xl font-bold text-primary mb-6">Gewerbestrom in NRW – Optimieren Sie Ihre Energiekosten</h2>
+              <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Gewerbestrom-Anfrage für NRW</h2>
               
               <p className="font-paragraph text-lg text-gray-700 mb-6">
-                Gewerbestrom ist speziell auf die Bedürfnisse von Unternehmen zugeschnitten. Mit unserem kostenlosen Vergleich finden Sie den günstigsten Stromtarif für Ihr Gewerbe in Nordrhein-Westfalen. Sparen Sie bis zu 30% Ihrer Stromkosten durch maßgeschneiderte Tarife und profitieren Sie von persönlicher Beratung.
+                Mit unserem kostenlosen Gewerbestrom-Service finden Sie in wenigen Minuten den günstigsten Stromtarif für Ihr Unternehmen in Nordrhein-Westfalen. Die Anfrage ist völlig kostenlos und unverbindlich – Sie geben nur Ihre Verbrauchsdaten ein und erhalten sofort individualisierte Angebote. Sparen Sie bis zu 30% Ihrer Stromkosten durch optimierte Gewerbestromtarife und profitieren Sie von persönlicher Beratung durch unsere Experten.
               </p>
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Wie funktioniert Gewerbestrom?</h3>
-              <p className="font-paragraph text-gray-700 mb-4">
-                Gewerbestrom unterscheidet sich von Haushaltsstrom durch höhere Verbrauchsmengen und spezielle Tarifmodelle. Für Unternehmen werden Stromtarife oft individuell verhandelt. Unser Vergleich zeigt Ihnen alle verfügbaren Optionen für Ihren Stromverbrauch. Wir kümmern uns um die Kündigung beim alten Anbieter und den Wechsel zum neuen – kostenlos und unkompliziert.
-              </p>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">So funktioniert die Anfrage – 5 Schritte</h3>
+              <ol className="font-paragraph text-gray-700 space-y-3 mb-6 list-decimal list-inside">
+                <li><strong>Jahresverbrauch eingeben:</strong> Geben Sie Ihren jährlichen Stromverbrauch in kWh ein (zu finden auf Ihrer letzten Stromrechnung)</li>
+                <li><strong>Zähler- und Marktlokation (falls vorhanden):</strong> Tragen Sie diese Nummern ein, falls Sie diese bereits haben – sie ermöglichen präzisere Angebote</li>
+                <li><strong>Leistung und Lastprofil:</strong> Geben Sie die maximale Leistung und das Lastprofil an (falls vorhanden)</li>
+                <li><strong>Postleitzahl und Branche:</strong> Nennen Sie Ihren Standort und Ihre Branche für maßgeschneiderte Tarife</li>
+                <li><strong>Angebote vergleichen und wählen:</strong> Erhalten Sie mehrere Angebote, vergleichen Sie Preise, Laufzeiten und Konditionen und wählen Sie das beste Angebot</li>
+              </ol>
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Welche Vorteile bietet Gewerbestrom?</h3>
-              <ul className="font-paragraph text-gray-700 space-y-3 mb-6">
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Welche Angaben du brauchst</h3>
+              <ul className="font-paragraph text-gray-700 space-y-2 mb-6">
                 <li className="flex items-start gap-3">
-                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
-                  <span><strong>Kostenersparnis:</strong> Bis zu 30% Einsparung durch optimierte Gewerbestromtarife</span>
+                  <span className="text-secondary font-bold flex-shrink-0">•</span>
+                  <span><strong>Jahresverbrauch in kWh:</strong> Der wichtigste Wert – finden Sie ihn auf Ihrer letzten Stromrechnung unter „Jahresverbrauch"</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
-                  <span><strong>Planungssicherheit:</strong> Langfristige Verträge mit stabilen Preisen</span>
+                  <span className="text-secondary font-bold flex-shrink-0">•</span>
+                  <span><strong>Zählernummer/Marktlokation (falls vorhanden):</strong> Ermöglicht präzisere Angebote und schnellere Bearbeitung</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
-                  <span><strong>Grüne Energie:</strong> 100% Ökostrom für Ihr nachhaltiges Unternehmen</span>
+                  <span className="text-secondary font-bold flex-shrink-0">•</span>
+                  <span><strong>Leistung:</strong> Die maximale Leistung Ihres Anschlusses in kW (auf der Stromrechnung oder beim Netzbetreiber erfragen)</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
-                  <span><strong>Persönliche Beratung:</strong> Dedizierter Ansprechpartner für Ihr Unternehmen</span>
+                  <span className="text-secondary font-bold flex-shrink-0">•</span>
+                  <span><strong>Lastprofil (falls vorhanden):</strong> Zeigt, wie gleichmäßig Ihr Verbrauch über das Jahr verteilt ist</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">•</span>
+                  <span><strong>Postleitzahl und Branche:</strong> Für regionale Tarife und branchenspezifische Angebote</span>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4" id="so-funktioniert-unser-vergleich">So funktioniert unser Vergleich</h3>
-              <p className="font-paragraph text-gray-700 mb-4">
-                Nordrhein-Westfalen ist das wirtschaftsstärkste Bundesland Deutschlands mit vielen Unternehmen aller Größen. Die Strompreise für Gewerbekunden variieren je nach Verbrauch und Standort. Unser Vergleich berücksichtigt alle regionalen Besonderheiten und zeigt Ihnen die besten Tarife für Ihr Unternehmen – ob in Düsseldorf, Köln, Essen, Dortmund oder einer anderen Stadt in NRW.
-              </p>
-              <p className="font-paragraph text-gray-700 text-sm mt-4">
-                <strong>Transparenz:</strong> Erfahren Sie <Link to="/methodik#so-funktioniert-unser-vergleich" className="text-primary font-bold hover:underline">wie unser Vergleich funktioniert</Link> und welche Kriterien wir für die Bewertung nutzen.
-              </p>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Worauf du achten solltest</h3>
+              <ul className="font-paragraph text-gray-700 space-y-3 mb-6">
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Arbeitspreis vs. Leistungspreis:</strong> Unterscheiden Sie zwischen dem Preis pro kWh (Arbeitspreis) und der Gebühr für die bereitgestellte Leistung</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Preisgarantie:</strong> Achten Sie auf die Dauer der Preisgarantie – mindestens 12 Monate sind empfehlenswert für Planungssicherheit</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Vertragslaufzeit:</strong> Vergleichen Sie Laufzeiten von 12 bis 36 Monaten – längere Laufzeiten bieten oft bessere Preise</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Abnahmebänder:</strong> Prüfen Sie, ob Ihre Verbrauchsmenge in die angebotenen Abnahmebänder passt</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Angebotslaufzeit:</strong> Beachten Sie, wie lange das Angebot gültig ist – bei schnellen Marktveränderungen kann dies wichtig sein</span>
+                </li>
+              </ul>
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Häufige Fragen zu Gewerbestrom</h3>
-              <div className="space-y-4 mb-6">
-                <div>
-                  <p className="font-paragraph font-bold text-gray-800 mb-2">Für wen eignet sich Gewerbestrom?</p>
-                  <p className="font-paragraph text-gray-700">Gewerbestrom ist ideal für kleine und mittelständische Unternehmen, Einzelhändler, Büros, Werkstätten, Gastronomiebetriebe und alle gewerblichen Stromverbraucher in NRW.</p>
-                </div>
-                <div>
-                  <p className="font-paragraph font-bold text-gray-800 mb-2">Wie funktioniert der Wechsel?</p>
-                  <p className="font-paragraph text-gray-700">Der Wechsel ist einfach und unkompliziert. Füllen Sie unser Anfrageformular aus, wir erstellen Ihnen ein individuelles Angebot und kümmern uns um alle Formalitäten. Ihre Stromversorgung bleibt während des gesamten Prozesses gesichert.</p>
-                </div>
-                <div>
-                  <p className="font-paragraph font-bold text-gray-800 mb-2">Welche Daten benötige ich?</p>
-                  <p className="font-paragraph text-gray-700">Postleitzahl, Branche, Standort und jährlicher Stromverbrauch. Den Verbrauch finden Sie auf Ihrer letzten Stromrechnung.</p>
-                </div>
-              </div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Häufige Fehler bei der Gewerbestrom-Anfrage</h3>
+              <ul className="font-paragraph text-gray-700 space-y-3 mb-6">
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✗</span>
+                  <span><strong>Falscher Verbrauch eingeben:</strong> Ein fehlerhafter Jahresverbrauch führt zu unrealistischen Angeboten – überprüfen Sie die Zahl auf Ihrer Rechnung genau</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✗</span>
+                  <span><strong>Nur auf den Preis achten:</strong> Der niedrigste Preis ist nicht immer die beste Wahl – berücksichtigen Sie auch Laufzeit, Preisgarantie und Kündigungsfristen</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✗</span>
+                  <span><strong>Kündigungsfristen beim alten Anbieter ignorieren:</strong> Beachten Sie die Kündigungsfrist Ihres aktuellen Vertrags – wir kümmern uns um die Kündigung, aber Sie sollten die Fristen kennen</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Gewerbestrom in NRW</h3>
+              <p className="font-paragraph text-gray-700 mb-4">
+                Nordrhein-Westfalen ist das wirtschaftsstärkste Bundesland Deutschlands mit über 800.000 Unternehmen aller Größen. Von Einzelhändlern über Handwerksbetriebe bis zu Produktionsunternehmen – alle profitieren von optimierten Gewerbestromtarifen. Die Strompreise für Gewerbekunden variieren je nach Verbrauch, Standort und Branche. Unser Vergleich berücksichtigt diese regionalen und branchenspezifischen Unterschiede und zeigt Ihnen die besten Tarife für Ihr Unternehmen – ob in Düsseldorf, Köln, Essen, Dortmund oder einer anderen Stadt in NRW.
+              </p>
             </div>
 
             <div className="bg-secondary/10 border-l-4 border-secondary p-6 rounded">
               <p className="font-paragraph text-gray-700 italic">
-                Mit unserem Gewerbestrom-Vergleich für NRW sparen Sie garantiert Geld. Nutzen Sie unseren kostenlosen Service und optimieren Sie Ihre Energiekosten ab sofort!
+                Jetzt unverbindlich Angebot anfordern und sparen Sie ab sofort bei Ihren Stromkosten!
               </p>
             </div>
           </div>

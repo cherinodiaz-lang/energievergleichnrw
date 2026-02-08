@@ -217,77 +217,108 @@ export default function PhotovoltaikNrwPage() {
          <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
            <div className="space-y-8">
              <div>
-               <h2 className="font-heading text-3xl font-bold text-primary mb-6">Photovoltaik in NRW – Nutzen Sie die Kraft der Sonne</h2>
+               <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Photovoltaik-Angebotsvergleich für NRW</h2>
                
                <p className="font-paragraph text-lg text-gray-700 mb-6">
-                 Photovoltaik ist eine zukunftssichere Investition für Hausbesitzer in Nordrhein-Westfalen. Mit einer Solaranlage produzieren Sie Ihren eigenen Strom, senken Ihre Energiekosten und tragen zum Klimaschutz bei. Auch in NRW lohnt sich eine Photovoltaikanlage – dank Einspeisevergütung, KfW-Förderung und sinkenden Anlagenkosten.
+                 Mit unserem kostenlosen Photovoltaik-Vergleich finden Sie in wenigen Minuten die beste Solaranlage für Ihr Zuhause in Nordrhein-Westfalen. Der Vergleich ist völlig kostenlos und unverbindlich – Sie geben nur wenige Angaben ein und erhalten sofort Angebote von zertifizierten Fachbetrieben. Sparen Sie bis zu 40% der Installationskosten durch den Vergleich mehrerer Anbieter und profitieren Sie von maßgeschneiderten Lösungen für Ihr Dach.
                </p>
              </div>
 
              <div>
-               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Wie funktioniert eine Photovoltaikanlage?</h3>
-               <p className="font-paragraph text-gray-700 mb-4">
-                 Eine Photovoltaikanlage wandelt Sonnenlicht direkt in Strom um. Die Solarmodule auf Ihrem Dach erzeugen Gleichstrom, der durch einen Wechselrichter in Wechselstrom umgewandelt wird. Diesen Strom können Sie selbst nutzen oder ins Netz einspeisen. Mit einem Stromspeicher können Sie den Strom auch für die Nacht speichern und Ihre Unabhängigkeit erhöhen.
-               </p>
+               <h3 className="font-heading text-2xl font-bold text-primary mb-4">So funktioniert der Angebotsvergleich – 5 Schritte</h3>
+               <ol className="font-paragraph text-gray-700 space-y-3 mb-6 list-decimal list-inside">
+                 <li><strong>Dachfläche und Ausrichtung angeben:</strong> Geben Sie die Größe und Ausrichtung Ihres Daches ein (Süd, Ost, West)</li>
+                 <li><strong>Stromverbrauch eintragen:</strong> Tragen Sie Ihren jährlichen Stromverbrauch in kWh ein (zu finden auf der Stromrechnung)</li>
+                 <li><strong>Postleitzahl und Standort:</strong> Geben Sie Ihre PLZ ein, um Angebote für Ihre Region zu erhalten</li>
+                 <li><strong>Angebote vergleichen:</strong> Sehen Sie alle verfügbaren Angebote mit Anlagengröße, Kosten, Ertrag und Amortisationszeit</li>
+                 <li><strong>Wunsch-Angebot wählen:</strong> Entscheiden Sie sich für den besten Anbieter und erhalten Sie eine kostenlose Vor-Ort-Beratung</li>
+               </ol>
              </div>
 
              <div>
-               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Welche Vorteile bietet Photovoltaik in NRW?</h3>
-               <ul className="font-paragraph text-gray-700 space-y-3 mb-6">
+               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Welche Angaben du brauchst</h3>
+               <ul className="font-paragraph text-gray-700 space-y-2 mb-6">
                  <li className="flex items-start gap-3">
-                   <span className="text-secondary font-bold flex-shrink-0">✓</span>
-                   <span><strong>Kostenersparnis:</strong> Sparen Sie bis zu 50% Ihrer Stromkosten durch Eigennutzung</span>
+                   <span className="text-secondary font-bold flex-shrink-0">•</span>
+                   <span><strong>Dachfläche:</strong> Größe in Quadratmetern und Ausrichtung (Süd, Ost, West, Nord)</span>
                  </li>
                  <li className="flex items-start gap-3">
-                   <span className="text-secondary font-bold flex-shrink-0">✓</span>
-                   <span><strong>Einspeisevergütung:</strong> Erhalten Sie Geld für Strom, den Sie ins Netz einspeisen</span>
+                   <span className="text-secondary font-bold flex-shrink-0">•</span>
+                   <span><strong>Postleitzahl:</strong> Bestimmt die Sonneneinstrahlung und verfügbare Fachbetriebe in Ihrer Region</span>
                  </li>
                  <li className="flex items-start gap-3">
-                   <span className="text-secondary font-bold flex-shrink-0">✓</span>
-                   <span><strong>Förderungen:</strong> KfW-Kredite und Zuschüsse reduzieren Ihre Investitionskosten</span>
+                   <span className="text-secondary font-bold flex-shrink-0">•</span>
+                   <span><strong>Stromverbrauch in kWh:</strong> Finden Sie auf Ihrer letzten Stromrechnung unter „Jahresverbrauch"</span>
                  </li>
                  <li className="flex items-start gap-3">
-                   <span className="text-secondary font-bold flex-shrink-0">✓</span>
-                   <span><strong>Wertsteigerung:</strong> Eine Solaranlage erhöht den Wert Ihrer Immobilie um 5-10%</span>
+                   <span className="text-secondary font-bold flex-shrink-0">•</span>
+                   <span><strong>Fotos des Daches (optional):</strong> Helfen bei der genauen Planung und Verschattungsanalyse</span>
                  </li>
                  <li className="flex items-start gap-3">
-                   <span className="text-secondary font-bold flex-shrink-0">✓</span>
-                   <span><strong>Langlebigkeit:</strong> 25-30 Jahre Lebensdauer mit Herstellergarantie</span>
+                   <span className="text-secondary font-bold flex-shrink-0">•</span>
+                   <span><strong>Zählernummer/Anschluss:</strong> Optional, für präzisere Ertragsprognosen</span>
                  </li>
                </ul>
              </div>
 
              <div>
-               <h3 className="font-heading text-2xl font-bold text-primary mb-4" id="so-funktioniert-unser-vergleich">So funktioniert unser Vergleich</h3>
-               <p className="font-paragraph text-gray-700 mb-4">
-                 Auch wenn NRW nicht die sonnigste Region Deutschlands ist, lohnt sich eine Photovoltaikanlage. Eine typische 5-kW-Anlage produziert in NRW etwa 4.500-5.000 kWh pro Jahr. Mit unserer kostenlosen Beratung analysieren wir Ihr Dach, Ihren Stromverbrauch und erstellen ein individuelles Angebot. Wir berücksichtigen alle regionalen Besonderheiten und Fördermöglichkeiten für Ihre Stadt in NRW.
-               </p>
-               <p className="font-paragraph text-gray-700 text-sm mt-4">
-                 <strong>Transparenz:</strong> Erfahren Sie <Link to="/methodik#so-funktioniert-unser-vergleich" className="text-primary font-bold hover:underline">wie unser Vergleich funktioniert</Link> und welche Kriterien wir für die Bewertung nutzen.
-               </p>
+               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Worauf du achten solltest</h3>
+               <ul className="font-paragraph text-gray-700 space-y-3 mb-6">
+                 <li className="flex items-start gap-3">
+                   <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                   <span><strong>Anlagengröße:</strong> Sollte zu Ihrem Stromverbrauch passen – zu kleine Anlagen nutzen Ihr Dach nicht optimal, zu große erzeugen unnötige Überschüsse</span>
+                 </li>
+                 <li className="flex items-start gap-3">
+                   <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                   <span><strong>Komponentenqualität:</strong> Achten Sie auf hochwertige Module (Leistungsgarantie 25+ Jahre) und zuverlässige Wechselrichter</span>
+                 </li>
+                 <li className="flex items-start gap-3">
+                   <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                   <span><strong>Garantie und Gewährleistung:</strong> Mindestens 10 Jahre Gewährleistung und 25 Jahre Leistungsgarantie auf Module sind Standard</span>
+                 </li>
+                 <li className="flex items-start gap-3">
+                   <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                   <span><strong>Ertragsprognose:</strong> Vergleichen Sie die erwarteten Jahreserträge in kWh – diese bestimmen Ihre Einsparungen</span>
+                 </li>
+                 <li className="flex items-start gap-3">
+                   <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                   <span><strong>Stromspeicher-Option:</strong> Prüfen Sie, ob ein Speicher sinnvoll ist – erhöht Eigennutzung und Unabhängigkeit</span>
+                 </li>
+                 <li className="flex items-start gap-3">
+                   <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                   <span><strong>Finanzierungsmöglichkeiten:</strong> KfW-Kredite, Zuschüsse und Eigenkapitaloptionen sollten berücksichtigt werden</span>
+                 </li>
+               </ul>
              </div>
 
              <div>
-               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Häufige Fragen zu Photovoltaik</h3>
-               <div className="space-y-4 mb-6">
-                 <div>
-                   <p className="font-paragraph font-bold text-gray-800 mb-2">Lohnt sich eine Solaranlage in NRW?</p>
-                   <p className="font-paragraph text-gray-700">Ja. Durch Einspeisevergütung und Eigennutzung amortisiert sich die Anlage meist nach 8-12 Jahren. Danach produzieren Sie kostenlosen Strom für 15-20 Jahre.</p>
-                 </div>
-                 <div>
-                   <p className="font-paragraph font-bold text-gray-800 mb-2">Wie viel Strom produziert eine Anlage?</p>
-                   <p className="font-paragraph text-gray-700">Eine 5-kW-Anlage produziert in NRW etwa 4.500-5.000 kWh pro Jahr. Das hängt von Ausrichtung, Neigung und Verschattung ab.</p>
-                 </div>
-                 <div>
-                   <p className="font-paragraph font-bold text-gray-800 mb-2">Welche Förderungen gibt es?</p>
-                   <p className="font-paragraph text-gray-700">KfW-Förderung, Einspeisevergütung und regionale Programme. Wir informieren Sie über alle verfügbaren Optionen.</p>
-                 </div>
-               </div>
+               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Häufige Fehler beim Photovoltaik-Vergleich</h3>
+               <ul className="font-paragraph text-gray-700 space-y-3 mb-6">
+                 <li className="flex items-start gap-3">
+                   <span className="text-secondary font-bold flex-shrink-0">✗</span>
+                   <span><strong>Nur auf den Preis schauen:</strong> Der günstigste Anbieter ist nicht immer die beste Wahl – Qualität, Garantie und Ertragsprognose sind entscheidend</span>
+                 </li>
+                 <li className="flex items-start gap-3">
+                   <span className="text-secondary font-bold flex-shrink-0">✗</span>
+                   <span><strong>Dachfläche unterschätzen:</strong> Eine zu kleine Anlage nutzt Ihr Dachpotenzial nicht aus – analysieren Sie die verfügbare Fläche genau</span>
+                 </li>
+                 <li className="flex items-start gap-3">
+                   <span className="text-secondary font-bold flex-shrink-0">✗</span>
+                   <span><strong>Förderungen ignorieren:</strong> KfW-Kredite, Zuschüsse und Einspeisevergütung können die Amortisationszeit um Jahre verkürzen</span>
+                 </li>
+               </ul>
+             </div>
+
+             <div>
+               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Photovoltaik in NRW</h3>
+               <p className="font-paragraph text-gray-700 mb-4">
+                 Nordrhein-Westfalen ist mit über 18 Millionen Einwohnern das bevölkerungsreichste Bundesland und bietet ideale Bedingungen für Photovoltaik. Obwohl NRW nicht die sonnigste Region Deutschlands ist, amortisieren sich Solaranlagen durch die hohen Strompreise und Förderungen schnell. Die durchschnittliche Sonneneinstrahlung ermöglicht stabile Erträge von 900-1.000 kWh pro kWp installierter Leistung pro Jahr. Mit unserem Vergleich finden Sie die besten Fachbetriebe in Ihrer Stadt – ob in Düsseldorf, Köln, Essen, Dortmund oder einer anderen Stadt in NRW.
+               </p>
              </div>
 
              <div className="bg-secondary/10 border-l-4 border-secondary p-6 rounded">
                <p className="font-paragraph text-gray-700 italic">
-                 Mit unserer kostenlosen Beratung finden Sie die perfekte Photovoltaiklösung für Ihr Zuhause. Nutzen Sie die Kraft der Sonne und werden Sie unabhängig von steigenden Strompreisen!
+                 Jetzt kostenlos Angebote anfordern und finden Sie die perfekte Solaranlage für Ihr Zuhause!
                </p>
              </div>
            </div>

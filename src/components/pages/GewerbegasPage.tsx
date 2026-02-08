@@ -174,6 +174,115 @@ export default function GewerbegasPage() {
         </div>
       </section>
 
+      {/* Content Section */}
+      <section className="w-full py-24 bg-white">
+        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="space-y-8">
+            <div>
+              <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Gewerbegas-Anfrage für NRW</h2>
+              
+              <p className="font-paragraph text-lg text-gray-700 mb-6">
+                Mit unserem kostenlosen Gewerbegas-Service finden Sie in wenigen Minuten den günstigsten Gastarif für Ihr Unternehmen in Nordrhein-Westfalen. Die Anfrage ist völlig kostenlos und unverbindlich – Sie geben nur Ihre Verbrauchsdaten ein und erhalten sofort individualisierte Angebote. Sparen Sie bis zu 25% Ihrer Gaskosten durch optimierte Gewerbegas-Tarife und profitieren Sie von persönlicher Beratung durch unsere Experten.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">So funktioniert die Anfrage – 5 Schritte</h3>
+              <ol className="font-paragraph text-gray-700 space-y-3 mb-6 list-decimal list-inside">
+                <li><strong>Jahresverbrauch eingeben:</strong> Geben Sie Ihren jährlichen Gasverbrauch in kWh ein (zu finden auf Ihrer letzten Gasrechnung)</li>
+                <li><strong>Zählernummer/Marktlokation (falls vorhanden):</strong> Tragen Sie diese Nummern ein, falls Sie diese bereits haben – sie ermöglichen präzisere Angebote</li>
+                <li><strong>Heizungsart und Prozesse:</strong> Geben Sie an, wofür Sie Gas nutzen (Heizung, Herd, Produktion)</li>
+                <li><strong>Postleitzahl und Laufzeitwunsch:</strong> Nennen Sie Ihren Standort und Ihre gewünschte Vertragslaufzeit</li>
+                <li><strong>Angebote vergleichen und wählen:</strong> Erhalten Sie mehrere Angebote, vergleichen Sie Preise, Laufzeiten und Konditionen und wählen Sie das beste Angebot</li>
+              </ol>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Welche Angaben du brauchst</h3>
+              <ul className="font-paragraph text-gray-700 space-y-2 mb-6">
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">•</span>
+                  <span><strong>Verbrauch in kWh:</strong> Der wichtigste Wert – finden Sie ihn auf Ihrer letzten Gasrechnung unter „Jahresverbrauch"</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">•</span>
+                  <span><strong>Zählernummer/Marktlokation (falls vorhanden):</strong> Ermöglicht präzisere Angebote und schnellere Bearbeitung</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">•</span>
+                  <span><strong>Heizungsart/Prozess:</strong> Gasheizung, Gasherd, Produktionsprozesse oder Kombination</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">•</span>
+                  <span><strong>Laufzeitwunsch:</strong> Gewünschte Vertragslaufzeit (12, 24 oder 36 Monate)</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">•</span>
+                  <span><strong>Postleitzahl:</strong> Für regionale Tarife und Angebote</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Worauf du achten solltest</h3>
+              <ul className="font-paragraph text-gray-700 space-y-3 mb-6">
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Preisgarantie:</strong> Achten Sie auf die Dauer der Preisgarantie – mindestens 12 Monate sind empfehlenswert für Planungssicherheit</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Laufzeit:</strong> Vergleichen Sie Laufzeiten von 12 bis 36 Monaten – längere Laufzeiten bieten oft bessere Preise</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Kündigungsfrist:</strong> Prüfen Sie die Kündigungsfrist zum Vertragsende – kurze Fristen bieten mehr Flexibilität</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Abnahmemenge:</strong> Prüfen Sie, ob Ihre Verbrauchsmenge in die angebotenen Abnahmebänder passt</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Angebotslaufzeit:</strong> Beachten Sie, wie lange das Angebot gültig ist – bei schnellen Marktveränderungen kann dies wichtig sein</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Häufige Fehler bei der Gewerbegas-Anfrage</h3>
+              <ul className="font-paragraph text-gray-700 space-y-3 mb-6">
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✗</span>
+                  <span><strong>Falscher Verbrauch eingeben:</strong> Ein fehlerhafter Jahresverbrauch führt zu unrealistischen Angeboten – überprüfen Sie die Zahl auf Ihrer Rechnung genau</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✗</span>
+                  <span><strong>Nur auf den Preis achten:</strong> Der niedrigste Preis ist nicht immer die beste Wahl – berücksichtigen Sie auch Laufzeit, Preisgarantie und Kündigungsfristen</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✗</span>
+                  <span><strong>Kündigungsfristen beim alten Anbieter ignorieren:</strong> Beachten Sie die Kündigungsfrist Ihres aktuellen Vertrags – wir kümmern uns um die Kündigung, aber Sie sollten die Fristen kennen</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Gewerbegas in NRW</h3>
+              <p className="font-paragraph text-gray-700 mb-4">
+                Nordrhein-Westfalen ist das wirtschaftsstärkste Bundesland Deutschlands mit über 800.000 Unternehmen aller Größen. Von Gastronomiebetrieben über Handwerksbetriebe bis zu Produktionsunternehmen – alle profitieren von optimierten Gewerbegas-Tarifen. Die Gaspreise für Gewerbekunden variieren je nach Verbrauch, Standort und Heizungsart. Unser Vergleich berücksichtigt diese regionalen und branchenspezifischen Unterschiede und zeigt Ihnen die besten Tarife für Ihr Unternehmen – ob in Düsseldorf, Köln, Essen, Dortmund oder einer anderen Stadt in NRW.
+              </p>
+            </div>
+
+            <div className="bg-secondary/10 border-l-4 border-secondary p-6 rounded">
+              <p className="font-paragraph text-gray-700 italic">
+                Jetzt unverbindlich Angebot anfordern und sparen Sie ab sofort bei Ihren Gaskosten!
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Benefits Section */}
       <section id="vorteile" className="w-full bg-white py-24">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
