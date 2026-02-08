@@ -467,7 +467,7 @@ export default function GasvergleichNrwPage() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">•</span>
-                  <span><strong>Wohnfläche oder Jahresverbrauch in kWh:</strong> Finden Sie auf Ihrer letzten Gasrechnung unter „Verbrauch"</span>
+                  <span><strong>Wohnfläche oder Jahresverbrauch in kWh:</strong> Finden Sie auf Ihrer letzten Gasrechnung unter „Verbrauch\"</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">•</span>
@@ -914,6 +914,30 @@ export default function GasvergleichNrwPage() {
               </Card>
             </motion.a>
           </div>
+        </div>
+      </section>
+
+      {/* Trust Section - Warum energievergleich.shop? */}
+      <section className="w-full py-24 bg-white border-t">
+        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="space-y-6"
+          >
+            <h2 className="font-heading text-3xl sm:text-4xl font-semibold tracking-tight text-primary">
+              Warum energievergleich.shop?
+            </h2>
+            
+            <p className="font-paragraph text-lg text-gray-700 leading-relaxed">
+              Bei energievergleich.shop vertrauen Sie auf vollständige Transparenz und Unabhängigkeit. Wir vergleichen Gastarife objektiv nach Preis und Vertragsbedingungen – ohne versteckte Gebühren, ohne Anbieter-Bias. Unser Service ist für Sie kostenlos und unverbindlich. Wir zeigen Ihnen alle verfügbaren Optionen in Ihrer Region und helfen Ihnen, die beste Entscheidung zu treffen. Mit unserem Vergleich sparen Sie durchschnittlich 150–300 Euro pro Jahr. Erfahren Sie mehr über unsere Methodik und wie wir arbeiten: <Link to="/methodik" className="text-primary font-semibold hover:underline">So vergleichen wir (Methodik)</Link>. Bei Fragen stehen wir Ihnen jederzeit zur Verfügung – <Link to="/kontakt" className="text-primary font-semibold hover:underline">Kontakt</Link>.
+            </p>
+            
+            <p className="font-paragraph text-sm text-gray-500 italic">
+              Stand: Februar 2026
+            </p>
+          </motion.div>
         </div>
       </section>
 
