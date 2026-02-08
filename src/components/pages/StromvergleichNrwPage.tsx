@@ -671,6 +671,40 @@ export default function StromvergleichNrwPage() {
         </div>
       </section>
 
+      {/* Trust Section */}
+      <section className="w-full py-24 bg-white">
+        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="font-heading text-2xl sm:text-3xl font-bold text-primary mb-6">
+              Warum energievergleich.shop?
+            </h2>
+            <div className="space-y-4 font-paragraph text-gray-700 leading-relaxed">
+              <p>
+                Bei energievergleich.shop vergleichen Sie Stromtarife völlig transparent und unabhängig. Wir sind nicht an einen Anbieter gebunden und zeigen Ihnen alle verfügbaren Optionen in Ihrer Region – sortiert nach Preis und Vertragsbedingungen. Unser Service ist für Sie kostenlos: Wir verdienen kein Geld mit Ihrem Wechsel, sondern nur durch Provisionen von Anbietern, die Sie selbst gewählt haben.
+              </p>
+              <p>
+                Wir vergleichen nicht nur Preise, sondern auch Laufzeiten, Preisgarantien und Kündigungsfristen. So finden Sie den Tarif, der wirklich zu Ihnen passt – nicht nur der billigste. Alle Informationen auf dieser Seite sind aktuell und wurden zuletzt im Februar 2026 überprüft.
+              </p>
+              <p>
+                Mehr über unsere Vergleichsmethode erfahren Sie unter{' '}
+                <Link to="/methodik" className="text-primary font-semibold hover:underline">
+                  So vergleichen wir (Methodik)
+                </Link>
+                . Bei Fragen helfen wir gerne weiter – kontaktieren Sie uns über unsere{' '}
+                <Link to="/kontakt" className="text-primary font-semibold hover:underline">
+                  Kontakt
+                </Link>
+                -Seite.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <section className="w-full py-24 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
