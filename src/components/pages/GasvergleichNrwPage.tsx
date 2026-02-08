@@ -684,6 +684,141 @@ export default function GasvergleichNrwPage() {
         </div>
       </section>
 
+      {/* Weiterführende Infos Section */}
+      <section className="w-full py-24 bg-white">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary mb-16 text-center">
+            Weiterführende Infos
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <motion.a
+              href="https://www.energievergleich.shop/stromvergleich-nrw"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="group"
+            >
+              <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
+                <CardHeader>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">
+                    Stromtarife in NRW vergleichen
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">
+                    Finden Sie auch die besten Stromtarife in Ihrer Region und sparen Sie zusätzlich.
+                  </p>
+                  <Button variant="outline" size="sm" className="group-hover:bg-primary group-hover:text-white transition-colors">
+                    Zum Stromvergleich <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.a>
+
+            <motion.a
+              href="https://www.energievergleich.shop/photovoltaik-nrw"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="group"
+            >
+              <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
+                <CardHeader>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">
+                    Photovoltaik-Angebote in NRW
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">
+                    Produzieren Sie Ihren eigenen Strom mit einer Solaranlage und werden Sie unabhängig.
+                  </p>
+                  <Button variant="outline" size="sm" className="group-hover:bg-primary group-hover:text-white transition-colors">
+                    Zu Photovoltaik <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.a>
+
+            <motion.a
+              href="https://www.energievergleich.shop/gewerbegas"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="group"
+            >
+              <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
+                <CardHeader>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">
+                    Gewerbegas für Unternehmen
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">
+                    Spezielle Gastarife für Gewerbetreibende und Unternehmen mit optimalen Konditionen.
+                  </p>
+                  <Button variant="outline" size="sm" className="group-hover:bg-primary group-hover:text-white transition-colors">
+                    Zu Gewerbegas <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.a>
+
+            <motion.a
+              href="https://www.energievergleich.shop/ratgeber/gas"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="group"
+            >
+              <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
+                <CardHeader>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">
+                    Ratgeber: Gas sparen & wechseln
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">
+                    Umfassende Tipps und Informationen zum Thema Gaswechsel und Kostenersparnis.
+                  </p>
+                  <Button variant="outline" size="sm" className="group-hover:bg-primary group-hover:text-white transition-colors">
+                    Zum Ratgeber <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.a>
+
+            <motion.a
+              href="https://www.energievergleich.shop/methodik"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="group"
+            >
+              <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
+                <CardHeader>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">
+                    So vergleichen wir: Methodik & Transparenz
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">
+                    Erfahren Sie, wie unser Vergleich funktioniert und welche Kriterien wir nutzen.
+                  </p>
+                  <Button variant="outline" size="sm" className="group-hover:bg-primary group-hover:text-white transition-colors">
+                    Zur Methodik <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.a>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <section className="w-full py-24 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
