@@ -12,6 +12,7 @@ import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import { Link } from 'react-router-dom';
+import { getPageSEO } from '@/lib/seo-config';
 
 export default function GewerbestromPage() {
   const [companyName, setCompanyName] = useState('');
@@ -41,13 +42,14 @@ export default function GewerbestromPage() {
     setMessage('');
   };
 
+  const seo = getPageSEO('gewerbestrom');
+
   return (
     <div className="min-h-screen bg-background break-words leading-relaxed">
       <SEOHead
-        title="Gewerbestrom NRW: Günstige Tarife für Unternehmen finden"
-        description="Optimieren Sie Ihre Energiekosten! Vergleichen Sie Gewerbestrom-Tarife in NRW und sichern Sie sich die besten Konditionen für Ihr Unternehmen. Unverbindlich & transparent."
-        keywords="Gewerbestrom NRW, Stromtarife Unternehmen, Gewerbekunden, Stromvergleich Gewerbe"
-        ogTitle="Gewerbestrom NRW - Maßgeschneiderte Tarife für Ihr Unternehmen"
+        title={seo.title}
+        description={seo.description}
+        keywords={seo.keywords}
         ogDescription="Sparen Sie bis zu 30% bei Gewerbestrom. Kostenlose Beratung für Unternehmen in NRW."
       />
       <Header />

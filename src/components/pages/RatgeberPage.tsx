@@ -7,6 +7,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import { Link } from 'react-router-dom';
+import { getPageSEO } from '@/lib/seo-config';
 
 export default function RatgeberPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -69,14 +70,14 @@ export default function RatgeberPage() {
     );
   }, [searchQuery]);
 
+  const seo = getPageSEO('ratgeber');
+
   return (
     <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
-        title="Ratgeber | Energievergleich NRW - Tipps & Wissen"
-        description="Umfassender Ratgeber zu Strom, Gas, Photovoltaik und Gewerbeenergie. Erfahren Sie alles über Tarife, Wechsel und Sparpotenziale in NRW."
-        keywords="Ratgeber, Energievergleich, Stromtarife, Gastarife, Photovoltaik, Gewerbeenergie"
-        ogTitle="Ratgeber | Energievergleich"
-        ogDescription="Kostenloser Ratgeber zu Energie, Strom und Gas in NRW"
+        title={seo.title}
+        description={seo.description}
+        keywords={seo.keywords}
       />
       <Header />
 

@@ -7,16 +7,17 @@ import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
+import { getPageSEO } from '@/lib/seo-config';
 
 export default function MethodologyPage() {
+  const seo = getPageSEO('methodik');
+
   return (
     <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
-        title="Methodik & Transparenz – energievergleich.shop"
-        description="Erfahren Sie, wie wir unsere Stromvergleiche durchführen. Transparente Methodik, unabhängige Datenquellen und faire Bewertungskriterien."
-        keywords="Methodik, Transparenz, Stromvergleich, Datenquellen, unabhängig"
-        ogTitle="Methodik & Transparenz – energievergleich.shop"
-        ogDescription="Erfahren Sie, wie wir unsere Stromvergleiche durchführen. Transparente Methodik, unabhängige Datenquellen und faire Bewertungskriterien."
+        title={seo.title}
+        description={seo.description}
+        keywords={seo.keywords}
       />
       <Header />
 

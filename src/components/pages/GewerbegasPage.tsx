@@ -12,6 +12,7 @@ import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import { useNavigate } from 'react-router-dom';
+import { getPageSEO } from '@/lib/seo-config';
 
 export default function GewerbegasPage() {
   const navigate = useNavigate();
@@ -45,14 +46,14 @@ export default function GewerbegasPage() {
     setMessage('');
   };
 
+  const seo = getPageSEO('gewerbegas');
+
   return (
     <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
-        title="Gewerbegas NRW: Gastarife für Unternehmen vergleichen"
-        description="Senken Sie Ihre Gaskosten! Finden Sie günstige Gewerbegas-Tarife in Nordrhein-Westfalen. Einfacher Vergleich und Wechsel für maximale Ersparnis. Jetzt informieren!"
-        keywords="Gewerbegas NRW, Gastarife Unternehmen, Gewerbekunden, Gasvergleich Gewerbe"
-        ogTitle="Gewerbegas NRW - Maßgeschneiderte Tarife für Ihr Unternehmen"
-        ogDescription="Sparen Sie bis zu 25% bei Gewerbegas. Kostenlose Beratung für Unternehmen in NRW."
+        title={seo.title}
+        description={seo.description}
+        keywords={seo.keywords}
       />
       <Header />
 

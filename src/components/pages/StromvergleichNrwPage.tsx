@@ -14,6 +14,7 @@ import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
+import { getPageSEO } from '@/lib/seo-config';
 
 export default function StromvergleichNrwPage() {
   const [formData, setFormData] = useState({
@@ -151,12 +152,14 @@ export default function StromvergleichNrwPage() {
     setShowResults(true);
   };
 
+  const seo = getPageSEO('stromvergleich');
+
   return (
     <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
-        title="Stromvergleich NRW – Günstige Stromtarife finden"
-        description="Stromtarife in NRW vergleichen: Preise, Anbieter und Optionen. In 2 Minuten zum passenden Tarif – kostenlos."
-        keywords="Stromvergleich NRW, Stromtarife, Strom sparen, Stromanbieter wechseln, günstige Stromtarife"
+        title={seo.title}
+        description={seo.description}
+        keywords={seo.keywords}
         ogTitle="Stromvergleich NRW – Günstige Stromtarife finden"
         ogDescription="Stromtarife in NRW vergleichen: Preise, Anbieter und Optionen. In 2 Minuten zum passenden Tarif – kostenlos."
       />

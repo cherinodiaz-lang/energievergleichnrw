@@ -20,6 +20,7 @@ import { HufiggestellteFragen, Wechselvorteile, Informationsmaterial } from '@/e
 import { Image } from '@/components/ui/image';
 import { trackCTAClick } from '@/services/form-submission';
 import { ROUTES } from '@/lib/routes';
+import { getPageSEO } from '@/lib/seo-config';
 
 // --- Utility Components ---
 
@@ -311,12 +312,14 @@ export default function HomePage() {
     element?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const seo = getPageSEO('home');
+
   return (
     <div className="min-h-screen bg-background overflow-x-hidden selection:bg-primary selection:text-white">
       <SEOHead
-        title="Strom- & Gasvergleich NRW – Günstige Tarife finden"
-        description="Strom und Gas in NRW vergleichen – kostenlos, schnell und unabhängig. Jetzt Tarifrechner starten und sparen."
-        keywords="Energievergleich NRW, Stromvergleich, Gasvergleich, Strom sparen, Gas sparen, Tarife NRW"
+        title={seo.title}
+        description={seo.description}
+        keywords={seo.keywords}
         ogTitle="Strom- & Gasvergleich NRW – Günstige Tarife finden"
         ogDescription="Strom und Gas in NRW vergleichen – kostenlos, schnell und unabhängig. Jetzt Tarifrechner starten und sparen."
       />

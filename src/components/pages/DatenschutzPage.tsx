@@ -3,16 +3,17 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import { ROUTES } from '@/lib/routes';
+import { getPageSEO } from '@/lib/seo-config';
 
 export default function DatenschutzPage() {
+  const seo = getPageSEO('datenschutz');
+
   return (
     <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
-        title="Datenschutz | Energievergleich"
-        description="Datenschutzerklärung von Energievergleich.shop - DSGVO konform"
-        keywords="Datenschutz, Datenschutzerklärung, DSGVO, Datenschutzerklärung"
-        ogTitle="Datenschutz | Energievergleich"
-        ogDescription="Datenschutzerklärung und Informationen zum Datenschutz."
+        title={seo.title}
+        description={seo.description}
+        keywords={seo.keywords}
       />
       <Header />
 

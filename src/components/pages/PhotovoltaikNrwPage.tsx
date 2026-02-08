@@ -13,6 +13,7 @@ import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
+import { getPageSEO } from '@/lib/seo-config';
 
 export default function PhotovoltaikNrwPage() {
   const [formData, setFormData] = useState({
@@ -159,14 +160,14 @@ export default function PhotovoltaikNrwPage() {
     });
   };
 
+  const seo = getPageSEO('photovoltaik');
+
   return (
     <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
-        title="Photovoltaik NRW – Angebote vergleichen & anfragen"
-        description="Photovoltaik-Angebote in NRW vergleichen. Unverbindlich anfragen, passende Lösung finden – schnell und kostenlos."
-        keywords="Photovoltaik NRW, Solaranlage, Solarenergie, Sonnenenergie, Solaranlage kaufen"
-        ogTitle="Photovoltaik NRW – Angebote vergleichen & anfragen"
-        ogDescription="Photovoltaik-Angebote in NRW vergleichen. Unverbindlich anfragen, passende Lösung finden – schnell und kostenlos."
+        title={seo.title}
+        description={seo.description}
+        keywords={seo.keywords}
       />
       <Header />
 

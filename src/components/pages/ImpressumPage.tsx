@@ -3,17 +3,17 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import { ROUTES } from '@/lib/routes';
+import { getPageSEO } from '@/lib/seo-config';
 
 export default function ImpressumPage() {
+  const seo = getPageSEO('impressum');
+
   return (
     <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
-        title="Impressum | Energievergleich"
-        description="Impressum und rechtliche Informationen von Energievergleich"
-        keywords="Impressum, Rechtliche Informationen, Kontakt"
-        ogTitle="Impressum | Energievergleich"
-        ogDescription="Impressum und rechtliche Informationen."
-        robots="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+        title={seo.title}
+        description={seo.description}
+        keywords={seo.keywords}
       />
       <Header />
 

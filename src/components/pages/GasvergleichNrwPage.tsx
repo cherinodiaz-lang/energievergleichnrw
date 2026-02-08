@@ -15,6 +15,7 @@ import PassendeRatgeber from '@/components/PassendeRatgeber';
 import ResponsiveEmbed from '@/components/ui/ResponsiveEmbed';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
+import { getPageSEO } from '@/lib/seo-config';
 
 export default function GasvergleichNrwPage() {
   const [formData, setFormData] = useState({
@@ -165,14 +166,14 @@ export default function GasvergleichNrwPage() {
     setShowResults(true);
   };
 
+  const seo = getPageSEO('gasvergleich');
+
   return (
     <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
-        title="Gasvergleich NRW – Günstige Gastarife vergleichen"
-        description="Gastarife in NRW vergleichen: Anbieter, Preise, Vertragsdetails. Schnell wechseln und sparen – kostenlos."
-        keywords="Gasvergleich NRW, Gastarife, Gas sparen, Gasanbieter wechseln, günstige Gastarife"
-        ogTitle="Gasvergleich NRW – Günstige Gastarife vergleichen"
-        ogDescription="Gastarife in NRW vergleichen: Anbieter, Preise, Vertragsdetails. Schnell wechseln und sparen – kostenlos."
+        title={seo.title}
+        description={seo.description}
+        keywords={seo.keywords}
       />
       <Header />
 
