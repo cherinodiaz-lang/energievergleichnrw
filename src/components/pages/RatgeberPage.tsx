@@ -180,6 +180,123 @@ export default function RatgeberPage() {
         <div className="max-w-4xl mx-auto px-6 lg:px-12">
           <div className="text-center mb-12">
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary mb-4">
+              Beliebte Themen
+            </h2>
+            <p className="font-paragraph text-lg text-gray-600">
+              Schneller Zugang zu den wichtigsten Ratgeber-Kategorien
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            <a href="https://www.energievergleich.shop/ratgeber/strom" className="group">
+              <Card className="h-full hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Strom-Ratgeber</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">Alles über Stromtarife und Wechsel.</p>
+                  <Button variant="outline" size="sm">Mehr erfahren</Button>
+                </CardContent>
+              </Card>
+            </a>
+            <a href="https://www.energievergleich.shop/ratgeber/gas" className="group">
+              <Card className="h-full hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Gas-Ratgeber</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">Ratgeber zu Gastarifen und Heizung.</p>
+                  <Button variant="outline" size="sm">Mehr erfahren</Button>
+                </CardContent>
+              </Card>
+            </a>
+            <a href="https://www.energievergleich.shop/ratgeber/photovoltaik" className="group">
+              <Card className="h-full hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Photovoltaik-Ratgeber</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">Leitfaden zu Solaranlagen.</p>
+                  <Button variant="outline" size="sm">Mehr erfahren</Button>
+                </CardContent>
+              </Card>
+            </a>
+            <a href="https://www.energievergleich.shop/ratgeber/gewerbe" className="group">
+              <Card className="h-full hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Gewerbe-Ratgeber</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">Energie für Unternehmen.</p>
+                  <Button variant="outline" size="sm">Mehr erfahren</Button>
+                </CardContent>
+              </Card>
+            </a>
+            <a href="https://www.energievergleich.shop/ratgeber/wechselwissen" className="group">
+              <Card className="h-full hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Wechselwissen</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">Wichtiges über Anbieterwechsel.</p>
+                  <Button variant="outline" size="sm">Mehr erfahren</Button>
+                </CardContent>
+              </Card>
+            </a>
+          </div>
+
+          <div className="text-center mb-12">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary mb-4">
+              Top-Artikel
+            </h2>
+            <p className="font-paragraph text-lg text-gray-600">
+              Die beliebtesten Artikel aus unserem Ratgeber
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <a href="https://www.energievergleich.shop/ratgeber/strom/grundversorgung" className="group">
+              <Card className="h-full hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Grundversorgung: Was bedeutet das?</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">Verstehen Sie die Grundversorgung.</p>
+                  <Button variant="outline" size="sm">Mehr erfahren</Button>
+                </CardContent>
+              </Card>
+            </a>
+            <a href="https://www.energievergleich.shop/ratgeber/gas/gasanbieter-wechseln-nrw" className="group">
+              <Card className="h-full hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Gasanbieter wechseln in NRW</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">Schritt-für-Schritt Anleitung.</p>
+                  <Button variant="outline" size="sm">Mehr erfahren</Button>
+                </CardContent>
+              </Card>
+            </a>
+            <a href="https://www.energievergleich.shop/ratgeber/photovoltaik/pv-speicher-lohnt-sich" className="group">
+              <Card className="h-full hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">PV-Speicher: Lohnt sich das?</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">Wirtschaftlichkeit von Stromspeichern.</p>
+                  <Button variant="outline" size="sm">Mehr erfahren</Button>
+                </CardContent>
+              </Card>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Info Section */}
+      <section className="w-full py-24 bg-white">
+        <div className="max-w-4xl mx-auto px-6 lg:px-12">
+          <div className="text-center mb-12">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary mb-4">
               Warum unser Ratgeber?
             </h2>
             <p className="font-paragraph text-lg text-gray-600">
