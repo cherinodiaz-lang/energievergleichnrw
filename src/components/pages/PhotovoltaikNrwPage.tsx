@@ -703,6 +703,32 @@ export default function PhotovoltaikNrwPage() {
         </div>
       </section>
 
+      {/* Trust Section */}
+      <section className="w-full py-24 bg-background">
+        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+          <h2 className="font-heading text-2xl font-bold text-primary mb-8">Warum energievergleich.shop?</h2>
+          <div className="bg-white rounded-lg p-8 border border-gray-200">
+            <p className="font-paragraph text-gray-700 leading-relaxed mb-6">
+              Bei energievergleich.shop vergleichen wir Photovoltaik-Angebote mit vollständiger Transparenz und Unabhängigkeit. Wir arbeiten nicht für einzelne Anbieter, sondern für Sie – und das völlig kostenlos. Unser Vergleich berücksichtigt nicht nur den Preis, sondern auch Vertragsbedingungen, Komponenten-Qualität und Garantieleistungen. So finden Sie die beste Solaranlage für Ihre Situation in NRW. Alle Informationen auf dieser Seite sind aktuell zum Stand Februar 2026.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 text-sm">
+              <Link 
+                to="/methodik"
+                className="text-primary hover:text-primary/80 font-semibold underline transition-colors"
+              >
+                So vergleichen wir (Methodik)
+              </Link>
+              <Link 
+                to="/kontakt"
+                className="text-primary hover:text-primary/80 font-semibold underline transition-colors"
+              >
+                Kontakt
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <section className="w-full py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
