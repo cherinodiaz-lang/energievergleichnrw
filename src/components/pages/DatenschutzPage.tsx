@@ -36,9 +36,9 @@ export default function DatenschutzPage() {
           <div className="space-y-8 break-words overflow-x-hidden min-w-0">
             {/* Info Box */}
             <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-6">
-              <h3 className="font-heading text-lg font-bold text-blue-900 mb-4">ℹ️ Musterdatenschutzerklärung</h3>
+              <h3 className="font-heading text-lg font-bold text-blue-900 mb-4">ℹ️ Datenschutzerklärung</h3>
               <p className="text-sm text-blue-800 font-paragraph">
-                Diese Datenschutzerklärung ist eine Musterfassung mit konsistenten Beispielangaben. Sie entspricht den Anforderungen der DSGVO und kann als Vorlage verwendet werden.
+                Diese Datenschutzerklärung entspricht den Anforderungen der DSGVO und informiert Sie über die Verarbeitung Ihrer personenbezogenen Daten.
               </p>
             </div>
 
@@ -164,17 +164,17 @@ export default function DatenschutzPage() {
                 
                 <div>
                   <p className="font-bold mb-2">Verarbeitete Daten:</p>
-                  <p>Cookie-ID, Sitzungsinformationen, Benutzereinstellungen</p>
+                  <p>Cookie-ID, Sitzungsinformationen, Benutzereinstellungen, Consent-Status</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Zweck:</p>
-                  <p>Gewährleistung der Funktionalität der Website, Speicherung von Benutzereinstellungen</p>
+                  <p>Gewährleistung der Funktionalität der Website, Speicherung von Benutzereinstellungen, Verwaltung von Datenschutzeinwilligungen</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Rechtsgrundlage:</p>
-                  <p>Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse) oder Art. 6 Abs. 1 lit. a DSGVO (Einwilligung für nicht-notwendige Cookies)</p>
+                  <p>Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse) für notwendige Cookies; Art. 6 Abs. 1 lit. a DSGVO (Einwilligung) für nicht-notwendige Cookies</p>
                 </div>
 
                 <div className="border-t pt-4">
@@ -184,38 +184,53 @@ export default function DatenschutzPage() {
 
                 <div className="border-t pt-4">
                   <p className="text-sm text-gray-500">
-                    Hinweis: Weitere Informationen zu Cookies finden Sie in unserem Cookie-Banner auf der Website.
+                    Hinweis: Weitere Informationen zu Cookies finden Sie in unserem Cookie-Banner auf der Website. Sie können Ihre Cookie-Einstellungen jederzeit über die Datenschutzeinstellungen ändern.
                   </p>
                 </div>
               </div>
 
-              {/* 2.5 Analyse und Tracking */}
+              {/* 2.5 Analyse und Tracking - Google Analytics 4 */}
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 mb-6 break-words">
-                <h3 className="font-bold text-lg text-primary">2.5 Analyse und Tracking</h3>
+                <h3 className="font-bold text-lg text-primary">2.5 Analyse und Tracking - Google Analytics 4 (GA4)</h3>
                 
-                <div className="bg-blue-50 border border-blue-200 rounded p-4 mb-4">
-                  <p className="text-sm text-blue-800 font-bold">Status: Nicht im Einsatz (Musterangabe)</p>
-                  <p className="text-sm text-blue-700 mt-2">Derzeit werden keine Analyse- oder Tracking-Tools verwendet.</p>
+                <div className="bg-green-50 border border-green-200 rounded p-4 mb-4">
+                  <p className="text-sm text-green-800 font-bold">Status: Aktiv (mit Consent-Handling)</p>
+                  <p className="text-sm text-green-700 mt-2">Google Analytics 4 wird nur nach ausdrücklicher Einwilligung des Nutzers aktiviert.</p>
                 </div>
 
                 <div>
-                  <p className="font-bold mb-2">Falls zukünftig aktiv - Verarbeitete Daten:</p>
-                  <p>IP-Adresse (ggf. anonymisiert), Geräte-ID, Browser-Informationen, Besuchte Seiten, Verweildauer, Klicks, Scroll-Verhalten</p>
+                  <p className="font-bold mb-2">Verarbeitete Daten:</p>
+                  <p>IP-Adresse (anonymisiert), Geräte-ID, Browser-Informationen, Betriebssystem, Besuchte Seiten, Verweildauer, Klicks, Scroll-Verhalten, Referrer, Gerätetyp, Spracheinstellungen</p>
                 </div>
 
                 <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Falls zukünftig aktiv - Zweck:</p>
-                  <p>Analyse des Nutzerverhaltens, Optimierung der Website, Erstellung von Statistiken</p>
+                  <p className="font-bold mb-2">Zweck:</p>
+                  <p>Analyse des Nutzerverhaltens, Optimierung der Website-Performance, Erstellung von Statistiken, Verbesserung der Benutzerfreundlichkeit</p>
                 </div>
 
                 <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Falls zukünftig aktiv - Rechtsgrundlage:</p>
-                  <p>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</p>
+                  <p className="font-bold mb-2">Rechtsgrundlage:</p>
+                  <p>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung) - GA4 wird AUSSCHLIESSLICH nach Erteilung der Einwilligung durch den Nutzer aktiviert</p>
+                </div>
+
+                <div className="border-t pt-4">
+                  <p className="font-bold mb-2">Speicherdauer:</p>
+                  <p>Standardmäßig 14 Monate (Google Analytics Standard-Aufbewahrungsfrist)</p>
+                </div>
+
+                <div className="border-t pt-4">
+                  <p className="font-bold mb-2">Auftragsverarbeiter:</p>
+                  <p>Google Ireland Limited<br />Gordon House, Barrow Street<br />Dublin 4, Irland<br />Datenschutzerklärung: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline break-all">https://policies.google.com/privacy</a></p>
+                </div>
+
+                <div className="border-t pt-4">
+                  <p className="font-bold mb-2">Drittlandtransfer:</p>
+                  <p>Daten werden in die USA übermittelt. Google hat sich dem EU-US Data Privacy Framework angeschlossen. Weitere Informationen: <a href="https://policies.google.com/privacy/frameworks" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline break-all">https://policies.google.com/privacy/frameworks</a></p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="text-sm text-gray-500">
-                    Hinweis: Sollten in Zukunft Tracking-Tools eingesetzt werden, wird diese Datenschutzerklärung entsprechend aktualisiert.
+                    Hinweis: Sie können Ihre Einwilligung jederzeit über die Datenschutzeinstellungen (Cookie-Banner) widerrufen. GA4 wird dann sofort deaktiviert.
                   </p>
                 </div>
               </div>

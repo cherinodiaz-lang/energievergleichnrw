@@ -154,28 +154,9 @@ export default function ImpressumPage() {
               </p>
             </div>
 
-            {/* 9. Online-Streitbeilegung */}
+            {/* 9. Hinweis nach § 36 VSBG */}
             <div>
-              <h2 className="font-heading text-2xl font-bold text-primary mb-4">9. Online-Streitbeilegung (EU-OS)</h2>
-              
-              <p className="font-paragraph text-slate-900 leading-relaxed mb-4 py-2">
-                Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
-              </p>
-              
-              <p className="font-paragraph text-slate-900 mb-4 py-2">
-                <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-bold break-all">
-                  https://ec.europa.eu/consumers/odr/
-                </a>
-              </p>
-              
-              <p className="font-paragraph text-slate-900 leading-relaxed py-2">
-                Unsere E-Mail-Adresse für Kontaktaufnahmen finden Sie oben in den Kontaktinformationen.
-              </p>
-            </div>
-
-            {/* 10. Hinweis nach § 36 VSBG */}
-            <div>
-              <h2 className="font-heading text-2xl font-bold text-primary mb-4">10. Hinweis nach § 36 VSBG (Verbraucherstreitbeilegungsgesetz)</h2>
+              <h2 className="font-heading text-2xl font-bold text-primary mb-4">9. Hinweis nach § 36 VSBG (Verbraucherstreitbeilegungsgesetz)</h2>
               
               <div className="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-6 font-paragraph text-slate-900 break-words">
                 <p className="font-bold mb-4">Teilnahme an Verbraucherstreitbeilegung:</p>
@@ -192,10 +173,13 @@ export default function ImpressumPage() {
             <div>
               <h2 className="font-heading text-2xl font-bold text-primary mb-4">11. Verbraucherstreitbeilegung / Universalschiedsverfahren</h2>
               
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 font-paragraph text-slate-900 break-words">
-                <p className="font-bold mb-2">Allgemeine Informationen:</p>
-                <p>
-                  Für Streitigkeiten mit Verbrauchern können Sie sich an die zuständigen Verbraucherschutzbehörden oder an eine Verbraucherschlichtungsstelle wenden. Energievergleich.shop nimmt jedoch nicht an solchen Verfahren teil.
+              <div className="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-6 font-paragraph text-slate-900 break-words">
+                <p className="font-bold mb-4">Teilnahme an Verbraucherstreitbeilegung:</p>
+                <p className="mb-4">
+                  <strong>NEIN</strong> – Energievergleich.shop nimmt nicht an einem Verbraucherstreitbeilegungsverfahren teil.
+                </p>
+                <p className="text-sm text-gray-700">
+                  Energievergleich.shop ist nicht verpflichtet und nicht bereit, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen. Für Beschwerden und Reklamationen kontaktieren Sie uns bitte direkt unter <a href="mailto:kontakt@energievergleich.shop" className="text-primary hover:underline font-bold">kontakt@energievergleich.shop</a>.
                 </p>
               </div>
             </div>
