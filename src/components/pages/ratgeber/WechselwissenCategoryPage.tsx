@@ -47,6 +47,45 @@ export default function WechselwissenCategoryPage() {
         </div>
       </section>
 
+      {/* Introductory Section */}
+      <section className="w-full py-16 bg-white border-b border-light-grey">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <p className="font-paragraph text-base md:text-lg text-gray-700 leading-relaxed mb-8 max-w-3xl">
+              Ein Wechsel des Strom- oder Gasanbieters kann erhebliche Einsparungen bringen, erfordert aber auch Wissen über die richtigen Schritte und Fristen. Unser Wechselwissen-Ratgeber bietet Ihnen umfassende Informationen zu allen wichtigen Aspekten eines erfolgreichen Anbieterwechsels – von Kündigungsfristen über den genauen Ablauf bis hin zu häufigen Problemen und deren Lösungen. Hier finden Sie verlässliche Antworten auf Ihre Fragen, damit Sie den Wechsel sicher und informiert durchführen können.
+            </p>
+
+            <div className="space-y-3 mb-8">
+              <div className="flex items-start gap-3">
+                <span className="text-primary font-bold mt-1">•</span>
+                <p className="font-paragraph text-gray-700">Welche Kündigungsfristen muss ich beim Anbieterwechsel beachten?</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-primary font-bold mt-1">•</span>
+                <p className="font-paragraph text-gray-700">Wie läuft ein Lieferantenwechsel ab und was muss ich tun?</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-primary font-bold mt-1">•</span>
+                <p className="font-paragraph text-gray-700">Was kann ich tun, wenn mein Wechsel schiefgeht?</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-primary font-bold mt-1">•</span>
+                <p className="font-paragraph text-gray-700">Welche Besonderheiten gibt es beim Wechsel bei einem Umzug?</p>
+              </div>
+            </div>
+
+            <p className="font-paragraph text-base text-gray-700">
+              Nutzen Sie unsere Vergleichsrechner für <a href="https://www.energievergleich.shop/stromvergleich-nrw" className="text-primary font-semibold hover:underline">Stromvergleich NRW</a> und <a href="https://www.energievergleich.shop/gasvergleich-nrw" className="text-primary font-semibold hover:underline">Gasvergleich NRW</a>, um die besten Tarife zu finden.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Articles Grid */}
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
