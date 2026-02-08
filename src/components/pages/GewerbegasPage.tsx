@@ -198,6 +198,50 @@ export default function GewerbegasPage() {
             </div>
 
             <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Gewerbegas anfragen: Welche Daten?</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-sm md:text-base">
+                  <thead>
+                    <tr className="bg-primary text-primary-foreground">
+                      <th className="border border-primary/20 px-3 md:px-4 py-3 text-left font-heading font-semibold">Feld</th>
+                      <th className="border border-primary/20 px-3 md:px-4 py-3 text-left font-heading font-semibold">Beispiel</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="hover:bg-primary/5 transition-colors">
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph font-semibold text-foreground">Jahresverbrauch (kWh)</td>
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph text-foreground/80">z.B. 300.000</td>
+                    </tr>
+                    <tr className="bg-primary/5 hover:bg-primary/10 transition-colors">
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph font-semibold text-foreground">PLZ/Ort</td>
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph text-foreground/80">z.B. 50667 Köln</td>
+                    </tr>
+                    <tr className="hover:bg-primary/5 transition-colors">
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph font-semibold text-foreground">Zählernummer/Marktlokation</td>
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph text-foreground/80">z.B. DE… / falls vorhanden</td>
+                    </tr>
+                    <tr className="bg-primary/5 hover:bg-primary/10 transition-colors">
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph font-semibold text-foreground">Nutzung/Prozess</td>
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph text-foreground/80">z.B. Heizung + Warmwasser</td>
+                    </tr>
+                    <tr className="hover:bg-primary/5 transition-colors">
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph font-semibold text-foreground">Preisgarantie Wunsch</td>
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph text-foreground/80">z.B. 12 Monate</td>
+                    </tr>
+                    <tr className="bg-primary/5 hover:bg-primary/10 transition-colors">
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph font-semibold text-foreground">Vertragslaufzeit</td>
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph text-foreground/80">z.B. 12 Monate</td>
+                    </tr>
+                    <tr className="hover:bg-primary/5 transition-colors">
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph font-semibold text-foreground">Abnahmemenge/Schwankung</td>
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph text-foreground/80">z.B. saisonal</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div>
               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Welche Angaben du brauchst</h3>
               <ul className="font-paragraph text-gray-700 space-y-2 mb-6">
                 <li className="flex items-start gap-3">
