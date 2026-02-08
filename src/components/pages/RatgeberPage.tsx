@@ -6,8 +6,11 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import Breadcrumb from '@/components/Breadcrumb';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { Link } from 'react-router-dom';
 import { getPageSEO } from '@/lib/seo-config';
+import { ROUTES } from '@/lib/routes';
 
 export default function RatgeberPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -72,6 +75,16 @@ export default function RatgeberPage() {
 
   const seo = getPageSEO('ratgeber');
 
+  const breadcrumbItems = [
+    { label: 'Startseite', path: '/' },
+    { label: 'Ratgeber', path: '/ratgeber' },
+  ];
+
+  const breadcrumbSchema = [
+    { name: 'Startseite', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}` },
+    { name: 'Ratgeber', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.ratgeber}` },
+  ];
+
   return (
     <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
@@ -79,7 +92,9 @@ export default function RatgeberPage() {
         description={seo.description}
         keywords={seo.keywords}
       />
+      <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />
+      <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">

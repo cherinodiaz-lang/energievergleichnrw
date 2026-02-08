@@ -13,6 +13,8 @@ import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import ResponsiveEmbed from '@/components/ui/ResponsiveEmbed';
+import Breadcrumb from '@/components/Breadcrumb';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
@@ -168,6 +170,16 @@ export default function GasvergleichNrwPage() {
 
   const seo = getPageSEO('gasvergleich');
 
+  const breadcrumbItems = [
+    { label: 'Startseite', path: '/' },
+    { label: 'Gasvergleich NRW', path: '/gasvergleich-nrw' },
+  ];
+
+  const breadcrumbSchema = [
+    { name: 'Startseite', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}` },
+    { name: 'Gasvergleich NRW', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.gasvergleich}` },
+  ];
+
   return (
     <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
@@ -175,7 +187,9 @@ export default function GasvergleichNrwPage() {
         description={seo.description}
         keywords={seo.keywords}
       />
+      <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />
+      <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">

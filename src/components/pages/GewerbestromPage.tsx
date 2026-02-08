@@ -11,8 +11,11 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
+import Breadcrumb from '@/components/Breadcrumb';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { Link } from 'react-router-dom';
 import { getPageSEO } from '@/lib/seo-config';
+import { ROUTES } from '@/lib/routes';
 
 export default function GewerbestromPage() {
   useEffect(() => {
@@ -102,6 +105,18 @@ export default function GewerbestromPage() {
 
   const seo = getPageSEO('gewerbestrom');
 
+  const breadcrumbItems = [
+    { label: 'Startseite', path: '/' },
+    { label: 'Gewerbe', path: '#' },
+    { label: 'Gewerbestrom', path: '/gewerbestrom' },
+  ];
+
+  const breadcrumbSchema = [
+    { name: 'Startseite', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}` },
+    { name: 'Gewerbe', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}#gewerbe` },
+    { name: 'Gewerbestrom', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.gewerbestrom}` },
+  ];
+
   return (
     <div className="min-h-screen bg-background break-words leading-relaxed">
       <SEOHead
@@ -110,7 +125,9 @@ export default function GewerbestromPage() {
         keywords={seo.keywords}
         ogDescription="Sparen Sie bis zu 30% bei Gewerbestrom. Kostenlose Beratung für Unternehmen in NRW."
       />
+      <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />
+      <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero Section */}
       <section id="hero" className="w-full bg-primary text-primary-foreground py-24">

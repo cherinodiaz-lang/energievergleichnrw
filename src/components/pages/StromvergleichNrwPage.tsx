@@ -12,6 +12,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
+import Breadcrumb from '@/components/Breadcrumb';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
@@ -154,6 +156,16 @@ export default function StromvergleichNrwPage() {
 
   const seo = getPageSEO('stromvergleich');
 
+  const breadcrumbItems = [
+    { label: 'Startseite', path: '/' },
+    { label: 'Stromvergleich NRW', path: '/stromvergleich-nrw' },
+  ];
+
+  const breadcrumbSchema = [
+    { name: 'Startseite', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}` },
+    { name: 'Stromvergleich NRW', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.stromvergleich}` },
+  ];
+
   return (
     <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
@@ -163,7 +175,9 @@ export default function StromvergleichNrwPage() {
         ogTitle="Stromvergleich NRW – Günstige Stromtarife finden"
         ogDescription="Stromtarife in NRW vergleichen: Preise, Anbieter und Optionen. In 2 Minuten zum passenden Tarif – kostenlos."
       />
+      <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />
+      <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">

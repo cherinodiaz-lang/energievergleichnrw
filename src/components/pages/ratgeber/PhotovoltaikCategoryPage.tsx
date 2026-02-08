@@ -6,12 +6,26 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import Breadcrumb from '@/components/Breadcrumb';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 import { getArticlesByCategory } from '@/lib/ratgeber-map';
 
 export default function PhotovoltaikCategoryPage() {
   const articles = getArticlesByCategory('photovoltaik');
+
+  const breadcrumbItems = [
+    { label: 'Startseite', path: '/' },
+    { label: 'Ratgeber', path: '/ratgeber' },
+    { label: 'Photovoltaik', path: '/ratgeber/photovoltaik' },
+  ];
+
+  const breadcrumbSchema = [
+    { name: 'Startseite', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}` },
+    { name: 'Ratgeber', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.ratgeber}` },
+    { name: 'Photovoltaik', url: `${typeof window !== 'undefined' ? window.location.origin : ''}/ratgeber/photovoltaik` },
+  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -22,7 +36,9 @@ export default function PhotovoltaikCategoryPage() {
         ogTitle="Photovoltaik & Solar | Ratgeber"
         ogDescription="Umfassender Ratgeber zu Solaranlagen und Photovoltaik in NRW"
       />
+      <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />
+      <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">

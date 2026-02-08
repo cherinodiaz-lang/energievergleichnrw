@@ -6,12 +6,26 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import Breadcrumb from '@/components/Breadcrumb';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { Link } from 'react-router-dom';
 import { ratgeberArticles, getArticlesByCategory } from '@/lib/ratgeber-map';
 import { ROUTES } from '@/lib/routes';
 
 export default function StromCategoryPage() {
   const articles = getArticlesByCategory('strom');
+
+  const breadcrumbItems = [
+    { label: 'Startseite', path: '/' },
+    { label: 'Ratgeber', path: '/ratgeber' },
+    { label: 'Strom', path: '/ratgeber/strom' },
+  ];
+
+  const breadcrumbSchema = [
+    { name: 'Startseite', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}` },
+    { name: 'Ratgeber', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.ratgeber}` },
+    { name: 'Strom', url: `${typeof window !== 'undefined' ? window.location.origin : ''}/ratgeber/strom` },
+  ];
 
   return (
     <div className="min-h-screen bg-background break-words leading-mobile">
@@ -22,7 +36,9 @@ export default function StromCategoryPage() {
         ogTitle="Stromvergleich & Tarife | Ratgeber"
         ogDescription="Umfassender Ratgeber zu Stromtarifen und Stromwechsel in NRW"
       />
+      <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />
+      <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">

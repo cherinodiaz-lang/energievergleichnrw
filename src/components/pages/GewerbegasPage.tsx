@@ -11,8 +11,11 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
+import Breadcrumb from '@/components/Breadcrumb';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { useNavigate } from 'react-router-dom';
 import { getPageSEO } from '@/lib/seo-config';
+import { ROUTES } from '@/lib/routes';
 
 export default function GewerbegasPage() {
   const navigate = useNavigate();
@@ -106,6 +109,18 @@ export default function GewerbegasPage() {
 
   const seo = getPageSEO('gewerbegas');
 
+  const breadcrumbItems = [
+    { label: 'Startseite', path: '/' },
+    { label: 'Gewerbe', path: '#' },
+    { label: 'Gewerbegas', path: '/gewerbegas' },
+  ];
+
+  const breadcrumbSchema = [
+    { name: 'Startseite', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}` },
+    { name: 'Gewerbe', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}#gewerbe` },
+    { name: 'Gewerbegas', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.gewerbegas}` },
+  ];
+
   return (
     <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
@@ -113,7 +128,9 @@ export default function GewerbegasPage() {
         description={seo.description}
         keywords={seo.keywords}
       />
+      <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />
+      <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero Section */}
       <section id="hero" className="w-full bg-primary text-primary-foreground py-32">

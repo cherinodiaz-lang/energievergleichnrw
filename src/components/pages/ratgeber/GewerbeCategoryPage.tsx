@@ -6,11 +6,26 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import Breadcrumb from '@/components/Breadcrumb';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { Link } from 'react-router-dom';
 import { getArticlesByCategory } from '@/lib/ratgeber-map';
+import { ROUTES } from '@/lib/routes';
 
 export default function GewerbeCategoryPage() {
   const articles = getArticlesByCategory('gewerbe');
+
+  const breadcrumbItems = [
+    { label: 'Startseite', path: '/' },
+    { label: 'Ratgeber', path: '/ratgeber' },
+    { label: 'Gewerbe', path: '/ratgeber/gewerbe' },
+  ];
+
+  const breadcrumbSchema = [
+    { name: 'Startseite', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}` },
+    { name: 'Ratgeber', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.ratgeber}` },
+    { name: 'Gewerbe', url: `${typeof window !== 'undefined' ? window.location.origin : ''}/ratgeber/gewerbe` },
+  ];
 
   return (
     <div className="min-h-screen bg-background break-words leading-mobile">
@@ -21,7 +36,9 @@ export default function GewerbeCategoryPage() {
         ogTitle="Gewerbeenergie | Ratgeber"
         ogDescription="Ratgeber für Gewerbekunden und Unternehmen"
       />
+      <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />
+      <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
