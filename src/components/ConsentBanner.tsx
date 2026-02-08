@@ -126,12 +126,12 @@ export default function ConsentBanner() {
             {/* Text Content */}
             <div className="flex-1 min-w-0">
               <p className="font-paragraph text-xs sm:text-sm leading-snug">
-                Wir verwenden Cookies, um Ihre Erfahrung zu verbessern.{' '}
+                Wir nutzen Cookies für bessere Erfahrung.{' '}
                 <button
                   onClick={() => setShowSettings(true)}
                   className="underline hover:opacity-80 transition-opacity font-semibold"
                 >
-                  Mehr erfahren
+                  Einstellungen
                 </button>
               </p>
             </div>
