@@ -453,6 +453,37 @@ export default function PhotovoltaikNrwPage() {
         </div>
       </section>
 
+      {/* PV-Angebote Checklist Section */}
+      <section className="w-full py-24 bg-white">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary mb-16 text-center">
+            PV-Angebote vergleichen: Checkliste
+          </h2>
+
+          <div className="max-w-3xl mx-auto bg-background rounded-lg p-8 border border-gray-200">
+            <ul className="space-y-4">
+              {[
+                'Dachfläche & Ausrichtung',
+                'Jahresverbrauch',
+                'Anlagengröße (kWp)',
+                'Komponenten (Module/Wechselrichter)',
+                'Speicher ja/nein',
+                'Garantien',
+                'Wirtschaftlichkeit/Amortisation',
+                'Netzanschluss & Anmeldung'
+              ].map((item, index) => (
+                <li key={index} className="flex items-start gap-4">
+                  <div className="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center flex-shrink-0 mt-0.5 font-bold text-sm">
+                    {index + 1}
+                  </div>
+                  <span className="font-paragraph text-lg text-gray-700 pt-0.5">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
       {/* Comparison Criteria Section */}
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
