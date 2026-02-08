@@ -725,6 +725,34 @@ export default function GewerbegasPage() {
         </div>
       </section>
 
+      {/* Trust Section */}
+      <section className="w-full py-24 bg-white">
+        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary mb-6">
+              Warum energievergleich.shop?
+            </h2>
+            <p className="font-paragraph text-lg text-gray-700 leading-relaxed">
+              Wir bieten Ihnen einen unabhängigen und kostenlosen Gewerbegas-Vergleich speziell für Ihre Anforderungen. Unsere Transparenz ist unser Versprechen: Wir vergleichen Gastarife nicht nur nach Preis, sondern auch nach Vertragsbedingungen, Preisgarantie und Kündigungsfristen. So finden Sie den Tarif, der wirklich zu Ihrem Unternehmen passt. Alle Informationen sind aktuell und entsprechen dem Stand Februar 2026. Haben Sie Fragen zu unserer Methodik?{' '}
+              <a 
+                href="/methodik" 
+                className="text-primary font-semibold hover:underline transition-colors"
+              >
+                So vergleichen wir (Methodik)
+              </a>
+              {' '}oder nehmen Sie{' '}
+              <a 
+                href="/kontakt" 
+                className="text-primary font-semibold hover:underline transition-colors"
+              >
+                Kontakt
+              </a>
+              {' '}mit uns auf.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Passende Ratgeber */}
       <PassendeRatgeber moneyPageId="gewerbegas" limit={4} />
 
