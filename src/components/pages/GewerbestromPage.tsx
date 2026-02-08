@@ -653,6 +653,23 @@ export default function GewerbestromPage() {
         </div>
       </section>
 
+      {/* Trust Section */}
+      <section className="w-full py-24 bg-white">
+        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="space-y-6">
+            <h2 className="font-heading text-3xl font-bold text-primary">Warum energievergleich.shop?</h2>
+            
+            <p className="font-paragraph text-lg text-gray-700 leading-relaxed">
+              Bei der Wahl eines Gewerbestrom-Anbieters vertrauen Sie auf Transparenz und Unabhängigkeit. energievergleich.shop bietet Ihnen einen kostenlosen, unabhängigen Vergleich von Gewerbestromtarifen – ohne versteckte Gebühren oder Provisionen. Wir vergleichen Tarife nach Preis und Vertragsbedingungen, um Ihnen die beste Lösung für Ihr Unternehmen zu zeigen. Unsere Daten sind aktuell und werden regelmäßig aktualisiert. Stand: Februar 2026.
+            </p>
+
+            <p className="font-paragraph text-base text-gray-700">
+              Erfahren Sie mehr über unsere Vergleichskriterien in unserer <Link to="/methodik" className="text-primary hover:underline font-semibold">So vergleichen wir (Methodik)</Link> oder kontaktieren Sie uns direkt unter <Link to="/kontakt" className="text-primary hover:underline font-semibold">Kontakt</Link>.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Passende Ratgeber */}
       <PassendeRatgeber moneyPageId="gewerbestrom" limit={4} />
 
