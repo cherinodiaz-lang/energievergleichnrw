@@ -17,7 +17,7 @@ import { initializeGA4 } from '@/services/ga4-tracking';
 // Lazy load non-critical pages for code-splitting
 const GewerbestromPage = lazy(() => import('@/components/pages/GewerbestromPage'));
 const GewerbegasPage = lazy(() => import('@/components/pages/GewerbegasPage'));
-const StromvergleichNrwPage = lazy(() => import('@/components/pages/StromvergleichNrwPage_NEW'));
+const StromvergleichNrwPage = lazy(() => import('@/components/pages/StromvergleichNrwPage'));
 const GasvergleichNrwPage = lazy(() => import('@/components/pages/GasvergleichNrwPage'));
 const PhotovoltaikNrwPage = lazy(() => import('@/components/pages/PhotovoltaikNrwPage'));
 const KontaktPage = lazy(() => import('@/components/pages/KontaktPage'));
