@@ -11,6 +11,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
+import { Link } from 'react-router-dom';
 
 export default function GewerbestromPage() {
   const [companyName, setCompanyName] = useState('');
@@ -117,9 +118,12 @@ export default function GewerbestromPage() {
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Gewerbestrom speziell für NRW</h3>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4" id="so-funktioniert-unser-vergleich">So funktioniert unser Vergleich</h3>
               <p className="font-paragraph text-gray-700 mb-4">
                 Nordrhein-Westfalen ist das wirtschaftsstärkste Bundesland Deutschlands mit vielen Unternehmen aller Größen. Die Strompreise für Gewerbekunden variieren je nach Verbrauch und Standort. Unser Vergleich berücksichtigt alle regionalen Besonderheiten und zeigt Ihnen die besten Tarife für Ihr Unternehmen – ob in Düsseldorf, Köln, Essen, Dortmund oder einer anderen Stadt in NRW.
+              </p>
+              <p className="font-paragraph text-gray-700 text-sm mt-4">
+                <strong>Transparenz:</strong> Erfahren Sie <Link to="/methodik#so-funktioniert-unser-vergleich" className="text-primary font-bold hover:underline">wie unser Vergleich funktioniert</Link> und welche Kriterien wir für die Bewertung nutzen.
               </p>
             </div>
 

@@ -91,7 +91,7 @@ export default function Footer() {
 
           {/* Ratgeber & Links (from NAV_SECONDARY) */}
           <div>
-            <h3 className="font-heading font-semibold text-base sm:text-lg mb-4 sm:mb-6">Ratgeber</h3>
+            <h3 className="font-heading font-semibold text-base sm:text-lg mb-4 sm:mb-6">Ratgeber & Info</h3>
             <ul className="space-y-2 sm:space-y-3">
               {NAV_SECONDARY.map((item) => (
                 <li key={item.key}>
@@ -103,6 +103,14 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  to="/methodik"
+                  className="font-paragraph text-xs sm:text-sm opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity"
+                >
+                  So vergleichen wir
+                </Link>
+              </li>
             </ul>
           </div>
 

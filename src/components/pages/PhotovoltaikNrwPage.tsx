@@ -243,9 +243,12 @@ export default function PhotovoltaikNrwPage() {
              </div>
 
              <div>
-               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Photovoltaik speziell für NRW</h3>
+               <h3 className="font-heading text-2xl font-bold text-primary mb-4" id="so-funktioniert-unser-vergleich">So funktioniert unser Vergleich</h3>
                <p className="font-paragraph text-gray-700 mb-4">
                  Auch wenn NRW nicht die sonnigste Region Deutschlands ist, lohnt sich eine Photovoltaikanlage. Eine typische 5-kW-Anlage produziert in NRW etwa 4.500-5.000 kWh pro Jahr. Mit unserer kostenlosen Beratung analysieren wir Ihr Dach, Ihren Stromverbrauch und erstellen ein individuelles Angebot. Wir berücksichtigen alle regionalen Besonderheiten und Fördermöglichkeiten für Ihre Stadt in NRW.
+               </p>
+               <p className="font-paragraph text-gray-700 text-sm mt-4">
+                 <strong>Transparenz:</strong> Erfahren Sie <Link to="/methodik#so-funktioniert-unser-vergleich" className="text-primary font-bold hover:underline">wie unser Vergleich funktioniert</Link> und welche Kriterien wir für die Bewertung nutzen.
                </p>
              </div>
 
