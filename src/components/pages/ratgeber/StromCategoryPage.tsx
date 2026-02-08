@@ -63,6 +63,68 @@ export default function StromCategoryPage() {
         </div>
       </section>
 
+      {/* Introductory Section */}
+      <section className="w-full py-16 bg-white">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="max-w-3xl">
+              <h2 className="font-heading text-2xl sm:text-3xl font-semibold tracking-tight text-primary mb-6">
+                Stromtarife verstehen und optimieren
+              </h2>
+              <p className="font-paragraph text-base md:text-lg text-gray-700 mb-6 leading-relaxed">
+                Der Strommarkt in Nordrhein-Westfalen bietet vielfältige Möglichkeiten, Ihre Energieversorgung zu optimieren. Ob Sie zum ersten Mal einen Anbieter wechseln möchten, Ihre aktuelle Grundversorgung überprüfen oder die Unterschiede zwischen verschiedenen Tarifmodellen verstehen wollen – unsere Ratgeber bieten Ihnen umfassende Informationen. Wir erklären die wichtigsten Begriffe, zeigen Ihnen worauf Sie bei Verträgen achten sollten und helfen Ihnen, fundierte Entscheidungen zu treffen.
+              </p>
+              
+              <div className="mb-8">
+                <h3 className="font-heading text-lg font-semibold text-gray-900 mb-4">
+                  Häufige Fragen zum Stromwechsel:
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary font-bold mt-1">•</span>
+                    <span className="font-paragraph text-gray-700">Wie funktioniert ein Stromanbieterwechsel und wie lange dauert dieser?</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary font-bold mt-1">•</span>
+                    <span className="font-paragraph text-gray-700">Was ist der Unterschied zwischen Grundversorgung und Sondervertrag?</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary font-bold mt-1">•</span>
+                    <span className="font-paragraph text-gray-700">Welche Kündigungsfristen muss ich beachten?</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary font-bold mt-1">•</span>
+                    <span className="font-paragraph text-gray-700">Wie kann ich bei Preiserhöhungen reagieren?</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="https://www.energievergleich.shop/stromvergleich-nrw"
+                  className="font-paragraph font-semibold text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-2 group"
+                >
+                  Stromvergleich NRW starten
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </a>
+                <a
+                  href="https://www.energievergleich.shop/methodik"
+                  className="font-paragraph font-semibold text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-2 group"
+                >
+                  So vergleichen wir (Methodik)
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Articles Grid */}
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
