@@ -324,7 +324,7 @@ export default function StromvergleichNrwPage() {
                                   <p className="font-heading text-lg font-bold text-primary">{yearlyPrice.toFixed(2)} €/Jahr</p>
                                 </div>
                               </div>
-                              <Link to={ROUTES.KONTAKT} className="w-full">
+                              <Link to={ROUTES.kontakt} className="w-full">
                                 <Button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-11 font-bold rounded-lg">
                                   Angebot anfordern
                                   <ArrowRight className="w-4 h-4 ml-2" />
@@ -706,8 +706,8 @@ export default function StromvergleichNrwPage() {
       <section className="w-full py-16 bg-white border-t">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <h3 className="font-heading text-2xl font-bold text-primary mb-8">Weitere Informationen</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Link to={ROUTES.GASVERGLEICH_NRW} className="group">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+            <Link to={ROUTES.gasvergleich} className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Gasvergleich NRW</CardTitle>
@@ -718,7 +718,7 @@ export default function StromvergleichNrwPage() {
                 </CardContent>
               </Card>
             </Link>
-            <Link to={ROUTES.PHOTOVOLTAIK_NRW} className="group">
+            <Link to={ROUTES.photovoltaik} className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Photovoltaik NRW</CardTitle>
@@ -729,14 +729,36 @@ export default function StromvergleichNrwPage() {
                 </CardContent>
               </Card>
             </Link>
-            <Link to={ROUTES.KONTAKT} className="group">
+            <Link to={ROUTES.gewerbestrom} className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Kontakt</CardTitle>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Gewerbestrom</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="font-paragraph text-sm text-gray-600 mb-4">Haben Sie Fragen? Kontaktieren Sie uns direkt.</p>
-                  <Button variant="outline" size="sm">Kontakt aufnehmen</Button>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">Spezielle Stromtarife für Ihr Unternehmen.</p>
+                  <Button variant="outline" size="sm">Mehr erfahren</Button>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to={ROUTES.ratgeberStrom} className="group">
+              <Card className="h-full hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Ratgeber Strom</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">Tipps und Wissen rund um Stromtarife.</p>
+                  <Button variant="outline" size="sm">Mehr erfahren</Button>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/methodik" className="group">
+              <Card className="h-full hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Methodik</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">So funktioniert unser Vergleich.</p>
+                  <Button variant="outline" size="sm">Mehr erfahren</Button>
                 </CardContent>
               </Card>
             </Link>
