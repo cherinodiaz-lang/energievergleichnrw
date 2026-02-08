@@ -681,6 +681,70 @@ export default function GasvergleichNrwPage() {
         </div>
       </section>
 
+      {/* Gasanbieter wechseln in 5 Schritten Section */}
+      <section className="w-full py-24 bg-white">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary mb-12 text-center">
+            Gasanbieter wechseln in 5 Schritten
+          </h2>
+
+          <div className="max-w-3xl mx-auto">
+            <ol className="space-y-6">
+              {[
+                {
+                  step: 1,
+                  title: 'Gasrechnung bereitstellen',
+                  description: 'Suchen Sie Ihre letzte Gasrechnung heraus. Sie benötigen Ihren jährlichen Gasverbrauch in kWh und Ihre Zählernummer.'
+                },
+                {
+                  step: 2,
+                  title: 'Tarife vergleichen',
+                  description: 'Nutzen Sie unseren Vergleichsrechner. Geben Sie Ihre Postleitzahl und Ihren Verbrauch ein und sehen Sie alle verfügbaren Tarife.'
+                },
+                {
+                  step: 3,
+                  title: 'Besten Tarif auswählen',
+                  description: 'Vergleichen Sie Preis, Laufzeit und Preisgarantie. Wählen Sie den Tarif, der am besten zu Ihnen passt.'
+                },
+                {
+                  step: 4,
+                  title: 'Wechsel beauftragen',
+                  description: 'Geben Sie Ihre Daten ein und beauftragen Sie den Wechsel. Wir kümmern uns um die Kündigung beim alten Anbieter.'
+                },
+                {
+                  step: 5,
+                  title: 'Wechsel abgeschlossen',
+                  description: 'Nach 4-6 Wochen ist der Wechsel komplett. Sie zahlen ab sofort den neuen, günstigeren Tarif.'
+                }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="flex gap-6"
+                >
+                  <div className="flex-shrink-0">
+                    <div className="flex items-center justify-center h-12 w-12 rounded-full bg-primary text-white font-heading font-bold text-lg">
+                      {item.step}
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-heading font-semibold text-lg text-primary mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="font-paragraph text-gray-600">
+                      {item.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+
       {/* Comparison Criteria Section */}
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
