@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sun, Clock, ArrowRight } from 'lucide-react';
+import { Sun, Clock, ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
@@ -63,8 +63,74 @@ export default function PhotovoltaikCategoryPage() {
         </div>
       </section>
 
+      {/* Introductory Section */}
+      <section className="w-full py-20 bg-white">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="max-w-3xl mb-12">
+              <h2 className="font-heading text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-primary mb-6">
+                Photovoltaik verstehen und richtig nutzen
+              </h2>
+              <p className="font-paragraph text-base sm:text-lg text-gray-700 mb-8 leading-relaxed">
+                Solaranlagen bieten eine nachhaltige Möglichkeit, Ihren Energiebedarf zu decken und langfristig Kosten zu sparen. Ob Sie sich fragen, ob eine Solaranlage wirtschaftlich ist, wie die Einspeisevergütung funktioniert oder welche Förderungen es gibt – unser Ratgeber beantwortet Ihre wichtigsten Fragen. Erfahren Sie, worauf Sie bei der Planung und beim Vergleich von Angeboten achten sollten, und treffen Sie eine informierte Entscheidung für Ihre Energiezukunft.
+              </p>
+              
+              <div className="mb-10">
+                <h3 className="font-heading text-lg font-semibold text-gray-900 mb-4">
+                  Häufig gestellte Fragen:
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="font-paragraph text-gray-700">Wie wirtschaftlich ist eine Solaranlage wirklich?</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="font-paragraph text-gray-700">Welche Förderungen und Zuschüsse gibt es in NRW?</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="font-paragraph text-gray-700">Ist mein Dach für eine Solaranlage geeignet?</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="font-paragraph text-gray-700">Lohnt sich ein Stromspeicher für mich?</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="font-paragraph text-gray-700">Worauf sollte ich beim Vergleich von Angeboten achten?</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="https://www.energievergleich.shop/photovoltaik-nrw"
+                  className="inline-flex items-center justify-center px-6 py-3 bg-secondary text-secondary-foreground font-bold rounded-lg hover:bg-secondary/90 transition-colors"
+                >
+                  Photovoltaik-Angebote anfordern
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </a>
+                <a
+                  href="https://www.energievergleich.shop/kontakt"
+                  className="inline-flex items-center justify-center px-6 py-3 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary/5 transition-colors"
+                >
+                  Kontakt aufnehmen
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Articles Grid */}
-      <section className="w-full py-24 bg-white">
+      <section className="w-full py-24 bg-white border-t border-gray-200">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12">
             <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary mb-4">
