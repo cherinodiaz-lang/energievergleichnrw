@@ -6,13 +6,13 @@ export default function WebsiteSchema() {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
       name: 'energievergleich.nrw',
-      url: 'https://energievergleich.nrw',
+      url: 'https://www.energievergleich.nrw',
       description: 'Vergleichen Sie Strom- und Gastarife in Nordrhein-Westfalen. Finden Sie die besten Angebote für Privat- und Gewerbekunden.',
       potentialAction: {
         '@type': 'SearchAction',
         target: {
           '@type': 'EntryPoint',
-          urlTemplate: 'https://energievergleich.nrw/?q={search_term_string}',
+          urlTemplate: 'https://www.energievergleich.nrw/?q={search_term_string}',
         },
         query_input: 'required name=search_term_string',
       },

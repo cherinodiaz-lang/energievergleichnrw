@@ -5,15 +5,29 @@
 
 export const SEO_CONFIG = {
   // Site Information
-  // PRIMARY DOMAIN: https://www.energievergleich.shop
-  siteName: 'www.energievergleich.shop',
-  siteUrl: 'https://www.energievergleich.shop',
+  // PRIMARY DOMAIN: https://www.energievergleich.nrw
+  siteName: 'www.energievergleich.nrw',
+  siteUrl: 'https://www.energievergleich.nrw',
   siteDescription: 'Vergleichen Sie Strom- und Gastarife in Nordrhein-Westfalen. Finden Sie die besten Angebote für Privat- und Gewerbekunden. Kostenlos und unabhängig.',
   
-  // Organization Information (NO postal address - only essential fields)
+  // Organization Information (complete details for schema)
   organization: {
-    name: 'energievergleich.shop',
+    name: 'energievergleich.nrw',
+    legalName: 'energievergleich.nrw',
+    url: 'https://www.energievergleich.nrw',
+    logo: 'https://static.wixstatic.com/media/32e7c0_8cede5e338be484bb8dcaad81c053c82~mv2.png?originWidth=1920&originHeight=1024',
     areaServed: 'Nordrhein-Westfalen',
+    contact: {
+      email: 'info@energievergleich.nrw',
+      telephone: '+49 (0) 2 01 - 1 03 - 39 39',
+    },
+    address: {
+      streetAddress: 'Energiestraße 1',
+      addressLocality: 'Düsseldorf',
+      addressRegion: 'NRW',
+      postalCode: '40210',
+      addressCountry: 'DE',
+    },
   },
   
   // Social Media

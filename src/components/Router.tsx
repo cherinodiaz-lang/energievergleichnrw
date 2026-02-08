@@ -7,6 +7,7 @@ import { ROUTES } from '@/lib/routes';
 import ErrorPage from '@/integrations/errorHandlers/ErrorPage';
 import HomePage from '@/components/pages/HomePage';
 import OrganizationSchema from '@/components/OrganizationSchema';
+import LocalBusinessSchema from '@/components/LocalBusinessSchema';
 import WebsiteSchema from '@/components/WebsiteSchema';
 import SearchConsoleVerification from '@/components/SearchConsoleVerification';
 import SitemapNotification from '@/components/SitemapNotification';
@@ -72,6 +73,7 @@ function Layout() {
     <div className="min-w-0 overflow-x-hidden ox-hidden">
       <ScrollToTop />
       <OrganizationSchema />
+      <LocalBusinessSchema />
       <WebsiteSchema />
       <SearchConsoleVerification verificationCode={SEO_CONFIG.googleSearchConsoleVerification} />
       <SitemapNotification />
