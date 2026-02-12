@@ -107,17 +107,18 @@ export function trackCTAClick(buttonName: string) {
 }
 
 /**
- * Validate form field
+ * Validate form field with custom error messages
  */
 export function validateField(
   fieldName: string,
   value: any,
-  required: boolean = true
+  required: boolean = true,
+  customErrorMessage?: string
 ): { valid: boolean; error?: string } {
   if (required && (!value || value.toString().trim() === '')) {
     return {
       valid: false,
-      error: `${fieldName} ist erforderlich`
+      error: customErrorMessage || `${fieldName} ist erforderlich`
     };
   }
 
@@ -127,7 +128,7 @@ export function validateField(
     if (!emailRegex.test(value)) {
       return {
         valid: false,
-        error: 'Ungültige E-Mail-Adresse'
+        error: 'Bitte eine gültige E-Mail-Adresse eingeben.'
       };
     }
   }
@@ -138,18 +139,29 @@ export function validateField(
     if (!phoneRegex.test(value)) {
       return {
         valid: false,
-        error: 'Ungültige Telefonnummer'
+        error: 'Bitte eine gültige Telefonnummer eingeben.'
       };
     }
   }
 
   // Postleitzahl validation
-  if (fieldName.toLowerCase().includes('postleitzahl') && value) {
+  if (fieldName.toLowerCase().includes('plz') && value) {
     const plzRegex = /^\d{5}$/;
     if (!plzRegex.test(value.toString())) {
       return {
         valid: false,
-        error: 'Postleitzahl muss 5 Ziffern sein'
+        error: 'Bitte eine gültige PLZ eingeben.'
+      };
+    }
+  }
+
+  // Verbrauch validation (kWh)
+  if (fieldName.toLowerCase().includes('verbrauch') && value) {
+    const verbrauchNum = parseFloat(value);
+    if (isNaN(verbrauchNum) || verbrauchNum <= 0) {
+      return {
+        valid: false,
+        error: 'Bitte einen gültigen Verbrauch eingeben.'
       };
     }
   }
