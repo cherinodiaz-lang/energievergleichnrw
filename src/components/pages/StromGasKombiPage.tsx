@@ -195,7 +195,7 @@ export default function StromGasKombiPage() {
               {/* Methodologie Link */}
               <motion.div variants={itemVariants} className="mt-8 pt-8 border-t border-gray-200">
                 <p className="font-paragraph text-sm text-gray-600">
-                  Möchtest du wissen, wie wir Tarife bewerten? Schau dir unsere <a href="https://www.energievergleich.shop/methodik" className="text-primary font-semibold hover:underline">Methodik</a> an.
+                  Möchtest du wissen, wie wir Tarife bewerten? Schau dir unsere <a href="https://www.energievergleich.shop/methodik" className="text-primary font-semibold hover:underline">So vergleichen wir (Methodik)</a> an.
                 </p>
               </motion.div>
             </motion.div>
