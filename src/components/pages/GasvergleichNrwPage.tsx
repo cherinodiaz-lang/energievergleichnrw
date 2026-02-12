@@ -206,12 +206,17 @@ export default function GasvergleichNrwPage() {
             <p className="font-paragraph text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
               Finden Sie den günstigsten Gastarif in Ihrer Region. Kostenlos, unabhängig und in wenigen Minuten.
             </p>
-            <Button
-              onClick={() => document.getElementById('vergleich')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 px-8 rounded-full text-lg font-semibold shadow-lg"
-            >
-              Jetzt vergleichen
-            </Button>
+            <div className="flex flex-col gap-4">
+              <Button
+                onClick={() => document.getElementById('vergleich')?.scrollIntoView({ behavior: 'smooth' })}
+                className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 px-8 rounded-full text-lg font-semibold shadow-lg"
+              >
+                Jetzt vergleichen
+              </Button>
+              <Link to="/methodik" className="text-white/80 hover:text-white transition-colors text-sm font-medium underline">
+                So vergleichen wir (Methodik)
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>

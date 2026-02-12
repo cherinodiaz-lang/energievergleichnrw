@@ -200,13 +200,16 @@ export default function PhotovoltaikNrwPage() {
             <p className="font-paragraph text-[15px] sm:text-base md:text-xl text-white/90 mb-8 max-w-2xl">
               Nutzen Sie die Kraft der Sonne und werden Sie unabhängig von steigenden Strompreisen. Kostenlose Beratung für Ihre Solaranlage.
             </p>
-            <div className="flex gap-3 flex-wrap">
+            <div className="flex flex-col gap-4">
               <Button
                 onClick={() => document.getElementById('beratung')?.scrollIntoView({ behavior: 'smooth' })}
                 className="w-full sm:w-auto bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 px-8 rounded-full text-lg font-semibold shadow-lg"
               >
-                Kostenlose Beratung
+                Jetzt Angebote anfordern
               </Button>
+              <Link to="/methodik" className="text-white/80 hover:text-white transition-colors text-sm font-medium underline">
+                So vergleichen wir (Methodik)
+              </Link>
             </div>
           </motion.div>
         </div>

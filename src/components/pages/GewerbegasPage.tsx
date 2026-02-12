@@ -159,16 +159,14 @@ export default function GewerbegasPage() {
                 onClick={() => document.getElementById('anfrage')?.scrollIntoView({ behavior: 'smooth' })}
                 className="bg-secondary text-secondary-foreground hover:bg-secondary/90 min-h-[44px] h-12 sm:h-14 px-6 sm:px-8 rounded-full text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 w-full sm:w-auto"
               >
-                Angebot anfordern
+                Jetzt Angebot anfordern
               </Button>
-              <Button
-                onClick={() => navigate('/#photovoltaik')}
-                variant="outline"
-                className="bg-white/10 border-white/30 text-white hover:bg-white/20 min-h-[44px] h-12 sm:h-14 px-6 sm:px-8 rounded-full text-base sm:text-lg font-medium backdrop-blur-md transition-all w-full sm:w-auto"
+              <Link
+                to="/methodik"
+                className="text-white/80 hover:text-white transition-colors text-sm sm:text-base font-medium underline self-center sm:self-auto"
               >
-                <Sun className="w-5 h-5 mr-2" />
-                Photovoltaik Beratung
-              </Button>
+                So vergleichen wir (Methodik)
+              </Link>
             </div>
           </motion.div>
         </div>

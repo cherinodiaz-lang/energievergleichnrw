@@ -3,6 +3,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/Breadcrumb';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 export default function StromGasKombiPage() {
   const containerVariants = {
@@ -53,6 +55,16 @@ export default function StromGasKombiPage() {
               <p className="font-paragraph text-lg text-gray-700 max-w-3xl">
                 Viele Haushalte zahlen für Strom und Gas bei verschiedenen Anbietern – dabei bieten Kombi-Tarife oft bessere Konditionen und mehr Komfort. Erfahre, wann sich ein gemeinsamer Vertrag lohnt und wie du die besten Kombi-Angebote findest.
               </p>
+              <div className="flex flex-col gap-4 mt-8">
+                <Link to="/stromvergleich-nrw" className="inline-block">
+                  <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 px-8 rounded-full text-lg font-semibold shadow-lg">
+                    Jetzt vergleichen
+                  </Button>
+                </Link>
+                <Link to="/methodik" className="text-primary hover:text-primary/80 transition-colors text-sm font-medium underline">
+                  So vergleichen wir (Methodik)
+                </Link>
+              </div>
             </motion.div>
           </div>
         </section>

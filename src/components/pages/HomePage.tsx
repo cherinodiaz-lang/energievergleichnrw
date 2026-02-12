@@ -382,12 +382,12 @@ export default function HomePage() {
               <div className="flex flex-col sm:flex-row gap-3 pb-8 sm:pb-0">
                 <Button
                   onClick={() => {
-                    trackCTAClick('Jetzt Tarife vergleichen');
+                    trackCTAClick('Jetzt vergleichen');
                     scrollToSection('vergleichsrechner');
                   }}
                   className="bg-secondary text-secondary-foreground hover:bg-secondary/90 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 h-12 sm:h-14 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-bold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
                 >
-                  Jetzt Tarife vergleichen
+                  Jetzt vergleichen
                 </Button>
                 <Button
                   onClick={() => {
@@ -401,6 +401,12 @@ export default function HomePage() {
                   <span className="sm:hidden">Photovoltaik</span>
                 </Button>
               </div>
+            </AnimatedElement>
+
+            <AnimatedElement delay={400}>
+              <Link to="/methodik" className="inline-block text-white/80 hover:text-white transition-colors text-sm sm:text-base font-medium underline">
+                So vergleichen wir (Methodik)
+              </Link>
             </AnimatedElement>
           </div>
         </div>
