@@ -5,6 +5,7 @@ import Breadcrumb from '@/components/Breadcrumb';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import TrustRow from '@/components/TrustRow';
 
 export default function StromGasKombiPage() {
   const containerVariants = {
@@ -65,6 +66,7 @@ export default function StromGasKombiPage() {
                   So vergleichen wir (Methodik)
                 </Link>
               </div>
+              <TrustRow />
             </motion.div>
           </div>
         </section>
