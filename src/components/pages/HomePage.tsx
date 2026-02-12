@@ -15,6 +15,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import FormSubmissionDialog from '@/components/FormSubmissionDialog';
+import TrustRow from '@/components/TrustRow';
 import { BaseCrudService } from '@/integrations';
 import { HufiggestellteFragen, Wechselvorteile, Informationsmaterial } from '@/entities';
 import { Image } from '@/components/ui/image';
@@ -426,36 +427,41 @@ export default function HomePage() {
       <section className="relative z-20 -mt-16 sm:-mt-20 w-full mb-16 sm:mb-24">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <AnimatedElement delay={400}>
-            <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-100">
-              <div className="flex items-center gap-3 sm:gap-4 justify-center md:justify-start p-3 sm:p-4">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
-                <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />
+            <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-100 mb-6 sm:mb-8">
+                <div className="flex items-center gap-3 sm:gap-4 justify-center md:justify-start p-3 sm:p-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                    <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-heading font-bold text-base sm:text-xl text-primary">100% Unabhängig</p>
+                    <p className="text-xs sm:text-sm text-gray-500">Objektiver Vergleich</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 sm:gap-4 justify-center md:justify-start p-3 sm:p-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                    <Building2 className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-heading font-bold text-base sm:text-xl text-primary">Regional in NRW</p>
+                    <p className="text-xs sm:text-sm text-gray-500">Spezialisiert lokal</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 sm:gap-4 justify-center md:justify-start p-3 sm:p-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                    <MousePointerClick className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-heading font-bold text-base sm:text-xl text-primary">Einfacher Wechsel</p>
+                    <p className="text-xs sm:text-sm text-gray-500">Wenige Minuten</p>
+                  </div>
+                </div>
               </div>
-              <div className="min-w-0">
-                <p className="font-heading font-bold text-base sm:text-xl text-primary">100% Unabhängig</p>
-                <p className="text-xs sm:text-sm text-gray-500">Objektiver Vergleich</p>
+              <div className="border-t pt-6 sm:pt-8">
+                <TrustRow />
               </div>
             </div>
-            <div className="flex items-center gap-3 sm:gap-4 justify-center md:justify-start p-3 sm:p-4">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
-                <Building2 className="w-5 h-5 sm:w-6 sm:h-6" />
-              </div>
-              <div className="min-w-0">
-                <p className="font-heading font-bold text-base sm:text-xl text-primary">Regional in NRW</p>
-                <p className="text-xs sm:text-sm text-gray-500">Spezialisiert lokal</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 sm:gap-4 justify-center md:justify-start p-3 sm:p-4">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
-                <MousePointerClick className="w-5 h-5 sm:w-6 sm:h-6" />
-              </div>
-              <div className="min-w-0">
-                <p className="font-heading font-bold text-base sm:text-xl text-primary">Einfacher Wechsel</p>
-                <p className="text-xs sm:text-sm text-gray-500">Wenige Minuten</p>
-              </div>
-            </div>
-          </div>
-        </AnimatedElement>
+          </AnimatedElement>
         </div>
       </section>
       {/* --- CALCULATOR SECTION --- */}
