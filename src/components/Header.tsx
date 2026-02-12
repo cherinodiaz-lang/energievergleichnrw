@@ -57,9 +57,9 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
-      <div className="max-w-[120rem] mx-auto px-3 sm:px-6 lg:px-12">
-        <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
+    <header className="bg-white border-b border-gray-100 sticky top-0 z-50 h-14 sm:h-16 lg:h-20">
+      <div className="max-w-[120rem] mx-auto px-3 sm:px-6 lg:px-12 h-full">
+        <div className="flex items-center justify-between h-full">
           {/* Logo */}
           <Link 
             to={ROUTES.home} 
@@ -139,7 +139,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-foreground hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary rounded transition-colors"
+            className="lg:hidden p-2 text-foreground hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary rounded transition-colors min-h-12 min-w-12"
             aria-label={mobileMenuOpen ? "Menü schließen" : "Menü öffnen"}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-menu"
@@ -148,11 +148,11 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation - CLS Prevention */}
         {mobileMenuOpen && (
           <nav 
             id="mobile-menu"
-            className="lg:hidden py-3 sm:py-4 border-t border-gray-100"
+            className="lg:hidden py-3 sm:py-4 border-t border-gray-100 overflow-y-auto max-h-[calc(100vh-56px)] sm:max-h-[calc(100vh-64px)] lg:max-h-[calc(100vh-80px)]"
             aria-label="Mobile Navigation"
           >
             <ul className="flex flex-col divide-y divide-gray-100">

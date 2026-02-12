@@ -1,5 +1,5 @@
-// HPI 1.6-G
-import React, { useState, useEffect, useRef } from 'react';
+// HPI 1.6-G - PHASE 6: Core Web Vitals Optimized
+import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Zap, Flame, CheckCircle, Sun, Download, ChevronDown, Send, ArrowRight, Leaf, Home, Building2, ShieldCheck, MousePointerClick, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -31,8 +31,22 @@ type AnimatedElementProps = {
   delay?: number;
 };
 
+// Respect prefers-reduced-motion
 const AnimatedElement: React.FC<AnimatedElementProps> = ({ children, className, delay = 0 }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+    
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+    
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
 
   useEffect(() => {
     const element = ref.current;
@@ -42,14 +56,14 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({ children, className, 
       if (entry.isIntersecting) {
         setTimeout(() => {
           element.classList.add('is-visible');
-        }, delay);
+        }, prefersReducedMotion ? 0 : delay);
         observer.unobserve(element);
       }
     }, { threshold: 0.1 });
 
     observer.observe(element);
     return () => observer.disconnect();
-  }, [delay]);
+  }, [delay, prefersReducedMotion]);
 
   return <div ref={ref} className={`${className || ''} animate-reveal`}>{children}</div>;
 };
@@ -97,9 +111,18 @@ export default function HomePage() {
   const [showGasResults, setShowGasResults] = useState(false);
   const [showKombiResults, setShowKombiResults] = useState(false);
 
-  // --- Scroll Hooks for Parallax ---
+  // --- Scroll Hooks for Parallax - REDUCED on mobile ---
   const { scrollY } = useScroll();
-  const heroY = useTransform(scrollY, [0, 1000], [0, 400]);
+  const prefersReducedMotion = useRef(false);
+  
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    prefersReducedMotion.current = mediaQuery.matches;
+  }, []);
+  
+  // Disable parallax on mobile and when reduced motion is preferred
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const heroY = useTransform(scrollY, [0, 1000], prefersReducedMotion.current || isMobile ? [0, 0] : [0, 400]);
   const heroOpacity = useTransform(scrollY, [0, 500], [1, 0]);
 
   // ... keep existing code (state declarations) ...
@@ -333,6 +356,13 @@ export default function HomePage() {
         .animate-reveal.is-visible {
           opacity: 1;
           transform: translateY(0);
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .animate-reveal {
+            transition: none;
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
       `}</style>
       <Header />
