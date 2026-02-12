@@ -14,18 +14,25 @@ import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
+import { validateFormFields, FORM_CONFIGS } from '@/lib/form-validation';
+import FormSubmissionDialog from '@/components/FormSubmissionDialog';
 
 export default function StromvergleichNrwPage() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     postleitzahl: '',
     verbrauch: '',
     name: '',
+    email: '',
+    phone: '',
   });
   const [showResults, setShowResults] = useState(false);
   const [calculatedConsumption, setCalculatedConsumption] = useState(0);
+  const [showFormDialog, setShowFormDialog] = useState(false);
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
     const faqSchema = {
@@ -136,11 +143,14 @@ export default function StromvergleichNrwPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate inputs
-    if (!formData.postleitzahl.trim()) {
-      alert('Bitte geben Sie eine Postleitzahl ein.');
+    // Validate required fields for private form
+    const validation = validateFormFields(formData, FORM_CONFIGS.private);
+    if (!validation.valid) {
+      setFormErrors(validation.errors);
       return;
     }
+
+    setFormErrors({});
 
     // Use custom value or default
     let consumption = 0;
@@ -152,6 +162,27 @@ export default function StromvergleichNrwPage() {
 
     setCalculatedConsumption(consumption);
     setShowResults(true);
+  };
+
+  const handleFormSubmit = () => {
+    setShowFormDialog(true);
+  };
+
+  const handleFormSuccess = () => {
+    // Reset form
+    setFormData({
+      postleitzahl: '',
+      verbrauch: '',
+      name: '',
+      email: '',
+      phone: '',
+    });
+    setShowResults(false);
+    setFormErrors({});
+    // Redirect to thank you page
+    setTimeout(() => {
+      navigate('/danke');
+    }, 2000);
   };
 
   const seo = getPageSEO('stromvergleich');

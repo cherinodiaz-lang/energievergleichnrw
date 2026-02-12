@@ -15,11 +15,13 @@ import PassendeRatgeber from '@/components/PassendeRatgeber';
 import ResponsiveEmbed from '@/components/ui/ResponsiveEmbed';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
+import { validateFormFields, FORM_CONFIGS } from '@/lib/form-validation';
 
 export default function GasvergleichNrwPage() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     postleitzahl: '',
     wohnfläche: '',
@@ -30,6 +32,7 @@ export default function GasvergleichNrwPage() {
   });
   const [showResults, setShowResults] = useState(false);
   const [calculatedConsumption, setCalculatedConsumption] = useState(0);
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
     const faqSchema = {
@@ -140,15 +143,14 @@ export default function GasvergleichNrwPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate inputs
-    if (!formData.postleitzahl.trim()) {
-      alert('Bitte geben Sie eine Postleitzahl ein.');
+    // Validate required fields for private form
+    const validation = validateFormFields(formData, FORM_CONFIGS.private);
+    if (!validation.valid) {
+      setFormErrors(validation.errors);
       return;
     }
-    if (!formData.wohnfläche) {
-      alert('Bitte wählen Sie eine Wohnfläche.');
-      return;
-    }
+
+    setFormErrors({});
 
     // Calculate consumption based on living area or use custom value
     let consumption = 0;
