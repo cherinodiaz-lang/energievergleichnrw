@@ -56,6 +56,7 @@ const AngeboteVergleichenArticle = lazy(() => import('@/components/pages/ratgebe
 const KuendigungsfristenArticle = lazy(() => import('@/components/pages/ratgeber/articles/KuendigungsfristenArticle'));
 const LieferantenwechselAblaufArticle = lazy(() => import('@/components/pages/ratgeber/articles/LieferantenwechselAblaufArticle'));
 const WechselSchiefgehtArticle = lazy(() => import('@/components/pages/ratgeber/articles/WechselSchiefgehtArticle'));
+const StromGasKombiPage = lazy(() => import('@/components/pages/StromGasKombiPage'));
 
 // Fallback component for lazy-loaded routes
 const LazyFallback = () => <div className="min-h-screen flex items-center justify-center" />;
@@ -383,6 +384,13 @@ const router = createBrowserRouter([
         element: <Suspense fallback={<LazyFallback />}><WechselSchiefgehtArticle /></Suspense>,
         routeMetadata: {
           pageIdentifier: 'ratgeber-wechselwissen-probleme',
+        },
+      },
+      {
+        path: "strom-gas-kombi",
+        element: <Suspense fallback={<LazyFallback />}><StromGasKombiPage /></Suspense>,
+        routeMetadata: {
+          pageIdentifier: 'strom-gas-kombi',
         },
       },
       {
