@@ -20,6 +20,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
 import { validateFormFields, FORM_CONFIGS } from '@/lib/form-validation';
+import { trackMethodikClick } from '@/services/form-submission';
 
 export default function GasvergleichNrwPage() {
   const navigate = useNavigate();
@@ -216,7 +217,7 @@ export default function GasvergleichNrwPage() {
               >
                 Jetzt vergleichen
               </Button>
-              <Link to="/methodik" className="text-white/80 hover:text-white transition-colors text-sm font-medium underline">
+              <Link to="/methodik" onClick={trackMethodikClick} className="text-white/80 hover:text-white transition-colors text-sm font-medium underline">
                 So vergleichen wir (Methodik)
               </Link>
             </div>

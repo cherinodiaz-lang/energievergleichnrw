@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import TrustRow from '@/components/TrustRow';
+import { trackMethodikClick } from '@/services/form-submission';
 
 export default function StromGasKombiPage() {
   const containerVariants = {
@@ -62,7 +63,7 @@ export default function StromGasKombiPage() {
                     Jetzt vergleichen
                   </Button>
                 </Link>
-                <Link to="/methodik" className="text-primary hover:text-primary/80 transition-colors text-sm font-medium underline">
+                <Link to="/methodik" onClick={trackMethodikClick} className="text-primary hover:text-primary/80 transition-colors text-sm font-medium underline">
                   So vergleichen wir (Methodik)
                 </Link>
               </div>

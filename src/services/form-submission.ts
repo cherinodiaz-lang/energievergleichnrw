@@ -101,9 +101,17 @@ export function trackFormSubmission(formType: string) {
 /**
  * Track CTA button clicks (consent-safe)
  */
-export function trackCTAClick(buttonName: string) {
+export function trackCTAClick(ctaLabel: string) {
   const { trackCTAClick: trackCTAClickGA4 } = require('@/services/ga4-tracking');
-  trackCTAClickGA4(buttonName, 'cta_button');
+  trackCTAClickGA4(ctaLabel);
+}
+
+/**
+ * Track Methodik link clicks (consent-safe)
+ */
+export function trackMethodikClick() {
+  const { trackMethodikClick: trackMethodikClickGA4 } = require('@/services/ga4-tracking');
+  trackMethodikClickGA4();
 }
 
 /**

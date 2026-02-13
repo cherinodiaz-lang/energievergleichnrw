@@ -20,6 +20,7 @@ import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
 import { validateFormFields, FORM_CONFIGS } from '@/lib/form-validation';
 import FormSubmissionDialog from '@/components/FormSubmissionDialog';
+import { trackMethodikClick } from '@/services/form-submission';
 
 export default function StromvergleichNrwPage() {
   const navigate = useNavigate();

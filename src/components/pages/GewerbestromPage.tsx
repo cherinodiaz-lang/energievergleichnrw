@@ -17,6 +17,7 @@ import TrustRow from '@/components/TrustRow';
 import { Link } from 'react-router-dom';
 import { getPageSEO } from '@/lib/seo-config';
 import { ROUTES } from '@/lib/routes';
+import { trackMethodikClick } from '@/services/form-submission';
 
 export default function GewerbestromPage() {
   useEffect(() => {
@@ -157,7 +158,7 @@ export default function GewerbestromPage() {
               >
                 Jetzt Angebot anfordern
               </Button>
-              <Link to="/methodik" className="text-white/80 hover:text-white transition-colors text-sm font-medium underline">
+              <Link to="/methodik" onClick={trackMethodikClick} className="text-white/80 hover:text-white transition-colors text-sm font-medium underline">
                 So vergleichen wir (Methodik)
               </Link>
             </div>

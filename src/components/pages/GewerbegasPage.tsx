@@ -14,9 +14,10 @@ import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import TrustRow from '@/components/TrustRow';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { getPageSEO } from '@/lib/seo-config';
 import { ROUTES } from '@/lib/routes';
+import { trackMethodikClick } from '@/services/form-submission';
 
 export default function GewerbegasPage() {
   const navigate = useNavigate();
@@ -164,6 +165,7 @@ export default function GewerbegasPage() {
               </Button>
               <Link
                 to="/methodik"
+                onClick={trackMethodikClick}
                 className="text-white/80 hover:text-white transition-colors text-sm sm:text-base font-medium underline self-center sm:self-auto"
               >
                 So vergleichen wir (Methodik)

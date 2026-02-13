@@ -19,7 +19,7 @@ import TrustRow from '@/components/TrustRow';
 import { BaseCrudService } from '@/integrations';
 import { HufiggestellteFragen, Wechselvorteile, Informationsmaterial } from '@/entities';
 import { Image } from '@/components/ui/image';
-import { trackCTAClick } from '@/services/form-submission';
+import { trackCTAClick, trackMethodikClick } from '@/services/form-submission';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
 
@@ -435,7 +435,7 @@ export default function HomePage() {
             </AnimatedElement>
 
             <AnimatedElement delay={400}>
-              <Link to="/methodik" className="inline-block text-white/80 hover:text-white transition-colors text-sm sm:text-base font-medium underline">
+              <Link to="/methodik" onClick={trackMethodikClick} className="inline-block text-white/80 hover:text-white transition-colors text-sm sm:text-base font-medium underline">
                 So vergleichen wir (Methodik)
               </Link>
             </AnimatedElement>
