@@ -73,7 +73,7 @@ export default function Header() {
               <span className="font-heading font-semibold text-xs sm:text-sm lg:text-lg text-primary">
                 Energievergleich
               </span>
-              <span className="font-heading font-semibold text-xs sm:text-sm lg:text-lg text-primary">
+              <span className="font-heading text-xs sm:text-sm lg:text-lg text-primary font-bold">
                 NRW
               </span>
             </div>
