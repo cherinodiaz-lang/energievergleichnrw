@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Zap, CheckCircle, TrendingDown, Shield, Clock, Send, ArrowRight, AlertCircle, Globe, DollarSign, MapPin, BarChart3, Rocket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -14,27 +14,18 @@ import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
-import TrustRow from '@/components/TrustRow';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
-import { validateFormFields, FORM_CONFIGS } from '@/lib/form-validation';
-import FormSubmissionDialog from '@/components/FormSubmissionDialog';
-import { trackMethodikClick } from '@/services/form-submission';
 
 export default function StromvergleichNrwPage() {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     postleitzahl: '',
     verbrauch: '',
     name: '',
-    email: '',
-    phone: '',
   });
   const [showResults, setShowResults] = useState(false);
   const [calculatedConsumption, setCalculatedConsumption] = useState(0);
-  const [showFormDialog, setShowFormDialog] = useState(false);
-  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
     const faqSchema = {
@@ -145,14 +136,11 @@ export default function StromvergleichNrwPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate required fields for private form
-    const validation = validateFormFields(formData, FORM_CONFIGS.private);
-    if (!validation.valid) {
-      setFormErrors(validation.errors);
+    // Validate inputs
+    if (!formData.postleitzahl.trim()) {
+      alert('Bitte geben Sie eine Postleitzahl ein.');
       return;
     }
-
-    setFormErrors({});
 
     // Use custom value or default
     let consumption = 0;
@@ -164,27 +152,6 @@ export default function StromvergleichNrwPage() {
 
     setCalculatedConsumption(consumption);
     setShowResults(true);
-  };
-
-  const handleFormSubmit = () => {
-    setShowFormDialog(true);
-  };
-
-  const handleFormSuccess = () => {
-    // Reset form
-    setFormData({
-      postleitzahl: '',
-      verbrauch: '',
-      name: '',
-      email: '',
-      phone: '',
-    });
-    setShowResults(false);
-    setFormErrors({});
-    // Redirect to thank you page
-    setTimeout(() => {
-      navigate('/danke');
-    }, 2000);
   };
 
   const seo = getPageSEO('stromvergleich');
@@ -212,7 +179,7 @@ export default function StromvergleichNrwPage() {
       <Header />
       <Breadcrumb items={breadcrumbItems} />
 
-      {/* Hero Section - LCP Optimized */}
+      {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -227,17 +194,12 @@ export default function StromvergleichNrwPage() {
             <p className="font-paragraph text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
               Finden Sie den günstigsten Stromtarif in Ihrer Region. Kostenlos, unabhängig und in wenigen Minuten.
             </p>
-            <div className="flex flex-col gap-4">
-              <Button
-                onClick={() => document.getElementById('vergleich')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 px-8 rounded-full text-lg font-semibold shadow-lg"
-              >
-                Jetzt vergleichen
-              </Button>
-              <Link to="/methodik" className="text-white/80 hover:text-white transition-colors text-sm font-medium underline">
-                So vergleichen wir (Methodik)
-              </Link>
-            </div>
+            <Button
+              onClick={() => document.getElementById('vergleich')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 px-8 rounded-full text-lg font-semibold shadow-lg"
+            >
+              Jetzt vergleichen
+            </Button>
           </motion.div>
         </div>
       </section>

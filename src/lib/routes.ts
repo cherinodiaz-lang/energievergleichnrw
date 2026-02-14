@@ -68,21 +68,19 @@ export type NavItem = {
  * Später ersetzen wir im Header hartcodierte Pfade durch NAV_MAIN.
  */
 export const NAV_MAIN: NavItem[] = [
-  { key: "home", label: "Start", to: ROUTES.home },
   { key: "stromvergleich", label: "Strom", to: ROUTES.stromvergleich },
   { key: "gasvergleich", label: "Gas", to: ROUTES.gasvergleich },
   { key: "photovoltaik", label: "Photovoltaik", to: ROUTES.photovoltaik },
   {
     key: "gewerbe",
     label: "Gewerbe",
-    to: "https://www.energievergleich.shop/gewerbestrom",
+    to: ROUTES.gewerbestrom,
     submenu: [
-      { key: "gewerbestrom", label: "Gewerbestrom", to: "https://www.energievergleich.shop/gewerbestrom" },
-      { key: "gewerbegas", label: "Gewerbegas", to: "https://www.energievergleich.shop/gewerbegas" },
+      { key: "gewerbegas", label: "Gewerbegas", to: ROUTES.gewerbegas },
+      { key: "gewerbestrom", label: "Gewerbestrom", to: ROUTES.gewerbestrom },
     ],
   },
   { key: "ratgeber", label: "Ratgeber", to: ROUTES.ratgeberHub },
-  { key: "kontakt", label: "Kontakt", to: ROUTES.kontakt },
 ];
 
 /**

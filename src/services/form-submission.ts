@@ -101,32 +101,23 @@ export function trackFormSubmission(formType: string) {
 /**
  * Track CTA button clicks (consent-safe)
  */
-export function trackCTAClick(ctaLabel: string) {
+export function trackCTAClick(buttonName: string) {
   const { trackCTAClick: trackCTAClickGA4 } = require('@/services/ga4-tracking');
-  trackCTAClickGA4(ctaLabel);
+  trackCTAClickGA4(buttonName, 'cta_button');
 }
 
 /**
- * Track Methodik link clicks (consent-safe)
- */
-export function trackMethodikClick() {
-  const { trackMethodikClick: trackMethodikClickGA4 } = require('@/services/ga4-tracking');
-  trackMethodikClickGA4();
-}
-
-/**
- * Validate form field with custom error messages
+ * Validate form field
  */
 export function validateField(
   fieldName: string,
   value: any,
-  required: boolean = true,
-  customErrorMessage?: string
+  required: boolean = true
 ): { valid: boolean; error?: string } {
   if (required && (!value || value.toString().trim() === '')) {
     return {
       valid: false,
-      error: customErrorMessage || `${fieldName} ist erforderlich`
+      error: `${fieldName} ist erforderlich`
     };
   }
 
@@ -136,7 +127,7 @@ export function validateField(
     if (!emailRegex.test(value)) {
       return {
         valid: false,
-        error: 'Bitte eine gültige E-Mail-Adresse eingeben.'
+        error: 'Ungültige E-Mail-Adresse'
       };
     }
   }
@@ -147,29 +138,18 @@ export function validateField(
     if (!phoneRegex.test(value)) {
       return {
         valid: false,
-        error: 'Bitte eine gültige Telefonnummer eingeben.'
+        error: 'Ungültige Telefonnummer'
       };
     }
   }
 
   // Postleitzahl validation
-  if (fieldName.toLowerCase().includes('plz') && value) {
+  if (fieldName.toLowerCase().includes('postleitzahl') && value) {
     const plzRegex = /^\d{5}$/;
     if (!plzRegex.test(value.toString())) {
       return {
         valid: false,
-        error: 'Bitte eine gültige PLZ eingeben.'
-      };
-    }
-  }
-
-  // Verbrauch validation (kWh)
-  if (fieldName.toLowerCase().includes('verbrauch') && value) {
-    const verbrauchNum = parseFloat(value);
-    if (isNaN(verbrauchNum) || verbrauchNum <= 0) {
-      return {
-        valid: false,
-        error: 'Bitte einen gültigen Verbrauch eingeben.'
+        error: 'Postleitzahl muss 5 Ziffern sein'
       };
     }
   }

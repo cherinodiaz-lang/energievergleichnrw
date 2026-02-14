@@ -13,11 +13,9 @@ import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
-import TrustRow from '@/components/TrustRow';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getPageSEO } from '@/lib/seo-config';
 import { ROUTES } from '@/lib/routes';
-import { trackMethodikClick } from '@/services/form-submission';
 
 export default function GewerbegasPage() {
   const navigate = useNavigate();
@@ -161,15 +159,16 @@ export default function GewerbegasPage() {
                 onClick={() => document.getElementById('anfrage')?.scrollIntoView({ behavior: 'smooth' })}
                 className="bg-secondary text-secondary-foreground hover:bg-secondary/90 min-h-[44px] h-12 sm:h-14 px-6 sm:px-8 rounded-full text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 w-full sm:w-auto"
               >
-                Jetzt Angebot anfordern
+                Angebot anfordern
               </Button>
-              <Link
-                to="/methodik"
-                onClick={trackMethodikClick}
-                className="text-white/80 hover:text-white transition-colors text-sm sm:text-base font-medium underline self-center sm:self-auto"
+              <Button
+                onClick={() => navigate('/#photovoltaik')}
+                variant="outline"
+                className="bg-white/10 border-white/30 text-white hover:bg-white/20 min-h-[44px] h-12 sm:h-14 px-6 sm:px-8 rounded-full text-base sm:text-lg font-medium backdrop-blur-md transition-all w-full sm:w-auto"
               >
-                So vergleichen wir (Methodik)
-              </Link>
+                <Sun className="w-5 h-5 mr-2" />
+                Photovoltaik Beratung
+              </Button>
             </div>
           </motion.div>
         </div>

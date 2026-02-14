@@ -110,36 +110,26 @@ export function trackEvent(eventName: string, eventData: Record<string, any> = {
 
 /**
  * Track form submission as conversion
- * Event: form_submit
- * Parameters: page_path, form_type
  */
 export function trackFormSubmit(formType: string) {
   trackEvent('form_submit', {
-    'page_path': window.location.pathname,
     'form_type': formType,
+    'page_location': window.location.pathname,
+    'event_category': 'form',
+    'event_label': formType,
   });
 }
 
 /**
  * Track CTA button clicks as conversion
- * Event: cta_click
- * Parameters: page_path, cta_label
  */
-export function trackCTAClick(ctaLabel: string) {
+export function trackCTAClick(buttonName: string, ctaType: string) {
   trackEvent('cta_click', {
-    'page_path': window.location.pathname,
-    'cta_label': ctaLabel,
-  });
-}
-
-/**
- * Track Methodik link clicks
- * Event: methodik_click
- * Parameters: page_path
- */
-export function trackMethodikClick() {
-  trackEvent('methodik_click', {
-    'page_path': window.location.pathname,
+    'button_name': buttonName,
+    'cta_type': ctaType,
+    'page_location': window.location.pathname,
+    'event_category': 'cta',
+    'event_label': buttonName,
   });
 }
 
