@@ -13,7 +13,7 @@ import { CheckCircle, AlertCircle, Loader } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { submitForm, trackFormSubmission, validateForm } from '@/services/form-submission';
 import { ROUTES } from '@/lib/routes';
 
@@ -36,6 +36,7 @@ export default function FormSubmissionDialog({
   onSuccess,
   title = 'Anfrage senden'
 }: FormSubmissionDialogProps) {
+  const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [privacyConsent, setPrivacyConsent] = useState(false);
@@ -80,10 +81,11 @@ export default function FormSubmissionDialog({
           onSuccess();
         }
 
-        // Auto-close after 3 seconds
+        // Redirect to /danke after 2 seconds
         setTimeout(() => {
           handleClose();
-        }, 3000);
+          navigate('/danke');
+        }, 2000);
       } else {
         setErrors({
           submit: result.message || 'Ein Fehler ist aufgetreten'
@@ -137,13 +139,13 @@ export default function FormSubmissionDialog({
                   transition={{ delay: 0.3 }}
                 >
                   <h3 className="font-heading text-2xl font-bold text-gray-900 mb-2">
-                    Vielen Dank!
+                    Danke! Wir melden uns kurzfristig.
                   </h3>
                   <p className="font-paragraph text-gray-600 mb-6">
-                    Ihre Anfrage wurde erfolgreich übermittelt. Wir werden uns in Kürze bei Ihnen melden.
+                    Ihre Anfrage wurde erfolgreich übermittelt.
                   </p>
                   <p className="font-paragraph text-sm text-gray-500">
-                    Überprüfen Sie Ihren E-Mail-Posteingang für eine Bestätigung.
+                    Sie werden in Kürze weitergeleitet...
                   </p>
                 </motion.div>
               </div>
@@ -191,16 +193,16 @@ export default function FormSubmissionDialog({
                         htmlFor="privacy-consent"
                         className="font-paragraph text-sm text-gray-700 cursor-pointer"
                       >
-                        Ich habe die{' '}
+                        Mit Absenden akzeptierst du die{' '}
                         <Link
-                          to={ROUTES.DATENSCHUTZ}
+                          to="https://www.energievergleich.shop/datenschutz"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-primary hover:underline font-bold"
                         >
-                          Datenschutzhinweise
+                          Datenschutzerklärung
                         </Link>
-                        {' '}gelesen und akzeptiert. *
+                        . *
                       </Label>
                     </div>
                     {errors.privacy && (

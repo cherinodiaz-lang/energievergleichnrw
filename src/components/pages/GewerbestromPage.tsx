@@ -13,9 +13,11 @@ import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
+import TrustRow from '@/components/TrustRow';
 import { Link } from 'react-router-dom';
 import { getPageSEO } from '@/lib/seo-config';
 import { ROUTES } from '@/lib/routes';
+import { trackMethodikClick } from '@/services/form-submission';
 
 export default function GewerbestromPage() {
   useEffect(() => {
@@ -149,6 +151,17 @@ export default function GewerbestromPage() {
             <p className="font-paragraph text-xl opacity-90 max-w-3xl mx-auto">
               Profitieren Sie von maßgeschneiderten Stromtarifen für Gewerbekunden in NRW. Senken Sie Ihre Energiekosten und setzen Sie auf nachhaltige Energie.
             </p>
+            <div className="flex flex-col gap-4 mt-8">
+              <Button
+                onClick={() => document.getElementById('anfrage')?.scrollIntoView({ behavior: 'smooth' })}
+                className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 px-8 rounded-full text-lg font-semibold shadow-lg"
+              >
+                Jetzt Angebot anfordern
+              </Button>
+              <Link to="/methodik" onClick={trackMethodikClick} className="text-white/80 hover:text-white transition-colors text-sm font-medium underline">
+                So vergleichen wir (Methodik)
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>

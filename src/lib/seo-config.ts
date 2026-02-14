@@ -5,16 +5,16 @@
 
 export const SEO_CONFIG = {
   // Site Information
-  // PRIMARY DOMAIN: https://www.energievergleich.nrw
-  siteName: 'www.energievergleich.nrw',
-  siteUrl: 'https://www.energievergleich.nrw',
+  // PRIMARY DOMAIN: https://www.energievergleich.shop
+  siteName: 'www.energievergleich.shop',
+  siteUrl: 'https://www.energievergleich.shop',
   siteDescription: 'Vergleichen Sie Strom- und Gastarife in Nordrhein-Westfalen. Finden Sie die besten Angebote für Privat- und Gewerbekunden. Kostenlos und unabhängig.',
   
   // Organization Information (complete details for schema)
   organization: {
-    name: 'energievergleich.nrw',
-    legalName: 'energievergleich.nrw',
-    url: 'https://www.energievergleich.nrw',
+    name: 'energievergleich.shop',
+    legalName: 'energievergleich.shop',
+    url: 'https://www.energievergleich.shop',
     logo: 'https://static.wixstatic.com/media/32e7c0_8cede5e338be484bb8dcaad81c053c82~mv2.png?originWidth=1920&originHeight=1024',
     areaServed: 'Nordrhein-Westfalen',
     contact: {
@@ -46,7 +46,7 @@ export const SEO_CONFIG = {
   
   // Search Console & Analytics (add your IDs here)
   googleSearchConsoleVerification: '', // Add your verification code
-  googleAnalyticsId: 'G-XXXXXXXXXX', // Add your GA4 Measurement ID (format: G-XXXXXXXXXX)
+  googleAnalyticsId: 'G-X60BTL057V', // GA4 Measurement ID for energievergleich.shop
   
   // Robots Meta
   robots: 'index, follow',

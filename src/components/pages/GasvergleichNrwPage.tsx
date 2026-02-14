@@ -15,11 +15,15 @@ import PassendeRatgeber from '@/components/PassendeRatgeber';
 import ResponsiveEmbed from '@/components/ui/ResponsiveEmbed';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
-import { Link } from 'react-router-dom';
+import TrustRow from '@/components/TrustRow';
+import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
+import { validateFormFields, FORM_CONFIGS } from '@/lib/form-validation';
+import { trackMethodikClick } from '@/services/form-submission';
 
 export default function GasvergleichNrwPage() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     postleitzahl: '',
     wohnfläche: '',
@@ -30,6 +34,7 @@ export default function GasvergleichNrwPage() {
   });
   const [showResults, setShowResults] = useState(false);
   const [calculatedConsumption, setCalculatedConsumption] = useState(0);
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
     const faqSchema = {
@@ -140,15 +145,14 @@ export default function GasvergleichNrwPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate inputs
-    if (!formData.postleitzahl.trim()) {
-      alert('Bitte geben Sie eine Postleitzahl ein.');
+    // Validate required fields for private form
+    const validation = validateFormFields(formData, FORM_CONFIGS.private);
+    if (!validation.valid) {
+      setFormErrors(validation.errors);
       return;
     }
-    if (!formData.wohnfläche) {
-      alert('Bitte wählen Sie eine Wohnfläche.');
-      return;
-    }
+
+    setFormErrors({});
 
     // Calculate consumption based on living area or use custom value
     let consumption = 0;
@@ -206,12 +210,17 @@ export default function GasvergleichNrwPage() {
             <p className="font-paragraph text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
               Finden Sie den günstigsten Gastarif in Ihrer Region. Kostenlos, unabhängig und in wenigen Minuten.
             </p>
-            <Button
-              onClick={() => document.getElementById('vergleich')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 px-8 rounded-full text-lg font-semibold shadow-lg"
-            >
-              Jetzt vergleichen
-            </Button>
+            <div className="flex flex-col gap-4">
+              <Button
+                onClick={() => document.getElementById('vergleich')?.scrollIntoView({ behavior: 'smooth' })}
+                className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 px-8 rounded-full text-lg font-semibold shadow-lg"
+              >
+                Jetzt vergleichen
+              </Button>
+              <Link to="/methodik" onClick={trackMethodikClick} className="text-white/80 hover:text-white transition-colors text-sm font-medium underline">
+                So vergleichen wir (Methodik)
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>

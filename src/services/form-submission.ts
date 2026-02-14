@@ -101,23 +101,32 @@ export function trackFormSubmission(formType: string) {
 /**
  * Track CTA button clicks (consent-safe)
  */
-export function trackCTAClick(buttonName: string) {
+export function trackCTAClick(ctaLabel: string) {
   const { trackCTAClick: trackCTAClickGA4 } = require('@/services/ga4-tracking');
-  trackCTAClickGA4(buttonName, 'cta_button');
+  trackCTAClickGA4(ctaLabel);
 }
 
 /**
- * Validate form field
+ * Track Methodik link clicks (consent-safe)
+ */
+export function trackMethodikClick() {
+  const { trackMethodikClick: trackMethodikClickGA4 } = require('@/services/ga4-tracking');
+  trackMethodikClickGA4();
+}
+
+/**
+ * Validate form field with custom error messages
  */
 export function validateField(
   fieldName: string,
   value: any,
-  required: boolean = true
+  required: boolean = true,
+  customErrorMessage?: string
 ): { valid: boolean; error?: string } {
   if (required && (!value || value.toString().trim() === '')) {
     return {
       valid: false,
-      error: `${fieldName} ist erforderlich`
+      error: customErrorMessage || `${fieldName} ist erforderlich`
     };
   }
 
@@ -127,7 +136,7 @@ export function validateField(
     if (!emailRegex.test(value)) {
       return {
         valid: false,
-        error: 'Ungültige E-Mail-Adresse'
+        error: 'Bitte eine gültige E-Mail-Adresse eingeben.'
       };
     }
   }
@@ -138,18 +147,29 @@ export function validateField(
     if (!phoneRegex.test(value)) {
       return {
         valid: false,
-        error: 'Ungültige Telefonnummer'
+        error: 'Bitte eine gültige Telefonnummer eingeben.'
       };
     }
   }
 
   // Postleitzahl validation
-  if (fieldName.toLowerCase().includes('postleitzahl') && value) {
+  if (fieldName.toLowerCase().includes('plz') && value) {
     const plzRegex = /^\d{5}$/;
     if (!plzRegex.test(value.toString())) {
       return {
         valid: false,
-        error: 'Postleitzahl muss 5 Ziffern sein'
+        error: 'Bitte eine gültige PLZ eingeben.'
+      };
+    }
+  }
+
+  // Verbrauch validation (kWh)
+  if (fieldName.toLowerCase().includes('verbrauch') && value) {
+    const verbrauchNum = parseFloat(value);
+    if (isNaN(verbrauchNum) || verbrauchNum <= 0) {
+      return {
+        valid: false,
+        error: 'Bitte einen gültigen Verbrauch eingeben.'
       };
     }
   }

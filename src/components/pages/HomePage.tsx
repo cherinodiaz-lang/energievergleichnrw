@@ -1,5 +1,5 @@
-// HPI 1.6-G
-import React, { useState, useEffect, useRef } from 'react';
+// HPI 1.6-G - PHASE 6: Core Web Vitals Optimized
+import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Zap, Flame, CheckCircle, Sun, Download, ChevronDown, Send, ArrowRight, Leaf, Home, Building2, ShieldCheck, MousePointerClick, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -15,10 +15,11 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import FormSubmissionDialog from '@/components/FormSubmissionDialog';
+import TrustRow from '@/components/TrustRow';
 import { BaseCrudService } from '@/integrations';
 import { HufiggestellteFragen, Wechselvorteile, Informationsmaterial } from '@/entities';
 import { Image } from '@/components/ui/image';
-import { trackCTAClick } from '@/services/form-submission';
+import { trackCTAClick, trackMethodikClick } from '@/services/form-submission';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
 
@@ -30,8 +31,22 @@ type AnimatedElementProps = {
   delay?: number;
 };
 
+// Respect prefers-reduced-motion
 const AnimatedElement: React.FC<AnimatedElementProps> = ({ children, className, delay = 0 }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+    
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+    
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
 
   useEffect(() => {
     const element = ref.current;
@@ -41,14 +56,14 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({ children, className, 
       if (entry.isIntersecting) {
         setTimeout(() => {
           element.classList.add('is-visible');
-        }, delay);
+        }, prefersReducedMotion ? 0 : delay);
         observer.unobserve(element);
       }
     }, { threshold: 0.1 });
 
     observer.observe(element);
     return () => observer.disconnect();
-  }, [delay]);
+  }, [delay, prefersReducedMotion]);
 
   return <div ref={ref} className={`${className || ''} animate-reveal`}>{children}</div>;
 };
@@ -96,9 +111,18 @@ export default function HomePage() {
   const [showGasResults, setShowGasResults] = useState(false);
   const [showKombiResults, setShowKombiResults] = useState(false);
 
-  // --- Scroll Hooks for Parallax ---
+  // --- Scroll Hooks for Parallax - REDUCED on mobile ---
   const { scrollY } = useScroll();
-  const heroY = useTransform(scrollY, [0, 1000], [0, 400]);
+  const prefersReducedMotion = useRef(false);
+  
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    prefersReducedMotion.current = mediaQuery.matches;
+  }, []);
+  
+  // Disable parallax on mobile and when reduced motion is preferred
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const heroY = useTransform(scrollY, [0, 1000], prefersReducedMotion.current || isMobile ? [0, 0] : [0, 400]);
   const heroOpacity = useTransform(scrollY, [0, 500], [1, 0]);
 
   // ... keep existing code (state declarations) ...
@@ -333,6 +357,13 @@ export default function HomePage() {
           opacity: 1;
           transform: translateY(0);
         }
+        @media (prefers-reduced-motion: reduce) {
+          .animate-reveal {
+            transition: none;
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
       `}</style>
       <Header />
       {/* --- HERO SECTION --- */}
@@ -382,12 +413,12 @@ export default function HomePage() {
               <div className="flex flex-col sm:flex-row gap-3 pb-8 sm:pb-0">
                 <Button
                   onClick={() => {
-                    trackCTAClick('Jetzt Tarife vergleichen');
+                    trackCTAClick('Jetzt vergleichen');
                     scrollToSection('vergleichsrechner');
                   }}
                   className="bg-secondary text-secondary-foreground hover:bg-secondary/90 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 h-12 sm:h-14 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-bold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
                 >
-                  Jetzt Tarife vergleichen
+                  Jetzt vergleichen
                 </Button>
                 <Button
                   onClick={() => {
@@ -401,6 +432,12 @@ export default function HomePage() {
                   <span className="sm:hidden">Photovoltaik</span>
                 </Button>
               </div>
+            </AnimatedElement>
+
+            <AnimatedElement delay={400}>
+              <Link to="/methodik" onClick={trackMethodikClick} className="inline-block text-white/80 hover:text-white transition-colors text-sm sm:text-base font-medium underline">
+                So vergleichen wir (Methodik)
+              </Link>
             </AnimatedElement>
           </div>
         </div>
@@ -420,36 +457,41 @@ export default function HomePage() {
       <section className="relative z-20 -mt-16 sm:-mt-20 w-full mb-16 sm:mb-24">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <AnimatedElement delay={400}>
-            <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-100">
-              <div className="flex items-center gap-3 sm:gap-4 justify-center md:justify-start p-3 sm:p-4">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
-                <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />
+            <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-100 mb-6 sm:mb-8">
+                <div className="flex items-center gap-3 sm:gap-4 justify-center md:justify-start p-3 sm:p-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                    <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-heading font-bold text-base sm:text-xl text-primary">100% Unabhängig</p>
+                    <p className="text-xs sm:text-sm text-gray-500">Objektiver Vergleich</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 sm:gap-4 justify-center md:justify-start p-3 sm:p-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                    <Building2 className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-heading font-bold text-base sm:text-xl text-primary">Regional in NRW</p>
+                    <p className="text-xs sm:text-sm text-gray-500">Spezialisiert lokal</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 sm:gap-4 justify-center md:justify-start p-3 sm:p-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                    <MousePointerClick className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-heading font-bold text-base sm:text-xl text-primary">Einfacher Wechsel</p>
+                    <p className="text-xs sm:text-sm text-gray-500">Wenige Minuten</p>
+                  </div>
+                </div>
               </div>
-              <div className="min-w-0">
-                <p className="font-heading font-bold text-base sm:text-xl text-primary">100% Unabhängig</p>
-                <p className="text-xs sm:text-sm text-gray-500">Objektiver Vergleich</p>
+              <div className="border-t pt-6 sm:pt-8">
+                <TrustRow />
               </div>
             </div>
-            <div className="flex items-center gap-3 sm:gap-4 justify-center md:justify-start p-3 sm:p-4">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
-                <Building2 className="w-5 h-5 sm:w-6 sm:h-6" />
-              </div>
-              <div className="min-w-0">
-                <p className="font-heading font-bold text-base sm:text-xl text-primary">Regional in NRW</p>
-                <p className="text-xs sm:text-sm text-gray-500">Spezialisiert lokal</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 sm:gap-4 justify-center md:justify-start p-3 sm:p-4">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
-                <MousePointerClick className="w-5 h-5 sm:w-6 sm:h-6" />
-              </div>
-              <div className="min-w-0">
-                <p className="font-heading font-bold text-base sm:text-xl text-primary">Einfacher Wechsel</p>
-                <p className="text-xs sm:text-sm text-gray-500">Wenige Minuten</p>
-              </div>
-            </div>
-          </div>
-        </AnimatedElement>
+          </AnimatedElement>
         </div>
       </section>
       {/* --- CALCULATOR SECTION --- */}
