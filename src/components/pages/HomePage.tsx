@@ -42,11 +42,11 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({ children, className, 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mediaQuery.matches);
-    
+
     const handleChange = (e: MediaQueryListEvent) => {
       setPrefersReducedMotion(e.matches);
     };
-    
+
     mediaQuery.addEventListener('change', handleChange);
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
@@ -117,12 +117,12 @@ export default function HomePage() {
   // --- Scroll Hooks for Parallax - REDUCED on mobile ---
   const { scrollY } = useScroll();
   const prefersReducedMotion = useRef(false);
-  
+
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     prefersReducedMotion.current = mediaQuery.matches;
   }, []);
-  
+
   // Disable parallax on mobile and when reduced motion is preferred
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   const heroY = useTransform(scrollY, [0, 1000], prefersReducedMotion.current || isMobile ? [0, 0] : [0, 400]);
@@ -1260,7 +1260,7 @@ export default function HomePage() {
               {materials.map((material, index) => {
                 let linkPath = ROUTES.ratgeberHub;
                 const title = material.title?.toLowerCase() || '';
-                
+
                 if (title.includes('strom')) {
                   linkPath = ROUTES.ratgeberStrom;
                 } else if (title.includes('gas')) {
@@ -1268,7 +1268,7 @@ export default function HomePage() {
                 } else if (title.includes('photovoltaik') || title.includes('pv') || title.includes('solar')) {
                   linkPath = ROUTES.ratgeberPhotovoltaik;
                 }
-                
+
                 return (
                   <AnimatedElement key={material._id} delay={index * 100}>
                     <Link to={linkPath} className="block h-full">
@@ -1512,3 +1512,21 @@ export default function HomePage() {
     </div>
   );
 }
+import TariffCalculatorForm from '../TariffCalculatorForm'; // Importiere die neue Komponente
+
+const HomePage = () => {
+  return (
+    <div>
+      {/* ... (bestehender Inhalt der Homepage) ... */}
+      <h1>Willkommen auf energievergleich.shop</h1>
+      <p>Finden Sie die besten Tarife für Strom und Gas.</p>
+
+      {/* Hier wird der Tarifrechner integriert */}
+      <TariffCalculatorForm />
+
+      {/* ... (weiterer bestehender Inhalt der Homepage) ... */}
+    </div>
+  );
+};
+
+export default HomePage;
