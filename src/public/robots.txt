@@ -1,7 +1,12 @@
 User-agent: *
 Allow: /
-Disallow: /account/
-Disallow: /checkout/
-Disallow: /thank-you-page/
-Sitemap: https://www.energievergleich.shop/sitemap.xml
+Disallow: /admin
+Disallow: /private
+Disallow: /preview
+Disallow: /checkout
+Disallow: /cart
+Disallow: /login
+Disallow: /account
+Disallow: /thank-you
+Sitemap: https://energievergleich.shop/sitemap.xml
 

@@ -18,6 +18,52 @@ import ReviewSchema from '@/components/ReviewSchema';
 import FAQPageSchema from '@/components/FAQPageSchema';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 
+// Lazy load non-critical pages for code-splitting with error handling
+const GewerbestromPage = lazy(() => import('@/components/pages/GewerbestromPage').catch(() => ({ default: LazyErrorFallback })));
+const GewerbegasPage = lazy(() => import('@/components/pages/GewerbegasPage').catch(() => ({ default: LazyErrorFallback })));
+const StromvergleichNrwPage = lazy(() => import('@/components/pages/StromvergleichNrwPage').catch(() => ({ default: LazyErrorFallback })));
+const GasvergleichNrwPage = lazy(() => import('@/components/pages/GasvergleichNrwPage').catch(() => ({ default: LazyErrorFallback })));
+const PhotovoltaikNrwPage = lazy(() => import('@/components/pages/PhotovoltaikNrwPage').catch(() => ({ default: LazyErrorFallback })));
+const KontaktPage = lazy(() => import('@/components/pages/KontaktPage').catch(() => ({ default: LazyErrorFallback })));
+const ImpressumPage = lazy(() => import('@/components/pages/ImpressumPage').catch(() => ({ default: LazyErrorFallback })));
+const DatenschutzPage = lazy(() => import('@/components/pages/DatenschutzPage').catch(() => ({ default: LazyErrorFallback })));
+const RatgeberPage = lazy(() => import('@/components/pages/RatgeberPage').catch(() => ({ default: LazyErrorFallback })));
+const StromCategoryPage = lazy(() => import('@/components/pages/ratgeber/StromCategoryPage').catch(() => ({ default: LazyErrorFallback })));
+const GasCategoryPage = lazy(() => import('@/components/pages/ratgeber/GasCategoryPage').catch(() => ({ default: LazyErrorFallback })));
+const GewerbeCategoryPage = lazy(() => import('@/components/pages/ratgeber/GewerbeCategoryPage').catch(() => ({ default: LazyErrorFallback })));
+const PhotovoltaikCategoryPage = lazy(() => import('@/components/pages/ratgeber/PhotovoltaikCategoryPage').catch(() => ({ default: LazyErrorFallback })));
+const WechselwissenCategoryPage = lazy(() => import('@/components/pages/ratgeber/WechselwissenCategoryPage').catch(() => ({ default: LazyErrorFallback })));
+const StromGrundversorgungArticle = lazy(() => import('@/components/pages/ratgeber/articles/StromGrundversorgungArticle').catch(() => ({ default: LazyErrorFallback })));
+const StromanbieterwechselnNrwArticle = lazy(() => import('@/components/pages/ratgeber/articles/StromanbieterwechselnNrwArticle').catch(() => ({ default: LazyErrorFallback })));
+const GrundversorgungVsSondervertragArticle = lazy(() => import('@/components/pages/ratgeber/articles/GrundversorgungVsSondervertragArticle').catch(() => ({ default: LazyErrorFallback })));
+const SofortSparmoeglichkeitenArticle = lazy(() => import('@/components/pages/ratgeber/articles/SofortSparmoeglichkeitenArticle').catch(() => ({ default: LazyErrorFallback })));
+const MethodologyPage = lazy(() => import('@/components/pages/MethodologyPage').catch(() => ({ default: LazyErrorFallback })));
+const NeukndenbonusFallenArticle = lazy(() => import('@/components/pages/ratgeber/articles/NeukndenbonusFallenArticle').catch(() => ({ default: LazyErrorFallback })));
+const PreiserhoeungWasTunArticle = lazy(() => import('@/components/pages/ratgeber/articles/PreiserhoeungWasTunArticle').catch(() => ({ default: LazyErrorFallback })));
+const UmzugStromvertragArticle = lazy(() => import('@/components/pages/ratgeber/articles/UmzugStromvertragArticle').catch(() => ({ default: LazyErrorFallback })));
+const StromtarifVertragslaufzeitArticle = lazy(() => import('@/components/pages/ratgeber/articles/StromtarifVertragslaufzeitArticle').catch(() => ({ default: LazyErrorFallback })));
+const MaloIdZaehlernummerArticle = lazy(() => import('@/components/pages/ratgeber/articles/MaloIdZaehlernummerArticle').catch(() => ({ default: LazyErrorFallback })));
+const GasanbieterWechselnNrwArticle = lazy(() => import('@/components/pages/ratgeber/articles/GasanbieterWechselnNrwArticle').catch(() => ({ default: LazyErrorFallback })));
+const GrundversorgungGasSondervertragArticle = lazy(() => import('@/components/pages/ratgeber/articles/GrundversorgungGasSondervertragArticle').catch(() => ({ default: LazyErrorFallback })));
+const PreiserhoeungGasRechteArticle = lazy(() => import('@/components/pages/ratgeber/articles/PreiserhoeungGasRechteArticle').catch(() => ({ default: LazyErrorFallback })));
+const UmzugGasvertragArticle = lazy(() => import('@/components/pages/ratgeber/articles/UmzugGasvertragArticle').catch(() => ({ default: LazyErrorFallback })));
+const HeizungsartVerbrauchArticle = lazy(() => import('@/components/pages/ratgeber/articles/HeizungsartVerbrauchArticle').catch(() => ({ default: LazyErrorFallback })));
+const GaspreisgarantieArticle = lazy(() => import('@/components/pages/ratgeber/articles/GaspreisgarantieArticle').catch(() => ({ default: LazyErrorFallback })));
+const GewerbestromVertragArticle = lazy(() => import('@/components/pages/ratgeber/articles/GewerbestromVertragArticle').catch(() => ({ default: LazyErrorFallback })));
+const GewerbegasBeschaffungArticle = lazy(() => import('@/components/pages/ratgeber/articles/GewerbegasBeschaffungArticle').catch(() => ({ default: LazyErrorFallback })));
+const LastprofilLeistungspreisArticle = lazy(() => import('@/components/pages/ratgeber/articles/LastprofilLeistungspreisArticle').catch(() => ({ default: LazyErrorFallback })));
+const PVKostenNrwArticle = lazy(() => import('@/components/pages/ratgeber/articles/PVKostenNrwArticle').catch(() => ({ default: LazyErrorFallback })));
+const PVSpeicherArticle = lazy(() => import('@/components/pages/ratgeber/articles/PVSpeicherArticle').catch(() => ({ default: LazyErrorFallback })));
+const EinspeiseverguetungArticle = lazy(() => import('@/components/pages/ratgeber/articles/EinspeiseverguetungArticle').catch(() => ({ default: LazyErrorFallback })));
+const DachEignungArticle = lazy(() => import('@/components/pages/ratgeber/articles/DachEignungArticle').catch(() => ({ default: LazyErrorFallback })));
+const AngeboteVergleichenArticle = lazy(() => import('@/components/pages/ratgeber/articles/AngeboteVergleichenArticle').catch(() => ({ default: LazyErrorFallback })));
+const KuendigungsfristenArticle = lazy(() => import('@/components/pages/ratgeber/articles/KuendigungsfristenArticle').catch(() => ({ default: LazyErrorFallback })));
+const LieferantenwechselAblaufArticle = lazy(() => import('@/components/pages/ratgeber/articles/LieferantenwechselAblaufArticle').catch(() => ({ default: LazyErrorFallback })));
+const WechselSchiefgehtArticle = lazy(() => import('@/components/pages/ratgeber/articles/WechselSchiefgehtArticle').catch(() => ({ default: LazyErrorFallback })));
+const ThankYouPage = lazy(() => import('@/components/pages/ThankYouPage').catch(() => ({ default: LazyErrorFallback })));
+const BlogPage = lazy(() => import('@/components/pages/BlogPage').catch(() => ({ default: LazyErrorFallback })));
+const BlogDetailPage = lazy(() => import('@/components/pages/BlogDetailPage').catch(() => ({ default: LazyErrorFallback })));
+
 // Fallback component for lazy-loaded routes
 const LazyFallback = () => <div className="min-h-screen flex items-center justify-center" />;
 
@@ -30,52 +76,6 @@ const LazyErrorFallback = () => (
     </div>
   </div>
 );
-
-// Lazy load non-critical pages for code-splitting
-const GewerbestromPage = lazy(() => import('@/components/pages/GewerbestromPage'));
-const GewerbegasPage = lazy(() => import('@/components/pages/GewerbegasPage'));
-const StromvergleichNrwPage = lazy(() => import('@/components/pages/StromvergleichNrwPage'));
-const GasvergleichNrwPage = lazy(() => import('@/components/pages/GasvergleichNrwPage'));
-const PhotovoltaikNrwPage = lazy(() => import('@/components/pages/PhotovoltaikNrwPage'));
-const KontaktPage = lazy(() => import('@/components/pages/KontaktPage'));
-const ImpressumPage = lazy(() => import('@/components/pages/ImpressumPage'));
-const DatenschutzPage = lazy(() => import('@/components/pages/DatenschutzPage'));
-const RatgeberPage = lazy(() => import('@/components/pages/RatgeberPage'));
-const StromCategoryPage = lazy(() => import('@/components/pages/ratgeber/StromCategoryPage'));
-const GasCategoryPage = lazy(() => import('@/components/pages/ratgeber/GasCategoryPage'));
-const GewerbeCategoryPage = lazy(() => import('@/components/pages/ratgeber/GewerbeCategoryPage'));
-const PhotovoltaikCategoryPage = lazy(() => import('@/components/pages/ratgeber/PhotovoltaikCategoryPage'));
-const WechselwissenCategoryPage = lazy(() => import('@/components/pages/ratgeber/WechselwissenCategoryPage'));
-const StromGrundversorgungArticle = lazy(() => import('@/components/pages/ratgeber/articles/StromGrundversorgungArticle'));
-const StromanbieterwechselnNrwArticle = lazy(() => import('@/components/pages/ratgeber/articles/StromanbieterwechselnNrwArticle'));
-const GrundversorgungVsSondervertragArticle = lazy(() => import('@/components/pages/ratgeber/articles/GrundversorgungVsSondervertragArticle'));
-const SofortSparmoeglichkeitenArticle = lazy(() => import('@/components/pages/ratgeber/articles/SofortSparmoeglichkeitenArticle'));
-const MethodologyPage = lazy(() => import('@/components/pages/MethodologyPage'));
-const NeukndenbonusFallenArticle = lazy(() => import('@/components/pages/ratgeber/articles/NeukndenbonusFallenArticle'));
-const PreiserhoeungWasTunArticle = lazy(() => import('@/components/pages/ratgeber/articles/PreiserhoeungWasTunArticle'));
-const UmzugStromvertragArticle = lazy(() => import('@/components/pages/ratgeber/articles/UmzugStromvertragArticle'));
-const StromtarifVertragslaufzeitArticle = lazy(() => import('@/components/pages/ratgeber/articles/StromtarifVertragslaufzeitArticle'));
-const MaloIdZaehlernummerArticle = lazy(() => import('@/components/pages/ratgeber/articles/MaloIdZaehlernummerArticle'));
-const GasanbieterWechselnNrwArticle = lazy(() => import('@/components/pages/ratgeber/articles/GasanbieterWechselnNrwArticle'));
-const GrundversorgungGasSondervertragArticle = lazy(() => import('@/components/pages/ratgeber/articles/GrundversorgungGasSondervertragArticle'));
-const PreiserhoeungGasRechteArticle = lazy(() => import('@/components/pages/ratgeber/articles/PreiserhoeungGasRechteArticle'));
-const UmzugGasvertragArticle = lazy(() => import('@/components/pages/ratgeber/articles/UmzugGasvertragArticle'));
-const HeizungsartVerbrauchArticle = lazy(() => import('@/components/pages/ratgeber/articles/HeizungsartVerbrauchArticle'));
-const GaspreisgarantieArticle = lazy(() => import('@/components/pages/ratgeber/articles/GaspreisgarantieArticle'));
-const GewerbestromVertragArticle = lazy(() => import('@/components/pages/ratgeber/articles/GewerbestromVertragArticle'));
-const GewerbegasBeschaffungArticle = lazy(() => import('@/components/pages/ratgeber/articles/GewerbegasBeschaffungArticle'));
-const LastprofilLeistungspreisArticle = lazy(() => import('@/components/pages/ratgeber/articles/LastprofilLeistungspreisArticle'));
-const PVKostenNrwArticle = lazy(() => import('@/components/pages/ratgeber/articles/PVKostenNrwArticle'));
-const PVSpeicherArticle = lazy(() => import('@/components/pages/ratgeber/articles/PVSpeicherArticle'));
-const EinspeiseverguetungArticle = lazy(() => import('@/components/pages/ratgeber/articles/EinspeiseverguetungArticle'));
-const DachEignungArticle = lazy(() => import('@/components/pages/ratgeber/articles/DachEignungArticle'));
-const AngeboteVergleichenArticle = lazy(() => import('@/components/pages/ratgeber/articles/AngeboteVergleichenArticle'));
-const KuendigungsfristenArticle = lazy(() => import('@/components/pages/ratgeber/articles/KuendigungsfristenArticle'));
-const LieferantenwechselAblaufArticle = lazy(() => import('@/components/pages/ratgeber/articles/LieferantenwechselAblaufArticle'));
-const WechselSchiefgehtArticle = lazy(() => import('@/components/pages/ratgeber/articles/WechselSchiefgehtArticle'));
-const ThankYouPage = lazy(() => import('@/components/pages/ThankYouPage'));
-const BlogPage = lazy(() => import('@/components/pages/BlogPage'));
-const BlogDetailPage = lazy(() => import('@/components/pages/BlogDetailPage'));
 
 // Layout component that includes ScrollToTop and SEO components
 function Layout() {
