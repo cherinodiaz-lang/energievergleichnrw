@@ -35,6 +35,8 @@ export interface BlogPosts {
   /** @wixFieldType text */
   title?: string;
   /** @wixFieldType text */
+  alternativeAnchorTexts?: string;
+  /** @wixFieldType text */
   urlSlug?: string;
   /** @wixFieldType text */
   category?: string;
@@ -113,6 +115,8 @@ export interface Categories {
   _updatedDate?: Date;
   /** @wixFieldType text */
   name?: string;
+  /** @wixFieldType text */
+  alternativeAnchorTexts?: string;
   /** @wixFieldType text */
   slug?: string;
   /** @wixFieldType text */

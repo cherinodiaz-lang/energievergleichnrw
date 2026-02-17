@@ -14,10 +14,12 @@ import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import TrustRow from '@/components/TrustRow';
+import RelatedPages from '@/components/RelatedPages';
 import { Link } from 'react-router-dom';
 import { getPageSEO } from '@/lib/seo-config';
 import { ROUTES } from '@/lib/routes';
 import { trackMethodikClick } from '@/services/form-submission';
+import { getRelatedPages } from '@/lib/internal-linking';
 
 export default function GewerbestromPage() {
   useEffect(() => {
@@ -686,6 +688,9 @@ export default function GewerbestromPage() {
 
       {/* Passende Ratgeber */}
       <PassendeRatgeber moneyPageId="gewerbestrom" limit={4} />
+
+      {/* Related Pages - Cross-Linking */}
+      <RelatedPages pages={getRelatedPages('/gewerbestrom')} />
 
       {/* For Business Important Section */}
       <section className="w-full py-24 bg-background">

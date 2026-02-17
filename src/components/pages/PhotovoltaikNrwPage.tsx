@@ -14,10 +14,12 @@ import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import TrustRow from '@/components/TrustRow';
+import RelatedPages from '@/components/RelatedPages';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
 import { trackMethodikClick } from '@/services/form-submission';
+import { getRelatedPages } from '@/lib/internal-linking';
 
 export default function PhotovoltaikNrwPage() {
   const [formData, setFormData] = useState({
@@ -811,6 +813,9 @@ export default function PhotovoltaikNrwPage() {
 
       {/* Passende Ratgeber */}
       <PassendeRatgeber moneyPageId="photovoltaik-nrw" limit={4} />
+
+      {/* Related Pages - Cross-Linking */}
+      <RelatedPages pages={getRelatedPages('/photovoltaik-nrw')} />
 
       {/* More on Topic Section */}
       <section className="w-full py-24 bg-background">
