@@ -13,6 +13,10 @@ import SearchConsoleVerification from '@/components/SearchConsoleVerification';
 import SitemapNotification from '@/components/SitemapNotification';
 import ConsentBanner from '@/components/ConsentBanner';
 import { initializeGA4 } from '@/services/ga4-tracking';
+import HowToSchema from '@/components/HowToSchema';
+import ReviewSchema from '@/components/ReviewSchema';
+import FAQPageSchema from '@/components/FAQPageSchema';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 
 // Lazy load non-critical pages for code-splitting with error handling
 const GewerbestromPage = lazy(() => import('@/components/pages/GewerbestromPage').catch(() => ({ default: LazyErrorFallback })));
@@ -86,6 +90,10 @@ function Layout() {
       <OrganizationSchema />
       <LocalBusinessSchema />
       <WebsiteSchema />
+      <HowToSchema />
+      <ReviewSchema />
+      <FAQPageSchema />
+      <BreadcrumbSchema />
       <SearchConsoleVerification verificationCode={SEO_CONFIG.googleSearchConsoleVerification} />
       <SitemapNotification />
       <ConsentBanner />

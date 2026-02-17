@@ -5,7 +5,7 @@ export default function LocalBusinessSchema() {
   useEffect(() => {
     const localBusinessSchema = {
       '@context': 'https://schema.org',
-      '@type': 'LocalBusiness',
+      '@type': 'ProfessionalService',
       '@id': SEO_CONFIG.organization.url,
       name: SEO_CONFIG.organization.name,
       image: SEO_CONFIG.organization.logo,
@@ -21,14 +21,37 @@ export default function LocalBusinessSchema() {
         postalCode: SEO_CONFIG.organization.address.postalCode,
         addressCountry: SEO_CONFIG.organization.address.addressCountry,
       },
-      areaServed: SEO_CONFIG.organization.areaServed,
+      geo: {
+        '@type': 'GeoShape',
+        box: '51.1657 5.8025 52.5200 9.4419', // NRW bounding box (south west north east)
+      },
+      areaServed: [
+        {
+          '@type': 'State',
+          name: 'Nordrhein-Westfalen',
+          url: 'https://de.wikipedia.org/wiki/Nordrhein-Westfalen',
+        },
+      ],
       sameAs: [
         SEO_CONFIG.social.facebook,
         SEO_CONFIG.social.twitter,
         SEO_CONFIG.social.linkedin,
       ],
       priceRange: '€€',
-      serviceType: 'Energieberatung, Stromvergleich, Gasvergleich, Photovoltaikberatung',
+      serviceType: [
+        'Energieberatung',
+        'Stromvergleich',
+        'Gasvergleich',
+        'Photovoltaikberatung',
+        'Gewerbeenergie',
+      ],
+      knowsAbout: [
+        'Stromtarife',
+        'Gastarife',
+        'Photovoltaik',
+        'Energiewechsel',
+        'Energieberatung',
+      ],
     };
 
     let script = document.getElementById('local-business-schema');
