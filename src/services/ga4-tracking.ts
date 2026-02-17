@@ -20,6 +20,7 @@ interface QueuedEvent {
 
 let eventQueue: QueuedEvent[] = [];
 let consentGranted = false;
+let debugMode = false;
 
 /**
  * Initialize GA4 with consent mode
@@ -27,6 +28,9 @@ let consentGranted = false;
  */
 export function initializeGA4(measurementId: string) {
   if (typeof window === 'undefined') return;
+
+  // Check for debug mode via URL parameter
+  debugMode = new URLSearchParams(window.location.search).has('ga_debug');
 
   // Initialize dataLayer if not present
   if (!window.dataLayer) {
@@ -59,6 +63,10 @@ export function initializeGA4(measurementId: string) {
     'anonymize_ip': true,
     'allow_google_signals': false,
   });
+
+  if (debugMode) {
+    console.log('[GA4 DEBUG] Initialized with Measurement ID:', measurementId);
+  }
 }
 
 /**
@@ -78,6 +86,14 @@ export function updateConsent(analyticsConsent: boolean, marketingConsent: boole
     'ad_personalization': marketingConsent ? 'granted' : 'denied',
   });
 
+  if (debugMode) {
+    console.log('[GA4 DEBUG] Consent updated:', {
+      analytics: analyticsConsent,
+      marketing: marketingConsent,
+      timestamp: new Date().toISOString()
+    });
+  }
+
   // Flush queued events if consent is granted
   if (analyticsConsent) {
     flushEventQueue();
@@ -94,18 +110,30 @@ export function trackEvent(eventName: string, eventData: Record<string, any> = {
   // If consent not yet determined, queue the event
   if (!consentGranted && eventQueue.length < 50) {
     eventQueue.push({ eventName, eventData });
+    if (debugMode) {
+      console.log('[GA4 DEBUG] Event queued (consent pending):', eventName, eventData);
+    }
     return;
   }
 
   // Only send event if consent is granted
   if (!consentGranted) {
+    if (debugMode) {
+      console.log('[GA4 DEBUG] Event blocked (consent denied):', eventName);
+    }
     return;
   }
 
-  window.gtag?.('event', eventName, {
+  const eventWithTimestamp = {
     ...eventData,
     'timestamp': new Date().toISOString(),
-  });
+  };
+
+  window.gtag?.('event', eventName, eventWithTimestamp);
+
+  if (debugMode) {
+    console.log('[GA4 DEBUG] Event sent:', eventName, eventWithTimestamp);
+  }
 }
 
 /**
@@ -147,13 +175,22 @@ export function trackMethodikClick() {
  * Flush all queued events
  */
 function flushEventQueue() {
+  if (debugMode) {
+    console.log('[GA4 DEBUG] Flushing event queue, count:', eventQueue.length);
+  }
+
   while (eventQueue.length > 0) {
     const event = eventQueue.shift();
     if (event) {
-      window.gtag?.('event', event.eventName, {
+      const eventWithTimestamp = {
         ...event.eventData,
         'timestamp': new Date().toISOString(),
-      });
+      };
+      window.gtag?.('event', event.eventName, eventWithTimestamp);
+
+      if (debugMode) {
+        console.log('[GA4 DEBUG] Queued event flushed:', event.eventName, eventWithTimestamp);
+      }
     }
   }
 }
@@ -170,4 +207,20 @@ export function isAnalyticsConsented(): boolean {
  */
 export function getQueuedEventsCount(): number {
   return eventQueue.length;
+}
+
+/**
+ * Send debug ping event (only in debug mode with consent)
+ */
+export function sendDebugPing() {
+  if (!debugMode || !consentGranted) return;
+
+  trackEvent('debug_ping', {
+    'page_path': window.location.pathname,
+    'page_url': window.location.href,
+    'consent_status': 'granted',
+    'debug_mode': true,
+  });
+
+  console.log('[GA4 DEBUG] Debug ping sent');
 }

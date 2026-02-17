@@ -18,8 +18,8 @@ interface SEOHeadProps {
   author?: string;
 }
 
-const SITE_URL = 'https://www.energievergleich.nrw';
-const SITE_NAME = 'energievergleich.nrw';
+const SITE_URL = 'https://www.energievergleich.shop';
+const SITE_NAME = 'energievergleich.shop';
 const DEFAULT_IMAGE = 'https://static.wixstatic.com/media/32e7c0_8cede5e338be484bb8dcaad81c053c82~mv2.png?originWidth=1920&originHeight=1024';
 
 export default function SEOHead({
