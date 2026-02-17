@@ -21,6 +21,7 @@ interface QueuedEvent {
 let eventQueue: QueuedEvent[] = [];
 let consentGranted = false;
 let debugMode = false;
+let debugTestPingSent = false;
 
 /**
  * Initialize GA4 with consent mode
@@ -29,8 +30,8 @@ let debugMode = false;
 export function initializeGA4(measurementId: string) {
   if (typeof window === 'undefined') return;
 
-  // Check for debug mode via URL parameter
-  debugMode = new URLSearchParams(window.location.search).has('ga_debug');
+  // Check for debug mode via URL parameter (?debug=1)
+  debugMode = new URLSearchParams(window.location.search).get('debug') === '1';
 
   // Initialize dataLayer if not present
   if (!window.dataLayer) {
@@ -103,6 +104,7 @@ export function updateConsent(analyticsConsent: boolean, marketingConsent: boole
 /**
  * Track event in GA4 (only if analytics consent is granted)
  * Events are queued if consent is not yet determined
+ * If debug mode is active, adds debug_mode: true to all events
  */
 export function trackEvent(eventName: string, eventData: Record<string, any> = {}) {
   if (typeof window === 'undefined') return;
@@ -124,8 +126,13 @@ export function trackEvent(eventName: string, eventData: Record<string, any> = {
     return;
   }
 
+  // Add debug_mode parameter if in debug mode
+  const eventWithDebug = debugMode
+    ? { ...eventData, debug_mode: true }
+    : eventData;
+
   const eventWithTimestamp = {
-    ...eventData,
+    ...eventWithDebug,
     'timestamp': new Date().toISOString(),
   };
 
@@ -210,17 +217,43 @@ export function getQueuedEventsCount(): number {
 }
 
 /**
- * Send debug ping event (only in debug mode with consent)
+ * Check if debug mode is active
  */
-export function sendDebugPing() {
-  if (!debugMode || !consentGranted) return;
+export function isDebugMode(): boolean {
+  return debugMode;
+}
 
-  trackEvent('debug_ping', {
+/**
+ * Reset debug test ping flag (for testing purposes)
+ */
+export function resetDebugTestPingFlag() {
+  debugTestPingSent = false;
+}
+
+/**
+ * Send GA4 test ping event (only in debug mode with consent)
+ * Sends exactly once per page load when ?debug=1 and analytics consent is granted
+ * Event name: ga4_test_ping
+ * Parameters: page_path, debug_mode: true
+ */
+export function sendDebugTestPing() {
+  if (typeof window === 'undefined') return;
+
+  // Only send if debug mode is active, consent is granted, and not already sent
+  if (!debugMode || !consentGranted || debugTestPingSent) {
+    if (debugMode && !consentGranted) {
+      console.log('[GA4 DEBUG] Test ping blocked: consent not granted');
+    }
+    return;
+  }
+
+  // Mark as sent to prevent duplicate sends
+  debugTestPingSent = true;
+
+  trackEvent('ga4_test_ping', {
     'page_path': window.location.pathname,
-    'page_url': window.location.href,
-    'consent_status': 'granted',
     'debug_mode': true,
   });
 
-  console.log('[GA4 DEBUG] Debug ping sent');
+  console.log('[GA4 DEBUG] Test ping sent (ga4_test_ping)');
 }

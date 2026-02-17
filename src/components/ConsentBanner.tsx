@@ -18,7 +18,7 @@ import React, { useEffect, useState } from 'react';
 import { Settings, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ROUTES } from '@/lib/routes';
-import { updateConsent, sendDebugPing } from '@/services/ga4-tracking';
+import { updateConsent, sendDebugTestPing } from '@/services/ga4-tracking';
 
 interface ConsentState {
   analytics: boolean;
@@ -66,10 +66,10 @@ export default function ConsentBanner() {
     // Update GA4 consent mode via service
     updateConsent(consentState.analytics, consentState.marketing);
 
-    // Send debug ping if in debug mode and analytics consent granted
+    // Send debug test ping if in debug mode and analytics consent granted
     if (consentState.analytics) {
       setTimeout(() => {
-        sendDebugPing();
+        sendDebugTestPing();
       }, 100);
     }
 
