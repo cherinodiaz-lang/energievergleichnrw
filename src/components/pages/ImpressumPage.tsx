@@ -14,6 +14,8 @@ export default function ImpressumPage() {
         title={seo.title}
         description={seo.description}
         keywords={seo.keywords}
+        ogTitle={seo.ogTitle}
+        ogDescription={seo.ogDescription}
       />
       <Header />
 

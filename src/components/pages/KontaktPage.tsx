@@ -15,6 +15,7 @@ import FormSubmissionDialog from '@/components/FormSubmissionDialog';
 import { trackCTAClick } from '@/services/form-submission';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
+import { getPageSEO } from '@/lib/seo-config';
 
 export default function KontaktPage() {
   const [formData, setFormData] = useState({
@@ -40,14 +41,16 @@ export default function KontaktPage() {
     setFormData({ name: '', email: '', phone: '', subject: '', message: '', type: 'allgemein' });
   };
 
+  const seo = getPageSEO('kontakt');
+
   return (
     <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
-        title="Kontakt | Energievergleich"
-        description="Kontaktieren Sie uns für Fragen zu Strom-, Gas- und Photovoltaik-Angeboten in NRW. Wir helfen gerne weiter!"
-        keywords="Kontakt, Energievergleich, NRW, Kundenservice"
-        ogTitle="Kontakt | Energievergleich"
-        ogDescription="Kontaktieren Sie uns. Wir sind für Sie da!"
+        title={seo.title}
+        description={seo.description}
+        keywords={seo.keywords}
+        ogTitle={seo.ogTitle}
+        ogDescription={seo.ogDescription}
       />
       <Header />
 

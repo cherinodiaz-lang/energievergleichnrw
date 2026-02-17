@@ -91,6 +91,8 @@ export default function RatgeberPage() {
         title={seo.title}
         description={seo.description}
         keywords={seo.keywords}
+        ogTitle={seo.ogTitle}
+        ogDescription={seo.ogDescription}
       />
       <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />

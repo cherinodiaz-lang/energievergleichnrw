@@ -344,8 +344,8 @@ export default function HomePage() {
         title={seo.title}
         description={seo.description}
         keywords={seo.keywords}
-        ogTitle="Strom- & Gasvergleich NRW – Günstige Tarife finden"
-        ogDescription="Strom und Gas in NRW vergleichen – kostenlos, schnell und unabhängig. Jetzt Tarifrechner starten und sparen."
+        ogTitle={seo.ogTitle}
+        ogDescription={seo.ogDescription}
       />
       <style>{`
         .animate-reveal {

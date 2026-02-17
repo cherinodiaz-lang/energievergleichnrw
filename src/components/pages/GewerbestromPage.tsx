@@ -125,7 +125,8 @@ export default function GewerbestromPage() {
         title={seo.title}
         description={seo.description}
         keywords={seo.keywords}
-        ogDescription="Sparen Sie bis zu 30% bei Gewerbestrom. Kostenlose Beratung für Unternehmen in NRW."
+        ogTitle={seo.ogTitle}
+        ogDescription={seo.ogDescription}
       />
       <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />

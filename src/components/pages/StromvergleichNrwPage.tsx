@@ -205,8 +205,8 @@ export default function StromvergleichNrwPage() {
         title={seo.title}
         description={seo.description}
         keywords={seo.keywords}
-        ogTitle="Stromvergleich NRW – Günstige Stromtarife finden"
-        ogDescription="Stromtarife in NRW vergleichen: Preise, Anbieter und Optionen. In 2 Minuten zum passenden Tarif – kostenlos."
+        ogTitle={seo.ogTitle}
+        ogDescription={seo.ogDescription}
       />
       <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />

@@ -18,6 +18,8 @@ export default function MethodologyPage() {
         title={seo.title}
         description={seo.description}
         keywords={seo.keywords}
+        ogTitle={seo.ogTitle}
+        ogDescription={seo.ogDescription}
       />
       <Header />
 
