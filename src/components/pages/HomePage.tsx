@@ -107,9 +107,19 @@ export default function HomePage() {
   const [pvTelefon, setPvTelefon] = useState('');
 
   // Tariff results states
-  const [stromResults, setStromResults] = useState<any[]>([]);
-  const [gasResults, setGasResults] = useState<any[]>([]);
-  const [kombiResults, setKombiResults] = useState<any[]>([]);
+  type TariffResult = {
+    id: number;
+    provider: string;
+    logo: string;
+    jahreskosten: number;
+    arbeitspreis: number;
+    grundpreis: number;
+    vertragslaufzeit: string;
+    preisgarantie: string;
+  };
+  const [stromResults, setStromResults] = useState<TariffResult[]>([]);
+  const [gasResults, setGasResults] = useState<TariffResult[]>([]);
+  const [kombiResults, setKombiResults] = useState<TariffResult[]>([]);
   const [showStromResults, setShowStromResults] = useState(false);
   const [showGasResults, setShowGasResults] = useState(false);
   const [showKombiResults, setShowKombiResults] = useState(false);
@@ -175,15 +185,15 @@ export default function HomePage() {
       }))
     };
 
-    let script = document.getElementById('faq-schema');
-    if (!script) {
-      script = document.createElement('script');
-      script.id = 'faq-schema';
-      script.type = 'application/ld+json';
-      script.textContent = JSON.stringify(faqSchema);
-      document.head.appendChild(script);
+    const scriptElement = document.getElementById('faq-schema') as HTMLScriptElement | null;
+    if (!scriptElement) {
+      const newScript = document.createElement('script') as HTMLScriptElement;
+      newScript.id = 'faq-schema';
+      newScript.type = 'application/ld+json';
+      newScript.textContent = JSON.stringify(faqSchema);
+      document.head.appendChild(newScript);
     } else {
-      script.textContent = JSON.stringify(faqSchema);
+      scriptElement.textContent = JSON.stringify(faqSchema);
     }
   }, [faqs]);
 
@@ -386,8 +396,6 @@ export default function HomePage() {
             className="w-full h-full object-cover"
             width={1920}
             height={1024}
-            priority
-            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background pointer-events-none" />
         </motion.div>
