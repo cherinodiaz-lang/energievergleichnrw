@@ -18,6 +18,19 @@ import ReviewSchema from '@/components/ReviewSchema';
 import FAQPageSchema from '@/components/FAQPageSchema';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 
+// Error fallback for lazy-loaded routes - defined before lazy imports
+const LazyErrorFallback = () => (
+  <div className="min-h-screen flex items-center justify-center">
+    <div className="text-center">
+      <h1 className="text-2xl font-bold mb-4">Fehler beim Laden der Seite</h1>
+      <p className="text-gray-600">Die Seite konnte nicht geladen werden. Bitte versuchen Sie es später erneut.</p>
+    </div>
+  </div>
+);
+
+// Fallback component for lazy-loaded routes
+const LazyFallback = () => <div className="min-h-screen flex items-center justify-center" />;
+
 // Lazy load non-critical pages for code-splitting with error handling
 const GewerbestromPage = lazy(() => import('@/components/pages/GewerbestromPage').catch(() => ({ default: LazyErrorFallback })));
 const GewerbegasPage = lazy(() => import('@/components/pages/GewerbegasPage').catch(() => ({ default: LazyErrorFallback })));
@@ -63,19 +76,6 @@ const WechselSchiefgehtArticle = lazy(() => import('@/components/pages/ratgeber/
 const ThankYouPage = lazy(() => import('@/components/pages/ThankYouPage').catch(() => ({ default: LazyErrorFallback })));
 const BlogPage = lazy(() => import('@/components/pages/BlogPage').catch(() => ({ default: LazyErrorFallback })));
 const BlogDetailPage = lazy(() => import('@/components/pages/BlogDetailPage').catch(() => ({ default: LazyErrorFallback })));
-
-// Fallback component for lazy-loaded routes
-const LazyFallback = () => <div className="min-h-screen flex items-center justify-center" />;
-
-// Error fallback for lazy-loaded routes
-const LazyErrorFallback = () => (
-  <div className="min-h-screen flex items-center justify-center">
-    <div className="text-center">
-      <h1 className="text-2xl font-bold mb-4">Fehler beim Laden der Seite</h1>
-      <p className="text-gray-600">Die Seite konnte nicht geladen werden. Bitte versuchen Sie es später erneut.</p>
-    </div>
-  </div>
-);
 
 // Layout component that includes ScrollToTop and SEO components
 function Layout() {
