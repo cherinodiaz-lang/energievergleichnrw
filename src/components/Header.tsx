@@ -27,6 +27,11 @@ export default function Header() {
     }
   }, [mobileMenuOpen]);
 
+  const isActiveLink = (path: string): boolean => {
+    if (path === '/') return location.pathname === '/';
+    return location.pathname.startsWith(path);
+  };
+
   const scrollToSection = (sectionId: string) => {
     if (location.pathname !== '/') {
       window.location.href = `/#${sectionId}`;
@@ -83,43 +88,35 @@ export default function Header() {
           <nav className="hidden lg:flex items-center gap-6 xl:gap-8" aria-label="Hauptnavigation">
             {NAV_MAIN.map((item) => (
               <div key={item.key} className="relative group">
-                {item.to.startsWith('http') ? (
-                  <a
-                    href={item.to}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-paragraph text-sm xl:text-base text-foreground hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1 transition-colors flex items-center gap-1"
-                  >
-                    {item.label}
-                    {item.submenu && (
-                      <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" aria-hidden="true" />
-                    )}
-                  </a>
-                ) : (
-                  <Link
-                    to={item.to}
-                    className="font-paragraph text-sm xl:text-base text-foreground hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1 transition-colors flex items-center gap-1"
-                  >
-                    {item.label}
-                    {item.submenu && (
-                      <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" aria-hidden="true" />
-                    )}
-                  </Link>
-                )}
+                <Link
+                  to={item.to}
+                  className={`font-paragraph text-sm xl:text-base font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1 transition-colors flex items-center gap-1 min-h-12 ${
+                    isActiveLink(item.to) 
+                      ? 'text-primary border-b-2 border-primary' 
+                      : 'text-foreground hover:text-primary'
+                  }`}
+                >
+                  {item.label}
+                  {item.submenu && (
+                    <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" aria-hidden="true" />
+                  )}
+                </Link>
                 
                 {/* Desktop Submenu */}
                 {item.submenu && (
-                  <div className="absolute left-0 mt-0 w-48 bg-white border border-gray-100 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+                  <div className="absolute left-0 mt-0 w-56 bg-white border border-gray-100 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
                     {item.submenu.map((subitem) => (
-                      <a
+                      <Link
                         key={subitem.key}
-                        href={subitem.to}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block px-4 py-2 font-paragraph text-sm text-foreground hover:bg-primary/5 hover:text-primary transition-colors"
+                        to={subitem.to}
+                        className={`block px-4 py-3 font-paragraph text-sm font-medium transition-colors min-h-12 flex items-center ${
+                          isActiveLink(subitem.to)
+                            ? 'bg-primary/10 text-primary'
+                            : 'text-foreground hover:bg-primary/5 hover:text-primary'
+                        }`}
                       >
                         {subitem.label}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 )}
@@ -158,57 +155,51 @@ export default function Header() {
             <ul className="flex flex-col divide-y divide-gray-100">
               {NAV_MAIN.map((item) => (
                 <li key={item.key}>
-                  {item.to.startsWith('http') && !item.submenu ? (
-                    <a
-                      href={item.to}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="block font-paragraph font-medium text-sm sm:text-base text-foreground hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset transition-colors py-3 sm:py-4 px-3 sm:px-4"
+                  <>
+                    <button
+                      onClick={() => {
+                        if (item.submenu) {
+                          setOpenSubmenu(openSubmenu === item.key ? null : item.key);
+                        } else {
+                          setMobileMenuOpen(false);
+                        }
+                      }}
+                      className={`w-full text-left font-paragraph font-medium text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset transition-colors py-3 sm:py-4 px-3 sm:px-4 flex items-center justify-between min-h-12 ${
+                        isActiveLink(item.to)
+                          ? 'text-primary bg-primary/5'
+                          : 'text-foreground hover:text-primary'
+                      }`}
                     >
-                      {item.label}
-                    </a>
-                  ) : (
-                    <>
-                      <button
-                        onClick={() => {
-                          if (item.submenu) {
-                            setOpenSubmenu(openSubmenu === item.key ? null : item.key);
-                          } else {
-                            setMobileMenuOpen(false);
-                          }
-                        }}
-                        className="w-full text-left font-paragraph font-medium text-sm sm:text-base text-foreground hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset transition-colors py-3 sm:py-4 px-3 sm:px-4 flex items-center justify-between"
-                      >
-                        <span>{item.label}</span>
-                        {item.submenu && (
-                          <ChevronDown 
-                            className={`w-4 h-4 transition-transform ${openSubmenu === item.key ? 'rotate-180' : ''}`}
-                            aria-hidden="true"
-                          />
-                        )}
-                      </button>
-                      
-                      {/* Mobile Submenu */}
-                      {item.submenu && openSubmenu === item.key && (
-                        <ul className="bg-gray-50 divide-y divide-gray-100">
-                          {item.submenu.map((subitem) => (
-                            <li key={subitem.key}>
-                              <a
-                                href={subitem.to}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={() => setMobileMenuOpen(false)}
-                                className="block font-paragraph text-sm text-foreground hover:text-primary hover:bg-primary/5 transition-colors py-3 sm:py-4 px-6 sm:px-8"
-                              >
-                                {subitem.label}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
+                      <span>{item.label}</span>
+                      {item.submenu && (
+                        <ChevronDown 
+                          className={`w-4 h-4 transition-transform ${openSubmenu === item.key ? 'rotate-180' : ''}`}
+                          aria-hidden="true"
+                        />
                       )}
-                    </>
-                  )}
+                    </button>
+                    
+                    {/* Mobile Submenu */}
+                    {item.submenu && openSubmenu === item.key && (
+                      <ul className="bg-gray-50 divide-y divide-gray-100">
+                        {item.submenu.map((subitem) => (
+                          <li key={subitem.key}>
+                            <Link
+                              to={subitem.to}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className={`block font-paragraph text-sm font-medium transition-colors py-3 sm:py-4 px-6 sm:px-8 min-h-12 flex items-center ${
+                                isActiveLink(subitem.to)
+                                  ? 'text-primary bg-primary/10'
+                                  : 'text-foreground hover:text-primary hover:bg-primary/5'
+                              }`}
+                            >
+                              {subitem.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </>
                 </li>
               ))}
             </ul>

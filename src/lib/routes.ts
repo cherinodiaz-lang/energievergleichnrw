@@ -16,6 +16,10 @@ export type RouteKey =
   | "kontakt"
   | "impressum"
   | "datenschutz"
+  | "agb"
+  | "widerruf"
+  | "sitemap"
+  | "faq"
   // Legacy uppercase variants (for backward compatibility with existing code)
   | "STROMVERGLEICH_NRW"
   | "GASVERGLEICH_NRW"
@@ -44,6 +48,10 @@ export const ROUTES: Record<RouteKey, string> = {
   kontakt: "/kontakt",
   impressum: "/impressum",
   datenschutz: "/datenschutz",
+  agb: "/agb",
+  widerruf: "/widerruf",
+  sitemap: "/sitemap",
+  faq: "/faq",
   // Legacy uppercase variants (for backward compatibility)
   STROMVERGLEICH_NRW: "/stromvergleich-nrw",
   GASVERGLEICH_NRW: "/gasvergleich-nrw",
@@ -64,24 +72,32 @@ export type NavItem = {
 
 /**
  * Hauptnavigation (Header).
- * Du darfst Labels NICHT erfinden – nur diese Struktur bereitstellen.
- * Später ersetzen wir im Header hartcodierte Pfade durch NAV_MAIN.
+ * Exakte Reihenfolge gemäß Spezifikation.
  */
 export const NAV_MAIN: NavItem[] = [
-  { key: "home", label: "Start", to: ROUTES.home },
   { key: "stromvergleich", label: "Strom", to: ROUTES.stromvergleich },
   { key: "gasvergleich", label: "Gas", to: ROUTES.gasvergleich },
   { key: "photovoltaik", label: "Photovoltaik", to: ROUTES.photovoltaik },
   {
     key: "gewerbe",
     label: "Gewerbe",
-    to: "https://www.energievergleich.shop/gewerbestrom",
+    to: ROUTES.gewerbestrom,
     submenu: [
-      { key: "gewerbestrom", label: "Gewerbestrom", to: "https://www.energievergleich.shop/gewerbestrom" },
-      { key: "gewerbegas", label: "Gewerbegas", to: "https://www.energievergleich.shop/gewerbegas" },
+      { key: "gewerbestrom", label: "Gewerbestrom", to: ROUTES.gewerbestrom },
+      { key: "gewerbegas", label: "Gewerbegas", to: ROUTES.gewerbegas },
     ],
   },
-  { key: "ratgeber", label: "Ratgeber", to: ROUTES.ratgeberHub },
+  {
+    key: "ratgeber",
+    label: "Ratgeber",
+    to: ROUTES.ratgeberHub,
+    submenu: [
+      { key: "ratgeberStrom", label: "Strom-Ratgeber", to: ROUTES.ratgeberStrom },
+      { key: "ratgeberGas", label: "Gas-Ratgeber", to: ROUTES.ratgeberGas },
+      { key: "ratgeberPhotovoltaik", label: "Photovoltaik-Ratgeber", to: ROUTES.ratgeberPhotovoltaik },
+      { key: "ratgeberWechselwissen", label: "Spartipps", to: ROUTES.ratgeberWechselwissen },
+    ],
+  },
   { key: "kontakt", label: "Kontakt", to: ROUTES.kontakt },
 ];
 
@@ -98,10 +114,21 @@ export const NAV_SECONDARY: NavItem[] = [
 ];
 
 /**
- * Rechtliches (Footer).
+ * Rechtliches (Footer - Spalte 1).
  */
 export const NAV_LEGAL: NavItem[] = [
   { key: "impressum", label: "Impressum", to: ROUTES.impressum },
   { key: "datenschutz", label: "Datenschutz", to: ROUTES.datenschutz },
+  { key: "agb", label: "AGB", to: ROUTES.agb },
+  { key: "widerruf", label: "Widerrufsbelehrung", to: ROUTES.widerruf },
+];
+
+/**
+ * Service-Links (Footer - Spalte 2).
+ */
+export const NAV_SERVICE: NavItem[] = [
+  { key: "sitemap", label: "Sitemap", to: ROUTES.sitemap },
   { key: "methodik", label: "So vergleichen wir", to: "/methodik" },
+  { key: "faq", label: "FAQ", to: ROUTES.faq },
+  { key: "kontakt", label: "Kontakt", to: ROUTES.kontakt },
 ];
