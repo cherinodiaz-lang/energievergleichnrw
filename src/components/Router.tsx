@@ -61,6 +61,8 @@ const KuendigungsfristenArticle = lazy(() => import('@/components/pages/ratgeber
 const LieferantenwechselAblaufArticle = lazy(() => import('@/components/pages/ratgeber/articles/LieferantenwechselAblaufArticle').catch(() => ({ default: LazyErrorFallback })));
 const WechselSchiefgehtArticle = lazy(() => import('@/components/pages/ratgeber/articles/WechselSchiefgehtArticle').catch(() => ({ default: LazyErrorFallback })));
 const ThankYouPage = lazy(() => import('@/components/pages/ThankYouPage').catch(() => ({ default: LazyErrorFallback })));
+const BlogPage = lazy(() => import('@/components/pages/BlogPage').catch(() => ({ default: LazyErrorFallback })));
+const BlogDetailPage = lazy(() => import('@/components/pages/BlogDetailPage').catch(() => ({ default: LazyErrorFallback })));
 
 // Fallback component for lazy-loaded routes
 const LazyFallback = () => <div className="min-h-screen flex items-center justify-center" />;
@@ -416,6 +418,20 @@ const router = createBrowserRouter([
         element: <Suspense fallback={<LazyFallback />}><ThankYouPage /></Suspense>,
         routeMetadata: {
           pageIdentifier: 'thank-you',
+        },
+      },
+      {
+        path: "blog",
+        element: <Suspense fallback={<LazyFallback />}><BlogPage /></Suspense>,
+        routeMetadata: {
+          pageIdentifier: 'blog',
+        },
+      },
+      {
+        path: "blog/:slug",
+        element: <Suspense fallback={<LazyFallback />}><BlogDetailPage /></Suspense>,
+        routeMetadata: {
+          pageIdentifier: 'blog-detail',
         },
       },
       {
