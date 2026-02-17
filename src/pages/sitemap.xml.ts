@@ -66,6 +66,12 @@ const pages = [
     changefreq: 'monthly',
     lastmod: LASTMOD_STATIC
   },
+  {
+    url: '/methodik',
+    priority: '0.6',
+    changefreq: 'yearly',
+    lastmod: LASTMOD_STATIC
+  },
 
   // ===== RATGEBER HUB (Priority: 0.9) =====
   {
