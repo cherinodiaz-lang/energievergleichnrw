@@ -41,6 +41,42 @@ export default function SEOHead({
   const location = useLocation();
 
   useEffect(() => {
+    // PHASE 7: Preload critical fonts for better performance
+    const preloadFonts = () => {
+      const fonts = [
+        { href: '//static.parastorage.com/tag-bundler/api/v1/fonts-cache/googlefont/woff2/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2', as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
+        { href: '//static.parastorage.com/tag-bundler/api/v1/fonts-cache/googlefont/woff2/s/poppins/v22/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2', as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
+      ];
+      
+      fonts.forEach(font => {
+        if (!document.querySelector(`link[href="${font.href}"]`)) {
+          const link = document.createElement('link');
+          link.rel = 'preload';
+          link.href = font.href;
+          link.as = font.as;
+          link.type = font.type;
+          link.crossOrigin = font.crossOrigin;
+          document.head.appendChild(link);
+        }
+      });
+    };
+    preloadFonts();
+
+    // PHASE 7: DNS Prefetch for external resources (Tarifrechner API)
+    const dnsPrefetchDomains = [
+      'https://api.tarifrechner.de',
+      'https://static.parastorage.com',
+    ];
+    
+    dnsPrefetchDomains.forEach(domain => {
+      if (!document.querySelector(`link[href="${domain}"]`)) {
+        const link = document.createElement('link');
+        link.rel = 'dns-prefetch';
+        link.href = domain;
+        document.head.appendChild(link);
+      }
+    });
+
     // Set title
     document.title = title;
 

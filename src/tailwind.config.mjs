@@ -20,8 +20,7 @@ export default {
             },
             fontFamily: {
                 heading: ["montserrat"],
-                paragraph: ["poppins-v2"],
-                roboto: ["roboto", "sans-serif"]
+                paragraph: ["poppins-v2"]
             },
             colors: {
                 primary: "#2C6E49",

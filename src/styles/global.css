@@ -5,6 +5,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* PHASE 7: Font optimization - Restrict to essential weights only */
+/* Only montserrat (400, 600, 700) and poppins-v2 (400, 600, 700) are loaded */
+/* All other font weights and styles are removed from fonts.css */
+
 /* Mobile safety defaults */
 img, video { max-width: 100%; height: auto; display: block; }
 iframe { max-width: 100%; }
@@ -33,7 +37,7 @@ ul.mobile-safe, ol.mobile-safe { padding-left: 1.125rem; }
 .form-error-reserve { min-height: 1.5rem; }
 .banner-reserve { min-height: 0; }
 
-/* PHASE 6: Respect prefers-reduced-motion globally */
+/* PHASE 7: Respect prefers-reduced-motion globally - Reduced animation intensity */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -45,9 +49,24 @@ ul.mobile-safe, ol.mobile-safe { padding-left: 1.125rem; }
   }
 }
 
+/* PHASE 7: Standard animations - Reduced from 0.6s to 0.3s for mobile */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
 /* PHASE 6: Image optimization - Ensure proper aspect ratios */
 img[width][height] {
   aspect-ratio: attr(width) / attr(height);
+}
+
+/* PHASE 7: Image lazy loading - Optimize above-the-fold images */
+img.hero-image {
+  content-visibility: auto;
 }
 
 /* PHASE 6: Prevent layout shift on button interactions */

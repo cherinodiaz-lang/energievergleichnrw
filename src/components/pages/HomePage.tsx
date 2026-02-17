@@ -354,10 +354,11 @@ export default function HomePage() {
       <ReviewSchema />
       <FAQPageSchema />
       <style>{`
+        /* PHASE 7: Reduced animation intensity from 0.8s to 0.3s for mobile */
         .animate-reveal {
           opacity: 0;
           transform: translateY(30px);
-          transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+          transition: opacity 0.3s ease-out, transform 0.3s ease-out;
         }
         .animate-reveal.is-visible {
           opacity: 1;
