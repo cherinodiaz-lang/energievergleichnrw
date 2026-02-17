@@ -77,19 +77,6 @@ const ThankYouPage = lazy(() => import('@/components/pages/ThankYouPage').catch(
 const BlogPage = lazy(() => import('@/components/pages/BlogPage').catch(() => ({ default: LazyErrorFallback })));
 const BlogDetailPage = lazy(() => import('@/components/pages/BlogDetailPage').catch(() => ({ default: LazyErrorFallback })));
 
-// Fallback component for lazy-loaded routes
-const LazyFallback = () => <div className="min-h-screen flex items-center justify-center" />;
-
-// Error fallback for lazy-loaded routes
-const LazyErrorFallback = () => (
-  <div className="min-h-screen flex items-center justify-center">
-    <div className="text-center">
-      <h1 className="text-2xl font-bold mb-4">Fehler beim Laden der Seite</h1>
-      <p className="text-gray-600">Die Seite konnte nicht geladen werden. Bitte versuchen Sie es später erneut.</p>
-    </div>
-  </div>
-);
-
 // Layout component that includes ScrollToTop and SEO components
 function Layout() {
   // Initialize GA4 on app load (consent mode enabled by default)
