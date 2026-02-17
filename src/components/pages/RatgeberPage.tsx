@@ -188,7 +188,7 @@ export default function RatgeberPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            <a href="https://www.energievergleich.shop/ratgeber/strom" className="group">
+            <Link to="/ratgeber/strom" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Strom-Ratgeber</CardTitle>
@@ -198,8 +198,8 @@ export default function RatgeberPage() {
                   <Button variant="outline" size="sm">Mehr erfahren</Button>
                 </CardContent>
               </Card>
-            </a>
-            <a href="https://www.energievergleich.shop/ratgeber/gas" className="group">
+            </Link>
+            <Link to="/ratgeber/gas" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Gas-Ratgeber</CardTitle>
@@ -209,8 +209,8 @@ export default function RatgeberPage() {
                   <Button variant="outline" size="sm">Mehr erfahren</Button>
                 </CardContent>
               </Card>
-            </a>
-            <a href="https://www.energievergleich.shop/ratgeber/photovoltaik" className="group">
+            </Link>
+            <Link to="/ratgeber/photovoltaik" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Photovoltaik-Ratgeber</CardTitle>
@@ -220,8 +220,8 @@ export default function RatgeberPage() {
                   <Button variant="outline" size="sm">Mehr erfahren</Button>
                 </CardContent>
               </Card>
-            </a>
-            <a href="https://www.energievergleich.shop/ratgeber/gewerbe" className="group">
+            </Link>
+            <Link to="/ratgeber/gewerbe" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Gewerbe-Ratgeber</CardTitle>
@@ -231,8 +231,8 @@ export default function RatgeberPage() {
                   <Button variant="outline" size="sm">Mehr erfahren</Button>
                 </CardContent>
               </Card>
-            </a>
-            <a href="https://www.energievergleich.shop/ratgeber/wechselwissen" className="group">
+            </Link>
+            <Link to="/ratgeber/wechselwissen" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Wechselwissen</CardTitle>
@@ -242,7 +242,7 @@ export default function RatgeberPage() {
                   <Button variant="outline" size="sm">Mehr erfahren</Button>
                 </CardContent>
               </Card>
-            </a>
+            </Link>
           </div>
 
           <div className="text-center mb-12">
@@ -255,7 +255,7 @@ export default function RatgeberPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <a href="https://www.energievergleich.shop/ratgeber/strom/grundversorgung" className="group">
+            <Link to="/ratgeber/strom/grundversorgung" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Grundversorgung: Was bedeutet das?</CardTitle>
@@ -265,8 +265,8 @@ export default function RatgeberPage() {
                   <Button variant="outline" size="sm">Mehr erfahren</Button>
                 </CardContent>
               </Card>
-            </a>
-            <a href="https://www.energievergleich.shop/ratgeber/gas/gasanbieter-wechseln-nrw" className="group">
+            </Link>
+            <Link to="/ratgeber/gas/gasanbieter-wechseln-nrw" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Gasanbieter wechseln in NRW</CardTitle>
@@ -276,8 +276,8 @@ export default function RatgeberPage() {
                   <Button variant="outline" size="sm">Mehr erfahren</Button>
                 </CardContent>
               </Card>
-            </a>
-            <a href="https://www.energievergleich.shop/ratgeber/photovoltaik/pv-speicher-lohnt-sich" className="group">
+            </Link>
+            <Link to="/ratgeber/photovoltaik/pv-speicher-lohnt-sich" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">PV-Speicher: Lohnt sich das?</CardTitle>
@@ -287,7 +287,7 @@ export default function RatgeberPage() {
                   <Button variant="outline" size="sm">Mehr erfahren</Button>
                 </CardContent>
               </Card>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
