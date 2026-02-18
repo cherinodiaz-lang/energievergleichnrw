@@ -77,6 +77,7 @@ const ThankYouPage = lazy(() => import('@/components/pages/ThankYouPage').catch(
 const BlogPage = lazy(() => import('@/components/pages/BlogPage').catch(() => ({ default: LazyErrorFallback })));
 const BlogDetailPage = lazy(() => import('@/components/pages/BlogDetailPage').catch(() => ({ default: LazyErrorFallback })));
 const AboutPage = lazy(() => import('@/components/pages/AboutPage').catch(() => ({ default: LazyErrorFallback })));
+const UeberUnsPage = lazy(() => import('@/components/pages/UeberUnsPage').catch(() => ({ default: LazyErrorFallback })));
 
 // Layout component that includes ScrollToTop and SEO components
 function Layout() {
@@ -440,6 +441,13 @@ const router = createBrowserRouter([
         element: <Suspense fallback={<LazyFallback />}><AboutPage /></Suspense>,
         routeMetadata: {
           pageIdentifier: 'about',
+        },
+      },
+      {
+        path: "ueber-uns",
+        element: <Suspense fallback={<LazyFallback />}><UeberUnsPage /></Suspense>,
+        routeMetadata: {
+          pageIdentifier: 'ueber-uns',
         },
       },
       {
