@@ -64,13 +64,15 @@ export default function ConsentBanner() {
 
   const applyConsent = (consentState: ConsentState) => {
     // Update GA4 consent mode via service
+    // This triggers: consent update -> gtag('config') -> flush queued events
     updateConsent(consentState.analytics, consentState.marketing);
 
     // Send debug test ping if in debug mode and analytics consent granted
+    // Delayed to ensure config and flush are complete
     if (consentState.analytics) {
       setTimeout(() => {
         sendDebugTestPing();
-      }, 100);
+      }, 200);
     }
 
     // Dispatch custom event for other components

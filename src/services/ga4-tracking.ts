@@ -4,6 +4,12 @@
  * 
  * CRITICAL: All events are only tracked AFTER Analytics consent is granted
  * Events are queued if consent is not yet determined, then flushed when consent is given
+ * 
+ * EXECUTION ORDER (FIXED):
+ * 1. Script load (async)
+ * 2. gtag('js') initialization
+ * 3. gtag('config') with send_page_view:true AFTER consent
+ * 4. Flush queued events immediately
  */
 
 declare global {
@@ -22,13 +28,19 @@ let eventQueue: QueuedEvent[] = [];
 let consentGranted = false;
 let debugMode = false;
 let debugTestPingSent = false;
+let measurementIdGlobal = '';
+let scriptLoaded = false;
 
 /**
  * Initialize GA4 with consent mode
  * Must be called early in app lifecycle
+ * 
+ * CRITICAL: gtag('config') is NOT called here - it's called AFTER consent is granted
  */
 export function initializeGA4(measurementId: string) {
   if (typeof window === 'undefined') return;
+
+  measurementIdGlobal = measurementId;
 
   // Check for debug mode via URL parameter (?debug=1)
   debugMode = new URLSearchParams(window.location.search).get('debug') === '1';
@@ -38,8 +50,13 @@ export function initializeGA4(measurementId: string) {
     window.dataLayer = [];
   }
 
+  // Initialize gtag function BEFORE script loads
+  window.gtag = function () {
+    window.dataLayer?.push(arguments);
+  };
+
   // Set default consent to 'denied' until user makes a choice
-  window.gtag?.('consent', 'default', {
+  window.gtag('consent', 'default', {
     'analytics_storage': 'denied',
     'marketing_storage': 'denied',
     'ad_storage': 'denied',
@@ -47,38 +64,47 @@ export function initializeGA4(measurementId: string) {
     'ad_personalization': 'denied',
   });
 
-  // Load GA4 script
+  // Initialize gtag with 'js' command
+  window.gtag('js', new Date());
+
+  // Load GA4 script - ASYNC
   const script = document.createElement('script');
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
-  document.head.appendChild(script);
-
-  // Initialize gtag function
-  window.gtag = function () {
-    window.dataLayer?.push(arguments);
+  
+  // Mark script as loaded when it completes
+  script.onload = () => {
+    scriptLoaded = true;
+    if (debugMode) {
+      console.log('[GA4 DEBUG] Script loaded successfully for ID:', measurementId);
+    }
+  };
+  
+  script.onerror = () => {
+    console.error('[GA4 ERROR] Failed to load GA4 script');
   };
 
-  // Configure GA4
-  window.gtag('js', new Date());
-  window.gtag('config', measurementId, {
-    'anonymize_ip': true,
-    'allow_google_signals': false,
-  });
+  document.head.appendChild(script);
 
   if (debugMode) {
-    console.log('[GA4 DEBUG] Initialized with Measurement ID:', measurementId);
+    console.log('[GA4 DEBUG] Initialization started with Measurement ID:', measurementId);
   }
 }
 
 /**
  * Update consent status and flush queued events
+ * 
+ * CRITICAL EXECUTION ORDER:
+ * 1. Update consent mode
+ * 2. Call gtag('config') with send_page_view:true AFTER consent is granted
+ * 3. Flush queued events immediately
  */
 export function updateConsent(analyticsConsent: boolean, marketingConsent: boolean) {
   if (typeof window === 'undefined') return;
 
   consentGranted = analyticsConsent;
 
-  // Update GA4 consent mode
+  // Step 1: Update GA4 consent mode
   window.gtag?.('consent', 'update', {
     'analytics_storage': analyticsConsent ? 'granted' : 'denied',
     'marketing_storage': marketingConsent ? 'granted' : 'denied',
@@ -91,13 +117,35 @@ export function updateConsent(analyticsConsent: boolean, marketingConsent: boole
     console.log('[GA4 DEBUG] Consent updated:', {
       analytics: analyticsConsent,
       marketing: marketingConsent,
+      scriptLoaded: scriptLoaded,
       timestamp: new Date().toISOString()
     });
   }
 
-  // Flush queued events if consent is granted
+  // Step 2: If analytics consent granted, call gtag('config') with send_page_view:true
+  if (analyticsConsent && measurementIdGlobal) {
+    window.gtag?.('config', measurementIdGlobal, {
+      'send_page_view': true,
+      'anonymize_ip': true,
+      'allow_google_signals': false,
+      'debug_mode': debugMode,
+    });
+
+    if (debugMode) {
+      console.log('[GA4 DEBUG] gtag("config") called with:', {
+        measurementId: measurementIdGlobal,
+        send_page_view: true,
+        debug_mode: debugMode,
+      });
+    }
+  }
+
+  // Step 3: Flush queued events immediately after config
   if (analyticsConsent) {
-    flushEventQueue();
+    // Use setTimeout to ensure config is processed first
+    setTimeout(() => {
+      flushEventQueue();
+    }, 0);
   }
 }
 
@@ -180,25 +228,37 @@ export function trackMethodikClick() {
 
 /**
  * Flush all queued events
+ * Called immediately after consent is granted and gtag('config') is set
  */
 function flushEventQueue() {
   if (debugMode) {
     console.log('[GA4 DEBUG] Flushing event queue, count:', eventQueue.length);
   }
 
+  let flushedCount = 0;
   while (eventQueue.length > 0) {
     const event = eventQueue.shift();
     if (event) {
+      const eventWithDebug = debugMode
+        ? { ...event.eventData, debug_mode: true }
+        : event.eventData;
+
       const eventWithTimestamp = {
-        ...event.eventData,
+        ...eventWithDebug,
         'timestamp': new Date().toISOString(),
       };
+      
       window.gtag?.('event', event.eventName, eventWithTimestamp);
+      flushedCount++;
 
       if (debugMode) {
         console.log('[GA4 DEBUG] Queued event flushed:', event.eventName, eventWithTimestamp);
       }
     }
+  }
+
+  if (debugMode && flushedCount > 0) {
+    console.log('[GA4 DEBUG] Event queue flush complete. Flushed:', flushedCount, 'events');
   }
 }
 
