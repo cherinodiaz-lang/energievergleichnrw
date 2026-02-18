@@ -197,115 +197,15 @@ export default function HomePage() {
     }
   }, [faqs]);
 
-  // Sample tariff data
-  const sampleTariffs = {
-    strom: [
-      {
-        id: 1,
-        provider: 'GrünerStrom NRW',
-        logo: '⚡',
-        jahreskosten: 1245,
-        arbeitspreis: 0.32,
-        grundpreis: 12.50,
-        vertragslaufzeit: '12 Monate',
-        preisgarantie: '12 Monate',
-      },
-      {
-        id: 2,
-        provider: 'EnergiePlus Rheinland',
-        logo: '🔋',
-        jahreskosten: 1189,
-        arbeitspreis: 0.30,
-        grundpreis: 11.99,
-        vertragslaufzeit: '24 Monate',
-        preisgarantie: '24 Monate',
-      },
-      {
-        id: 3,
-        provider: 'NRW Energie AG',
-        logo: '⚙️',
-        jahreskosten: 1312,
-        arbeitspreis: 0.35,
-        grundpreis: 13.00,
-        vertragslaufzeit: '12 Monate',
-        preisgarantie: '6 Monate',
-      },
-    ],
-    gas: [
-      {
-        id: 1,
-        provider: 'WärmeWechsel NRW',
-        logo: '🔥',
-        jahreskosten: 1890,
-        arbeitspreis: 0.085,
-        grundpreis: 15.00,
-        vertragslaufzeit: '12 Monate',
-        preisgarantie: '12 Monate',
-      },
-      {
-        id: 2,
-        provider: 'KlimaGas Westfalen',
-        logo: '♻️',
-        jahreskosten: 1756,
-        arbeitspreis: 0.078,
-        grundpreis: 14.50,
-        vertragslaufzeit: '24 Monate',
-        preisgarantie: '24 Monate',
-      },
-      {
-        id: 3,
-        provider: 'Heizenergie Plus',
-        logo: '🌡️',
-        jahreskosten: 1945,
-        arbeitspreis: 0.092,
-        grundpreis: 15.50,
-        vertragslaufzeit: '12 Monate',
-        preisgarantie: '6 Monate',
-      },
-    ],
-    kombi: [
-      {
-        id: 1,
-        provider: 'AllEnergy NRW',
-        logo: '⚡',
-        jahreskosten: 3089,
-        arbeitspreis: 0.32,
-        grundpreis: 27.50,
-        vertragslaufzeit: '12 Monate',
-        preisgarantie: '12 Monate',
-      },
-      {
-        id: 2,
-        provider: 'DualPower Rheinland',
-        logo: '🔋',
-        jahreskosten: 2945,
-        arbeitspreis: 0.30,
-        grundpreis: 26.49,
-        vertragslaufzeit: '24 Monate',
-        preisgarantie: '24 Monate',
-      },
-      {
-        id: 3,
-        provider: 'Kombi Energie AG',
-        logo: '⚙️',
-        jahreskosten: 3257,
-        arbeitspreis: 0.35,
-        grundpreis: 28.50,
-        vertragslaufzeit: '12 Monate',
-        preisgarantie: '6 Monate',
-      },
-    ],
-  };
-
   const handleCalculate = (type: string) => {
     if (type === 'Strom') {
-      setStromResults(sampleTariffs.strom.sort((a, b) => a.jahreskosten - b.jahreskosten));
+      setStromResults([]);
       setShowStromResults(true);
     } else if (type === 'Gas') {
-      setGasResults(sampleTariffs.gas.sort((a, b) => a.jahreskosten - b.jahreskosten));
+      setGasResults([]);
       setShowGasResults(true);
     } else if (type === 'Kombi') {
-      setKombiResults(sampleTariffs.kombi.sort((a, b) => a.jahreskosten - b.jahreskosten));
+      setKombiResults([]);
       setShowKombiResults(true);
     }
   };
@@ -1308,7 +1208,7 @@ export default function HomePage() {
                     </div>
                     <div>
                       <p className="text-xs sm:text-sm text-white/60 uppercase tracking-wider font-bold">Anschrift</p>
-                      <p className="text-base sm:text-xl font-medium">Musterstraße 123, 40210 Düsseldorf</p>
+                      <p className="text-base sm:text-xl font-medium">Kontaktieren Sie uns per E-Mail</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4 sm:gap-6">
@@ -1317,7 +1217,7 @@ export default function HomePage() {
                     </div>
                     <div>
                       <p className="text-xs sm:text-sm text-white/60 uppercase tracking-wider font-bold">E-Mail</p>
-                      <p className="text-base sm:text-xl font-medium">kontakt@energievergleich.nrw</p>
+                      <p className="text-base sm:text-xl font-medium">info@energievergleich.shop</p>
                     </div>
                   </div>
                 </div>
