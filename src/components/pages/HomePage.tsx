@@ -1208,7 +1208,7 @@ export default function HomePage() {
                     </div>
                     <div>
                       <p className="text-xs sm:text-sm text-white/60 uppercase tracking-wider font-bold">Anschrift</p>
-                      <p className="text-base sm:text-xl font-medium">Kontaktieren Sie uns per E-Mail</p>
+                      <p className="text-base sm:text-xl font-medium">ENERGIEVERGLEICH NRW (P. Kohmann u. A. Danos)<br/>Wasserstr. 48, 33378 Rheda-Wiedenbrück</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4 sm:gap-6">
@@ -1217,7 +1217,7 @@ export default function HomePage() {
                     </div>
                     <div>
                       <p className="text-xs sm:text-sm text-white/60 uppercase tracking-wider font-bold">E-Mail</p>
-                      <p className="text-base sm:text-xl font-medium">info@energievergleich.shop</p>
+                      <p className="text-base sm:text-xl font-medium">support@energievergleich.nrw</p>
                     </div>
                   </div>
                 </div>
