@@ -19,7 +19,7 @@ export default function RatgeberPage() {
     {
       id: 'strom',
       title: 'Stromvergleich & Tarife',
-      description: 'Alles über Stromtarife, Wechsel und Sparpotenziale in NRW',
+      description: 'Alles über Stromtarife, Wechsel und Sparpotenziale in NRW. Erfahren Sie, wie Sie die richtige Wahl treffen und monatlich sparen.',
       icon: Zap,
       color: 'from-blue-500 to-blue-600',
       articles: 8,
@@ -28,7 +28,7 @@ export default function RatgeberPage() {
     {
       id: 'gas',
       title: 'Gasvergleich & Heizung',
-      description: 'Ratgeber zu Gastarifen, Heizkosten und Wechseloptionen',
+      description: 'Ratgeber zu Gastarifen, Heizkosten und Wechseloptionen. Verstehen Sie Ihre Gasrechnung und optimieren Sie Ihre Heizkosten.',
       icon: Flame,
       color: 'from-orange-500 to-orange-600',
       articles: 6,
@@ -37,7 +37,7 @@ export default function RatgeberPage() {
     {
       id: 'gewerbe',
       title: 'Gewerbeenergie',
-      description: 'Spezielle Informationen für Unternehmen und Gewerbetreibende',
+      description: 'Spezielle Informationen für Unternehmen und Gewerbetreibende. Optimieren Sie Ihre Energiekosten im Betrieb.',
       icon: Building2,
       color: 'from-green-500 to-green-600',
       articles: 3,
@@ -46,7 +46,7 @@ export default function RatgeberPage() {
     {
       id: 'photovoltaik',
       title: 'Photovoltaik & Solar',
-      description: 'Leitfaden zu Solaranlagen, Wirtschaftlichkeit und Förderungen',
+      description: 'Leitfaden zu Solaranlagen, Wirtschaftlichkeit und Förderungen. Erfahren Sie, ob eine PV-Anlage für Sie rentabel ist.',
       icon: Sun,
       color: 'from-yellow-500 to-yellow-600',
       articles: 5,
@@ -55,7 +55,7 @@ export default function RatgeberPage() {
     {
       id: 'wechselwissen',
       title: 'Wechselwissen',
-      description: 'Wichtiges über Anbieterwechsel, Fristen und Besonderheiten',
+      description: 'Wichtiges über Anbieterwechsel, Fristen und Besonderheiten. Alles, was Sie zum erfolgreichen Wechsel wissen müssen.',
       icon: BookOpen,
       color: 'from-purple-500 to-purple-600',
       articles: 3,
@@ -93,6 +93,7 @@ export default function RatgeberPage() {
         keywords={seo.keywords}
         ogTitle={seo.ogTitle}
         ogDescription={seo.ogDescription}
+        canonical="https://www.energievergleich.shop/ratgeber"
       />
       <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />
@@ -110,8 +111,8 @@ export default function RatgeberPage() {
             <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-6 leading-tight max-w-[22ch] sm:max-w-none break-words">
               Ratgeber & Wissen
             </h1>
-            <p className="font-paragraph text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
-              Umfassende Guides zu Strom, Gas, Photovoltaik und Gewerbeenergie. Lernen Sie, wie Sie Energiekosten sparen und die richtige Wahl treffen.
+            <p className="font-paragraph text-lg md:text-xl text-white/90 mb-8 max-w-3xl">
+              Unser Ratgeber liefert Ihnen neutrale, unabhängige Informationen zu den wichtigsten Energiethemen: Stromtarife und Anbieterwechsel, Gasversorgung und Heizkosten, Photovoltaik und Solaranlagen, Gewerbeenergie für Unternehmen sowie praktisches Wechselwissen. Wir erklären komplexe Zusammenhänge verständlich und ohne Verkaufsabsicht – damit Sie fundierte Entscheidungen treffen können. Mit praxisnahen Tipps, Checklisten und konkreten Handlungsempfehlungen helfen wir Ihnen, Energiekosten zu sparen und den passenden Tarif für Ihre Situation zu finden. Egal ob Privathaushalt oder Gewerbebetrieb – hier finden Sie das Wissen, das Sie brauchen.
             </p>
           </motion.div>
         </div>

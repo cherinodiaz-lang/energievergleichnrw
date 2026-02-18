@@ -120,11 +120,11 @@ export function getPageSEO(page: 'home' | 'gewerbestrom' | 'gewerbegas' | 'strom
       ogDescription: 'Nehmen Sie Kontakt mit uns auf. Wir helfen Ihnen bei Ihren Energiefragen.',
     },
     ratgeber: {
-      title: 'Ratgeber | Strom, Gas & Photovoltaik Tipps & Wissen',
-      description: 'Ratgeber NRW: Kostenlose Tipps zu Stromvergleich, Gasvergleich, Photovoltaik und Energiewechsel. Jetzt informieren.',
+      title: 'Ratgeber für Strom, Gas und Energie 2026 | Energievergleich NRW',
+      description: 'Unabhängige Ratgeber und Guides zu Strom-, Gas- und Photovoltaik-Tarifen sowie Gewerbeenergie – Energie sparen und den passenden Tarif finden.',
       keywords: 'Ratgeber, Energiewechsel, Stromtarife, Gastarife, Photovoltaik, Tipps, Wissen',
-      ogTitle: 'Ratgeber | Strom, Gas & Photovoltaik Tipps & Wissen',
-      ogDescription: 'Lesen Sie unseren Ratgeber zu Strom, Gas und Solaranlagen. Kostenlose Tipps.',
+      ogTitle: 'Ratgeber für Strom, Gas und Energie 2026 | Energievergleich NRW',
+      ogDescription: 'Unabhängige Ratgeber und Guides zu Strom-, Gas- und Photovoltaik-Tarifen sowie Gewerbeenergie – Energie sparen und den passenden Tarif finden.',
     },
     datenschutz: {
       title: 'Datenschutz | energievergleich.shop Datenschutzerklärung',
