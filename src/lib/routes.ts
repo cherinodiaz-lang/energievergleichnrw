@@ -20,6 +20,7 @@ export type RouteKey =
   | "widerruf"
   | "sitemap"
   | "faq"
+  | "about"
   // Legacy uppercase variants (for backward compatibility with existing code)
   | "STROMVERGLEICH_NRW"
   | "GASVERGLEICH_NRW"
@@ -52,6 +53,7 @@ export const ROUTES: Record<RouteKey, string> = {
   widerruf: "/widerruf",
   sitemap: "/sitemap",
   faq: "/faq",
+  about: "/about",
   // Legacy uppercase variants (for backward compatibility)
   STROMVERGLEICH_NRW: "/stromvergleich-nrw",
   GASVERGLEICH_NRW: "/gasvergleich-nrw",
@@ -117,6 +119,7 @@ export const NAV_SECONDARY: NavItem[] = [
  * Rechtliches (Footer - Spalte 1).
  */
 export const NAV_LEGAL: NavItem[] = [
+  { key: "about", label: "Über uns", to: ROUTES.about },
   { key: "impressum", label: "Impressum", to: ROUTES.impressum },
   { key: "datenschutz", label: "Datenschutz", to: ROUTES.datenschutz },
   { key: "agb", label: "AGB", to: ROUTES.agb },

@@ -76,6 +76,7 @@ const WechselSchiefgehtArticle = lazy(() => import('@/components/pages/ratgeber/
 const ThankYouPage = lazy(() => import('@/components/pages/ThankYouPage').catch(() => ({ default: LazyErrorFallback })));
 const BlogPage = lazy(() => import('@/components/pages/BlogPage').catch(() => ({ default: LazyErrorFallback })));
 const BlogDetailPage = lazy(() => import('@/components/pages/BlogDetailPage').catch(() => ({ default: LazyErrorFallback })));
+const AboutPage = lazy(() => import('@/components/pages/AboutPage').catch(() => ({ default: LazyErrorFallback })));
 
 // Layout component that includes ScrollToTop and SEO components
 function Layout() {
@@ -432,6 +433,13 @@ const router = createBrowserRouter([
         element: <Suspense fallback={<LazyFallback />}><BlogDetailPage /></Suspense>,
         routeMetadata: {
           pageIdentifier: 'blog-detail',
+        },
+      },
+      {
+        path: "about",
+        element: <Suspense fallback={<LazyFallback />}><AboutPage /></Suspense>,
+        routeMetadata: {
+          pageIdentifier: 'about',
         },
       },
       {

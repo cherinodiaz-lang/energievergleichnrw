@@ -93,8 +93,8 @@ export default function KontaktPage() {
                   <p className="font-paragraph text-gray-600 mb-2">
                     Schreiben Sie uns eine E-Mail und wir antworten schnellstmöglich.
                   </p>
-                  <a href="mailto:support@energievergleich.nrw" className="font-bold text-primary hover:underline">
-                    support@energievergleich.nrw
+                  <a href="mailto:team@energievergleich.nrw" className="font-bold text-primary hover:underline">
+                    team@energievergleich.nrw
                   </a>
                 </CardContent>
               </Card>
@@ -117,8 +117,8 @@ export default function KontaktPage() {
                   <p className="font-paragraph text-gray-600 mb-2">
                     Rufen Sie uns an und sprechen Sie direkt mit unseren Experten.
                   </p>
-                  <a href="tel:+492111234567" className="font-bold text-primary hover:underline">
-                    +49 211 1234567
+                  <a href="tel:+491567856004" className="font-bold text-primary hover:underline">
+                    +49 156 78556004
                   </a>
                 </CardContent>
               </Card>

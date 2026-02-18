@@ -81,21 +81,28 @@ export default function Footer() {
             <h3 className="font-heading font-semibold text-base sm:text-lg mb-4 sm:mb-6">Kontakt & Social</h3>
             <ul className="space-y-3 sm:space-y-4 mb-6">
               <li className="flex items-start gap-2 sm:gap-3">
+                <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                <div className="font-paragraph text-xs sm:text-sm opacity-90">
+                  <p>Wasserstr. 48</p>
+                  <p>33378 Rheda-Wiedenbrück</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-2 sm:gap-3">
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                <a
+                  href="tel:+491567855600"
+                  className="font-paragraph text-xs sm:text-sm opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity"
+                >
+                  +49 156 78556004
+                </a>
+              </li>
+              <li className="flex items-start gap-2 sm:gap-3">
                 <Mail className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <a
                   href="mailto:support@energievergleich.nrw"
                   className="font-paragraph text-xs sm:text-sm opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity break-all"
                 >
                   support@energievergleich.nrw
-                </a>
-              </li>
-              <li className="flex items-start gap-2 sm:gap-3">
-                <Phone className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" aria-hidden="true" />
-                <a
-                  href="tel:+4921112345678"
-                  className="font-paragraph text-xs sm:text-sm opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity"
-                >
-                  +49 211 1234 5678
                 </a>
               </li>
             </ul>
