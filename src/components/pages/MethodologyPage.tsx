@@ -1,304 +1,273 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle, Shield, TrendingUp, Users, BarChart3, Zap } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { CheckCircle, BarChart3, RefreshCw, Shield, ExternalLink } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
-import { Link } from 'react-router-dom';
-import { ROUTES } from '@/lib/routes';
+import Breadcrumb from '@/components/Breadcrumb';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { getPageSEO } from '@/lib/seo-config';
 
 export default function MethodologyPage() {
-  const seo = getPageSEO('methodik');
+  const pageSEO = getPageSEO('methodik');
+
+  const methodologySteps = [
+    {
+      icon: BarChart3,
+      title: 'Recherche aus offiziellen Datenbanken',
+      description: 'Wir recherchieren Tarife direkt aus offiziellen Datenbanken wie der Bundesnetzagentur und den Energieanbietern. Dies gewährleistet, dass Sie nur aktuelle und verifizierte Tarife sehen.'
+    },
+    {
+      icon: CheckCircle,
+      title: 'Objektive Vergleichskriterien',
+      description: 'Unsere Vergleiche basieren auf objektiven Kriterien: Preis pro kWh, Vertragslaufzeit, Kündigungsfristen, Servicequalität und Kundenbewertungen. Keine versteckten Gebühren, keine Überraschungen.'
+    },
+    {
+      icon: RefreshCw,
+      title: 'Regelmäßige Aktualisierung',
+      description: 'Die Energiemärkte ändern sich ständig. Wir aktualisieren unsere Daten regelmäßig, um sicherzustellen, dass Sie immer die aktuellsten Tarife und Preise erhalten.'
+    },
+    {
+      icon: Shield,
+      title: 'Keine unbelegten Sparversprechen',
+      description: 'Wir machen keine unrealistischen Versprechungen über Einsparungen. Alle Sparpotenziale basieren auf realen Daten und Ihrem individuellen Verbrauch.'
+    }
+  ];
+
+  const trustedSources = [
+    {
+      name: 'Bundesnetzagentur',
+      description: 'Offizielle Regulierungsbehörde für Strom, Gas, Telekommunikation, Post und Eisenbahnen',
+      url: 'https://www.bundesnetzagentur.de/'
+    },
+    {
+      name: 'Verbraucherzentrale NRW',
+      description: 'Unabhängige Beratung und Informationen für Verbraucher in Nordrhein-Westfalen',
+      url: 'https://www.verbraucherzentrale.nrw/'
+    },
+    {
+      name: 'Energieverbände',
+      description: 'Offizielle Informationen von Energieanbietern und Branchenverbänden',
+      url: 'https://www.bdew.de/'
+    }
+  ];
 
   return (
-    <div className="min-h-screen bg-background break-words leading-mobile">
+    <>
       <SEOHead
-        title={seo.title}
-        description={seo.description}
-        keywords={seo.keywords}
-        ogTitle={seo.ogTitle}
-        ogDescription={seo.ogDescription}
+        title={pageSEO.title}
+        description={pageSEO.description}
+        canonical={pageSEO.canonical}
+        ogImage={pageSEO.ogImage}
       />
+      <BreadcrumbSchema />
       <Header />
 
-      {/* Hero Section */}
-      <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+      <main className="min-h-screen bg-background">
+        {/* Breadcrumb */}
+        <div className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-12 py-4 sm:py-6">
+          <Breadcrumb
+            items={[
+              { label: 'Startseite', href: '/' },
+              { label: 'Methodik', href: '/methodik', current: true }
+            ]}
+          />
+        </div>
+
+        {/* Hero Section */}
+        <section className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16 lg:py-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-3xl"
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
           >
-            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-6 leading-tight">
-              Methodik & Transparenz
+            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+              Unsere Methodik
             </h1>
-            <p className="font-paragraph text-lg md:text-xl text-white/90 mb-4">
-              Wie wir arbeiten, welche Daten wir nutzen und wie wir Unabhängigkeit gewährleisten.
+            <p className="font-paragraph text-lg sm:text-xl text-foreground/80 max-w-3xl mx-auto">
+              Transparenz und Objektivität sind die Grundlagen unserer Energievergleiche. Erfahren Sie, wie wir arbeiten.
             </p>
           </motion.div>
-        </div>
-      </section>
+        </section>
 
-      {/* Main Content */}
-      <section className="w-full py-24 bg-white">
-        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="space-y-12">
-            {/* Responsible Person */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-4"
-            >
-              <h2 className="font-heading text-3xl font-bold text-primary">Verantwortliche Person</h2>
-              <Card className="border-l-4 border-secondary">
-                <CardContent className="p-6">
-                  <div className="space-y-3">
-                    <div>
-                      <p className="font-paragraph font-bold text-gray-800">Name:</p>
-                      <p className="font-paragraph text-gray-700">Joel Cherino</p>
+        {/* Methodology Steps */}
+        <section className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {methodologySteps.map((step, index) => {
+              const Icon = step.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="bg-white rounded-lg p-8 border border-light-grey hover:border-primary transition-colors"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0">
+                      <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-primary/10">
+                        <Icon className="h-6 w-6 text-primary" />
+                      </div>
                     </div>
                     <div>
-                      <p className="font-paragraph font-bold text-gray-800">Rolle & Bio:</p>
-                      <p className="font-paragraph text-gray-700">
-                        Betreiber von energievergleich.shop mit Fokus auf Nordrhein-Westfalen. Ziel: einfache, transparente und nutzerorientierte Tarif- und PV-Vergleiche sowie unverbindliche Angebotsanfragen.
+                      <h3 className="font-heading text-xl font-bold text-foreground mb-3">
+                        {step.title}
+                      </h3>
+                      <p className="font-paragraph text-foreground/80">
+                        {step.description}
                       </p>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Data Sources */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-4"
-            >
-              <h2 className="font-heading text-3xl font-bold text-primary">Datenquellen & Nutzung</h2>
-              <p className="font-paragraph text-lg text-gray-700">
-                <strong>Transparenz ist unser Grundprinzip:</strong> Wir nutzen die in unserem Vergleich/Rechner hinterlegten Tarif- und Anbieterinformationen sowie öffentlich verfügbare Anbieter-Preisblätter und Produktinformationen. Es gibt keine versteckten Datenquellen.
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="font-heading text-xl flex items-center gap-2">
-                      <BarChart3 className="w-5 h-5 text-primary" />
-                      Tarifinformationen
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="font-paragraph text-gray-700">
-                      Aus den im Vergleich/Rechner hinterlegten Tarif- und Anbieterinformationen sowie öffentlich verfügbaren Anbieter-Preisblättern und Produktinformationen (wo vorhanden).
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="font-heading text-xl flex items-center gap-2">
-                      <Zap className="w-5 h-5 text-primary" />
-                      Preisbestandteile
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="font-paragraph text-gray-700">
-                      Grundpreis/Arbeitspreis, Vertragslaufzeit, Kündigungsfrist, Boni/Neukundenboni (wenn angegeben), Abrechnungs- und Zahlungsmodelle.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="font-heading text-xl flex items-center gap-2">
-                      <TrendingUp className="w-5 h-5 text-primary" />
-                      Regionale Faktoren
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="font-paragraph text-gray-700">
-                      PLZ-/Region-Zuordnung über die Nutzerangaben (PLZ) zur Darstellung passender Tarife und Optionen für Ihre genaue Region.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="font-heading text-xl flex items-center gap-2">
-                      <Shield className="w-5 h-5 text-primary" />
-                      Keine versteckten Quellen
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="font-paragraph text-gray-700">
-                      Alle Daten stammen aus transparenten, öffentlich verfügbaren Quellen. Wir nutzen keine proprietären oder versteckten Datenbanken.
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-            </motion.div>
-
-            {/* Update Frequency */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-4"
-            >
-              <h2 className="font-heading text-3xl font-bold text-primary">Aktualisierungshäufigkeit</h2>
-              <Card className="bg-blue-50 border-l-4 border-blue-500">
-                <CardContent className="p-6">
-                  <p className="font-paragraph text-gray-800 mb-4">
-                    Wir überprüfen und aktualisieren die angezeigten Informationen regelmäßig – mindestens wöchentlich – und zusätzlich immer dann, wenn Anbieter Änderungen veröffentlichen.
-                  </p>
-                  <ul className="space-y-2">
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                      <span className="font-paragraph text-gray-700"><strong>Mindestens wöchentlich:</strong> Systematische Überprüfung aller Tarife</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                      <span className="font-paragraph text-gray-700"><strong>Sofort bei Änderungen:</strong> Wenn Anbieter neue Tarife oder Preise veröffentlichen</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                      <span className="font-paragraph text-gray-700"><strong>Qualitätskontrolle:</strong> Alle Daten werden vor Veröffentlichung überprüft</span>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Independence & Commissions */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-4"
-            >
-              <h2 className="font-heading text-3xl font-bold text-primary">Unabhängigkeit & Provisionen</h2>
-              <div className="space-y-4">
-                <Card className="bg-green-50 border-l-4 border-green-600">
-                  <CardContent className="p-6">
-                    <h3 className="font-heading font-bold text-lg text-green-900 mb-3">Unabhängige Bewertung</h3>
-                    <p className="font-paragraph text-gray-800">
-                      Der Vergleich ist unabhängig und basiert auf transparenten Kriterien: <strong>Preis + Vertragsbedingungen</strong>. Keine versteckten Vorlieben für bestimmte Anbieter.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="bg-amber-50 border-l-4 border-amber-600">
-                  <CardContent className="p-6">
-                    <h3 className="font-heading font-bold text-lg text-amber-900 mb-3">Provisionen beeinflussen nicht die Rangfolge</h3>
-                    <p className="font-paragraph text-gray-800 mb-3">
-                      Falls Anbieterbeziehungen oder Provisionen für erfolgreiche Leads oder Wechsel bestehen, beeinflussen diese <strong>nicht</strong> die Rangfolge oder Darstellung der Tarife.
-                    </p>
-                    <p className="font-paragraph text-sm text-gray-700">
-                      Die Tarife werden ausschließlich nach Preis und Bedingungen sortiert – unabhängig von möglichen Provisionsstrukturen.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="bg-purple-50 border-l-4 border-purple-600">
-                  <CardContent className="p-6">
-                    <h3 className="font-heading font-bold text-lg text-purple-900 mb-3">Gesponserte Platzierungen</h3>
-                    <p className="font-paragraph text-gray-800">
-                      Falls gesponserte Platzierungen jemals verwendet werden, werden diese <strong>deutlich gekennzeichnet</strong> und von organischen Ergebnissen getrennt.
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-            </motion.div>
-
-            {/* Comparison Criteria */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-4"
-            >
-              <h2 className="font-heading text-3xl font-bold text-primary">Vergleichskriterien</h2>
-              <p className="font-paragraph text-gray-700">
-                Unsere Vergleiche berücksichtigen folgende Faktoren:
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                {[
-                  { title: 'Gesamtpreis', desc: 'Jahreskosten inklusive aller Gebühren' },
-                  { title: 'Arbeitspreis', desc: 'Preis pro kWh Stromverbrauch' },
-                  { title: 'Grundgebühr', desc: 'Monatliche Grundgebühr' },
-                  { title: 'Vertragslaufzeit', desc: 'Bindungsdauer des Vertrags' },
-                  { title: 'Kündigungsfrist', desc: 'Wie schnell können Sie kündigen?' },
-                  { title: 'Preisgarantie', desc: 'Wie lange ist der Preis garantiert?' },
-                  { title: 'Boni & Rabatte', desc: 'Neukundenboni und Wechselboni' },
-                  { title: 'Ökostrom-Optionen', desc: 'Verfügbarkeit von Grüntarifen' },
-                ].map((item, index) => (
-                  <div key={index} className="bg-gray-50 p-4 rounded-lg">
-                    <p className="font-heading font-bold text-primary mb-1">{item.title}</p>
-                    <p className="font-paragraph text-sm text-gray-700">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Quality Assurance */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-4"
-            >
-              <h2 className="font-heading text-3xl font-bold text-primary">Qualitätssicherung</h2>
-              <Card className="bg-gradient-to-r from-primary/5 to-secondary/5">
-                <CardContent className="p-6">
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="font-paragraph text-gray-800"><strong>Datenvalidierung:</strong> Alle Tarife werden vor Veröffentlichung überprüft</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="font-paragraph text-gray-800"><strong>Regelmäßige Audits:</strong> Wir überprüfen unsere Datenquellen kontinuierlich</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="font-paragraph text-gray-800"><strong>Nutzer-Feedback:</strong> Wir berücksichtigen Rückmeldungen zur Verbesserung</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="font-paragraph text-gray-800"><strong>Transparente Fehlerbehandlung:</strong> Fehler werden schnell korrigiert und kommuniziert</span>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* CTA Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-secondary/10 border-l-4 border-secondary p-8 rounded mt-12"
-            >
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Haben Sie Fragen zu unserer Methodik?</h3>
-              <p className="font-paragraph text-gray-700 mb-6">
-                Wir sind stolz auf unsere Transparenz und Unabhängigkeit. Wenn Sie Fragen zu unseren Verfahren haben, kontaktieren Sie uns gerne.
-              </p>
-              <Link to={ROUTES.KONTAKT} className="inline-block">
-                <button className="bg-primary text-white px-8 py-3 rounded-lg font-bold hover:bg-primary/90 transition-colors">
-                  Kontakt aufnehmen
-                </button>
-              </Link>
-            </motion.div>
+                </motion.div>
+              );
+            })}
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* Key Principles */}
+        <section className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16 lg:py-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="bg-primary/5 rounded-lg p-8 sm:p-12"
+          >
+            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-foreground mb-8">
+              Unsere Grundprinzipien
+            </h2>
+
+            <div className="space-y-6">
+              <div className="flex gap-4">
+                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="font-heading font-semibold text-foreground mb-2">
+                    Keine unbelegten Sparversprechen
+                  </h3>
+                  <p className="font-paragraph text-foreground/80">
+                    Wir zeigen Ihnen realistische Sparpotenziale basierend auf Ihrem individuellen Verbrauch. Alle Berechnungen sind nachvollziehbar und transparent.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="font-heading font-semibold text-foreground mb-2">
+                    Unabhängigkeit von Energiekonzernen
+                  </h3>
+                  <p className="font-paragraph text-foreground/80">
+                    Wir arbeiten unabhängig und objektiv. Unsere Empfehlungen basieren ausschließlich auf Ihren Interessen, nicht auf Provisionen oder Partnerschaften mit Energieanbietern.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="font-heading font-semibold text-foreground mb-2">
+                    Datenschutz und Sicherheit
+                  </h3>
+                  <p className="font-paragraph text-foreground/80">
+                    Ihre persönlichen Daten sind bei uns sicher. Wir behandeln Ihre Informationen vertraulich und gemäß der DSGVO. Lesen Sie unsere <Link to="/datenschutz" className="text-primary hover:underline">Datenschutzerklärung</Link> für weitere Details.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="font-heading font-semibold text-foreground mb-2">
+                    Aktuelle und verifizierte Daten
+                  </h3>
+                  <p className="font-paragraph text-foreground/80">
+                    Alle Tarife werden regelmäßig aktualisiert und aus offiziellen Quellen verifiziert. Sie erhalten immer die aktuellsten Informationen.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* Trusted Sources */}
+        <section className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16 lg:py-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-foreground mb-4">
+              Verlässliche Quellen
+            </h2>
+            <p className="font-paragraph text-lg text-foreground/80 max-w-2xl mx-auto">
+              Wir nutzen offizielle und vertrauenswürdige Quellen für unsere Informationen
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {trustedSources.map((source, index) => (
+              <motion.a
+                key={index}
+                href={source.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-lg p-8 border border-light-grey hover:border-primary transition-colors group"
+              >
+                <h3 className="font-heading text-xl font-bold text-foreground mb-3 flex items-center gap-2">
+                  {source.name}
+                  <ExternalLink className="w-4 h-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                </h3>
+                <p className="font-paragraph text-foreground/80 mb-4">
+                  {source.description}
+                </p>
+                <span className="text-primary font-semibold text-sm">
+                  Zur Website →
+                </span>
+              </motion.a>
+            ))}
+          </div>
+        </section>
+
+        {/* Navigation Links */}
+        <section className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="bg-background rounded-lg p-8 text-center border border-light-grey"
+          >
+            <h3 className="font-heading text-2xl font-bold text-foreground mb-6">
+              Weitere Informationen
+            </h3>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/ueber-uns"
+                className="inline-block bg-primary text-primary-foreground px-8 py-3 rounded-lg font-heading font-semibold hover:bg-primary/90 transition-colors"
+              >
+                Über uns
+              </Link>
+              <Link
+                to="/datenschutz"
+                className="inline-block bg-secondary text-secondary-foreground px-8 py-3 rounded-lg font-heading font-semibold hover:bg-secondary/90 transition-colors"
+              >
+                Datenschutz
+              </Link>
+            </div>
+          </motion.div>
+        </section>
+      </main>
 
       <Footer />
-    </div>
+    </>
   );
 }

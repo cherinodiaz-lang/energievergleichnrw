@@ -7,6 +7,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import AuthorBox from '@/components/AuthorBox';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 
@@ -318,6 +319,13 @@ export default function StromanbieterwechselnNrwArticle() {
               Zuletzt aktualisiert: 09. Januar 2026 | Redaktion Energievergleich
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Author Box */}
+      <section className="w-full py-12 md:py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-6 lg:px-12">
+          <AuthorBox authorName="Andreas Danos" updatedDate={new Date()} />
         </div>
       </section>
 

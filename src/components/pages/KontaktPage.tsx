@@ -93,8 +93,8 @@ export default function KontaktPage() {
                   <p className="font-paragraph text-gray-600 mb-2">
                     Schreiben Sie uns eine E-Mail und wir antworten schnellstmöglich.
                   </p>
-                  <a href="mailto:team@energievergleich.nrw" className="font-bold text-primary hover:underline">
-                    team@energievergleich.nrw
+                  <a href="mailto:support@energievergleich.nrw" className="font-bold text-primary hover:underline">
+                    support@energievergleich.nrw
                   </a>
                 </CardContent>
               </Card>
@@ -117,7 +117,7 @@ export default function KontaktPage() {
                   <p className="font-paragraph text-gray-600 mb-2">
                     Rufen Sie uns an und sprechen Sie direkt mit unseren Experten.
                   </p>
-                  <a href="tel:+491567856004" className="font-bold text-primary hover:underline">
+                  <a href="tel:+491567855600" className="font-bold text-primary hover:underline">
                     +49 156 78556004
                   </a>
                 </CardContent>
@@ -138,11 +138,24 @@ export default function KontaktPage() {
                   <CardTitle className="font-heading text-xl text-primary">Öffnungszeiten</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="font-paragraph text-gray-600 space-y-1 text-sm">
-                    <p>Mo - Fr: 09:00 - 18:00 Uhr</p>
-                    <p>Sa: 10:00 - 14:00 Uhr</p>
-                    <p>So: Geschlossen</p>
-                  </div>
+                  <p className="font-paragraph text-gray-600 mb-2">
+                    Wir beantworten Ihre Anfrage in der Regel innerhalb von 24 Stunden.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-heading text-lg text-primary">Adresse</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-gray-600 mb-2">
+                    Besuchen Sie uns vor Ort oder kontaktieren Sie uns per Post.
+                  </p>
+                  <p className="font-paragraph font-semibold text-foreground">
+                    Wasserstr. 48<br />
+                    33378 Rheda-Wiedenbrück
+                  </p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -269,7 +282,7 @@ export default function KontaktPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="font-paragraph text-sm text-gray-600">
-                    Wir beantworten Ihre Anfrage in der Regel innerhalb von 24 Stunden.
+                    Wir beantworten Ihre Anfrage in der Regel innerhalb eines Werktags.
                   </p>
                 </CardContent>
               </Card>

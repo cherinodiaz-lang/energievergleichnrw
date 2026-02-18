@@ -1,15 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, CheckCircle, Zap } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
+import TeamMemberCard from '@/components/TeamMemberCard';
 import { getPageSEO } from '@/lib/seo-config';
+import { BaseCrudService } from '@/integrations';
+import { TeamMembers } from '@/entities';
 
 export default function UeberUnsPage() {
   const pageSEO = getPageSEO('about');
+  const [teamMembers, setTeamMembers] = useState<TeamMembers[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadTeamMembers = async () => {
+      try {
+        const result = await BaseCrudService.getAll<TeamMembers>('teammembers');
+        setTeamMembers(result.items || []);
+      } catch (error) {
+        console.error('Error loading team members:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadTeamMembers();
+  }, []);
 
   return (
     <>
@@ -192,6 +213,32 @@ export default function UeberUnsPage() {
           </div>
         </section>
 
+        {/* Team Members Section */}
+        {!isLoading && teamMembers.length > 0 && (
+          <section className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16 lg:py-20">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="font-heading text-3xl sm:text-4xl font-bold text-foreground mb-4">
+                Unser Team
+              </h2>
+              <p className="font-paragraph text-lg text-foreground/80 max-w-2xl mx-auto">
+                Erfahrene Experten für unabhängige Energievergleiche
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {teamMembers.map((member, index) => (
+                <TeamMemberCard key={member._id} member={member} index={index} />
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* Values Section */}
         <section className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16 lg:py-20">
           <motion.div
@@ -209,7 +256,7 @@ export default function UeberUnsPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             {[
               {
                 title: 'Transparenz',
@@ -220,8 +267,8 @@ export default function UeberUnsPage() {
                 description: 'Wir arbeiten unabhängig und objektiv für Ihre Interessen – nicht für Energiekonzerne.'
               },
               {
-                title: 'Zuverlässigkeit',
-                description: 'Aktuelle Tarife, genaue Berechnungen und kompetente Beratung – immer für Sie da.'
+                title: 'Datenschutz',
+                description: 'Ihre Daten sind bei uns sicher. Wir behandeln Ihre Informationen vertraulich und verantwortungsvoll.'
               }
             ].map((value, index) => (
               <motion.div
@@ -241,6 +288,28 @@ export default function UeberUnsPage() {
               </motion.div>
             ))}
           </div>
+
+          {/* Methodology Link */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center bg-primary/5 rounded-lg p-8"
+          >
+            <h3 className="font-heading text-2xl font-bold text-foreground mb-4">
+              Wie funktioniert unser Vergleich?
+            </h3>
+            <p className="font-paragraph text-foreground/80 mb-6 max-w-2xl mx-auto">
+              Erfahren Sie mehr über unsere Methodik und wie wir sicherstellen, dass Sie die besten Energietarife erhalten.
+            </p>
+            <Link
+              to="/methodik"
+              className="inline-block bg-primary text-primary-foreground px-8 py-3 rounded-lg font-heading font-semibold hover:bg-primary/90 transition-colors"
+            >
+              Zur Methodik-Seite
+            </Link>
+          </motion.div>
         </section>
       </main>
 
