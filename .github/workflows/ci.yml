@@ -11,8 +11,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
-    name: Build / Lint / Typecheck
+  verify:
+    name: Check / Typecheck / Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -28,7 +28,9 @@ jobs:
       - name: Install
         run: npm ci
 
-      - name: Run project scripts (auto-detect)
+      # NOTE: We intentionally do NOT run `wix build` in CI by default,
+      # because it can require Wix auth/environment that isn't available on PRs.
+      - name: Run quality gates (auto-detect)
         shell: bash
         run: |
           node <<'NODE'
@@ -38,15 +40,28 @@ jobs:
           const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
           const scripts = pkg.scripts || {};
 
-          const preferred = ['lint', 'typecheck', 'check', 'test', 'build'];
-          const present = preferred.filter((k) => scripts[k]);
-
-          if (!present.length) {
-            console.log('No standard scripts found (lint/typecheck/check/test/build). Skipping.');
-            process.exit(0);
+          // Prefer a single aggregated script if present
+          if (scripts['check:all']) {
+            console.log('Running: npm run -s check:all');
+            cp.execSync('npm run -s check:all', { stdio: 'inherit' });
+          } else {
+            const steps = [];
+            if (scripts.check) steps.push('npm run -s check');
+            if (scripts.typecheck) steps.push('npm run -s typecheck');
+            if (!steps.length) console.log('No check/typecheck scripts found; skipping.');
+            if (steps.length) {
+              const cmd = steps.join(' && ');
+              console.log('Running:', cmd);
+              cp.execSync(cmd, { stdio: 'inherit' });
+            }
           }
 
-          const cmd = present.map((k) => `npm run -s ${k}`).join(' && ');
-          console.log('Running:', cmd);
-          cp.execSync(cmd, { stdio: 'inherit' });
+          // Optional tests
+          if (scripts['test:run']) {
+            console.log('Running: npm run -s test:run');
+            cp.execSync('npm run -s test:run', { stdio: 'inherit' });
+          } else if (scripts.test) {
+            console.log('Running: npm run -s test');
+            cp.execSync('npm run -s test', { stdio: 'inherit' });
+          }
           NODE
