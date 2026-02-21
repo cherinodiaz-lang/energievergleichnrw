@@ -206,7 +206,7 @@ export default function KontaktPage() {
                         <Input
                           id="phone"
                           type="tel"
-                          placeholder="+49 211 1234 5678"
+                          placeholder="+49 156 78556004"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           className="font-paragraph w-full"

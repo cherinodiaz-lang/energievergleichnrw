@@ -1044,7 +1044,7 @@ export default function HomePage() {
                           <Input
                             id="pv-telefon"
                             type="tel"
-                            placeholder="+49 211 1234 5678"
+                            placeholder="+49 156 78556004"
                             value={pvTelefon}
                             onChange={(e) => setPvTelefon(e.target.value)}
                             className="h-9 sm:h-10 bg-gray-50 border-gray-200 text-xs sm:text-sm"
