@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
+import { CONTACT } from '@/config/contact';
 
 export default function ImpressumPage() {
   const seo = getPageSEO('impressum');
@@ -51,12 +52,19 @@ export default function ImpressumPage() {
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Anschrift:</p>
-                  <p>Energievergleich.shop<br />Geschäftsstelle<br />Deutschland</p>
+                  <p>
+                    {CONTACT.addressLines.map((line, idx) => (
+                      <React.Fragment key={idx}>
+                        {line}
+                        {idx < CONTACT.addressLines.length - 1 && <br />}
+                      </React.Fragment>
+                    ))}
+                  </p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Kontaktinformationen:</p>
-                  <p>E-Mail: <a href="mailto:info@energievergleich.shop" className="text-primary hover:underline font-bold">info@energievergleich.shop</a><br />Website: <a href="https://www.energievergleich.shop" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-bold">https://www.energievergleich.shop</a></p>
+                  <p>E-Mail: <a href={`mailto:${CONTACT.email}`} className="text-primary hover:underline font-bold">{CONTACT.email}</a><br />Telefon: <a href={`tel:${CONTACT.phone.replace(/\s/g, '')}`} className="text-primary hover:underline font-bold">{CONTACT.phone}</a><br />Website: <a href={CONTACT.website} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-bold">{CONTACT.website}</a></p>
                 </div>
 
                 <div className="border-t pt-4">
@@ -101,7 +109,7 @@ export default function ImpressumPage() {
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Erreichbarkeit:</p>
-                  <p>E-Mail: <a href="mailto:info@energievergleich.shop" className="text-primary hover:underline font-bold">info@energievergleich.shop</a></p>
+                  <p>E-Mail: <a href={`mailto:${CONTACT.email}`} className="text-primary hover:underline font-bold">{CONTACT.email}</a></p>
                 </div>
               </div>
             </div>
@@ -166,7 +174,7 @@ export default function ImpressumPage() {
                   <strong>NEIN</strong> – Energievergleich.shop nimmt nicht an einem Verbraucherstreitbeilegungsverfahren teil.
                 </p>
                 <p className="text-sm text-gray-700">
-                  Energievergleich.shop ist nicht verpflichtet und nicht bereit, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen. Für Beschwerden und Reklamationen kontaktieren Sie uns bitte direkt unter <a href="mailto:info@energievergleich.shop" className="text-primary hover:underline font-bold">info@energievergleich.shop</a>.
+                  Energievergleich.shop ist nicht verpflichtet und nicht bereit, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen. Für Beschwerden und Reklamationen kontaktieren Sie uns bitte direkt unter <a href={`mailto:${CONTACT.email}`} className="text-primary hover:underline font-bold">{CONTACT.email}</a>.
                 </p>
               </div>
             </div>
@@ -181,7 +189,7 @@ export default function ImpressumPage() {
                   <strong>NEIN</strong> – Energievergleich.shop nimmt nicht an einem Verbraucherstreitbeilegungsverfahren teil.
                 </p>
                 <p className="text-sm text-gray-700">
-                  Energievergleich.shop ist nicht verpflichtet und nicht bereit, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen. Für Beschwerden und Reklamationen kontaktieren Sie uns bitte direkt unter <a href="mailto:kontakt@energievergleich.shop" className="text-primary hover:underline font-bold">kontakt@energievergleich.shop</a>.
+                  Energievergleich.shop ist nicht verpflichtet und nicht bereit, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen. Für Beschwerden und Reklamationen kontaktieren Sie uns bitte direkt unter <a href={`mailto:${CONTACT.email}`} className="text-primary hover:underline font-bold">{CONTACT.email}</a>.
                 </p>
               </div>
             </div>

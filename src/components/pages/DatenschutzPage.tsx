@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
+import { CONTACT } from '@/config/contact';
 
 export default function DatenschutzPage() {
   const seo = getPageSEO('datenschutz');
@@ -52,12 +53,19 @@ export default function DatenschutzPage() {
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 break-words">
                 <div>
                   <p className="font-bold mb-2">Verantwortlicher (Art. 4 Abs. 7 DSGVO):</p>
-                  <p>Energievergleich Muster GmbH<br />Musterstraße 1<br />40210 Düsseldorf<br />Deutschland</p>
+                  <p>
+                    {CONTACT.addressLines.map((line, idx) => (
+                      <React.Fragment key={idx}>
+                        {line}
+                        {idx < CONTACT.addressLines.length - 1 && <br />}
+                      </React.Fragment>
+                    ))}
+                  </p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Kontakt:</p>
-                  <p>E-Mail: kontakt@energievergleich.shop<br />Telefon: +49 000 0000000<br />Website: energievergleich.shop</p>
+                  <p>E-Mail: <a href={`mailto:${CONTACT.email}`} className="text-primary hover:underline font-bold">{CONTACT.email}</a><br />Telefon: <a href={`tel:${CONTACT.phone.replace(/\s/g, '')}`} className="text-primary hover:underline font-bold">{CONTACT.phone}</a><br />Website: <a href={CONTACT.website} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-bold">{CONTACT.website}</a></p>
                 </div>
 
                 <div className="border-t pt-4">
@@ -324,18 +332,25 @@ export default function DatenschutzPage() {
                 <p>Wenn Sie Fragen zum Datenschutz haben oder Ihre Rechte ausüben möchten, kontaktieren Sie uns bitte:</p>
                 
                 <div>
-                  <p className="font-bold mb-2">E-Mail:</p>
-                  <p>kontakt@energievergleich.shop</p>
+                  <p className="font-bold mb-2\">E-Mail:</p>
+                  <p><a href={`mailto:${CONTACT.email}`} className="text-primary hover:underline font-bold">{CONTACT.email}</a></p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Postanschrift:</p>
-                  <p>Energievergleich Muster GmbH<br />Musterstraße 1<br />40210 Düsseldorf<br />Deutschland</p>
+                  <p>
+                    {CONTACT.addressLines.map((line, idx) => (
+                      <React.Fragment key={idx}>
+                        {line}
+                        {idx < CONTACT.addressLines.length - 1 && <br />}
+                      </React.Fragment>
+                    ))}
+                  </p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Telefon:</p>
-                  <p>+49 000 0000000</p>
+                  <p><a href={`tel:${CONTACT.phone.replace(/\s/g, '')}`} className="text-primary hover:underline font-bold">{CONTACT.phone}</a></p>
                 </div>
               </div>
             </div>

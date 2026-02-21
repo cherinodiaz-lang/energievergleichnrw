@@ -16,6 +16,7 @@ import { trackCTAClick } from '@/services/form-submission';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
+import { CONTACT } from '@/config/contact';
 
 export default function KontaktPage() {
   const [formData, setFormData] = useState({

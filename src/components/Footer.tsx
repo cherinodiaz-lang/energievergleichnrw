@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { Zap, Mail, Phone, MapPin, Facebook, Linkedin, Globe } from 'lucide-react';
 import { ROUTES, NAV_SERVICE, NAV_LEGAL } from '@/lib/routes';
+import { CONTACT } from '@/config/contact';
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -83,26 +84,27 @@ export default function Footer() {
               <li className="flex items-start gap-2 sm:gap-3">
                 <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <div className="font-paragraph text-xs sm:text-sm opacity-90">
-                  <p>Wasserstr. 48</p>
-                  <p>33378 Rheda-Wiedenbrück</p>
+                  {CONTACT.addressLines.map((line, idx) => (
+                    <p key={idx}>{line}</p>
+                  ))}
                 </div>
               </li>
               <li className="flex items-start gap-2 sm:gap-3">
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <a
-                  href="tel:+491567855600"
+                  href={`tel:${CONTACT.phone.replace(/\s/g, '')}`}
                   className="font-paragraph text-xs sm:text-sm opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity"
                 >
-                  +49 156 78556004
+                  {CONTACT.phone}
                 </a>
               </li>
               <li className="flex items-start gap-2 sm:gap-3">
                 <Mail className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <a
-                  href="mailto:support@energievergleich.nrw"
+                  href={`mailto:${CONTACT.email}`}
                   className="font-paragraph text-xs sm:text-sm opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity break-all"
                 >
-                  support@energievergleich.nrw
+                  {CONTACT.email}
                 </a>
               </li>
             </ul>

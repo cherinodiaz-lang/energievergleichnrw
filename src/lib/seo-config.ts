@@ -3,6 +3,8 @@
  * Centralized SEO settings and metadata
  */
 
+import { CONTACT } from '@/config/contact';
+
 export const SEO_CONFIG = {
   // Site Information
   // PRIMARY DOMAIN: https://www.energievergleich.shop
@@ -18,14 +20,14 @@ export const SEO_CONFIG = {
     logo: 'https://static.wixstatic.com/media/32e7c0_8cede5e338be484bb8dcaad81c053c82~mv2.png?originWidth=1920&originHeight=1024',
     areaServed: 'Nordrhein-Westfalen',
     contact: {
-      email: 'info@energievergleich.nrw',
-      telephone: '+49 (0) 2 01 - 1 03 - 39 39',
+      email: CONTACT.email,
+      telephone: CONTACT.phone,
     },
     address: {
-      streetAddress: 'Energiestraße 1',
-      addressLocality: 'Düsseldorf',
+      streetAddress: CONTACT.addressLines[1],
+      addressLocality: CONTACT.addressLines[2]?.split(' ')[0] || 'Rheda-Wiedenbrück',
       addressRegion: 'NRW',
-      postalCode: '40210',
+      postalCode: CONTACT.addressLines[2]?.split(' ')[0] || '33378',
       addressCountry: 'DE',
     },
   },
