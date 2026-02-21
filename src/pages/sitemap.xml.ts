@@ -7,8 +7,6 @@ import { ratgeberArticles } from '@/lib/ratgeber-map';
  * Updated: 2026-01-13
  */
 
-const DOMAIN = 'https://www.energievergleich.shop';
-
 // Helper function to get today's date in ISO format (YYYY-MM-DD)
 const todayISO = () => new Date().toISOString().slice(0, 10);
 
@@ -142,31 +140,25 @@ const pages = [
  * Ensures proper XML formatting and valid structure
  */
 const generateSiteMap = (
+  domain: string,
   pages: Array<{ url: string; priority: string; changefreq: string; lastmod: string }>
 ): string => {
   const urlEntries = pages
     .map(
-      ({ url, priority, changefreq, lastmod }) => `  <url>
-    <loc>${DOMAIN}${url}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>${changefreq}</changefreq>
-    <priority>${priority}</priority>
-  </url>`
+      ({ url, priority, changefreq, lastmod }) => `  <url>\n    <loc>${domain}${url}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`
     )
     .join('\n');
 
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urlEntries}
-</urlset>`;
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urlEntries}\n</urlset>`;
 };
 
 /**
  * Astro API Route for sitemap.xml
  * Returns properly formatted XML with correct headers
  */
-export const GET: APIRoute = () => {
-  const sitemapXml = generateSiteMap(pages);
+export const GET: APIRoute = ({ request }) => {
+  const domain = new URL(request.url).origin;
+  const sitemapXml = generateSiteMap(domain, pages);
 
   return new Response(sitemapXml, {
     headers: {
