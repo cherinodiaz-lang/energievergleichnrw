@@ -3,10 +3,16 @@ import { SEO_CONFIG } from '@/lib/seo-config';
 
 export default function LocalBusinessSchema() {
   useEffect(() => {
+    const sameAs = [
+      SEO_CONFIG.social.facebook,
+      SEO_CONFIG.social.twitter,
+      SEO_CONFIG.social.linkedin,
+    ].filter((v): v is string => Boolean(v));
+
     const localBusinessSchema = {
       '@context': 'https://schema.org',
       '@type': 'ProfessionalService',
-      '@id': SEO_CONFIG.organization.url,
+      '@id': `${SEO_CONFIG.organization.url}#localbusiness`,
       name: SEO_CONFIG.organization.name,
       image: SEO_CONFIG.organization.logo,
       description: SEO_CONFIG.siteDescription,
@@ -32,11 +38,7 @@ export default function LocalBusinessSchema() {
           url: 'https://de.wikipedia.org/wiki/Nordrhein-Westfalen',
         },
       ],
-      sameAs: [
-        SEO_CONFIG.social.facebook,
-        SEO_CONFIG.social.twitter,
-        SEO_CONFIG.social.linkedin,
-      ],
+      ...(sameAs.length ? { sameAs } : {}),
       priceRange: '€€',
       serviceType: [
         'Energieberatung',
