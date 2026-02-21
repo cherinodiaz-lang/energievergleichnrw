@@ -15,6 +15,7 @@ interface SEOHeadProps {
   twitterImage?: string;
   keywords?: string;
   robots?: string;
+  noindex?: boolean;
   author?: string;
 }
 
@@ -57,6 +58,7 @@ export default function SEOHead({
   twitterImage = DEFAULT_IMAGE,
   keywords,
   robots = 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+  noindex = false,
   author = 'energievergleich.nrw',
 }: SEOHeadProps) {
   const location = useLocation();
@@ -70,7 +72,7 @@ export default function SEOHead({
         { href: '//static.parastorage.com/tag-bundler/api/v1/fonts-cache/googlefont/woff2/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2', as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
         { href: '//static.parastorage.com/tag-bundler/api/v1/fonts-cache/googlefont/woff2/s/poppins/v22/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2', as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
       ];
-      
+
       fonts.forEach(font => {
         if (!document.querySelector(`link[href="${font.href}"]`)) {
           const link = document.createElement('link');
@@ -90,7 +92,7 @@ export default function SEOHead({
       'https://api.tarifrechner.de',
       'https://static.parastorage.com',
     ];
-    
+
     dnsPrefetchDomains.forEach(domain => {
       if (!document.querySelector(`link[href="${domain}"]`)) {
         const link = document.createElement('link');
@@ -134,13 +136,14 @@ export default function SEOHead({
     }
 
     // Set robots
+    const robotsContent = noindex ? 'noindex, nofollow' : robots;
     let metaRobots = document.querySelector('meta[name="robots"]');
     if (!metaRobots) {
       metaRobots = document.createElement('meta');
       metaRobots.setAttribute('name', 'robots');
       document.head.appendChild(metaRobots);
     }
-    metaRobots.setAttribute('content', robots);
+    metaRobots.setAttribute('content', robotsContent);
 
     // Set author
     let metaAuthor = document.querySelector('meta[name="author"]');
@@ -169,10 +172,11 @@ export default function SEOHead({
     }
 
     // OpenGraph tags
+    const absoluteOgImage = toAbsoluteUrl(canonicalOrigin, ogImage);
     const ogTags = [
       { property: 'og:title', content: ogTitle || title },
       { property: 'og:description', content: ogDescription || description },
-      { property: 'og:image', content: ogImage },
+      { property: 'og:image', content: absoluteOgImage },
       { property: 'og:type', content: ogType },
       { property: 'og:url', content: canonicalUrl },
       { property: 'og:site_name', content: SITE_NAME },
@@ -189,11 +193,12 @@ export default function SEOHead({
     });
 
     // Twitter Card tags
+    const absoluteTwitterImage = toAbsoluteUrl(canonicalOrigin, twitterImage);
     const twitterTags = [
       { name: 'twitter:card', content: twitterCard },
       { name: 'twitter:title', content: twitterTitle || title },
       { name: 'twitter:description', content: twitterDescription || description },
-      { name: 'twitter:image', content: twitterImage },
+      { name: 'twitter:image', content: absoluteTwitterImage },
       { name: 'twitter:site', content: '@energievergleich' },
     ];
 
@@ -217,11 +222,28 @@ export default function SEOHead({
     }
 
     // Language
-    let htmlLang = document.documentElement.getAttribute('lang');
+    const htmlLang = document.documentElement.getAttribute('lang');
     if (!htmlLang) {
       document.documentElement.setAttribute('lang', 'de');
     }
-  }, [title, description, canonical, location.pathname, ogTitle, ogDescription, ogImage, ogType, twitterCard, twitterTitle, twitterDescription, twitterImage, keywords, robots, author]);
+  }, [
+    title,
+    description,
+    canonical,
+    location.pathname,
+    ogTitle,
+    ogDescription,
+    ogImage,
+    ogType,
+    twitterCard,
+    twitterTitle,
+    twitterDescription,
+    twitterImage,
+    keywords,
+    robots,
+    noindex,
+    author,
+  ]);
 
   return null;
 }
