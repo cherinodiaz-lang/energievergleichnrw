@@ -1,5 +1,5 @@
 import { MemberProvider } from '@/integrations';
-import { createBrowserRouter, RouterProvider, Navigate, Outlet } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Navigate, Outlet, useLocation } from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
 import { ScrollToTop } from '@/lib/scroll-to-top';
 import { SEO_CONFIG } from '@/lib/seo-config';
@@ -12,7 +12,7 @@ import WebsiteSchema from '@/components/WebsiteSchema';
 import SearchConsoleVerification from '@/components/SearchConsoleVerification';
 import SitemapNotification from '@/components/SitemapNotification';
 import ConsentBanner from '@/components/ConsentBanner';
-import { initializeGA4 } from '@/services/ga4-tracking';
+import { initializeGA4, trackPageView } from '@/services/ga4-tracking';
 import HowToSchema from '@/components/HowToSchema';
 import ReviewSchema from '@/components/ReviewSchema';
 import FAQPageSchema from '@/components/FAQPageSchema';
@@ -84,12 +84,19 @@ const UeberUnsPage = lazy(() => import('@/components/pages/UeberUnsPage').catch(
 
 // Layout component that includes ScrollToTop and SEO components
 function Layout() {
+  const location = useLocation();
+
   // Initialize GA4 on app load (consent mode enabled by default)
   useEffect(() => {
     if (SEO_CONFIG.googleAnalyticsId) {
       initializeGA4(SEO_CONFIG.googleAnalyticsId);
     }
   }, []);
+
+  // Track SPA page views on route changes (consent-safe)
+  useEffect(() => {
+    trackPageView(location.pathname);
+  }, [location.pathname]);
 
   return (
     <div className="min-w-0 overflow-x-hidden ox-hidden">

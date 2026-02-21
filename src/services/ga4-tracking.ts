@@ -192,6 +192,20 @@ export function trackEvent(eventName: string, eventData: Record<string, any> = {
 }
 
 /**
+ * Track SPA page views safely (only if analytics consent is granted).
+ * Uses a dedicated page_view event so you get one hit per route change.
+ */
+export function trackPageView(pathname: string) {
+  if (typeof window === 'undefined') return;
+
+  trackEvent('page_view', {
+    page_path: pathname,
+    page_location: window.location.href,
+    page_title: document.title,
+  });
+}
+
+/**
  * Track form submission as conversion
  * Event: form_submit
  * Parameters: page_path, form_type
