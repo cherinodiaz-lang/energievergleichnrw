@@ -11,6 +11,9 @@ export type RouteKey =
   | "stromvergleichBochum"
   | "stromvergleichDuisburg"
   | "stromvergleichWuppertal"
+  | "stromvergleichBielefeld"
+  | "stromvergleichBonn"
+  | "stromvergleichMuenster"
   | "ratgeberHub"
   | "ratgeberStrom"
   | "ratgeberGas"
@@ -49,6 +52,9 @@ export const ROUTES: Record<RouteKey, string> = {
   stromvergleichBochum: "/stromvergleich-bochum",
   stromvergleichDuisburg: "/stromvergleich-duisburg",
   stromvergleichWuppertal: "/stromvergleich-wuppertal",
+  stromvergleichBielefeld: "/stromvergleich-bielefeld",
+  stromvergleichBonn: "/stromvergleich-bonn",
+  stromvergleichMuenster: "/stromvergleich-muenster",
   ratgeberHub: "/ratgeber",
   ratgeberStrom: "/ratgeber/strom",
   ratgeberGas: "/ratgeber/gas",
