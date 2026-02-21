@@ -587,11 +587,12 @@ export default function GewerbegasPage() {
                       <Input
                         id="email"
                         type="email"
-                        placeholder="max@firma.de"
+                        placeholder="E-Mail eingeben"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
                         className="font-paragraph w-full"
+                        autoComplete="email"
                       />
                     </div>
                     <div className="space-y-2">
@@ -599,11 +600,12 @@ export default function GewerbegasPage() {
                       <Input
                         id="phone"
                         type="tel"
-                        placeholder="+49 156 78556004"
+                        placeholder="+49 XXX XXXXXXX"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         required
                         className="font-paragraph w-full"
+                        autoComplete="tel"
                       />
                     </div>
                   </div>
@@ -620,11 +622,12 @@ export default function GewerbegasPage() {
                     <Input
                       id="address"
                       type="text"
-                      placeholder="Musterstraße 123"
+                      placeholder="Straße und Hausnummer"
                       value={address}
                       onChange={(e) => setAddress(e.target.value)}
                       required
                       className="font-paragraph w-full"
+                      autoComplete="street-address"
                     />
                   </div>
                   

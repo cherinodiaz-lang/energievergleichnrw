@@ -594,18 +594,19 @@ export default function PhotovoltaikNrwPage() {
                           <Label htmlFor="strasse" className="font-paragraph">Straße *</Label>
                           <Input
                             id="strasse"
-                            placeholder="Musterstraße"
+                            placeholder="Straße"
                             value={formData.strasse}
                             onChange={(e) => setFormData({ ...formData, strasse: e.target.value })}
                             required
                             className="font-paragraph"
+                            autoComplete="street-address"
                           />
                         </div>
                         <div className="space-y-2">
                           <Label htmlFor="hausnummer" className="font-paragraph">Hausnummer *</Label>
                           <Input
                             id="hausnummer"
-                            placeholder="123"
+                            placeholder="Hausnummer"
                             value={formData.hausnummer}
                             onChange={(e) => setFormData({ ...formData, hausnummer: e.target.value })}
                             required
@@ -616,22 +617,24 @@ export default function PhotovoltaikNrwPage() {
                           <Label htmlFor="plz" className="font-paragraph">PLZ *</Label>
                           <Input
                             id="plz"
-                            placeholder="40210"
+                            placeholder="z.B. 40210"
                             value={formData.plz}
                             onChange={(e) => setFormData({ ...formData, plz: e.target.value })}
                             required
                             className="font-paragraph"
+                            autoComplete="postal-code"
                           />
                         </div>
                         <div className="space-y-2 md:col-span-2">
                           <Label htmlFor="ort" className="font-paragraph">Ort *</Label>
                           <Input
                             id="ort"
-                            placeholder="Düsseldorf"
+                            placeholder="Stadtname"
                             value={formData.ort}
                             onChange={(e) => setFormData({ ...formData, ort: e.target.value })}
                             required
                             className="font-paragraph"
+                            autoComplete="address-level2"
                           />
                         </div>
                       </div>
@@ -644,11 +647,12 @@ export default function PhotovoltaikNrwPage() {
                           <Label htmlFor="name" className="font-paragraph">Name *</Label>
                           <Input
                             id="name"
-                            placeholder="Max Mustermann"
+                            placeholder="Vor- und Nachname"
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                             required
                             className="font-paragraph"
+                            autoComplete="name"
                           />
                         </div>
                         <div className="space-y-2">
@@ -656,11 +660,12 @@ export default function PhotovoltaikNrwPage() {
                           <Input
                             id="email"
                             type="email"
-                            placeholder="max@beispiel.de"
+                            placeholder="E-Mail eingeben"
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             required
                             className="font-paragraph"
+                            autoComplete="email"
                           />
                         </div>
                         <div className="space-y-2">
@@ -668,10 +673,11 @@ export default function PhotovoltaikNrwPage() {
                           <Input
                             id="phone"
                             type="tel"
-                            placeholder="+49 156 78556004"
+                            placeholder="+49 XXX XXXXXXX"
                             value={formData.phone}
                             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                             className="font-paragraph"
+                            autoComplete="tel"
                           />
                         </div>
                       </div>

@@ -531,11 +531,12 @@ export default function GewerbestromPage() {
                       <Input
                         id="contact-person"
                         type="text"
-                        placeholder=""
+                        placeholder="Vor- und Nachname"
                         value={contactPerson}
                         onChange={(e) => setContactPerson(e.target.value)}
                         required
                         className="font-paragraph"
+                        autoComplete="name"
                       />
                     </div>
                     <div className="space-y-2">
@@ -543,11 +544,12 @@ export default function GewerbestromPage() {
                       <Input
                         id="email"
                         type="email"
-                        placeholder="max@firma.de"
+                        placeholder="E-Mail eingeben"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
                         className="font-paragraph"
+                        autoComplete="email"
                       />
                     </div>
                     <div className="space-y-2">
@@ -555,11 +557,12 @@ export default function GewerbestromPage() {
                       <Input
                         id="phone"
                         type="tel"
-                        placeholder="+49 156 78556004"
+                        placeholder="+49 XXX XXXXXXX"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         required
                         className="font-paragraph"
+                        autoComplete="tel"
                       />
                     </div>
                   </div>
@@ -576,11 +579,12 @@ export default function GewerbestromPage() {
                     <Input
                       id="address"
                       type="text"
-                      placeholder="Musterstraße 123"
+                      placeholder="Straße und Hausnummer"
                       value={address}
                       onChange={(e) => setAddress(e.target.value)}
                       required
                       className="font-paragraph"
+                      autoComplete="street-address"
                     />
                   </div>
                   
@@ -590,11 +594,12 @@ export default function GewerbestromPage() {
                       <Input
                         id="postcode"
                         type="text"
-                        placeholder="40210"
+                        placeholder="z.B. 40210"
                         value={postcode}
                         onChange={(e) => setPostcode(e.target.value)}
                         required
                         className="font-paragraph"
+                        autoComplete="postal-code"
                       />
                     </div>
                     <div className="space-y-2">
@@ -602,11 +607,12 @@ export default function GewerbestromPage() {
                       <Input
                         id="city"
                         type="text"
-                        placeholder="Düsseldorf"
+                        placeholder="Stadtname"
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
                         required
                         className="font-paragraph"
+                        autoComplete="address-level2"
                       />
                     </div>
                   </div>
