@@ -18,9 +18,30 @@ interface SEOHeadProps {
   author?: string;
 }
 
-const SITE_URL = 'https://www.energievergleich.shop';
+// Preferred production origin (used as canonical target when possible)
+const PREFERRED_ORIGIN = 'https://www.energievergleich.shop';
 const SITE_NAME = 'energievergleich.shop';
 const DEFAULT_IMAGE = 'https://static.wixstatic.com/media/32e7c0_8cede5e338be484bb8dcaad81c053c82~mv2.png?originWidth=1920&originHeight=1024';
+
+const getCanonicalOrigin = () => {
+  if (typeof window === 'undefined') return PREFERRED_ORIGIN;
+
+  const origin = window.location.origin;
+
+  // Normalize known production variants to preferred host
+  if (origin === 'https://energievergleich.shop' || origin === 'http://energievergleich.shop') return PREFERRED_ORIGIN;
+  if (origin === 'http://www.energievergleich.shop') return PREFERRED_ORIGIN;
+
+  // For preview/staging environments, keep the current origin to avoid mismatches
+  return origin;
+};
+
+const toAbsoluteUrl = (origin: string, value: string) => {
+  if (!value) return value;
+  if (value.startsWith('http://') || value.startsWith('https://')) return value;
+  if (value.startsWith('/')) return `${origin}${value}`;
+  return `${origin}/${value}`;
+};
 
 export default function SEOHead({
   title,
@@ -41,6 +62,8 @@ export default function SEOHead({
   const location = useLocation();
 
   useEffect(() => {
+    const canonicalOrigin = getCanonicalOrigin();
+
     // PHASE 7: Preload critical fonts for better performance
     const preloadFonts = () => {
       const fonts = [
@@ -89,8 +112,8 @@ export default function SEOHead({
     }
     metaDescription.setAttribute('content', description);
 
-    // Set canonical URL - ALWAYS with www prefix
-    const canonicalUrl = canonical || `${SITE_URL}${location.pathname}`;
+    // Canonical URL
+    const canonicalUrl = canonical ? toAbsoluteUrl(canonicalOrigin, canonical) : `${canonicalOrigin}${location.pathname}`;
     let canonicalLink = document.querySelector('link[rel="canonical"]');
     if (!canonicalLink) {
       canonicalLink = document.createElement('link');
@@ -110,7 +133,7 @@ export default function SEOHead({
       metaKeywords.setAttribute('content', keywords);
     }
 
-    // Set robots - ALWAYS index, follow for content pages
+    // Set robots
     let metaRobots = document.querySelector('meta[name="robots"]');
     if (!metaRobots) {
       metaRobots = document.createElement('meta');
