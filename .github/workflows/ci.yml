@@ -24,9 +24,14 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          registry-url: https://registry.npmjs.org
 
+      # If your install pulls private packages, set repository secret NPM_TOKEN.
+      # setup-node will use NODE_AUTH_TOKEN for npm auth.
       - name: Install
         run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # NOTE: We intentionally do NOT run `wix build` in CI by default,
       # because it can require Wix auth/environment that isn't available on PRs.
