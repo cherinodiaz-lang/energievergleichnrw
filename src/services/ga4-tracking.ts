@@ -8,7 +8,7 @@
  * EXECUTION ORDER (FIXED):
  * 1. Script load (async)
  * 2. gtag('js') initialization
- * 3. gtag('config') with send_page_view:true AFTER consent
+ * 3. gtag('config') with send_page_view:false AFTER consent (SPA tracking sends page_view manually)
  * 4. Flush queued events immediately
  */
 
@@ -96,7 +96,7 @@ export function initializeGA4(measurementId: string) {
  * 
  * CRITICAL EXECUTION ORDER:
  * 1. Update consent mode
- * 2. Call gtag('config') with send_page_view:true AFTER consent is granted
+ * 2. Call gtag('config') AFTER consent is granted (send_page_view disabled; SPA handles page_view)
  * 3. Flush queued events immediately
  */
 export function updateConsent(analyticsConsent: boolean, marketingConsent: boolean) {
@@ -122,10 +122,11 @@ export function updateConsent(analyticsConsent: boolean, marketingConsent: boole
     });
   }
 
-  // Step 2: If analytics consent granted, call gtag('config') with send_page_view:true
+  // Step 2: If analytics consent granted, call gtag('config')
+  // NOTE: send_page_view is disabled to prevent double counting; page views are tracked via trackPageView()
   if (analyticsConsent && measurementIdGlobal) {
     window.gtag?.('config', measurementIdGlobal, {
-      'send_page_view': true,
+      'send_page_view': false,
       'anonymize_ip': true,
       'allow_google_signals': false,
       'debug_mode': debugMode,
@@ -134,7 +135,7 @@ export function updateConsent(analyticsConsent: boolean, marketingConsent: boole
     if (debugMode) {
       console.log('[GA4 DEBUG] gtag("config") called with:', {
         measurementId: measurementIdGlobal,
-        send_page_view: true,
+        send_page_view: false,
         debug_mode: debugMode,
       });
     }
