@@ -51,6 +51,18 @@ const pages = [
     lastmod: LASTMOD_STATIC
   },
   {
+    url: '/stromvergleich-bochum',
+    priority: '0.7',
+    changefreq: 'weekly',
+    lastmod: LASTMOD_STATIC
+  },
+  {
+    url: '/stromvergleich-duisburg',
+    priority: '0.7',
+    changefreq: 'weekly',
+    lastmod: LASTMOD_STATIC
+  },
+  {
     url: '/stromvergleich-koeln',
     priority: '0.7',
     changefreq: 'weekly',

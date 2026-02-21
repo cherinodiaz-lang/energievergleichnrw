@@ -30,6 +30,14 @@ export const breadcrumbConfigs: Record<string, BreadcrumbConfig[]> = {
     { label: 'Startseite', path: '/' },
     { label: 'Stromvergleich Essen', path: '/stromvergleich-essen' },
   ],
+  '/stromvergleich-bochum': [
+    { label: 'Startseite', path: '/' },
+    { label: 'Stromvergleich Bochum', path: '/stromvergleich-bochum' },
+  ],
+  '/stromvergleich-duisburg': [
+    { label: 'Startseite', path: '/' },
+    { label: 'Stromvergleich Duisburg', path: '/stromvergleich-duisburg' },
+  ],
   '/stromvergleich-koeln': [
     { label: 'Startseite', path: '/' },
     { label: 'Stromvergleich Köln', path: '/stromvergleich-koeln' },
@@ -118,6 +126,16 @@ export const relatedPagesConfig: Record<string, RelatedPage[]> = {
       path: '/stromvergleich-essen',
     },
     {
+      title: 'Stromvergleich Bochum',
+      description: 'Stromtarife in Bochum vergleichen und passende Angebote finden',
+      path: '/stromvergleich-bochum',
+    },
+    {
+      title: 'Stromvergleich Duisburg',
+      description: 'Stromtarife in Duisburg vergleichen und passende Angebote finden',
+      path: '/stromvergleich-duisburg',
+    },
+    {
       title: 'Stromvergleich Köln',
       description: 'Stromtarife in Köln vergleichen und passende Angebote finden',
       path: '/stromvergleich-koeln',
@@ -126,11 +144,6 @@ export const relatedPagesConfig: Record<string, RelatedPage[]> = {
       title: 'Gasvergleich NRW',
       description: 'Finden Sie passende Gastarife in Nordrhein-Westfalen',
       path: '/gasvergleich-nrw',
-    },
-    {
-      title: 'Photovoltaik NRW',
-      description: 'Infos und Beratung rund um Photovoltaik in NRW',
-      path: '/photovoltaik-nrw',
     },
   ],
   '/stromvergleich-essen': [
@@ -150,9 +163,68 @@ export const relatedPagesConfig: Record<string, RelatedPage[]> = {
       path: '/photovoltaik-nrw',
     },
     {
-      title: 'Stromvergleich Köln',
-      description: 'Stromtarife für Köln vergleichen',
-      path: '/stromvergleich-koeln',
+      title: 'Stromvergleich Bochum',
+      description: 'Stromtarife für Bochum vergleichen',
+      path: '/stromvergleich-bochum',
+    },
+    {
+      title: 'Stromvergleich Duisburg',
+      description: 'Stromtarife für Duisburg vergleichen',
+      path: '/stromvergleich-duisburg',
+    },
+  ],
+  '/stromvergleich-bochum': [
+    {
+      title: 'Stromvergleich NRW',
+      description: 'Stromtarife in NRW vergleichen – inkl. Tipps und Ratgeber',
+      path: '/stromvergleich-nrw',
+    },
+    {
+      title: 'Gasvergleich NRW',
+      description: 'Auch Gastarife vergleichen und zusätzlich sparen',
+      path: '/gasvergleich-nrw',
+    },
+    {
+      title: 'Photovoltaik NRW',
+      description: 'Photovoltaik: Kosten, Förderung und Beratung in NRW',
+      path: '/photovoltaik-nrw',
+    },
+    {
+      title: 'Stromvergleich Essen',
+      description: 'Stromtarife für Essen vergleichen',
+      path: '/stromvergleich-essen',
+    },
+    {
+      title: 'Stromvergleich Duisburg',
+      description: 'Stromtarife für Duisburg vergleichen',
+      path: '/stromvergleich-duisburg',
+    },
+  ],
+  '/stromvergleich-duisburg': [
+    {
+      title: 'Stromvergleich NRW',
+      description: 'Stromtarife in NRW vergleichen – inkl. Tipps und Ratgeber',
+      path: '/stromvergleich-nrw',
+    },
+    {
+      title: 'Gasvergleich NRW',
+      description: 'Auch Gastarife vergleichen und zusätzlich sparen',
+      path: '/gasvergleich-nrw',
+    },
+    {
+      title: 'Photovoltaik NRW',
+      description: 'Photovoltaik: Kosten, Förderung und Beratung in NRW',
+      path: '/photovoltaik-nrw',
+    },
+    {
+      title: 'Stromvergleich Essen',
+      description: 'Stromtarife für Essen vergleichen',
+      path: '/stromvergleich-essen',
+    },
+    {
+      title: 'Stromvergleich Bochum',
+      description: 'Stromtarife für Bochum vergleichen',
+      path: '/stromvergleich-bochum',
     },
   ],
   '/stromvergleich-koeln': [
@@ -311,6 +383,26 @@ export const anchorTextVariations: Record<string, AnchorTextVariation> = {
       'Strom wechseln in Essen',
       'Stromkosten in Essen senken',
       'Stromvergleich für Essen',
+    ],
+  },
+  '/stromvergleich-bochum': {
+    primary: 'Stromvergleich Bochum',
+    variations: [
+      'Stromtarife Bochum',
+      'Stromanbieter in Bochum vergleichen',
+      'Strom wechseln in Bochum',
+      'Stromkosten in Bochum senken',
+      'Stromvergleich für Bochum',
+    ],
+  },
+  '/stromvergleich-duisburg': {
+    primary: 'Stromvergleich Duisburg',
+    variations: [
+      'Stromtarife Duisburg',
+      'Stromanbieter in Duisburg vergleichen',
+      'Strom wechseln in Duisburg',
+      'Stromkosten in Duisburg senken',
+      'Stromvergleich für Duisburg',
     ],
   },
   '/stromvergleich-koeln': {
