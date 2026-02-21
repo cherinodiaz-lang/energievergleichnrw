@@ -56,8 +56,9 @@ export const SEO_CONFIG = {
   // Language
   language: 'de',
   
-  // Search Console & Analytics (add your IDs here)
-  googleSearchConsoleVerification: '', // Add your verification code
+  // Search Console & Analytics
+  // Set env var: PUBLIC_GOOGLE_SITE_VERIFICATION=xxxx (Vite/Astro public env)
+  googleSearchConsoleVerification: import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION || '',
   googleAnalyticsId: 'G-X60BTL057V', // GA4 Measurement ID for energievergleich.shop
   
   // Robots Meta
