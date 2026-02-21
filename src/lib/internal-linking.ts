@@ -26,6 +26,22 @@ export const breadcrumbConfigs: Record<string, BreadcrumbConfig[]> = {
     { label: 'Startseite', path: '/' },
     { label: 'Stromvergleich NRW', path: '/stromvergleich-nrw' },
   ],
+  '/stromvergleich-essen': [
+    { label: 'Startseite', path: '/' },
+    { label: 'Stromvergleich Essen', path: '/stromvergleich-essen' },
+  ],
+  '/stromvergleich-koeln': [
+    { label: 'Startseite', path: '/' },
+    { label: 'Stromvergleich Köln', path: '/stromvergleich-koeln' },
+  ],
+  '/stromvergleich-duesseldorf': [
+    { label: 'Startseite', path: '/' },
+    { label: 'Stromvergleich Düsseldorf', path: '/stromvergleich-duesseldorf' },
+  ],
+  '/stromvergleich-dortmund': [
+    { label: 'Startseite', path: '/' },
+    { label: 'Stromvergleich Dortmund', path: '/stromvergleich-dortmund' },
+  ],
   '/gasvergleich-nrw': [
     { label: 'Startseite', path: '/' },
     { label: 'Gasvergleich NRW', path: '/gasvergleich-nrw' },
@@ -97,30 +113,123 @@ export const breadcrumbConfigs: Record<string, BreadcrumbConfig[]> = {
 export const relatedPagesConfig: Record<string, RelatedPage[]> = {
   '/stromvergleich-nrw': [
     {
+      title: 'Stromvergleich Essen',
+      description: 'Stromtarife in Essen vergleichen und passende Angebote finden',
+      path: '/stromvergleich-essen',
+    },
+    {
+      title: 'Stromvergleich Köln',
+      description: 'Stromtarife in Köln vergleichen und passende Angebote finden',
+      path: '/stromvergleich-koeln',
+    },
+    {
       title: 'Gasvergleich NRW',
-      description: 'Finden Sie die günstigsten Gastarife in Nordrhein-Westfalen',
+      description: 'Finden Sie passende Gastarife in Nordrhein-Westfalen',
       path: '/gasvergleich-nrw',
     },
     {
       title: 'Photovoltaik NRW',
-      description: 'Vergleichen Sie Solaranlagen und Photovoltaik-Angebote',
+      description: 'Infos und Beratung rund um Photovoltaik in NRW',
+      path: '/photovoltaik-nrw',
+    },
+  ],
+  '/stromvergleich-essen': [
+    {
+      title: 'Stromvergleich NRW',
+      description: 'Stromtarife in NRW vergleichen – inkl. Tipps und Ratgeber',
+      path: '/stromvergleich-nrw',
+    },
+    {
+      title: 'Gasvergleich NRW',
+      description: 'Auch Gastarife vergleichen und zusätzlich sparen',
+      path: '/gasvergleich-nrw',
+    },
+    {
+      title: 'Photovoltaik NRW',
+      description: 'Photovoltaik: Kosten, Förderung und Beratung in NRW',
       path: '/photovoltaik-nrw',
     },
     {
-      title: 'Gewerbestrom',
-      description: 'Sparen Sie bei Ihren Stromkosten für Ihr Gewerbe',
-      path: '/gewerbestrom',
+      title: 'Stromvergleich Köln',
+      description: 'Stromtarife für Köln vergleichen',
+      path: '/stromvergleich-koeln',
+    },
+  ],
+  '/stromvergleich-koeln': [
+    {
+      title: 'Stromvergleich NRW',
+      description: 'Stromtarife in NRW vergleichen – inkl. Tipps und Ratgeber',
+      path: '/stromvergleich-nrw',
+    },
+    {
+      title: 'Gasvergleich NRW',
+      description: 'Gastarife in NRW vergleichen',
+      path: '/gasvergleich-nrw',
+    },
+    {
+      title: 'Photovoltaik NRW',
+      description: 'Photovoltaik: Infos und Beratung in NRW',
+      path: '/photovoltaik-nrw',
+    },
+    {
+      title: 'Stromvergleich Essen',
+      description: 'Stromtarife für Essen vergleichen',
+      path: '/stromvergleich-essen',
+    },
+  ],
+  '/stromvergleich-duesseldorf': [
+    {
+      title: 'Stromvergleich NRW',
+      description: 'Stromtarife in NRW vergleichen – inkl. Tipps und Ratgeber',
+      path: '/stromvergleich-nrw',
+    },
+    {
+      title: 'Gasvergleich NRW',
+      description: 'Gastarife in NRW vergleichen',
+      path: '/gasvergleich-nrw',
+    },
+    {
+      title: 'Photovoltaik NRW',
+      description: 'Photovoltaik: Infos und Beratung in NRW',
+      path: '/photovoltaik-nrw',
+    },
+    {
+      title: 'Stromvergleich Essen',
+      description: 'Stromtarife für Essen vergleichen',
+      path: '/stromvergleich-essen',
+    },
+  ],
+  '/stromvergleich-dortmund': [
+    {
+      title: 'Stromvergleich NRW',
+      description: 'Stromtarife in NRW vergleichen – inkl. Tipps und Ratgeber',
+      path: '/stromvergleich-nrw',
+    },
+    {
+      title: 'Gasvergleich NRW',
+      description: 'Gastarife in NRW vergleichen',
+      path: '/gasvergleich-nrw',
+    },
+    {
+      title: 'Photovoltaik NRW',
+      description: 'Photovoltaik: Infos und Beratung in NRW',
+      path: '/photovoltaik-nrw',
+    },
+    {
+      title: 'Stromvergleich Essen',
+      description: 'Stromtarife für Essen vergleichen',
+      path: '/stromvergleich-essen',
     },
   ],
   '/gasvergleich-nrw': [
     {
       title: 'Stromvergleich NRW',
-      description: 'Finden Sie die günstigsten Stromtarife in Nordrhein-Westfalen',
+      description: 'Finden Sie passende Stromtarife in Nordrhein-Westfalen',
       path: '/stromvergleich-nrw',
     },
     {
       title: 'Photovoltaik NRW',
-      description: 'Vergleichen Sie Solaranlagen und Photovoltaik-Angebote',
+      description: 'Infos und Beratung rund um Photovoltaik in NRW',
       path: '/photovoltaik-nrw',
     },
     {
@@ -132,12 +241,12 @@ export const relatedPagesConfig: Record<string, RelatedPage[]> = {
   '/photovoltaik-nrw': [
     {
       title: 'Stromvergleich NRW',
-      description: 'Finden Sie die günstigsten Stromtarife in Nordrhein-Westfalen',
+      description: 'Finden Sie passende Stromtarife in Nordrhein-Westfalen',
       path: '/stromvergleich-nrw',
     },
     {
       title: 'Gasvergleich NRW',
-      description: 'Finden Sie die günstigsten Gastarife in Nordrhein-Westfalen',
+      description: 'Finden Sie passende Gastarife in Nordrhein-Westfalen',
       path: '/gasvergleich-nrw',
     },
     {
@@ -149,7 +258,7 @@ export const relatedPagesConfig: Record<string, RelatedPage[]> = {
   '/gewerbestrom': [
     {
       title: 'Stromvergleich NRW',
-      description: 'Finden Sie die günstigsten Stromtarife für Privathaushalte',
+      description: 'Finden Sie passende Stromtarife für Privathaushalte',
       path: '/stromvergleich-nrw',
     },
     {
@@ -166,7 +275,7 @@ export const relatedPagesConfig: Record<string, RelatedPage[]> = {
   '/gewerbegas': [
     {
       title: 'Gasvergleich NRW',
-      description: 'Finden Sie die günstigsten Gastarife für Privathaushalte',
+      description: 'Finden Sie passende Gastarife für Privathaushalte',
       path: '/gasvergleich-nrw',
     },
     {
@@ -192,6 +301,46 @@ export const anchorTextVariations: Record<string, AnchorTextVariation> = {
       'Strom wechseln in Nordrhein-Westfalen',
       'NRW Stromtarife vergleichen',
       'Stromtarife NRW',
+    ],
+  },
+  '/stromvergleich-essen': {
+    primary: 'Stromvergleich Essen',
+    variations: [
+      'Stromtarife Essen',
+      'Stromanbieter in Essen vergleichen',
+      'Strom wechseln in Essen',
+      'Stromkosten in Essen senken',
+      'Stromvergleich für Essen',
+    ],
+  },
+  '/stromvergleich-koeln': {
+    primary: 'Stromvergleich Köln',
+    variations: [
+      'Stromtarife Köln',
+      'Stromanbieter in Köln vergleichen',
+      'Strom wechseln in Köln',
+      'Stromkosten in Köln senken',
+      'Stromvergleich für Köln',
+    ],
+  },
+  '/stromvergleich-duesseldorf': {
+    primary: 'Stromvergleich Düsseldorf',
+    variations: [
+      'Stromtarife Düsseldorf',
+      'Stromanbieter in Düsseldorf vergleichen',
+      'Strom wechseln in Düsseldorf',
+      'Stromkosten in Düsseldorf senken',
+      'Stromvergleich für Düsseldorf',
+    ],
+  },
+  '/stromvergleich-dortmund': {
+    primary: 'Stromvergleich Dortmund',
+    variations: [
+      'Stromtarife Dortmund',
+      'Stromanbieter in Dortmund vergleichen',
+      'Strom wechseln in Dortmund',
+      'Stromkosten in Dortmund senken',
+      'Stromvergleich für Dortmund',
     ],
   },
   '/gasvergleich-nrw': {
@@ -257,7 +406,7 @@ export function getRelatedPages(pathname: string): RelatedPage[] {
 export function getAnchorText(pathname: string, index: number = 0): string {
   const variation = anchorTextVariations[pathname];
   if (!variation) return '';
-  
+
   const allVariations = [variation.primary, ...variation.variations];
   return allVariations[index % allVariations.length];
 }
@@ -268,7 +417,7 @@ export function getAnchorText(pathname: string, index: number = 0): string {
 export function getAllAnchorTexts(pathname: string): string[] {
   const variation = anchorTextVariations[pathname];
   if (!variation) return [];
-  
+
   return [variation.primary, ...variation.variations];
 }
 

@@ -43,6 +43,32 @@ const pages = [
     lastmod: LASTMOD_STATIC
   },
 
+  // ===== CITY LANDINGPAGES (Priority: 0.7) =====
+  {
+    url: '/stromvergleich-essen',
+    priority: '0.7',
+    changefreq: 'weekly',
+    lastmod: LASTMOD_STATIC
+  },
+  {
+    url: '/stromvergleich-koeln',
+    priority: '0.7',
+    changefreq: 'weekly',
+    lastmod: LASTMOD_STATIC
+  },
+  {
+    url: '/stromvergleich-duesseldorf',
+    priority: '0.7',
+    changefreq: 'weekly',
+    lastmod: LASTMOD_STATIC
+  },
+  {
+    url: '/stromvergleich-dortmund',
+    priority: '0.7',
+    changefreq: 'weekly',
+    lastmod: LASTMOD_STATIC
+  },
+
   // ===== BUSINESS PAGES (Priority: 0.8) =====
   {
     url: '/gewerbestrom',

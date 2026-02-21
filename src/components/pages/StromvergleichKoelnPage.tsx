@@ -96,7 +96,7 @@ export default function StromvergleichKoelnPage() {
           name: 'Wie lange dauert ein Stromwechsel in Köln?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Ein Stromwechsel dauert in der Regel 4-6 Wochen. Dies ist die gesetzliche Kündigungsfrist. Während dieser Zeit wird Ihre Stromversorgung nicht unterbrochen. Der neue Anbieter kümmert sich um alle notwendigen Formalitäten.'
+            text: 'Ein Stromwechsel dauert in der Regel einige Wochen. Das hängt vor allem von der Kündigungsfrist Ihres aktuellen Vertrags ab. Während dieser Zeit wird Ihre Stromversorgung nicht unterbrochen.'
           }
         },
         {
@@ -112,7 +112,7 @@ export default function StromvergleichKoelnPage() {
           name: 'Welche Daten benötige ich für einen Stromwechsel in Köln?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Sie benötigen Ihre Postleitzahl (z.B. 50667 für die Kölner Innenstadt), Ihren jährlichen Stromverbrauch (in kWh) und optional Ihre Zählernummer. Den Stromverbrauch finden Sie auf Ihrer letzten Stromrechnung. Mit diesen Informationen können wir Ihnen die besten Tarife anzeigen.'
+            text: 'Sie benötigen Ihre Postleitzahl (z.B. 50667 für die Kölner Innenstadt), Ihren jährlichen Stromverbrauch (in kWh) und optional Ihre Zählernummer. Den Stromverbrauch finden Sie auf Ihrer letzten Stromrechnung. Mit diesen Informationen können wir Ihnen passende Tarife anzeigen.'
           }
         },
         {
@@ -120,7 +120,7 @@ export default function StromvergleichKoelnPage() {
           name: 'Wie viel kann ich durch einen Stromwechsel in Köln sparen?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Die Einsparungen variieren je nach Ihrem Verbrauch und Ihrer aktuellen Versorgung. Im Durchschnitt sparen Kölner Haushalte 200-400 Euro pro Jahr durch einen Wechsel zu einem günstigeren Anbieter. Mit unserem Vergleichsrechner sehen Sie sofort, wie viel Sie sparen können.'
+            text: 'Das hängt von Ihrem Verbrauch, Ihrem aktuellen Tarif und den verfügbaren Angeboten ab. Ein Vergleich lohnt sich häufig, weil Grundversorgung und alte Tarife oft teurer sind als aktuelle Angebote.'
           }
         }
       ]
@@ -194,11 +194,11 @@ export default function StromvergleichKoelnPage() {
   return (
     <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
-        title="Stromvergleich Köln 2026 | Günstige Tarife für Kölner Haushalte"
-        description="Stromvergleich für Köln – Tarife vergleichen & bis zu 30 % sparen. Kostenloser Stromtarif-Rechner für Kölner Haushalte."
+        title="Stromvergleich Köln | Stromtarife vergleichen & sparen"
+        description="Stromtarife in Köln vergleichen: passende Angebote finden, Kosten senken und einfach wechseln. Kostenlos und unabhängig."
         keywords="Stromvergleich Köln, Stromtarife Köln, Stromanbieter Köln, Stromwechsel Köln"
-        ogTitle="Stromvergleich Köln 2026 | Günstige Tarife für Kölner Haushalte"
-        ogDescription="Stromvergleich für Köln – Tarife vergleichen & bis zu 30 % sparen. Kostenloser Stromtarif-Rechner für Kölner Haushalte."
+        ogTitle="Stromvergleich Köln | Stromtarife vergleichen & sparen"
+        ogDescription="Stromtarife in Köln vergleichen, sparen und einfach wechseln. Kostenlos und unabhängig."
       />
       <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />
@@ -217,7 +217,7 @@ export default function StromvergleichKoelnPage() {
               Stromvergleich Köln: Günstige Tarife für Kölner Haushalte
             </h1>
             <p className="font-paragraph text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
-              Finden Sie den günstigsten Stromtarif in Köln. Kostenlos, unabhängig und in wenigen Minuten.
+              Finden Sie passende Stromtarife in Köln. Kostenlos, unabhängig und in wenigen Minuten.
             </p>
             <div className="flex flex-col gap-4">
               <Button
@@ -412,7 +412,7 @@ export default function StromvergleichKoelnPage() {
               <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Stromvergleich für Köln</h2>
               
               <p className="font-paragraph text-lg text-gray-700 mb-6">
-                Mit unserem Stromvergleich finden Sie in wenigen Minuten den günstigsten Stromtarif für Ihren Haushalt in Köln. Der Vergleich ist völlig kostenlos und unverbindlich – Sie geben nur Ihre Postleitzahl und Ihren Stromverbrauch ein und erhalten sofort alle verfügbaren Tarife übersichtlich sortiert. Sparen Sie durchschnittlich 200–400 Euro pro Jahr durch einen Wechsel zu einem besseren Anbieter.
+                Mit unserem Stromvergleich finden Sie in wenigen Minuten passende Stromtarife für Ihren Haushalt in Köln. Der Vergleich ist kostenlos und unverbindlich – Sie geben Ihre Postleitzahl und optional Ihren Stromverbrauch ein und erhalten verfügbare Tarife übersichtlich sortiert. Je nach Tarif, Verbrauch und Ausgangssituation können durch einen Wechsel spürbare Einsparungen möglich sein.
               </p>
             </div>
 
@@ -492,13 +492,13 @@ export default function StromvergleichKoelnPage() {
             <div>
               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Stromvergleich speziell für Köln</h3>
               <p className="font-paragraph text-gray-700 mb-4">
-                Köln ist mit über 1 Million Einwohnern eine der größten Städte Deutschlands und hat eine vielfältige Strommarkt-Landschaft. Die Strompreise variieren je nach Postleitzahl und Netzbetreiber – in der Innenstadt (50667) können die Tarife anders ausfallen als in Köln-Ehrenfeld (50823) oder Köln-Porz (51145). Unser Vergleich berücksichtigt diese regionalen Unterschiede und zeigt Ihnen die besten Tarife speziell für Ihren Standort in Köln.
+                Köln ist mit über 1 Million Einwohnern eine der größten Städte Deutschlands und hat eine vielfältige Strommarkt-Landschaft. Die Strompreise variieren je nach Postleitzahl und Netzbetreiber – in der Innenstadt (50667) können die Tarife anders ausfallen als in Köln-Ehrenfeld (50823) oder Köln-Porz (51145). Unser Vergleich berücksichtigt diese regionalen Unterschiede und zeigt Ihnen passende Tarife für Ihren Standort in Köln.
               </p>
             </div>
 
             <div className="bg-secondary/10 border-l-4 border-secondary p-6 rounded">
               <p className="font-paragraph text-gray-700 italic">
-                Jetzt kostenlos vergleichen und sparen Sie ab sofort bei Ihren Stromkosten in Köln!
+                Jetzt kostenlos vergleichen und bei Ihrem Stromtarif in Köln optimieren.
               </p>
             </div>
           </div>
@@ -517,7 +517,7 @@ export default function StromvergleichKoelnPage() {
               </p>
 
               <p className="font-paragraph text-lg text-gray-700 mb-6">
-                Die Grundversorgungstarife von RheinEnergie setzen sich aus mehreren Komponenten zusammen: dem Arbeitspreis (€/kWh), der Grundgebühr (€/Monat) und den Netzentgelte. Diese Tarife sind oft höher als Sondertarife bei anderen Anbietern, weshalb ein Wechsel für viele Kölner Haushalte sinnvoll ist. Mit unserem Vergleichsrechner können Sie schnell sehen, wie viel Sie durch einen Wechsel sparen können.
+                Die Grundversorgungstarife von RheinEnergie setzen sich aus mehreren Komponenten zusammen: dem Arbeitspreis (€/kWh), der Grundgebühr (€/Monat) und den Netzentgelte. Diese Tarife sind oft höher als Sondertarife bei anderen Anbietern, weshalb ein Wechsel für viele Kölner Haushalte sinnvoll ist. Mit unserem Vergleichsrechner können Sie sehen, welche Tarife in Ihrem Netzgebiet verfügbar sind.
               </p>
             </div>
 
@@ -534,10 +534,10 @@ export default function StromvergleichKoelnPage() {
             <div>
               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Umzugsszenarien in Köln</h3>
               <p className="font-paragraph text-gray-700 mb-4">
-                Köln ist eine dynamische Stadt mit vielen Menschen, die umziehen. Wenn Sie in Köln umziehen, sollten Sie Ihren Stromvertrag rechtzeitig (mindestens 4 Wochen vorher) kündigen oder einen neuen Tarif für die neue Adresse abschließen. Nutzen Sie unseren Vergleichsrechner mit Ihrer neuen Postleitzahl, um die besten Tarife für Ihre neue Wohnung zu finden.
+                Köln ist eine dynamische Stadt mit vielen Menschen, die umziehen. Wenn Sie in Köln umziehen, sollten Sie Ihren Stromvertrag rechtzeitig (mindestens 4 Wochen vorher) kündigen oder einen neuen Tarif für die neue Adresse abschließen. Nutzen Sie unseren Vergleichsrechner mit Ihrer neuen Postleitzahl, um passende Tarife zu finden.
               </p>
               <p className="font-paragraph text-gray-700 mb-4">
-                Wichtig: Die Stromversorgung wird bei einem Umzug nicht unterbrochen. Wenn Sie keinen neuen Vertrag abschließen, werden Sie automatisch von RheinEnergie in der Grundversorgung beliefert. Dies ist zwar sicher, aber oft teurer als ein Sondertarif. Daher empfehlen wir, rechtzeitig einen neuen Tarif zu suchen. Besonderheit in Köln: Je nach Stadtteil (z.B. Köln-Porz, Köln-Mülheim) können unterschiedliche Netzbetreiber zuständig sein, was zu unterschiedlichen Tarifoptionen führt.
+                Wichtig: Die Stromversorgung wird bei einem Umzug nicht unterbrochen. Wenn Sie keinen neuen Vertrag abschließen, werden Sie automatisch von RheinEnergie in der Grundversorgung beliefert. Dies ist zwar sicher, aber oft teurer als ein Sondertarif. Besonderheit in Köln: Je nach Stadtteil (z.B. Köln-Porz, Köln-Mülheim) können unterschiedliche Netzbetreiber zuständig sein, was zu unterschiedlichen Tarifoptionen führt.
               </p>
             </div>
 
@@ -570,7 +570,7 @@ export default function StromvergleichKoelnPage() {
             <div className="bg-blue-50 border-l-4 border-primary p-6 rounded">
               <h4 className="font-heading font-bold text-primary mb-3">Tipp für Kölner Haushalte:</h4>
               <p className="font-paragraph text-gray-700">
-                Nutzen Sie unseren Vergleichsrechner regelmäßig – mindestens einmal pro Jahr. Die Strompreise ändern sich ständig, und durch einen rechtzeitigen Wechsel können Sie hunderte Euro pro Jahr sparen. Besonders nach Preiserhöhungen von RheinEnergie lohnt sich ein Vergleich, da Sie oft ein Sonderkündigungsrecht haben.
+                Prüfen Sie Tarife regelmäßig – besonders wenn Ihr Anbieter Preise anpasst oder Ihr Vertrag ausläuft. So können Sie rechtzeitig reagieren und einen Tarif wählen, der zu Ihrem Verbrauch passt.
               </p>
             </div>
           </div>
@@ -786,10 +786,10 @@ export default function StromvergleichKoelnPage() {
             </h2>
             <div className="space-y-4 font-paragraph text-gray-700 leading-relaxed">
               <p>
-                Bei energievergleich.shop vergleichen Sie Stromtarife völlig transparent und unabhängig. Wir sind nicht an einen Anbieter gebunden und zeigen Ihnen alle verfügbaren Optionen in Ihrer Region – sortiert nach Preis und Vertragsbedingungen. Unser Service ist für Sie kostenlos: Wir verdienen kein Geld mit Ihrem Wechsel, sondern nur durch Provisionen von Anbietern, die Sie selbst gewählt haben.
+                Bei energievergleich.shop vergleichen Sie Stromtarife völlig transparent und unabhängig. Wir sind nicht an einen Anbieter gebunden und zeigen Ihnen verfügbare Optionen in Ihrer Region – sortiert nach Preis und Vertragsbedingungen. Unser Service ist für Sie kostenlos: Wir verdienen kein Geld mit Ihrem Wechsel, sondern nur durch Provisionen von Anbietern, die Sie selbst gewählt haben.
               </p>
               <p>
-                Wir vergleichen nicht nur Preise, sondern auch Laufzeiten, Preisgarantien und Kündigungsfristen. So finden Sie den Tarif, der wirklich zu Ihnen passt – nicht nur der billigste. Alle Informationen auf dieser Seite sind aktuell und wurden zuletzt im Februar 2026 überprüft.
+                Wir vergleichen nicht nur Preise, sondern auch Laufzeiten, Preisgarantien und Kündigungsfristen. So finden Sie den Tarif, der wirklich zu Ihnen passt – nicht nur der billigste. Tarife und Konditionen können sich ändern; im Vergleich sehen Sie die jeweils verfügbaren Angebote.
               </p>
               <p>
                 Mehr über unsere Vergleichsmethode erfahren Sie unter{' '}
@@ -842,7 +842,7 @@ export default function StromvergleichKoelnPage() {
               },
               {
                 q: 'Wie lange dauert ein Stromwechsel in Köln?',
-                a: 'In der Regel 4-6 Wochen. Ihre Stromversorgung wird nicht unterbrochen. Der neue Anbieter kümmert sich um alle notwendigen Schritte.'
+                a: 'In der Regel einige Wochen – abhängig von Kündigungsfrist und Vertragslaufzeit. Ihre Stromversorgung wird nicht unterbrochen.'
               },
               {
                 q: 'Kann ich während eines Wechsels ohne Strom sein?',
@@ -854,7 +854,7 @@ export default function StromvergleichKoelnPage() {
               },
               {
                 q: 'Wie viel kann ich durch einen Stromwechsel in Köln sparen?',
-                a: 'Die Einsparungen variieren je nach Ihrem Verbrauch. Im Durchschnitt sparen Kölner Haushalte 200-400 Euro pro Jahr durch einen Wechsel zu einem günstigeren Anbieter.'
+                a: 'Das hängt von Verbrauch, aktuellem Tarif und verfügbaren Angeboten ab. Ein Vergleich lohnt sich häufig – besonders bei alten Tarifen oder Grundversorgung.'
               }
             ].map((item, index) => (
               <Accordion key={index} type="single" collapsible className="bg-white rounded-lg border">
