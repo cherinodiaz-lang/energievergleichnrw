@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build / Lint / Typecheck
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Run project scripts (auto-detect)
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const cp = require('child_process');
+
+          const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+          const scripts = pkg.scripts || {};
+
+          const preferred = ['lint', 'typecheck', 'check', 'test', 'build'];
+          const present = preferred.filter((k) => scripts[k]);
+
+          if (!present.length) {
+            console.log('No standard scripts found (lint/typecheck/check/test/build). Skipping.');
+            process.exit(0);
+          }
+
+          const cmd = present.map((k) => `npm run -s ${k}`).join(' && ');
+          console.log('Running:', cmd);
+          cp.execSync(cmd, { stdio: 'inherit' });
+          NODE
