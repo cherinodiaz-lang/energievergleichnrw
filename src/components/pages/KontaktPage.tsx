@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Clock } from 'lucide-react';
+import { Mail, Phone, Send, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -29,16 +29,16 @@ export default function KontaktPage() {
   });
   const [showDialog, setShowDialog] = useState(false);
 
+  const telHref = `tel:${CONTACT.phone.replace(/\s+/g, '')}`;
+  const mailtoHref = `mailto:${CONTACT.email}`;
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Track CTA click
     trackCTAClick('Kontaktformular');
-    // Show dialog instead of alert
     setShowDialog(true);
   };
 
   const handleDialogSuccess = () => {
-    // Reset form after successful submission
     setFormData({ name: '', email: '', phone: '', subject: '', message: '', type: 'allgemein' });
   };
 
@@ -94,8 +94,8 @@ export default function KontaktPage() {
                   <p className="font-paragraph text-gray-600 mb-2">
                     Schreiben Sie uns eine E-Mail und wir antworten schnellstmöglich.
                   </p>
-                  <a href="mailto:support@energievergleich.nrw" className="font-bold text-primary hover:underline">
-                    support@energievergleich.nrw
+                  <a href={mailtoHref} className="font-bold text-primary hover:underline">
+                    {CONTACT.email}
                   </a>
                 </CardContent>
               </Card>
@@ -118,8 +118,8 @@ export default function KontaktPage() {
                   <p className="font-paragraph text-gray-600 mb-2">
                     Rufen Sie uns an und sprechen Sie direkt mit unseren Experten.
                   </p>
-                  <a href="tel:+491567855600" className="font-bold text-primary hover:underline">
-                    +49 156 78556004
+                  <a href={telHref} className="font-bold text-primary hover:underline">
+                    {CONTACT.phone}
                   </a>
                 </CardContent>
               </Card>
@@ -154,8 +154,12 @@ export default function KontaktPage() {
                     Besuchen Sie uns vor Ort oder kontaktieren Sie uns per Post.
                   </p>
                   <p className="font-paragraph font-semibold text-foreground">
-                    Wasserstr. 48<br />
-                    33378 Rheda-Wiedenbrück
+                    {CONTACT.addressLines.map((line, idx) => (
+                      <React.Fragment key={idx}>
+                        {line}
+                        {idx < CONTACT.addressLines.length - 1 ? <br /> : null}
+                      </React.Fragment>
+                    ))}
                   </p>
                 </CardContent>
               </Card>
@@ -180,7 +184,7 @@ export default function KontaktPage() {
                         <Label htmlFor="name" className="font-paragraph">Name *</Label>
                         <Input
                           id="name"
-                          placeholder=""
+                          placeholder="Ihr Name"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           required
@@ -192,7 +196,7 @@ export default function KontaktPage() {
                         <Input
                           id="email"
                           type="email"
-                          placeholder={CONTACT.email}
+                          placeholder="Ihre E-Mail"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           required
@@ -207,7 +211,7 @@ export default function KontaktPage() {
                         <Input
                           id="phone"
                           type="tel"
-                          placeholder="+49 156 78556004"
+                          placeholder="Ihre Telefonnummer"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           className="font-paragraph w-full"
@@ -264,7 +268,6 @@ export default function KontaktPage() {
                 </CardContent>
               </Card>
 
-              {/* Form Submission Dialog */}
               <FormSubmissionDialog
                 isOpen={showDialog}
                 onClose={() => setShowDialog(false)}
@@ -315,7 +318,6 @@ export default function KontaktPage() {
         </div>
       </section>
 
-      {/* Passende Ratgeber */}
       <PassendeRatgeber moneyPageId="kontakt" limit={4} />
 
       <Footer />
