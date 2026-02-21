@@ -40,6 +40,9 @@ const StromvergleichEssenPage = lazy(() => import('@/components/pages/Stromvergl
 const StromvergleichBochumPage = lazy(() => import('@/components/pages/StromvergleichBochumPage').catch(() => ({ default: LazyErrorFallback })));
 const StromvergleichDuisburgPage = lazy(() => import('@/components/pages/StromvergleichDuisburgPage').catch(() => ({ default: LazyErrorFallback })));
 const StromvergleichWuppertalPage = lazy(() => import('@/components/pages/StromvergleichWuppertalPage').catch(() => ({ default: LazyErrorFallback })));
+const StromvergleichBielefeldPage = lazy(() => import('@/components/pages/StromvergleichBielefeldPage').catch(() => ({ default: LazyErrorFallback })));
+const StromvergleichBonnPage = lazy(() => import('@/components/pages/StromvergleichBonnPage').catch(() => ({ default: LazyErrorFallback })));
+const StromvergleichMuensterPage = lazy(() => import('@/components/pages/StromvergleichMuensterPage').catch(() => ({ default: LazyErrorFallback })));
 const StromvergleichDuesseldorfPage = lazy(() => import('@/components/pages/StromvergleichDuesseldorfPage').catch(() => ({ default: LazyErrorFallback })));
 const StromvergleichDortmundPage = lazy(() => import('@/components/pages/StromvergleichDortmundPage').catch(() => ({ default: LazyErrorFallback })));
 const GasvergleichNrwPage = lazy(() => import('@/components/pages/GasvergleichNrwPage').catch(() => ({ default: LazyErrorFallback })));
@@ -189,6 +192,27 @@ const router = createBrowserRouter([
         element: <Suspense fallback={<LazyFallback />}><StromvergleichWuppertalPage /></Suspense>,
         routeMetadata: {
           pageIdentifier: 'stromvergleich-wuppertal',
+        },
+      },
+      {
+        path: "stromvergleich-bielefeld",
+        element: <Suspense fallback={<LazyFallback />}><StromvergleichBielefeldPage /></Suspense>,
+        routeMetadata: {
+          pageIdentifier: 'stromvergleich-bielefeld',
+        },
+      },
+      {
+        path: "stromvergleich-bonn",
+        element: <Suspense fallback={<LazyFallback />}><StromvergleichBonnPage /></Suspense>,
+        routeMetadata: {
+          pageIdentifier: 'stromvergleich-bonn',
+        },
+      },
+      {
+        path: "stromvergleich-muenster",
+        element: <Suspense fallback={<LazyFallback />}><StromvergleichMuensterPage /></Suspense>,
+        routeMetadata: {
+          pageIdentifier: 'stromvergleich-muenster',
         },
       },
       {
