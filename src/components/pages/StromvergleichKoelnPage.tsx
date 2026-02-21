@@ -274,7 +274,7 @@ export default function StromvergleichKoelnPage() {
                       <Label htmlFor="name" className="font-paragraph">Name *</Label>
                       <Input
                         id="name"
-                        placeholder="Max Mustermann"
+                        placeholder=""
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         required

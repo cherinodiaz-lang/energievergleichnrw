@@ -531,7 +531,7 @@ export default function GewerbestromPage() {
                       <Input
                         id="contact-person"
                         type="text"
-                        placeholder="Max Mustermann"
+                        placeholder=""
                         value={contactPerson}
                         onChange={(e) => setContactPerson(e.target.value)}
                         required

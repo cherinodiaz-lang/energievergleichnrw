@@ -20,6 +20,7 @@ import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
 import { trackMethodikClick } from '@/services/form-submission';
 import { getRelatedPages } from '@/lib/internal-linking';
+import { CONTACT } from '@/config/contact';
 
 export default function PhotovoltaikNrwPage() {
   const [formData, setFormData] = useState({

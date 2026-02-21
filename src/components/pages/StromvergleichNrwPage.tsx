@@ -23,6 +23,7 @@ import { validateFormFields, FORM_CONFIGS } from '@/lib/form-validation';
 import FormSubmissionDialog from '@/components/FormSubmissionDialog';
 import { trackMethodikClick } from '@/services/form-submission';
 import { getRelatedPages } from '@/lib/internal-linking';
+import { CONTACT } from '@/config/contact';
 
 export default function StromvergleichNrwPage() {
   const navigate = useNavigate();
@@ -284,7 +285,7 @@ export default function StromvergleichNrwPage() {
                       <Label htmlFor="name" className="font-paragraph">Name *</Label>
                       <Input
                         id="name"
-                        placeholder="Max Mustermann"
+                        placeholder=""
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         required

@@ -25,6 +25,7 @@ import { Image } from '@/components/ui/image';
 import { trackCTAClick, trackMethodikClick } from '@/services/form-submission';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
+import { CONTACT } from '@/config/contact';
 
 // --- Utility Components ---
 
@@ -963,7 +964,7 @@ export default function HomePage() {
                             <Label htmlFor="pv-strasse" className="text-xs sm:text-sm font-medium">Straße</Label>
                             <Input
                               id="pv-strasse"
-                              placeholder="Musterstraße"
+                              placeholder="Ihre Straße"
                               value={pvStrasse}
                               onChange={(e) => setPvStrasse(e.target.value)}
                               className="h-9 sm:h-10 bg-gray-50 border-gray-200 text-xs sm:text-sm"
@@ -1020,7 +1021,7 @@ export default function HomePage() {
                           <Label htmlFor="pv-name" className="text-xs sm:text-sm font-medium">Name</Label>
                           <Input
                             id="pv-name"
-                            placeholder="Max Mustermann"
+                            placeholder=""
                             value={pvName}
                             onChange={(e) => setPvName(e.target.value)}
                             required
@@ -1032,7 +1033,7 @@ export default function HomePage() {
                           <Input
                             id="pv-email"
                             type="email"
-                            placeholder="max@beispiel.de"
+                            placeholder={CONTACT.email}
                             value={pvEmail}
                             onChange={(e) => setPvEmail(e.target.value)}
                             required
@@ -1254,7 +1255,7 @@ export default function HomePage() {
                         <Label htmlFor="contact-name" className="text-sm font-medium">Name</Label>
                         <Input
                           id="contact-name"
-                          placeholder="Max Mustermann"
+                          placeholder=""
                           value={contactName}
                           onChange={(e) => setContactName(e.target.value)}
                           required
@@ -1266,7 +1267,7 @@ export default function HomePage() {
                         <Input
                           id="contact-email"
                           type="email"
-                          placeholder="max@beispiel.de"
+                          placeholder={CONTACT.email}
                           value={contactEmail}
                           onChange={(e) => setContactEmail(e.target.value)}
                           required

@@ -285,7 +285,7 @@ export default function GasvergleichNrwPage() {
                         <Label htmlFor="name" className="font-paragraph">Name *</Label>
                         <Input
                           id="name"
-                          placeholder="Max Mustermann"
+                          placeholder=""
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           required
@@ -297,7 +297,7 @@ export default function GasvergleichNrwPage() {
                         <Input
                           id="email"
                           type="email"
-                          placeholder="max@beispiel.de"
+                          placeholder=""
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           required
