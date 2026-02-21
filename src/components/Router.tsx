@@ -1,5 +1,5 @@
 import { MemberProvider } from '@/integrations';
-import { createBrowserRouter, RouterProvider, Navigate, Outlet, useLocation } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Navigate, Outlet, useLocation, Link } from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
 import { ScrollToTop } from '@/lib/scroll-to-top';
 import { SEO_CONFIG } from '@/lib/seo-config';
@@ -106,6 +106,19 @@ const CITY_SEO_BY_PATH = {
 
 type CitySEOKey = (typeof CITY_SEO_BY_PATH)[keyof typeof CITY_SEO_BY_PATH];
 
+const CITY_LINKS: Array<{ path: string; label: string }> = [
+  { path: '/stromvergleich-essen', label: 'Stromvergleich Essen' },
+  { path: '/stromvergleich-bochum', label: 'Stromvergleich Bochum' },
+  { path: '/stromvergleich-duisburg', label: 'Stromvergleich Duisburg' },
+  { path: '/stromvergleich-koeln', label: 'Stromvergleich Köln' },
+  { path: '/stromvergleich-duesseldorf', label: 'Stromvergleich Düsseldorf' },
+  { path: '/stromvergleich-dortmund', label: 'Stromvergleich Dortmund' },
+  { path: '/stromvergleich-wuppertal', label: 'Stromvergleich Wuppertal' },
+  { path: '/stromvergleich-bielefeld', label: 'Stromvergleich Bielefeld' },
+  { path: '/stromvergleich-bonn', label: 'Stromvergleich Bonn' },
+  { path: '/stromvergleich-muenster', label: 'Stromvergleich Münster' },
+];
+
 // Layout component that includes ScrollToTop and SEO components
 function Layout() {
   const location = useLocation();
@@ -124,6 +137,8 @@ function Layout() {
 
   const cityKey = (CITY_SEO_BY_PATH as Record<string, CitySEOKey | undefined>)[location.pathname];
   const citySeo = cityKey ? getPageSEO(cityKey) : null;
+
+  const relatedCityLinks = CITY_LINKS.filter((c) => c.path !== location.pathname).slice(0, 8);
 
   return (
     <div className="min-w-0 overflow-x-hidden ox-hidden">
@@ -150,6 +165,36 @@ function Layout() {
       <Suspense fallback={<LazyFallback />}>
         <Outlet />
       </Suspense>
+
+      {citySeo ? (
+        <section className="bg-white">
+          <div className="mx-auto w-full max-w-5xl px-4 pb-12">
+            <div className="rounded-xl border border-gray-200 bg-gray-50 p-6">
+              <h2 className="text-lg font-semibold text-gray-900">Weitere Städte in NRW</h2>
+              <p className="mt-2 text-sm text-gray-700">
+                Interne Verlinkung hilft, die passenden Seiten schneller zu finden – und stärkt die thematische Struktur.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <Link
+                  to={ROUTES.stromvergleich}
+                  className="rounded-full bg-white px-3 py-1 text-sm font-medium text-gray-900 shadow-sm ring-1 ring-gray-200 hover:bg-gray-100"
+                >
+                  Stromvergleich NRW
+                </Link>
+                {relatedCityLinks.map((c) => (
+                  <Link
+                    key={c.path}
+                    to={c.path}
+                    className="rounded-full bg-white px-3 py-1 text-sm font-medium text-gray-900 shadow-sm ring-1 ring-gray-200 hover:bg-gray-100"
+                  >
+                    {c.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : null}
     </div>
   );
 }
