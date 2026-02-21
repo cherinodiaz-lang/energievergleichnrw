@@ -7,16 +7,12 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import SEOHead from '@/components/SEOHead';
-import Breadcrumb from '@/components/Breadcrumb';
-import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import RelatedPages from '@/components/RelatedPages';
 import { ROUTES } from '@/lib/routes';
 import { validateFormFields, FORM_CONFIGS } from '@/lib/form-validation';
 import { getRelatedPages } from '@/lib/internal-linking';
+import StromvergleichCityLayout from '@/components/pages/stromvergleich/StromvergleichCityLayout';
 
 export default function StromvergleichDuisburgPage() {
   const [formData, setFormData] = useState({
@@ -40,26 +36,26 @@ export default function StromvergleichDuisburgPage() {
           name: 'Was ist die Grundversorgung in Duisburg?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Die Grundversorgung ist der Tarif, der automatisch gilt, wenn kein anderer Stromvertrag abgeschlossen wurde. Sie bietet Versorgungssicherheit, ist aber nicht immer die günstigste Option.'
-          }
+            text: 'Die Grundversorgung ist der Tarif, der automatisch gilt, wenn kein anderer Stromvertrag abgeschlossen wurde. Sie bietet Versorgungssicherheit, ist aber nicht immer die günstigste Option.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Welche Kündigungsfristen gelten beim Stromwechsel?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Die Kündigungsfrist hängt vom aktuellen Vertrag ab. In der Grundversorgung sind Fristen oft kürzer als bei Sonderverträgen. Prüfen Sie Ihre Vertragsunterlagen.'
-          }
+            text: 'Die Kündigungsfrist hängt vom aktuellen Vertrag ab. In der Grundversorgung sind Fristen oft kürzer als bei Sonderverträgen. Prüfen Sie Ihre Vertragsunterlagen.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Welche Angaben brauche ich für den Stromvergleich in Duisburg?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Für einen Vergleich reichen Postleitzahl und Jahresverbrauch (kWh). Optional hilft die Zählernummer bei der späteren Beauftragung.'
-          }
-        }
-      ]
+            text: 'Für einen Vergleich reichen Postleitzahl und Jahresverbrauch (kWh). Optional hilft die Zählernummer bei der späteren Beauftragung.',
+          },
+        },
+      ],
     };
 
     const script = document.createElement('script');
@@ -88,30 +84,20 @@ export default function StromvergleichDuisburgPage() {
     setShowResults(true);
   };
 
-  const breadcrumbItems = [
-    { label: 'Startseite', path: '/' },
-    { label: 'Stromvergleich Duisburg', path: '/stromvergleich-duisburg' },
-  ];
-
-  const breadcrumbSchema = [
-    { name: 'Startseite', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}` },
-    { name: 'Stromvergleich Duisburg', url: `${typeof window !== 'undefined' ? window.location.origin : ''}/stromvergleich-duisburg` },
-  ];
-
   return (
-    <div className="min-h-screen bg-background break-words leading-mobile">
-      <SEOHead
-        title="Stromvergleich Duisburg | Stromtarife vergleichen & einfach wechseln"
-        description="Stromtarife in Duisburg vergleichen: passende Angebote finden, Kosten senken und unkompliziert wechseln. Kostenlos und unverbindlich."
-        keywords="Stromvergleich Duisburg, Stromtarife Duisburg, Stromanbieter Duisburg, Stromwechsel Duisburg"
-        ogTitle="Stromvergleich Duisburg | Stromtarife vergleichen & wechseln"
-        ogDescription="Stromtarife in Duisburg vergleichen, passende Angebote finden und einfach wechseln."
-      />
-
-      <BreadcrumbSchema items={breadcrumbSchema} />
-      <Header />
-      <Breadcrumb items={breadcrumbItems} />
-
+    <StromvergleichCityLayout
+      seo={{
+        title: 'Stromvergleich Duisburg | Stromtarife vergleichen & einfach wechseln',
+        description:
+          'Stromtarife in Duisburg vergleichen: passende Angebote finden, Kosten senken und unkompliziert wechseln. Kostenlos und unverbindlich.',
+        keywords: 'Stromvergleich Duisburg, Stromtarife Duisburg, Stromanbieter Duisburg, Stromwechsel Duisburg',
+        ogTitle: 'Stromvergleich Duisburg | Stromtarife vergleichen & wechseln',
+        ogDescription: 'Stromtarife in Duisburg vergleichen, passende Angebote finden und einfach wechseln.',
+      }}
+      breadcrumbLabel="Stromvergleich Duisburg"
+      breadcrumbPath="/stromvergleich-duisburg"
+      breadcrumbAbsoluteUrl="https://www.energievergleich.shop/stromvergleich-duisburg"
+    >
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -148,7 +134,9 @@ export default function StromvergleichDuisburgPage() {
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <Label htmlFor="plz" className="font-paragraph">Postleitzahl *</Label>
+                        <Label htmlFor="plz" className="font-paragraph">
+                          Postleitzahl *
+                        </Label>
                         <Input
                           id="plz"
                           placeholder="z.B. 47051"
@@ -157,12 +145,12 @@ export default function StromvergleichDuisburgPage() {
                           required
                           className="font-paragraph w-full"
                         />
-                        {formErrors.postleitzahl && (
-                          <p className="text-sm text-red-600">{formErrors.postleitzahl}</p>
-                        )}
+                        {formErrors.postleitzahl && <p className="text-sm text-red-600">{formErrors.postleitzahl}</p>}
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="verbrauch" className="font-paragraph">Jahresverbrauch (kWh) <span className="text-gray-400 text-sm">(optional)</span></Label>
+                        <Label htmlFor="verbrauch" className="font-paragraph">
+                          Jahresverbrauch (kWh) <span className="text-gray-400 text-sm">(optional)</span>
+                        </Label>
                         <Input
                           id="verbrauch"
                           type="number"
@@ -175,7 +163,9 @@ export default function StromvergleichDuisburgPage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="name" className="font-paragraph">Name *</Label>
+                      <Label htmlFor="name" className="font-paragraph">
+                        Name *
+                      </Label>
                       <Input
                         id="name"
                         value={formData.name}
@@ -183,12 +173,13 @@ export default function StromvergleichDuisburgPage() {
                         required
                         className="font-paragraph w-full"
                       />
-                      {formErrors.name && (
-                        <p className="text-sm text-red-600">{formErrors.name}</p>
-                      )}
+                      {formErrors.name && <p className="text-sm text-red-600">{formErrors.name}</p>}
                     </div>
 
-                    <Button type="submit" className="w-full sm:w-auto bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 font-bold text-lg rounded-lg">
+                    <Button
+                      type="submit"
+                      className="w-full sm:w-auto bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 font-bold text-lg rounded-lg"
+                    >
                       <Send className="w-5 h-5 mr-2" />
                       Tarife vergleichen
                     </Button>
@@ -207,12 +198,12 @@ export default function StromvergleichDuisburgPage() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                     {[
-                      { name: 'Tarif Option A', pricePerKwh: 0.28, baseFee: 12.50 },
-                      { name: 'Tarif Option B', pricePerKwh: 0.26, baseFee: 14.00 },
-                      { name: 'Tarif Option C', pricePerKwh: 0.24, baseFee: 16.50 },
+                      { name: 'Tarif Option A', pricePerKwh: 0.28, baseFee: 12.5 },
+                      { name: 'Tarif Option B', pricePerKwh: 0.26, baseFee: 14.0 },
+                      { name: 'Tarif Option C', pricePerKwh: 0.24, baseFee: 16.5 },
                     ].map((tariff, index) => {
                       const monthlyConsumption = calculatedConsumption / 12;
-                      const monthlyPrice = (monthlyConsumption * tariff.pricePerKwh) + tariff.baseFee;
+                      const monthlyPrice = monthlyConsumption * tariff.pricePerKwh + tariff.baseFee;
                       const yearlyPrice = monthlyPrice * 12;
 
                       return (
@@ -295,25 +286,23 @@ export default function StromvergleichDuisburgPage() {
               {[
                 {
                   q: 'Was ist die Grundversorgung?',
-                  a: 'Die Grundversorgung greift automatisch ohne aktiven Vertrag. Ein Vergleich lohnt sich häufig, weil Sondertarife bessere Konditionen haben können.'
+                  a: 'Die Grundversorgung greift automatisch ohne aktiven Vertrag. Ein Vergleich lohnt sich häufig, weil Sondertarife bessere Konditionen haben können.',
                 },
                 {
                   q: 'Wie finde ich meinen Verbrauch?',
-                  a: 'Den Jahresverbrauch finden Sie auf Ihrer letzten Stromrechnung (in kWh).'
+                  a: 'Den Jahresverbrauch finden Sie auf Ihrer letzten Stromrechnung (in kWh).',
                 },
                 {
                   q: 'Kann es zu einer Unterbrechung kommen?',
-                  a: 'Nein. Die Versorgung bleibt auch während eines Anbieterwechsels durchgehend gesichert.'
-                }
+                  a: 'Nein. Die Versorgung bleibt auch während eines Anbieterwechsels durchgehend gesichert.',
+                },
               ].map((item, index) => (
                 <Accordion key={index} type="single" collapsible className="bg-white rounded-lg border">
                   <AccordionItem value={`item-${index}`} className="border-none">
                     <AccordionTrigger className="font-heading font-bold text-lg hover:text-primary px-6 py-4">
                       {item.q}
                     </AccordionTrigger>
-                    <AccordionContent className="font-paragraph text-gray-600 px-6 pb-4">
-                      {item.a}
-                    </AccordionContent>
+                    <AccordionContent className="font-paragraph text-gray-600 px-6 pb-4">{item.a}</AccordionContent>
                   </AccordionItem>
                 </Accordion>
               ))}
@@ -324,8 +313,6 @@ export default function StromvergleichDuisburgPage() {
 
       <PassendeRatgeber moneyPageId="stromvergleich-duisburg" limit={4} />
       <RelatedPages pages={getRelatedPages('/stromvergleich-duisburg')} />
-
-      <Footer />
-    </div>
+    </StromvergleichCityLayout>
   );
 }
