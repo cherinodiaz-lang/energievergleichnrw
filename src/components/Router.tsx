@@ -39,6 +39,7 @@ const StromvergleichKoelnPage = lazy(() => import('@/components/pages/Stromvergl
 const StromvergleichEssenPage = lazy(() => import('@/components/pages/StromvergleichEssenPage').catch(() => ({ default: LazyErrorFallback })));
 const StromvergleichBochumPage = lazy(() => import('@/components/pages/StromvergleichBochumPage').catch(() => ({ default: LazyErrorFallback })));
 const StromvergleichDuisburgPage = lazy(() => import('@/components/pages/StromvergleichDuisburgPage').catch(() => ({ default: LazyErrorFallback })));
+const StromvergleichWuppertalPage = lazy(() => import('@/components/pages/StromvergleichWuppertalPage').catch(() => ({ default: LazyErrorFallback })));
 const StromvergleichDuesseldorfPage = lazy(() => import('@/components/pages/StromvergleichDuesseldorfPage').catch(() => ({ default: LazyErrorFallback })));
 const StromvergleichDortmundPage = lazy(() => import('@/components/pages/StromvergleichDortmundPage').catch(() => ({ default: LazyErrorFallback })));
 const GasvergleichNrwPage = lazy(() => import('@/components/pages/GasvergleichNrwPage').catch(() => ({ default: LazyErrorFallback })));
@@ -181,6 +182,13 @@ const router = createBrowserRouter([
         element: <Suspense fallback={<LazyFallback />}><StromvergleichDuisburgPage /></Suspense>,
         routeMetadata: {
           pageIdentifier: 'stromvergleich-duisburg',
+        },
+      },
+      {
+        path: "stromvergleich-wuppertal",
+        element: <Suspense fallback={<LazyFallback />}><StromvergleichWuppertalPage /></Suspense>,
+        routeMetadata: {
+          pageIdentifier: 'stromvergleich-wuppertal',
         },
       },
       {
