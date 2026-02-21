@@ -7,6 +7,7 @@ export type RouteKey =
   | "photovoltaik"
   | "gewerbestrom"
   | "gewerbegas"
+  | "stromvergleichEssen"
   | "ratgeberHub"
   | "ratgeberStrom"
   | "ratgeberGas"
@@ -41,6 +42,7 @@ export const ROUTES: Record<RouteKey, string> = {
   photovoltaik: "/photovoltaik-nrw",
   gewerbestrom: "/gewerbestrom",
   gewerbegas: "/gewerbegas",
+  stromvergleichEssen: "/stromvergleich-essen",
   ratgeberHub: "/ratgeber",
   ratgeberStrom: "/ratgeber/strom",
   ratgeberGas: "/ratgeber/gas",
