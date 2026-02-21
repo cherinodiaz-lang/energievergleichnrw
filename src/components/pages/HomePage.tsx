@@ -333,6 +333,10 @@ export default function HomePage() {
                 <Button
                   onClick={() => {
                     trackCTAClick('Jetzt vergleichen');
+                    // Reset calculator states to show input form
+                    setShowStromResults(false);
+                    setShowGasResults(false);
+                    setShowKombiResults(false);
                     scrollToSection('vergleichsrechner');
                   }}
                   className="bg-secondary text-secondary-foreground hover:bg-secondary/90 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 h-12 sm:h-14 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-bold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
