@@ -38,6 +38,22 @@ export const breadcrumbConfigs: Record<string, BreadcrumbConfig[]> = {
     { label: 'Startseite', path: '/' },
     { label: 'Stromvergleich Duisburg', path: '/stromvergleich-duisburg' },
   ],
+  '/stromvergleich-wuppertal': [
+    { label: 'Startseite', path: '/' },
+    { label: 'Stromvergleich Wuppertal', path: '/stromvergleich-wuppertal' },
+  ],
+  '/stromvergleich-bielefeld': [
+    { label: 'Startseite', path: '/' },
+    { label: 'Stromvergleich Bielefeld', path: '/stromvergleich-bielefeld' },
+  ],
+  '/stromvergleich-bonn': [
+    { label: 'Startseite', path: '/' },
+    { label: 'Stromvergleich Bonn', path: '/stromvergleich-bonn' },
+  ],
+  '/stromvergleich-muenster': [
+    { label: 'Startseite', path: '/' },
+    { label: 'Stromvergleich Münster', path: '/stromvergleich-muenster' },
+  ],
   '/stromvergleich-koeln': [
     { label: 'Startseite', path: '/' },
     { label: 'Stromvergleich Köln', path: '/stromvergleich-koeln' },
@@ -134,6 +150,26 @@ export const relatedPagesConfig: Record<string, RelatedPage[]> = {
       title: 'Stromvergleich Duisburg',
       description: 'Stromtarife in Duisburg vergleichen und passende Angebote finden',
       path: '/stromvergleich-duisburg',
+    },
+    {
+      title: 'Stromvergleich Wuppertal',
+      description: 'Stromtarife in Wuppertal vergleichen und passende Angebote finden',
+      path: '/stromvergleich-wuppertal',
+    },
+    {
+      title: 'Stromvergleich Bielefeld',
+      description: 'Stromtarife in Bielefeld vergleichen und passende Angebote finden',
+      path: '/stromvergleich-bielefeld',
+    },
+    {
+      title: 'Stromvergleich Bonn',
+      description: 'Stromtarife in Bonn vergleichen und passende Angebote finden',
+      path: '/stromvergleich-bonn',
+    },
+    {
+      title: 'Stromvergleich Münster',
+      description: 'Stromtarife in Münster vergleichen und passende Angebote finden',
+      path: '/stromvergleich-muenster',
     },
     {
       title: 'Stromvergleich Köln',
@@ -248,6 +284,11 @@ export const relatedPagesConfig: Record<string, RelatedPage[]> = {
       description: 'Stromtarife für Essen vergleichen',
       path: '/stromvergleich-essen',
     },
+    {
+      title: 'Stromvergleich Bonn',
+      description: 'Stromtarife für Bonn vergleichen',
+      path: '/stromvergleich-bonn',
+    },
   ],
   '/stromvergleich-duesseldorf': [
     {
@@ -266,9 +307,14 @@ export const relatedPagesConfig: Record<string, RelatedPage[]> = {
       path: '/photovoltaik-nrw',
     },
     {
-      title: 'Stromvergleich Essen',
-      description: 'Stromtarife für Essen vergleichen',
-      path: '/stromvergleich-essen',
+      title: 'Stromvergleich Wuppertal',
+      description: 'Stromtarife für Wuppertal vergleichen',
+      path: '/stromvergleich-wuppertal',
+    },
+    {
+      title: 'Stromvergleich Köln',
+      description: 'Stromtarife für Köln vergleichen',
+      path: '/stromvergleich-koeln',
     },
   ],
   '/stromvergleich-dortmund': [
@@ -288,9 +334,122 @@ export const relatedPagesConfig: Record<string, RelatedPage[]> = {
       path: '/photovoltaik-nrw',
     },
     {
-      title: 'Stromvergleich Essen',
-      description: 'Stromtarife für Essen vergleichen',
-      path: '/stromvergleich-essen',
+      title: 'Stromvergleich Bochum',
+      description: 'Stromtarife für Bochum vergleichen',
+      path: '/stromvergleich-bochum',
+    },
+    {
+      title: 'Stromvergleich Münster',
+      description: 'Stromtarife für Münster vergleichen',
+      path: '/stromvergleich-muenster',
+    },
+  ],
+  '/stromvergleich-wuppertal': [
+    {
+      title: 'Stromvergleich NRW',
+      description: 'Stromtarife in NRW vergleichen – inkl. Tipps und Ratgeber',
+      path: '/stromvergleich-nrw',
+    },
+    {
+      title: 'Stromvergleich Düsseldorf',
+      description: 'Stromtarife für Düsseldorf vergleichen',
+      path: '/stromvergleich-duesseldorf',
+    },
+    {
+      title: 'Stromvergleich Köln',
+      description: 'Stromtarife für Köln vergleichen',
+      path: '/stromvergleich-koeln',
+    },
+    {
+      title: 'Gasvergleich NRW',
+      description: 'Auch Gastarife vergleichen und zusätzlich sparen',
+      path: '/gasvergleich-nrw',
+    },
+    {
+      title: 'Photovoltaik NRW',
+      description: 'Photovoltaik: Infos und Beratung in NRW',
+      path: '/photovoltaik-nrw',
+    },
+  ],
+  '/stromvergleich-bielefeld': [
+    {
+      title: 'Stromvergleich NRW',
+      description: 'Stromtarife in NRW vergleichen – inkl. Tipps und Ratgeber',
+      path: '/stromvergleich-nrw',
+    },
+    {
+      title: 'Stromvergleich Münster',
+      description: 'Stromtarife für Münster vergleichen',
+      path: '/stromvergleich-muenster',
+    },
+    {
+      title: 'Stromvergleich Dortmund',
+      description: 'Stromtarife für Dortmund vergleichen',
+      path: '/stromvergleich-dortmund',
+    },
+    {
+      title: 'Gasvergleich NRW',
+      description: 'Auch Gastarife vergleichen und zusätzlich sparen',
+      path: '/gasvergleich-nrw',
+    },
+    {
+      title: 'Photovoltaik NRW',
+      description: 'Photovoltaik: Infos und Beratung in NRW',
+      path: '/photovoltaik-nrw',
+    },
+  ],
+  '/stromvergleich-bonn': [
+    {
+      title: 'Stromvergleich NRW',
+      description: 'Stromtarife in NRW vergleichen – inkl. Tipps und Ratgeber',
+      path: '/stromvergleich-nrw',
+    },
+    {
+      title: 'Stromvergleich Köln',
+      description: 'Stromtarife für Köln vergleichen',
+      path: '/stromvergleich-koeln',
+    },
+    {
+      title: 'Stromvergleich Düsseldorf',
+      description: 'Stromtarife für Düsseldorf vergleichen',
+      path: '/stromvergleich-duesseldorf',
+    },
+    {
+      title: 'Gasvergleich NRW',
+      description: 'Auch Gastarife vergleichen und zusätzlich sparen',
+      path: '/gasvergleich-nrw',
+    },
+    {
+      title: 'Photovoltaik NRW',
+      description: 'Photovoltaik: Infos und Beratung in NRW',
+      path: '/photovoltaik-nrw',
+    },
+  ],
+  '/stromvergleich-muenster': [
+    {
+      title: 'Stromvergleich NRW',
+      description: 'Stromtarife in NRW vergleichen – inkl. Tipps und Ratgeber',
+      path: '/stromvergleich-nrw',
+    },
+    {
+      title: 'Stromvergleich Dortmund',
+      description: 'Stromtarife für Dortmund vergleichen',
+      path: '/stromvergleich-dortmund',
+    },
+    {
+      title: 'Stromvergleich Bielefeld',
+      description: 'Stromtarife für Bielefeld vergleichen',
+      path: '/stromvergleich-bielefeld',
+    },
+    {
+      title: 'Gasvergleich NRW',
+      description: 'Auch Gastarife vergleichen und zusätzlich sparen',
+      path: '/gasvergleich-nrw',
+    },
+    {
+      title: 'Photovoltaik NRW',
+      description: 'Photovoltaik: Infos und Beratung in NRW',
+      path: '/photovoltaik-nrw',
     },
   ],
   '/gasvergleich-nrw': [
@@ -403,6 +562,46 @@ export const anchorTextVariations: Record<string, AnchorTextVariation> = {
       'Strom wechseln in Duisburg',
       'Stromkosten in Duisburg senken',
       'Stromvergleich für Duisburg',
+    ],
+  },
+  '/stromvergleich-wuppertal': {
+    primary: 'Stromvergleich Wuppertal',
+    variations: [
+      'Stromtarife Wuppertal',
+      'Stromanbieter in Wuppertal vergleichen',
+      'Strom wechseln in Wuppertal',
+      'Stromkosten in Wuppertal senken',
+      'Stromvergleich für Wuppertal',
+    ],
+  },
+  '/stromvergleich-bielefeld': {
+    primary: 'Stromvergleich Bielefeld',
+    variations: [
+      'Stromtarife Bielefeld',
+      'Stromanbieter in Bielefeld vergleichen',
+      'Strom wechseln in Bielefeld',
+      'Stromkosten in Bielefeld senken',
+      'Stromvergleich für Bielefeld',
+    ],
+  },
+  '/stromvergleich-bonn': {
+    primary: 'Stromvergleich Bonn',
+    variations: [
+      'Stromtarife Bonn',
+      'Stromanbieter in Bonn vergleichen',
+      'Strom wechseln in Bonn',
+      'Stromkosten in Bonn senken',
+      'Stromvergleich für Bonn',
+    ],
+  },
+  '/stromvergleich-muenster': {
+    primary: 'Stromvergleich Münster',
+    variations: [
+      'Stromtarife Münster',
+      'Stromanbieter in Münster vergleichen',
+      'Strom wechseln in Münster',
+      'Stromkosten in Münster senken',
+      'Stromvergleich für Münster',
     ],
   },
   '/stromvergleich-koeln': {
