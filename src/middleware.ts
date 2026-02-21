@@ -11,10 +11,11 @@ export const onRequest = defineMiddleware((context, next) => {
     host === "energievergleich.nrw" ||
     host === "www.energievergleich.nrw" ||
     host.endsWith(".energievergleich.nrw");
+
   const isNonWwwShop = host === "energievergleich.shop";
   const isPrimaryHost = host === PRIMARY_HOST;
 
-  // Redirect any *.energievergleich.nrw -> primary host (keep path + query)
+  // 1) Redirect any *.energievergleich.nrw and non-www .shop to primary host (keep path + query)
   if (isNrw || isNonWwwShop) {
     const newUrl = new URL(url);
     newUrl.hostname = PRIMARY_HOST;
@@ -22,7 +23,7 @@ export const onRequest = defineMiddleware((context, next) => {
     return context.redirect(newUrl.toString(), 301);
   }
 
-  // Enforce https on primary host
+  // 2) Enforce https on primary host
   if (isPrimaryHost && url.protocol !== PRIMARY_PROTOCOL) {
     const newUrl = new URL(url);
     newUrl.protocol = PRIMARY_PROTOCOL;
