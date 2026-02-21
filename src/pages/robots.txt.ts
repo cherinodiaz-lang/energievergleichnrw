@@ -1,6 +1,8 @@
 import type { APIRoute } from 'astro';
 
-const robotsTxt = (origin: string) => `User-agent: *
+const CANONICAL_ORIGIN = 'https://www.energievergleich.shop';
+
+const robotsTxt = () => `User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /private
@@ -14,13 +16,11 @@ Disallow: /account
 Disallow: *.pdf$
 
 # Sitemap location
-Sitemap: ${origin}/sitemap.xml
+Sitemap: ${CANONICAL_ORIGIN}/sitemap.xml
 `;
 
-export const GET: APIRoute = ({ request }) => {
-  const origin = new URL(request.url).origin;
-
-  return new Response(robotsTxt(origin), {
+export const GET: APIRoute = () => {
+  return new Response(robotsTxt(), {
     headers: {
       'Content-Type': 'text/plain; charset=utf-8',
       'Cache-Control': 'public, max-age=3600',

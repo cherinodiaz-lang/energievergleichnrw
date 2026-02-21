@@ -7,6 +7,8 @@ import { ratgeberArticles } from '@/lib/ratgeber-map';
  * Updated: 2026-02-21
  */
 
+const CANONICAL_ORIGIN = 'https://www.energievergleich.shop';
+
 // Helper function to get today's date in ISO format (YYYY-MM-DD)
 const todayISO = () => new Date().toISOString().slice(0, 10);
 
@@ -218,9 +220,8 @@ const generateSiteMap = (
  * Astro API Route for sitemap.xml
  * Returns properly formatted XML with correct headers
  */
-export const GET: APIRoute = ({ request }) => {
-  const domain = new URL(request.url).origin;
-  const sitemapXml = generateSiteMap(domain, pages);
+export const GET: APIRoute = () => {
+  const sitemapXml = generateSiteMap(CANONICAL_ORIGIN, pages);
 
   return new Response(sitemapXml, {
     headers: {
