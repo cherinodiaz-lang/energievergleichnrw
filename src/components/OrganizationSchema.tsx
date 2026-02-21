@@ -3,6 +3,12 @@ import { SEO_CONFIG } from '@/lib/seo-config';
 
 export default function OrganizationSchema() {
   useEffect(() => {
+    const sameAs = [
+      SEO_CONFIG.social.facebook,
+      SEO_CONFIG.social.twitter,
+      SEO_CONFIG.social.linkedin,
+    ].filter((v): v is string => Boolean(v));
+
     const organizationSchema = {
       '@context': 'https://schema.org',
       '@type': 'Organization',
@@ -11,11 +17,7 @@ export default function OrganizationSchema() {
       url: SEO_CONFIG.organization.url,
       logo: SEO_CONFIG.organization.logo,
       description: SEO_CONFIG.siteDescription,
-      sameAs: [
-        SEO_CONFIG.social.facebook,
-        SEO_CONFIG.social.twitter,
-        SEO_CONFIG.social.linkedin,
-      ],
+      ...(sameAs.length ? { sameAs } : {}),
       areaServed: SEO_CONFIG.organization.areaServed,
       contactPoint: {
         '@type': 'ContactPoint',

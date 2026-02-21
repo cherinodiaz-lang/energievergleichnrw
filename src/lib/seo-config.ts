@@ -5,6 +5,15 @@
 
 import { CONTACT } from '@/config/contact';
 
+const parseGermanPlzCity = (line?: string) => {
+  const value = (line || '').trim();
+  const match = value.match(/^(\d{5})\s+(.+)$/);
+  return {
+    postalCode: match?.[1] || '33378',
+    addressLocality: match?.[2] || 'Rheda-Wiedenbrück',
+  };
+};
+
 export const SEO_CONFIG = {
   // Site Information
   // PRIMARY DOMAIN: https://www.energievergleich.shop
@@ -25,19 +34,20 @@ export const SEO_CONFIG = {
     },
     address: {
       streetAddress: CONTACT.addressLines[1],
-      addressLocality: CONTACT.addressLines[2]?.split(' ')[0] || 'Rheda-Wiedenbrück',
-      addressRegion: 'NRW',
-      postalCode: CONTACT.addressLines[2]?.split(' ')[0] || '33378',
+      addressLocality: parseGermanPlzCity(CONTACT.addressLines[2]).addressLocality,
+      addressRegion: 'Nordrhein-Westfalen',
+      postalCode: parseGermanPlzCity(CONTACT.addressLines[2]).postalCode,
       addressCountry: 'DE',
     },
   },
   
   // Social Media
+  // NOTE: Leave empty unless you have verified, real profiles (keeps schema clean)
   social: {
-    facebook: 'https://facebook.com/energievergleich',
-    twitter: 'https://twitter.com/energievergleich',
-    linkedin: 'https://linkedin.com/company/energievergleich',
-    twitterHandle: '@energievergleich',
+    facebook: '',
+    twitter: '',
+    linkedin: '',
+    twitterHandle: '',
   },
   
   // Default OG Image
