@@ -4,7 +4,7 @@ import { ratgeberArticles } from '@/lib/ratgeber-map';
 /**
  * Sitemap Generator for Energievergleich.shop
  * Generates a complete XML sitemap with all static pages, dynamic ratgeber articles, and legal pages
- * Updated: 2026-01-13
+ * Updated: 2026-02-21
  */
 
 // Helper function to get today's date in ISO format (YYYY-MM-DD)
@@ -58,6 +58,30 @@ const pages = [
   },
   {
     url: '/stromvergleich-duisburg',
+    priority: '0.7',
+    changefreq: 'weekly',
+    lastmod: LASTMOD_STATIC
+  },
+  {
+    url: '/stromvergleich-wuppertal',
+    priority: '0.7',
+    changefreq: 'weekly',
+    lastmod: LASTMOD_STATIC
+  },
+  {
+    url: '/stromvergleich-bielefeld',
+    priority: '0.7',
+    changefreq: 'weekly',
+    lastmod: LASTMOD_STATIC
+  },
+  {
+    url: '/stromvergleich-bonn',
+    priority: '0.7',
+    changefreq: 'weekly',
+    lastmod: LASTMOD_STATIC
+  },
+  {
+    url: '/stromvergleich-muenster',
     priority: '0.7',
     changefreq: 'weekly',
     lastmod: LASTMOD_STATIC
