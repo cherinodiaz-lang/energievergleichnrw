@@ -20,7 +20,7 @@ export const SEO_CONFIG = {
   siteName: 'www.energievergleich.shop',
   siteUrl: 'https://www.energievergleich.shop',
   siteDescription: 'Vergleichen Sie Strom- und Gastarife in Nordrhein-Westfalen. Finden Sie passende Angebote für Privat- und Gewerbekunden. Kostenlos und unabhängig.',
-  
+
   // Organization Information (complete details for schema)
   organization: {
     name: 'energievergleich.shop',
@@ -40,7 +40,7 @@ export const SEO_CONFIG = {
       addressCountry: 'DE',
     },
   },
-  
+
   // Social Media
   // NOTE: Leave empty unless you have verified, real profiles (keeps schema clean)
   social: {
@@ -49,21 +49,21 @@ export const SEO_CONFIG = {
     linkedin: '',
     twitterHandle: '',
   },
-  
+
   // Default OG Image
   defaultOgImage: 'https://static.wixstatic.com/media/32e7c0_8cede5e338be484bb8dcaad81c053c82~mv2.png?originWidth=1920&originHeight=1024',
-  
+
   // Language
   language: 'de',
-  
+
   // Search Console & Analytics
   // Set env var: PUBLIC_GOOGLE_SITE_VERIFICATION=xxxx (Vite/Astro public env)
   googleSearchConsoleVerification: import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION || '',
   googleAnalyticsId: 'G-R782H397LV', // GA4 Measurement ID for energievergleich.shop
-  
+
   // Robots Meta
   robots: 'index, follow',
-  
+
   // Keywords
   keywords: {
     home: 'Energievergleich NRW, Stromvergleich, Gasvergleich, Strom sparen, Gas sparen, Tarife NRW',
@@ -75,7 +75,30 @@ export const SEO_CONFIG = {
 /**
  * Get page-specific SEO metadata
  */
-export function getPageSEO(page: 'home' | 'gewerbestrom' | 'gewerbegas' | 'stromvergleich' | 'gasvergleich' | 'photovoltaik' | 'kontakt' | 'ratgeber' | 'datenschutz' | 'impressum' | 'methodik') {
+export function getPageSEO(
+  page:
+    | 'home'
+    | 'gewerbestrom'
+    | 'gewerbegas'
+    | 'stromvergleich'
+    | 'gasvergleich'
+    | 'photovoltaik'
+    | 'stromvergleich-essen'
+    | 'stromvergleich-bochum'
+    | 'stromvergleich-duisburg'
+    | 'stromvergleich-koeln'
+    | 'stromvergleich-duesseldorf'
+    | 'stromvergleich-dortmund'
+    | 'stromvergleich-wuppertal'
+    | 'stromvergleich-bielefeld'
+    | 'stromvergleich-bonn'
+    | 'stromvergleich-muenster'
+    | 'kontakt'
+    | 'ratgeber'
+    | 'datenschutz'
+    | 'impressum'
+    | 'methodik'
+) {
   const baseConfig = {
     siteName: SEO_CONFIG.siteName,
     siteUrl: SEO_CONFIG.siteUrl,
@@ -111,6 +134,78 @@ export function getPageSEO(page: 'home' | 'gewerbestrom' | 'gewerbegas' | 'strom
       ogTitle: 'Photovoltaik NRW | Kosten, Förderung & Beratung',
       ogDescription: 'Photovoltaik in NRW: Kosten, Förderung und Planung verständlich erklärt.',
     },
+
+    'stromvergleich-essen': {
+      title: 'Stromvergleich Essen | Stromtarife vergleichen & sparen',
+      description: 'Stromtarife in Essen vergleichen: passende Angebote finden, Kosten senken und unkompliziert wechseln. Kostenlos & unabhängig – inkl. Tipps.',
+      keywords: 'Stromvergleich Essen, Stromtarife Essen, Stromanbieter Essen, Strom sparen Essen, Strom wechseln Essen',
+      ogTitle: 'Stromvergleich Essen | Stromtarife vergleichen & sparen',
+      ogDescription: 'Stromtarife in Essen vergleichen und sparen. Kostenlos und unabhängig.',
+    },
+    'stromvergleich-bochum': {
+      title: 'Stromvergleich Bochum | Stromtarife vergleichen & sparen',
+      description: 'Stromtarife in Bochum vergleichen: passende Angebote finden, Kosten senken und unkompliziert wechseln. Kostenlos & unabhängig – inkl. Tipps.',
+      keywords: 'Stromvergleich Bochum, Stromtarife Bochum, Stromanbieter Bochum, Strom sparen Bochum, Strom wechseln Bochum',
+      ogTitle: 'Stromvergleich Bochum | Stromtarife vergleichen & sparen',
+      ogDescription: 'Stromtarife in Bochum vergleichen und sparen. Kostenlos und unabhängig.',
+    },
+    'stromvergleich-duisburg': {
+      title: 'Stromvergleich Duisburg | Stromtarife vergleichen & sparen',
+      description: 'Stromtarife in Duisburg vergleichen: passende Angebote finden, Kosten senken und unkompliziert wechseln. Kostenlos & unabhängig – inkl. Tipps.',
+      keywords: 'Stromvergleich Duisburg, Stromtarife Duisburg, Stromanbieter Duisburg, Strom sparen Duisburg, Strom wechseln Duisburg',
+      ogTitle: 'Stromvergleich Duisburg | Stromtarife vergleichen & sparen',
+      ogDescription: 'Stromtarife in Duisburg vergleichen und sparen. Kostenlos und unabhängig.',
+    },
+    'stromvergleich-koeln': {
+      title: 'Stromvergleich Köln | Stromtarife vergleichen & sparen',
+      description: 'Stromtarife in Köln vergleichen: passende Angebote finden, Kosten senken und unkompliziert wechseln. Kostenlos & unabhängig – inkl. Tipps.',
+      keywords: 'Stromvergleich Köln, Stromtarife Köln, Stromanbieter Köln, Strom sparen Köln, Strom wechseln Köln',
+      ogTitle: 'Stromvergleich Köln | Stromtarife vergleichen & sparen',
+      ogDescription: 'Stromtarife in Köln vergleichen und sparen. Kostenlos und unabhängig.',
+    },
+    'stromvergleich-duesseldorf': {
+      title: 'Stromvergleich Düsseldorf | Stromtarife vergleichen & sparen',
+      description: 'Stromtarife in Düsseldorf vergleichen: passende Angebote finden, Kosten senken und unkompliziert wechseln. Kostenlos & unabhängig – inkl. Tipps.',
+      keywords: 'Stromvergleich Düsseldorf, Stromtarife Düsseldorf, Stromanbieter Düsseldorf, Strom sparen Düsseldorf, Strom wechseln Düsseldorf',
+      ogTitle: 'Stromvergleich Düsseldorf | Stromtarife vergleichen & sparen',
+      ogDescription: 'Stromtarife in Düsseldorf vergleichen und sparen. Kostenlos und unabhängig.',
+    },
+    'stromvergleich-dortmund': {
+      title: 'Stromvergleich Dortmund | Stromtarife vergleichen & sparen',
+      description: 'Stromtarife in Dortmund vergleichen: passende Angebote finden, Kosten senken und unkompliziert wechseln. Kostenlos & unabhängig – inkl. Tipps.',
+      keywords: 'Stromvergleich Dortmund, Stromtarife Dortmund, Stromanbieter Dortmund, Strom sparen Dortmund, Strom wechseln Dortmund',
+      ogTitle: 'Stromvergleich Dortmund | Stromtarife vergleichen & sparen',
+      ogDescription: 'Stromtarife in Dortmund vergleichen und sparen. Kostenlos und unabhängig.',
+    },
+    'stromvergleich-wuppertal': {
+      title: 'Stromvergleich Wuppertal | Stromtarife vergleichen & sparen',
+      description: 'Stromtarife in Wuppertal vergleichen: passende Angebote finden, Kosten senken und unkompliziert wechseln. Kostenlos & unabhängig – inkl. Tipps.',
+      keywords: 'Stromvergleich Wuppertal, Stromtarife Wuppertal, Stromanbieter Wuppertal, Strom sparen Wuppertal, Strom wechseln Wuppertal',
+      ogTitle: 'Stromvergleich Wuppertal | Stromtarife vergleichen & sparen',
+      ogDescription: 'Stromtarife in Wuppertal vergleichen und sparen. Kostenlos und unabhängig.',
+    },
+    'stromvergleich-bielefeld': {
+      title: 'Stromvergleich Bielefeld | Stromtarife vergleichen & sparen',
+      description: 'Stromtarife in Bielefeld vergleichen: passende Angebote finden, Kosten senken und unkompliziert wechseln. Kostenlos & unabhängig – inkl. Tipps.',
+      keywords: 'Stromvergleich Bielefeld, Stromtarife Bielefeld, Stromanbieter Bielefeld, Strom sparen Bielefeld, Strom wechseln Bielefeld',
+      ogTitle: 'Stromvergleich Bielefeld | Stromtarife vergleichen & sparen',
+      ogDescription: 'Stromtarife in Bielefeld vergleichen und sparen. Kostenlos und unabhängig.',
+    },
+    'stromvergleich-bonn': {
+      title: 'Stromvergleich Bonn | Stromtarife vergleichen & sparen',
+      description: 'Stromtarife in Bonn vergleichen: passende Angebote finden, Kosten senken und unkompliziert wechseln. Kostenlos & unabhängig – inkl. Tipps.',
+      keywords: 'Stromvergleich Bonn, Stromtarife Bonn, Stromanbieter Bonn, Strom sparen Bonn, Strom wechseln Bonn',
+      ogTitle: 'Stromvergleich Bonn | Stromtarife vergleichen & sparen',
+      ogDescription: 'Stromtarife in Bonn vergleichen und sparen. Kostenlos und unabhängig.',
+    },
+    'stromvergleich-muenster': {
+      title: 'Stromvergleich Münster | Stromtarife vergleichen & sparen',
+      description: 'Stromtarife in Münster vergleichen: passende Angebote finden, Kosten senken und unkompliziert wechseln. Kostenlos & unabhängig – inkl. Tipps.',
+      keywords: 'Stromvergleich Münster, Stromtarife Münster, Stromanbieter Münster, Strom sparen Münster, Strom wechseln Münster',
+      ogTitle: 'Stromvergleich Münster | Stromtarife vergleichen & sparen',
+      ogDescription: 'Stromtarife in Münster vergleichen und sparen. Kostenlos und unabhängig.',
+    },
+
     gewerbestrom: {
       title: 'Gewerbestrom NRW | Stromtarife für Unternehmen',
       description: 'Gewerbestrom in NRW: Tarife für Unternehmen vergleichen und Beratung anfragen. Transparent, effizient und auf Ihren Betrieb abgestimmt.',
