@@ -1,25 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { AlertCircle, ArrowRight, CheckCircle, Send } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import SEOHead from '@/components/SEOHead';
-import Breadcrumb from '@/components/Breadcrumb';
-import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import RelatedPages from '@/components/RelatedPages';
 import { ROUTES } from '@/lib/routes';
 import { validateFormFields, FORM_CONFIGS } from '@/lib/form-validation';
 import { getRelatedPages } from '@/lib/internal-linking';
+import StromvergleichCityLayout from '@/components/pages/stromvergleich/StromvergleichCityLayout';
 
 export default function StromvergleichBochumPage() {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     postleitzahl: '',
     verbrauch: '',
@@ -41,26 +36,26 @@ export default function StromvergleichBochumPage() {
           name: 'Welche Daten brauche ich für den Stromvergleich in Bochum?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Für den Stromvergleich in Bochum reichen Postleitzahl und Ihr Jahresverbrauch (kWh). Optional hilft die Zählernummer für die spätere Beauftragung.'
-          }
+            text: 'Für den Stromvergleich in Bochum reichen Postleitzahl und Ihr Jahresverbrauch (kWh). Optional hilft die Zählernummer für die spätere Beauftragung.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Ist der Stromanbieterwechsel in Bochum kostenlos?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Ja. Der Anbieterwechsel selbst ist kostenlos. Es fallen keine Gebühren für Kündigung oder Anmeldung an. Die Stromversorgung bleibt durchgehend gewährleistet.'
-          }
+            text: 'Ja. Der Anbieterwechsel selbst ist kostenlos. Es fallen keine Gebühren für Kündigung oder Anmeldung an. Die Stromversorgung bleibt durchgehend gewährleistet.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Wie lange dauert ein Stromwechsel in Bochum?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Das hängt von der Kündigungsfrist Ihres aktuellen Vertrags ab. In der Praxis dauert ein Wechsel häufig einige Wochen.'
-          }
-        }
-      ]
+            text: 'Das hängt von der Kündigungsfrist Ihres aktuellen Vertrags ab. In der Praxis dauert ein Wechsel häufig einige Wochen.',
+          },
+        },
+      ],
     };
 
     const script = document.createElement('script');
@@ -89,30 +84,20 @@ export default function StromvergleichBochumPage() {
     setShowResults(true);
   };
 
-  const breadcrumbItems = [
-    { label: 'Startseite', path: '/' },
-    { label: 'Stromvergleich Bochum', path: '/stromvergleich-bochum' },
-  ];
-
-  const breadcrumbSchema = [
-    { name: 'Startseite', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}` },
-    { name: 'Stromvergleich Bochum', url: `${typeof window !== 'undefined' ? window.location.origin : ''}/stromvergleich-bochum` },
-  ];
-
   return (
-    <div className="min-h-screen bg-background break-words leading-mobile">
-      <SEOHead
-        title="Stromvergleich Bochum | Stromtarife vergleichen & einfach wechseln"
-        description="Stromtarife in Bochum vergleichen: passende Angebote finden, Kosten senken und unkompliziert wechseln. Kostenlos und unverbindlich."
-        keywords="Stromvergleich Bochum, Stromtarife Bochum, Stromanbieter Bochum, Stromwechsel Bochum"
-        ogTitle="Stromvergleich Bochum | Stromtarife vergleichen & wechseln"
-        ogDescription="Stromtarife in Bochum vergleichen, passende Angebote finden und einfach wechseln."
-      />
-
-      <BreadcrumbSchema items={breadcrumbSchema} />
-      <Header />
-      <Breadcrumb items={breadcrumbItems} />
-
+    <StromvergleichCityLayout
+      seo={{
+        title: 'Stromvergleich Bochum | Stromtarife vergleichen & einfach wechseln',
+        description:
+          'Stromtarife in Bochum vergleichen: passende Angebote finden, Kosten senken und unkompliziert wechseln. Kostenlos und unverbindlich.',
+        keywords: 'Stromvergleich Bochum, Stromtarife Bochum, Stromanbieter Bochum, Stromwechsel Bochum',
+        ogTitle: 'Stromvergleich Bochum | Stromtarife vergleichen & wechseln',
+        ogDescription: 'Stromtarife in Bochum vergleichen, passende Angebote finden und einfach wechseln.',
+      }}
+      breadcrumbLabel="Stromvergleich Bochum"
+      breadcrumbPath="/stromvergleich-bochum"
+      breadcrumbAbsoluteUrl="https://www.energievergleich.shop/stromvergleich-bochum"
+    >
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -149,7 +134,9 @@ export default function StromvergleichBochumPage() {
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <Label htmlFor="plz" className="font-paragraph">Postleitzahl *</Label>
+                        <Label htmlFor="plz" className="font-paragraph">
+                          Postleitzahl *
+                        </Label>
                         <Input
                           id="plz"
                           placeholder="z.B. 44787"
@@ -158,12 +145,12 @@ export default function StromvergleichBochumPage() {
                           required
                           className="font-paragraph w-full"
                         />
-                        {formErrors.postleitzahl && (
-                          <p className="text-sm text-red-600">{formErrors.postleitzahl}</p>
-                        )}
+                        {formErrors.postleitzahl && <p className="text-sm text-red-600">{formErrors.postleitzahl}</p>}
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="verbrauch" className="font-paragraph">Jahresverbrauch (kWh) <span className="text-gray-400 text-sm">(optional)</span></Label>
+                        <Label htmlFor="verbrauch" className="font-paragraph">
+                          Jahresverbrauch (kWh) <span className="text-gray-400 text-sm">(optional)</span>
+                        </Label>
                         <Input
                           id="verbrauch"
                           type="number"
@@ -176,7 +163,9 @@ export default function StromvergleichBochumPage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="name" className="font-paragraph">Name *</Label>
+                      <Label htmlFor="name" className="font-paragraph">
+                        Name *
+                      </Label>
                       <Input
                         id="name"
                         value={formData.name}
@@ -184,12 +173,13 @@ export default function StromvergleichBochumPage() {
                         required
                         className="font-paragraph w-full"
                       />
-                      {formErrors.name && (
-                        <p className="text-sm text-red-600">{formErrors.name}</p>
-                      )}
+                      {formErrors.name && <p className="text-sm text-red-600">{formErrors.name}</p>}
                     </div>
 
-                    <Button type="submit" className="w-full sm:w-auto bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 font-bold text-lg rounded-lg">
+                    <Button
+                      type="submit"
+                      className="w-full sm:w-auto bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 font-bold text-lg rounded-lg"
+                    >
                       <Send className="w-5 h-5 mr-2" />
                       Tarife vergleichen
                     </Button>
@@ -208,12 +198,12 @@ export default function StromvergleichBochumPage() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                     {[
-                      { name: 'Tarif Option A', pricePerKwh: 0.28, baseFee: 12.50 },
-                      { name: 'Tarif Option B', pricePerKwh: 0.26, baseFee: 14.00 },
-                      { name: 'Tarif Option C', pricePerKwh: 0.24, baseFee: 16.50 },
+                      { name: 'Tarif Option A', pricePerKwh: 0.28, baseFee: 12.5 },
+                      { name: 'Tarif Option B', pricePerKwh: 0.26, baseFee: 14.0 },
+                      { name: 'Tarif Option C', pricePerKwh: 0.24, baseFee: 16.5 },
                     ].map((tariff, index) => {
                       const monthlyConsumption = calculatedConsumption / 12;
-                      const monthlyPrice = (monthlyConsumption * tariff.pricePerKwh) + tariff.baseFee;
+                      const monthlyPrice = monthlyConsumption * tariff.pricePerKwh + tariff.baseFee;
                       const yearlyPrice = monthlyPrice * 12;
 
                       return (
@@ -296,25 +286,23 @@ export default function StromvergleichBochumPage() {
               {[
                 {
                   q: 'Welche Daten brauche ich?',
-                  a: 'Postleitzahl und Jahresverbrauch reichen für einen ersten Vergleich. Die Zählernummer ist optional.'
+                  a: 'Postleitzahl und Jahresverbrauch reichen für einen ersten Vergleich. Die Zählernummer ist optional.',
                 },
                 {
                   q: 'Kann es zu einer Unterbrechung kommen?',
-                  a: 'Nein. Die Versorgung bleibt auch während eines Anbieterwechsels durchgehend gesichert.'
+                  a: 'Nein. Die Versorgung bleibt auch während eines Anbieterwechsels durchgehend gesichert.',
                 },
                 {
                   q: 'Wie finde ich meinen Verbrauch?',
-                  a: 'Den Jahresverbrauch finden Sie auf Ihrer letzten Stromrechnung (in kWh).'
-                }
+                  a: 'Den Jahresverbrauch finden Sie auf Ihrer letzten Stromrechnung (in kWh).',
+                },
               ].map((item, index) => (
                 <Accordion key={index} type="single" collapsible className="bg-white rounded-lg border">
                   <AccordionItem value={`item-${index}`} className="border-none">
                     <AccordionTrigger className="font-heading font-bold text-lg hover:text-primary px-6 py-4">
                       {item.q}
                     </AccordionTrigger>
-                    <AccordionContent className="font-paragraph text-gray-600 px-6 pb-4">
-                      {item.a}
-                    </AccordionContent>
+                    <AccordionContent className="font-paragraph text-gray-600 px-6 pb-4">{item.a}</AccordionContent>
                   </AccordionItem>
                 </Accordion>
               ))}
@@ -325,8 +313,6 @@ export default function StromvergleichBochumPage() {
 
       <PassendeRatgeber moneyPageId="stromvergleich-bochum" limit={4} />
       <RelatedPages pages={getRelatedPages('/stromvergleich-bochum')} />
-
-      <Footer />
-    </div>
+    </StromvergleichCityLayout>
   );
 }
