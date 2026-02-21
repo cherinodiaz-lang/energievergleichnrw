@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider, Navigate, Outlet, useLocation } fr
 import { lazy, Suspense, useEffect } from 'react';
 import { ScrollToTop } from '@/lib/scroll-to-top';
 import { SEO_CONFIG } from '@/lib/seo-config';
+import { getPageSEO } from '@/lib/seo-config';
 import { ROUTES } from '@/lib/routes';
 import ErrorPage from '@/integrations/errorHandlers/ErrorPage';
 import HomePage from '@/components/pages/HomePage';
@@ -17,6 +18,7 @@ import HowToSchema from '@/components/HowToSchema';
 import ReviewSchema from '@/components/ReviewSchema';
 import FAQPageSchema from '@/components/FAQPageSchema';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
+import SEOHead from '@/components/SEOHead';
 
 // Error fallback for lazy-loaded routes - defined before lazy imports
 const LazyErrorFallback = () => (
@@ -89,6 +91,21 @@ const BlogDetailPage = lazy(() => import('@/components/pages/BlogDetailPage').ca
 const AboutPage = lazy(() => import('@/components/pages/AboutPage').catch(() => ({ default: LazyErrorFallback })));
 const UeberUnsPage = lazy(() => import('@/components/pages/UeberUnsPage').catch(() => ({ default: LazyErrorFallback })));
 
+const CITY_SEO_BY_PATH = {
+  '/stromvergleich-essen': 'stromvergleich-essen',
+  '/stromvergleich-bochum': 'stromvergleich-bochum',
+  '/stromvergleich-duisburg': 'stromvergleich-duisburg',
+  '/stromvergleich-koeln': 'stromvergleich-koeln',
+  '/stromvergleich-duesseldorf': 'stromvergleich-duesseldorf',
+  '/stromvergleich-dortmund': 'stromvergleich-dortmund',
+  '/stromvergleich-wuppertal': 'stromvergleich-wuppertal',
+  '/stromvergleich-bielefeld': 'stromvergleich-bielefeld',
+  '/stromvergleich-bonn': 'stromvergleich-bonn',
+  '/stromvergleich-muenster': 'stromvergleich-muenster',
+} as const;
+
+type CitySEOKey = (typeof CITY_SEO_BY_PATH)[keyof typeof CITY_SEO_BY_PATH];
+
 // Layout component that includes ScrollToTop and SEO components
 function Layout() {
   const location = useLocation();
@@ -105,9 +122,21 @@ function Layout() {
     trackPageView(location.pathname);
   }, [location.pathname]);
 
+  const cityKey = (CITY_SEO_BY_PATH as Record<string, CitySEOKey | undefined>)[location.pathname];
+  const citySeo = cityKey ? getPageSEO(cityKey) : null;
+
   return (
     <div className="min-w-0 overflow-x-hidden ox-hidden">
       <ScrollToTop />
+      {citySeo ? (
+        <SEOHead
+          title={citySeo.title}
+          description={citySeo.description}
+          keywords={citySeo.keywords}
+          ogTitle={citySeo.ogTitle}
+          ogDescription={citySeo.ogDescription}
+        />
+      ) : null}
       <OrganizationSchema />
       <LocalBusinessSchema />
       <WebsiteSchema />
