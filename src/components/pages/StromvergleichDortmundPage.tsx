@@ -153,6 +153,7 @@ export default function StromvergleichDortmundPage() {
         description:
           'Stromvergleich für Dortmund – Tarife vergleichen & bis zu 30 % sparen. Kostenloser Stromtarif-Rechner für Dortmunder Haushalte.',
         keywords: 'Stromvergleich Dortmund, Stromtarife Dortmund, Stromanbieter Dortmund, Stromwechsel Dortmund',
+        canonical: 'https://www.energievergleich.shop/stromvergleich-dortmund',
         ogTitle: 'Stromvergleich Dortmund 2026 | Günstige Tarife für Dortmunder Haushalte',
         ogDescription:
           'Stromvergleich für Dortmund – Tarife vergleichen & bis zu 30 % sparen. Kostenloser Stromtarif-Rechner für Dortmunder Haushalte.',

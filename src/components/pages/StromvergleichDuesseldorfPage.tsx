@@ -150,6 +150,7 @@ export default function StromvergleichDuesseldorfPage() {
         description:
           'Stromvergleich für Düsseldorf – Tarife vergleichen & bis zu 30 % sparen. Kostenloser Stromtarif-Rechner für Düsseldorfer Haushalte.',
         keywords: 'Stromvergleich Düsseldorf, Stromtarife Düsseldorf, Stromanbieter Düsseldorf, Stromwechsel Düsseldorf',
+        canonical: 'https://www.energievergleich.shop/stromvergleich-duesseldorf',
         ogTitle: 'Stromvergleich Düsseldorf 2026 | Günstige Tarife für Düsseldorfer Haushalte',
         ogDescription:
           'Stromvergleich für Düsseldorf – Tarife vergleichen & bis zu 30 % sparen. Kostenloser Stromtarif-Rechner für Düsseldorfer Haushalte.',

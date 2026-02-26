@@ -91,6 +91,7 @@ export default function StromvergleichDuisburgPage() {
         description:
           'Stromtarife in Duisburg vergleichen: passende Angebote finden, Kosten senken und unkompliziert wechseln. Kostenlos und unverbindlich.',
         keywords: 'Stromvergleich Duisburg, Stromtarife Duisburg, Stromanbieter Duisburg, Stromwechsel Duisburg',
+        canonical: 'https://www.energievergleich.shop/stromvergleich-duisburg',
         ogTitle: 'Stromvergleich Duisburg | Stromtarife vergleichen & wechseln',
         ogDescription: 'Stromtarife in Duisburg vergleichen, passende Angebote finden und einfach wechseln.',
       }}

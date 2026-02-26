@@ -101,6 +101,7 @@ export default function StromvergleichEssenPage() {
         title: 'Stromvergleich Essen | Stromtarife vergleichen & sparen',
         description: 'Stromtarife in Essen vergleichen: passende Angebote finden, Kosten senken und einfach wechseln. Kostenlos und unabhängig.',
         keywords: 'Stromvergleich Essen, Stromtarife Essen, Stromanbieter Essen, Stromwechsel Essen',
+        canonical: 'https://www.energievergleich.shop/stromvergleich-essen',
         ogTitle: 'Stromvergleich Essen | Stromtarife vergleichen & sparen',
         ogDescription: 'Stromtarife in Essen vergleichen, sparen und einfach wechseln. Kostenlos und unabhängig.',
       }}

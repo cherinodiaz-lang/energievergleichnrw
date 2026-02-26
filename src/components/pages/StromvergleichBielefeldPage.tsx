@@ -8,6 +8,7 @@ export default function StromvergleichBielefeldPage() {
         description:
           'Stromtarife in Bielefeld vergleichen: passende Angebote finden, Kosten senken und unkompliziert wechseln. Kostenlos und unverbindlich.',
         keywords: 'Stromvergleich Bielefeld, Stromtarife Bielefeld, Stromanbieter Bielefeld, Stromwechsel Bielefeld',
+        canonical: 'https://www.energievergleich.shop/stromvergleich-bielefeld',
         ogTitle: 'Stromvergleich Bielefeld | Stromtarife vergleichen & wechseln',
         ogDescription: 'Stromtarife in Bielefeld vergleichen, passende Angebote finden und einfach wechseln.',
       }}

@@ -153,6 +153,7 @@ export default function StromvergleichKoelnPage() {
         description:
           'Stromtarife in Köln vergleichen: passende Angebote finden, Kosten senken und einfach wechseln. Kostenlos und unabhängig.',
         keywords: 'Stromvergleich Köln, Stromtarife Köln, Stromanbieter Köln, Stromwechsel Köln',
+        canonical: 'https://www.energievergleich.shop/stromvergleich-koeln',
         ogTitle: 'Stromvergleich Köln | Stromtarife vergleichen & sparen',
         ogDescription: 'Stromtarife in Köln vergleichen, sparen und einfach wechseln. Kostenlos und unabhängig.',
       }}

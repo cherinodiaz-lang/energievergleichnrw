@@ -8,6 +8,7 @@ export default function StromvergleichBonnPage() {
         description:
           'Stromtarife in Bonn vergleichen: passende Angebote finden, Kosten senken und unkompliziert wechseln. Kostenlos und unverbindlich.',
         keywords: 'Stromvergleich Bonn, Stromtarife Bonn, Stromanbieter Bonn, Stromwechsel Bonn',
+        canonical: 'https://www.energievergleich.shop/stromvergleich-bonn',
         ogTitle: 'Stromvergleich Bonn | Stromtarife vergleichen & wechseln',
         ogDescription: 'Stromtarife in Bonn vergleichen, passende Angebote finden und einfach wechseln.',
       }}

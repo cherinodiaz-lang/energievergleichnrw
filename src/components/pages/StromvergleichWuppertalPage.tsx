@@ -8,6 +8,7 @@ export default function StromvergleichWuppertalPage() {
         description:
           'Stromtarife in Wuppertal vergleichen: passende Angebote finden, Kosten senken und unkompliziert wechseln. Kostenlos und unverbindlich.',
         keywords: 'Stromvergleich Wuppertal, Stromtarife Wuppertal, Stromanbieter Wuppertal, Stromwechsel Wuppertal',
+        canonical: 'https://www.energievergleich.shop/stromvergleich-wuppertal',
         ogTitle: 'Stromvergleich Wuppertal | Stromtarife vergleichen & wechseln',
         ogDescription: 'Stromtarife in Wuppertal vergleichen, passende Angebote finden und einfach wechseln.',
       }}
