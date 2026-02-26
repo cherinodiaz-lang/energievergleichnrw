@@ -5,17 +5,9 @@ const CANONICAL_ORIGIN = 'https://www.energievergleich.shop';
 const robotsTxt = () => `User-agent: *
 Allow: /
 Disallow: /admin
-Disallow: /private
-Disallow: /preview
-Disallow: /danke
-Disallow: /thank-you
-Disallow: /checkout
-Disallow: /cart
-Disallow: /login
-Disallow: /account
-Disallow: *.pdf$
+Disallow: /api
+Disallow: /_astro
 
-# Sitemap location
 Sitemap: ${CANONICAL_ORIGIN}/sitemap.xml
 `;
 
