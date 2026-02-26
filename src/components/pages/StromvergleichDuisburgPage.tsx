@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import RelatedPages from '@/components/RelatedPages';
+import RelatedCities from '@/components/RelatedCities';
 import { ROUTES } from '@/lib/routes';
 import { validateFormFields, FORM_CONFIGS } from '@/lib/form-validation';
 import { getRelatedPages } from '@/lib/internal-linking';

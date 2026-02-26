@@ -1,4 +1,5 @@
 import StromvergleichCityLayout from '@/components/pages/stromvergleich/StromvergleichCityLayout';
+import RelatedCities from '@/components/RelatedCities';
 
 export default function StromvergleichMuensterPage() {
   return (
@@ -72,6 +73,8 @@ export default function StromvergleichMuensterPage() {
           </footer>
         </section>
       </main>
+
+      <RelatedCities currentCity="muenster" />
     </StromvergleichCityLayout>
   );
 }

@@ -11,6 +11,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import RelatedPages from '@/components/RelatedPages';
+import RelatedCities from '@/components/RelatedCities';
 import StromvergleichCityLayout from '@/components/pages/stromvergleich/StromvergleichCityLayout';
 
 import { ROUTES } from '@/lib/routes';
@@ -329,6 +330,8 @@ export default function StromvergleichEssenPage() {
 
         <PassendeRatgeber moneyPageId="stromvergleich-essen" limit={4} />
         <RelatedPages pages={getRelatedPages('/stromvergleich-essen')} />
+
+        <RelatedCities currentCity="essen" />
       </div>
     </StromvergleichCityLayout>
   );

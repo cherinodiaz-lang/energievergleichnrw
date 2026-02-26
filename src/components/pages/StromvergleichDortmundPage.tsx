@@ -25,6 +25,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import TrustRow from '@/components/TrustRow';
 import RelatedPages from '@/components/RelatedPages';
+import RelatedCities from '@/components/RelatedCities';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 import { validateFormFields, FORM_CONFIGS } from '@/lib/form-validation';

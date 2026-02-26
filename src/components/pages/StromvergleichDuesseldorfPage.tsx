@@ -25,6 +25,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import TrustRow from '@/components/TrustRow';
 import RelatedPages from '@/components/RelatedPages';
+import RelatedCities from '@/components/RelatedCities';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
@@ -971,6 +972,8 @@ export default function StromvergleichDuesseldorfPage() {
 
         {/* Related Pages - Cross-Linking */}
         <RelatedPages pages={getRelatedPages('/stromvergleich-duesseldorf')} />
+
+        <RelatedCities currentCity="duesseldorf" />
       </div>
     </StromvergleichCityLayout>
   );

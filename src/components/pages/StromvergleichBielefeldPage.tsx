@@ -1,4 +1,5 @@
 import StromvergleichCityLayout from '@/components/pages/stromvergleich/StromvergleichCityLayout';
+import RelatedCities from '@/components/RelatedCities';
 
 export default function StromvergleichBielefeldPage() {
   return (
