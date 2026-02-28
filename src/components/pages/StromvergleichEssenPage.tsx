@@ -37,26 +37,18 @@ export default function StromvergleichEssenPage() {
       mainEntity: [
         {
           '@type': 'Question',
-          name: 'Wie finde ich den passenden Stromtarif in Essen?',
+          name: 'Welche Daten brauche ich für den Stromvergleich in Essen?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Geben Sie Ihre Postleitzahl in Essen und (optional) Ihren Jahresverbrauch an. So sehen Sie Tarife für Ihr Netzgebiet und können Laufzeit, Preisgarantie und Konditionen vergleichen.',
+            text: 'Für den Stromvergleich in Essen reichen Postleitzahl und Ihr Jahresverbrauch (kWh). Optional hilft die Zählernummer für die spätere Beauftragung.',
           },
         },
         {
           '@type': 'Question',
-          name: 'Welche Angaben brauche ich für den Stromvergleich?',
+          name: 'Ist der Stromanbieterwechsel in Essen kostenlos?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Mindestens die Postleitzahl. Hilfreich sind außerdem Ihr Jahresverbrauch (kWh) und optional die Zählernummer. Den Verbrauch finden Sie auf der letzten Stromrechnung.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'Kann ich beim Wechsel ohne Strom sein?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Nein. Die Stromversorgung ist in Deutschland durchgehend abgesichert. Auch bei Verzögerungen werden Haushalte über die Grundversorgung weiter beliefert.',
+            text: 'Ja. Der Anbieterwechsel selbst ist kostenlos. Es fallen keine Gebühren für Kündigung oder Anmeldung an. Die Stromversorgung bleibt durchgehend gewährleistet.',
           },
         },
         {
@@ -64,7 +56,7 @@ export default function StromvergleichEssenPage() {
           name: 'Wie lange dauert ein Stromwechsel in Essen?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Das hängt von Vertrag und Kündigungsfrist ab. In der Praxis dauert ein Wechsel häufig einige Wochen. Die Versorgung läuft in dieser Zeit ohne Unterbrechung weiter.',
+            text: 'Das hängt von der Kündigungsfrist Ihres aktuellen Vertrags ab. In der Praxis dauert ein Wechsel häufig einige Wochen.',
           },
         },
       ],
