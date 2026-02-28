@@ -1,7 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { AlertCircle, ArrowRight, CheckCircle, Send } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+import FAQSchema from '@/components/FAQSchema';
+import PassendeRatgeber from '@/components/PassendeRatgeber';
+import RelatedPages from '@/components/RelatedPages';
+import RelatedCities from '@/components/RelatedCities';
+import StromvergleichCityLayout from '@/components/pages/stromvergleich/StromvergleichCityLayout';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,14 +15,27 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
-import PassendeRatgeber from '@/components/PassendeRatgeber';
-import RelatedPages from '@/components/RelatedPages';
-import RelatedCities from '@/components/RelatedCities';
-import StromvergleichCityLayout from '@/components/pages/stromvergleich/StromvergleichCityLayout';
-
 import { ROUTES } from '@/lib/routes';
 import { validateFormFields, FORM_CONFIGS } from '@/lib/form-validation';
 import { getRelatedPages } from '@/lib/internal-linking';
+
+const FAQ_ITEMS = [
+  {
+    question: 'Welche Daten brauche ich für den Stromvergleich in Essen?',
+    answer:
+      'Für den Stromvergleich in Essen reichen Postleitzahl und Ihr Jahresverbrauch (kWh). Optional hilft die Zählernummer für die spätere Beauftragung.',
+  },
+  {
+    question: 'Ist der Stromanbieterwechsel in Essen kostenlos?',
+    answer:
+      'Ja. Der Anbieterwechsel selbst ist kostenlos. Es fallen keine Gebühren für Kündigung oder Anmeldung an. Die Stromversorgung bleibt durchgehend gewährleistet.',
+  },
+  {
+    question: 'Wie lange dauert ein Stromwechsel in Essen?',
+    answer:
+      'Das hängt von der Kündigungsfrist Ihres aktuellen Vertrags ab. In der Praxis dauert ein Wechsel häufig einige Wochen.',
+  },
+] as const;
 
 export default function StromvergleichEssenPage() {
   const [formData, setFormData] = useState({
@@ -29,48 +48,6 @@ export default function StromvergleichEssenPage() {
   const [showResults, setShowResults] = useState(false);
   const [calculatedConsumption, setCalculatedConsumption] = useState(0);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
-
-  useEffect(() => {
-    const faqSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: [
-        {
-          '@type': 'Question',
-          name: 'Welche Daten brauche ich für den Stromvergleich in Essen?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Für den Stromvergleich in Essen reichen Postleitzahl und Ihr Jahresverbrauch (kWh). Optional hilft die Zählernummer für die spätere Beauftragung.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'Ist der Stromanbieterwechsel in Essen kostenlos?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Ja. Der Anbieterwechsel selbst ist kostenlos. Es fallen keine Gebühren für Kündigung oder Anmeldung an. Die Stromversorgung bleibt durchgehend gewährleistet.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'Wie lange dauert ein Stromwechsel in Essen?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Das hängt von der Kündigungsfrist Ihres aktuellen Vertrags ab. In der Praxis dauert ein Wechsel häufig einige Wochen.',
-          },
-        },
-      ],
-    };
-
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.textContent = JSON.stringify(faqSchema);
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -104,6 +81,8 @@ export default function StromvergleichEssenPage() {
       cityName="Essen"
       citySlug="essen"
     >
+      <FAQSchema items={[...FAQ_ITEMS]} />
+
       <div className="min-h-screen bg-background break-words leading-mobile">
         {/* Hero */}
         <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
