@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
 import {
   Zap,
   CheckCircle,
@@ -151,12 +150,7 @@ export default function StromvergleichDortmundPage() {
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-3xl"
-          >
+          <div className="max-w-3xl">
             <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-6 leading-tight max-w-[22ch] sm:max-w-none break-words">
               Stromvergleich Dortmund: Günstige Tarife für Dortmunder Haushalte
             </h1>
@@ -178,7 +172,7 @@ export default function StromvergleichDortmundPage() {
                 So vergleichen wir (Methodik)
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -191,7 +185,7 @@ export default function StromvergleichDortmundPage() {
                 <CardHeader className="bg-primary text-white">
                   <CardTitle className="font-heading text-2xl">Stromtarife vergleichen</CardTitle>
                 </CardHeader>
-                <CardContent className="p-8 ox-hidden">
+                <CardContent className="p-8 overflow-hidden">
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
@@ -251,12 +245,7 @@ export default function StromvergleichDortmundPage() {
 
               {/* Results Section */}
               {showResults && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="mt-12"
-                >
+                <div className="mt-12">
                   <h2 className="font-heading text-2xl font-bold text-primary mb-8">Tarifvorschau für {formData.postleitzahl}</h2>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
@@ -282,12 +271,7 @@ export default function StromvergleichDortmundPage() {
                       const yearlyPrice = monthlyPrice * 12;
 
                       return (
-                        <motion.div
-                          key={index}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: index * 0.1 }}
-                        >
+                        <div key={index}>
                           <Card className="h-full flex flex-col shadow-lg hover:shadow-xl transition-shadow">
                             <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10">
                               <CardTitle className="font-heading text-xl text-primary">{tariff.name}</CardTitle>
@@ -319,7 +303,7 @@ export default function StromvergleichDortmundPage() {
                               </Link>
                             </CardContent>
                           </Card>
-                        </motion.div>
+                        </div>
                       );
                     })}
                   </div>
@@ -340,7 +324,7 @@ export default function StromvergleichDortmundPage() {
                       <ArrowRight className="w-5 h-5 ml-2" />
                     </Button>
                   </div>
-                </motion.div>
+                </div>
               )}
             </div>
 
@@ -589,12 +573,10 @@ export default function StromvergleichDortmundPage() {
       {/* Why Switch Section */}
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
+          <div className="text-center mb-16">
             <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-primary mb-4">Warum wechseln?</h2>
-            <p className="font-paragraph text-lg text-gray-600 max-w-2xl mx-auto">
-              Das bringt Ihnen ein Tarifwechsel – klar & einfach erklärt.
-            </p>
-          </motion.div>
+            <p className="font-paragraph text-lg text-gray-600 max-w-2xl mx-auto">Das bringt Ihnen ein Tarifwechsel – klar & einfach erklärt.</p>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -607,13 +589,7 @@ export default function StromvergleichDortmundPage() {
             ].map((item, index) => {
               const IconComponent = item.icon;
               return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                >
+                <div key={index}>
                   <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
                     <div className="flex items-start gap-4">
                       <div className="flex-shrink-0">
@@ -625,7 +601,7 @@ export default function StromvergleichDortmundPage() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -640,7 +616,7 @@ export default function StromvergleichDortmundPage() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative">
+            <div className="relative">
               <div className="bg-white rounded-2xl p-8 shadow-lg h-full">
                 <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl mb-6">1</div>
                 <h3 className="font-heading text-2xl font-bold text-primary mb-4">Daten eingeben</h3>
@@ -648,15 +624,9 @@ export default function StromvergleichDortmundPage() {
                   Geben Sie Ihre Postleitzahl und Ihren Stromverbrauch ein. Das dauert nur wenige Sekunden.
                 </p>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="relative"
-            >
+            <div className="relative">
               <div className="bg-white rounded-2xl p-8 shadow-lg h-full">
                 <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl mb-6">2</div>
                 <h3 className="font-heading text-2xl font-bold text-primary mb-4">Tarife vergleichen</h3>
@@ -664,15 +634,9 @@ export default function StromvergleichDortmundPage() {
                   Sehen Sie alle verfügbaren Tarife mit Preis, Laufzeit und Preisgarantie auf einen Blick.
                 </p>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="relative"
-            >
+            <div className="relative">
               <div className="bg-white rounded-2xl p-8 shadow-lg h-full">
                 <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl mb-6">3</div>
                 <h3 className="font-heading text-2xl font-bold text-primary mb-4">Wechsel abschließen</h3>
@@ -680,7 +644,7 @@ export default function StromvergleichDortmundPage() {
                   Wählen Sie Ihren Wunsch-Tarif und wir kümmern uns um alle Formalitäten. Kostenlos und sicher.
                 </p>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -725,13 +689,7 @@ export default function StromvergleichDortmundPage() {
               { title: 'Boni & Rabatte', description: 'Transparente Darstellung aller Wechselboni und Rabatte.' },
               { title: 'Öko-Optionen', description: 'Grüne Tarife mit Ökostrom-Zertifikaten sind oft günstiger als gedacht.' },
             ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
+              <div key={index}>
                 <Card className="h-full">
                   <CardHeader>
                     <CardTitle className="font-heading text-xl text-primary">{item.title}</CardTitle>
@@ -740,7 +698,7 @@ export default function StromvergleichDortmundPage() {
                     <p className="font-paragraph text-gray-600">{item.description}</p>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -749,7 +707,7 @@ export default function StromvergleichDortmundPage() {
       {/* Trust Section */}
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <div>
             <h2 className="font-heading text-2xl sm:text-3xl font-bold text-primary mb-6">Warum energievergleich.shop?</h2>
             <div className="space-y-4 font-paragraph text-gray-700 leading-relaxed">
               <p>
@@ -770,7 +728,7 @@ export default function StromvergleichDortmundPage() {
                 -Seite.
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -829,9 +787,7 @@ export default function StromvergleichDortmundPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="font-paragraph text-sm text-gray-600 mb-4">Vergleichen Sie auch Ihre Gastarife und sparen Sie zusätzlich.</p>
-                  <Button variant="outline" size="sm">
-                    Mehr erfahren
-                  </Button>
+                  <Button variant="outline" size="sm">Mehr erfahren</Button>
                 </CardContent>
               </Card>
             </Link>
@@ -842,9 +798,7 @@ export default function StromvergleichDortmundPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="font-paragraph text-sm text-gray-600 mb-4">Produzieren Sie Ihren eigenen Strom mit einer Solaranlage.</p>
-                  <Button variant="outline" size="sm">
-                    Mehr erfahren
-                  </Button>
+                  <Button variant="outline" size="sm">Mehr erfahren</Button>
                 </CardContent>
               </Card>
             </Link>
@@ -855,9 +809,7 @@ export default function StromvergleichDortmundPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="font-paragraph text-sm text-gray-600 mb-4">Spezielle Stromtarife für Ihr Unternehmen.</p>
-                  <Button variant="outline" size="sm">
-                    Mehr erfahren
-                  </Button>
+                  <Button variant="outline" size="sm">Mehr erfahren</Button>
                 </CardContent>
               </Card>
             </Link>
@@ -868,9 +820,7 @@ export default function StromvergleichDortmundPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="font-paragraph text-sm text-gray-600 mb-4">Tipps und Wissen rund um Stromtarife.</p>
-                  <Button variant="outline" size="sm">
-                    Mehr erfahren
-                  </Button>
+                  <Button variant="outline" size="sm">Mehr erfahren</Button>
                 </CardContent>
               </Card>
             </Link>
@@ -881,9 +831,7 @@ export default function StromvergleichDortmundPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="font-paragraph text-sm text-gray-600 mb-4">So funktioniert unser Vergleich.</p>
-                  <Button variant="outline" size="sm">
-                    Mehr erfahren
-                  </Button>
+                  <Button variant="outline" size="sm">Mehr erfahren</Button>
                 </CardContent>
               </Card>
             </Link>
@@ -891,10 +839,7 @@ export default function StromvergleichDortmundPage() {
         </div>
       </section>
 
-      {/* Passende Ratgeber */}
       <PassendeRatgeber moneyPageId="stromvergleich-dortmund" limit={4} />
-
-      {/* Related Pages - Cross-Linking */}
       <RelatedPages pages={getRelatedPages('/stromvergleich-dortmund')} />
 
       <RelatedCities currentCity="dortmund" />
