@@ -90,11 +90,11 @@ export default function StromvergleichBochumPage() {
       seo={{
         title: 'Stromvergleich Bochum | Stromtarife vergleichen & einfach wechseln',
         description:
-          'Stromtarife in Bochum vergleichen: passende Angebote finden, Kosten senken und unkompliziert wechseln. Kostenlos und unverbindlich.',
+          'Stromvergleich Bochum: Tarife vergleichen & bis zu 300€ jährlich sparen. ✓ Kostenlos ✓ Unabhängig ✓ TÜV-geprüft. Über 1000 Anbieter im Check!',
         keywords: 'Stromvergleich Bochum, Stromtarife Bochum, Stromanbieter Bochum, Stromwechsel Bochum',
         canonical: 'https://www.energievergleich.shop/stromvergleich-bochum',
         ogTitle: 'Stromvergleich Bochum | Stromtarife vergleichen & wechseln',
-        ogDescription: 'Stromtarife in Bochum vergleichen, passende Angebote finden und einfach wechseln.',
+        ogDescription: 'Stromvergleich Bochum: Tarife vergleichen & bis zu 300€ jährlich sparen. ✓ Kostenlos ✓ Unabhängig ✓ TÜV-geprüft. Über 1000 Anbieter im Check!',
       }}
       breadcrumbLabel="Stromvergleich Bochum"
       breadcrumbPath="/stromvergleich-bochum"

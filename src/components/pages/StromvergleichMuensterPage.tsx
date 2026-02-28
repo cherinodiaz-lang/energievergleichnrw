@@ -7,11 +7,11 @@ export default function StromvergleichMuensterPage() {
       seo={{
         title: 'Stromvergleich Münster | Stromtarife vergleichen & einfach wechseln',
         description:
-          'Stromtarife in Münster vergleichen: passende Angebote finden, Kosten senken und unkompliziert wechseln. Kostenlos und unverbindlich.',
+          'Stromvergleich Münster: Tarife vergleichen & bis zu 300€ jährlich sparen. ✓ Kostenlos ✓ Unabhängig ✓ TÜV-geprüft. Über 1000 Anbieter!',
         keywords: 'Stromvergleich Münster, Stromtarife Münster, Stromanbieter Münster, Stromwechsel Münster',
         canonical: 'https://www.energievergleich.shop/stromvergleich-muenster',
         ogTitle: 'Stromvergleich Münster | Stromtarife vergleichen & wechseln',
-        ogDescription: 'Stromtarife in Münster vergleichen, passende Angebote finden und einfach wechseln.',
+        ogDescription: 'Stromvergleich Münster: Tarife vergleichen & bis zu 300€ jährlich sparen. ✓ Kostenlos ✓ Unabhängig ✓ TÜV-geprüft. Über 1000 Anbieter!',
       }}
       breadcrumbLabel="Stromvergleich Münster"
       breadcrumbPath="/stromvergleich-muenster"

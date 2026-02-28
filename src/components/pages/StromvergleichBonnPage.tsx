@@ -7,11 +7,11 @@ export default function StromvergleichBonnPage() {
       seo={{
         title: 'Stromvergleich Bonn | Stromtarife vergleichen & einfach wechseln',
         description:
-          'Stromtarife in Bonn vergleichen: passende Angebote finden, Kosten senken und unkompliziert wechseln. Kostenlos und unverbindlich.',
+          'Stromvergleich Bonn: Jetzt Tarife vergleichen & bis zu 300€ jährlich sparen. ✓ Kostenlos ✓ Unabhängig ✓ TÜV-geprüft. 1000+ Anbieter im Check!',
         keywords: 'Stromvergleich Bonn, Stromtarife Bonn, Stromanbieter Bonn, Stromwechsel Bonn',
         canonical: 'https://www.energievergleich.shop/stromvergleich-bonn',
         ogTitle: 'Stromvergleich Bonn | Stromtarife vergleichen & wechseln',
-        ogDescription: 'Stromtarife in Bonn vergleichen, passende Angebote finden und einfach wechseln.',
+        ogDescription: 'Stromvergleich Bonn: Jetzt Tarife vergleichen & bis zu 300€ jährlich sparen. ✓ Kostenlos ✓ Unabhängig ✓ TÜV-geprüft. 1000+ Anbieter im Check!',
       }}
       breadcrumbLabel="Stromvergleich Bonn"
       breadcrumbPath="/stromvergleich-bonn"
