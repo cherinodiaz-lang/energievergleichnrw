@@ -2,15 +2,16 @@
   "name": "wixstro",
   "type": "module",
   "version": "1.0.0",
+  "packageManager": "pnpm@9.15.0",
   "scripts": {
     "dev": "wix dev",
     "build": "wix build",
     "preview": "wix preview",
     "release": "wix release",
     "env": "wix env pull",
-    "check": "npx astro check --js-only",
+    "check": "astro check --js-only",
     "typecheck": "tsc --noEmit",
-    "check:all": "npm run check && npm run typecheck",
+    "check:all": "pnpm run check && pnpm run typecheck",
     "test:run": "vitest run"
   },
   "dependencies": {
