@@ -106,6 +106,48 @@ export default function StromvergleichDortmundPage() {
     };
   }, []);
 
+  useEffect(() => {
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Welche Daten brauche ich für den Stromvergleich in Dortmund?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Für den Stromvergleich in Dortmund reichen Postleitzahl und Ihr Jahresverbrauch (kWh). Optional hilft die Zählernummer für die spätere Beauftragung.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Ist der Stromanbieterwechsel in Dortmund kostenlos?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Ja. Der Anbieterwechsel selbst ist kostenlos. Es fallen keine Gebühren für Kündigung oder Anmeldung an. Die Stromversorgung bleibt durchgehend gewährleistet.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Wie lange dauert ein Stromwechsel in Dortmund?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Das hängt von der Kündigungsfrist Ihres aktuellen Vertrags ab. In der Praxis dauert ein Wechsel häufig einige Wochen.',
+          },
+        },
+      ],
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(faqSchema);
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
