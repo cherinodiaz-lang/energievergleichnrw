@@ -24,7 +24,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-primary text-primary-foreground">
+    <footer className="bg-primary text-primary-foreground mt-auto">
       <div className="max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16 lg:py-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-12">
           {/* Brand Section */}
@@ -92,7 +92,7 @@ export default function Footer() {
               <li className="flex items-start gap-2 sm:gap-3">
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <a
-                  href={`tel:${CONTACT.phone.replace(/\s/g, '')}`}
+                  href={`tel:${CONTACT.phone.replace(/\\s/g, '')}`}
                   className="font-paragraph text-xs sm:text-sm opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity"
                 >
                   {CONTACT.phone}
