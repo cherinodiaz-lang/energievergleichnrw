@@ -34,26 +34,26 @@ export default function StromvergleichDuisburgPage() {
       mainEntity: [
         {
           '@type': 'Question',
-          name: 'Was ist die Grundversorgung in Duisburg?',
+          name: 'Welche Daten brauche ich für den Stromvergleich in Duisburg?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Die Grundversorgung ist der Tarif, der automatisch gilt, wenn kein anderer Stromvertrag abgeschlossen wurde. Sie bietet Versorgungssicherheit, ist aber nicht immer die günstigste Option.',
+            text: 'Für den Stromvergleich in Duisburg reichen Postleitzahl und Ihr Jahresverbrauch (kWh). Optional hilft die Zählernummer für die spätere Beauftragung.',
           },
         },
         {
           '@type': 'Question',
-          name: 'Welche Kündigungsfristen gelten beim Stromwechsel?',
+          name: 'Ist der Stromanbieterwechsel in Duisburg kostenlos?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Die Kündigungsfrist hängt vom aktuellen Vertrag ab. In der Grundversorgung sind Fristen oft kürzer als bei Sonderverträgen. Prüfen Sie Ihre Vertragsunterlagen.',
+            text: 'Ja. Der Anbieterwechsel selbst ist kostenlos. Es fallen keine Gebühren für Kündigung oder Anmeldung an. Die Stromversorgung bleibt durchgehend gewährleistet.',
           },
         },
         {
           '@type': 'Question',
-          name: 'Welche Angaben brauche ich für den Stromvergleich in Duisburg?',
+          name: 'Wie lange dauert ein Stromwechsel in Duisburg?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Für einen Vergleich reichen Postleitzahl und Jahresverbrauch (kWh). Optional hilft die Zählernummer bei der späteren Beauftragung.',
+            text: 'Das hängt von der Kündigungsfrist Ihres aktuellen Vertrags ab. In der Praxis dauert ein Wechsel häufig einige Wochen.',
           },
         },
       ],
