@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import {
   Zap,
@@ -26,6 +26,7 @@ import PassendeRatgeber from '@/components/PassendeRatgeber';
 import TrustRow from '@/components/TrustRow';
 import RelatedPages from '@/components/RelatedPages';
 import RelatedCities from '@/components/RelatedCities';
+import FAQSchema from '@/components/FAQSchema';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 import { validateFormFields, FORM_CONFIGS } from '@/lib/form-validation';
@@ -33,6 +34,44 @@ import FormSubmissionDialog from '@/components/FormSubmissionDialog';
 import { trackMethodikClick } from '@/services/form-submission';
 import { getRelatedPages } from '@/lib/internal-linking';
 import StromvergleichCityLayout from '@/components/pages/stromvergleich/StromvergleichCityLayout';
+
+const FAQ_ITEMS = [
+  {
+    question: 'Wer ist der Grundversorger in Dortmund?',
+    answer:
+      'Dortmunder Stadtwerke (DSW21) ist der Grundversorger für Dortmund. Als Grundversorger ist DSW21 verpflichtet, jeden Haushalt in Dortmund mit Strom zu versorgen, auch wenn dieser nicht aktiv einen Vertrag abgeschlossen hat. Die Grundversorgungstarife sind oft höher als Sondertarife bei anderen Anbietern.',
+  },
+  {
+    question: 'Wie lange sind die Kündigungsfristen in Dortmund?',
+    answer:
+      'Bei der Grundversorgung von DSW21 beträgt die Kündigungsfrist 2 Wochen zum Ende eines Kalendermonats. Bei Sondertarifen anderer Anbieter liegt die Frist meist bei 4 Wochen zum Monatsende. Achten Sie auf die genaue Kündigungsfrist in Ihrem Vertrag.',
+  },
+  {
+    question: 'Was muss ich beim Umzug in Dortmund beachten?',
+    answer:
+      'Bei einem Umzug in Dortmund sollten Sie Ihren Stromvertrag rechtzeitig (mindestens 4 Wochen vorher) kündigen oder einen neuen Tarif für die neue Adresse abschließen. Nutzen Sie unseren Vergleichsrechner mit Ihrer neuen Postleitzahl, um die besten Tarife für Ihre neue Wohnung zu finden. Die Stromversorgung wird nicht unterbrochen.',
+  },
+  {
+    question: 'Wie viel kann ich durch einen Stromwechsel in Dortmund sparen?',
+    answer:
+      'Die Einsparungen variieren je nach Ihrem Verbrauch und Ihrer aktuellen Versorgung. Im Durchschnitt sparen Dortmunder Haushalte 200-400 Euro pro Jahr durch einen Wechsel zu einem günstigeren Anbieter. Mit unserem Vergleichsrechner sehen Sie sofort, wie viel Sie sparen können.',
+  },
+  {
+    question: 'Welche Daten brauche ich für den Stromvergleich in Dortmund?',
+    answer:
+      'Für den Stromvergleich in Dortmund reichen Postleitzahl und Ihr Jahresverbrauch (kWh). Optional hilft die Zählernummer für die spätere Beauftragung.',
+  },
+  {
+    question: 'Wie lange dauert ein Stromwechsel in Dortmund?',
+    answer:
+      'Das hängt von der Kündigungsfrist Ihres aktuellen Vertrags ab. In der Praxis dauert ein Wechsel häufig einige Wochen.',
+  },
+  {
+    question: 'Ist der Stromanbieterwechsel in Dortmund kostenlos?',
+    answer:
+      'Ja. Der Wechsel zu einem neuen Stromanbieter ist kostenlos. Es fallen keine Gebühren für die Kündigung beim alten Anbieter oder für die Anmeldung beim neuen Anbieter an. Die Stromversorgung bleibt durchgehend gewährleistet und der Wechsel wird vollständig koordiniert.',
+  },
+] as const;
 
 export default function StromvergleichDortmundPage() {
   const navigate = useNavigate();
@@ -47,106 +86,6 @@ export default function StromvergleichDortmundPage() {
   const [calculatedConsumption, setCalculatedConsumption] = useState(0);
   const [showFormDialog, setShowFormDialog] = useState(false);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
-
-  useEffect(() => {
-    const faqSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: [
-        {
-          '@type': 'Question',
-          name: 'Wer ist der Grundversorger in Dortmund?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Dortmunder Stadtwerke (DSW21) ist der Grundversorger für Dortmund. Als Grundversorger ist DSW21 verpflichtet, jeden Haushalt in Dortmund mit Strom zu versorgen, auch wenn dieser nicht aktiv einen Vertrag abgeschlossen hat. Die Grundversorgungstarife sind oft höher als Sondertarife bei anderen Anbietern.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'Wie lange sind die Kündigungsfristen in Dortmund?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Bei der Grundversorgung von DSW21 beträgt die Kündigungsfrist 2 Wochen zum Ende eines Kalendermonats. Bei Sondertarifen anderer Anbieter liegt die Frist meist bei 4 Wochen zum Monatsende. Achten Sie auf die genaue Kündigungsfrist in Ihrem Vertrag.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'Was muss ich beim Umzug in Dortmund beachten?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Bei einem Umzug in Dortmund sollten Sie Ihren Stromvertrag rechtzeitig (mindestens 4 Wochen vorher) kündigen oder einen neuen Tarif für die neue Adresse abschließen. Nutzen Sie unseren Vergleichsrechner mit Ihrer neuen Postleitzahl, um die besten Tarife für Ihre neue Wohnung zu finden. Die Stromversorgung wird nicht unterbrochen.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'Wie viel kann ich durch einen Stromwechsel in Dortmund sparen?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Die Einsparungen variieren je nach Ihrem Verbrauch und Ihrer aktuellen Versorgung. Im Durchschnitt sparen Dortmunder Haushalte 200-400 Euro pro Jahr durch einen Wechsel zu einem günstigeren Anbieter. Mit unserem Vergleichsrechner sehen Sie sofort, wie viel Sie sparen können.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'Ist der Stromwechsel in Dortmund kostenlos?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Ja, der Wechsel zu einem neuen Stromanbieter ist völlig kostenlos. Es fallen keine Gebühren für die Kündigung beim alten Anbieter oder für die Anmeldung beim neuen Anbieter an. Der Wechsel wird von uns komplett übernommen.',
-          },
-        },
-      ],
-    };
-
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.textContent = JSON.stringify(faqSchema);
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
-
-  useEffect(() => {
-    const faqSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: [
-        {
-          '@type': 'Question',
-          name: 'Welche Daten brauche ich für den Stromvergleich in Dortmund?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Für den Stromvergleich in Dortmund reichen Postleitzahl und Ihr Jahresverbrauch (kWh). Optional hilft die Zählernummer für die spätere Beauftragung.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'Ist der Stromanbieterwechsel in Dortmund kostenlos?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Ja. Der Anbieterwechsel selbst ist kostenlos. Es fallen keine Gebühren für Kündigung oder Anmeldung an. Die Stromversorgung bleibt durchgehend gewährleistet.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'Wie lange dauert ein Stromwechsel in Dortmund?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Das hängt von der Kündigungsfrist Ihres aktuellen Vertrags ab. In der Praxis dauert ein Wechsel häufig einige Wochen.',
-          },
-        },
-      ],
-    };
-
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.textContent = JSON.stringify(faqSchema);
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -207,6 +146,8 @@ export default function StromvergleichDortmundPage() {
       cityName="Dortmund"
       citySlug="dortmund"
     >
+      <FAQSchema items={[...FAQ_ITEMS]} />
+
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -229,7 +170,11 @@ export default function StromvergleichDortmundPage() {
               >
                 Jetzt vergleichen
               </Button>
-              <Link to="/methodik" className="text-white/80 hover:text-white transition-colors text-sm font-medium underline">
+              <Link
+                to="/methodik"
+                onClick={() => trackMethodikClick('stromvergleich-dortmund')}
+                className="text-white/80 hover:text-white transition-colors text-sm font-medium underline"
+              >
                 So vergleichen wir (Methodik)
               </Link>
             </div>
@@ -385,6 +330,16 @@ export default function StromvergleichDortmundPage() {
                       <strong>Hinweis:</strong> Vorschau basiert auf Beispielrechnung. Finale Tarife nach Anbieterabfrage.
                     </p>
                   </div>
+
+                  <div className="mt-8 flex justify-center">
+                    <Button
+                      onClick={handleFormSubmit}
+                      className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 px-8 rounded-lg font-bold"
+                    >
+                      Jetzt Angebot anfordern
+                      <ArrowRight className="w-5 h-5 ml-2" />
+                    </Button>
+                  </div>
                 </motion.div>
               )}
             </div>
@@ -411,6 +366,8 @@ export default function StromvergleichDortmundPage() {
                   </li>
                 </ul>
               </div>
+
+              <TrustRow />
             </div>
           </div>
         </div>
@@ -939,6 +896,8 @@ export default function StromvergleichDortmundPage() {
 
       {/* Related Pages - Cross-Linking */}
       <RelatedPages pages={getRelatedPages('/stromvergleich-dortmund')} />
+
+      <RelatedCities currentCity="dortmund" />
 
       <FormSubmissionDialog open={showFormDialog} onOpenChange={setShowFormDialog} formData={formData} onSuccess={handleFormSuccess} />
     </StromvergleichCityLayout>
