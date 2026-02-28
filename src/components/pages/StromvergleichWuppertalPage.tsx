@@ -1,50 +1,26 @@
-import { useEffect } from 'react';
 import StromvergleichCityLayout from '@/components/pages/stromvergleich/StromvergleichCityLayout';
 import RelatedCities from '@/components/RelatedCities';
+import FAQSchema from '@/components/FAQSchema';
+
+const FAQ_ITEMS = [
+  {
+    question: 'Welche Daten brauche ich für den Stromvergleich in Wuppertal?',
+    answer:
+      'Für den Stromvergleich in Wuppertal reichen Postleitzahl und Ihr Jahresverbrauch (kWh). Optional hilft die Zählernummer für die spätere Beauftragung.',
+  },
+  {
+    question: 'Ist der Stromanbieterwechsel in Wuppertal kostenlos?',
+    answer:
+      'Ja. Der Anbieterwechsel selbst ist kostenlos. Es fallen keine Gebühren für Kündigung oder Anmeldung an. Die Stromversorgung bleibt durchgehend gewährleistet.',
+  },
+  {
+    question: 'Wie lange dauert ein Stromwechsel in Wuppertal?',
+    answer:
+      'Das hängt von der Kündigungsfrist Ihres aktuellen Vertrags ab. In der Praxis dauert ein Wechsel häufig einige Wochen.',
+  },
+] as const;
 
 export default function StromvergleichWuppertalPage() {
-  useEffect(() => {
-    const faqSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: [
-        {
-          '@type': 'Question',
-          name: 'Welche Daten brauche ich für den Stromvergleich in Wuppertal?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Für den Stromvergleich in Wuppertal reichen Postleitzahl und Ihr Jahresverbrauch (kWh). Optional hilft die Zählernummer für die spätere Beauftragung.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'Ist der Stromanbieterwechsel in Wuppertal kostenlos?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Ja. Der Anbieterwechsel selbst ist kostenlos. Es fallen keine Gebühren für Kündigung oder Anmeldung an. Die Stromversorgung bleibt durchgehend gewährleistet.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'Wie lange dauert ein Stromwechsel in Wuppertal?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Das hängt von der Kündigungsfrist Ihres aktuellen Vertrags ab. In der Praxis dauert ein Wechsel häufig einige Wochen.',
-          },
-        },
-      ],
-    };
-
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.textContent = JSON.stringify(faqSchema);
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
-
   return (
     <StromvergleichCityLayout
       seo={{
@@ -62,6 +38,8 @@ export default function StromvergleichWuppertalPage() {
       cityName="Wuppertal"
       citySlug="wuppertal"
     >
+      <FAQSchema items={[...FAQ_ITEMS]} />
+
       <main className="min-h-screen bg-white">
         <section className="mx-auto w-full max-w-5xl px-4 py-10">
           <header className="mb-8">
@@ -157,6 +135,8 @@ export default function StromvergleichWuppertalPage() {
           </footer>
         </section>
       </main>
+
+      <RelatedCities currentCity="wuppertal" />
     </StromvergleichCityLayout>
   );
 }
