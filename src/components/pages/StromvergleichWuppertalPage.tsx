@@ -16,6 +16,8 @@ export default function StromvergleichWuppertalPage() {
       breadcrumbLabel="Stromvergleich Wuppertal"
       breadcrumbPath="/stromvergleich-wuppertal"
       breadcrumbAbsoluteUrl="https://www.energievergleich.shop/stromvergleich-wuppertal"
+      cityName="Wuppertal"
+      citySlug="wuppertal"
     >
       <main className="min-h-screen bg-white">
         <section className="mx-auto w-full max-w-5xl px-4 py-10">

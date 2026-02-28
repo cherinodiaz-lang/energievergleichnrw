@@ -16,6 +16,8 @@ export default function StromvergleichBielefeldPage() {
       breadcrumbLabel="Stromvergleich Bielefeld"
       breadcrumbPath="/stromvergleich-bielefeld"
       breadcrumbAbsoluteUrl="https://www.energievergleich.shop/stromvergleich-bielefeld"
+      cityName="Bielefeld"
+      citySlug="bielefeld"
     >
       <main className="min-h-screen bg-white">
         <section className="mx-auto w-full max-w-5xl px-4 py-10">

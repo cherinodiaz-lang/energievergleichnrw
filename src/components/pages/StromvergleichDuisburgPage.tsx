@@ -99,6 +99,8 @@ export default function StromvergleichDuisburgPage() {
       breadcrumbLabel="Stromvergleich Duisburg"
       breadcrumbPath="/stromvergleich-duisburg"
       breadcrumbAbsoluteUrl="https://www.energievergleich.shop/stromvergleich-duisburg"
+      cityName="Duisburg"
+      citySlug="duisburg"
     >
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">

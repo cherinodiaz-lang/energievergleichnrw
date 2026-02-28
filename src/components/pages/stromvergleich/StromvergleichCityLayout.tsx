@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
+import LocalBusinessSchema from '@/components/LocalBusinessSchema';
 import { ROUTES } from '@/lib/routes';
 
 type BreadcrumbSchemaItem = {
@@ -24,6 +25,8 @@ interface StromvergleichCityLayoutProps {
   breadcrumbLabel: string;
   breadcrumbPath: string;
   breadcrumbAbsoluteUrl?: string;
+  cityName: string;
+  citySlug: string;
   children: React.ReactNode;
 }
 
@@ -41,6 +44,8 @@ export default function StromvergleichCityLayout({
   breadcrumbLabel,
   breadcrumbPath,
   breadcrumbAbsoluteUrl,
+  cityName,
+  citySlug,
   children,
 }: StromvergleichCityLayoutProps) {
   const breadcrumbItems = [
@@ -65,6 +70,7 @@ export default function StromvergleichCityLayout({
         ogImage={seo.ogImage}
       />
       <BreadcrumbSchema items={breadcrumbSchema} />
+      <LocalBusinessSchema cityName={cityName} citySlug={citySlug} />
       <Header />
       <Breadcrumb items={breadcrumbItems} />
       {children}

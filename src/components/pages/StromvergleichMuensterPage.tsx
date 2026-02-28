@@ -16,6 +16,8 @@ export default function StromvergleichMuensterPage() {
       breadcrumbLabel="Stromvergleich Münster"
       breadcrumbPath="/stromvergleich-muenster"
       breadcrumbAbsoluteUrl="https://www.energievergleich.shop/stromvergleich-muenster"
+      cityName="Münster"
+      citySlug="muenster"
     >
       <main className="min-h-screen bg-white">
         <section className="mx-auto w-full max-w-5xl px-4 py-10">

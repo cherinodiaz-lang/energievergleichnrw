@@ -109,6 +109,8 @@ export default function StromvergleichEssenPage() {
       breadcrumbLabel="Stromvergleich Essen"
       breadcrumbPath="/stromvergleich-essen"
       breadcrumbAbsoluteUrl="https://www.energievergleich.shop/stromvergleich-essen"
+      cityName="Essen"
+      citySlug="essen"
     >
       <div className="min-h-screen bg-background break-words leading-mobile">
         {/* Hero */}

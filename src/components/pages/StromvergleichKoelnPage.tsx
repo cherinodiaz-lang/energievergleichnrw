@@ -161,6 +161,8 @@ export default function StromvergleichKoelnPage() {
       breadcrumbLabel="Stromvergleich Köln"
       breadcrumbPath="/stromvergleich-koeln"
       breadcrumbAbsoluteUrl="https://www.energievergleich.shop/stromvergleich-koeln"
+      cityName="Köln"
+      citySlug="koeln"
     >
       <FAQSchema items={[...FAQ_ITEMS]} />
 

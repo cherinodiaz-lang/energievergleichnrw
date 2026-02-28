@@ -162,6 +162,8 @@ export default function StromvergleichDortmundPage() {
       breadcrumbLabel="Stromvergleich Dortmund"
       breadcrumbPath="/stromvergleich-dortmund"
       breadcrumbAbsoluteUrl="https://www.energievergleich.shop/stromvergleich-dortmund"
+      cityName="Dortmund"
+      citySlug="dortmund"
     >
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">

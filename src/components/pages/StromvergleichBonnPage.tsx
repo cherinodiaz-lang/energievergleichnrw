@@ -16,6 +16,8 @@ export default function StromvergleichBonnPage() {
       breadcrumbLabel="Stromvergleich Bonn"
       breadcrumbPath="/stromvergleich-bonn"
       breadcrumbAbsoluteUrl="https://www.energievergleich.shop/stromvergleich-bonn"
+      cityName="Bonn"
+      citySlug="bonn"
     >
       <main className="min-h-screen bg-white">
         <section className="mx-auto w-full max-w-5xl px-4 py-10">

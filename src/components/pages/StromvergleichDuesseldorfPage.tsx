@@ -159,6 +159,8 @@ export default function StromvergleichDuesseldorfPage() {
       breadcrumbLabel="Stromvergleich Düsseldorf"
       breadcrumbPath="/stromvergleich-duesseldorf"
       breadcrumbAbsoluteUrl="https://www.energievergleich.shop/stromvergleich-duesseldorf"
+      cityName="Düsseldorf"
+      citySlug="duesseldorf"
     >
       <div className="min-h-screen bg-background break-words leading-mobile">
         {/* Hero Section - LCP Optimized */}
