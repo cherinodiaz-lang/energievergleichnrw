@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -134,9 +135,9 @@ jobs:
           echo "✅ TypeScript Check Complete"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-  # Job 4: Final Status Summary
-  summary:
-    name: CI Summary
+  # Job 4: Stable required status check
+  ci:
+    name: CI
     runs-on: ubuntu-latest
     needs: [validate, lint, typecheck]
     if: always()
@@ -158,7 +159,6 @@ jobs:
             echo "✅ All checks passed!"
             exit 0
           else
-            echo "⚠️ Some checks failed or were skipped"
-            echo "Note: Non-critical checks allow warnings"
-            exit 0
+            echo "❌ Some checks failed or were skipped"
+            exit 1
           fi
