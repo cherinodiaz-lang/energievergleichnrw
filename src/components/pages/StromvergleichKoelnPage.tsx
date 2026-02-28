@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   Zap,
@@ -146,6 +146,48 @@ export default function StromvergleichKoelnPage() {
     { name: 'Tarif Option B', pricePerKwh: 0.26, baseFee: 14.0 },
     { name: 'Tarif Option C', pricePerKwh: 0.24, baseFee: 16.5 },
   ];
+
+  useEffect(() => {
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Welche Daten brauche ich für den Stromvergleich in Köln?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Für den Stromvergleich in Köln reichen Postleitzahl und Ihr Jahresverbrauch (kWh). Optional hilft die Zählernummer für die spätere Beauftragung.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Ist der Stromanbieterwechsel in Köln kostenlos?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Ja. Der Anbieterwechsel selbst ist kostenlos. Es fallen keine Gebühren für Kündigung oder Anmeldung an. Die Stromversorgung bleibt durchgehend gewährleistet.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Wie lange dauert ein Stromwechsel in Köln?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Das hängt von der Kündigungsfrist Ihres aktuellen Vertrags ab. In der Praxis dauert ein Wechsel häufig einige Wochen.',
+          },
+        },
+      ],
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(faqSchema);
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
 
   return (
     <StromvergleichCityLayout
