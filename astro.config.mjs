@@ -36,35 +36,44 @@ export default defineConfig({
       auth: true,
     }),
     ...(isBuild ? [monitoring()] : []),
-    react(isBuild ? {} : {
-      babel: { plugins: [sourceAttrsPlugin, dynamicDataPlugin] },
-    }),
+    react(
+      isBuild
+        ? {}
+        : {
+            babel: { plugins: [sourceAttrsPlugin, dynamicDataPlugin] },
+          }
+    ),
   ],
   vite: {
     plugins: [customErrorOverlayPlugin()],
-    cacheDir: 'node_modules/.cache/.vite',
+    cacheDir: "node_modules/.cache/.vite",
+    resolve: {
+      alias: {
+        "framer-motion": "/src/shims/framer-motion.tsx",
+        "framer-motion/react": "/src/shims/framer-motion.tsx",
+      },
+    },
     optimizeDeps: {
       include: [
-        'react',
-        'react-dom',
-        'zustand',
-        'framer-motion',
-        'date-fns',
-        'clsx',
-        'class-variance-authority',
-        'tailwind-merge',
-        '@radix-ui/*',
-        '@wix/*',
-        'zod',
+        "react",
+        "react-dom",
+        "zustand",
+        "date-fns",
+        "clsx",
+        "class-variance-authority",
+        "tailwind-merge",
+        "@radix-ui/*",
+        "@wix/*",
+        "zod",
       ],
     },
-    css: !isBuild ? {
-      postcss: {
-        plugins: [
-          postcssPseudoToData(),
-        ],
-      },
-    } : undefined,
+    css: !isBuild
+      ? {
+          postcss: {
+            plugins: [postcssPseudoToData()],
+          },
+        }
+      : undefined,
   },
   ...(isBuild && { adapter: cloudProviderFetchAdapter({}) }),
   devToolbar: {
@@ -78,6 +87,6 @@ export default defineConfig({
     host: true,
   },
   security: {
-    checkOrigin: false
-  }
+    checkOrigin: false,
+  },
 });
