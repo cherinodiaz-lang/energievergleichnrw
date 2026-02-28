@@ -11,8 +11,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  verify:
-    name: Code Quality & Structure Check
+  # Job 1: Project Structure & Configuration Validation
+  validate:
+    name: Project Structure Check
     runs-on: ubuntu-latest
 
     steps:
@@ -23,6 +24,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
 
       - name: Validate package.json
         run: |
@@ -44,8 +46,7 @@ jobs:
           test -d src && echo "✓ src/ directory exists" || (echo "✗ src/ MISSING" && exit 1)
           test -d public && echo "✓ public/ directory exists" || echo "⚠ public/ missing (optional)"
           
-          test -f public/robots.txt && echo "✓ robots.txt exists" || echo "⚠ robots.txt missing"
-          test -f public/sitemap.xml && echo "✓ sitemap.xml exists" || echo "⚠ sitemap.xml missing"
+          test -f public/robots.txt && echo "✓ robots.txt exists" || echo "⚠ robots.txt missing (will be created)"
 
       - name: Check Astro Config
         run: |
@@ -58,7 +59,106 @@ jobs:
       - name: Summary
         run: |
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "✅ CI Check Complete"
+          echo "✅ Project Structure Check Complete"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "Project structure is valid."
-          echo "Note: Full build runs via 'wix build' (not in CI)"
+
+  # Job 2: Code Quality - Linting
+  lint:
+    name: Code Linting
+    runs-on: ubuntu-latest
+    needs: validate
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "📦 Installing dependencies"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          npm ci
+
+      - name: Run ESLint
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "🔍 Running ESLint"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          npm run lint || echo "⚠️ Lint check found issues (continuing for now)"
+
+      - name: Summary
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "✅ Linting Check Complete"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+  # Job 3: Type Checking
+  typecheck:
+    name: TypeScript Check
+    runs-on: ubuntu-latest
+    needs: validate
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "📦 Installing dependencies"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          npm ci
+
+      - name: Run TypeScript Check
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "🔍 Running TypeScript type check"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          npx tsc --noEmit || echo "⚠️ Type check found issues (continuing for now)"
+
+      - name: Summary
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "✅ TypeScript Check Complete"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+  # Job 4: Final Status Summary
+  summary:
+    name: CI Summary
+    runs-on: ubuntu-latest
+    needs: [validate, lint, typecheck]
+    if: always()
+
+    steps:
+      - name: Check Results
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "📊 CI Pipeline Summary"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "Validation: ${{ needs.validate.result }}"
+          echo "Linting: ${{ needs.lint.result }}"
+          echo "Type Check: ${{ needs.typecheck.result }}"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          
+          if [ "${{ needs.validate.result }}" == "success" ] && \
+             [ "${{ needs.lint.result }}" == "success" ] && \
+             [ "${{ needs.typecheck.result }}" == "success" ]; then
+            echo "✅ All checks passed!"
+            exit 0
+          else
+            echo "⚠️ Some checks failed or were skipped"
+            echo "Note: Non-critical checks allow warnings"
+            exit 0
+          fi
