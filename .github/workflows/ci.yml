@@ -12,7 +12,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Job 1: Project Structure & Configuration Validation
   validate:
     name: Project Structure Check
     runs-on: ubuntu-latest
@@ -25,7 +24,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
 
       - name: Validate package.json
         run: |
@@ -39,14 +37,14 @@ jobs:
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           echo "📁 Checking project structure"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          
+
           test -f astro.config.mjs && echo "✓ astro.config.mjs exists" || (echo "✗ astro.config.mjs MISSING" && exit 1)
           test -f tsconfig.json && echo "✓ tsconfig.json exists" || (echo "✗ tsconfig.json MISSING" && exit 1)
           test -f package.json && echo "✓ package.json exists" || (echo "✗ package.json MISSING" && exit 1)
-          
+
           test -d src && echo "✓ src/ directory exists" || (echo "✗ src/ MISSING" && exit 1)
           test -d public && echo "✓ public/ directory exists" || echo "⚠ public/ missing (optional)"
-          
+
           test -f public/robots.txt && echo "✓ robots.txt exists" || echo "⚠ robots.txt missing (will be created)"
 
       - name: Check Astro Config
@@ -63,7 +61,6 @@ jobs:
           echo "✅ Project Structure Check Complete"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-  # Job 2: Code Quality - Linting
   lint:
     name: Code Linting
     runs-on: ubuntu-latest
@@ -77,21 +74,26 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
 
-      - name: Install Dependencies
+      - name: Enable pnpm (Corepack)
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.15.0 --activate
+          pnpm --version
+
+      - name: Install Dependencies (pnpm)
         run: |
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "📦 Installing dependencies"
+          echo "📦 Installing dependencies (pnpm)"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          npm ci
+          pnpm install --no-frozen-lockfile
 
-      - name: Run ESLint
+      - name: Run Astro Check
         run: |
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "🔍 Running ESLint"
+          echo "🔍 Running Astro check"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          npm run lint || echo "⚠️ Lint check found issues (continuing for now)"
+          pnpm run check || echo "⚠️ Astro check found issues (continuing for now)"
 
       - name: Summary
         run: |
@@ -99,7 +101,6 @@ jobs:
           echo "✅ Linting Check Complete"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-  # Job 3: Type Checking
   typecheck:
     name: TypeScript Check
     runs-on: ubuntu-latest
@@ -113,21 +114,26 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
 
-      - name: Install Dependencies
+      - name: Enable pnpm (Corepack)
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.15.0 --activate
+          pnpm --version
+
+      - name: Install Dependencies (pnpm)
         run: |
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "📦 Installing dependencies"
+          echo "📦 Installing dependencies (pnpm)"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          npm ci
+          pnpm install --no-frozen-lockfile
 
       - name: Run TypeScript Check
         run: |
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           echo "🔍 Running TypeScript type check"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          npx tsc --noEmit || echo "⚠️ Type check found issues (continuing for now)"
+          pnpm run typecheck || echo "⚠️ Type check found issues (continuing for now)"
 
       - name: Summary
         run: |
@@ -135,7 +141,6 @@ jobs:
           echo "✅ TypeScript Check Complete"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-  # Job 4: Stable required status check
   ci:
     name: CI
     runs-on: ubuntu-latest
@@ -152,7 +157,7 @@ jobs:
           echo "Linting: ${{ needs.lint.result }}"
           echo "Type Check: ${{ needs.typecheck.result }}"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          
+
           if [ "${{ needs.validate.result }}" == "success" ] && \
              [ "${{ needs.lint.result }}" == "success" ] && \
              [ "${{ needs.typecheck.result }}" == "success" ]; then
