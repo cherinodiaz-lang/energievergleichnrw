@@ -1,83 +1,71 @@
-// @ts-check
-import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
-import cloudProviderFetchAdapter from "@wix/cloud-provider-fetch-adapter";
-import wix from "@wix/astro";
-import monitoring from "@wix/monitoring-astro";
-import react from "@astrojs/react";
-import sourceAttrsPlugin from "@wix/babel-plugin-jsx-source-attrs";
-import dynamicDataPlugin from "@wix/babel-plugin-jsx-dynamic-data";
-import customErrorOverlayPlugin from "./vite-error-overlay-plugin.js";
-import postcssPseudoToData from "@wix/postcss-pseudo-to-data";
+import { defineConfig } from 'astro/config';
+import tailwind from '@astrojs/tailwind';
+import react from '@astrojs/react';
+import sitemap from '@astrojs/sitemap';
+import vercel from '@astrojs/vercel/serverless';
 
-const isBuild = process.env.NODE_ENV == "production";
-
-// https://astro.build/config
 export default defineConfig({
-  output: "server",
+  site: 'https://energievergleich-nrw.de',
+  output: 'server',
+  adapter: vercel({
+    imageService: true,
+    webAnalytics: { enabled: true },
+    speedInsights: { enabled: true }
+  }),
+  
   integrations: [
-    {
-      name: "framewire",
-      hooks: {
-        "astro:config:setup": ({ injectScript, command }) => {
-          if (command === "dev") {
-            injectScript(
-              "page",
-              `import loadFramewire from "framewire.js";
-              loadFramewire(true);`
-            );
-          }
-        },
-      },
-    },
     tailwind(),
-    wix({
-      htmlEmbeds: isBuild,
-      auth: true,
-    }),
-    ...(isBuild ? [monitoring()] : []),
-    react(isBuild ? {} : {
-      babel: { plugins: [sourceAttrsPlugin, dynamicDataPlugin] },
-    }),
+    react(),
+    sitemap({
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date()
+    })
   ],
+  
+  // PERFORMANCE OPTIMIZATIONS
   vite: {
-    plugins: [customErrorOverlayPlugin()],
-    cacheDir: 'node_modules/.cache/.vite',
-    optimizeDeps: {
-      include: [
-        'react',
-        'react-dom',
-        'zustand',
-        'framer-motion',
-        'date-fns',
-        'clsx',
-        'class-variance-authority',
-        'tailwind-merge',
-        '@radix-ui/*',
-        '@wix/*',
-        'zod',
-      ],
-    },
-    css: !isBuild ? {
-      postcss: {
-        plugins: [
-          postcssPseudoToData(),
-        ],
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'react-vendor': ['react', 'react-dom'],
+            'form-components': ['react-hook-form', '@hookform/resolvers', 'zod'],
+            'ui-components': ['@radix-ui/react-accordion', '@radix-ui/react-select'],
+            'icons': ['lucide-react']
+          }
+        }
       },
-    } : undefined,
+      chunkSizeWarningLimit: 500
+    },
+    ssr: {
+      noExternal: ['@radix-ui/*']
+    },
+    optimizeDeps: {
+      include: ['react', 'react-dom', 'clsx', 'tailwind-merge']
+    }
   },
-  ...(isBuild && { adapter: cloudProviderFetchAdapter({}) }),
-  devToolbar: {
-    enabled: false,
-  },
+  
   image: {
-    domains: ["static.wixstatic.com"],
+    domains: ['images.unsplash.com', 'cdn.energievergleich-nrw.de'],
+    remotePatterns: [{ protocol: 'https' }],
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+      config: {
+        limitInputPixels: false
+      }
+    }
   },
-  server: {
-    allowedHosts: true,
-    host: true,
+  
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'viewport'
   },
-  security: {
-    checkOrigin: false
+  
+  compressHTML: true,
+  
+  build: {
+    inlineStylesheets: 'auto',
+    assets: '_assets'
   }
 });
