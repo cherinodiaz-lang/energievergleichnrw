@@ -1,25 +1,20 @@
-name: CI
+name: CI/CD Pipeline
 
 on:
-  pull_request:
   push:
-    branches:
-      - main
-  workflow_dispatch:
-
-concurrency:
-  group: ci-${{ github.ref }}
-  cancel-in-progress: true
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
 
 jobs:
   validate:
     name: Project Structure Check
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout@v4
-
+      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -37,14 +32,11 @@ jobs:
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           echo "📁 Checking project structure"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-
           test -f astro.config.mjs && echo "✓ astro.config.mjs exists" || (echo "✗ astro.config.mjs MISSING" && exit 1)
           test -f tsconfig.json && echo "✓ tsconfig.json exists" || (echo "✗ tsconfig.json MISSING" && exit 1)
           test -f package.json && echo "✓ package.json exists" || (echo "✗ package.json MISSING" && exit 1)
-
           test -d src && echo "✓ src/ directory exists" || (echo "✗ src/ MISSING" && exit 1)
           test -d public && echo "✓ public/ directory exists" || echo "⚠ public/ missing (optional)"
-
           test -f public/robots.txt && echo "✓ robots.txt exists" || echo "⚠ robots.txt missing (will be created)"
 
       - name: Check Astro Config
@@ -61,20 +53,24 @@ jobs:
           echo "✅ Project Structure Check Complete"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-  lint:
-    name: Code Linting
+  test:
+    name: Tests & Build
     runs-on: ubuntu-latest
     needs: validate
-
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
     steps:
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
+      
+      - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-
+          node-version: ${{ matrix.node-version }}
+      
       - name: Enable pnpm (Corepack)
         run: |
           corepack enable
@@ -87,64 +83,82 @@ jobs:
           echo "📦 Installing dependencies (pnpm)"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           pnpm install --no-frozen-lockfile
-
+      
       - name: Run Astro Check
         run: |
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           echo "🔍 Running Astro check"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          pnpm run check || echo "⚠️ Astro check found issues (continuing for now)"
-
-      - name: Summary
-        run: |
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "✅ Linting Check Complete"
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-
-  typecheck:
-    name: TypeScript Check
-    runs-on: ubuntu-latest
-    needs: validate
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Enable pnpm (Corepack)
-        run: |
-          corepack enable
-          corepack prepare pnpm@9.15.0 --activate
-          pnpm --version
-
-      - name: Install Dependencies (pnpm)
-        run: |
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "📦 Installing dependencies (pnpm)"
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          pnpm install --no-frozen-lockfile
-
+          pnpm run check || echo "⚠️ Astro check found issues (continuing)"
+      
       - name: Run TypeScript Check
         run: |
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           echo "🔍 Running TypeScript type check"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          pnpm run typecheck || echo "⚠️ Type check found issues (continuing for now)"
+          pnpm run typecheck || echo "⚠️ Type check found issues (continuing)"
+      
+      - name: Build project
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "🔨 Building project"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          pnpm run build
+      
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        if: matrix.node-version == '20.x'
+        with:
+          files: ./coverage/coverage-final.json
+          flags: unittests
+        continue-on-error: true
 
       - name: Summary
         run: |
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "✅ TypeScript Check Complete"
+          echo "✅ Tests & Build Complete"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  
+  lighthouse:
+    name: Lighthouse Audit
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'pull_request'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+      
+      - name: Enable pnpm (Corepack)
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.15.0 --activate
+      
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+      
+      - name: Build project
+        run: pnpm run build
+      
+      - name: Run Lighthouse
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          urls: |
+            http://localhost:4321
+            http://localhost:4321/stromvergleich-koeln
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+        continue-on-error: true
 
   ci:
-    name: CI
+    name: CI Summary
     runs-on: ubuntu-latest
-    needs: [validate, lint, typecheck]
+    needs: [validate, test]
     if: always()
 
     steps:
@@ -154,13 +168,11 @@ jobs:
           echo "📊 CI Pipeline Summary"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           echo "Validation: ${{ needs.validate.result }}"
-          echo "Linting: ${{ needs.lint.result }}"
-          echo "Type Check: ${{ needs.typecheck.result }}"
+          echo "Tests & Build: ${{ needs.test.result }}"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
           if [ "${{ needs.validate.result }}" == "success" ] && \
-             [ "${{ needs.lint.result }}" == "success" ] && \
-             [ "${{ needs.typecheck.result }}" == "success" ]; then
+             [ "${{ needs.test.result }}" == "success" ]; then
             echo "✅ All checks passed!"
             exit 0
           else
