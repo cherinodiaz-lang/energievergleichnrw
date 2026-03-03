@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import {
   Zap,
   CheckCircle,
@@ -169,11 +168,7 @@ export default function StromvergleichKoelnPage() {
       {/* Hero Section - LCP Optimized */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-3xl"
+          <div className="max-w-3xl"
           >
             <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-6 leading-tight max-w-[22ch] sm:max-w-none break-words">
               Stromvergleich Köln: Günstige Tarife für Kölner Haushalte
@@ -196,7 +191,7 @@ export default function StromvergleichKoelnPage() {
                 So vergleichen wir (Methodik)
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -324,11 +319,7 @@ export default function StromvergleichKoelnPage() {
 
               {/* Results Section */}
               {showResults && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="mt-12"
+                <div className="mt-12"
                 >
                   <h2 className="font-heading text-2xl font-bold text-primary mb-8">Tarifvorschau für {formData.postleitzahl}</h2>
 
@@ -339,11 +330,7 @@ export default function StromvergleichKoelnPage() {
                       const yearlyPrice = monthlyPrice * 12;
 
                       return (
-                        <motion.div
-                          key={tariff.name}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: index * 0.1 }}
+                        <div key={tariff.name}
                         >
                           <Card className="h-full flex flex-col shadow-lg hover:shadow-xl transition-shadow">
                             <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10">
@@ -377,7 +364,7 @@ export default function StromvergleichKoelnPage() {
                               </Button>
                             </CardContent>
                           </Card>
-                        </motion.div>
+                        </div>
                       );
                     })}
                   </div>
@@ -388,7 +375,7 @@ export default function StromvergleichKoelnPage() {
                       <strong>Hinweis:</strong> Vorschau basiert auf Beispielrechnung. Finale Tarife nach Anbieterabfrage.
                     </p>
                   </div>
-                </motion.div>
+                </div>
               )}
             </div>
 
