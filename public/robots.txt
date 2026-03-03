@@ -1,17 +1,33 @@
-# robots.txt for energievergleich.shop
-# https://www.robotstxt.org/
+# Robots.txt für energievergleich-nrw.de
+# Optimiert für maximale SEO-Performance
 
-# Allow all search engines to crawl the entire site
+# Google Bot - voller Zugriff
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing Bot - voller Zugriff
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+# Alle anderen Bots
 User-agent: *
 Allow: /
 
-# Sitemap location for search engines
-Sitemap: https://www.energievergleich.shop/sitemap.xml
+# Disallow für interne/technische Pfade
+Disallow: /api/
+Disallow: /_astro/
+Disallow: /_assets/
+Disallow: /admin/
 
-# Optional: Crawl-delay (if needed)
-# Crawl-delay: 10
+# Sitemap-Referenzen
+Sitemap: https://energievergleich-nrw.de/sitemap-index.xml
+Sitemap: https://energievergleich-nrw.de/sitemap-0.xml
 
-# Disallow specific paths (if needed in future)
-# Disallow: /admin/
-# Disallow: /private/
-# Disallow: /api/
+# Crawl-Optimierung für City-Pages
+# Alle Stromvergleich-Stadtseiten sind indexierbar
+Allow: /stromvergleich-*
+
+# Host-Präferenz (canonical domain)
+Host: https://energievergleich-nrw.de
