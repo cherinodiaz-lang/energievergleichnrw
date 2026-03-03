@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import {
   Zap,
   CheckCircle,
@@ -154,11 +153,7 @@ export default function StromvergleichDuesseldorfPage() {
         {/* Hero Section - LCP Optimized */}
         <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
           <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="max-w-3xl"
+            <div className="max-w-3xl"
             >
               <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-6 leading-tight max-w-[22ch] sm:max-w-none break-words">
                 Stromvergleich Düsseldorf: Günstige Tarife für Düsseldorfer Haushalte
@@ -177,7 +172,7 @@ export default function StromvergleichDuesseldorfPage() {
                   So vergleichen wir (Methodik)
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -190,7 +185,7 @@ export default function StromvergleichDuesseldorfPage() {
                   <CardHeader className="bg-primary text-white">
                     <CardTitle className="font-heading text-2xl">Stromtarife vergleichen</CardTitle>
                   </CardHeader>
-                  <CardContent className="p-8 ox-hidden">
+                  <CardContent className="p-8 overflow-hidden">
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
@@ -250,11 +245,7 @@ export default function StromvergleichDuesseldorfPage() {
 
                 {/* Results Section */}
                 {showResults && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="mt-12"
+                  <div className="mt-12"
                   >
                     <h2 className="font-heading text-2xl font-bold text-primary mb-8">Tarifvorschau für {formData.postleitzahl}</h2>
 
@@ -281,11 +272,7 @@ export default function StromvergleichDuesseldorfPage() {
                         const yearlyPrice = monthlyPrice * 12;
 
                         return (
-                          <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1 }}
+                          <div key={index}
                           >
                             <Card className="h-full flex flex-col shadow-lg hover:shadow-xl transition-shadow">
                               <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10">
@@ -318,7 +305,7 @@ export default function StromvergleichDuesseldorfPage() {
                                 </Link>
                               </CardContent>
                             </Card>
-                          </motion.div>
+                          </div>
                         );
                       })}
                     </div>
@@ -329,7 +316,7 @@ export default function StromvergleichDuesseldorfPage() {
                         <strong>Hinweis:</strong> Vorschau basiert auf Beispielrechnung. Finale Tarife nach Anbieterabfrage.
                       </p>
                     </div>
-                  </motion.div>
+                  </div>
                 )}
               </div>
 
@@ -359,9 +346,6 @@ export default function StromvergleichDuesseldorfPage() {
             </div>
           </div>
         </section>
-
-        {/* Content sections continue... keeping all existing content sections */}
-        {/* I'll keep all the existing content sections as they are - just removed the useEffect blocks */}
         
         {/* FAQ Section */}
         <section className="w-full py-24 bg-background">
