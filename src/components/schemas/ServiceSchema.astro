@@ -1,0 +1,62 @@
+---
+interface Props {
+  serviceName: string;
+  serviceType: string;
+  description: string;
+  areaServed: string;
+  provider?: string;
+}
+
+const {
+  serviceName,
+  serviceType,
+  description,
+  areaServed,
+  provider = 'Energievergleich NRW'
+} = Astro.props;
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: serviceName,
+  serviceType: serviceType,
+  description: description,
+  provider: {
+    '@type': 'Organization',
+    name: provider,
+    url: 'https://energievergleich-nrw.de'
+  },
+  areaServed: {
+    '@type': 'City',
+    name: areaServed,
+    containedInPlace: {
+      '@type': 'State',
+      name: 'Nordrhein-Westfalen'
+    }
+  },
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'EUR',
+    price: '0',
+    description: 'Kostenloser Vergleich von Strom- und Gasanbietern'
+  },
+  potentialAction: {
+    '@type': 'CompareAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: 'https://energievergleich-nrw.de/stromvergleich-' + areaServed.toLowerCase().replace(/ü/g, 'ue').replace(/ö/g, 'oe').replace(/ä/g, 'ae').replace(/ß/g, 'ss')
+    }
+  },
+  audience: {
+    '@type': 'Audience',
+    audienceType: 'Privatkunden und Gewerbe',
+    geographicArea: {
+      '@type': 'City',
+      name: areaServed
+    }
+  }
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
