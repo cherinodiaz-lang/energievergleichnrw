@@ -1,0 +1,75 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  src: string | ImageMetadata;
+  alt: string;
+  width?: number;
+  height?: number;
+  loading?: 'lazy' | 'eager';
+  decoding?: 'async' | 'sync' | 'auto';
+  class?: string;
+  priority?: boolean;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  loading = 'lazy',
+  decoding = 'async',
+  class: className = '',
+  priority = false
+} = Astro.props;
+
+// Priority images should load eagerly (above-the-fold)
+const finalLoading = priority ? 'eager' : loading;
+const finalDecoding = priority ? 'sync' : decoding;
+---
+
+{typeof src === 'string' ? (
+  <picture>
+    <source
+      srcset={src.replace(/\.(jpg|jpeg|png)$/i, '.avif')}
+      type="image/avif"
+    />
+    <source
+      srcset={src.replace(/\.(jpg|jpeg|png)$/i, '.webp')}
+      type="image/webp"
+    />
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={finalLoading}
+      decoding={finalDecoding}
+      class={className}
+    />
+  </picture>
+) : (
+  <Image
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={finalLoading}
+    decoding={finalDecoding}
+    class={className}
+    format="webp"
+    quality={85}
+  />
+)}
+
+<style>
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  picture {
+    display: block;
+  }
+</style>
