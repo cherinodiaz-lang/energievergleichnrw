@@ -1,5 +1,4 @@
 {
-  "file": "content/de/pages/home.json",
   "meta": {
     "title": "Energievergleich in NRW – Strom, Gas & Photovoltaik vergleichen",
     "description": "Vergleiche Strom- und Gastarife in NRW oder prüfe Photovoltaik-Optionen. Klarer Ablauf, verständliche Hinweise, schneller Start über PLZ."
@@ -16,7 +15,7 @@
       "cards": [
         {
           "title": "Schnell zur passenden Option",
-          "text": "Du gibst nur das Nötigste an. Danach siehst du die nächsten Schritte – transparent und verständlich."
+          "text": "Du gibst nur das Nötigste an. Danach siehst du die nächsten Schritte transparent und verständlich."
         },
         {
           "title": "Ablauf & Daten klar erklärt",
@@ -24,16 +23,25 @@
         },
         {
           "title": "Für Privat & Gewerbe",
-          "text": "Privathaushalt, Vermieter, kleines Unternehmen: Du findest den passenden Einstieg."
+          "text": "Privathaushalt, Vermieter, kleines Unternehmen – Du findest den passenden Einstieg."
         }
       ]
     },
     "howItWorks": {
       "title": "So läuft der Vergleich ab",
       "steps": [
-        { "title": "PLZ & Produkt wählen", "text": "Damit wir regionale Preisbestandteile berücksichtigen können." },
-        { "title": "Verbrauch angeben oder schätzen", "text": "Jahresverbrauch aus Abrechnung oder über einfache Presets." },
-        { "title": "Nächste Schritte starten", "text": "Du erhältst klare Hinweise zum Ablauf – und kannst fortfahren." }
+        {
+          "title": "PLZ & Produkt wählen",
+          "text": "Damit wir regionale Preisbestandteile berücksichtigen können."
+        },
+        {
+          "title": "Verbrauch angeben oder schätzen",
+          "text": "Jahresverbrauch aus Abrechnung oder über einfache Presets."
+        },
+        {
+          "title": "Nächste Schritte starten",
+          "text": "Du erhältst klare Hinweise zum Ablauf und kannst fortfahren."
+        }
       ]
     },
     "trust": {
@@ -56,11 +64,11 @@
           "a": "Der Vergleichseinstieg ist kostenlos. Details zu möglichen Angeboten/Services findest du transparent im Ablauf."
         }
       ]
+    },
+    "closingCta": {
+      "title": "Jetzt starten",
+      "text": "PLZ eingeben und in wenigen Schritten zur passenden Option.",
+      "primaryCta": "Jetzt Tarif prüfen"
     }
-  },
-  "closingCta": {
-    "title": "Jetzt starten",
-    "text": "PLZ eingeben und in wenigen Schritten zur passenden Option.",
-    "primaryCta": "Jetzt Tarif prüfen"
   }
 }

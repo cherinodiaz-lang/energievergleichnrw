@@ -1,16 +1,33 @@
 {
-  "file": "content/de/global.json",
   "brand": {
     "name": "energievergleich.shop",
     "tagline": "Tarife vergleichen. Klar entscheiden. Einfach wechseln."
   },
   "nav": [
-    { "label": "Stromvergleich NRW", "href": "/stromvergleich-nrw" },
-    { "label": "Gasvergleich NRW", "href": "/gasvergleich-nrw" },
-    { "label": "Photovoltaik NRW", "href": "/photovoltaik-nrw" },
-    { "label": "Gewerbe", "href": "/gewerbestrom" },
-    { "label": "Ratgeber", "href": "/ratgeber" },
-    { "label": "Kontakt", "href": "/kontakt" }
+    {
+      "label": "Stromvergleich NRW",
+      "href": "/stromvergleich-nrw"
+    },
+    {
+      "label": "Gasvergleich NRW",
+      "href": "/gasvergleich-nrw"
+    },
+    {
+      "label": "Photovoltaik NRW",
+      "href": "/photovoltaik-nrw"
+    },
+    {
+      "label": "Gewerbe",
+      "href": "/gewerbestrom"
+    },
+    {
+      "label": "Ratgeber",
+      "href": "/ratgeber"
+    },
+    {
+      "label": "Kontakt",
+      "href": "/kontakt"
+    }
   ],
   "cta": {
     "primary": "Jetzt Tarif prüfen",
@@ -27,13 +44,87 @@
     ],
     "privacyShort": "Deine Angaben nutzen wir zur Tarifprüfung und Kontaktaufnahme. Details in der Datenschutzerklärung."
   },
+  "form": {
+    "labels": {
+      "zip": "Postleitzahl (PLZ)",
+      "product": "Was möchtest du vergleichen?",
+      "consumptionKwh": "Jahresverbrauch (kWh)",
+      "household": "Haushalt",
+      "email": "E-Mail",
+      "phone": "Telefon (optional)",
+      "consent": "Ich habe die Datenschutzhinweise gelesen."
+    },
+    "placeholders": {
+      "zip": "z. B. 45127",
+      "consumptionKwh": "z. B. 3500",
+      "email": "name@domain.de",
+      "phone": "z. B. 0176 12345678"
+    },
+    "help": {
+      "zip": "Wir nutzen die PLZ, um regionale Preisbestandteile zu berücksichtigen.",
+      "consumptionKwh": "Steht oft auf deiner letzten Jahresabrechnung. Wenn du unsicher bist – wähle eine Schätzung.",
+      "phone": "Nur falls du einen Rückruf wünschst."
+    },
+    "options": {
+      "product": [
+        "Strom",
+        "Gas",
+        "Photovoltaik",
+        "Gewerbestrom",
+        "Gewerbegas"
+      ],
+      "household": [
+        "1 Person",
+        "2 Personen",
+        "3 Personen",
+        "4+ Personen",
+        "5+ Personen"
+      ],
+      "consumptionPresets": [
+        {
+          "label": "Sparsam (1-2 Pers.)",
+          "value": 2000
+        },
+        {
+          "label": "Durchschnitt (2-3 Pers.)",
+          "value": 3500
+        },
+        {
+          "label": "Groß (4+ Pers.)",
+          "value": 5000
+        }
+      ]
+    },
+    "errors": {
+      "required": "Bitte dieses Feld ausfüllen.",
+      "zipInvalid": "Bitte gib eine 5-stellige deutsche PLZ ein.",
+      "emailInvalid": "Bitte gib eine gültige E-Mail-Adresse ein.",
+      "consumptionInvalid": "Bitte gib einen realistischen Verbrauch ein (z. B. 500–30000 kWh).",
+      "consentRequired": "Bitte bestätige die Datenschutzhinweise."
+    }
+  },
   "footer": {
     "links": [
-      { "label": "Ratgeber", "href": "/ratgeber" },
-      { "label": "Methodik", "href": "/methodik" },
-      { "label": "Kontakt", "href": "/kontakt" },
-      { "label": "Impressum", "href": "/impressum" },
-      { "label": "Datenschutz", "href": "/datenschutz" }
+      {
+        "label": "Ratgeber",
+        "href": "/ratgeber"
+      },
+      {
+        "label": "Methodik",
+        "href": "/methodik"
+      },
+      {
+        "label": "Kontakt",
+        "href": "/kontakt"
+      },
+      {
+        "label": "Impressum",
+        "href": "/impressum"
+      },
+      {
+        "label": "Datenschutz",
+        "href": "/datenschutz"
+      }
     ],
     "disclaimerShort": "Hinweis: Inhalte dienen der Orientierung und ersetzen keine Rechts- oder Steuerberatung."
   }

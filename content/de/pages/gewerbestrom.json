@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "title": "Gewerbestrom – Angebote prüfen mit Struktur",
+    "description": "Gewerbestrom verständlich vergleichen: Leistungspreis + Arbeitspreis, Laufzeit, Abnahmeprofile. Starte mit PLZ und grobem Bedarf."
+  },
+  "badge": "Gewerbe",
+  "h1": "Gewerbestrom – Angebote prüfen, ohne Fachchinesisch",
+  "subline": "Wir führen dich strukturiert durch die wichtigsten Angaben – so fehlt später nichts.",
+  "primaryCta": "Gewerbestrom prüfen",
+  "faq": {
+    "title": "FAQ – Gewerbestrom",
+    "items": [
+      {
+        "q": "Was ist der Unterschied zwischen Arbeitspreis und Leistungspreis?",
+        "a": "Beide beeinflussen die Gesamtkosten. Wir erklären dir, welche Kennzahlen du brauchst und wo sie stehen."
+      },
+      {
+        "q": "Was ist ein Lastprofil?",
+        "a": "Es beschreibt, wann du wie viel Strom verbrauchst – wichtig für die Angebotssystematik."
+      }
+    ]
+  }
+}

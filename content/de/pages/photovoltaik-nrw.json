@@ -1,5 +1,4 @@
 {
-  "file": "content/de/pages/photovoltaik-nrw.json",
   "meta": {
     "title": "Photovoltaik NRW – Eignung prüfen und Angebote vergleichen",
     "description": "PV in NRW: Dach-Eignung, Speicher, Einspeisevergütung, typische Kosten und Angebotsvergleich. Starte mit wenigen Angaben."
@@ -8,25 +7,21 @@
   "h1": "Photovoltaik NRW – von Dachcheck bis Angebotsvergleich",
   "subline": "Schnell starten: grobe Eckdaten angeben und die nächsten Schritte klar sehen.",
   "primaryCta": "PV-Check starten",
-  "jsonLd": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://energievergleich.shop" },
-      { "@type": "ListItem", "position": 2, "name": "Photovoltaik NRW", "item": "https://energievergleich.shop/photovoltaik-nrw" }
+  "faq": {
+    "title": "FAQ – Photovoltaik NRW",
+    "items": [
+      {
+        "q": "Brauche ich sofort technische Daten?",
+        "a": "Nein. Für den Einstieg reichen grobe Angaben. Für genaue Angebote folgen Details später."
+      },
+      {
+        "q": "Lohnt sich ein Speicher?",
+        "a": "Das hängt u. a. von Verbrauchsprofil, Strompreis und Anlagengröße ab. Wir geben dir eine klare Entscheidungslogik."
+      },
+      {
+        "q": "Wie vergleiche ich Angebote richtig?",
+        "a": "Wir zeigen dir eine Checkliste: Leistung, Komponenten, Garantien, Ertragserwartung und Wirtschaftlichkeitsannahmen."
+      }
     ]
-  },
-  "faqItems": [
-    {
-      "q": "Brauche ich sofort technische Daten?",
-      "a": "Nein. Für den Einstieg reichen grobe Angaben. Für genaue Angebote folgen Details später."
-    },
-    {
-      "q": "Lohnt sich ein Speicher?",
-      "a": "Das hängt u. a. von Verbrauchsprofil, Strompreis und Anlagengröße ab. Wir geben dir eine klare Entscheidungslogik."
-    },
-    {
-      "q": "Wie vergleiche ich Angebote richtig?",
-      "a": "Wir zeigen dir eine Checkliste: Leistung, Komponenten, Garantien, Ertragserwartung und Wirtschaftlichkeitsannahmen."
-    }
-  ]
+  }
 }

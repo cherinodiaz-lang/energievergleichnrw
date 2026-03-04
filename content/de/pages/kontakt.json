@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "title": "Kontakt – Frage stellen oder Rückruf anfragen",
+    "description": "Kontakt zu energievergleich.shop: Frage senden oder Rückruf anfragen. Transparente Hinweise – welche Angaben wofür genutzt werden."
+  },
+  "hero": {
+    "h1": "Kontakt",
+    "subline": "Schreib uns kurz, worum es geht – wir melden uns mit klarer Antwort oder den nächsten Schritten."
+  },
+  "form": {
+    "fields": [
+      {
+        "name": "topic",
+        "label": "Thema",
+        "type": "select",
+        "options": [
+          "Strom",
+          "Gas",
+          "Photovoltaik",
+          "Gewerbe",
+          "Website-Feedback"
+        ]
+      },
+      {
+        "name": "message",
+        "label": "Nachricht",
+        "type": "textarea",
+        "placeholder": "Worum geht es genau?"
+      },
+      {
+        "name": "email",
+        "label": "E-Mail",
+        "type": "email",
+        "placeholder": "name@domain.de"
+      },
+      {
+        "name": "phone",
+        "label": "Telefon (optional)",
+        "type": "tel",
+        "placeholder": "z. B. 0176 12345678"
+      },
+      {
+        "name": "consent",
+        "label": "Ich habe die Datenschutzhinweise gelesen.",
+        "type": "checkbox"
+      }
+    ],
+    "submit": "Nachricht senden",
+    "success": "Danke! Wir haben deine Nachricht erhalten.",
+    "error": "Bitte prüfe die markierten Felder."
+  }
+}
