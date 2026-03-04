@@ -81,7 +81,7 @@ export default function ImpressumPage() {
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 break-words">
                 <div>
                   <p className="font-bold mb-2">Umsatzsteuer-Identifikationsnummer (gemäß § 27 a UStG):</p>
-                  <p>Wird auf Anfrage mitgeteilt (§ 5 TMG erlaubt dies für Kleinunternehmer)</p>
+                  <p>Auf Anfrage verfügbar</p>
                 </div>
 
                 <div className="border-t pt-4">
@@ -91,7 +91,7 @@ export default function ImpressumPage() {
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Steuernummer:</p>
-                  <p>Wird auf Anfrage mitgeteilt (§ 5 TMG erlaubt dies für Kleinunternehmer)</p>
+                  <p>Auf Anfrage verfügbar</p>
                 </div>
               </div>
             </div>
