@@ -1,0 +1,66 @@
+{
+  "file": "content/de/pages/home.json",
+  "meta": {
+    "title": "Energievergleich in NRW – Strom, Gas & Photovoltaik vergleichen",
+    "description": "Vergleiche Strom- und Gastarife in NRW oder prüfe Photovoltaik-Optionen. Klarer Ablauf, verständliche Hinweise, schneller Start über PLZ."
+  },
+  "hero": {
+    "h1": "Strom, Gas & Photovoltaik vergleichen – mit klarem Ablauf",
+    "subline": "Starte in 60 Sekunden: PLZ eingeben, Bedarf wählen, nächste Schritte sehen.",
+    "primaryCta": "Jetzt Tarif prüfen",
+    "secondaryCta": "So funktioniert's"
+  },
+  "sections": {
+    "benefits": {
+      "title": "Warum über energievergleich.shop starten?",
+      "cards": [
+        {
+          "title": "Schnell zur passenden Option",
+          "text": "Du gibst nur das Nötigste an. Danach siehst du die nächsten Schritte – transparent und verständlich."
+        },
+        {
+          "title": "Ablauf & Daten klar erklärt",
+          "text": "Du weißt jederzeit, wofür Angaben benötigt werden und was als Nächstes passiert."
+        },
+        {
+          "title": "Für Privat & Gewerbe",
+          "text": "Privathaushalt, Vermieter, kleines Unternehmen: Du findest den passenden Einstieg."
+        }
+      ]
+    },
+    "howItWorks": {
+      "title": "So läuft der Vergleich ab",
+      "steps": [
+        { "title": "PLZ & Produkt wählen", "text": "Damit wir regionale Preisbestandteile berücksichtigen können." },
+        { "title": "Verbrauch angeben oder schätzen", "text": "Jahresverbrauch aus Abrechnung oder über einfache Presets." },
+        { "title": "Nächste Schritte starten", "text": "Du erhältst klare Hinweise zum Ablauf – und kannst fortfahren." }
+      ]
+    },
+    "trust": {
+      "title": "Transparenz statt Bauchgefühl",
+      "text": "Wir erklären dir Begriffe wie Grundversorgung, Preisgarantie, Bonus und Laufzeit – damit du bewusst entscheidest."
+    },
+    "faq": {
+      "title": "Häufige Fragen",
+      "items": [
+        {
+          "q": "Brauche ich meine Zählernummer sofort?",
+          "a": "Nein. Für den Einstieg reicht PLZ + Verbrauch. Zählernummern sind meist erst später relevant, wenn du einen Wechsel wirklich beauftragen möchtest."
+        },
+        {
+          "q": "Kann ich meinen Verbrauch schätzen?",
+          "a": "Ja. Nutze Presets oder orientiere dich an deiner Wohnfläche und Haushaltsgröße."
+        },
+        {
+          "q": "Ist der Einstieg kostenlos?",
+          "a": "Der Vergleichseinstieg ist kostenlos. Details zu möglichen Angeboten/Services findest du transparent im Ablauf."
+        }
+      ]
+    }
+  },
+  "closingCta": {
+    "title": "Jetzt starten",
+    "text": "PLZ eingeben und in wenigen Schritten zur passenden Option.",
+    "primaryCta": "Jetzt Tarif prüfen"
+  }
+}

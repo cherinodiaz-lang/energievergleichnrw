@@ -1,0 +1,32 @@
+{
+  "file": "content/de/pages/gasvergleich-nrw.json",
+  "meta": {
+    "title": "Gasvergleich NRW – Tarife prüfen und Wechsel verständlich planen",
+    "description": "Gastarife in NRW prüfen: Preisgarantie, Laufzeit, Kündigungsfrist, Verbrauch und Heizungsart. Starte mit PLZ."
+  },
+  "badge": "Gas in NRW",
+  "h1": "Gasvergleich NRW – Tarife verständlich prüfen",
+  "subline": "PLZ + Heizverhalten: Wir führen dich Schritt für Schritt durch die wichtigsten Kriterien.",
+  "primaryCta": "Gastarif prüfen",
+  "jsonLd": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://energievergleich.shop" },
+      { "@type": "ListItem", "position": 2, "name": "Gasvergleich NRW", "item": "https://energievergleich.shop/gasvergleich-nrw" }
+    ]
+  },
+  "faqItems": [
+    {
+      "q": "Warum ist die Heizungsart wichtig?",
+      "a": "Sie beeinflusst deinen Verbrauch und damit die Vergleichbarkeit von Angeboten."
+    },
+    {
+      "q": "Gibt es beim Gaswechsel auch 24 Stunden?",
+      "a": "Der beschleunigte technische 24h-Prozess betrifft Strom. Bei Gas hängen Zeitpunkte u. a. von Kündigungsfristen und Vertragslaufzeiten ab."
+    },
+    {
+      "q": "Was bedeutet Preisgarantie?",
+      "a": "Es gibt unterschiedliche Arten von Preisgarantie. Wir erklären dir, worauf du achten solltest."
+    }
+  ]
+}
