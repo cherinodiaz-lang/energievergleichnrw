@@ -1,0 +1,40 @@
+{
+  "file": "content/de/global.json",
+  "brand": {
+    "name": "energievergleich.shop",
+    "tagline": "Tarife vergleichen. Klar entscheiden. Einfach wechseln."
+  },
+  "nav": [
+    { "label": "Stromvergleich NRW", "href": "/stromvergleich-nrw" },
+    { "label": "Gasvergleich NRW", "href": "/gasvergleich-nrw" },
+    { "label": "Photovoltaik NRW", "href": "/photovoltaik-nrw" },
+    { "label": "Gewerbe", "href": "/gewerbestrom" },
+    { "label": "Ratgeber", "href": "/ratgeber" },
+    { "label": "Kontakt", "href": "/kontakt" }
+  ],
+  "cta": {
+    "primary": "Jetzt Tarif prüfen",
+    "secondary": "Mehr erfahren",
+    "compare": "Jetzt vergleichen",
+    "requestCallback": "Rückruf anfragen",
+    "start": "Starten"
+  },
+  "trust": {
+    "chips": [
+      "Kostenlos & unverbindlich",
+      "In wenigen Minuten erledigt",
+      "Transparente Hinweise zu Ablauf & Daten"
+    ],
+    "privacyShort": "Deine Angaben nutzen wir zur Tarifprüfung und Kontaktaufnahme. Details in der Datenschutzerklärung."
+  },
+  "footer": {
+    "links": [
+      { "label": "Ratgeber", "href": "/ratgeber" },
+      { "label": "Methodik", "href": "/methodik" },
+      { "label": "Kontakt", "href": "/kontakt" },
+      { "label": "Impressum", "href": "/impressum" },
+      { "label": "Datenschutz", "href": "/datenschutz" }
+    ],
+    "disclaimerShort": "Hinweis: Inhalte dienen der Orientierung und ersetzen keine Rechts- oder Steuerberatung."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "file": "content/de/pages/stromvergleich-nrw.json",
+  "meta": {
+    "title": "Stromvergleich NRW – Tarife prüfen mit klaren Kriterien",
+    "description": "Stromtarife in NRW prüfen: Laufzeit, Preisgarantie, Bonus, Grundversorgung – verständlich erklärt. Starte mit PLZ und Verbrauch."
+  },
+  "badge": "Strom in NRW",
+  "h1": "Stromvergleich NRW – prüfe Tarife nach klaren Kriterien",
+  "subline": "PLZ eingeben, Verbrauch schätzen oder angeben, dann die nächsten Schritte transparent sehen.",
+  "primaryCta": "Stromtarif prüfen",
+  "jsonLd": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://energievergleich.shop" },
+      { "@type": "ListItem", "position": 2, "name": "Stromvergleich NRW", "item": "https://energievergleich.shop/stromvergleich-nrw" }
+    ]
+  },
+  "faqItems": [
+    {
+      "q": "Was ist die Grundversorgung?",
+      "a": "Das ist der Standardtarif, wenn kein Sondervertrag aktiv ist. Er ist häufig teurer – vergleichen kann sich lohnen."
+    },
+    {
+      "q": "Welche Laufzeit ist sinnvoll?",
+      "a": "Oft sind kürzere Laufzeiten sinnvoll, um flexibel zu bleiben. Wir zeigen dir, wo das in Angeboten sichtbar ist."
+    },
+    {
+      "q": "Welche Daten brauche ich?",
+      "a": "Für den Einstieg reichen PLZ + Jahresverbrauch. Weitere Angaben folgen nur, wenn du fortfahren möchtest."
+    }
+  ]
+}
