@@ -1,5 +1,7 @@
 ---
 import '@/styles/globals.css';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
 
 interface Props {
   title?: string;
@@ -11,7 +13,7 @@ interface Props {
 
 const {
   title = 'Energievergleich NRW – Strom, Gas & Photovoltaik vergleichen',
-  description = 'Vergleichen Sie Strom- und Gastarife in NRW oder prüfen Sie Photovoltaik-Optionen. Klarer Ablauf, verständliche Hinweise, schneller Start über PLZ.',
+  description = 'Vergleiche Strom- und Gastarife in NRW oder prüfe Photovoltaik-Optionen. Klarer Ablauf, verständliche Hinweise, schneller Start über PLZ.',
   image = '/og-image.jpg',
   noIndex = false,
   jsonLd,
@@ -111,83 +113,11 @@ const finalJsonLd = jsonLd
     <!-- DNS Prefetch -->
     <link rel="dns-prefetch" href="https://vercel.live" />
     
-    <!-- Analytics & Monitoring -->
-    <script is:inline>
-      window.trackEvent = function(eventName, properties = {}) {
-        if (typeof window.gtag === 'function') {
-          window.gtag('event', eventName, {
-            ...properties,
-            page_location: window.location.href,
-            page_title: document.title,
-            timestamp: new Date().toISOString()
-          });
-        }
-        console.log('[Analytics]', eventName, properties);
-      };
-      
-      window.addEventListener('error', function(event) {
-        console.error('[JS Error]', event.error);
-        window.trackEvent?.('js_error', {
-          error_message: event.error?.message || 'Unknown error',
-          error_stack: event.error?.stack?.substring(0, 200),
-          page_path: window.location.pathname
-        });
-      });
-      
-      if (window.location.pathname.includes('404')) {
-        window.trackEvent?.('page_404', {
-          requested_url: window.location.href,
-          referrer: document.referrer
-        });
-      }
-    </script>
-    
-    <!-- Critical CSS -->
-    <style is:inline>
-      body {
-        margin: 0;
-        font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        -webkit-font-smoothing: antialiased;
-      }
-      
-      .hero-section {
-        min-height: 400px;
-      }
-      
-      img {
-        height: auto;
-        max-width: 100%;
-      }
-      
-      .loading {
-        opacity: 0.6;
-        pointer-events: none;
-      }
-    </style>
-    
     <slot name="head" />
   </head>
   <body>
+    <Header />
     <slot />
-    
-    <script>
-      if ('IntersectionObserver' in window) {
-        const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-        const imageObserver = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const img = entry.target as HTMLImageElement;
-              if (img.dataset.src) {
-                img.src = img.dataset.src;
-                img.removeAttribute('data-src');
-              }
-              imageObserver.unobserve(img);
-            }
-          });
-        });
-        
-        lazyImages.forEach((img) => imageObserver.observe(img));
-      }
-    </script>
+    <Footer />
   </body>
 </html>

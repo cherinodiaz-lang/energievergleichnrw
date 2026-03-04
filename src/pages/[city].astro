@@ -1,0 +1,234 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import cityTemplate from '@content/de/templates/local-stromvergleich.json';
+
+export function getStaticPaths() {
+  const cities = [
+    { slug: 'stromvergleich-essen', city: 'Essen' },
+    { slug: 'stromvergleich-bochum', city: 'Bochum' },
+    { slug: 'stromvergleich-duisburg', city: 'Duisburg' },
+    { slug: 'stromvergleich-wuppertal', city: 'Wuppertal' },
+    { slug: 'stromvergleich-bielefeld', city: 'Bielefeld' },
+    { slug: 'stromvergleich-bonn', city: 'Bonn' },
+    { slug: 'stromvergleich-muenster', city: 'Münster' },
+    { slug: 'stromvergleich-koeln', city: 'Köln' },
+    { slug: 'stromvergleich-duesseldorf', city: 'Düsseldorf' },
+    { slug: 'stromvergleich-dortmund', city: 'Dortmund' },
+  ];
+
+  return cities.map(({ slug, city }) => ({
+    params: { city: slug },
+    props: { city },
+  }));
+}
+
+const { city } = Astro.props;
+
+// Replace {{city}} placeholders in template
+const meta = {
+  title: cityTemplate.meta.title.replace(/{{city}}/g, city),
+  description: cityTemplate.meta.description.replace(/{{city}}/g, city),
+};
+
+const hero = {
+  badge: cityTemplate.hero.badge.replace(/{{city}}/g, city),
+  h1: cityTemplate.hero.h1.replace(/{{city}}/g, city),
+  subline: cityTemplate.hero.subline,
+  primaryCta: cityTemplate.hero.primaryCta.replace(/{{city}}/g, city),
+};
+
+const sections = {
+  localContext: {
+    title: cityTemplate.sections.localContext.title.replace(/{{city}}/g, city),
+    cards: cityTemplate.sections.localContext.cards,
+  },
+  faq: {
+    title: cityTemplate.sections.faq.title.replace(/{{city}}/g, city),
+    items: cityTemplate.sections.faq.items.map(item => ({
+      q: item.q,
+      a: item.a.replace(/{{city}}/g, city),
+    })),
+  },
+};
+
+const jsonLd = {
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://energievergleich.shop' },
+    { '@type': 'ListItem', position: 2, name: 'Stromvergleich NRW', item: 'https://energievergleich.shop/stromvergleich-nrw' },
+    { '@type': 'ListItem', position: 3, name: `Stromvergleich ${city}`, item: `https://energievergleich.shop/stromvergleich-${city.toLowerCase()}` },
+  ],
+};
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  jsonLd={jsonLd}
+>
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <span class="badge">{hero.badge}</span>
+            <h1 class="h1">{hero.h1}</h1>
+            <p class="lead">{hero.subline}</p>
+            <a href="#vergleich" class="btn btn-primary btn-lg">{hero.primaryCta}</a>
+          </div>
+          <div class="hero-form" id="vergleich">
+            <!-- Form will be React component later -->
+            <div class="card">
+              <p class="card-title">Stromtarif in {city} prüfen</p>
+              <p class="card-text">PLZ + Verbrauch eingeben und sofort starten.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Local Context Section -->
+    <section class="section">
+      <div class="container">
+        <h2 class="h2 text-center">{sections.localContext.title}</h2>
+        <div class="grid-3">
+          {sections.localContext.cards.map((card) => (
+            <div class="card">
+              <p class="card-title">{card.title}</p>
+              <p class="card-text">{card.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section bg-soft">
+      <div class="container">
+        <h2 class="h2 text-center">{sections.faq.title}</h2>
+        <div class="faq-list">
+          {sections.faq.items.map((item) => (
+            <details class="faq-item">
+              <summary class="faq-question">{item.q}</summary>
+              <p class="faq-answer">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing CTA -->
+    <section class="section">
+      <div class="container text-center">
+        <h2 class="h2">Jetzt Stromtarif in {city} prüfen</h2>
+        <p class="lead">PLZ eingeben und in wenigen Schritten zur passenden Option.</p>
+        <a href="#vergleich" class="btn btn-primary btn-lg">{hero.primaryCta}</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .hero-section {
+    padding: var(--s-8) 0;
+    background: linear-gradient(180deg, #f8fafc, #ffffff);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--s-7);
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: var(--s-5);
+    }
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    background: white;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    color: var(--text-700);
+    width: fit-content;
+  }
+
+  .lead {
+    font-size: 1.125rem;
+    color: var(--text-700);
+  }
+
+  .section {
+    padding: var(--s-8) 0;
+  }
+
+  .bg-soft {
+    background: var(--bg-soft);
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-5);
+    margin-top: var(--s-5);
+  }
+
+  @media (max-width: 900px) {
+    .grid-3 {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .faq-list {
+    max-width: 800px;
+    margin: var(--s-5) auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+
+  .faq-item {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--r-2);
+    padding: var(--s-4);
+  }
+
+  .faq-question {
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-answer {
+    margin-top: var(--s-3);
+    color: var(--text-700);
+  }
+
+  .btn-lg {
+    padding: 16px 32px;
+    font-size: 1.125rem;
+  }
+</style>
