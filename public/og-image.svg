@@ -1,0 +1,24 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradient Background -->
+  <rect width="1200" height="630" fill="url(#gradient)"/>
+  <defs>
+    <linearGradient id="gradient" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Brand Name -->
+  <text x="100" y="200" font-family="Inter, system-ui, sans-serif" font-size="72" font-weight="700" fill="#ffffff">
+    energievergleich.shop
+  </text>
+  
+  <!-- Tagline -->
+  <text x="100" y="280" font-family="Inter, system-ui, sans-serif" font-size="36" font-weight="400" fill="#e0e7ff">
+    Tarife vergleichen. Klar entscheiden. Einfach wechseln.
+  </text>
+  
+  <!-- Decorative Elements -->
+  <circle cx="950" cy="150" r="120" fill="#60a5fa" opacity="0.3"/>
+  <circle cx="1050" cy="480" r="80" fill="#93c5fd" opacity="0.3"/>
+</svg>

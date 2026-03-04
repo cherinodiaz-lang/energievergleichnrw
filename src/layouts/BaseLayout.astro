@@ -9,6 +9,7 @@ interface Props {
   image?: string;
   noIndex?: boolean;
   jsonLd?: object;
+  faqItems?: Array<{ q: string; a: string }>;
 }
 
 const {
@@ -17,6 +18,7 @@ const {
   image = '/og-image.jpg',
   noIndex = false,
   jsonLd,
+  faqItems,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -56,6 +58,21 @@ const baseJsonLd = {
     },
   ],
 };
+
+// Add FAQPage if faqItems provided
+if (faqItems && faqItems.length > 0) {
+  baseJsonLd['@graph'].push({
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
+      },
+    })),
+  });
+}
 
 // Merge page-specific JSON-LD if provided
 const finalJsonLd = jsonLd
