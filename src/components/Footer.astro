@@ -25,7 +25,9 @@ const currentYear = new Date().getFullYear();
     </div>
     <div class="footer-bottom">
       <p class="footer-legal">
-        © {currentYear} energievergleich.shop
+        © {currentYear} energievergleich.shop • 
+        <a href="/impressum" class="footer-link">Impressum</a> • 
+        <a href="/datenschutz" class="footer-link">Datenschutz</a>
       </p>
       <p class="footer-disclaimer">{footer.disclaimerShort}</p>
     </div>
@@ -105,5 +107,23 @@ const currentYear = new Date().getFullYear();
     font-size: 0.875rem;
     color: var(--text-600);
     margin: 0;
+  }
+
+  .footer-legal {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-link {
+    color: var(--text-600);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-link:hover {
+    color: var(--primary);
+    text-decoration: underline;
   }
 </style>

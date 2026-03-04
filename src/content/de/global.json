@@ -1,0 +1,27 @@
+{
+  "footer": {
+    "links": [
+      {
+        "label": "Stromvergleich",
+        "href": "/stromvergleich-nrw"
+      },
+      {
+        "label": "Gasvergleich",
+        "href": "/gasvergleich-nrw"
+      },
+      {
+        "label": "Photovoltaik",
+        "href": "/photovoltaik-nrw"
+      },
+      {
+        "label": "Impressum",
+        "href": "/impressum"
+      },
+      {
+        "label": "Datenschutz",
+        "href": "/datenschutz"
+      }
+    ],
+    "disclaimerShort": "Alle Angaben ohne Gewähr. Tarifvergleiche sind unverbindlich."
+  }
+}
