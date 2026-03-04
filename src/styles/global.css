@@ -16,35 +16,35 @@
 /* All other font weights and styles are removed from fonts.css */
 
 /* Mobile safety defaults */
-/* img, video { max-width: 100%; height: auto; display: block; }
-iframe { max-width: 100%; } */
+img, video { max-width: 100%; height: auto; display: block; }
+iframe { max-width: 100%; }
 
 /* Responsive embed helper (16:9) */
-/* .ratio-16by9 { position: relative; width: 100%; }
-.ratio-16by9 > * { position: absolute; inset: 0; width: 100%; height: 100%; } */
+.ratio-16by9 { position: relative; width: 100%; }
+.ratio-16by9 > * { position: absolute; inset: 0; width: 100%; height: 100%; }
 
 /* Horizontal overflow guard */
-/* .ox-hidden { overflow-x: hidden; } */
+.ox-hidden { overflow-x: hidden; }
 
-/* Tap target helper (min 48px) */
-/* .tap-target { min-width: 48px; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; } */
+/* Tap target helper (min 44px) */
+.tap-target { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
 
 /* Typography safety on mobile */
-/* .break-words { overflow-wrap: break-word; word-break: break-word; }
-.leading-mobile { line-height: 1.6; } */
+.break-words { overflow-wrap: break-word; word-break: break-word; }
+.leading-mobile { line-height: 1.6; }
 
 /* Table wrapper for horizontal scroll on mobile */
-/* .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; } */
+.table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
 /* Lists left padding responsive */
-/* ul.mobile-safe, ol.mobile-safe { padding-left: 1.125rem; } */
+ul.mobile-safe, ol.mobile-safe { padding-left: 1.125rem; }
 
 /* PHASE 6: CLS Prevention - Reserve space for dynamic content */
-/* .form-error-reserve { min-height: 1.5rem; }
-.banner-reserve { min-height: 0; } */
+.form-error-reserve { min-height: 1.5rem; }
+.banner-reserve { min-height: 0; }
 
 /* PHASE 7: Respect prefers-reduced-motion globally - Reduced animation intensity */
-/* @media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
@@ -53,34 +53,35 @@ iframe { max-width: 100%; } */
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-} */
+}
 
 /* PHASE 7: Standard animations - Reduced from 0.6s to 0.3s for mobile */
-/* @keyframes fadeIn {
+@keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
 .fade-in {
   animation: fadeIn 0.3s ease-out;
-} */
+}
 
 /* PHASE 6: Prevent layout shift on button interactions */
-/* button, a[role="button"] {
+button, a[role="button"] {
   transition: background-color 0.2s ease, color 0.2s ease;
-} */
+}
 
 /* PHASE 6: Mobile text sizing - ensure readability */
-/* @media (max-width: 640px) {
+@media (max-width: 640px) {
   body { font-size: 16px; }
   h1 { font-size: clamp(1.5rem, 5vw, 2.25rem); }
   h2 { font-size: clamp(1.25rem, 4vw, 1.875rem); }
   h3 { font-size: clamp(1.125rem, 3.5vw, 1.5rem); }
   p { font-size: clamp(0.875rem, 2.5vw, 1rem); }
-} */
+}
 
 /* PHASE 6: Prevent tap target issues on mobile - FIXED */
-/* @media (max-width: 768px) {
+/* Only apply min-height to actual interactive elements, NOT all links */
+@media (max-width: 768px) {
   button,
   input[type="button"],
   input[type="submit"],
@@ -88,12 +89,12 @@ iframe { max-width: 100%; } */
     min-height: 44px;
   }
 
-  /* nur für Icon-Buttons / explizite Tap-Targets */
-  /* .tap-target {
+  /* nur für echte Tap-Targets (z.B. Icon Buttons) */
+  .tap-target {
     min-height: 44px;
     min-width: 44px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
   }
-} */
+}
