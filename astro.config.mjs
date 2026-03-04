@@ -5,14 +5,14 @@ import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel/serverless';
 
 export default defineConfig({
-  site: 'https://energievergleich-nrw.de',
+  site: 'https://energievergleich.shop',
   output: 'server',
   adapter: vercel({
     imageService: true,
     webAnalytics: { enabled: true },
     speedInsights: { enabled: true }
   }),
-  
+
   integrations: [
     tailwind(),
     react(),
@@ -22,17 +22,17 @@ export default defineConfig({
         return !page.includes('/admin') && !page.includes('/api/');
       },
       customPages: [
-        'https://energievergleich-nrw.de/',
-        'https://energievergleich-nrw.de/stromvergleich-koeln',
-        'https://energievergleich-nrw.de/stromvergleich-duesseldorf',
-        'https://energievergleich-nrw.de/stromvergleich-dortmund',
-        'https://energievergleich-nrw.de/stromvergleich-essen',
-        'https://energievergleich-nrw.de/stromvergleich-duisburg',
-        'https://energievergleich-nrw.de/stromvergleich-bochum',
-        'https://energievergleich-nrw.de/stromvergleich-wuppertal',
-        'https://energievergleich-nrw.de/stromvergleich-bielefeld',
-        'https://energievergleich-nrw.de/stromvergleich-bonn',
-        'https://energievergleich-nrw.de/stromvergleich-muenster'
+        'https://energievergleich.shop/',
+        'https://energievergleich.shop/stromvergleich-koeln',
+        'https://energievergleich.shop/stromvergleich-duesseldorf',
+        'https://energievergleich.shop/stromvergleich-dortmund',
+        'https://energievergleich.shop/stromvergleich-essen',
+        'https://energievergleich.shop/stromvergleich-duisburg',
+        'https://energievergleich.shop/stromvergleich-bochum',
+        'https://energievergleich.shop/stromvergleich-wuppertal',
+        'https://energievergleich.shop/stromvergleich-bielefeld',
+        'https://energievergleich.shop/stromvergleich-bonn',
+        'https://energievergleich.shop/stromvergleich-muenster'
       ],
       serialize: (item) => {
         // High priority for city pages
@@ -50,13 +50,13 @@ export default defineConfig({
           item.priority = 0.6;
           item.changefreq = 'monthly';
         }
-        
+
         item.lastmod = new Date();
         return item;
       }
     })
   ],
-  
+
   // PERFORMANCE OPTIMIZATIONS
   vite: {
     build: {
@@ -79,7 +79,7 @@ export default defineConfig({
       include: ['react', 'react-dom', 'clsx', 'tailwind-merge']
     }
   },
-  
+
   image: {
     domains: ['images.unsplash.com', 'cdn.energievergleich-nrw.de'],
     remotePatterns: [{ protocol: 'https' }],
@@ -90,14 +90,14 @@ export default defineConfig({
       }
     }
   },
-  
+
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'viewport'
   },
-  
+
   compressHTML: true,
-  
+
   build: {
     inlineStylesheets: 'auto',
     assets: '_assets'
