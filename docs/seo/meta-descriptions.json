@@ -1,0 +1,82 @@
+{
+  "pages": [
+    {
+      "url": "/",
+      "title": "Energievergleich NRW - Strom, Gas & Photovoltaik vergleichen",
+      "description": "Vergleichen Sie kostenlos Strom-, Gas- und Photovoltaik-Anbieter in NRW. Unabhängige Beratung, transparente Preise, schneller Wechsel. Bis zu 800€ jährlich sparen!",
+      "keywords": "energievergleich nrw, stromvergleich, gasvergleich, photovoltaik, energie sparen"
+    },
+    {
+      "url": "/stromvergleich-nrw",
+      "title": "Stromvergleich NRW - Bis zu 800€ sparen | Energievergleich.shop",
+      "description": "Finden Sie den günstigsten Stromanbieter in NRW. Über 1.000 Tarife vergleichen, unabhängige Beratung, kostenloser Wechselservice. Jetzt bis zu 800€ sparen!",
+      "keywords": "stromvergleich nrw, stromanbieter vergleichen, günstiger strom, stromtarife nrw"
+    },
+    {
+      "url": "/gasvergleich-nrw",
+      "title": "Gasvergleich NRW - Günstige Gastarife finden | Energievergleich.shop",
+      "description": "Gasanbieter in NRW vergleichen und bis zu 500€ jährlich sparen. Transparente Preise, faire Konditionen, schneller Anbieterwechsel. Jetzt kostenlos vergleichen!",
+      "keywords": "gasvergleich nrw, gasanbieter wechseln, günstige gastarife, gas sparen"
+    },
+    {
+      "url": "/photovoltaik-nrw",
+      "title": "Photovoltaik NRW - Solaranlagen-Angebote vergleichen | Energievergleich.shop",
+      "description": "Vergleichen Sie Photovoltaik-Angebote in NRW. Kostenlose Beratung, unabhängiger Angebotsvergleich, Finanzierungsübersicht. Bis zu 30% Kosten sparen!",
+      "keywords": "photovoltaik nrw, solaranlage vergleich, pv-anlage kosten, solar förderung nrw"
+    },
+    {
+      "url": "/gewerbestrom",
+      "title": "Gewerbestrom-Vergleich - Günstige Tarife für Unternehmen | Energievergleich.shop",
+      "description": "Gewerbestrom vergleichen und Energiekosten senken. Individuelle Angebote für Ihr Unternehmen, transparente Konditionen, persönliche Beratung. Jetzt sparen!",
+      "keywords": "gewerbestrom, gewerbestrom vergleich, strom gewerbe, energiekosten unternehmen"
+    },
+    {
+      "url": "/gewerbegas",
+      "title": "Gewerbegas-Vergleich - Günstige Gastarife für Firmen | Energievergleich.shop",
+      "description": "Gewerbegas-Tarife vergleichen und bis zu 25% sparen. Maßgeschneiderte Angebote für Unternehmen, professionelle Beratung, einfacher Wechsel. Jetzt vergleichen!",
+      "keywords": "gewerbegas, gewerbegas vergleich, gas gewerbe, gas für unternehmen"
+    }
+  ],
+  "schema_org_examples": [
+    {
+      "type": "FAQPage",
+      "example": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Wie viel kann ich beim Stromwechsel sparen?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Im Durchschnitt sparen Haushalte in NRW zwischen 300€ und 800€ pro Jahr beim Wechsel vom Grundversorger zu einem günstigen Stromanbieter."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Ist ein Stromanbieterwechsel kostenlos?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ja, der Wechsel des Stromanbieters ist für Sie komplett kostenlos. Die Kündigung beim alten Anbieter übernimmt in der Regel der neue Anbieter."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "LocalBusiness",
+      "example": {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "ENERGIEVERGLEICH NRW",
+        "description": "Unabhängiger Energievergleich für Strom, Gas und Photovoltaik in Nordrhein-Westfalen",
+        "url": "https://energievergleich.shop",
+        "areaServed": {
+          "@type": "State",
+          "name": "Nordrhein-Westfalen"
+        },
+        "priceRange": "Kostenlos"
+      }
+    }
+  ]
+}

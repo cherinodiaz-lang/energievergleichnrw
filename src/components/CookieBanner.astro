@@ -1,0 +1,149 @@
+---
+// Cookie Banner Component - DSGVO-konform
+// Beide Buttons mit identischer visueller Gewichtung
+// Rechtliche Grundlage: Art. 7 DSGVO
+---
+
+<div id="cookieBanner" class="cookie-banner cookie-banner--hidden">
+  <div class="cookie-banner__content">
+    <h2 class="cookie-banner__heading">🍪 Ihre Privatsphäre ist uns wichtig</h2>
+    <p class="cookie-banner__text">
+      Wir verwenden Cookies, um Ihnen ein optimales Nutzererlebnis zu bieten. 
+      Einige sind technisch notwendig, andere helfen uns, unsere Website zu verbessern. 
+      Sie können selbst entscheiden, welche Kategorien Sie zulassen möchten.
+    </p>
+    <div class="cookie-banner__buttons">
+      <button 
+        id="acceptAll" 
+        class="cookie-banner__btn" 
+        aria-label="Alle Cookies akzeptieren"
+      >
+        Alle akzeptieren
+      </button>
+      <button 
+        id="acceptNecessary" 
+        class="cookie-banner__btn" 
+        aria-label="Nur notwendige Cookies akzeptieren"
+      >
+        Nur notwendige
+      </button>
+      <button 
+        id="cookieSettings" 
+        class="cookie-banner__btn cookie-banner__btn--settings" 
+        aria-label="Cookie-Einstellungen öffnen"
+      >
+        Einstellungen
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Cookie Settings Icon (permanent nach Auswahl) -->
+<button 
+  id="cookieSettingsIcon" 
+  class="cookie-settings-icon" 
+  style="display: none;"
+  aria-label="Cookie-Einstellungen erneut öffnen"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+  </svg>
+  Cookies
+</button>
+
+<script>
+  // Cookie Banner Logic - DSGVO-konform
+  
+  function getCookie(name: string): string | null {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop()?.split(';').shift() || null;
+    return null;
+  }
+
+  function setCookie(name: string, value: string, days: number): void {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    const expires = `expires=${date.toUTCString()}`;
+    document.cookie = `${name}=${value};${expires};path=/;SameSite=Lax`;
+  }
+
+  function showBanner(): void {
+    const banner = document.getElementById('cookieBanner');
+    if (banner) {
+      banner.classList.remove('cookie-banner--hidden');
+    }
+  }
+
+  function hideBanner(): void {
+    const banner = document.getElementById('cookieBanner');
+    if (banner) {
+      banner.classList.add('cookie-banner--hidden');
+    }
+    
+    // Settings Icon anzeigen
+    const icon = document.getElementById('cookieSettingsIcon');
+    if (icon) {
+      icon.style.display = 'flex';
+    }
+  }
+
+  function initializeCookieBanner(): void {
+    const consent = getCookie('cookie_consent');
+    
+    if (!consent) {
+      // Kein Cookie gesetzt → Banner anzeigen
+      showBanner();
+    } else {
+      // Cookie bereits gesetzt → Settings Icon anzeigen
+      const icon = document.getElementById('cookieSettingsIcon');
+      if (icon) {
+        icon.style.display = 'flex';
+      }
+    }
+
+    // Event Listeners
+    const acceptAllBtn = document.getElementById('acceptAll');
+    const acceptNecessaryBtn = document.getElementById('acceptNecessary');
+    const settingsBtn = document.getElementById('cookieSettings');
+    const settingsIcon = document.getElementById('cookieSettingsIcon');
+
+    if (acceptAllBtn) {
+      acceptAllBtn.addEventListener('click', () => {
+        setCookie('cookie_consent', 'all', 365);
+        // Hier: Analytics & Marketing aktivieren
+        hideBanner();
+      });
+    }
+
+    if (acceptNecessaryBtn) {
+      acceptNecessaryBtn.addEventListener('click', () => {
+        setCookie('cookie_consent', 'necessary', 365);
+        // Hier: Nur notwendige Cookies
+        hideBanner();
+      });
+    }
+
+    if (settingsBtn) {
+      settingsBtn.addEventListener('click', () => {
+        // Hier: Cookie-Settings Modal öffnen (später implementieren)
+        alert('Cookie-Einstellungen werden in Kürze verfügbar sein.');
+      });
+    }
+
+    if (settingsIcon) {
+      settingsIcon.addEventListener('click', () => {
+        // Banner erneut anzeigen
+        showBanner();
+      });
+    }
+  }
+
+  // Initialize on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeCookieBanner);
+  } else {
+    initializeCookieBanner();
+  }
+</script>
