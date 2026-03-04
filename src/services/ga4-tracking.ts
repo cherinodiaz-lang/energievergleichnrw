@@ -75,18 +75,20 @@ export function initializeGA4(measurementId: string) {
   // Mark script as loaded when it completes
   script.onload = () => {
     scriptLoaded = true;
-    if (debugMode) {
+    if (debugMode && typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
       console.log('[GA4 DEBUG] Script loaded successfully for ID:', measurementId);
     }
   };
   
   script.onerror = () => {
-    console.error('[GA4 ERROR] Failed to load GA4 script');
+    if (typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
+      console.error('[GA4 ERROR] Failed to load GA4 script');
+    }
   };
 
   document.head.appendChild(script);
 
-  if (debugMode) {
+  if (debugMode && typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
     console.log('[GA4 DEBUG] Initialization started with Measurement ID:', measurementId);
   }
 }
@@ -113,7 +115,7 @@ export function updateConsent(analyticsConsent: boolean, marketingConsent: boole
     'ad_personalization': marketingConsent ? 'granted' : 'denied',
   });
 
-  if (debugMode) {
+  if (debugMode && typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
     console.log('[GA4 DEBUG] Consent updated:', {
       analytics: analyticsConsent,
       marketing: marketingConsent,
@@ -132,7 +134,7 @@ export function updateConsent(analyticsConsent: boolean, marketingConsent: boole
       'debug_mode': debugMode,
     });
 
-    if (debugMode) {
+    if (debugMode && typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
       console.log('[GA4 DEBUG] gtag("config") called with:', {
         measurementId: measurementIdGlobal,
         send_page_view: false,
@@ -161,7 +163,7 @@ export function trackEvent(eventName: string, eventData: Record<string, any> = {
   // If consent not yet determined, queue the event
   if (!consentGranted && eventQueue.length < 50) {
     eventQueue.push({ eventName, eventData });
-    if (debugMode) {
+    if (debugMode && typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
       console.log('[GA4 DEBUG] Event queued (consent pending):', eventName, eventData);
     }
     return;
@@ -169,7 +171,7 @@ export function trackEvent(eventName: string, eventData: Record<string, any> = {
 
   // Only send event if consent is granted
   if (!consentGranted) {
-    if (debugMode) {
+    if (debugMode && typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
       console.log('[GA4 DEBUG] Event blocked (consent denied):', eventName);
     }
     return;
@@ -187,7 +189,7 @@ export function trackEvent(eventName: string, eventData: Record<string, any> = {
 
   window.gtag?.('event', eventName, eventWithTimestamp);
 
-  if (debugMode) {
+  if (debugMode && typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
     console.log('[GA4 DEBUG] Event sent:', eventName, eventWithTimestamp);
   }
 }
@@ -246,7 +248,7 @@ export function trackMethodikClick() {
  * Called immediately after consent is granted and gtag('config') is set
  */
 function flushEventQueue() {
-  if (debugMode) {
+  if (debugMode && typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
     console.log('[GA4 DEBUG] Flushing event queue, count:', eventQueue.length);
   }
 
@@ -266,13 +268,13 @@ function flushEventQueue() {
       window.gtag?.('event', event.eventName, eventWithTimestamp);
       flushedCount++;
 
-      if (debugMode) {
+      if (debugMode && typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
         console.log('[GA4 DEBUG] Queued event flushed:', event.eventName, eventWithTimestamp);
       }
     }
   }
 
-  if (debugMode && flushedCount > 0) {
+  if (debugMode && flushedCount > 0 && typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
     console.log('[GA4 DEBUG] Event queue flush complete. Flushed:', flushedCount, 'events');
   }
 }
@@ -316,7 +318,7 @@ export function sendDebugTestPing() {
 
   // Only send if debug mode is active, consent is granted, and not already sent
   if (!debugMode || !consentGranted || debugTestPingSent) {
-    if (debugMode && !consentGranted) {
+    if (debugMode && !consentGranted && window.location.search.includes('debug=1')) {
       console.log('[GA4 DEBUG] Test ping blocked: consent not granted');
     }
     return;
@@ -330,5 +332,7 @@ export function sendDebugTestPing() {
     'debug_mode': true,
   });
 
-  console.log('[GA4 DEBUG] Test ping sent (ga4_test_ping)');
+  if (window.location.search.includes('debug=1')) {
+    console.log('[GA4 DEBUG] Test ping sent (ga4_test_ping)');
+  }
 }

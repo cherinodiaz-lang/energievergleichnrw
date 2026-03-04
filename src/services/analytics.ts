@@ -34,7 +34,7 @@ export class AnalyticsService {
       window.gtag('event', event.name, event.properties);
     }
     
-    if (import.meta.env.DEV) {
+    if (typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
       console.log('[Analytics Event]', event);
     }
   }

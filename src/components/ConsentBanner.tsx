@@ -53,7 +53,9 @@ export default function ConsentBanner() {
           // Apply stored consent
           applyConsent(parsed);
         } catch (error) {
-          console.error('Error parsing stored consent:', error);
+          if (typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
+            console.error('Error parsing stored consent:', error);
+          }
           setShowBanner(true);
         }
       }

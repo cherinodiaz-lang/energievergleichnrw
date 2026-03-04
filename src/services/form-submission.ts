@@ -81,7 +81,9 @@ export async function submitForm(
       submissionId: data._id
     };
   } catch (error) {
-    console.error('Form submission error:', error);
+    if (typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
+      console.error('Form submission error:', error);
+    }
     return {
       success: false,
       message: 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.',

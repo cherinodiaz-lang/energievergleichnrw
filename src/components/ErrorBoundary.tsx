@@ -26,7 +26,9 @@ export class ErrorBoundary extends Component<Props, State> {
   }
   
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('[ErrorBoundary]', error, errorInfo);
+    if (typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
+      console.error('[ErrorBoundary]', error, errorInfo);
+    }
     
     analytics.trackError('react_error_boundary', error.message, {
       component_stack: errorInfo.componentStack?.substring(0, 500),

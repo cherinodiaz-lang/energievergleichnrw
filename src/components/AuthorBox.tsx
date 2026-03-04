@@ -24,7 +24,9 @@ export default function AuthorBox({ authorName = 'Peter Kohmann', updatedDate }:
         );
         setAuthor(foundAuthor || null);
       } catch (error) {
-        console.error('Error loading author:', error);
+        if (typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
+          console.error('Error loading author:', error);
+        }
       } finally {
         setIsLoading(false);
       }

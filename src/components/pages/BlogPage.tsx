@@ -54,7 +54,9 @@ export default function BlogPage() {
         setPosts(postsResult.items || []);
         setTotalCount(postsResult.totalCount || 0);
       } catch (error) {
-        console.error('Error loading blog data:', error);
+        if (typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
+          console.error('Error loading blog data:', error);
+        }
       } finally {
         setIsLoading(false);
       }

@@ -20,7 +20,9 @@ export const POST: APIRoute = async ({ request }) => {
     // - Send confirmation email
     // - Store in database
     
-    console.log('[API] Comparison submission:', validatedData);
+    if (typeof process !== 'undefined' && process.env.DEBUG) {
+      console.log('[API] Comparison submission:', validatedData);
+    }
     
     // Simulate processing time
     await new Promise(resolve => setTimeout(resolve, 500));
@@ -43,7 +45,9 @@ export const POST: APIRoute = async ({ request }) => {
       }
     );
   } catch (error) {
-    console.error('[API Error]', error);
+    if (typeof process !== 'undefined' && process.env.DEBUG) {
+      console.error('[API Error]', error);
+    }
     
     if (error instanceof z.ZodError) {
       return new Response(

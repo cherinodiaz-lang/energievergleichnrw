@@ -89,7 +89,9 @@ export function ComparisonForm({ city, initialValues, onSuccess }: ComparisonFor
         contract_type: data.contractType,
       });
       
-      console.error('[Form Error]', error);
+      if (typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
+        console.error('[Form Error]', error);
+      }
     } finally {
       setIsSubmitting(false);
     }

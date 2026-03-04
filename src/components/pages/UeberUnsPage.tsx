@@ -23,7 +23,9 @@ export default function UeberUnsPage() {
         const result = await BaseCrudService.getAll<TeamMembers>('teammembers');
         setTeamMembers(result.items || []);
       } catch (error) {
-        console.error('Error loading team members:', error);
+        if (typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
+          console.error('Error loading team members:', error);
+        }
       } finally {
         setIsLoading(false);
       }

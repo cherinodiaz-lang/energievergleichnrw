@@ -51,7 +51,9 @@
       banner.classList.add('cookie-banner--hidden');
       settingsIcon.style.display = 'flex';
       // Analytics aktivieren (später)
-      console.log('✅ Alle Cookies akzeptiert');
+      if (typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
+        console.log('✅ Alle Cookies akzeptiert');
+      }
     });
 
     // Nur notwendige Cookies
@@ -59,7 +61,9 @@
       localStorage.setItem('cookie-consent', 'necessary');
       banner.classList.add('cookie-banner--hidden');
       settingsIcon.style.display = 'flex';
-      console.log('✅ Nur notwendige Cookies');
+      if (typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
+        console.log('✅ Nur notwendige Cookies');
+      }
     });
 
     // Settings öffnen

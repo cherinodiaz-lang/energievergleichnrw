@@ -45,7 +45,9 @@ export default function BlogDetailPage() {
           setError(true);
         }
       } catch (err) {
-        console.error('Error loading blog post:', err);
+        if (typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
+          console.error('Error loading blog post:', err);
+        }
         setError(true);
       } finally {
         setIsLoading(false);

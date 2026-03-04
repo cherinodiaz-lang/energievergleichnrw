@@ -17,7 +17,9 @@ export default function SitemapNotification() {
     }
 
     // Log robots.txt location (it should be in public folder)
-    console.log('robots.txt should be available at: /robots.txt');
+    if (typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
+      console.log('robots.txt should be available at: /robots.txt');
+    }
   }, []);
 
   return null;

@@ -11,7 +11,9 @@ export async function getCities(zip) {
     const data = await response.json();
     return data.body; // Wix HTTP-Functions geben ein { body: data } Objekt zurück
   } catch (error) {
-    console.error('Error fetching cities:', error);
+    if (typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
+      console.error('Error fetching cities:', error);
+    }
     throw error;
   }
 }
@@ -25,7 +27,9 @@ export async function getStreets(zip, city) {
     const data = await response.json();
     return data.body;
   } catch (error) {
-    console.error('Error fetching streets:', error);
+    if (typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
+      console.error('Error fetching streets:', error);
+    }
     throw error;
   }
 }
@@ -40,7 +44,9 @@ export async function getRates(params) {
     const data = await response.json();
     return data.body;
   } catch (error) {
-    console.error('Error fetching rates:', error);
+    if (typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
+      console.error('Error fetching rates:', error);
+    }
     throw error;
   }
 }

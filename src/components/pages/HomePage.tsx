@@ -172,7 +172,9 @@ export default function HomePage() {
       setVorteile(sortedVorteile);
       setMaterials(materialsData?.items || []);
     } catch (error) {
-      console.error('Error loading data:', error);
+      if (typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
+        console.error('Error loading data:', error);
+      }
       // Set empty arrays to allow page to render
       setFaqs([]);
       setVorteile([]);
