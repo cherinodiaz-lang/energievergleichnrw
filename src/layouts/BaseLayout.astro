@@ -6,16 +6,59 @@ interface Props {
   description?: string;
   image?: string;
   noIndex?: boolean;
+  jsonLd?: object;
 }
 
 const {
-  title = 'Energievergleich NRW',
-  description = 'Vergleichen Sie Strom- und Gasanbieter in NRW',
+  title = 'Energievergleich NRW – Strom, Gas & Photovoltaik vergleichen',
+  description = 'Vergleichen Sie Strom- und Gastarife in NRW oder prüfen Sie Photovoltaik-Optionen. Klarer Ablauf, verständliche Hinweise, schneller Start über PLZ.',
   image = '/og-image.jpg',
   noIndex = false,
+  jsonLd,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const fullImageURL = new URL(image, Astro.site);
+
+// Base structured data: Organization + WebSite with SearchAction
+const baseJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${Astro.site}#organization`,
+      name: 'energievergleich.shop',
+      url: Astro.site,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${Astro.site}logo.png`,
+      },
+      sameAs: [],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${Astro.site}#website`,
+      url: Astro.site,
+      name: 'energievergleich.shop',
+      publisher: {
+        '@id': `${Astro.site}#organization`,
+      },
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: `${Astro.site}?s={search_term_string}`,
+        },
+        'query-input': 'required name=search_term_string',
+      },
+    },
+  ],
+};
+
+// Merge page-specific JSON-LD if provided
+const finalJsonLd = jsonLd
+  ? { ...baseJsonLd, '@graph': [...baseJsonLd['@graph'], jsonLd] }
+  : baseJsonLd;
 ---
 
 <!doctype html>
@@ -38,7 +81,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       crossorigin 
     />
     
-    <!-- SEO -->
+    <!-- SEO: Title + Description -->
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
@@ -49,7 +92,21 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta property="og:image" content={fullImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content="energievergleich.shop" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullImageURL} />
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(finalJsonLd)} />
     
     <!-- DNS Prefetch -->
     <link rel="dns-prefetch" href="https://vercel.live" />
