@@ -1,0 +1,65 @@
+/* file: assets/css/components/forms.css */
+.field {
+  display: grid;
+  gap: var(--s-2);
+  margin-bottom: var(--s-4);
+}
+
+.label {
+  font-weight: 650;
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  border-radius: var(--r-1);
+  border: 1px solid var(--border);
+  padding: 12px 12px;
+  font-size: 16px;
+  background: var(--bg);
+  color: var(--text-900);
+  min-height: 44px; /* supports WCAG target size intent */
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.input:focus-visible,
+.select:focus-visible,
+.textarea:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-color: transparent;
+}
+
+.help {
+  font-size: 14px;
+  color: var(--text-600);
+  margin: 0;
+}
+
+.error {
+  font-size: 14px;
+  color: var(--danger);
+  margin: 0;
+}
+
+.is-error .input,
+.is-error .select,
+.is-error .textarea {
+  border-color: var(--danger);
+}
+
+/* Checkbox row */
+.checkrow {
+  display: flex;
+  gap: var(--s-2);
+  align-items: flex-start;
+}
+
+.checkrow input {
+  margin-top: 4px;
+}
