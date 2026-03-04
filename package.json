@@ -9,8 +9,6 @@
     "release": "wix release",
     "env": "wix env pull",
     "check": "npx astro check --js-only",
-    "typecheck": "tsc --noEmit",
-    "check:all": "npm run check && npm run typecheck",
     "test:run": "vitest run"
   },
   "dependencies": {
@@ -121,6 +119,7 @@
     "tailwindcss": "^3.4.17",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.177.0",
+    "typescript": "^5.8.3",
     "uuid": "^11.1.0",
     "vaul": "^1.1.2",
     "zod": "^3.24.4",
