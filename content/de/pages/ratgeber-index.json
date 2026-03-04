@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "title": "Ratgeber – Strom, Gas, PV & Wechselwissen verständlich erklärt",
+    "description": "Klare Antworten zu Grundversorgung, Preisgarantie, Bonus, Kündigungsfristen, Umzug, PV-Kosten und Angebotsvergleich."
+  },
+  "hero": {
+    "h1": "Ratgeber – Energie verstehen, besser entscheiden",
+    "subline": "Kurz, praktisch, ohne Fachchinesisch – mit Checklisten und klaren nächsten Schritten."
+  },
+  "categoryCards": [
+    {
+      "title": "Strom",
+      "text": "Grundversorgung, Bonus, Laufzeit, Umzug – die wichtigsten Basics.",
+      "href": "/ratgeber/strom"
+    },
+    {
+      "title": "Gas",
+      "text": "Preisgarantie, Heizungsart, Verbrauch, Umzug – verständlich erklärt.",
+      "href": "/ratgeber/gas"
+    },
+    {
+      "title": "Gewerbe",
+      "text": "Lastprofil, Leistungs-/Arbeitspreis und Beschaffung – kompakt.",
+      "href": "/ratgeber/gewerbe"
+    },
+    {
+      "title": "Photovoltaik",
+      "text": "Dachcheck, Speicher, Einspeisevergütung, Angebote – als Checkliste.",
+      "href": "/ratgeber/photovoltaik"
+    },
+    {
+      "title": "Wechselwissen",
+      "text": "Kündigung, Ablauf, was tun bei Problemen – Schritt für Schritt.",
+      "href": "/ratgeber/wechselwissen"
+    }
+  ],
+  "inlineCta": {
+    "title": "Du willst direkt prüfen statt lesen?",
+    "text": "Starte mit PLZ und der passenden Kategorie.",
+    "primaryCta": "Jetzt Tarif prüfen",
+    "primaryHref": "/stromvergleich-nrw"
+  }
+}
