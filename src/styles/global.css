@@ -80,7 +80,7 @@ iframe { max-width: 100%; } */
 } */
 
 /* PHASE 6: Prevent tap target issues on mobile - FIXED */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   button,
   input[type="button"],
   input[type="submit"],
@@ -89,11 +89,11 @@ iframe { max-width: 100%; } */
   }
 
   /* nur für Icon-Buttons / explizite Tap-Targets */
-  .tap-target {
+  /* .tap-target {
     min-height: 44px;
     min-width: 44px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
   }
-}
+} */
