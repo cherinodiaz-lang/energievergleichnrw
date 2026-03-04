@@ -331,29 +331,35 @@ export default function HomePage() {
 
             <AnimatedElement delay={300}>
               <div className="flex flex-col sm:flex-row gap-3 pb-8 sm:pb-0">
-                <Link
-                  id="heroCTA"
-                  to="/stromvergleich-nrw"
-                  onClick={() => trackCTAClick('Jetzt vergleichen')}
-                  className="inline-flex items-center justify-center bg-secondary text-secondary-foreground hover:bg-secondary/90 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 h-12 sm:h-14 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-bold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
+                <Button
+                  onClick={() => {
+                    trackCTAClick('Jetzt vergleichen');
+                    // Reset calculator states to show input form
+                    setShowStromResults(false);
+                    setShowGasResults(false);
+                    setShowKombiResults(false);
+                    scrollToSection('vergleichsrechner');
+                  }}
+                  className="bg-secondary text-secondary-foreground hover:bg-secondary/90 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 h-12 sm:h-14 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-bold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
                 >
                   Jetzt vergleichen
-                </Link>
-                <Link
-                  id="heroSecondaryCTA"
-                  to="/photovoltaik-nrw"
-                  onClick={() => trackCTAClick('Photovoltaik Beratung')}
-                  className="inline-flex items-center justify-center bg-white/20 border-2 border-white text-white hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary h-12 sm:h-14 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-semibold backdrop-blur-md transition-all w-full sm:w-auto"
+                </Button>
+                <Button
+                  onClick={() => {
+                    trackCTAClick('Photovoltaik Beratung');
+                    scrollToSection('photovoltaik');
+                  }}
+                  className="bg-white/20 border-2 border-white text-white hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary h-12 sm:h-14 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-semibold backdrop-blur-md transition-all w-full sm:w-auto"
                 >
                   <Sun className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" aria-hidden="true" />
                   <span className="hidden sm:inline">Photovoltaik Beratung</span>
                   <span className="sm:hidden">Photovoltaik</span>
-                </Link>
+                </Button>
               </div>
             </AnimatedElement>
 
             <AnimatedElement delay={400}>
-              <Link id="heroMethodikLink" to="/ratgeber#methodik" onClick={trackMethodikClick} className="inline-block text-white/80 hover:text-white transition-colors text-sm sm:text-base font-medium underline">
+              <Link to="/methodik" onClick={trackMethodikClick} className="inline-block text-white/80 hover:text-white transition-colors text-sm sm:text-base font-medium underline">
                 So vergleichen wir (Methodik)
               </Link>
             </AnimatedElement>
@@ -378,31 +384,31 @@ export default function HomePage() {
           <AnimatedElement delay={400}>
             <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-100 mb-6 sm:mb-8">
-                <div className="flex flex-col items-center md:items-start justify-start p-8 min-h-[200px]">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
-                    <ShieldCheck className="w-6 h-6" />
+                <div className="flex items-center gap-3 sm:gap-4 justify-center md:justify-start p-3 sm:p-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                    <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
-                  <div className="text-center md:text-left min-w-0 mt-4">
+                  <div className="min-w-0">
                     <p className="font-heading font-bold text-base sm:text-xl text-primary">100% Unabhängig</p>
-                    <p className="text-xs sm:text-sm text-gray-500 mt-2">Objektiver Vergleich</p>
+                    <p className="text-xs sm:text-sm text-gray-500">Objektiver Vergleich</p>
                   </div>
                 </div>
-                <div className="flex flex-col items-center md:items-start justify-start p-8 min-h-[200px]">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
-                    <Building2 className="w-6 h-6" />
+                <div className="flex items-center gap-3 sm:gap-4 justify-center md:justify-start p-3 sm:p-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                    <Building2 className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
-                  <div className="text-center md:text-left min-w-0 mt-4">
+                  <div className="min-w-0">
                     <p className="font-heading font-bold text-base sm:text-xl text-primary">Regional in NRW</p>
-                    <p className="text-xs sm:text-sm text-gray-500 mt-2">Spezialisiert lokal</p>
+                    <p className="text-xs sm:text-sm text-gray-500">Spezialisiert lokal</p>
                   </div>
                 </div>
-                <div className="flex flex-col items-center md:items-start justify-start p-8 min-h-[200px]">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
-                    <MousePointerClick className="w-6 h-6" />
+                <div className="flex items-center gap-3 sm:gap-4 justify-center md:justify-start p-3 sm:p-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                    <MousePointerClick className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
-                  <div className="text-center md:text-left min-w-0 mt-4">
+                  <div className="min-w-0">
                     <p className="font-heading font-bold text-base sm:text-xl text-primary">Einfacher Wechsel</p>
-                    <p className="text-xs sm:text-sm text-gray-500 mt-2">Wenige Minuten</p>
+                    <p className="text-xs sm:text-sm text-gray-500">Wenige Minuten</p>
                   </div>
                 </div>
               </div>

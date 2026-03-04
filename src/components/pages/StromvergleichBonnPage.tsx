@@ -1,26 +1,49 @@
+import { useEffect } from 'react';
 import StromvergleichCityLayout from '@/components/pages/stromvergleich/StromvergleichCityLayout';
 import RelatedCities from '@/components/RelatedCities';
-import FAQSchema from '@/components/FAQSchema';
-
-const FAQ_ITEMS = [
-  {
-    question: 'Welche Daten brauche ich für den Stromvergleich in Bonn?',
-    answer:
-      'Für den Stromvergleich in Bonn reichen Postleitzahl und Ihr Jahresverbrauch (kWh). Optional hilft die Zählernummer für die spätere Beauftragung.',
-  },
-  {
-    question: 'Ist der Stromanbieterwechsel in Bonn kostenlos?',
-    answer:
-      'Ja. Der Anbieterwechsel selbst ist kostenlos. Es fallen keine Gebühren für Kündigung oder Anmeldung an. Die Stromversorgung bleibt durchgehend gewährleistet.',
-  },
-  {
-    question: 'Wie lange dauert ein Stromwechsel in Bonn?',
-    answer:
-      'Das hängt von der Kündigungsfrist Ihres aktuellen Vertrags ab. In der Praxis dauert ein Wechsel häufig einige Wochen.',
-  },
-] as const;
 
 export default function StromvergleichBonnPage() {
+  useEffect(() => {
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Welche Daten brauche ich für den Stromvergleich in Bonn?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Für den Stromvergleich in Bonn reichen Postleitzahl und Ihr Jahresverbrauch (kWh). Optional hilft die Zählernummer für die spätere Beauftragung.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Ist der Stromanbieterwechsel in Bonn kostenlos?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Ja. Der Anbieterwechsel selbst ist kostenlos. Es fallen keine Gebühren für Kündigung oder Anmeldung an. Die Stromversorgung bleibt durchgehend gewährleistet.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Wie lange dauert ein Stromwechsel in Bonn?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Das hängt von der Kündigungsfrist Ihres aktuellen Vertrags ab. In der Praxis dauert ein Wechsel häufig einige Wochen.',
+          },
+        },
+      ],
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(faqSchema);
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
   return (
     <StromvergleichCityLayout
       seo={{
@@ -38,8 +61,6 @@ export default function StromvergleichBonnPage() {
       cityName="Bonn"
       citySlug="bonn"
     >
-      <FAQSchema items={[...FAQ_ITEMS]} />
-
       <main className="min-h-screen bg-white">
         <section className="mx-auto w-full max-w-5xl px-4 py-10">
           <header className="mb-8">

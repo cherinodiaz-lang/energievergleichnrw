@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import {
   Zap,
   CheckCircle,
@@ -146,6 +147,48 @@ export default function StromvergleichKoelnPage() {
     { name: 'Tarif Option C', pricePerKwh: 0.24, baseFee: 16.5 },
   ];
 
+  useEffect(() => {
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Welche Daten brauche ich für den Stromvergleich in Köln?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Für den Stromvergleich in Köln reichen Postleitzahl und Ihr Jahresverbrauch (kWh). Optional hilft die Zählernummer für die spätere Beauftragung.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Ist der Stromanbieterwechsel in Köln kostenlos?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Ja. Der Anbieterwechsel selbst ist kostenlos. Es fallen keine Gebühren für Kündigung oder Anmeldung an. Die Stromversorgung bleibt durchgehend gewährleistet.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Wie lange dauert ein Stromwechsel in Köln?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Das hängt von der Kündigungsfrist Ihres aktuellen Vertrags ab. In der Praxis dauert ein Wechsel häufig einige Wochen.',
+          },
+        },
+      ],
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(faqSchema);
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
   return (
     <StromvergleichCityLayout
       seo={{
@@ -168,7 +211,11 @@ export default function StromvergleichKoelnPage() {
       {/* Hero Section - LCP Optimized */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-3xl"
           >
             <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-6 leading-tight max-w-[22ch] sm:max-w-none break-words">
               Stromvergleich Köln: Günstige Tarife für Kölner Haushalte
@@ -191,7 +238,7 @@ export default function StromvergleichKoelnPage() {
                 So vergleichen wir (Methodik)
               </Link>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -319,7 +366,11 @@ export default function StromvergleichKoelnPage() {
 
               {/* Results Section */}
               {showResults && (
-                <div className="mt-12"
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="mt-12"
                 >
                   <h2 className="font-heading text-2xl font-bold text-primary mb-8">Tarifvorschau für {formData.postleitzahl}</h2>
 
@@ -330,7 +381,11 @@ export default function StromvergleichKoelnPage() {
                       const yearlyPrice = monthlyPrice * 12;
 
                       return (
-                        <div key={tariff.name}
+                        <motion.div
+                          key={tariff.name}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: index * 0.1 }}
                         >
                           <Card className="h-full flex flex-col shadow-lg hover:shadow-xl transition-shadow">
                             <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10">
@@ -364,7 +419,7 @@ export default function StromvergleichKoelnPage() {
                               </Button>
                             </CardContent>
                           </Card>
-                        </div>
+                        </motion.div>
                       );
                     })}
                   </div>
@@ -375,7 +430,7 @@ export default function StromvergleichKoelnPage() {
                       <strong>Hinweis:</strong> Vorschau basiert auf Beispielrechnung. Finale Tarife nach Anbieterabfrage.
                     </p>
                   </div>
-                </div>
+                </motion.div>
               )}
             </div>
 

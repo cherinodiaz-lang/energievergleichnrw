@@ -59,7 +59,7 @@ export default function StromvergleichCityLayout({
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-background break-words leading-mobile">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title={seo.title}
         description={seo.description}
@@ -73,9 +73,7 @@ export default function StromvergleichCityLayout({
       <LocalBusinessSchema cityName={cityName} citySlug={citySlug} />
       <Header />
       <Breadcrumb items={breadcrumbItems} />
-      <div className="flex-1 flex flex-col [&>main]:!min-h-0 [&>main]:flex-1">
-        {children}
-      </div>
+      {children}
       <Footer />
     </div>
   );

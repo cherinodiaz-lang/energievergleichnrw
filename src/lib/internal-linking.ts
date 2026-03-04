@@ -1,12 +1,6 @@
 /**
  * Internal Linking Configuration
  * Manages breadcrumbs, related pages, and anchor text variations
- *
- * City-Cluster Strategy (Issue #21)
- * - City pages (/stromvergleich-<city>) should primarily link to 4–6 other relevant city pages.
- * - Clusters define the "closest" set first (e.g., Ruhrgebiet, Rheinland), then we fill remaining slots
- *   with nearby clusters to reach 4–6 links while avoiding duplicates.
- * - Edit CITY_PAGES and CITY_CLUSTERS to adjust the city network.
  */
 
 export interface BreadcrumbConfig {
@@ -139,112 +133,7 @@ export const breadcrumbConfigs: Record<string, BreadcrumbConfig[]> = {
   ],
 };
 
-type CityClusterKey = 'ruhrgebiet' | 'rheinland' | 'muensterland' | 'owl' | 'bergisches';
-
-type CityPageMeta = {
-  path: string;
-  cityName: string;
-  cluster: CityClusterKey;
-};
-
-const CITY_PAGES: CityPageMeta[] = [
-  { path: '/stromvergleich-bochum', cityName: 'Bochum', cluster: 'ruhrgebiet' },
-  { path: '/stromvergleich-dortmund', cityName: 'Dortmund', cluster: 'ruhrgebiet' },
-  { path: '/stromvergleich-duisburg', cityName: 'Duisburg', cluster: 'ruhrgebiet' },
-  { path: '/stromvergleich-essen', cityName: 'Essen', cluster: 'ruhrgebiet' },
-
-  { path: '/stromvergleich-koeln', cityName: 'Köln', cluster: 'rheinland' },
-  { path: '/stromvergleich-duesseldorf', cityName: 'Düsseldorf', cluster: 'rheinland' },
-  { path: '/stromvergleich-bonn', cityName: 'Bonn', cluster: 'rheinland' },
-
-  { path: '/stromvergleich-muenster', cityName: 'Münster', cluster: 'muensterland' },
-  { path: '/stromvergleich-bielefeld', cityName: 'Bielefeld', cluster: 'owl' },
-  { path: '/stromvergleich-wuppertal', cityName: 'Wuppertal', cluster: 'bergisches' },
-];
-
-const CITY_BY_PATH: Record<string, CityPageMeta> = CITY_PAGES.reduce(
-  (acc, item) => {
-    acc[item.path] = item;
-    return acc;
-  },
-  {} as Record<string, CityPageMeta>
-);
-
-const CITY_CLUSTERS: Record<CityClusterKey, string[]> = {
-  ruhrgebiet: ['/stromvergleich-bochum', '/stromvergleich-dortmund', '/stromvergleich-duisburg', '/stromvergleich-essen'],
-  rheinland: ['/stromvergleich-koeln', '/stromvergleich-duesseldorf', '/stromvergleich-bonn'],
-  muensterland: ['/stromvergleich-muenster'],
-  owl: ['/stromvergleich-bielefeld'],
-  bergisches: ['/stromvergleich-wuppertal'],
-};
-
-const CLUSTER_FALLBACKS: Record<CityClusterKey, CityClusterKey[]> = {
-  ruhrgebiet: ['rheinland', 'bergisches', 'muensterland', 'owl'],
-  rheinland: ['bergisches', 'ruhrgebiet', 'muensterland', 'owl'],
-  bergisches: ['rheinland', 'ruhrgebiet', 'muensterland', 'owl'],
-  muensterland: ['owl', 'ruhrgebiet', 'rheinland', 'bergisches'],
-  owl: ['muensterland', 'ruhrgebiet', 'rheinland', 'bergisches'],
-};
-
-function isCityStromvergleichPath(pathname: string): boolean {
-  return pathname.startsWith('/stromvergleich-') && pathname !== '/stromvergleich-nrw' && Boolean(CITY_BY_PATH[pathname]);
-}
-
-function uniquePaths(paths: string[]): string[] {
-  const out: string[] = [];
-  const seen = new Set<string>();
-  for (const p of paths) {
-    if (!p) continue;
-    if (seen.has(p)) continue;
-    seen.add(p);
-    out.push(p);
-  }
-  return out;
-}
-
-function buildCityClusterLinks(sourcePath: string, limit: number = 6): string[] {
-  const meta = CITY_BY_PATH[sourcePath];
-  if (!meta) return [];
-
-  const primary = CITY_CLUSTERS[meta.cluster] || [];
-  const fallbacks = CLUSTER_FALLBACKS[meta.cluster] || [];
-
-  const candidateBuckets: string[][] = [
-    primary,
-    ...fallbacks.map((k) => CITY_CLUSTERS[k] || []),
-  ];
-
-  const candidates: string[] = [];
-  for (const bucket of candidateBuckets) {
-    for (const p of bucket) {
-      if (p !== sourcePath) candidates.push(p);
-    }
-  }
-
-  const unique = uniquePaths(candidates);
-  return unique.slice(0, Math.max(0, limit));
-}
-
-function toCityRelatedPage(destPath: string, index: number): RelatedPage {
-  const meta = CITY_BY_PATH[destPath];
-  const cityName = meta?.cityName || '';
-
-  const title = getAnchorText(destPath, index + 1) || `Stromvergleich ${cityName}`;
-
-  return {
-    title,
-    description: `Stromtarife in ${cityName} vergleichen und passende Angebote finden`,
-    path: destPath,
-  };
-}
-
-function getCityRelatedPages(sourcePath: string): RelatedPage[] {
-  const destPaths = buildCityClusterLinks(sourcePath, 6);
-  return destPaths.map((p, i) => toCityRelatedPage(p, i));
-}
-
 // Related pages for comparison pages (cross-linking)
-// Note: City pages (/stromvergleich-<city>) use cluster logic above and are NOT in this config.
 export const relatedPagesConfig: Record<string, RelatedPage[]> = {
   '/stromvergleich-nrw': [
     {
@@ -291,6 +180,276 @@ export const relatedPagesConfig: Record<string, RelatedPage[]> = {
       title: 'Gasvergleich NRW',
       description: 'Finden Sie passende Gastarife in Nordrhein-Westfalen',
       path: '/gasvergleich-nrw',
+    },
+  ],
+  '/stromvergleich-essen': [
+    {
+      title: 'Stromvergleich NRW',
+      description: 'Stromtarife in NRW vergleichen – inkl. Tipps und Ratgeber',
+      path: '/stromvergleich-nrw',
+    },
+    {
+      title: 'Gasvergleich NRW',
+      description: 'Auch Gastarife vergleichen und zusätzlich sparen',
+      path: '/gasvergleich-nrw',
+    },
+    {
+      title: 'Photovoltaik NRW',
+      description: 'Photovoltaik: Kosten, Förderung und Beratung in NRW',
+      path: '/photovoltaik-nrw',
+    },
+    {
+      title: 'Stromvergleich Bochum',
+      description: 'Stromtarife für Bochum vergleichen',
+      path: '/stromvergleich-bochum',
+    },
+    {
+      title: 'Stromvergleich Duisburg',
+      description: 'Stromtarife für Duisburg vergleichen',
+      path: '/stromvergleich-duisburg',
+    },
+  ],
+  '/stromvergleich-bochum': [
+    {
+      title: 'Stromvergleich NRW',
+      description: 'Stromtarife in NRW vergleichen – inkl. Tipps und Ratgeber',
+      path: '/stromvergleich-nrw',
+    },
+    {
+      title: 'Gasvergleich NRW',
+      description: 'Auch Gastarife vergleichen und zusätzlich sparen',
+      path: '/gasvergleich-nrw',
+    },
+    {
+      title: 'Photovoltaik NRW',
+      description: 'Photovoltaik: Kosten, Förderung und Beratung in NRW',
+      path: '/photovoltaik-nrw',
+    },
+    {
+      title: 'Stromvergleich Essen',
+      description: 'Stromtarife für Essen vergleichen',
+      path: '/stromvergleich-essen',
+    },
+    {
+      title: 'Stromvergleich Duisburg',
+      description: 'Stromtarife für Duisburg vergleichen',
+      path: '/stromvergleich-duisburg',
+    },
+  ],
+  '/stromvergleich-duisburg': [
+    {
+      title: 'Stromvergleich NRW',
+      description: 'Stromtarife in NRW vergleichen – inkl. Tipps und Ratgeber',
+      path: '/stromvergleich-nrw',
+    },
+    {
+      title: 'Gasvergleich NRW',
+      description: 'Auch Gastarife vergleichen und zusätzlich sparen',
+      path: '/gasvergleich-nrw',
+    },
+    {
+      title: 'Photovoltaik NRW',
+      description: 'Photovoltaik: Kosten, Förderung und Beratung in NRW',
+      path: '/photovoltaik-nrw',
+    },
+    {
+      title: 'Stromvergleich Essen',
+      description: 'Stromtarife für Essen vergleichen',
+      path: '/stromvergleich-essen',
+    },
+    {
+      title: 'Stromvergleich Bochum',
+      description: 'Stromtarife für Bochum vergleichen',
+      path: '/stromvergleich-bochum',
+    },
+  ],
+  '/stromvergleich-koeln': [
+    {
+      title: 'Stromvergleich NRW',
+      description: 'Stromtarife in NRW vergleichen – inkl. Tipps und Ratgeber',
+      path: '/stromvergleich-nrw',
+    },
+    {
+      title: 'Gasvergleich NRW',
+      description: 'Gastarife in NRW vergleichen',
+      path: '/gasvergleich-nrw',
+    },
+    {
+      title: 'Photovoltaik NRW',
+      description: 'Photovoltaik: Infos und Beratung in NRW',
+      path: '/photovoltaik-nrw',
+    },
+    {
+      title: 'Stromvergleich Essen',
+      description: 'Stromtarife für Essen vergleichen',
+      path: '/stromvergleich-essen',
+    },
+    {
+      title: 'Stromvergleich Bonn',
+      description: 'Stromtarife für Bonn vergleichen',
+      path: '/stromvergleich-bonn',
+    },
+  ],
+  '/stromvergleich-duesseldorf': [
+    {
+      title: 'Stromvergleich NRW',
+      description: 'Stromtarife in NRW vergleichen – inkl. Tipps und Ratgeber',
+      path: '/stromvergleich-nrw',
+    },
+    {
+      title: 'Gasvergleich NRW',
+      description: 'Gastarife in NRW vergleichen',
+      path: '/gasvergleich-nrw',
+    },
+    {
+      title: 'Photovoltaik NRW',
+      description: 'Photovoltaik: Infos und Beratung in NRW',
+      path: '/photovoltaik-nrw',
+    },
+    {
+      title: 'Stromvergleich Wuppertal',
+      description: 'Stromtarife für Wuppertal vergleichen',
+      path: '/stromvergleich-wuppertal',
+    },
+    {
+      title: 'Stromvergleich Köln',
+      description: 'Stromtarife für Köln vergleichen',
+      path: '/stromvergleich-koeln',
+    },
+  ],
+  '/stromvergleich-dortmund': [
+    {
+      title: 'Stromvergleich NRW',
+      description: 'Stromtarife in NRW vergleichen – inkl. Tipps und Ratgeber',
+      path: '/stromvergleich-nrw',
+    },
+    {
+      title: 'Gasvergleich NRW',
+      description: 'Gastarife in NRW vergleichen',
+      path: '/gasvergleich-nrw',
+    },
+    {
+      title: 'Photovoltaik NRW',
+      description: 'Photovoltaik: Infos und Beratung in NRW',
+      path: '/photovoltaik-nrw',
+    },
+    {
+      title: 'Stromvergleich Bochum',
+      description: 'Stromtarife für Bochum vergleichen',
+      path: '/stromvergleich-bochum',
+    },
+    {
+      title: 'Stromvergleich Münster',
+      description: 'Stromtarife für Münster vergleichen',
+      path: '/stromvergleich-muenster',
+    },
+  ],
+  '/stromvergleich-wuppertal': [
+    {
+      title: 'Stromvergleich NRW',
+      description: 'Stromtarife in NRW vergleichen – inkl. Tipps und Ratgeber',
+      path: '/stromvergleich-nrw',
+    },
+    {
+      title: 'Stromvergleich Düsseldorf',
+      description: 'Stromtarife für Düsseldorf vergleichen',
+      path: '/stromvergleich-duesseldorf',
+    },
+    {
+      title: 'Stromvergleich Köln',
+      description: 'Stromtarife für Köln vergleichen',
+      path: '/stromvergleich-koeln',
+    },
+    {
+      title: 'Gasvergleich NRW',
+      description: 'Auch Gastarife vergleichen und zusätzlich sparen',
+      path: '/gasvergleich-nrw',
+    },
+    {
+      title: 'Photovoltaik NRW',
+      description: 'Photovoltaik: Infos und Beratung in NRW',
+      path: '/photovoltaik-nrw',
+    },
+  ],
+  '/stromvergleich-bielefeld': [
+    {
+      title: 'Stromvergleich NRW',
+      description: 'Stromtarife in NRW vergleichen – inkl. Tipps und Ratgeber',
+      path: '/stromvergleich-nrw',
+    },
+    {
+      title: 'Stromvergleich Münster',
+      description: 'Stromtarife für Münster vergleichen',
+      path: '/stromvergleich-muenster',
+    },
+    {
+      title: 'Stromvergleich Dortmund',
+      description: 'Stromtarife für Dortmund vergleichen',
+      path: '/stromvergleich-dortmund',
+    },
+    {
+      title: 'Gasvergleich NRW',
+      description: 'Auch Gastarife vergleichen und zusätzlich sparen',
+      path: '/gasvergleich-nrw',
+    },
+    {
+      title: 'Photovoltaik NRW',
+      description: 'Photovoltaik: Infos und Beratung in NRW',
+      path: '/photovoltaik-nrw',
+    },
+  ],
+  '/stromvergleich-bonn': [
+    {
+      title: 'Stromvergleich NRW',
+      description: 'Stromtarife in NRW vergleichen – inkl. Tipps und Ratgeber',
+      path: '/stromvergleich-nrw',
+    },
+    {
+      title: 'Stromvergleich Köln',
+      description: 'Stromtarife für Köln vergleichen',
+      path: '/stromvergleich-koeln',
+    },
+    {
+      title: 'Stromvergleich Düsseldorf',
+      description: 'Stromtarife für Düsseldorf vergleichen',
+      path: '/stromvergleich-duesseldorf',
+    },
+    {
+      title: 'Gasvergleich NRW',
+      description: 'Auch Gastarife vergleichen und zusätzlich sparen',
+      path: '/gasvergleich-nrw',
+    },
+    {
+      title: 'Photovoltaik NRW',
+      description: 'Photovoltaik: Infos und Beratung in NRW',
+      path: '/photovoltaik-nrw',
+    },
+  ],
+  '/stromvergleich-muenster': [
+    {
+      title: 'Stromvergleich NRW',
+      description: 'Stromtarife in NRW vergleichen – inkl. Tipps und Ratgeber',
+      path: '/stromvergleich-nrw',
+    },
+    {
+      title: 'Stromvergleich Dortmund',
+      description: 'Stromtarife für Dortmund vergleichen',
+      path: '/stromvergleich-dortmund',
+    },
+    {
+      title: 'Stromvergleich Bielefeld',
+      description: 'Stromtarife für Bielefeld vergleichen',
+      path: '/stromvergleich-bielefeld',
+    },
+    {
+      title: 'Gasvergleich NRW',
+      description: 'Auch Gastarife vergleichen und zusätzlich sparen',
+      path: '/gasvergleich-nrw',
+    },
+    {
+      title: 'Photovoltaik NRW',
+      description: 'Photovoltaik: Infos und Beratung in NRW',
+      path: '/photovoltaik-nrw',
     },
   ],
   '/gasvergleich-nrw': [
@@ -528,10 +687,6 @@ export function getBreadcrumbItems(pathname: string): BreadcrumbConfig[] {
  * Get related pages for a given path
  */
 export function getRelatedPages(pathname: string): RelatedPage[] {
-  if (isCityStromvergleichPath(pathname)) {
-    return getCityRelatedPages(pathname);
-  }
-
   return relatedPagesConfig[pathname] || [];
 }
 

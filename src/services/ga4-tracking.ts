@@ -30,7 +30,6 @@ let debugMode = false;
 let debugTestPingSent = false;
 let measurementIdGlobal = '';
 let scriptLoaded = false;
-let isErrorListenerAttached = false;
 
 /**
  * Initialize GA4 with consent mode
@@ -90,9 +89,6 @@ export function initializeGA4(measurementId: string) {
   if (debugMode) {
     console.log('[GA4 DEBUG] Initialization started with Measurement ID:', measurementId);
   }
-  
-  // Attach global error listener for JS Error Monitoring
-  attachGlobalErrorListener();
 }
 
 /**
@@ -212,40 +208,32 @@ export function trackPageView(pathname: string) {
 
 /**
  * Track form submission as conversion
+ * Event: form_submit
+ * Parameters: page_path, form_type
  */
-export function trackFormSubmit(formType: string, city?: string) {
+export function trackFormSubmit(formType: string) {
   trackEvent('form_submit', {
     'page_path': window.location.pathname,
     'form_type': formType,
-    'city': city || 'none',
   });
 }
 
 /**
- * Track form submission error
+ * Track CTA button clicks as conversion
+ * Event: cta_click
+ * Parameters: page_path, cta_label
  */
-export function trackFormError(formType: string, errors: string, city?: string) {
-  trackEvent('form_error', {
-    'page_path': window.location.pathname,
-    'form_type': formType,
-    'city': city || 'none',
-    'error_fields': errors,
-  });
-}
-
-/**
- * Track CTA button clicks
- */
-export function trackCTAClick(ctaLabel: string, city?: string) {
+export function trackCTAClick(ctaLabel: string) {
   trackEvent('cta_click', {
     'page_path': window.location.pathname,
     'cta_label': ctaLabel,
-    'city': city || 'none',
   });
 }
 
 /**
  * Track Methodik link clicks
+ * Event: methodik_click
+ * Parameters: page_path
  */
 export function trackMethodikClick() {
   trackEvent('methodik_click', {
@@ -254,52 +242,8 @@ export function trackMethodikClick() {
 }
 
 /**
- * Track Kontakt clicks
- */
-export function trackKontaktClick(method: 'email' | 'phone') {
-  trackEvent('kontakt_click', {
-    'page_path': window.location.pathname,
-    'method': method,
-  });
-}
-
-/**
- * Track 404 Errors
- */
-export function track404Error(url: string) {
-  trackEvent('404_error', {
-    'page_path': window.location.pathname,
-    'broken_url': url,
-  });
-}
-
-/**
- * Track JS Errors globally
- */
-export function trackJsError(errorMessage: string, source: string, lineno: number) {
-  trackEvent('js_error', {
-    'page_path': window.location.pathname,
-    'error_message': errorMessage,
-    'source': source,
-    'lineno': lineno,
-  });
-}
-
-/**
- * Attaches a global error listener for monitoring unhandled JS errors
- */
-function attachGlobalErrorListener() {
-  if (typeof window === 'undefined' || isErrorListenerAttached) return;
-  
-  window.addEventListener('error', (event) => {
-    trackJsError(event.message, event.filename || 'unknown', event.lineno || 0);
-  });
-  
-  isErrorListenerAttached = true;
-}
-
-/**
  * Flush all queued events
+ * Called immediately after consent is granted and gtag('config') is set
  */
 function flushEventQueue() {
   if (debugMode) {
@@ -362,11 +306,15 @@ export function resetDebugTestPingFlag() {
 }
 
 /**
- * Send GA4 test ping event
+ * Send GA4 test ping event (only in debug mode with consent)
+ * Sends exactly once per page load when ?debug=1 and analytics consent is granted
+ * Event name: ga4_test_ping
+ * Parameters: page_path, debug_mode: true
  */
 export function sendDebugTestPing() {
   if (typeof window === 'undefined') return;
 
+  // Only send if debug mode is active, consent is granted, and not already sent
   if (!debugMode || !consentGranted || debugTestPingSent) {
     if (debugMode && !consentGranted) {
       console.log('[GA4 DEBUG] Test ping blocked: consent not granted');
@@ -374,6 +322,7 @@ export function sendDebugTestPing() {
     return;
   }
 
+  // Mark as sent to prevent duplicate sends
   debugTestPingSent = true;
 
   trackEvent('ga4_test_ping', {
