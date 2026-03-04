@@ -1,0 +1,30 @@
+{
+  "file": "content/de/templates/local-stromvergleich.json",
+  "meta": {
+    "title": "Stromvergleich {{city}} – Tarife prüfen mit PLZ & Verbrauch",
+    "description": "Stromtarife in {{city}} prüfen: Grundversorgung, Laufzeit, Bonus und Preisgarantie verständlich erklärt. Starte mit PLZ."
+  },
+  "hero": {
+    "badge": "{{city}} · NRW",
+    "h1": "Stromvergleich {{city}} – Tarife klar und einfach prüfen",
+    "subline": "Du startest mit PLZ + Verbrauch. Danach zeigen wir dir die nächsten Schritte transparent.",
+    "primaryCta": "Stromtarif in {{city}} prüfen"
+  },
+  "sections": {
+    "localContext": {
+      "title": "Was in {{city}} beim Stromtarif zählt",
+      "cards": [
+        { "title": "Grundversorgung erkennen", "text": "Prüfe, ob du in der Grundversorgung bist – oft lohnt sich der Vergleich." },
+        { "title": "Laufzeit kurz halten", "text": "Mehr Flexibilität hilft bei Preisänderungen und Umzug." },
+        { "title": "Bonus richtig bewerten", "text": "Bonus kann lohnen – wenn du die Bedingungen kennst." }
+      ]
+    },
+    "faq": {
+      "title": "FAQ Stromvergleich {{city}}",
+      "items": [
+        { "q": "Welche PLZ soll ich angeben?", "a": "Deine Wohn-PLZ in {{city}} – damit regionale Bestandteile berücksichtigt werden können." },
+        { "q": "Was, wenn ich meinen Verbrauch nicht kenne?", "a": "Nutze eine Schätzung über Haushaltsgröße oder Orientierung an der Wohnfläche." }
+      ]
+    }
+  }
+}
