@@ -70,8 +70,8 @@ export default function DatenschutzPage() {
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Datenschutzbeauftragter:</p>
-                  <p>Derzeit nicht benannt (Musterangabe)</p>
-                  <p className="text-sm text-gray-500 mt-2">Hinweis: Für Datenschutzfragen kontaktieren Sie bitte direkt die oben genannte Adresse.</p>
+                  <p>Ein Datenschutzbeauftragter ist für unser Unternehmen gemäß Art. 37 DSGVO nicht gesetzlich vorgeschrieben, da wir weniger als 10 Personen ständig mit der Verarbeitung personenbezogener Daten beschäftigen.</p>
+                  <p className="text-sm text-gray-500 mt-2">Bei Fragen zum Datenschutz wenden Sie sich bitte an: <a href="mailto:datenschutz@energievergleich.shop" className="text-primary hover:underline font-bold">datenschutz@energievergleich.shop</a></p>
                 </div>
               </div>
             </div>
