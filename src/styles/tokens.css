@@ -1,0 +1,123 @@
+/* Design Tokens & CSS Variables */
+/* File: src/styles/tokens.css */
+/* Based on Design-Audit energievergleich.shop */
+
+:root {
+  /* ========================================
+     TYPOGRAPHY
+     ======================================== */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+  
+  /* Text Colors (WCAG AA-compliant) */
+  --text-900: #111827;  /* Primary text */
+  --text-700: #475569;  /* Secondary text */
+  --text-600: #4b5563;  /* Muted text */
+
+  /* ========================================
+     BRAND COLORS (WCAG AA-friendly)
+     ======================================== */
+  --primary: #1d4ed8;        /* AA on white + white text */
+  --primary-strong: #1e40af; /* Hover state */
+  --success: #15803d;
+  --warning: #f59e0b;        /* Use dark text on this */
+  --danger: #b91c1c;
+  
+  --bg: #ffffff;
+  --bg-soft: #f9fafb;
+  --border: #e5e7eb;
+
+  /* ========================================
+     SPACING SCALE (4px rhythm)
+     ======================================== */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+
+  /* ========================================
+     BORDER RADIUS & SHADOWS
+     ======================================== */
+  --r-1: 10px;
+  --r-2: 14px;
+  --shadow-1: 0 10px 30px rgba(0,0,0,.08);
+  --shadow-2: 0 16px 40px rgba(0,0,0,.12);
+
+  /* ========================================
+     FOCUS (WCAG 2.4.7 Focus Visible)
+     ======================================== */
+  --focus: #0ea5e9;
+}
+
+/* ========================================
+   BASE STYLES
+   ======================================== */
+html {
+  font-family: var(--font-sans);
+  color: var(--text-900);
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+a {
+  color: var(--primary);
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--primary-strong);
+}
+
+/* ========================================
+   CONTAINER & LAYOUT
+   ======================================== */
+.container {
+  width: min(1120px, calc(100% - 2 * var(--s-4)));
+  margin: 0 auto;
+}
+
+.section {
+  padding: var(--s-8) 0;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--s-7) 0;
+  }
+}
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+.h1 {
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--s-4);
+}
+
+.h2 {
+  font-size: clamp(22px, 2.6vw, 32px);
+  line-height: 1.2;
+  margin: 0 0 var(--s-3);
+}
+
+.p {
+  font-size: 18px;
+  color: var(--text-700);
+  margin: 0 0 var(--s-4);
+}
+
+.small {
+  font-size: 14px;
+  color: var(--text-600);
+}

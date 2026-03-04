@@ -1,0 +1,113 @@
+/* Form Components (WCAG-compliant with Error Identification) */
+/* File: src/styles/components/forms.css */
+
+.field {
+  display: grid;
+  gap: var(--s-2);
+  margin-bottom: var(--s-4);
+}
+
+/* ========================================
+   LABELS (Always visible - WCAG)
+   ======================================== */
+.label {
+  font-weight: 650;
+  font-size: 14px;
+  color: var(--text-900);
+}
+
+/* ========================================
+   INPUT FIELDS
+   ======================================== */
+.input,
+.select,
+.textarea {
+  width: 100%;
+  border-radius: var(--r-1);
+  border: 1px solid var(--border);
+  padding: 12px 12px;
+  font-size: 16px; /* Prevents iOS zoom on focus */
+  background: var(--bg);
+  color: var(--text-900);
+  min-height: 44px; /* WCAG 2.5.8 Target Size */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* ========================================
+   FOCUS STATE (WCAG 2.4.7)
+   ======================================== */
+.input:focus-visible,
+.select:focus-visible,
+.textarea:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-color: transparent;
+}
+
+/* ========================================
+   HELP TEXT
+   ======================================== */
+.help {
+  font-size: 14px;
+  color: var(--text-600);
+  margin: 0;
+}
+
+/* ========================================
+   ERROR STATE (WCAG 3.3.1 Error Identification)
+   ======================================== */
+.error {
+  font-size: 14px;
+  color: var(--danger);
+  margin: 0;
+  font-weight: 600;
+}
+
+.is-error .input,
+.is-error .select,
+.is-error .textarea {
+  border-color: var(--danger);
+  border-width: 2px;
+}
+
+.is-error .label {
+  color: var(--danger);
+}
+
+/* ========================================
+   CHECKBOX ROW
+   ======================================== */
+.checkrow {
+  display: flex;
+  gap: var(--s-2);
+  align-items: flex-start;
+}
+
+.checkrow input[type="checkbox"] {
+  margin-top: 4px;
+  min-width: 20px;
+  min-height: 20px; /* WCAG Target Size */
+  cursor: pointer;
+}
+
+.checkrow label {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ========================================
+   REQUIRED INDICATOR
+   ======================================== */
+.label::after {
+  content: '';
+}
+
+.label[data-required="true"]::after {
+  content: ' *';
+  color: var(--danger);
+}

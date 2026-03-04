@@ -1,0 +1,56 @@
+/* Card Component */
+/* File: src/styles/components/card.css */
+
+.card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r-2);
+  box-shadow: var(--shadow-1);
+  padding: var(--s-5);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-2);
+  transform: translateY(-2px);
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 var(--s-2);
+  color: var(--text-900);
+}
+
+.card-text {
+  margin: 0;
+  color: var(--text-700);
+  line-height: 1.6;
+}
+
+/* ========================================
+   CARD GRID LAYOUTS
+   ======================================== */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--s-4);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-4);
+}
+
+@media (max-width: 900px) {
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
