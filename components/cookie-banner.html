@@ -1,0 +1,102 @@
+<!-- DSGVO-konformer Cookie-Banner -->
+<!-- Erstellt: 04.03.2026 - Kritischer Fix für Nudging-Problem -->
+
+<div class="cookie-banner" role="dialog" aria-labelledby="cookie-heading" aria-describedby="cookie-description" style="display: none;" id="cookieBanner">
+  <div class="cookie-banner-content">
+    <div>
+      <h2 id="cookie-heading">Cookie-Einstellungen</h2>
+      <p id="cookie-description">
+        Wir verwenden Cookies und ähnliche Technologien, um Ihnen die beste Nutzererfahrung zu bieten und unsere Website zu verbessern. 
+        Einige Cookies sind technisch notwendig, andere helfen uns, Inhalte zu personalisieren und unsere Dienstleistungen zu optimieren.
+      </p>
+    </div>
+    
+    <!-- WICHTIG: Beide Buttons mit IDENTISCHEM Styling (kein Nudging) -->
+    <div class="cookie-buttons">
+      <button 
+        class="btn-cookie" 
+        onclick="acceptAllCookies()" 
+        aria-label="Alle Cookies akzeptieren">
+        Alle akzeptieren
+      </button>
+      
+      <button 
+        class="btn-cookie" 
+        onclick="rejectAllCookies()" 
+        aria-label="Alle Cookies ablehnen">
+        Alle ablehnen
+      </button>
+      
+      <button 
+        class="btn-cookie-link" 
+        onclick="openCookieSettings()" 
+        aria-label="Cookie-Einstellungen öffnen">
+        Einstellungen
+      </button>
+    </div>
+    
+    <p style="font-size: 12px; color: #6b7280; margin-top: 8px;">
+      Sie können Ihre Einstellungen jederzeit ändern. 
+      Weitere Informationen finden Sie in unserer 
+      <a href="/datenschutz" style="color: #1d4ed8; text-decoration: underline;">Datenschutzerklärung</a>.
+    </p>
+  </div>
+</div>
+
+<!-- Cookie-Einstellungen-Icon (permanent sichtbar nach erster Wahl) -->
+<button 
+  class="cookie-settings-icon" 
+  onclick="openCookieSettings()"
+  aria-label="Cookie-Einstellungen öffnen"
+  style="display: none;"
+  id="cookieSettingsIcon">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+  </svg>
+  Cookie-Einstellungen
+</button>
+
+<script>
+// Einfaches Cookie-Management (erweitern nach Bedarf)
+function acceptAllCookies() {
+  setCookie('cookie_consent', 'all', 365);
+  document.getElementById('cookieBanner').style.display = 'none';
+  document.getElementById('cookieSettingsIcon').style.display = 'flex';
+  // TODO: Aktiviere alle Tracking-Scripts
+}
+
+function rejectAllCookies() {
+  setCookie('cookie_consent', 'necessary', 365);
+  document.getElementById('cookieBanner').style.display = 'none';
+  document.getElementById('cookieSettingsIcon').style.display = 'flex';
+  // TODO: Deaktiviere alle nicht-notwendigen Cookies
+}
+
+function openCookieSettings() {
+  // TODO: Modal mit detaillierten Einstellungen öffnen
+  alert('Cookie-Einstellungen öffnen (Modal implementieren)');
+}
+
+function setCookie(name, value, days) {
+  const expires = new Date(Date.now() + days * 864e5).toUTCString();
+  document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/; SameSite=Strict';
+}
+
+function getCookie(name) {
+  return document.cookie.split('; ').reduce((r, v) => {
+    const parts = v.split('=');
+    return parts[0] === name ? decodeURIComponent(parts[1]) : r;
+  }, '');
+}
+
+// Zeige Banner nur wenn noch keine Wahl getroffen
+window.addEventListener('DOMContentLoaded', function() {
+  const consent = getCookie('cookie_consent');
+  if (!consent) {
+    document.getElementById('cookieBanner').style.display = 'block';
+  } else {
+    document.getElementById('cookieSettingsIcon').style.display = 'flex';
+  }
+});
+</script>
