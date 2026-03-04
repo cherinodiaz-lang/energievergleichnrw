@@ -7,17 +7,10 @@ import { getPageSEO } from '@/lib/seo-config';
 import { ROUTES } from '@/lib/routes';
 import ErrorPage from '@/integrations/errorHandlers/ErrorPage';
 import HomePage from '@/components/pages/HomePage';
-import OrganizationSchema from '@/components/OrganizationSchema';
-import LocalBusinessSchema from '@/components/LocalBusinessSchema';
-import WebsiteSchema from '@/components/WebsiteSchema';
 import SearchConsoleVerification from '@/components/SearchConsoleVerification';
 import SitemapNotification from '@/components/SitemapNotification';
 import ConsentBanner from '@/components/ConsentBanner';
 import { initializeGA4, trackPageView } from '@/services/ga4-tracking';
-import HowToSchema from '@/components/HowToSchema';
-import ReviewSchema from '@/components/ReviewSchema';
-import FAQPageSchema from '@/components/FAQPageSchema';
-import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import SEOHead from '@/components/SEOHead';
 
 // Error fallback for lazy-loaded routes - defined before lazy imports
@@ -152,13 +145,6 @@ function Layout() {
           ogDescription={citySeo.ogDescription}
         />
       ) : null}
-      <OrganizationSchema />
-      <LocalBusinessSchema />
-      <WebsiteSchema />
-      <HowToSchema />
-      <ReviewSchema />
-      <FAQPageSchema />
-      <BreadcrumbSchema />
       <SearchConsoleVerification verificationCode={SEO_CONFIG.googleSearchConsoleVerification} />
       <SitemapNotification />
       <ConsentBanner />

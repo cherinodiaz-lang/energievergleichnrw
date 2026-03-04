@@ -13,7 +13,6 @@ import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
-import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import TrustRow from '@/components/TrustRow';
 import RelatedPages from '@/components/RelatedPages';
 import { Link, useNavigate } from 'react-router-dom';

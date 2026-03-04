@@ -16,9 +16,6 @@ import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import FormSubmissionDialog from '@/components/FormSubmissionDialog';
 import TrustRow from '@/components/TrustRow';
-import HowToSchema from '@/components/HowToSchema';
-import ReviewSchema from '@/components/ReviewSchema';
-import FAQPageSchema from '@/components/FAQPageSchema';
 import { BaseCrudService } from '@/integrations';
 import { HufiggestellteFragen, Wechselvorteile, Informationsmaterial } from '@/entities';
 import { Image } from '@/components/ui/image';
@@ -283,9 +280,7 @@ export default function HomePage() {
         ogTitle={seo.ogTitle}
         ogDescription={seo.ogDescription}
       />
-      <HowToSchema />
-      <ReviewSchema />
-      <FAQPageSchema />
+
       <style>{`
         /* PHASE 7: Reduced animation intensity from 0.8s to 0.3s for mobile */
         .animate-reveal {
