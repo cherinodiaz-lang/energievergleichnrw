@@ -1,33 +1,24 @@
 # Robots.txt für energievergleich.shop
-# Optimiert für maximale SEO-Performance
+# Stand: März 2026
 
-# Google Bot - voller Zugriff
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 0
-
-# Bing Bot - voller Zugriff
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 0
-
-# Alle anderen Bots
 User-agent: *
 Allow: /
 
-# Disallow für interne/technische Pfade
+# Wichtige Seiten priorisieren
+Sitemap: https://energievergleich.shop/sitemap.xml
+
+# Ausschlüsse
+Disallow: /danke
 Disallow: /api/
-Disallow: /_astro/
-Disallow: /_assets/
-Disallow: /admin/
+Disallow: /*.json$
+Disallow: /*?utm_*
 
-# Sitemap-Referenzen
-Sitemap: https://energievergleich.shop/sitemap-index.xml
-Sitemap: https://energievergleich.shop/sitemap-0.xml
+# Crawl-Delay für schonenderes Crawling
+Crawl-delay: 1
 
-# Crawl-Optimierung für City-Pages
-# Alle Stromvergleich-Stadtseiten sind indexierbar
-Allow: /stromvergleich-*
+# Spezifische Bots
+User-agent: Googlebot
+Allow: /
 
-# Host-Präferenz (canonical domain)
-Host: https://energievergleich.shop
+User-agent: Bingbot
+Allow: /
