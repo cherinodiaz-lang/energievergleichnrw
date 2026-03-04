@@ -1,0 +1,211 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import homeContent from '@content/de/pages/home.json';
+
+const { meta, hero, sections, closingCta } = homeContent;
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+>
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <h1 class="h1">{hero.h1}</h1>
+            <p class="lead">{hero.subline}</p>
+            <div class="hero-cta-group">
+              <a href="#vergleich" class="btn btn-primary">{hero.primaryCta}</a>
+              <a href="#how-it-works" class="btn btn-secondary">{hero.secondaryCta}</a>
+            </div>
+          </div>
+          <div class="hero-form" id="vergleich">
+            <!-- Form will be React component later -->
+            <div class="card">
+              <p class="card-title">Schnell starten</p>
+              <p class="card-text">PLZ eingeben und Bedarf wählen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section">
+      <div class="container">
+        <h2 class="h2 text-center">{sections.benefits.title}</h2>
+        <div class="grid-3">
+          {sections.benefits.cards.map((card) => (
+            <div class="card">
+              <p class="card-title">{card.title}</p>
+              <p class="card-text">{card.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section bg-soft" id="how-it-works">
+      <div class="container">
+        <h2 class="h2 text-center">{sections.howItWorks.title}</h2>
+        <div class="grid-3">
+          {sections.howItWorks.steps.map((step, idx) => (
+            <div class="card">
+              <span class="step-number">{idx + 1}</span>
+              <p class="card-title">{step.title}</p>
+              <p class="card-text">{step.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="section">
+      <div class="container text-center">
+        <h2 class="h2">{sections.trust.title}</h2>
+        <p class="lead">{sections.trust.text}</p>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section bg-soft">
+      <div class="container">
+        <h2 class="h2 text-center">{sections.faq.title}</h2>
+        <div class="faq-list">
+          {sections.faq.items.map((item) => (
+            <details class="faq-item">
+              <summary class="faq-question">{item.q}</summary>
+              <p class="faq-answer">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing CTA -->
+    <section class="section">
+      <div class="container text-center">
+        <h2 class="h2">{closingCta.title}</h2>
+        <p class="lead">{closingCta.text}</p>
+        <a href="#vergleich" class="btn btn-primary btn-lg">{closingCta.primaryCta}</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .hero-section {
+    padding: var(--s-8) 0;
+    background: linear-gradient(180deg, #f8fafc, #ffffff);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--s-7);
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: var(--s-5);
+    }
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+  }
+
+  .hero-cta-group {
+    display: flex;
+    gap: var(--s-3);
+    flex-wrap: wrap;
+  }
+
+  .lead {
+    font-size: 1.125rem;
+    color: var(--text-700);
+  }
+
+  .section {
+    padding: var(--s-8) 0;
+  }
+
+  .bg-soft {
+    background: var(--bg-soft);
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-5);
+    margin-top: var(--s-5);
+  }
+
+  @media (max-width: 900px) {
+    .grid-3 {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: var(--s-3);
+  }
+
+  .faq-list {
+    max-width: 800px;
+    margin: var(--s-5) auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+
+  .faq-item {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--r-2);
+    padding: var(--s-4);
+  }
+
+  .faq-question {
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-answer {
+    margin-top: var(--s-3);
+    color: var(--text-700);
+  }
+
+  .btn-lg {
+    padding: 16px 32px;
+    font-size: 1.125rem;
+  }
+</style>
