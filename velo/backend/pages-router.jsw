@@ -1,0 +1,80 @@
+/**
+ * Wix Velo Backend Module: Pages Router
+ * Manages CMS content retrieval for all pages
+ */
+
+import wixData from 'wix-data';
+
+let cachedContent = {};
+
+/**
+ * Get page content from SiteContent collection
+ * @param {string} pageKey - Content key (e.g., 'home', 'stromvergleich-nrw')
+ * @returns {Promise<Object|null>} Page content data
+ */
+export async function getPageContent(pageKey) {
+  // Check cache first
+  if (cachedContent[pageKey]) {
+    console.log(`✅ Cache hit: ${pageKey}`);
+    return cachedContent[pageKey];
+  }
+  
+  try {
+    const result = await wixData.query('SiteContent')
+      .eq('contentKey', pageKey)
+      .limit(1)
+      .find();
+    
+    if (result.items.length === 0) {
+      console.error(`❌ Content not found: ${pageKey}`);
+      return null;
+    }
+    
+    const content = result.items[0].data.contentData;
+    cachedContent[pageKey] = content;
+    
+    console.log(`✅ CMS loaded: ${pageKey}`);
+    return content;
+    
+  } catch (error) {
+    console.error(`❌ CMS Query Error for ${pageKey}:`, error);
+    return null;
+  }
+}
+
+/**
+ * Get global content (navigation, footer, etc.)
+ * @returns {Promise<Object|null>} Global content data
+ */
+export async function getGlobalContent() {
+  return getPageContent('global');
+}
+
+/**
+ * Get all page keys for sitemap generation
+ * @returns {Promise<Array>} Array of page objects
+ */
+export async function getAllPages() {
+  try {
+    const result = await wixData.query('SiteContent')
+      .eq('contentType', 'page')
+      .find();
+    
+    return result.items.map(item => ({
+      key: item.data.contentKey,
+      url: `/${item.data.contentKey === 'home' ? '' : item.data.contentKey}`,
+      title: item.data.contentData.meta?.title || item.data.contentKey
+    }));
+  } catch (error) {
+    console.error('❌ Pages Query Error:', error);
+    return [];
+  }
+}
+
+/**
+ * Clear content cache (use after CMS updates)
+ */
+export function clearCache() {
+  cachedContent = {};
+  console.log('✅ Cache cleared');
+}

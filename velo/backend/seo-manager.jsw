@@ -1,0 +1,43 @@
+/**
+ * Wix Velo Backend Module: SEO Manager
+ * Manages dynamic SEO tags for all pages
+ */
+
+import wixSeoFrontend from 'wix-seo-frontend';
+import { getPageContent } from './pages-router';
+
+/**
+ * Set SEO meta tags for a page
+ * @param {string} pageKey - Content key
+ */
+export async function setSEO(pageKey) {
+  const content = await getPageContent(pageKey);
+  
+  if (!content?.meta) {
+    console.warn(`⚠️ No meta data for: ${pageKey}`);
+    return;
+  }
+  
+  // Title
+  wixSeoFrontend.setTitle(content.meta.title);
+  
+  // Description
+  wixSeoFrontend.setDescription(content.meta.description);
+  
+  // Structured Data
+  const baseUrl = 'https://energievergleich.shop';
+  const pageUrl = pageKey === 'home' ? baseUrl : `${baseUrl}/${pageKey}`;
+  
+  wixSeoFrontend.setStructuredData([
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      'name': content.meta.title,
+      'description': content.meta.description,
+      'url': pageUrl,
+      'inLanguage': 'de-DE'
+    }
+  ]);
+  
+  console.log(`✅ SEO set for: ${pageKey}`);
+}
