@@ -4,25 +4,6 @@
  */
 
 /**
- * Collection ID: SiteContent
- * Interface for SiteContent
- */
-export interface SiteContent {
-  _id: string;
-  _createdDate?: Date;
-  _updatedDate?: Date;
-  /** @wixFieldType text */
-  contentKey?: string;
-  /** @wixFieldType object */
-  contentData?: Record<string, any>;
-  /** @wixFieldType text */
-  contentType?: string;
-  /** @wixFieldType text */
-  description?: string;
-}
-
-
-/**
  * Collection ID: autoren
  * Interface for Authors
  */
