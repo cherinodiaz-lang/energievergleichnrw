@@ -146,22 +146,40 @@ export default function HomePage() {
 
   const loadData = async () => {
     try {
-      const [faqData, vorteileData, materialsData] = await Promise.all([
+      // Set a timeout to prevent indefinite loading
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Data loading timeout')), 5000)
+      );
+
+      const dataPromise = Promise.all([
         BaseCrudService.getAll<HufiggestellteFragen>('faq'),
         BaseCrudService.getAll<Wechselvorteile>('wechselvorteile'),
         BaseCrudService.getAll<Informationsmaterial>('informationsmaterial'),
       ]);
 
-      const sortedFaqs = faqData.items.sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
-      const sortedVorteile = vorteileData.items
-        .filter(v => v.isActive)
-        .sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
+      const [faqData, vorteileData, materialsData] = await Promise.race([
+        dataPromise,
+        timeoutPromise
+      ]) as any;
+
+      const sortedFaqs = faqData?.items?.length > 0 
+        ? faqData.items.sort((a: any, b: any) => (a.displayOrder || 0) - (b.displayOrder || 0))
+        : [];
+      const sortedVorteile = vorteileData?.items?.length > 0
+        ? vorteileData.items
+            .filter((v: any) => v.isActive)
+            .sort((a: any, b: any) => (a.displayOrder || 0) - (b.displayOrder || 0))
+        : [];
 
       setFaqs(sortedFaqs);
       setVorteile(sortedVorteile);
-      setMaterials(materialsData.items);
+      setMaterials(materialsData?.items || []);
     } catch (error) {
       console.error('Error loading data:', error);
+      // Set empty arrays to allow page to render
+      setFaqs([]);
+      setVorteile([]);
+      setMaterials([]);
     } finally {
       setLoading(false);
     }
