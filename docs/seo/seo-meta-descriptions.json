@@ -1,0 +1,38 @@
+{
+  "homepage": {
+    "url": "/",
+    "title": "Energievergleich NRW | Strom & Gas günstig vergleichen 2026",
+    "description": "Bis zu 800€ sparen mit dem kostenlosen Energievergleich für NRW. TÜV-geprüft, unabhängig, schnell. Jetzt Strom & Gas vergleichen!",
+    "keywords": "Energievergleich NRW, Stromvergleich, Gasvergleich, Energie sparen"
+  },
+  "stromvergleich": {
+    "url": "/stromvergleich-nrw",
+    "title": "Stromvergleich NRW 2026 | Bis zu 500€ sparen | TÜV-geprüft",
+    "description": "Stromvergleich für Nordrhein-Westfalen: 150+ Anbieter, über 1.000 Tarife. Kostenfrei, unabhängig, TÜV-zertifiziert. Jetzt vergleichen!",
+    "keywords": "Stromvergleich NRW, günstiger Strom, Stromanbieter wechseln"
+  },
+  "gasvergleich": {
+    "url": "/gasvergleich-nrw",
+    "title": "Gasvergleich NRW 2026 | Bis zu 400€ sparen | Unabhängig",
+    "description": "Gasvergleich für NRW: 100+ Anbieter im Vergleich. Kostenfrei, unabhängig, schnell. Jetzt Gas-Tarife vergleichen und sparen!",
+    "keywords": "Gasvergleich NRW, günstiges Gas, Gasanbieter wechseln"
+  },
+  "photovoltaik": {
+    "url": "/photovoltaik-nrw",
+    "title": "Photovoltaik NRW | Solaranlagen-Vergleich 2026 | Förderung",
+    "description": "Photovoltaik-Angebote für NRW vergleichen. Mit Förderung bis zu 10.000€ sparen. Kostenlose Beratung von lokalen Installateuren.",
+    "keywords": "Photovoltaik NRW, Solaranlage, PV-Förderung, Sonnenenergie"
+  },
+  "gewerbestrom": {
+    "url": "/gewerbestrom",
+    "title": "Gewerbestrom-Vergleich 2026 | Bis zu 30% sparen | B2B",
+    "description": "Gewerbestrom für Unternehmen: Individuelle Angebote,persönliche Beratung, bis zu 30% Ersparnis. Jetzt kostenlos vergleichen!",
+    "keywords": "Gewerbestrom, Firmenstrom, Strom für Unternehmen"
+  },
+  "gewerbegas": {
+    "url": "/gewerbegas",
+    "title": "Gewerbegas-Vergleich 2026 | Bis zu 25% sparen | B2B",
+    "description": "Gewerbegas für Unternehmen: Maßgeschneiderte Tarife,persönliche Beratung, bis zu 25% günstiger. Jetzt vergleichen!",
+    "keywords": "Gewerbegas, Firmengas, Gas für Unternehmen"
+  }
+}
