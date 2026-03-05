@@ -17,7 +17,7 @@
     --text-500: #6b7280;
     --bg-soft: #f8fafc;
     --border: #e5e7eb;
-    
+
     /* Spacing */
     --s-1: 0.25rem;
     --s-2: 0.5rem;
@@ -27,39 +27,45 @@
     --s-6: 2rem;
     --s-7: 3rem;
     --s-8: 4rem;
-    
+
     /* Border Radius */
     --r-1: 0.25rem;
     --r-2: 0.5rem;
     --r-3: 0.75rem;
     --r-full: 9999px;
-    
+
     /* Shadows */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
   }
-  
+
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      sans-serif;
     line-height: 1.6;
     color: var(--text-900);
     background: white;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
+
   /* Focus styles */
   *:focus-visible {
     outline: 2px solid var(--primary);
@@ -73,7 +79,7 @@
     margin: 0 auto;
     padding: 0 1rem;
   }
-  
+
   /* Error Boundary Styles */
   .error-boundary {
     min-height: 400px;
@@ -82,7 +88,7 @@
     justify-content: center;
     padding: 2rem;
   }
-  
+
   .error-boundary-content {
     max-width: 600px;
     text-align: center;
@@ -91,19 +97,19 @@
     border: 2px solid #fecaca;
     border-radius: 0.75rem;
   }
-  
+
   .error-boundary-content h2 {
     font-size: 1.5rem;
     font-weight: 700;
     color: #991b1b;
     margin-bottom: 1rem;
   }
-  
+
   .error-boundary-content p {
     color: #7f1d1d;
     margin-bottom: 1rem;
   }
-  
+
   .error-boundary-content details {
     margin-top: 1rem;
     padding: 1rem;
@@ -114,7 +120,7 @@
     font-size: 0.875rem;
     color: #991b1b;
   }
-  
+
   /* Install Prompt Styles */
   .install-prompt {
     position: fixed;
@@ -128,7 +134,7 @@
     z-index: 1000;
     animation: slideUp 0.3s ease-out;
   }
-  
+
   @keyframes slideUp {
     from {
       transform: translateY(100%);
@@ -139,34 +145,34 @@
       opacity: 1;
     }
   }
-  
+
   .install-prompt-content {
     display: flex;
     align-items: center;
     gap: 1rem;
   }
-  
+
   .install-prompt-icon {
     font-size: 2rem;
   }
-  
+
   .install-prompt-text h3 {
     font-size: 1rem;
     font-weight: 700;
     margin-bottom: 0.25rem;
   }
-  
+
   .install-prompt-text p {
     font-size: 0.875rem;
     color: var(--text-500);
   }
-  
+
   .install-prompt-actions {
     margin-left: auto;
     display: flex;
     gap: 0.5rem;
   }
-  
+
   /* iOS Install Prompt */
   .ios-install-prompt {
     position: fixed;
@@ -178,7 +184,7 @@
     padding: 1rem;
     z-index: 1000;
   }
-  
+
   .ios-install-content {
     display: flex;
     align-items: center;
@@ -187,7 +193,7 @@
     margin: 0 auto;
     gap: 1rem;
   }
-  
+
   .ios-install-content p {
     font-size: 0.875rem;
     color: var(--text-700);
@@ -199,13 +205,13 @@
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
   }
-  
+
   .btn-text {
     background: transparent;
     color: var(--text-500);
     border: none;
   }
-  
+
   .btn-text:hover {
     color: var(--text-900);
   }

@@ -1,6 +1,6 @@
 /**
  * Auto-generated entity types
- * Contains all CMS collection interfaces in a single file 
+ * Contains all CMS collection interfaces in a single file
  */
 
 /**
@@ -21,7 +21,6 @@ export interface SiteContent {
   description?: string;
 }
 
-
 /**
  * Collection ID: autoren
  * Interface for Authors
@@ -41,7 +40,6 @@ export interface Authors {
   /** @wixFieldType text */
   socialMediaLinks?: string;
 }
-
 
 /**
  * Collection ID: blogposts
@@ -77,7 +75,6 @@ export interface BlogPosts {
   readingTime?: number;
 }
 
-
 /**
  * Collection ID: faq
  * Interface for HufiggestellteFragen
@@ -99,7 +96,6 @@ export interface HufiggestellteFragen {
   /** @wixFieldType boolean */
   isFeatured?: boolean;
 }
-
 
 /**
  * Collection ID: informationsmaterial
@@ -123,7 +119,6 @@ export interface Informationsmaterial {
   publicationDate?: Date | string;
 }
 
-
 /**
  * Collection ID: kategorien
  * Interface for Categories
@@ -146,7 +141,6 @@ export interface Categories {
   displayOrder?: number;
 }
 
-
 /**
  * Collection ID: newsletterabonnenten
  * Interface for NewsletterSubscribers
@@ -167,7 +161,6 @@ export interface NewsletterSubscribers {
   consentGiven?: boolean;
 }
 
-
 /**
  * Collection ID: teammembers
  * Interface for TeamMembers
@@ -187,7 +180,6 @@ export interface TeamMembers {
   /** @wixFieldType text */
   expertise?: string;
 }
-
 
 /**
  * Collection ID: wechselvorteile

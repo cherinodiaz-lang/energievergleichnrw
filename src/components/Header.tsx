@@ -72,13 +72,16 @@ export default function Header() {
         <div className="max-w-[120rem] mx-auto px-3 sm:px-6 lg:px-12 h-full">
           <div className="flex items-center justify-between h-full">
             {/* Logo */}
-            <Link 
-              to={ROUTES.home} 
+            <Link
+              to={ROUTES.home}
               className="flex items-center gap-2 sm:gap-3 group min-w-0 flex-shrink-0"
               aria-label="Energievergleich NRW - Startseite"
             >
               <div className="bg-primary p-1.5 sm:p-2 rounded-lg group-hover:bg-primary/90 transition-colors flex-shrink-0">
-                <Zap className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-primary-foreground" aria-hidden="true" />
+                <Zap
+                  className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-primary-foreground"
+                  aria-hidden="true"
+                />
               </div>
               <div className="min-w-0 flex flex-col leading-tight">
                 <span className="font-heading font-semibold text-xs sm:text-sm lg:text-lg text-primary">
@@ -91,23 +94,29 @@ export default function Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-6 xl:gap-8" aria-label="Hauptnavigation">
+            <nav
+              className="hidden lg:flex items-center gap-6 xl:gap-8"
+              aria-label="Hauptnavigation"
+            >
               {NAV_MAIN.map((item) => (
                 <div key={item.key} className="relative group">
                   <Link
                     to={item.to}
                     className={`font-paragraph text-sm xl:text-base font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1 transition-colors flex items-center gap-1 min-h-12 ${
-                      isActiveLink(item.to) 
-                        ? 'text-primary border-b-2 border-primary' 
+                      isActiveLink(item.to)
+                        ? 'text-primary border-b-2 border-primary'
                         : 'text-foreground hover:text-primary'
                     }`}
                   >
                     {item.label}
                     {item.submenu && (
-                      <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" aria-hidden="true" />
+                      <ChevronDown
+                        className="w-4 h-4 transition-transform group-hover:rotate-180"
+                        aria-hidden="true"
+                      />
                     )}
                   </Link>
-                  
+
                   {/* Desktop Submenu */}
                   {item.submenu && (
                     <div className="absolute left-0 mt-0 w-56 bg-white border border-gray-100 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
@@ -143,17 +152,21 @@ export default function Header() {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="lg:hidden p-2 text-foreground hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary rounded transition-colors min-h-12 min-w-12"
-              aria-label={mobileMenuOpen ? "Menü schließen" : "Menü öffnen"}
+              aria-label={mobileMenuOpen ? 'Menü schließen' : 'Menü öffnen'}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" aria-hidden="true" /> : <Menu className="w-6 h-6" aria-hidden="true" />}
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6" aria-hidden="true" />
+              ) : (
+                <Menu className="w-6 h-6" aria-hidden="true" />
+              )}
             </button>
           </div>
 
           {/* Mobile Navigation - CLS Prevention */}
           {mobileMenuOpen && (
-            <nav 
+            <nav
               id="mobile-menu"
               className="lg:hidden py-3 sm:py-4 border-t border-gray-100 overflow-y-auto max-h-[calc(100vh-56px)] sm:max-h-[calc(100vh-64px)] lg:max-h-[calc(100vh-80px)]"
               aria-label="Mobile Navigation"
@@ -178,13 +191,13 @@ export default function Header() {
                       >
                         <span>{item.label}</span>
                         {item.submenu && (
-                          <ChevronDown 
+                          <ChevronDown
                             className={`w-4 h-4 transition-transform ${openSubmenu === item.key ? 'rotate-180' : ''}`}
                             aria-hidden="true"
                           />
                         )}
                       </button>
-                      
+
                       {/* Mobile Submenu */}
                       {item.submenu && openSubmenu === item.key && (
                         <ul className="bg-gray-50 divide-y divide-gray-100">

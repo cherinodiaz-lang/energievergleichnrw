@@ -1,5 +1,5 @@
 // Dummy class to avoid type errors
-class BaseClass { }
+class BaseClass {}
 export class ErrorOverlay extends BaseClass {
   static MESSAGE_TITLE = `We're having trouble displaying this page`;
   static MESSAGE_DESCRIPTION = `Something didn't load correctly on our end.`;
@@ -111,7 +111,7 @@ export class ErrorOverlay extends BaseClass {
     }
 
     try {
-      const loadFramewire = (await import("framewire.js")).default;
+      const loadFramewire = (await import('framewire.js')).default;
       await loadFramewire();
       const { sendMessageToParent, EditorEventMessages } = globalThis.framewire;
       sendMessageToParent({
@@ -120,7 +120,7 @@ export class ErrorOverlay extends BaseClass {
           errorType: type,
           message: err?.message || 'Unknown error',
           stack: err?.stack || 'No stack trace available',
-        }
+        },
       });
     } catch (error) {
       console.warn('Failed to send error to parent via framewire:', error?.message);
@@ -158,12 +158,18 @@ const customErrorOverlayPlugin = () => {
         return;
       }
 
-      const errorOverlayCustomElement = ErrorOverlay.toString().replace('extends BaseClass', 'extends HTMLElement');
+      const errorOverlayCustomElement = ErrorOverlay.toString().replace(
+        'extends BaseClass',
+        'extends HTMLElement'
+      );
       // Replace the Vite overlay with ours
-      return code.replace('class ErrorOverlay', `${errorOverlayCustomElement}
-      class OldErrorOverlay`);
+      return code.replace(
+        'class ErrorOverlay',
+        `${errorOverlayCustomElement}
+      class OldErrorOverlay`
+      );
     },
   };
-}
+};
 
 export default customErrorOverlayPlugin;

@@ -56,7 +56,7 @@ export function validatePhoneNumber(phone: string): boolean {
  */
 export class RateLimiter {
   private requests: number[] = [];
-  
+
   constructor(
     private maxRequests: number = 5,
     private windowMs: number = 60000 // 1 Minute
@@ -67,12 +67,12 @@ export class RateLimiter {
    */
   canMakeRequest(): boolean {
     const now = Date.now();
-    this.requests = this.requests.filter(time => now - time < this.windowMs);
-    
+    this.requests = this.requests.filter((time) => now - time < this.windowMs);
+
     if (this.requests.length >= this.maxRequests) {
       return false;
     }
-    
+
     this.requests.push(now);
     return true;
   }
@@ -84,7 +84,7 @@ export class RateLimiter {
     if (this.requests.length < this.maxRequests) {
       return 0;
     }
-    
+
     const oldestRequest = Math.min(...this.requests);
     return this.windowMs - (Date.now() - oldestRequest);
   }

@@ -2,7 +2,7 @@
  * Form Submission Service
  * Handles all form submissions to Wix Collections
  * Integrates with GA4 tracking (consent-safe)
- * 
+ *
  * IMPORTANT: All tracking goes through GA4 only.
  * No PII (email, name, phone) is sent to analytics.
  * Events are only tracked after Analytics consent is granted.
@@ -13,7 +13,13 @@ import { trackFormSubmit } from '@/services/ga4-tracking';
 
 export interface FormSubmissionData {
   _id?: string;
-  type: 'kontakt' | 'stromvergleich' | 'gasvergleich' | 'photovoltaik' | 'gewerbestrom' | 'gewerbegas';
+  type:
+    | 'kontakt'
+    | 'stromvergleich'
+    | 'gasvergleich'
+    | 'photovoltaik'
+    | 'gewerbestrom'
+    | 'gewerbegas';
   name: string;
   email: string;
   phone?: string;
@@ -36,16 +42,14 @@ export interface FormSubmissionResponse {
  * Submit form data to Wix Collection
  * Automatically triggers email automations
  */
-export async function submitForm(
-  data: FormSubmissionData
-): Promise<FormSubmissionResponse> {
+export async function submitForm(data: FormSubmissionData): Promise<FormSubmissionResponse> {
   try {
     // Validate required fields
     if (!data.name || !data.email || !data.type) {
       return {
         success: false,
         message: 'Erforderliche Felder fehlen',
-        error: 'Missing required fields: name, email, type'
+        error: 'Missing required fields: name, email, type',
       };
     }
 
@@ -55,7 +59,7 @@ export async function submitForm(
       return {
         success: false,
         message: 'Ungültige E-Mail-Adresse',
-        error: 'Invalid email format'
+        error: 'Invalid email format',
       };
     }
 
@@ -78,7 +82,7 @@ export async function submitForm(
     return {
       success: true,
       message: 'Vielen Dank für Ihre Anfrage! Wir werden uns in Kürze bei Ihnen melden.',
-      submissionId: data._id
+      submissionId: data._id,
     };
   } catch (error) {
     if (typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
@@ -87,7 +91,7 @@ export async function submitForm(
     return {
       success: false,
       message: 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.',
-      error: error instanceof Error ? error.message : 'Unknown error'
+      error: error instanceof Error ? error.message : 'Unknown error',
     };
   }
 }
@@ -128,7 +132,7 @@ export function validateField(
   if (required && (!value || value.toString().trim() === '')) {
     return {
       valid: false,
-      error: customErrorMessage || `${fieldName} ist erforderlich`
+      error: customErrorMessage || `${fieldName} ist erforderlich`,
     };
   }
 
@@ -138,7 +142,7 @@ export function validateField(
     if (!emailRegex.test(value)) {
       return {
         valid: false,
-        error: 'Bitte eine gültige E-Mail-Adresse eingeben.'
+        error: 'Bitte eine gültige E-Mail-Adresse eingeben.',
       };
     }
   }
@@ -149,7 +153,7 @@ export function validateField(
     if (!phoneRegex.test(value)) {
       return {
         valid: false,
-        error: 'Bitte eine gültige Telefonnummer eingeben.'
+        error: 'Bitte eine gültige Telefonnummer eingeben.',
       };
     }
   }
@@ -160,7 +164,7 @@ export function validateField(
     if (!plzRegex.test(value.toString())) {
       return {
         valid: false,
-        error: 'Bitte eine gültige PLZ eingeben.'
+        error: 'Bitte eine gültige PLZ eingeben.',
       };
     }
   }
@@ -171,7 +175,7 @@ export function validateField(
     if (isNaN(verbrauchNum) || verbrauchNum <= 0) {
       return {
         valid: false,
-        error: 'Bitte einen gültigen Verbrauch eingeben.'
+        error: 'Bitte einen gültigen Verbrauch eingeben.',
       };
     }
   }
@@ -197,6 +201,6 @@ export function validateForm(
 
   return {
     valid: Object.keys(errors).length === 0,
-    errors
+    errors,
   };
 }

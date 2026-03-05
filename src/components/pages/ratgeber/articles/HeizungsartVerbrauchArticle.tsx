@@ -3,7 +3,12 @@ import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -21,42 +26,42 @@ export default function HeizungsartVerbrauchArticle() {
           name: 'Wie berechne ich meinen Gasverbrauch?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Der Gasverbrauch steht auf Ihrer letzten Gasrechnung in kWh. Alternativ können Sie ihn anhand Ihrer Wohnfläche und Heizungsart schätzen.'
-          }
+            text: 'Der Gasverbrauch steht auf Ihrer letzten Gasrechnung in kWh. Alternativ können Sie ihn anhand Ihrer Wohnfläche und Heizungsart schätzen.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Welche Heizungsarten gibt es?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Die wichtigsten sind: Gasheizung, Ölheizung, Wärmepumpe, Fernwärme und Holzheizung. Gasheizungen sind in Deutschland am weitesten verbreitet.'
-          }
+            text: 'Die wichtigsten sind: Gasheizung, Ölheizung, Wärmepumpe, Fernwärme und Holzheizung. Gasheizungen sind in Deutschland am weitesten verbreitet.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Wie viel Gas verbraucht eine Gasheizung?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Der Verbrauch hängt von Wohnfläche, Isolierung und Heizgewohnheiten ab. Im Durchschnitt verbraucht ein Haushalt mit 100 m² etwa 10.000-15.000 kWh pro Jahr.'
-          }
+            text: 'Der Verbrauch hängt von Wohnfläche, Isolierung und Heizgewohnheiten ab. Im Durchschnitt verbraucht ein Haushalt mit 100 m² etwa 10.000-15.000 kWh pro Jahr.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Kann ich meinen Gasverbrauch senken?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Ja, durch bessere Isolierung, moderne Heizungsanlage, richtige Raumtemperatur und Lüftungsverhalten können Sie Ihren Verbrauch um 10-20% senken.'
-          }
+            text: 'Ja, durch bessere Isolierung, moderne Heizungsanlage, richtige Raumtemperatur und Lüftungsverhalten können Sie Ihren Verbrauch um 10-20% senken.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Was ist ein durchschnittlicher Gasverbrauch?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Ein 4-Personen-Haushalt mit 120 m² verbraucht durchschnittlich 12.000-20.000 kWh pro Jahr, je nach Isolierung und Heizverhalten.'
-          }
-        }
-      ]
+            text: 'Ein 4-Personen-Haushalt mit 120 m² verbraucht durchschnittlich 12.000-20.000 kWh pro Jahr, je nach Isolierung und Heizverhalten.',
+          },
+        },
+      ],
     };
 
     const script = document.createElement('script');
@@ -107,7 +112,8 @@ export default function HeizungsartVerbrauchArticle() {
           >
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-12">
               <p className="font-paragraph text-gray-700 leading-relaxed">
-                Der Gasverbrauch hängt stark von Ihrer Heizungsart und Ihrem Verhalten ab. Erfahren Sie, wie Sie Ihren Verbrauch richtig einschätzen und optimieren.
+                Der Gasverbrauch hängt stark von Ihrer Heizungsart und Ihrem Verhalten ab. Erfahren
+                Sie, wie Sie Ihren Verbrauch richtig einschätzen und optimieren.
               </p>
             </div>
 
@@ -117,7 +123,9 @@ export default function HeizungsartVerbrauchArticle() {
                   Gasverbrauch berechnen
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Der einfachste Weg ist, auf Ihrer letzten Gasrechnung nachzuschauen. Dort finden Sie den Jahresverbrauch in kWh. Alternativ können Sie den Verbrauch anhand Ihrer Wohnfläche und Heizungsart schätzen.
+                  Der einfachste Weg ist, auf Ihrer letzten Gasrechnung nachzuschauen. Dort finden
+                  Sie den Jahresverbrauch in kWh. Alternativ können Sie den Verbrauch anhand Ihrer
+                  Wohnfläche und Heizungsart schätzen.
                 </p>
               </div>
 
@@ -128,19 +136,28 @@ export default function HeizungsartVerbrauchArticle() {
                 <div className="space-y-4">
                   <div className="border-l-4 border-primary pl-4">
                     <h3 className="font-bold text-gray-900 mb-2">Gasheizung</h3>
-                    <p className="font-paragraph text-gray-700 text-sm">Die häufigste Heizungsart in Deutschland. Verbrauch: 10-20 kWh pro m² pro Jahr.</p>
+                    <p className="font-paragraph text-gray-700 text-sm">
+                      Die häufigste Heizungsart in Deutschland. Verbrauch: 10-20 kWh pro m² pro
+                      Jahr.
+                    </p>
                   </div>
                   <div className="border-l-4 border-primary pl-4">
                     <h3 className="font-bold text-gray-900 mb-2">Ölheizung</h3>
-                    <p className="font-paragraph text-gray-700 text-sm">Ähnlicher Verbrauch wie Gasheizung. Wird zunehmend durch Gasheizungen ersetzt.</p>
+                    <p className="font-paragraph text-gray-700 text-sm">
+                      Ähnlicher Verbrauch wie Gasheizung. Wird zunehmend durch Gasheizungen ersetzt.
+                    </p>
                   </div>
                   <div className="border-l-4 border-primary pl-4">
                     <h3 className="font-bold text-gray-900 mb-2">Wärmepumpe</h3>
-                    <p className="font-paragraph text-gray-700 text-sm">Sehr effizient. Verbrauch: 5-10 kWh pro m² pro Jahr (Stromverbrauch).</p>
+                    <p className="font-paragraph text-gray-700 text-sm">
+                      Sehr effizient. Verbrauch: 5-10 kWh pro m² pro Jahr (Stromverbrauch).
+                    </p>
                   </div>
                   <div className="border-l-4 border-primary pl-4">
                     <h3 className="font-bold text-gray-900 mb-2">Fernwärme</h3>
-                    <p className="font-paragraph text-gray-700 text-sm">Zentrale Wärmeversorgung. Verbrauch variiert je nach Anbieter.</p>
+                    <p className="font-paragraph text-gray-700 text-sm">
+                      Zentrale Wärmeversorgung. Verbrauch variiert je nach Anbieter.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -152,19 +169,27 @@ export default function HeizungsartVerbrauchArticle() {
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Bessere Isolierung von Wänden und Dach</span>
+                    <span className="font-paragraph text-gray-700">
+                      Bessere Isolierung von Wänden und Dach
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Moderne Heizungsanlage mit Thermostat</span>
+                    <span className="font-paragraph text-gray-700">
+                      Moderne Heizungsanlage mit Thermostat
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Raumtemperatur um 1°C senken spart 6% Energie</span>
+                    <span className="font-paragraph text-gray-700">
+                      Raumtemperatur um 1°C senken spart 6% Energie
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Richtig lüften (Stoßlüftung statt Dauerlüftung)</span>
+                    <span className="font-paragraph text-gray-700">
+                      Richtig lüften (Stoßlüftung statt Dauerlüftung)
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -181,26 +206,31 @@ export default function HeizungsartVerbrauchArticle() {
             {[
               {
                 q: 'Wie berechne ich meinen Gasverbrauch?',
-                a: 'Der Gasverbrauch steht auf Ihrer letzten Gasrechnung in kWh. Alternativ können Sie ihn anhand Ihrer Wohnfläche und Heizungsart schätzen.'
+                a: 'Der Gasverbrauch steht auf Ihrer letzten Gasrechnung in kWh. Alternativ können Sie ihn anhand Ihrer Wohnfläche und Heizungsart schätzen.',
               },
               {
                 q: 'Welche Heizungsarten gibt es?',
-                a: 'Die wichtigsten sind: Gasheizung, Ölheizung, Wärmepumpe, Fernwärme und Holzheizung. Gasheizungen sind in Deutschland am weitesten verbreitet.'
+                a: 'Die wichtigsten sind: Gasheizung, Ölheizung, Wärmepumpe, Fernwärme und Holzheizung. Gasheizungen sind in Deutschland am weitesten verbreitet.',
               },
               {
                 q: 'Wie viel Gas verbraucht eine Gasheizung?',
-                a: 'Der Verbrauch hängt von Wohnfläche, Isolierung und Heizgewohnheiten ab. Im Durchschnitt verbraucht ein Haushalt mit 100 m² etwa 10.000-15.000 kWh pro Jahr.'
+                a: 'Der Verbrauch hängt von Wohnfläche, Isolierung und Heizgewohnheiten ab. Im Durchschnitt verbraucht ein Haushalt mit 100 m² etwa 10.000-15.000 kWh pro Jahr.',
               },
               {
                 q: 'Kann ich meinen Gasverbrauch senken?',
-                a: 'Ja, durch bessere Isolierung, moderne Heizungsanlage, richtige Raumtemperatur und Lüftungsverhalten können Sie Ihren Verbrauch um 10-20% senken.'
+                a: 'Ja, durch bessere Isolierung, moderne Heizungsanlage, richtige Raumtemperatur und Lüftungsverhalten können Sie Ihren Verbrauch um 10-20% senken.',
               },
               {
                 q: 'Was ist ein durchschnittlicher Gasverbrauch?',
-                a: 'Ein 4-Personen-Haushalt mit 120 m² verbraucht durchschnittlich 12.000-20.000 kWh pro Jahr, je nach Isolierung und Heizverhalten.'
-              }
+                a: 'Ein 4-Personen-Haushalt mit 120 m² verbraucht durchschnittlich 12.000-20.000 kWh pro Jahr, je nach Isolierung und Heizverhalten.',
+              },
             ].map((item, index) => (
-              <Accordion key={index} type="single" collapsible className="bg-gray-50 rounded-lg px-6 border-none">
+              <Accordion
+                key={index}
+                type="single"
+                collapsible
+                className="bg-gray-50 rounded-lg px-6 border-none"
+              >
                 <AccordionItem value={`faq-${index}`} className="border-none">
                   <AccordionTrigger className="font-heading text-lg font-medium text-left py-4 hover:text-primary hover:no-underline">
                     {item.q}
@@ -220,7 +250,10 @@ export default function HeizungsartVerbrauchArticle() {
             <p className="font-paragraph text-gray-700 mb-6">
               Nutzen Sie unser Vergleichstool und finden Sie den besten Tarif für Ihren Verbrauch.
             </p>
-            <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
+            <Button
+              asChild
+              className="bg-secondary text-secondary-foreground hover:bg-secondary/90"
+            >
               <Link to={ROUTES.gasvergleich}>
                 Zum Gasvergleich
                 <ArrowRight className="w-5 h-5 ml-2" />
@@ -229,9 +262,7 @@ export default function HeizungsartVerbrauchArticle() {
           </div>
 
           <div className="border-t pt-12">
-            <h3 className="font-heading text-2xl font-bold text-primary mb-6">
-              Verwandte Artikel
-            </h3>
+            <h3 className="font-heading text-2xl font-bold text-primary mb-6">Verwandte Artikel</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Link to="/ratgeber/gas/gasanbieter-wechseln-nrw" className="group">
                 <Card className="h-full hover:shadow-lg transition-shadow">

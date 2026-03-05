@@ -57,30 +57,58 @@ export default function WechselwissenCategoryPage() {
             transition={{ duration: 0.5 }}
           >
             <p className="font-paragraph text-base md:text-lg text-gray-700 leading-relaxed mb-8 max-w-3xl">
-              Ein Wechsel des Strom- oder Gasanbieters kann erhebliche Einsparungen bringen, erfordert aber auch Wissen über die richtigen Schritte und Fristen. Unser Wechselwissen-Ratgeber bietet Ihnen umfassende Informationen zu allen wichtigen Aspekten eines erfolgreichen Anbieterwechsels – von Kündigungsfristen über den genauen Ablauf bis hin zu häufigen Problemen und deren Lösungen. Hier finden Sie verlässliche Antworten auf Ihre Fragen, damit Sie den Wechsel sicher und informiert durchführen können.
+              Ein Wechsel des Strom- oder Gasanbieters kann erhebliche Einsparungen bringen,
+              erfordert aber auch Wissen über die richtigen Schritte und Fristen. Unser
+              Wechselwissen-Ratgeber bietet Ihnen umfassende Informationen zu allen wichtigen
+              Aspekten eines erfolgreichen Anbieterwechsels – von Kündigungsfristen über den genauen
+              Ablauf bis hin zu häufigen Problemen und deren Lösungen. Hier finden Sie verlässliche
+              Antworten auf Ihre Fragen, damit Sie den Wechsel sicher und informiert durchführen
+              können.
             </p>
 
             <div className="space-y-3 mb-8">
               <div className="flex items-start gap-3">
                 <span className="text-primary font-bold mt-1">•</span>
-                <p className="font-paragraph text-gray-700">Welche Kündigungsfristen muss ich beim Anbieterwechsel beachten?</p>
+                <p className="font-paragraph text-gray-700">
+                  Welche Kündigungsfristen muss ich beim Anbieterwechsel beachten?
+                </p>
               </div>
               <div className="flex items-start gap-3">
                 <span className="text-primary font-bold mt-1">•</span>
-                <p className="font-paragraph text-gray-700">Wie läuft ein Lieferantenwechsel ab und was muss ich tun?</p>
+                <p className="font-paragraph text-gray-700">
+                  Wie läuft ein Lieferantenwechsel ab und was muss ich tun?
+                </p>
               </div>
               <div className="flex items-start gap-3">
                 <span className="text-primary font-bold mt-1">•</span>
-                <p className="font-paragraph text-gray-700">Was kann ich tun, wenn mein Wechsel schiefgeht?</p>
+                <p className="font-paragraph text-gray-700">
+                  Was kann ich tun, wenn mein Wechsel schiefgeht?
+                </p>
               </div>
               <div className="flex items-start gap-3">
                 <span className="text-primary font-bold mt-1">•</span>
-                <p className="font-paragraph text-gray-700">Welche Besonderheiten gibt es beim Wechsel bei einem Umzug?</p>
+                <p className="font-paragraph text-gray-700">
+                  Welche Besonderheiten gibt es beim Wechsel bei einem Umzug?
+                </p>
               </div>
             </div>
 
             <p className="font-paragraph text-base text-gray-700">
-              Nutzen Sie unsere Vergleichsrechner für <a href="https://www.energievergleich.shop/stromvergleich-nrw" className="text-primary font-semibold hover:underline">Stromvergleich NRW</a> und <a href="https://www.energievergleich.shop/gasvergleich-nrw" className="text-primary font-semibold hover:underline">Gasvergleich NRW</a>, um die besten Tarife zu finden.
+              Nutzen Sie unsere Vergleichsrechner für{' '}
+              <a
+                href="https://www.energievergleich.shop/stromvergleich-nrw"
+                className="text-primary font-semibold hover:underline"
+              >
+                Stromvergleich NRW
+              </a>{' '}
+              und{' '}
+              <a
+                href="https://www.energievergleich.shop/gasvergleich-nrw"
+                className="text-primary font-semibold hover:underline"
+              >
+                Gasvergleich NRW
+              </a>
+              , um die besten Tarife zu finden.
             </p>
           </motion.div>
         </div>
@@ -145,7 +173,10 @@ export default function WechselwissenCategoryPage() {
           <p className="font-paragraph text-lg text-white/90 mb-8 max-w-2xl mx-auto">
             Nutzen Sie unseren Vergleichsrechner und finden Sie den besten Tarif für Ihre Region.
           </p>
-          <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 px-8 rounded-lg font-bold">
+          <Button
+            asChild
+            className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 px-8 rounded-lg font-bold"
+          >
             <Link to={ROUTES.stromvergleich}>
               Tarife vergleichen
               <ArrowRight className="w-5 h-5 ml-2" />

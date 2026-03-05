@@ -25,7 +25,9 @@
   padding: 32px !important; /* KRITISCH: Überschreibt Vibe Defaults */
   min-height: 200px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .benefits-card:hover {
@@ -128,7 +130,7 @@
    ======================================== */
 
 /* Wix Default Cookie Banner verstecken */
-#SITE_FOOTER [data-hook="cookie-consent-banner"] {
+#SITE_FOOTER [data-hook='cookie-consent-banner'] {
   display: none !important;
 }
 

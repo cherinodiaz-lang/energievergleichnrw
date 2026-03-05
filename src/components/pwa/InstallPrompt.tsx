@@ -47,13 +47,13 @@ export function InstallPrompt() {
 
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
-    
+
     console.log(`User response to install prompt: ${outcome}`);
-    
+
     if (outcome === 'accepted') {
       setShowPrompt(false);
     }
-    
+
     setDeferredPrompt(null);
   };
 
@@ -107,7 +107,7 @@ export function IOSInstallPrompt() {
   useEffect(() => {
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     const isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches;
-    
+
     if (isIOS && !isInStandaloneMode) {
       setShowIOS(true);
     }
@@ -119,9 +119,8 @@ export function IOSInstallPrompt() {
     <div className="ios-install-prompt">
       <div className="ios-install-content">
         <p>
-          <strong>Tipp:</strong> Installieren Sie diese App auf Ihrem iPhone:
-          Tippen Sie auf <span style={{ fontSize: '1.2em' }}>⎙</span> und dann auf
-          "Zum Home-Bildschirm"
+          <strong>Tipp:</strong> Installieren Sie diese App auf Ihrem iPhone: Tippen Sie auf{' '}
+          <span style={{ fontSize: '1.2em' }}>⎙</span> und dann auf "Zum Home-Bildschirm"
         </p>
         <button onClick={() => setShowIOS(false)} className="btn btn-text btn-sm">
           ✕

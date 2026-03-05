@@ -1,10 +1,10 @@
 /**
  * GA4 Tracking Service
  * Handles all Google Analytics 4 tracking with consent management
- * 
+ *
  * CRITICAL: All events are only tracked AFTER Analytics consent is granted
  * Events are queued if consent is not yet determined, then flushed when consent is given
- * 
+ *
  * EXECUTION ORDER (FIXED):
  * 1. Script load (async)
  * 2. gtag('js') initialization
@@ -34,7 +34,7 @@ let scriptLoaded = false;
 /**
  * Initialize GA4 with consent mode
  * Must be called early in app lifecycle
- * 
+ *
  * CRITICAL: gtag('config') is NOT called here - it's called AFTER consent is granted
  */
 export function initializeGA4(measurementId: string) {
@@ -57,11 +57,11 @@ export function initializeGA4(measurementId: string) {
 
   // Set default consent to 'denied' until user makes a choice
   window.gtag('consent', 'default', {
-    'analytics_storage': 'denied',
-    'marketing_storage': 'denied',
-    'ad_storage': 'denied',
-    'ad_user_data': 'denied',
-    'ad_personalization': 'denied',
+    analytics_storage: 'denied',
+    marketing_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
   });
 
   // Initialize gtag with 'js' command
@@ -71,7 +71,7 @@ export function initializeGA4(measurementId: string) {
   const script = document.createElement('script');
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
-  
+
   // Mark script as loaded when it completes
   script.onload = () => {
     scriptLoaded = true;
@@ -79,7 +79,7 @@ export function initializeGA4(measurementId: string) {
       console.log('[GA4 DEBUG] Script loaded successfully for ID:', measurementId);
     }
   };
-  
+
   script.onerror = () => {
     if (typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
       console.error('[GA4 ERROR] Failed to load GA4 script');
@@ -95,7 +95,7 @@ export function initializeGA4(measurementId: string) {
 
 /**
  * Update consent status and flush queued events
- * 
+ *
  * CRITICAL EXECUTION ORDER:
  * 1. Update consent mode
  * 2. Call gtag('config') AFTER consent is granted (send_page_view disabled; SPA handles page_view)
@@ -108,11 +108,11 @@ export function updateConsent(analyticsConsent: boolean, marketingConsent: boole
 
   // Step 1: Update GA4 consent mode
   window.gtag?.('consent', 'update', {
-    'analytics_storage': analyticsConsent ? 'granted' : 'denied',
-    'marketing_storage': marketingConsent ? 'granted' : 'denied',
-    'ad_storage': marketingConsent ? 'granted' : 'denied',
-    'ad_user_data': marketingConsent ? 'granted' : 'denied',
-    'ad_personalization': marketingConsent ? 'granted' : 'denied',
+    analytics_storage: analyticsConsent ? 'granted' : 'denied',
+    marketing_storage: marketingConsent ? 'granted' : 'denied',
+    ad_storage: marketingConsent ? 'granted' : 'denied',
+    ad_user_data: marketingConsent ? 'granted' : 'denied',
+    ad_personalization: marketingConsent ? 'granted' : 'denied',
   });
 
   if (debugMode && typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
@@ -120,7 +120,7 @@ export function updateConsent(analyticsConsent: boolean, marketingConsent: boole
       analytics: analyticsConsent,
       marketing: marketingConsent,
       scriptLoaded: scriptLoaded,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   }
 
@@ -128,10 +128,10 @@ export function updateConsent(analyticsConsent: boolean, marketingConsent: boole
   // NOTE: send_page_view is disabled to prevent double counting; page views are tracked via trackPageView()
   if (analyticsConsent && measurementIdGlobal) {
     window.gtag?.('config', measurementIdGlobal, {
-      'send_page_view': false,
-      'anonymize_ip': true,
-      'allow_google_signals': false,
-      'debug_mode': debugMode,
+      send_page_view: false,
+      anonymize_ip: true,
+      allow_google_signals: false,
+      debug_mode: debugMode,
     });
 
     if (debugMode && typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
@@ -178,13 +178,11 @@ export function trackEvent(eventName: string, eventData: Record<string, any> = {
   }
 
   // Add debug_mode parameter if in debug mode
-  const eventWithDebug = debugMode
-    ? { ...eventData, debug_mode: true }
-    : eventData;
+  const eventWithDebug = debugMode ? { ...eventData, debug_mode: true } : eventData;
 
   const eventWithTimestamp = {
     ...eventWithDebug,
-    'timestamp': new Date().toISOString(),
+    timestamp: new Date().toISOString(),
   };
 
   window.gtag?.('event', eventName, eventWithTimestamp);
@@ -215,8 +213,8 @@ export function trackPageView(pathname: string) {
  */
 export function trackFormSubmit(formType: string) {
   trackEvent('form_submit', {
-    'page_path': window.location.pathname,
-    'form_type': formType,
+    page_path: window.location.pathname,
+    form_type: formType,
   });
 }
 
@@ -227,8 +225,8 @@ export function trackFormSubmit(formType: string) {
  */
 export function trackCTAClick(ctaLabel: string) {
   trackEvent('cta_click', {
-    'page_path': window.location.pathname,
-    'cta_label': ctaLabel,
+    page_path: window.location.pathname,
+    cta_label: ctaLabel,
   });
 }
 
@@ -239,7 +237,7 @@ export function trackCTAClick(ctaLabel: string) {
  */
 export function trackMethodikClick() {
   trackEvent('methodik_click', {
-    'page_path': window.location.pathname,
+    page_path: window.location.pathname,
   });
 }
 
@@ -256,25 +254,32 @@ function flushEventQueue() {
   while (eventQueue.length > 0) {
     const event = eventQueue.shift();
     if (event) {
-      const eventWithDebug = debugMode
-        ? { ...event.eventData, debug_mode: true }
-        : event.eventData;
+      const eventWithDebug = debugMode ? { ...event.eventData, debug_mode: true } : event.eventData;
 
       const eventWithTimestamp = {
         ...eventWithDebug,
-        'timestamp': new Date().toISOString(),
+        timestamp: new Date().toISOString(),
       };
-      
+
       window.gtag?.('event', event.eventName, eventWithTimestamp);
       flushedCount++;
 
-      if (debugMode && typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
+      if (
+        debugMode &&
+        typeof window !== 'undefined' &&
+        window.location.search.includes('debug=1')
+      ) {
         console.log('[GA4 DEBUG] Queued event flushed:', event.eventName, eventWithTimestamp);
       }
     }
   }
 
-  if (debugMode && flushedCount > 0 && typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
+  if (
+    debugMode &&
+    flushedCount > 0 &&
+    typeof window !== 'undefined' &&
+    window.location.search.includes('debug=1')
+  ) {
     console.log('[GA4 DEBUG] Event queue flush complete. Flushed:', flushedCount, 'events');
   }
 }
@@ -328,8 +333,8 @@ export function sendDebugTestPing() {
   debugTestPingSent = true;
 
   trackEvent('ga4_test_ping', {
-    'page_path': window.location.pathname,
-    'debug_mode': true,
+    page_path: window.location.pathname,
+    debug_mode: true,
   });
 
   if (window.location.search.includes('debug=1')) {

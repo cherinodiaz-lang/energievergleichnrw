@@ -1,6 +1,6 @@
-import { useRouteError } from "react-router";
-import { useEffect, useRef } from "react";
-import { ErrorOverlay } from "../../vite-error-overlay-plugin";
+import { useRouteError } from 'react-router';
+import { useEffect, useRef } from 'react';
+import { ErrorOverlay } from '../../vite-error-overlay-plugin';
 
 export default function ErrorPage() {
   const ref = useRef<HTMLDivElement>(null);
@@ -13,7 +13,5 @@ export default function ErrorPage() {
     }
   }, [error]);
 
-  return (
-    <div ref={ref}></div>
-  );
-};
+  return <div ref={ref}></div>;
+}

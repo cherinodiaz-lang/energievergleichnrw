@@ -22,9 +22,18 @@ export default function PhotovoltaikCategoryPage() {
   ];
 
   const breadcrumbSchema = [
-    { name: 'Startseite', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}` },
-    { name: 'Ratgeber', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.ratgeber}` },
-    { name: 'Photovoltaik', url: `${typeof window !== 'undefined' ? window.location.origin : ''}/ratgeber/photovoltaik` },
+    {
+      name: 'Startseite',
+      url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}`,
+    },
+    {
+      name: 'Ratgeber',
+      url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.ratgeber}`,
+    },
+    {
+      name: 'Photovoltaik',
+      url: `${typeof window !== 'undefined' ? window.location.origin : ''}/ratgeber/photovoltaik`,
+    },
   ];
 
   return (
@@ -77,9 +86,14 @@ export default function PhotovoltaikCategoryPage() {
                 Photovoltaik verstehen und richtig nutzen
               </h2>
               <p className="font-paragraph text-base sm:text-lg text-gray-700 mb-8 leading-relaxed">
-                Solaranlagen bieten eine nachhaltige Möglichkeit, Ihren Energiebedarf zu decken und langfristig Kosten zu sparen. Ob Sie sich fragen, ob eine Solaranlage wirtschaftlich ist, wie die Einspeisevergütung funktioniert oder welche Förderungen es gibt – unser Ratgeber beantwortet Ihre wichtigsten Fragen. Erfahren Sie, worauf Sie bei der Planung und beim Vergleich von Angeboten achten sollten, und treffen Sie eine informierte Entscheidung für Ihre Energiezukunft.
+                Solaranlagen bieten eine nachhaltige Möglichkeit, Ihren Energiebedarf zu decken und
+                langfristig Kosten zu sparen. Ob Sie sich fragen, ob eine Solaranlage wirtschaftlich
+                ist, wie die Einspeisevergütung funktioniert oder welche Förderungen es gibt – unser
+                Ratgeber beantwortet Ihre wichtigsten Fragen. Erfahren Sie, worauf Sie bei der
+                Planung und beim Vergleich von Angeboten achten sollten, und treffen Sie eine
+                informierte Entscheidung für Ihre Energiezukunft.
               </p>
-              
+
               <div className="mb-10">
                 <h3 className="font-heading text-lg font-semibold text-gray-900 mb-4">
                   Häufig gestellte Fragen:
@@ -87,23 +101,33 @@ export default function PhotovoltaikCategoryPage() {
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Wie wirtschaftlich ist eine Solaranlage wirklich?</span>
+                    <span className="font-paragraph text-gray-700">
+                      Wie wirtschaftlich ist eine Solaranlage wirklich?
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Welche Förderungen und Zuschüsse gibt es in NRW?</span>
+                    <span className="font-paragraph text-gray-700">
+                      Welche Förderungen und Zuschüsse gibt es in NRW?
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Ist mein Dach für eine Solaranlage geeignet?</span>
+                    <span className="font-paragraph text-gray-700">
+                      Ist mein Dach für eine Solaranlage geeignet?
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Lohnt sich ein Stromspeicher für mich?</span>
+                    <span className="font-paragraph text-gray-700">
+                      Lohnt sich ein Stromspeicher für mich?
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Worauf sollte ich beim Vergleich von Angeboten achten?</span>
+                    <span className="font-paragraph text-gray-700">
+                      Worauf sollte ich beim Vergleich von Angeboten achten?
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -186,9 +210,13 @@ export default function PhotovoltaikCategoryPage() {
             Interessiert an einer Solaranlage?
           </h2>
           <p className="font-paragraph text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-            Nutzen Sie unsere kostenlose Beratung und erfahren Sie, wie viel Sie mit einer Solaranlage sparen können.
+            Nutzen Sie unsere kostenlose Beratung und erfahren Sie, wie viel Sie mit einer
+            Solaranlage sparen können.
           </p>
-          <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 px-8 rounded-lg font-bold">
+          <Button
+            asChild
+            className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 px-8 rounded-lg font-bold"
+          >
             <Link to={ROUTES.photovoltaik}>
               Kostenlose Beratung
               <ArrowRight className="w-5 h-5 ml-2" />

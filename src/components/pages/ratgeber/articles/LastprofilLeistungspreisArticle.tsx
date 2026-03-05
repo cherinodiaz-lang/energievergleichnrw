@@ -3,7 +3,12 @@ import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -20,42 +25,42 @@ export default function LastprofilLeistungspreisArticle() {
           name: 'Was ist ein Lastprofil?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Ein Lastprofil beschreibt, wie sich Ihr Stromverbrauch über die Zeit verteilt. Es zeigt, zu welchen Zeiten Sie viel oder wenig Strom verbrauchen. Dies ist wichtig für die Tarifberechnung.'
-          }
+            text: 'Ein Lastprofil beschreibt, wie sich Ihr Stromverbrauch über die Zeit verteilt. Es zeigt, zu welchen Zeiten Sie viel oder wenig Strom verbrauchen. Dies ist wichtig für die Tarifberechnung.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Was ist der Unterschied zwischen Leistungspreis und Arbeitspreis?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Der Arbeitspreis ist der Preis pro kWh Strom. Der Leistungspreis ist eine Gebühr für die maximale Leistung (in kW), die Sie gleichzeitig abrufen. Beide zusammen ergeben Ihre Stromkosten.'
-          }
+            text: 'Der Arbeitspreis ist der Preis pro kWh Strom. Der Leistungspreis ist eine Gebühr für die maximale Leistung (in kW), die Sie gleichzeitig abrufen. Beide zusammen ergeben Ihre Stromkosten.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Für wen ist ein Leistungspreis relevant?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Leistungspreise sind vor allem für Gewerbekunden relevant. Privathaushalt zahlen normalerweise nur Arbeitspreis und Grundpreis. Gewerbekunden mit hohem Verbrauch zahlen oft zusätzlich einen Leistungspreis.'
-          }
+            text: 'Leistungspreise sind vor allem für Gewerbekunden relevant. Privathaushalt zahlen normalerweise nur Arbeitspreis und Grundpreis. Gewerbekunden mit hohem Verbrauch zahlen oft zusätzlich einen Leistungspreis.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Wie kann ich meinen Leistungspreis senken?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Reduzieren Sie Ihre maximale Leistung durch bessere Lastverteilung. Nutzen Sie Energiesparprogramme und moderne Technologien. Ein Energieberater kann konkrete Maßnahmen empfehlen.'
-          }
+            text: 'Reduzieren Sie Ihre maximale Leistung durch bessere Lastverteilung. Nutzen Sie Energiesparprogramme und moderne Technologien. Ein Energieberater kann konkrete Maßnahmen empfehlen.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Wie wird das Lastprofil ermittelt?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Das Lastprofil wird durch Messungen oder Schätzungen ermittelt. Bei Gewerbekunden erfolgt dies durch intelligente Zähler oder Messungen. Dies ist Grundlage für die Tarifberechnung.'
-          }
-        }
-      ]
+            text: 'Das Lastprofil wird durch Messungen oder Schätzungen ermittelt. Bei Gewerbekunden erfolgt dies durch intelligente Zähler oder Messungen. Dies ist Grundlage für die Tarifberechnung.',
+          },
+        },
+      ],
     };
 
     const script = document.createElement('script');
@@ -106,7 +111,8 @@ export default function LastprofilLeistungspreisArticle() {
           >
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-12">
               <p className="font-paragraph text-gray-700 leading-relaxed">
-                Lastprofil und Leistungspreis sind wichtige Faktoren bei Gewerbestromtarifen. Erfahren Sie, wie diese funktionieren und wie Sie Ihre Kosten optimieren können.
+                Lastprofil und Leistungspreis sind wichtige Faktoren bei Gewerbestromtarifen.
+                Erfahren Sie, wie diese funktionieren und wie Sie Ihre Kosten optimieren können.
               </p>
             </div>
 
@@ -116,7 +122,9 @@ export default function LastprofilLeistungspreisArticle() {
                   Was ist ein Lastprofil?
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Ein Lastprofil beschreibt, wie sich Ihr Stromverbrauch über die Zeit verteilt. Es zeigt, zu welchen Zeiten Sie viel oder wenig Strom verbrauchen. Dieses Profil ist wichtig für die Tarifberechnung und die Netzplanung.
+                  Ein Lastprofil beschreibt, wie sich Ihr Stromverbrauch über die Zeit verteilt. Es
+                  zeigt, zu welchen Zeiten Sie viel oder wenig Strom verbrauchen. Dieses Profil ist
+                  wichtig für die Tarifberechnung und die Netzplanung.
                 </p>
               </div>
 
@@ -125,7 +133,10 @@ export default function LastprofilLeistungspreisArticle() {
                   Arbeitspreis vs. Leistungspreis
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Der Arbeitspreis ist der Preis pro Kilowattstunde (kWh) Strom, den Sie verbrauchen. Der Leistungspreis ist eine Gebühr für die maximale Leistung (in Kilowatt, kW), die Sie gleichzeitig abrufen. Beide zusammen ergeben Ihre Gesamtstromkosten.
+                  Der Arbeitspreis ist der Preis pro Kilowattstunde (kWh) Strom, den Sie
+                  verbrauchen. Der Leistungspreis ist eine Gebühr für die maximale Leistung (in
+                  Kilowatt, kW), die Sie gleichzeitig abrufen. Beide zusammen ergeben Ihre
+                  Gesamtstromkosten.
                 </p>
               </div>
 
@@ -136,15 +147,21 @@ export default function LastprofilLeistungspreisArticle() {
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Vor allem für Gewerbekunden mit hohem Verbrauch</span>
+                    <span className="font-paragraph text-gray-700">
+                      Vor allem für Gewerbekunden mit hohem Verbrauch
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Privathaushalt zahlen normalerweise nur Arbeitspreis</span>
+                    <span className="font-paragraph text-gray-700">
+                      Privathaushalt zahlen normalerweise nur Arbeitspreis
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Kann einen großen Teil der Stromkosten ausmachen</span>
+                    <span className="font-paragraph text-gray-700">
+                      Kann einen großen Teil der Stromkosten ausmachen
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -154,7 +171,9 @@ export default function LastprofilLeistungspreisArticle() {
                   Leistungspreis senken
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Sie können Ihren Leistungspreis senken, indem Sie Ihre maximale Leistung reduzieren. Dies erreichen Sie durch bessere Lastverteilung, Energiesparprogramme und moderne Technologien. Ein Energieberater kann konkrete Maßnahmen empfehlen.
+                  Sie können Ihren Leistungspreis senken, indem Sie Ihre maximale Leistung
+                  reduzieren. Dies erreichen Sie durch bessere Lastverteilung, Energiesparprogramme
+                  und moderne Technologien. Ein Energieberater kann konkrete Maßnahmen empfehlen.
                 </p>
               </div>
 
@@ -170,26 +189,31 @@ export default function LastprofilLeistungspreisArticle() {
             {[
               {
                 q: 'Was ist ein Lastprofil?',
-                a: 'Ein Lastprofil beschreibt, wie sich Ihr Stromverbrauch über die Zeit verteilt. Es zeigt, zu welchen Zeiten Sie viel oder wenig Strom verbrauchen. Dies ist wichtig für die Tarifberechnung.'
+                a: 'Ein Lastprofil beschreibt, wie sich Ihr Stromverbrauch über die Zeit verteilt. Es zeigt, zu welchen Zeiten Sie viel oder wenig Strom verbrauchen. Dies ist wichtig für die Tarifberechnung.',
               },
               {
                 q: 'Was ist der Unterschied zwischen Leistungspreis und Arbeitspreis?',
-                a: 'Der Arbeitspreis ist der Preis pro kWh Strom. Der Leistungspreis ist eine Gebühr für die maximale Leistung (in kW), die Sie gleichzeitig abrufen. Beide zusammen ergeben Ihre Stromkosten.'
+                a: 'Der Arbeitspreis ist der Preis pro kWh Strom. Der Leistungspreis ist eine Gebühr für die maximale Leistung (in kW), die Sie gleichzeitig abrufen. Beide zusammen ergeben Ihre Stromkosten.',
               },
               {
                 q: 'Für wen ist ein Leistungspreis relevant?',
-                a: 'Leistungspreise sind vor allem für Gewerbekunden relevant. Privathaushalt zahlen normalerweise nur Arbeitspreis und Grundpreis. Gewerbekunden mit hohem Verbrauch zahlen oft zusätzlich einen Leistungspreis.'
+                a: 'Leistungspreise sind vor allem für Gewerbekunden relevant. Privathaushalt zahlen normalerweise nur Arbeitspreis und Grundpreis. Gewerbekunden mit hohem Verbrauch zahlen oft zusätzlich einen Leistungspreis.',
               },
               {
                 q: 'Wie kann ich meinen Leistungspreis senken?',
-                a: 'Reduzieren Sie Ihre maximale Leistung durch bessere Lastverteilung. Nutzen Sie Energiesparprogramme und moderne Technologien. Ein Energieberater kann konkrete Maßnahmen empfehlen.'
+                a: 'Reduzieren Sie Ihre maximale Leistung durch bessere Lastverteilung. Nutzen Sie Energiesparprogramme und moderne Technologien. Ein Energieberater kann konkrete Maßnahmen empfehlen.',
               },
               {
                 q: 'Wie wird das Lastprofil ermittelt?',
-                a: 'Das Lastprofil wird durch Messungen oder Schätzungen ermittelt. Bei Gewerbekunden erfolgt dies durch intelligente Zähler oder Messungen. Dies ist Grundlage für die Tarifberechnung.'
-              }
+                a: 'Das Lastprofil wird durch Messungen oder Schätzungen ermittelt. Bei Gewerbekunden erfolgt dies durch intelligente Zähler oder Messungen. Dies ist Grundlage für die Tarifberechnung.',
+              },
             ].map((item, index) => (
-              <Accordion key={index} type="single" collapsible className="bg-gray-50 rounded-lg px-6 border-none">
+              <Accordion
+                key={index}
+                type="single"
+                collapsible
+                className="bg-gray-50 rounded-lg px-6 border-none"
+              >
                 <AccordionItem value={`faq-${index}`} className="border-none">
                   <AccordionTrigger className="font-heading text-lg font-medium text-left py-4 hover:text-primary hover:no-underline">
                     {item.q}
@@ -209,7 +233,10 @@ export default function LastprofilLeistungspreisArticle() {
             <p className="font-paragraph text-gray-700 mb-6">
               Nutzen Sie unser Vergleichstool und finden Sie den besten Tarif für Ihr Unternehmen.
             </p>
-            <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
+            <Button
+              asChild
+              className="bg-secondary text-secondary-foreground hover:bg-secondary/90"
+            >
               <Link to="/gewerbestrom">
                 Zum Gewerbestrom-Vergleich
                 <ArrowRight className="w-5 h-5 ml-2" />
@@ -218,9 +245,7 @@ export default function LastprofilLeistungspreisArticle() {
           </div>
 
           <div className="border-t pt-12">
-            <h3 className="font-heading text-2xl font-bold text-primary mb-6">
-              Verwandte Artikel
-            </h3>
+            <h3 className="font-heading text-2xl font-bold text-primary mb-6">Verwandte Artikel</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Link to="/ratgeber/gewerbe/gewerbestrom-vertrag-worauf-achten" className="group">
                 <Card className="h-full hover:shadow-lg transition-shadow">

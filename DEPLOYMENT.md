@@ -29,6 +29,7 @@ NETLIFY_AUTH_TOKEN=<your-netlify-token>
 ### 2. Tokens generieren
 
 #### Vercel Token:
+
 ```bash
 1. Gehe zu https://vercel.com/account/tokens
 2. Erstelle neuen Token
@@ -36,6 +37,7 @@ NETLIFY_AUTH_TOKEN=<your-netlify-token>
 ```
 
 #### Netlify Token:
+
 ```bash
 1. Gehe zu https://app.netlify.com/user/applications
 2. New Access Token
@@ -43,6 +45,7 @@ NETLIFY_AUTH_TOKEN=<your-netlify-token>
 ```
 
 #### Lighthouse CI Token:
+
 ```bash
 1. Install: npm install -g @lhci/cli
 2. Setup: lhci wizard
@@ -54,6 +57,7 @@ NETLIFY_AUTH_TOKEN=<your-netlify-token>
 ### Option 1: Vercel (Empfohlen)
 
 #### CLI Deployment:
+
 ```bash
 # Vercel CLI installieren
 npm i -g vercel
@@ -66,6 +70,7 @@ vercel --prod
 ```
 
 #### GitHub Integration:
+
 ```bash
 1. Gehe zu https://vercel.com/new
 2. Import Git Repository
@@ -78,6 +83,7 @@ vercel --prod
 ```
 
 #### Umgebungsvariablen:
+
 ```bash
 NODE_VERSION=18
 PUBLIC_SITE_URL=https://energievergleichnrw.de
@@ -89,6 +95,7 @@ PUBLIC_GA_ID=G-XXXXXXXXXX
 ### Option 2: Netlify
 
 #### CLI Deployment:
+
 ```bash
 # Netlify CLI installieren
 npm i -g netlify-cli
@@ -101,6 +108,7 @@ netlify deploy --prod
 ```
 
 #### netlify.toml erstellen:
+
 ```toml
 [build]
   command = "npm run build"
@@ -143,6 +151,7 @@ netlify deploy --prod
 ### Option 4: Docker
 
 #### Dockerfile erstellen:
+
 ```dockerfile
 # Build Stage
 FROM node:18-alpine AS builder
@@ -171,6 +180,7 @@ CMD ["npm", "run", "preview"]
 ```
 
 #### Build & Run:
+
 ```bash
 # Image bauen
 docker build -t energievergleichnrw .
@@ -187,6 +197,7 @@ docker-compose up -d
 ## 🔍 Post-Deployment Checks
 
 ### 1. Lighthouse Audit
+
 ```bash
 npm run build
 npm run preview
@@ -195,23 +206,27 @@ lighthouse http://localhost:4321 --view
 ```
 
 ### 2. Security Headers testen
+
 ```bash
 curl -I https://energievergleichnrw.de
 ```
 
 Überprüfe:
+
 - ✅ Strict-Transport-Security
 - ✅ X-Frame-Options
 - ✅ X-Content-Type-Options
 - ✅ Content-Security-Policy
 
 ### 3. PWA testen
+
 ```bash
 # Chrome DevTools → Application → Manifest
 # Chrome DevTools → Application → Service Workers
 ```
 
 ### 4. Performance testen
+
 ```bash
 # PageSpeed Insights
 https://pagespeed.web.dev/analysis?url=https://energievergleichnrw.de
@@ -227,11 +242,13 @@ https://www.webpagetest.org/
 ### GitHub Actions
 
 Die Pipeline läuft automatisch bei:
+
 - Push zu `main` Branch → Production Deploy
 - Push zu `develop` Branch → Staging Deploy
 - Pull Requests → Preview Deploy
 
 ### Manual Deployment
+
 ```bash
 # Triggere manuell über GitHub Actions UI:
 Actions → CI/CD Pipeline → Run workflow
@@ -242,6 +259,7 @@ Actions → CI/CD Pipeline → Run workflow
 ## 🐛 Troubleshooting
 
 ### Build fails auf Vercel/Netlify
+
 ```bash
 # Lösung 1: Node Version checken
 "engines": {
@@ -256,6 +274,7 @@ npm ci statt npm install
 ```
 
 ### Service Worker funktioniert nicht
+
 ```bash
 # Stelle sicher:
 - HTTPS ist aktiv
@@ -264,6 +283,7 @@ npm ci statt npm install
 ```
 
 ### Images laden nicht
+
 ```bash
 # Sharp installation prüfen:
 npm rebuild sharp
@@ -276,16 +296,19 @@ npm rebuild sharp
 ## 📊 Monitoring
 
 ### Performance Monitoring
+
 - Google Analytics 4
 - Vercel Analytics
 - Cloudflare Web Analytics
 
 ### Error Tracking
+
 - Sentry
 - LogRocket
 - Rollbar
 
 ### Uptime Monitoring
+
 - UptimeRobot
 - Pingdom
 - StatusCake
@@ -331,6 +354,7 @@ npm update
 **Deployment erfolgreich?** 🎉
 
 Überprüfe deine Seite:
+
 - https://energievergleichnrw.de
 - https://pagespeed.web.dev/
 - https://observatory.mozilla.org/

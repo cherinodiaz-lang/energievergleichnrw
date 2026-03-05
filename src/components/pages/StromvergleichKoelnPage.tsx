@@ -20,8 +20,19 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import TrustRow from '@/components/TrustRow';
 import RelatedPages from '@/components/RelatedPages';
@@ -114,7 +125,8 @@ export default function StromvergleichKoelnPage() {
 
     setFormErrors({});
 
-    const consumption = formData.verbrauch && parseInt(formData.verbrauch) > 0 ? parseInt(formData.verbrauch) : 3500;
+    const consumption =
+      formData.verbrauch && parseInt(formData.verbrauch) > 0 ? parseInt(formData.verbrauch) : 3500;
 
     setCalculatedConsumption(consumption);
     setShowResults(true);
@@ -198,7 +210,8 @@ export default function StromvergleichKoelnPage() {
         keywords: 'Stromvergleich Köln, Stromtarife Köln, Stromanbieter Köln, Stromwechsel Köln',
         canonical: 'https://www.energievergleich.shop/stromvergleich-koeln',
         ogTitle: 'Stromvergleich Köln | Stromtarife vergleichen & sparen',
-        ogDescription: 'Stromvergleich Köln: Jetzt Tarife vergleichen & bis zu 300€ jährlich sparen. ✓ Kostenlos ✓ Unabhängig ✓ TÜV-geprüft. Über 1000 Anbieter im Check!',
+        ogDescription:
+          'Stromvergleich Köln: Jetzt Tarife vergleichen & bis zu 300€ jährlich sparen. ✓ Kostenlos ✓ Unabhängig ✓ TÜV-geprüft. Über 1000 Anbieter im Check!',
       }}
       breadcrumbLabel="Stromvergleich Köln"
       breadcrumbPath="/stromvergleich-koeln"
@@ -225,7 +238,9 @@ export default function StromvergleichKoelnPage() {
             </p>
             <div className="flex flex-col gap-4">
               <Button
-                onClick={() => document.getElementById('vergleich')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() =>
+                  document.getElementById('vergleich')?.scrollIntoView({ behavior: 'smooth' })
+                }
                 className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 px-8 rounded-full text-lg font-semibold shadow-lg"
               >
                 Jetzt vergleichen
@@ -262,17 +277,22 @@ export default function StromvergleichKoelnPage() {
                           id="plz"
                           placeholder="z.B. 50667"
                           value={formData.postleitzahl}
-                          onChange={(e) => setFormData({ ...formData, postleitzahl: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, postleitzahl: e.target.value })
+                          }
                           required
                           className="font-paragraph w-full"
                         />
                         {formErrors.postleitzahl && (
-                          <p className="text-sm text-red-600 font-paragraph">{formErrors.postleitzahl}</p>
+                          <p className="text-sm text-red-600 font-paragraph">
+                            {formErrors.postleitzahl}
+                          </p>
                         )}
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="verbrauch" className="font-paragraph">
-                          Jahresverbrauch (kWh) <span className="text-gray-400 text-sm">(optional)</span>
+                          Jahresverbrauch (kWh){' '}
+                          <span className="text-gray-400 text-sm">(optional)</span>
                         </Label>
                         <Input
                           id="verbrauch"
@@ -297,7 +317,9 @@ export default function StromvergleichKoelnPage() {
                           required
                           className="font-paragraph w-full"
                         />
-                        {formErrors.name && <p className="text-sm text-red-600 font-paragraph">{formErrors.name}</p>}
+                        {formErrors.name && (
+                          <p className="text-sm text-red-600 font-paragraph">{formErrors.name}</p>
+                        )}
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="email" className="font-paragraph">
@@ -311,7 +333,9 @@ export default function StromvergleichKoelnPage() {
                           required
                           className="font-paragraph w-full"
                         />
-                        {formErrors.email && <p className="text-sm text-red-600 font-paragraph">{formErrors.email}</p>}
+                        {formErrors.email && (
+                          <p className="text-sm text-red-600 font-paragraph">{formErrors.email}</p>
+                        )}
                       </div>
                     </div>
 
@@ -325,7 +349,9 @@ export default function StromvergleichKoelnPage() {
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         className="font-paragraph w-full"
                       />
-                      {formErrors.phone && <p className="text-sm text-red-600 font-paragraph">{formErrors.phone}</p>}
+                      {formErrors.phone && (
+                        <p className="text-sm text-red-600 font-paragraph">{formErrors.phone}</p>
+                      )}
                     </div>
 
                     <div className="space-y-2">
@@ -372,7 +398,9 @@ export default function StromvergleichKoelnPage() {
                   transition={{ duration: 0.5 }}
                   className="mt-12"
                 >
-                  <h2 className="font-heading text-2xl font-bold text-primary mb-8">Tarifvorschau für {formData.postleitzahl}</h2>
+                  <h2 className="font-heading text-2xl font-bold text-primary mb-8">
+                    Tarifvorschau für {formData.postleitzahl}
+                  </h2>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                     {tariffs.map((tariff, index) => {
@@ -389,25 +417,43 @@ export default function StromvergleichKoelnPage() {
                         >
                           <Card className="h-full flex flex-col shadow-lg hover:shadow-xl transition-shadow">
                             <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10">
-                              <CardTitle className="font-heading text-xl text-primary">{tariff.name}</CardTitle>
+                              <CardTitle className="font-heading text-xl text-primary">
+                                {tariff.name}
+                              </CardTitle>
                             </CardHeader>
                             <CardContent className="p-6 flex-1 flex flex-col justify-between">
                               <div className="space-y-4 mb-6">
                                 <div>
-                                  <p className="font-paragraph text-sm text-gray-600 mb-1">Arbeitspreis</p>
-                                  <p className="font-heading text-lg font-bold text-primary">{tariff.pricePerKwh.toFixed(2)} €/kWh</p>
+                                  <p className="font-paragraph text-sm text-gray-600 mb-1">
+                                    Arbeitspreis
+                                  </p>
+                                  <p className="font-heading text-lg font-bold text-primary">
+                                    {tariff.pricePerKwh.toFixed(2)} €/kWh
+                                  </p>
                                 </div>
                                 <div>
-                                  <p className="font-paragraph text-sm text-gray-600 mb-1">Grundgebühr</p>
-                                  <p className="font-heading text-lg font-bold text-primary">{tariff.baseFee.toFixed(2)} €/Monat</p>
+                                  <p className="font-paragraph text-sm text-gray-600 mb-1">
+                                    Grundgebühr
+                                  </p>
+                                  <p className="font-heading text-lg font-bold text-primary">
+                                    {tariff.baseFee.toFixed(2)} €/Monat
+                                  </p>
                                 </div>
                                 <div className="border-t pt-4">
-                                  <p className="font-paragraph text-sm text-gray-600 mb-1">Geschätzte monatliche Kosten</p>
-                                  <p className="font-heading text-2xl font-bold text-secondary">{monthlyPrice.toFixed(2)} €</p>
+                                  <p className="font-paragraph text-sm text-gray-600 mb-1">
+                                    Geschätzte monatliche Kosten
+                                  </p>
+                                  <p className="font-heading text-2xl font-bold text-secondary">
+                                    {monthlyPrice.toFixed(2)} €
+                                  </p>
                                 </div>
                                 <div>
-                                  <p className="font-paragraph text-sm text-gray-600 mb-1">Geschätzte jährliche Kosten</p>
-                                  <p className="font-heading text-lg font-bold text-primary">{yearlyPrice.toFixed(2)} €/Jahr</p>
+                                  <p className="font-paragraph text-sm text-gray-600 mb-1">
+                                    Geschätzte jährliche Kosten
+                                  </p>
+                                  <p className="font-heading text-lg font-bold text-primary">
+                                    {yearlyPrice.toFixed(2)} €/Jahr
+                                  </p>
                                 </div>
                               </div>
                               <Button
@@ -427,7 +473,8 @@ export default function StromvergleichKoelnPage() {
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start gap-3">
                     <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
                     <p className="font-paragraph text-sm text-gray-700">
-                      <strong>Hinweis:</strong> Vorschau basiert auf Beispielrechnung. Finale Tarife nach Anbieterabfrage.
+                      <strong>Hinweis:</strong> Vorschau basiert auf Beispielrechnung. Finale Tarife
+                      nach Anbieterabfrage.
                     </p>
                   </div>
                 </motion.div>
@@ -436,7 +483,9 @@ export default function StromvergleichKoelnPage() {
 
             <div className="space-y-6">
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                <h3 className="font-heading font-bold text-primary mb-4">Warum mit uns vergleichen?</h3>
+                <h3 className="font-heading font-bold text-primary mb-4">
+                  Warum mit uns vergleichen?
+                </h3>
                 <ul className="space-y-3">
                   {[
                     '100% unabhängig und kostenlos',
@@ -467,12 +516,19 @@ export default function StromvergleichKoelnPage() {
 
           <div className="space-y-4">
             {FAQ_ITEMS.map((item, index) => (
-              <Accordion key={index} type="single" collapsible className="bg-white rounded-lg border">
+              <Accordion
+                key={index}
+                type="single"
+                collapsible
+                className="bg-white rounded-lg border"
+              >
                 <AccordionItem value={`item-${index}`} className="border-none">
                   <AccordionTrigger className="font-heading font-bold text-lg hover:text-primary px-6 py-4">
                     {item.question}
                   </AccordionTrigger>
-                  <AccordionContent className="font-paragraph text-gray-600 px-6 pb-4">{item.answer}</AccordionContent>
+                  <AccordionContent className="font-paragraph text-gray-600 px-6 pb-4">
+                    {item.answer}
+                  </AccordionContent>
                 </AccordionItem>
               </Accordion>
             ))}

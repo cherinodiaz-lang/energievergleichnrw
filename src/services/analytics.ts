@@ -6,16 +6,16 @@ export interface AnalyticsEvent {
 
 export class AnalyticsService {
   private static instance: AnalyticsService;
-  
+
   private constructor() {}
-  
+
   static getInstance(): AnalyticsService {
     if (!AnalyticsService.instance) {
       AnalyticsService.instance = new AnalyticsService();
     }
     return AnalyticsService.instance;
   }
-  
+
   /**
    * Track generic event
    */
@@ -29,16 +29,16 @@ export class AnalyticsService {
         timestamp: new Date().toISOString(),
       },
     };
-    
+
     if (typeof window.gtag === 'function') {
       window.gtag('event', event.name, event.properties);
     }
-    
+
     if (typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
       console.log('[Analytics Event]', event);
     }
   }
-  
+
   /**
    * Track form submission
    */
@@ -49,7 +49,7 @@ export class AnalyticsService {
       success: success,
     });
   }
-  
+
   /**
    * Track CTA click
    */
@@ -59,7 +59,7 @@ export class AnalyticsService {
       location: location,
     });
   }
-  
+
   /**
    * Track methodology view
    */
@@ -68,7 +68,7 @@ export class AnalyticsService {
       section: section,
     });
   }
-  
+
   /**
    * Track contact click
    */
@@ -77,7 +77,7 @@ export class AnalyticsService {
       contact_type: contactType,
     });
   }
-  
+
   /**
    * Track page view
    */
@@ -87,7 +87,7 @@ export class AnalyticsService {
       page_title: pageTitle,
     });
   }
-  
+
   /**
    * Track error
    */

@@ -123,18 +123,18 @@
   .cookie-banner {
     padding: 16px;
   }
-  
+
   .cookie-buttons {
     flex-direction: column;
     width: 100%;
   }
-  
+
   .btn-cookie,
   .btn-cookie-link {
     width: 100%;
     min-width: unset;
   }
-  
+
   .cookie-settings-icon {
     bottom: 16px;
     right: 16px;

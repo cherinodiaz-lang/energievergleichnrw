@@ -3,7 +3,12 @@ import { motion } from 'framer-motion';
 import { Zap, CheckCircle, AlertCircle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -22,42 +27,42 @@ export default function StromGrundversorgungArticle() {
           name: 'Was ist Stromgrundversorgung?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Die Stromgrundversorgung ist ein gesetzlich geregeltes Angebot des Stromanbieters in Ihrer Region. Sie müssen automatisch in die Grundversorgung aufgenommen werden, wenn Sie keinen anderen Stromvertrag haben. Die Grundversorgung bietet Sicherheit, ist aber meist teurer als alternative Tarife.'
-          }
+            text: 'Die Stromgrundversorgung ist ein gesetzlich geregeltes Angebot des Stromanbieters in Ihrer Region. Sie müssen automatisch in die Grundversorgung aufgenommen werden, wenn Sie keinen anderen Stromvertrag haben. Die Grundversorgung bietet Sicherheit, ist aber meist teurer als alternative Tarife.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Wer ist mein Grundversorger?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Ihr Grundversorger ist der Stromanbieter mit den meisten Kunden in Ihrer Region. In NRW sind das meist große Energieunternehmen wie Stadtwerke oder nationale Versorger. Sie können Ihren Grundversorger auf der Website Ihres Netzbetreibers oder durch Ihre aktuelle Stromrechnung ermitteln.'
-          }
+            text: 'Ihr Grundversorger ist der Stromanbieter mit den meisten Kunden in Ihrer Region. In NRW sind das meist große Energieunternehmen wie Stadtwerke oder nationale Versorger. Sie können Ihren Grundversorger auf der Website Ihres Netzbetreibers oder durch Ihre aktuelle Stromrechnung ermitteln.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Kann ich aus der Grundversorgung wechseln?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Ja, Sie können jederzeit aus der Grundversorgung wechseln. Die Kündigungsfrist beträgt 2 Wochen zum Ende eines Kalendermonats. Ein Wechsel ist kostenlos und Ihre Stromversorgung wird nicht unterbrochen.'
-          }
+            text: 'Ja, Sie können jederzeit aus der Grundversorgung wechseln. Die Kündigungsfrist beträgt 2 Wochen zum Ende eines Kalendermonats. Ein Wechsel ist kostenlos und Ihre Stromversorgung wird nicht unterbrochen.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Ist die Grundversorgung teuer?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Ja, die Grundversorgung ist in der Regel 10-30% teurer als alternative Tarife. Das liegt daran, dass der Grundversorger keine Rabatte gewährt und die Preise regelmäßig angepasst werden. Ein Wechsel zu einem anderen Anbieter kann Ihnen erhebliche Einsparungen bringen.'
-          }
+            text: 'Ja, die Grundversorgung ist in der Regel 10-30% teurer als alternative Tarife. Das liegt daran, dass der Grundversorger keine Rabatte gewährt und die Preise regelmäßig angepasst werden. Ein Wechsel zu einem anderen Anbieter kann Ihnen erhebliche Einsparungen bringen.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Was passiert, wenn mein Vertrag endet?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Wenn Ihr Stromvertrag endet und Sie keinen neuen abgeschlossen haben, fallen Sie automatisch in die Grundversorgung zurück. Deshalb ist es wichtig, rechtzeitig einen neuen Vertrag abzuschließen oder zu wechseln.'
-          }
-        }
-      ]
+            text: 'Wenn Ihr Stromvertrag endet und Sie keinen neuen abgeschlossen haben, fallen Sie automatisch in die Grundversorgung zurück. Deshalb ist es wichtig, rechtzeitig einen neuen Vertrag abzuschließen oder zu wechseln.',
+          },
+        },
+      ],
     };
 
     const script = document.createElement('script');
@@ -91,7 +96,9 @@ export default function StromGrundversorgungArticle() {
           >
             <div className="flex items-center gap-2 mb-4">
               <Zap className="w-5 h-5 text-blue-600" />
-              <span className="text-sm font-bold text-blue-600 uppercase tracking-wider">Ratgeber Strom</span>
+              <span className="text-sm font-bold text-blue-600 uppercase tracking-wider">
+                Ratgeber Strom
+              </span>
             </div>
             <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary mb-4 leading-tight">
               Stromgrundversorgung: Was Sie wissen müssen
@@ -116,7 +123,10 @@ export default function StromGrundversorgungArticle() {
             <div className="bg-blue-50 border-l-4 border-l-blue-600 p-6 rounded-r-lg mb-8">
               <h2 className="font-heading text-xl font-bold text-primary mb-3">Kurzantwort</h2>
               <p className="font-paragraph text-gray-700 mb-2">
-                Die Stromgrundversorgung ist ein gesetzlich geregeltes Angebot des Stromanbieters in Ihrer Region. Sie bietet Sicherheit, ist aber meist 10-30% teurer als alternative Tarife. Sie können jederzeit mit 2 Wochen Kündigungsfrist wechseln und durch einen Anbieterwechsel erheblich sparen.
+                Die Stromgrundversorgung ist ein gesetzlich geregeltes Angebot des Stromanbieters in
+                Ihrer Region. Sie bietet Sicherheit, ist aber meist 10-30% teurer als alternative
+                Tarife. Sie können jederzeit mit 2 Wochen Kündigungsfrist wechseln und durch einen
+                Anbieterwechsel erheblich sparen.
               </p>
             </div>
 
@@ -125,17 +135,24 @@ export default function StromGrundversorgungArticle() {
               Was ist Stromgrundversorgung?
             </h2>
             <p className="font-paragraph text-gray-700 mb-4">
-              Die Stromgrundversorgung ist ein gesetzlich geregeltes Angebot des Stromanbieters mit den meisten Kunden in Ihrer Region. Wenn Sie keinen anderen Stromvertrag haben oder dieser endet, werden Sie automatisch in die Grundversorgung aufgenommen. Dies ist eine Sicherheitsmaßnahme, um sicherzustellen, dass jeder Haushalt mit Strom versorgt wird.
+              Die Stromgrundversorgung ist ein gesetzlich geregeltes Angebot des Stromanbieters mit
+              den meisten Kunden in Ihrer Region. Wenn Sie keinen anderen Stromvertrag haben oder
+              dieser endet, werden Sie automatisch in die Grundversorgung aufgenommen. Dies ist eine
+              Sicherheitsmaßnahme, um sicherzustellen, dass jeder Haushalt mit Strom versorgt wird.
             </p>
             <p className="font-paragraph text-gray-700 mb-4">
-              Die Grundversorgung ist transparent und fair, aber nicht unbedingt günstig. Der Grundversorger muss seine Preise öffentlich machen und kann nicht diskriminieren. Allerdings bietet er in der Regel keine Rabatte oder Boni wie andere Anbieter.
+              Die Grundversorgung ist transparent und fair, aber nicht unbedingt günstig. Der
+              Grundversorger muss seine Preise öffentlich machen und kann nicht diskriminieren.
+              Allerdings bietet er in der Regel keine Rabatte oder Boni wie andere Anbieter.
             </p>
 
             <h2 className="font-heading text-3xl font-bold text-primary mt-8 mb-4">
               Wer ist mein Grundversorger?
             </h2>
             <p className="font-paragraph text-gray-700 mb-4">
-              Ihr Grundversorger ist der Stromanbieter mit den meisten Kunden in Ihrer Region. In NRW sind das meist große Energieunternehmen wie Stadtwerke oder nationale Versorger. Um Ihren Grundversorger zu ermitteln, können Sie:
+              Ihr Grundversorger ist der Stromanbieter mit den meisten Kunden in Ihrer Region. In
+              NRW sind das meist große Energieunternehmen wie Stadtwerke oder nationale Versorger.
+              Um Ihren Grundversorger zu ermitteln, können Sie:
             </p>
             <ul className="font-paragraph text-gray-700 mb-4 space-y-2">
               <li className="flex items-start gap-3">
@@ -156,17 +173,22 @@ export default function StromGrundversorgungArticle() {
               Kosten der Grundversorgung
             </h2>
             <p className="font-paragraph text-gray-700 mb-4">
-              Die Grundversorgung ist in der Regel 10-30% teurer als alternative Tarife. Ein 3-Personen-Haushalt mit 3.500 kWh Jahresverbrauch zahlt in der Grundversorgung oft 1.200-1.400 Euro pro Jahr, während alternative Tarife 900-1.100 Euro kosten können.
+              Die Grundversorgung ist in der Regel 10-30% teurer als alternative Tarife. Ein
+              3-Personen-Haushalt mit 3.500 kWh Jahresverbrauch zahlt in der Grundversorgung oft
+              1.200-1.400 Euro pro Jahr, während alternative Tarife 900-1.100 Euro kosten können.
             </p>
             <p className="font-paragraph text-gray-700 mb-4">
-              Die Preise in der Grundversorgung werden regelmäßig angepasst und können schnell steigen. Deshalb ist es wichtig, regelmäßig zu überprüfen, ob ein Wechsel sinnvoll ist.
+              Die Preise in der Grundversorgung werden regelmäßig angepasst und können schnell
+              steigen. Deshalb ist es wichtig, regelmäßig zu überprüfen, ob ein Wechsel sinnvoll
+              ist.
             </p>
 
             <h2 className="font-heading text-3xl font-bold text-primary mt-8 mb-4">
               Wie wechsle ich aus der Grundversorgung?
             </h2>
             <p className="font-paragraph text-gray-700 mb-4">
-              Ein Wechsel aus der Grundversorgung ist einfach und kostenlos. Die Kündigungsfrist beträgt 2 Wochen zum Ende eines Kalendermonats. Sie können:
+              Ein Wechsel aus der Grundversorgung ist einfach und kostenlos. Die Kündigungsfrist
+              beträgt 2 Wochen zum Ende eines Kalendermonats. Sie können:
             </p>
             <ol className="font-paragraph text-gray-700 mb-4 space-y-2 list-decimal list-inside">
               <li>Einen neuen Stromtarif bei unserem Vergleichsrechner auswählen</li>
@@ -205,31 +227,38 @@ export default function StromGrundversorgungArticle() {
       {/* FAQ Section */}
       <section className="w-full py-12 md:py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-6 lg:px-12">
-          <h2 className="font-heading text-3xl font-bold text-primary mb-8">Häufig gestellte Fragen</h2>
+          <h2 className="font-heading text-3xl font-bold text-primary mb-8">
+            Häufig gestellte Fragen
+          </h2>
           <div className="space-y-4">
             {[
               {
                 q: 'Was ist Stromgrundversorgung?',
-                a: 'Die Stromgrundversorgung ist ein gesetzlich geregeltes Angebot des Stromanbieters in Ihrer Region. Sie müssen automatisch in die Grundversorgung aufgenommen werden, wenn Sie keinen anderen Stromvertrag haben. Die Grundversorgung bietet Sicherheit, ist aber meist teurer als alternative Tarife.'
+                a: 'Die Stromgrundversorgung ist ein gesetzlich geregeltes Angebot des Stromanbieters in Ihrer Region. Sie müssen automatisch in die Grundversorgung aufgenommen werden, wenn Sie keinen anderen Stromvertrag haben. Die Grundversorgung bietet Sicherheit, ist aber meist teurer als alternative Tarife.',
               },
               {
                 q: 'Wer ist mein Grundversorger?',
-                a: 'Ihr Grundversorger ist der Stromanbieter mit den meisten Kunden in Ihrer Region. In NRW sind das meist große Energieunternehmen wie Stadtwerke oder nationale Versorger. Sie können Ihren Grundversorger auf der Website Ihres Netzbetreibers oder durch Ihre aktuelle Stromrechnung ermitteln.'
+                a: 'Ihr Grundversorger ist der Stromanbieter mit den meisten Kunden in Ihrer Region. In NRW sind das meist große Energieunternehmen wie Stadtwerke oder nationale Versorger. Sie können Ihren Grundversorger auf der Website Ihres Netzbetreibers oder durch Ihre aktuelle Stromrechnung ermitteln.',
               },
               {
                 q: 'Kann ich aus der Grundversorgung wechseln?',
-                a: 'Ja, Sie können jederzeit aus der Grundversorgung wechseln. Die Kündigungsfrist beträgt 2 Wochen zum Ende eines Kalendermonats. Ein Wechsel ist kostenlos und Ihre Stromversorgung wird nicht unterbrochen.'
+                a: 'Ja, Sie können jederzeit aus der Grundversorgung wechseln. Die Kündigungsfrist beträgt 2 Wochen zum Ende eines Kalendermonats. Ein Wechsel ist kostenlos und Ihre Stromversorgung wird nicht unterbrochen.',
               },
               {
                 q: 'Ist die Grundversorgung teuer?',
-                a: 'Ja, die Grundversorgung ist in der Regel 10-30% teurer als alternative Tarife. Das liegt daran, dass der Grundversorger keine Rabatte gewährt und die Preise regelmäßig angepasst werden. Ein Wechsel zu einem anderen Anbieter kann Ihnen erhebliche Einsparungen bringen.'
+                a: 'Ja, die Grundversorgung ist in der Regel 10-30% teurer als alternative Tarife. Das liegt daran, dass der Grundversorger keine Rabatte gewährt und die Preise regelmäßig angepasst werden. Ein Wechsel zu einem anderen Anbieter kann Ihnen erhebliche Einsparungen bringen.',
               },
               {
                 q: 'Was passiert, wenn mein Vertrag endet?',
-                a: 'Wenn Ihr Stromvertrag endet und Sie keinen neuen abgeschlossen haben, fallen Sie automatisch in die Grundversorgung zurück. Deshalb ist es wichtig, rechtzeitig einen neuen Vertrag abzuschließen oder zu wechseln.'
-              }
+                a: 'Wenn Ihr Stromvertrag endet und Sie keinen neuen abgeschlossen haben, fallen Sie automatisch in die Grundversorgung zurück. Deshalb ist es wichtig, rechtzeitig einen neuen Vertrag abzuschließen oder zu wechseln.',
+              },
             ].map((item, index) => (
-              <Accordion key={index} type="single" collapsible className="bg-white rounded-lg border">
+              <Accordion
+                key={index}
+                type="single"
+                collapsible
+                className="bg-white rounded-lg border"
+              >
                 <AccordionItem value={`item-${index}`} className="border-none">
                   <AccordionTrigger className="font-heading font-bold text-lg hover:text-primary px-6 py-4">
                     {item.q}
@@ -290,7 +319,8 @@ export default function StromGrundversorgungArticle() {
             </CardHeader>
             <CardContent className="p-8">
               <p className="font-paragraph text-gray-700 mb-6">
-                Nutzen Sie unseren kostenlosen Vergleichsrechner und finden Sie den besten Stromtarif für Ihre Situation. Sparen Sie bis zu 400 Euro pro Jahr!
+                Nutzen Sie unseren kostenlosen Vergleichsrechner und finden Sie den besten
+                Stromtarif für Ihre Situation. Sparen Sie bis zu 400 Euro pro Jahr!
               </p>
               <Link to={ROUTES.stromvergleich}>
                 <Button className="bg-primary text-white hover:bg-primary/90 h-12 px-8 font-bold">

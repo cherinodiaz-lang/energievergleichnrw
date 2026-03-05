@@ -18,75 +18,93 @@ const cityClusters = {
   rheinland: ['koeln', 'duesseldorf', 'bonn'],
   bergisch: ['wuppertal'],
   owl: ['bielefeld'],
-  muensterland: ['muenster']
+  muensterland: ['muenster'],
 };
 
 // Find cluster for current city
-const currentCluster = Object.entries(cityClusters).find(([_, cities]) => 
-  cities.includes(currentCity.toLowerCase().replace(/ü/g, 'ue'))
-)?.[1] || [];
+const currentCluster =
+  Object.entries(cityClusters).find(([_, cities]) =>
+    cities.includes(currentCity.toLowerCase().replace(/ü/g, 'ue'))
+  )?.[1] || [];
 
 // Generate contextual links
 const contextualLinks: Link[] = currentCluster
-  .filter(city => city !== currentCity.toLowerCase().replace(/ü/g, 'ue'))
+  .filter((city) => city !== currentCity.toLowerCase().replace(/ü/g, 'ue'))
   .slice(0, 3)
-  .map(city => ({
+  .map((city) => ({
     text: `Stromvergleich ${city.charAt(0).toUpperCase() + city.slice(1).replace('ue', 'ü')}`,
     url: `/stromvergleich-${city}`,
-    city: city
+    city: city,
   }));
 
 // Add cross-cluster links
 const crossLinks: Link[] = [
   { text: 'Gasvergleich NRW', url: '/gasvergleich' },
   { text: 'Photovoltaik Beratung', url: '/photovoltaik' },
-  { text: 'Alle Städte in NRW', url: '/' }
+  { text: 'Alle Städte in NRW', url: '/' },
 ];
 ---
 
-{contextualLinks.length > 0 && (
-  <section class="contextual-links" aria-label="Ähnliche Vergleiche">
-    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 my-8">
-      <h3 class="text-lg font-semibold text-gray-900 mb-4">
-        🔗 Vergleichen Sie auch diese Städte
-      </h3>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {contextualLinks.map(link => (
-          <a 
-            href={link.url}
-            class="group flex items-center gap-2 p-3 bg-white rounded-md shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5"
-          >
-            <svg class="w-5 h-5 text-blue-600 group-hover:text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-            <span class="text-gray-700 group-hover:text-blue-700 font-medium transition-colors">
-              {link.text}
-            </span>
-          </a>
-        ))}
+{
+  contextualLinks.length > 0 && (
+    <section class="contextual-links" aria-label="Ähnliche Vergleiche">
+      <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 my-8">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">
+          🔗 Vergleichen Sie auch diese Städte
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {contextualLinks.map((link) => (
+            <a
+              href={link.url}
+              class="group flex items-center gap-2 p-3 bg-white rounded-md shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5"
+            >
+              <svg
+                class="w-5 h-5 text-blue-600 group-hover:text-blue-700"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
+              </svg>
+              <span class="text-gray-700 group-hover:text-blue-700 font-medium transition-colors">
+                {link.text}
+              </span>
+            </a>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
-)}
+    </section>
+  )
+}
 
 <section class="cross-links" aria-label="Weitere Services">
   <div class="border-t border-gray-200 pt-6 mt-8">
-    <p class="text-sm text-gray-600 mb-3">
-      Weitere Vergleichsmöglichkeiten:
-    </p>
+    <p class="text-sm text-gray-600 mb-3">Weitere Vergleichsmöglichkeiten:</p>
     <div class="flex flex-wrap gap-3">
-      {crossLinks.map(link => (
-        <a 
-          href={link.url}
-          class="inline-flex items-center gap-1 px-4 py-2 text-sm text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-full transition-colors"
-        >
-          {link.text}
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
-      ))}
+      {
+        crossLinks.map((link) => (
+          <a
+            href={link.url}
+            class="inline-flex items-center gap-1 px-4 py-2 text-sm text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-full transition-colors"
+          >
+            {link.text}
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </a>
+        ))
+      }
     </div>
   </div>
 </section>
@@ -95,7 +113,7 @@ const crossLinks: Link[] = [
   .contextual-links a {
     text-decoration: none;
   }
-  
+
   .cross-links a {
     text-decoration: none;
   }

@@ -1,7 +1,7 @@
 /**
  * PWA Icon Generation Script
  * Generiert alle benötigten Icon-Größen aus einem Source-Image
- * 
+ *
  * Usage: node scripts/generate-icons.js
  */
 
@@ -27,7 +27,7 @@ const ICON_SIZES = [
   { size: 512, name: 'icon-512.png' },
   { size: 180, name: 'apple-touch-icon.png' },
   { size: 32, name: 'favicon-32x32.png' },
-  { size: 16, name: 'favicon-16x16.png' }
+  { size: 16, name: 'favicon-16x16.png' },
 ];
 
 async function generateIcons() {
@@ -45,16 +45,16 @@ async function generateIcons() {
 
   for (const { size, name } of ICON_SIZES) {
     const outputPath = join(OUTPUT_DIR, name);
-    
+
     try {
       await sharp(SOURCE_ICON)
         .resize(size, size, {
           fit: 'contain',
-          background: { r: 255, g: 255, b: 255, alpha: 1 }
+          background: { r: 255, g: 255, b: 255, alpha: 1 },
         })
         .png()
         .toFile(outputPath);
-      
+
       console.log(`✅ Generated ${name} (${size}x${size})`);
     } catch (error) {
       console.error(`❌ Failed to generate ${name}:`, error.message);

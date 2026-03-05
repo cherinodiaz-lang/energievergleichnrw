@@ -3,7 +3,12 @@ import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -20,42 +25,42 @@ export default function GewerbestromVertragArticle() {
           name: 'Worauf sollte ich bei einem Gewerbestromvertrag achten?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Achten Sie auf Arbeitspreis, Grundpreis, Laufzeit, Kündigungsfrist, Preisgarantie und Bonusregelungen. Vergleichen Sie mehrere Angebote und prüfen Sie die Vertragsbedingungen sorgfältig.'
-          }
+            text: 'Achten Sie auf Arbeitspreis, Grundpreis, Laufzeit, Kündigungsfrist, Preisgarantie und Bonusregelungen. Vergleichen Sie mehrere Angebote und prüfen Sie die Vertragsbedingungen sorgfältig.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Welche Laufzeit ist für Gewerbekunden sinnvoll?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Typisch sind 12-24 Monate. Kürzere Laufzeiten bieten mehr Flexibilität, längere Laufzeiten oft bessere Preise. Wählen Sie je nach Ihrer Planungssicherheit.'
-          }
+            text: 'Typisch sind 12-24 Monate. Kürzere Laufzeiten bieten mehr Flexibilität, längere Laufzeiten oft bessere Preise. Wählen Sie je nach Ihrer Planungssicherheit.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Kann ich meinen Gewerbestromvertrag vorzeitig kündigen?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Das hängt vom Vertrag ab. Viele Verträge erlauben Kündigung mit 4 Wochen Frist zum Monatsende. Prüfen Sie die Kündigungsbedingungen vor Vertragsabschluss.'
-          }
+            text: 'Das hängt vom Vertrag ab. Viele Verträge erlauben Kündigung mit 4 Wochen Frist zum Monatsende. Prüfen Sie die Kündigungsbedingungen vor Vertragsabschluss.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Was ist der Unterschied zwischen Arbeits- und Grundpreis?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Der Arbeitspreis ist der Preis pro kWh Strom. Der Grundpreis ist eine monatliche Gebühr unabhängig vom Verbrauch. Beide zusammen ergeben Ihre Gesamtkosten.'
-          }
+            text: 'Der Arbeitspreis ist der Preis pro kWh Strom. Der Grundpreis ist eine monatliche Gebühr unabhängig vom Verbrauch. Beide zusammen ergeben Ihre Gesamtkosten.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Gibt es Boni beim Gewerbestromwechsel?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Ja, viele Anbieter bieten Wechselboni. Diese werden oft als Rabatt auf die erste Rechnung gewährt. Beachten Sie, dass Boni in die Gesamtkostenberechnung einfließen.'
-          }
-        }
-      ]
+            text: 'Ja, viele Anbieter bieten Wechselboni. Diese werden oft als Rabatt auf die erste Rechnung gewährt. Beachten Sie, dass Boni in die Gesamtkostenberechnung einfließen.',
+          },
+        },
+      ],
     };
 
     const script = document.createElement('script');
@@ -106,7 +111,9 @@ export default function GewerbestromVertragArticle() {
           >
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-12">
               <p className="font-paragraph text-gray-700 leading-relaxed">
-                Ein guter Gewerbestromvertrag bietet nicht nur niedrige Preise, sondern auch Flexibilität und Planungssicherheit. Erfahren Sie, welche Kriterien wirklich wichtig sind.
+                Ein guter Gewerbestromvertrag bietet nicht nur niedrige Preise, sondern auch
+                Flexibilität und Planungssicherheit. Erfahren Sie, welche Kriterien wirklich wichtig
+                sind.
               </p>
             </div>
 
@@ -116,7 +123,10 @@ export default function GewerbestromVertragArticle() {
                   Arbeitspreis und Grundpreis
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Der Arbeitspreis ist der Preis pro Kilowattstunde Strom. Der Grundpreis ist eine monatliche Gebühr, die unabhängig von Ihrem Verbrauch anfällt. Bei der Vertragsauswahl sollten Sie beide Komponenten berücksichtigen, nicht nur den Arbeitspreis.
+                  Der Arbeitspreis ist der Preis pro Kilowattstunde Strom. Der Grundpreis ist eine
+                  monatliche Gebühr, die unabhängig von Ihrem Verbrauch anfällt. Bei der
+                  Vertragsauswahl sollten Sie beide Komponenten berücksichtigen, nicht nur den
+                  Arbeitspreis.
                 </p>
               </div>
 
@@ -125,16 +135,18 @@ export default function GewerbestromVertragArticle() {
                   Laufzeit und Kündigungsfrist
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Typische Laufzeiten sind 12 oder 24 Monate. Kürzere Laufzeiten bieten mehr Flexibilität, längere oft bessere Preise. Achten Sie auch auf die Kündigungsfrist – idealerweise 4 Wochen zum Monatsende.
+                  Typische Laufzeiten sind 12 oder 24 Monate. Kürzere Laufzeiten bieten mehr
+                  Flexibilität, längere oft bessere Preise. Achten Sie auch auf die Kündigungsfrist
+                  – idealerweise 4 Wochen zum Monatsende.
                 </p>
               </div>
 
               <div>
-                <h2 className="font-heading text-3xl font-bold text-primary mb-4">
-                  Preisgarantie
-                </h2>
+                <h2 className="font-heading text-3xl font-bold text-primary mb-4">Preisgarantie</h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Eine Preisgarantie bedeutet, dass der Strompreis für einen bestimmten Zeitraum nicht erhöht wird. Dies gibt Ihnen Planungssicherheit. Beachten Sie, dass Steuern und Abgaben trotzdem erhöht werden können.
+                  Eine Preisgarantie bedeutet, dass der Strompreis für einen bestimmten Zeitraum
+                  nicht erhöht wird. Dies gibt Ihnen Planungssicherheit. Beachten Sie, dass Steuern
+                  und Abgaben trotzdem erhöht werden können.
                 </p>
               </div>
 
@@ -145,15 +157,21 @@ export default function GewerbestromVertragArticle() {
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Viele Anbieter bieten Wechselboni an</span>
+                    <span className="font-paragraph text-gray-700">
+                      Viele Anbieter bieten Wechselboni an
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Boni werden oft als Rabatt auf erste Rechnung gewährt</span>
+                    <span className="font-paragraph text-gray-700">
+                      Boni werden oft als Rabatt auf erste Rechnung gewährt
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Berechnen Sie die Gesamtkosten inklusive Boni</span>
+                    <span className="font-paragraph text-gray-700">
+                      Berechnen Sie die Gesamtkosten inklusive Boni
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -170,26 +188,31 @@ export default function GewerbestromVertragArticle() {
             {[
               {
                 q: 'Worauf sollte ich bei einem Gewerbestromvertrag achten?',
-                a: 'Achten Sie auf Arbeitspreis, Grundpreis, Laufzeit, Kündigungsfrist, Preisgarantie und Bonusregelungen. Vergleichen Sie mehrere Angebote und prüfen Sie die Vertragsbedingungen sorgfältig.'
+                a: 'Achten Sie auf Arbeitspreis, Grundpreis, Laufzeit, Kündigungsfrist, Preisgarantie und Bonusregelungen. Vergleichen Sie mehrere Angebote und prüfen Sie die Vertragsbedingungen sorgfältig.',
               },
               {
                 q: 'Welche Laufzeit ist für Gewerbekunden sinnvoll?',
-                a: 'Typisch sind 12-24 Monate. Kürzere Laufzeiten bieten mehr Flexibilität, längere Laufzeiten oft bessere Preise. Wählen Sie je nach Ihrer Planungssicherheit.'
+                a: 'Typisch sind 12-24 Monate. Kürzere Laufzeiten bieten mehr Flexibilität, längere Laufzeiten oft bessere Preise. Wählen Sie je nach Ihrer Planungssicherheit.',
               },
               {
                 q: 'Kann ich meinen Gewerbestromvertrag vorzeitig kündigen?',
-                a: 'Das hängt vom Vertrag ab. Viele Verträge erlauben Kündigung mit 4 Wochen Frist zum Monatsende. Prüfen Sie die Kündigungsbedingungen vor Vertragsabschluss.'
+                a: 'Das hängt vom Vertrag ab. Viele Verträge erlauben Kündigung mit 4 Wochen Frist zum Monatsende. Prüfen Sie die Kündigungsbedingungen vor Vertragsabschluss.',
               },
               {
                 q: 'Was ist der Unterschied zwischen Arbeits- und Grundpreis?',
-                a: 'Der Arbeitspreis ist der Preis pro kWh Strom. Der Grundpreis ist eine monatliche Gebühr unabhängig vom Verbrauch. Beide zusammen ergeben Ihre Gesamtkosten.'
+                a: 'Der Arbeitspreis ist der Preis pro kWh Strom. Der Grundpreis ist eine monatliche Gebühr unabhängig vom Verbrauch. Beide zusammen ergeben Ihre Gesamtkosten.',
               },
               {
                 q: 'Gibt es Boni beim Gewerbestromwechsel?',
-                a: 'Ja, viele Anbieter bieten Wechselboni. Diese werden oft als Rabatt auf die erste Rechnung gewährt. Beachten Sie, dass Boni in die Gesamtkostenberechnung einfließen.'
-              }
+                a: 'Ja, viele Anbieter bieten Wechselboni. Diese werden oft als Rabatt auf die erste Rechnung gewährt. Beachten Sie, dass Boni in die Gesamtkostenberechnung einfließen.',
+              },
             ].map((item, index) => (
-              <Accordion key={index} type="single" collapsible className="bg-gray-50 rounded-lg px-6 border-none">
+              <Accordion
+                key={index}
+                type="single"
+                collapsible
+                className="bg-gray-50 rounded-lg px-6 border-none"
+              >
                 <AccordionItem value={`faq-${index}`} className="border-none">
                   <AccordionTrigger className="font-heading text-lg font-medium text-left py-4 hover:text-primary hover:no-underline">
                     {item.q}
@@ -209,7 +232,10 @@ export default function GewerbestromVertragArticle() {
             <p className="font-paragraph text-gray-700 mb-6">
               Nutzen Sie unser Vergleichstool und finden Sie den besten Tarif für Ihr Unternehmen.
             </p>
-            <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
+            <Button
+              asChild
+              className="bg-secondary text-secondary-foreground hover:bg-secondary/90"
+            >
               <Link to="/gewerbestrom">
                 Zum Gewerbestrom-Vergleich
                 <ArrowRight className="w-5 h-5 ml-2" />
@@ -218,9 +244,7 @@ export default function GewerbestromVertragArticle() {
           </div>
 
           <div className="border-t pt-12">
-            <h3 className="font-heading text-2xl font-bold text-primary mb-6">
-              Verwandte Artikel
-            </h3>
+            <h3 className="font-heading text-2xl font-bold text-primary mb-6">Verwandte Artikel</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Link to="/ratgeber/gewerbe/gewerbegas-beschaffung-tipps" className="group">
                 <Card className="h-full hover:shadow-lg transition-shadow">

@@ -52,7 +52,8 @@ export default function AboutPage() {
                 Über uns
               </h1>
               <p className="font-paragraph text-lg sm:text-xl opacity-90 max-w-2xl mx-auto">
-                Ihr vertrauenswürdiger Partner für unabhängige Energievergleiche in Nordrhein-Westfalen
+                Ihr vertrauenswürdiger Partner für unabhängige Energievergleiche in
+                Nordrhein-Westfalen
               </p>
             </motion.div>
           </div>
@@ -65,7 +66,7 @@ export default function AboutPage() {
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: '-100px' }}
               className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center"
             >
               {/* Left Content */}
@@ -81,30 +82,49 @@ export default function AboutPage() {
 
                 <div className="space-y-4">
                   <p className="font-paragraph text-base sm:text-lg text-gray-700 leading-relaxed">
-                    ENERGIEVERGLEICH NRW ist Ihr unabhängiger Partner für transparente und verlässliche Energievergleiche. Wir nutzen ausschließlich offizielle Tarife von zertifizierten Energieversorgern und bieten Ihnen einen objektiven Überblick über die besten Angebote in Ihrer Region. Unser Ziel ist es, Ihnen dabei zu helfen, Geld zu sparen, ohne dabei Kompromisse bei der Qualität oder Sicherheit einzugehen.
+                    ENERGIEVERGLEICH NRW ist Ihr unabhängiger Partner für transparente und
+                    verlässliche Energievergleiche. Wir nutzen ausschließlich offizielle Tarife von
+                    zertifizierten Energieversorgern und bieten Ihnen einen objektiven Überblick
+                    über die besten Angebote in Ihrer Region. Unser Ziel ist es, Ihnen dabei zu
+                    helfen, Geld zu sparen, ohne dabei Kompromisse bei der Qualität oder Sicherheit
+                    einzugehen.
                   </p>
                   <p className="font-paragraph text-base sm:text-lg text-gray-700 leading-relaxed">
-                    Mit jahrelanger Erfahrung im Energiemarkt verstehen wir die Komplexität von Stromtarifen, Gasverträgen und Photovoltaik-Lösungen. Wir arbeiten nach höchsten Standards der Transparenz und Unabhängigkeit – ohne versteckte Provisionen oder unbelegte Sparversprechen. Jeder Vergleich wird sorgfältig durchgeführt, um Ihnen die genauesten und realistischsten Ergebnisse zu liefern.
+                    Mit jahrelanger Erfahrung im Energiemarkt verstehen wir die Komplexität von
+                    Stromtarifen, Gasverträgen und Photovoltaik-Lösungen. Wir arbeiten nach höchsten
+                    Standards der Transparenz und Unabhängigkeit – ohne versteckte Provisionen oder
+                    unbelegte Sparversprechen. Jeder Vergleich wird sorgfältig durchgeführt, um
+                    Ihnen die genauesten und realistischsten Ergebnisse zu liefern.
                   </p>
                 </div>
 
                 {/* Contact Info */}
                 <div className="space-y-4 pt-6 border-t border-gray-200">
-                  <h3 className="font-heading text-xl font-semibold text-primary">Kontaktieren Sie uns</h3>
+                  <h3 className="font-heading text-xl font-semibold text-primary">
+                    Kontaktieren Sie uns
+                  </h3>
                   <div className="space-y-3">
                     <div className="flex items-start gap-3">
-                      <MapPin className="w-5 h-5 text-secondary flex-shrink-0 mt-1" aria-hidden="true" />
+                      <MapPin
+                        className="w-5 h-5 text-secondary flex-shrink-0 mt-1"
+                        aria-hidden="true"
+                      />
                       <div>
                         <p className="font-paragraph font-semibold text-gray-900">Adresse</p>
                         <p className="font-paragraph text-gray-700">
-                          Wasserstr. 48<br />
-                          33378 Rheda-Wiedenbrück<br />
+                          Wasserstr. 48
+                          <br />
+                          33378 Rheda-Wiedenbrück
+                          <br />
                           Deutschland
                         </p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <Phone className="w-5 h-5 text-secondary flex-shrink-0 mt-1" aria-hidden="true" />
+                      <Phone
+                        className="w-5 h-5 text-secondary flex-shrink-0 mt-1"
+                        aria-hidden="true"
+                      />
                       <div>
                         <p className="font-paragraph font-semibold text-gray-900">Telefon</p>
                         <a
@@ -116,7 +136,10 @@ export default function AboutPage() {
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <Mail className="w-5 h-5 text-secondary flex-shrink-0 mt-1" aria-hidden="true" />
+                      <Mail
+                        className="w-5 h-5 text-secondary flex-shrink-0 mt-1"
+                        aria-hidden="true"
+                      />
                       <div>
                         <p className="font-paragraph font-semibold text-gray-900">E-Mail</p>
                         <a
@@ -143,7 +166,8 @@ export default function AboutPage() {
                   Unabhängig & Transparent
                 </h3>
                 <p className="font-paragraph text-center text-gray-700">
-                  Wir arbeiten nach höchsten Standards der Transparenz und Unabhängigkeit für Ihre Energieeinsparungen.
+                  Wir arbeiten nach höchsten Standards der Transparenz und Unabhängigkeit für Ihre
+                  Energieeinsparungen.
                 </p>
               </motion.div>
             </motion.div>
@@ -157,7 +181,7 @@ export default function AboutPage() {
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: '-100px' }}
             >
               <motion.div variants={itemVariants} className="text-center mb-12 sm:mb-16">
                 <h2 className="font-heading text-3xl sm:text-4xl font-bold text-primary mb-4">
@@ -171,28 +195,34 @@ export default function AboutPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {[
                   {
-                    title: "Offizielle Tarife",
-                    description: "Wir nutzen nur zertifizierte und aktuelle Tarife von anerkannten Energieversorgern. Keine Schätzungen oder veraltete Daten.",
+                    title: 'Offizielle Tarife',
+                    description:
+                      'Wir nutzen nur zertifizierte und aktuelle Tarife von anerkannten Energieversorgern. Keine Schätzungen oder veraltete Daten.',
                   },
                   {
-                    title: "Unabhängige Bewertung",
-                    description: "Unsere Vergleiche sind frei von Provisionsabhängigkeiten. Wir empfehlen das beste Angebot für Sie, nicht das lukrativste für uns.",
+                    title: 'Unabhängige Bewertung',
+                    description:
+                      'Unsere Vergleiche sind frei von Provisionsabhängigkeiten. Wir empfehlen das beste Angebot für Sie, nicht das lukrativste für uns.',
                   },
                   {
-                    title: "Realistische Einsparungen",
-                    description: "Wir machen keine unbelegten Sparversprechen. Alle Berechnungen basieren auf Ihren tatsächlichen Verbrauchsdaten und aktuellen Marktpreisen.",
+                    title: 'Realistische Einsparungen',
+                    description:
+                      'Wir machen keine unbelegten Sparversprechen. Alle Berechnungen basieren auf Ihren tatsächlichen Verbrauchsdaten und aktuellen Marktpreisen.',
                   },
                   {
-                    title: "Individuelle Analyse",
-                    description: "Jeder Haushalt und jedes Unternehmen ist unterschiedlich. Wir berücksichtigen Ihre spezifische Situation für maßgeschneiderte Empfehlungen.",
+                    title: 'Individuelle Analyse',
+                    description:
+                      'Jeder Haushalt und jedes Unternehmen ist unterschiedlich. Wir berücksichtigen Ihre spezifische Situation für maßgeschneiderte Empfehlungen.',
                   },
                   {
-                    title: "Transparente Kommunikation",
-                    description: "Alle Gebühren, Vertragsbedingungen und Besonderheiten werden klar kommuniziert. Keine versteckten Kosten oder überraschenden Klauseln.",
+                    title: 'Transparente Kommunikation',
+                    description:
+                      'Alle Gebühren, Vertragsbedingungen und Besonderheiten werden klar kommuniziert. Keine versteckten Kosten oder überraschenden Klauseln.',
                   },
                   {
-                    title: "Kontinuierliche Aktualisierung",
-                    description: "Der Energiemarkt ändert sich ständig. Wir aktualisieren unsere Daten regelmäßig, um Ihnen immer die neuesten Informationen zu bieten.",
+                    title: 'Kontinuierliche Aktualisierung',
+                    description:
+                      'Der Energiemarkt ändert sich ständig. Wir aktualisieren unsere Daten regelmäßig, um Ihnen immer die neuesten Informationen zu bieten.',
                   },
                 ].map((item, index) => (
                   <motion.div
@@ -201,7 +231,10 @@ export default function AboutPage() {
                     className="bg-white rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow"
                   >
                     <div className="flex items-start gap-4 mb-4">
-                      <CheckCircle className="w-6 h-6 text-secondary flex-shrink-0 mt-1" aria-hidden="true" />
+                      <CheckCircle
+                        className="w-6 h-6 text-secondary flex-shrink-0 mt-1"
+                        aria-hidden="true"
+                      />
                       <h3 className="font-heading text-lg font-semibold text-primary">
                         {item.title}
                       </h3>
@@ -222,7 +255,7 @@ export default function AboutPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: '-100px' }}
               transition={{ duration: 0.6 }}
               className="text-center"
             >
@@ -230,7 +263,8 @@ export default function AboutPage() {
                 Bereit zu sparen?
               </h2>
               <p className="font-paragraph text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
-                Starten Sie jetzt Ihren unabhängigen Energievergleich und finden Sie die besten Tarife für Ihre Situation.
+                Starten Sie jetzt Ihren unabhängigen Energievergleich und finden Sie die besten
+                Tarife für Ihre Situation.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to={ROUTES.stromvergleich}>

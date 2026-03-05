@@ -3,7 +3,12 @@ import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -21,42 +26,42 @@ export default function UmzugStromvertragArticle() {
           name: 'Was passiert mit meinem Stromvertrag beim Umzug?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Sie können Ihren Stromvertrag beim Umzug kündigen. Die Kündigungsfrist beträgt 4 Wochen zum Ende eines Kalendermonats. Sie müssen den Umzug dem Anbieter mitteilen.'
-          }
+            text: 'Sie können Ihren Stromvertrag beim Umzug kündigen. Die Kündigungsfrist beträgt 4 Wochen zum Ende eines Kalendermonats. Sie müssen den Umzug dem Anbieter mitteilen.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Kann ich meinen Vertrag mitnehmen?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Nein, Stromverträge sind an den Wohnort gebunden. Sie müssen einen neuen Vertrag für die neue Adresse abschließen. Dies ist eine gute Gelegenheit, zu einem günstigeren Anbieter zu wechseln.'
-          }
+            text: 'Nein, Stromverträge sind an den Wohnort gebunden. Sie müssen einen neuen Vertrag für die neue Adresse abschließen. Dies ist eine gute Gelegenheit, zu einem günstigeren Anbieter zu wechseln.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Wie lange dauert die Anmeldung beim neuen Anbieter?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Die Anmeldung dauert etwa 2-4 Wochen. Der neue Anbieter kümmert sich um die Abmeldung beim alten Anbieter. Ihre Stromversorgung wird nicht unterbrochen.'
-          }
+            text: 'Die Anmeldung dauert etwa 2-4 Wochen. Der neue Anbieter kümmert sich um die Abmeldung beim alten Anbieter. Ihre Stromversorgung wird nicht unterbrochen.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Kann ich beim Umzug sparen?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Ja, beim Umzug können Sie zu einem günstigeren Anbieter wechseln. Nutzen Sie die Gelegenheit und vergleichen Sie die Tarife in Ihrer neuen Region.'
-          }
+            text: 'Ja, beim Umzug können Sie zu einem günstigeren Anbieter wechseln. Nutzen Sie die Gelegenheit und vergleichen Sie die Tarife in Ihrer neuen Region.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Was brauche ich für die Anmeldung?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Sie benötigen Ihre neue Adresse, Ihre Zählernummer und den geschätzten Jahresverbrauch. Diese Informationen finden Sie auf Ihrer letzten Stromrechnung.'
-          }
-        }
-      ]
+            text: 'Sie benötigen Ihre neue Adresse, Ihre Zählernummer und den geschätzten Jahresverbrauch. Diese Informationen finden Sie auf Ihrer letzten Stromrechnung.',
+          },
+        },
+      ],
     };
 
     const script = document.createElement('script');
@@ -107,7 +112,9 @@ export default function UmzugStromvertragArticle() {
           >
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-12">
               <p className="font-paragraph text-gray-700 leading-relaxed">
-                Beim Umzug können Sie Ihren Stromvertrag kündigen und zu einem neuen Anbieter wechseln. Dies ist eine gute Gelegenheit, Kosten zu sparen. Wir zeigen Ihnen, worauf Sie achten müssen.
+                Beim Umzug können Sie Ihren Stromvertrag kündigen und zu einem neuen Anbieter
+                wechseln. Dies ist eine gute Gelegenheit, Kosten zu sparen. Wir zeigen Ihnen, worauf
+                Sie achten müssen.
               </p>
             </div>
 
@@ -117,7 +124,9 @@ export default function UmzugStromvertragArticle() {
                   Kündigungsfristen beim Umzug
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Sie können Ihren Stromvertrag beim Umzug mit einer Frist von 4 Wochen zum Ende eines Kalendermonats kündigen. Dies gilt auch für Verträge mit längerer Laufzeit. Sie müssen den Umzug dem Anbieter mitteilen.
+                  Sie können Ihren Stromvertrag beim Umzug mit einer Frist von 4 Wochen zum Ende
+                  eines Kalendermonats kündigen. Dies gilt auch für Verträge mit längerer Laufzeit.
+                  Sie müssen den Umzug dem Anbieter mitteilen.
                 </p>
               </div>
 
@@ -128,23 +137,33 @@ export default function UmzugStromvertragArticle() {
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Teilen Sie Ihrem Anbieter den Umzugstermin mit</span>
+                    <span className="font-paragraph text-gray-700">
+                      Teilen Sie Ihrem Anbieter den Umzugstermin mit
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Kündigen Sie rechtzeitig (4 Wochen vorher)</span>
+                    <span className="font-paragraph text-gray-700">
+                      Kündigen Sie rechtzeitig (4 Wochen vorher)
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Vergleichen Sie Tarife in Ihrer neuen Region</span>
+                    <span className="font-paragraph text-gray-700">
+                      Vergleichen Sie Tarife in Ihrer neuen Region
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Melden Sie sich beim neuen Anbieter an</span>
+                    <span className="font-paragraph text-gray-700">
+                      Melden Sie sich beim neuen Anbieter an
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Geben Sie Zählerstände an beiden Adressen an</span>
+                    <span className="font-paragraph text-gray-700">
+                      Geben Sie Zählerstände an beiden Adressen an
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -154,7 +173,9 @@ export default function UmzugStromvertragArticle() {
                   Sparpotenzial beim Umzug
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Beim Umzug können Sie oft zu einem günstigeren Anbieter wechseln. Nutzen Sie die Gelegenheit und vergleichen Sie die Tarife in Ihrer neuen Region. Mit Neukunden-Angeboten können Sie zusätzlich sparen.
+                  Beim Umzug können Sie oft zu einem günstigeren Anbieter wechseln. Nutzen Sie die
+                  Gelegenheit und vergleichen Sie die Tarife in Ihrer neuen Region. Mit
+                  Neukunden-Angeboten können Sie zusätzlich sparen.
                 </p>
               </div>
 
@@ -170,26 +191,31 @@ export default function UmzugStromvertragArticle() {
             {[
               {
                 q: 'Was passiert mit meinem Stromvertrag beim Umzug?',
-                a: 'Sie können Ihren Stromvertrag beim Umzug kündigen. Die Kündigungsfrist beträgt 4 Wochen zum Ende eines Kalendermonats. Sie müssen den Umzug dem Anbieter mitteilen.'
+                a: 'Sie können Ihren Stromvertrag beim Umzug kündigen. Die Kündigungsfrist beträgt 4 Wochen zum Ende eines Kalendermonats. Sie müssen den Umzug dem Anbieter mitteilen.',
               },
               {
                 q: 'Kann ich meinen Vertrag mitnehmen?',
-                a: 'Nein, Stromverträge sind an den Wohnort gebunden. Sie müssen einen neuen Vertrag für die neue Adresse abschließen. Dies ist eine gute Gelegenheit, zu einem günstigeren Anbieter zu wechseln.'
+                a: 'Nein, Stromverträge sind an den Wohnort gebunden. Sie müssen einen neuen Vertrag für die neue Adresse abschließen. Dies ist eine gute Gelegenheit, zu einem günstigeren Anbieter zu wechseln.',
               },
               {
                 q: 'Wie lange dauert die Anmeldung beim neuen Anbieter?',
-                a: 'Die Anmeldung dauert etwa 2-4 Wochen. Der neue Anbieter kümmert sich um die Abmeldung beim alten Anbieter. Ihre Stromversorgung wird nicht unterbrochen.'
+                a: 'Die Anmeldung dauert etwa 2-4 Wochen. Der neue Anbieter kümmert sich um die Abmeldung beim alten Anbieter. Ihre Stromversorgung wird nicht unterbrochen.',
               },
               {
                 q: 'Kann ich beim Umzug sparen?',
-                a: 'Ja, beim Umzug können Sie zu einem günstigeren Anbieter wechseln. Nutzen Sie die Gelegenheit und vergleichen Sie die Tarife in Ihrer neuen Region.'
+                a: 'Ja, beim Umzug können Sie zu einem günstigeren Anbieter wechseln. Nutzen Sie die Gelegenheit und vergleichen Sie die Tarife in Ihrer neuen Region.',
               },
               {
                 q: 'Was brauche ich für die Anmeldung?',
-                a: 'Sie benötigen Ihre neue Adresse, Ihre Zählernummer und den geschätzten Jahresverbrauch. Diese Informationen finden Sie auf Ihrer letzten Stromrechnung.'
-              }
+                a: 'Sie benötigen Ihre neue Adresse, Ihre Zählernummer und den geschätzten Jahresverbrauch. Diese Informationen finden Sie auf Ihrer letzten Stromrechnung.',
+              },
             ].map((item, index) => (
-              <Accordion key={index} type="single" collapsible className="bg-gray-50 rounded-lg px-6 border-none">
+              <Accordion
+                key={index}
+                type="single"
+                collapsible
+                className="bg-gray-50 rounded-lg px-6 border-none"
+              >
                 <AccordionItem value={`faq-${index}`} className="border-none">
                   <AccordionTrigger className="font-heading text-lg font-medium text-left py-4 hover:text-primary hover:no-underline">
                     {item.q}
@@ -207,9 +233,13 @@ export default function UmzugStromvertragArticle() {
               Jetzt Stromtarife vergleichen
             </h3>
             <p className="font-paragraph text-gray-700 mb-6">
-              Nutzen Sie unseren kostenlosen Vergleichsrechner und finden Sie den günstigsten Stromtarif in Ihrer Region.
+              Nutzen Sie unseren kostenlosen Vergleichsrechner und finden Sie den günstigsten
+              Stromtarif in Ihrer Region.
             </p>
-            <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
+            <Button
+              asChild
+              className="bg-secondary text-secondary-foreground hover:bg-secondary/90"
+            >
               <Link to={ROUTES.stromvergleich}>
                 Zum Stromvergleich
                 <ArrowRight className="w-5 h-5 ml-2" />
@@ -218,9 +248,7 @@ export default function UmzugStromvertragArticle() {
           </div>
 
           <div className="border-t pt-12">
-            <h3 className="font-heading text-2xl font-bold text-primary mb-6">
-              Verwandte Artikel
-            </h3>
+            <h3 className="font-heading text-2xl font-bold text-primary mb-6">Verwandte Artikel</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Link to="/ratgeber/strom/stromanbieter-wechseln-nrw" className="group">
                 <Card className="h-full hover:shadow-lg transition-shadow">

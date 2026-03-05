@@ -51,7 +51,7 @@ export default function UeberUnsPage() {
           <Breadcrumb
             items={[
               { label: 'Startseite', href: '/' },
-              { label: 'Über uns', href: '/about', current: true }
+              { label: 'Über uns', href: '/about', current: true },
             ]}
           />
         </div>
@@ -68,7 +68,8 @@ export default function UeberUnsPage() {
               Über uns
             </h1>
             <p className="font-paragraph text-lg sm:text-xl text-foreground/80 max-w-3xl mx-auto">
-              Ihr vertrauenswürdiger Partner für unabhängige Energievergleiche in Nordrhein-Westfalen
+              Ihr vertrauenswürdiger Partner für unabhängige Energievergleiche in
+              Nordrhein-Westfalen
             </p>
           </motion.div>
         </section>
@@ -87,13 +88,22 @@ export default function UeberUnsPage() {
                 ENERGIEVERGLEICH NRW
               </h2>
               <p className="font-paragraph text-base sm:text-lg text-foreground/80 mb-6 leading-relaxed">
-                ENERGIEVERGLEICH NRW ist Ihr unabhängiger Partner für transparente und zuverlässige Energievergleiche in Nordrhein-Westfalen. Gegründet von P. Kohmann und A. Danos, verfolgen wir das Ziel, Verbrauchern dabei zu helfen, die besten Energietarife zu finden und dabei Geld zu sparen.
+                ENERGIEVERGLEICH NRW ist Ihr unabhängiger Partner für transparente und zuverlässige
+                Energievergleiche in Nordrhein-Westfalen. Gegründet von P. Kohmann und A. Danos,
+                verfolgen wir das Ziel, Verbrauchern dabei zu helfen, die besten Energietarife zu
+                finden und dabei Geld zu sparen.
               </p>
               <p className="font-paragraph text-base sm:text-lg text-foreground/80 mb-6 leading-relaxed">
-                Unser Ansatz basiert auf vollständiger Transparenz und Unabhängigkeit. Wir vergleichen ausschließlich offizielle Tarife von etablierten Energieanbietern – ohne unbelegte Sparversprechen oder versteckte Gebühren. Jeder Vergleich wird sorgfältig durchgeführt, um sicherzustellen, dass Sie die für Ihre Situation beste Lösung erhalten.
+                Unser Ansatz basiert auf vollständiger Transparenz und Unabhängigkeit. Wir
+                vergleichen ausschließlich offizielle Tarife von etablierten Energieanbietern – ohne
+                unbelegte Sparversprechen oder versteckte Gebühren. Jeder Vergleich wird sorgfältig
+                durchgeführt, um sicherzustellen, dass Sie die für Ihre Situation beste Lösung
+                erhalten.
               </p>
               <p className="font-paragraph text-base sm:text-lg text-foreground/80 mb-8 leading-relaxed">
-                Wir glauben daran, dass Energiewechsel einfach, sicher und vorteilhaft sein sollte. Mit unserem Service sparen Sie nicht nur Geld, sondern unterstützen auch die Energiewende durch bewusste Tarifwahl.
+                Wir glauben daran, dass Energiewechsel einfach, sicher und vorteilhaft sein sollte.
+                Mit unserem Service sparen Sie nicht nur Geld, sondern unterstützen auch die
+                Energiewende durch bewusste Tarifwahl.
               </p>
 
               {/* Contact Info */}
@@ -157,7 +167,8 @@ export default function UeberUnsPage() {
                         Unabhängige Tarifauswahl
                       </h4>
                       <p className="font-paragraph text-sm text-foreground/80">
-                        Wir vergleichen Tarife von allen relevanten Energieanbietern in Ihrer Region – objektiv und ohne Voreingenommenheit.
+                        Wir vergleichen Tarife von allen relevanten Energieanbietern in Ihrer Region
+                        – objektiv und ohne Voreingenommenheit.
                       </p>
                     </div>
                   </div>
@@ -173,7 +184,8 @@ export default function UeberUnsPage() {
                         Offizielle Tarife
                       </h4>
                       <p className="font-paragraph text-sm text-foreground/80">
-                        Alle Tarife stammen direkt von den Energieanbietern und werden regelmäßig aktualisiert, um Ihnen aktuelle Preise zu zeigen.
+                        Alle Tarife stammen direkt von den Energieanbietern und werden regelmäßig
+                        aktualisiert, um Ihnen aktuelle Preise zu zeigen.
                       </p>
                     </div>
                   </div>
@@ -189,7 +201,8 @@ export default function UeberUnsPage() {
                         Transparente Berechnung
                       </h4>
                       <p className="font-paragraph text-sm text-foreground/80">
-                        Alle Kosten werden transparent dargestellt – keine versteckten Gebühren, keine überraschenden Zusatzkosten.
+                        Alle Kosten werden transparent dargestellt – keine versteckten Gebühren,
+                        keine überraschenden Zusatzkosten.
                       </p>
                     </div>
                   </div>
@@ -205,7 +218,8 @@ export default function UeberUnsPage() {
                         Realistische Einsparungen
                       </h4>
                       <p className="font-paragraph text-sm text-foreground/80">
-                        Wir zeigen Ihnen echte Sparpotenziale basierend auf Ihrem individuellen Verbrauch – ohne unrealistische Versprechen.
+                        Wir zeigen Ihnen echte Sparpotenziale basierend auf Ihrem individuellen
+                        Verbrauch – ohne unrealistische Versprechen.
                       </p>
                     </div>
                   </div>
@@ -262,16 +276,19 @@ export default function UeberUnsPage() {
             {[
               {
                 title: 'Transparenz',
-                description: 'Vollständige Offenlegung aller Kosten und Bedingungen – keine versteckten Gebühren.'
+                description:
+                  'Vollständige Offenlegung aller Kosten und Bedingungen – keine versteckten Gebühren.',
               },
               {
                 title: 'Unabhängigkeit',
-                description: 'Wir arbeiten unabhängig und objektiv für Ihre Interessen – nicht für Energiekonzerne.'
+                description:
+                  'Wir arbeiten unabhängig und objektiv für Ihre Interessen – nicht für Energiekonzerne.',
               },
               {
                 title: 'Datenschutz',
-                description: 'Ihre Daten sind bei uns sicher. Wir behandeln Ihre Informationen vertraulich und verantwortungsvoll.'
-              }
+                description:
+                  'Ihre Daten sind bei uns sicher. Wir behandeln Ihre Informationen vertraulich und verantwortungsvoll.',
+              },
             ].map((value, index) => (
               <motion.div
                 key={index}
@@ -284,9 +301,7 @@ export default function UeberUnsPage() {
                 <h3 className="font-heading text-xl font-bold text-foreground mb-4">
                   {value.title}
                 </h3>
-                <p className="font-paragraph text-foreground/80">
-                  {value.description}
-                </p>
+                <p className="font-paragraph text-foreground/80">{value.description}</p>
               </motion.div>
             ))}
           </div>
@@ -303,7 +318,8 @@ export default function UeberUnsPage() {
               Wie funktioniert unser Vergleich?
             </h3>
             <p className="font-paragraph text-foreground/80 mb-6 max-w-2xl mx-auto">
-              Erfahren Sie mehr über unsere Methodik und wie wir sicherstellen, dass Sie die besten Energietarife erhalten.
+              Erfahren Sie mehr über unsere Methodik und wie wir sicherstellen, dass Sie die besten
+              Energietarife erhalten.
             </p>
             <Link
               to="/methodik"
