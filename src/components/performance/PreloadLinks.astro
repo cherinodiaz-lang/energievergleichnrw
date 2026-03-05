@@ -1,0 +1,67 @@
+---
+/**
+ * Preload & Prefetch Component
+ * Optimiert Resource Loading für bessere Performance
+ */
+
+interface Props {
+  fonts?: string[];
+  images?: string[];
+  scripts?: string[];
+  prefetchPages?: string[];
+}
+
+const {
+  fonts = [],
+  images = [],
+  scripts = [],
+  prefetchPages = []
+} = Astro.props;
+---
+
+<!-- DNS Prefetch für externe Domains -->
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+<link rel="dns-prefetch" href="https://www.google-analytics.com" />
+
+<!-- Preconnect für kritische Ressourcen -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<!-- Preload Fonts -->
+{fonts.map((font) => (
+  <link
+    rel="preload"
+    href={font}
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  />
+))}
+
+<!-- Preload Critical Images -->
+{images.map((image) => (
+  <link
+    rel="preload"
+    href={image}
+    as="image"
+    type="image/webp"
+  />
+))}
+
+<!-- Preload Critical Scripts -->
+{scripts.map((script) => (
+  <link
+    rel="preload"
+    href={script}
+    as="script"
+  />
+))}
+
+<!-- Prefetch für wahrscheinlich als nächstes besuchte Seiten -->
+{prefetchPages.map((page) => (
+  <link rel="prefetch" href={page} />
+))}
+
+<!-- Preload ModulePreload für Vite Chunks -->
+<link rel="modulepreload" href="/_astro/client.js" />
