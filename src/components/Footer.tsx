@@ -29,23 +29,32 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-12">
           {/* Brand Section */}
           <div className="lg:col-span-1">
-            <Link to={ROUTES.home} className="flex items-center gap-2 sm:gap-3 mb-6" aria-label="Energievergleich NRW - Startseite">
+            <Link
+              to={ROUTES.home}
+              className="flex items-center gap-2 sm:gap-3 mb-6"
+              aria-label="Energievergleich NRW - Startseite"
+            >
               <div className="bg-primary-foreground p-1.5 sm:p-2 rounded-lg flex-shrink-0">
                 <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-primary" aria-hidden="true" />
               </div>
               <div className="flex flex-col">
-                <span className="font-heading font-bold text-base sm:text-lg">energievergleich</span>
+                <span className="font-heading font-bold text-base sm:text-lg">
+                  energievergleich
+                </span>
                 <span className="font-paragraph text-xs opacity-80">.shop</span>
               </div>
             </Link>
             <p className="font-paragraph text-xs sm:text-sm opacity-90 leading-relaxed">
-              Ihr vertrauenswürdiger Partner für Energievergleiche in Nordrhein-Westfalen. Sparen Sie Geld und schützen Sie die Umwelt.
+              Ihr vertrauenswürdiger Partner für Energievergleiche in Nordrhein-Westfalen. Sparen
+              Sie Geld und schützen Sie die Umwelt.
             </p>
           </div>
 
           {/* Spalte 1 - Rechtliches */}
           <div>
-            <h3 className="font-heading font-semibold text-base sm:text-lg mb-4 sm:mb-6">Rechtliches</h3>
+            <h3 className="font-heading font-semibold text-base sm:text-lg mb-4 sm:mb-6">
+              Rechtliches
+            </h3>
             <ul className="space-y-2 sm:space-y-3">
               {NAV_LEGAL.map((item) => (
                 <li key={item.key}>
@@ -62,7 +71,9 @@ export default function Footer() {
 
           {/* Spalte 2 - Service */}
           <div>
-            <h3 className="font-heading font-semibold text-base sm:text-lg mb-4 sm:mb-6">Service</h3>
+            <h3 className="font-heading font-semibold text-base sm:text-lg mb-4 sm:mb-6">
+              Service
+            </h3>
             <ul className="space-y-2 sm:space-y-3">
               {NAV_SERVICE.map((item) => (
                 <li key={item.key}>
@@ -79,7 +90,9 @@ export default function Footer() {
 
           {/* Kontakt & Social Media */}
           <div>
-            <h3 className="font-heading font-semibold text-base sm:text-lg mb-4 sm:mb-6">Kontakt & Social</h3>
+            <h3 className="font-heading font-semibold text-base sm:text-lg mb-4 sm:mb-6">
+              Kontakt & Social
+            </h3>
             <ul className="space-y-3 sm:space-y-4 mb-6">
               <li className="flex items-start gap-2 sm:gap-3">
                 <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" aria-hidden="true" />

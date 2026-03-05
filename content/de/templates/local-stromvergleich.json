@@ -14,16 +14,31 @@
     "localContext": {
       "title": "Was in {{city}} beim Stromtarif zählt",
       "cards": [
-        { "title": "Grundversorgung erkennen", "text": "Prüfe, ob du in der Grundversorgung bist – oft lohnt sich der Vergleich." },
-        { "title": "Laufzeit kurz halten", "text": "Mehr Flexibilität hilft bei Preisänderungen und Umzug." },
-        { "title": "Bonus richtig bewerten", "text": "Bonus kann lohnen – wenn du die Bedingungen kennst." }
+        {
+          "title": "Grundversorgung erkennen",
+          "text": "Prüfe, ob du in der Grundversorgung bist – oft lohnt sich der Vergleich."
+        },
+        {
+          "title": "Laufzeit kurz halten",
+          "text": "Mehr Flexibilität hilft bei Preisänderungen und Umzug."
+        },
+        {
+          "title": "Bonus richtig bewerten",
+          "text": "Bonus kann lohnen – wenn du die Bedingungen kennst."
+        }
       ]
     },
     "faq": {
       "title": "FAQ Stromvergleich {{city}}",
       "items": [
-        { "q": "Welche PLZ soll ich angeben?", "a": "Deine Wohn-PLZ in {{city}} – damit regionale Bestandteile berücksichtigt werden können." },
-        { "q": "Was, wenn ich meinen Verbrauch nicht kenne?", "a": "Nutze eine Schätzung über Haushaltsgröße oder Orientierung an der Wohnfläche." }
+        {
+          "q": "Welche PLZ soll ich angeben?",
+          "a": "Deine Wohn-PLZ in {{city}} – damit regionale Bestandteile berücksichtigt werden können."
+        },
+        {
+          "q": "Was, wenn ich meinen Verbrauch nicht kenne?",
+          "a": "Nutze eine Schätzung über Haushaltsgröße oder Orientierung an der Wohnfläche."
+        }
       ]
     }
   }

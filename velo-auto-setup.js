@@ -1,8 +1,8 @@
 /**
  * VELO AUTO-SETUP SCRIPT
- * 
+ *
  * Dieser Code installiert automatisch alle Backend-Module.
- * 
+ *
  * ANLEITUNG:
  * 1. Öffne Vibe Dashboard: https://manage.wix.com/dashboard/52dd1482-1ebb-4472-90a2-bce2af5d763f
  * 2. Aktiviere Velo Dev Mode (Falls nicht aktiv)
@@ -124,42 +124,40 @@ export async function setSEO(pageKey) {
 
 export async function setupVeloModules() {
   console.log('🚀 Starting Velo Auto-Setup...');
-  
+
   try {
     // Test CMS Connection
-    const testQuery = await wixData.query('SiteContent')
-      .eq('contentKey', 'home')
-      .limit(1)
-      .find();
-    
+    const testQuery = await wixData.query('SiteContent').eq('contentKey', 'home').limit(1).find();
+
     if (testQuery.items.length === 0) {
       console.error('❌ CMS Collection "SiteContent" not found or empty!');
       console.log('→ Make sure SiteContent collection exists with contentKey field');
       return;
     }
-    
+
     console.log('✅ CMS Connection verified');
     console.log('✅ Found', testQuery.items.length, 'content items');
-    
+
     // Instructions for manual module creation
     console.log('\n📝 NEXT STEPS:');
     console.log('1. Create file: backend/pages-router.jsw');
     console.log('2. Create file: backend/seo-manager.jsw');
     console.log('3. Copy code from GitHub:');
-    console.log('   https://github.com/cherinodiaz-lang/energievergleichnrw/tree/main/velo/backend');
-    
+    console.log(
+      '   https://github.com/cherinodiaz-lang/energievergleichnrw/tree/main/velo/backend'
+    );
+
     console.log('\n✅ Setup complete! Backend modules ready to use.');
-    
+
     return {
       success: true,
-      message: 'CMS verified, modules ready for creation'
+      message: 'CMS verified, modules ready for creation',
     };
-    
   } catch (error) {
     console.error('❌ Setup Error:', error);
     return {
       success: false,
-      error: error.message
+      error: error.message,
     };
   }
 }

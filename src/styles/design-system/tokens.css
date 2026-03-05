@@ -1,8 +1,9 @@
 /* file: assets/css/tokens.css */
 :root {
   /* Typography */
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-    Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
   --text-900: #111827;
   --text-700: #475569;
   --text-600: #4b5563;

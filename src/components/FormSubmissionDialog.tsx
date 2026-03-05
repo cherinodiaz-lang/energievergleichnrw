@@ -20,7 +20,13 @@ import { ROUTES } from '@/lib/routes';
 export interface FormSubmissionDialogProps {
   isOpen: boolean;
   onClose: () => void;
-  formType: 'kontakt' | 'stromvergleich' | 'gasvergleich' | 'photovoltaik' | 'gewerbestrom' | 'gewerbegas';
+  formType:
+    | 'kontakt'
+    | 'stromvergleich'
+    | 'gasvergleich'
+    | 'photovoltaik'
+    | 'gewerbestrom'
+    | 'gewerbegas';
   formData: Record<string, any>;
   requiredFields: string[];
   onSuccess?: () => void;
@@ -34,7 +40,7 @@ export default function FormSubmissionDialog({
   formData,
   requiredFields,
   onSuccess,
-  title = 'Anfrage senden'
+  title = 'Anfrage senden',
 }: FormSubmissionDialogProps) {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -48,7 +54,7 @@ export default function FormSubmissionDialog({
     // Check privacy consent
     if (!privacyConsent) {
       setErrors({
-        privacy: 'Sie müssen den Datenschutzhinweisen zustimmen'
+        privacy: 'Sie müssen den Datenschutzhinweisen zustimmen',
       });
       return;
     }
@@ -66,7 +72,7 @@ export default function FormSubmissionDialog({
     try {
       const result = await submitForm({
         ...formData,
-        type: formType
+        type: formType,
       });
 
       if (result.success) {
@@ -88,12 +94,12 @@ export default function FormSubmissionDialog({
         }, 2000);
       } else {
         setErrors({
-          submit: result.message || 'Ein Fehler ist aufgetreten'
+          submit: result.message || 'Ein Fehler ist aufgetreten',
         });
       }
     } catch (error) {
       setErrors({
-        submit: 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.'
+        submit: 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.',
       });
     } finally {
       setIsSubmitting(false);
@@ -165,7 +171,10 @@ export default function FormSubmissionDialog({
                   {Object.keys(errors).length > 0 && (
                     <div className="bg-red-50 border border-red-200 rounded-lg p-4">
                       {Object.entries(errors).map(([field, error]) => (
-                        <div key={field} className="flex items-start gap-2 text-red-700 text-sm mb-2 last:mb-0">
+                        <div
+                          key={field}
+                          className="flex items-start gap-2 text-red-700 text-sm mb-2 last:mb-0"
+                        >
                           <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
                           <span>{error}</span>
                         </div>
@@ -227,12 +236,7 @@ export default function FormSubmissionDialog({
                   </Button>
 
                   {/* Close Button */}
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={handleClose}
-                    className="w-full"
-                  >
+                  <Button type="button" variant="outline" onClick={handleClose} className="w-full">
                     Abbrechen
                   </Button>
                 </form>

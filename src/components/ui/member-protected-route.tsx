@@ -35,13 +35,13 @@ interface MemberProtectedRouteProps {
 
 export function MemberProtectedRoute({
   children,
-  messageToSignIn = "Please sign in to access this page.",
-  messageToLoading = "Loading page...",
-  signInTitle = "Sign In Required",
-  signInClassName = "",
-  loadingClassName = "",
+  messageToSignIn = 'Please sign in to access this page.',
+  messageToLoading = 'Loading page...',
+  signInTitle = 'Sign In Required',
+  signInClassName = '',
+  loadingClassName = '',
   signInProps = {},
-  loadingSpinnerProps = {}
+  loadingSpinnerProps = {},
 }: MemberProtectedRouteProps) {
   const { isAuthenticated, isLoading } = useMember();
 

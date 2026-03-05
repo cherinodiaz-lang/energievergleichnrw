@@ -4,7 +4,9 @@ interface SearchConsoleVerificationProps {
   verificationCode?: string;
 }
 
-export default function SearchConsoleVerification({ verificationCode }: SearchConsoleVerificationProps) {
+export default function SearchConsoleVerification({
+  verificationCode,
+}: SearchConsoleVerificationProps) {
   useEffect(() => {
     if (!verificationCode) return;
 

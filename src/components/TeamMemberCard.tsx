@@ -32,15 +32,9 @@ export default function TeamMemberCard({ member, index = 0 }: TeamMemberCardProp
 
       {/* Content */}
       <div className="p-6">
-        <h3 className="font-heading text-xl font-bold text-foreground mb-2">
-          {member.name}
-        </h3>
-        <p className="font-paragraph text-sm text-primary font-semibold mb-4">
-          {member.position}
-        </p>
-        <p className="font-paragraph text-sm text-foreground/80 leading-relaxed">
-          {member.bio}
-        </p>
+        <h3 className="font-heading text-xl font-bold text-foreground mb-2">{member.name}</h3>
+        <p className="font-paragraph text-sm text-primary font-semibold mb-4">{member.position}</p>
+        <p className="font-paragraph text-sm text-foreground/80 leading-relaxed">{member.bio}</p>
       </div>
     </motion.div>
   );

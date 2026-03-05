@@ -34,7 +34,7 @@ export function formatPhone(phone: string): string {
 export function formatCurrency(amount: number, locale = 'de-DE'): string {
   return new Intl.NumberFormat(locale, {
     style: 'currency',
-    currency: 'EUR'
+    currency: 'EUR',
   }).format(amount);
 }
 
@@ -50,19 +50,19 @@ export function formatNumber(num: number, locale = 'de-DE'): string {
  */
 export function formatDate(date: Date | string, format: 'short' | 'long' = 'long'): string {
   const d = typeof date === 'string' ? new Date(date) : date;
-  
+
   if (format === 'short') {
     return new Intl.DateTimeFormat('de-DE', {
       day: '2-digit',
       month: '2-digit',
-      year: 'numeric'
+      year: 'numeric',
     }).format(d);
   }
-  
+
   return new Intl.DateTimeFormat('de-DE', {
     day: 'numeric',
     month: 'long',
-    year: 'numeric'
+    year: 'numeric',
   }).format(d);
 }
 

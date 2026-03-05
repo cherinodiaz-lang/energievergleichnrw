@@ -75,6 +75,4 @@ export interface ApiError {
   details?: Record<string, any>;
 }
 
-export type ApiResponse<T> =
-  | { success: true; data: T }
-  | { success: false; error: ApiError };
+export type ApiResponse<T> = { success: true; data: T } | { success: false; error: ApiError };

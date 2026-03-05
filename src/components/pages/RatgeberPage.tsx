@@ -19,57 +19,63 @@ export default function RatgeberPage() {
     {
       id: 'strom',
       title: 'Stromvergleich & Tarife',
-      description: 'Alles über Stromtarife, Wechsel und Sparpotenziale in NRW. Erfahren Sie, wie Sie die richtige Wahl treffen und monatlich sparen.',
+      description:
+        'Alles über Stromtarife, Wechsel und Sparpotenziale in NRW. Erfahren Sie, wie Sie die richtige Wahl treffen und monatlich sparen.',
       icon: Zap,
       color: 'from-blue-500 to-blue-600',
       articles: 8,
-      link: '/ratgeber/strom'
+      link: '/ratgeber/strom',
     },
     {
       id: 'gas',
       title: 'Gasvergleich & Heizung',
-      description: 'Ratgeber zu Gastarifen, Heizkosten und Wechseloptionen. Verstehen Sie Ihre Gasrechnung und optimieren Sie Ihre Heizkosten.',
+      description:
+        'Ratgeber zu Gastarifen, Heizkosten und Wechseloptionen. Verstehen Sie Ihre Gasrechnung und optimieren Sie Ihre Heizkosten.',
       icon: Flame,
       color: 'from-orange-500 to-orange-600',
       articles: 6,
-      link: '/ratgeber/gas'
+      link: '/ratgeber/gas',
     },
     {
       id: 'gewerbe',
       title: 'Gewerbeenergie',
-      description: 'Spezielle Informationen für Unternehmen und Gewerbetreibende. Optimieren Sie Ihre Energiekosten im Betrieb.',
+      description:
+        'Spezielle Informationen für Unternehmen und Gewerbetreibende. Optimieren Sie Ihre Energiekosten im Betrieb.',
       icon: Building2,
       color: 'from-green-500 to-green-600',
       articles: 3,
-      link: '/ratgeber/gewerbe'
+      link: '/ratgeber/gewerbe',
     },
     {
       id: 'photovoltaik',
       title: 'Photovoltaik & Solar',
-      description: 'Leitfaden zu Solaranlagen, Wirtschaftlichkeit und Förderungen. Erfahren Sie, ob eine PV-Anlage für Sie rentabel ist.',
+      description:
+        'Leitfaden zu Solaranlagen, Wirtschaftlichkeit und Förderungen. Erfahren Sie, ob eine PV-Anlage für Sie rentabel ist.',
       icon: Sun,
       color: 'from-yellow-500 to-yellow-600',
       articles: 5,
-      link: '/ratgeber/photovoltaik'
+      link: '/ratgeber/photovoltaik',
     },
     {
       id: 'wechselwissen',
       title: 'Wechselwissen',
-      description: 'Wichtiges über Anbieterwechsel, Fristen und Besonderheiten. Alles, was Sie zum erfolgreichen Wechsel wissen müssen.',
+      description:
+        'Wichtiges über Anbieterwechsel, Fristen und Besonderheiten. Alles, was Sie zum erfolgreichen Wechsel wissen müssen.',
       icon: BookOpen,
       color: 'from-purple-500 to-purple-600',
       articles: 3,
-      link: '/ratgeber/wechselwissen'
-    }
+      link: '/ratgeber/wechselwissen',
+    },
   ];
 
   const filteredCategories = useMemo(() => {
     if (!searchQuery.trim()) return categories;
-    
+
     const query = searchQuery.toLowerCase();
-    return categories.filter(category =>
-      category.title.toLowerCase().includes(query) ||
-      category.description.toLowerCase().includes(query)
+    return categories.filter(
+      (category) =>
+        category.title.toLowerCase().includes(query) ||
+        category.description.toLowerCase().includes(query)
     );
   }, [searchQuery]);
 
@@ -81,8 +87,14 @@ export default function RatgeberPage() {
   ];
 
   const breadcrumbSchema = [
-    { name: 'Startseite', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}` },
-    { name: 'Ratgeber', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.ratgeber}` },
+    {
+      name: 'Startseite',
+      url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}`,
+    },
+    {
+      name: 'Ratgeber',
+      url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.ratgeber}`,
+    },
   ];
 
   return (
@@ -112,7 +124,14 @@ export default function RatgeberPage() {
               Ratgeber & Wissen
             </h1>
             <p className="font-paragraph text-lg md:text-xl text-white/90 mb-8 max-w-3xl">
-              Unser Ratgeber liefert Ihnen neutrale, unabhängige Informationen zu den wichtigsten Energiethemen: Stromtarife und Anbieterwechsel, Gasversorgung und Heizkosten, Photovoltaik und Solaranlagen, Gewerbeenergie für Unternehmen sowie praktisches Wechselwissen. Wir erklären komplexe Zusammenhänge verständlich und ohne Verkaufsabsicht – damit Sie fundierte Entscheidungen treffen können. Mit praxisnahen Tipps, Checklisten und konkreten Handlungsempfehlungen helfen wir Ihnen, Energiekosten zu sparen und den passenden Tarif für Ihre Situation zu finden. Egal ob Privathaushalt oder Gewerbebetrieb – hier finden Sie das Wissen, das Sie brauchen.
+              Unser Ratgeber liefert Ihnen neutrale, unabhängige Informationen zu den wichtigsten
+              Energiethemen: Stromtarife und Anbieterwechsel, Gasversorgung und Heizkosten,
+              Photovoltaik und Solaranlagen, Gewerbeenergie für Unternehmen sowie praktisches
+              Wechselwissen. Wir erklären komplexe Zusammenhänge verständlich und ohne
+              Verkaufsabsicht – damit Sie fundierte Entscheidungen treffen können. Mit praxisnahen
+              Tipps, Checklisten und konkreten Handlungsempfehlungen helfen wir Ihnen, Energiekosten
+              zu sparen und den passenden Tarif für Ihre Situation zu finden. Egal ob Privathaushalt
+              oder Gewerbebetrieb – hier finden Sie das Wissen, das Sie brauchen.
             </p>
           </motion.div>
         </div>
@@ -156,7 +175,9 @@ export default function RatgeberPage() {
                       <CardContent className="p-6">
                         <p className="font-paragraph text-gray-600 mb-6">{category.description}</p>
                         <div className="flex items-center justify-between">
-                          <span className="text-sm font-bold text-primary">{category.articles} Artikel</span>
+                          <span className="text-sm font-bold text-primary">
+                            {category.articles} Artikel
+                          </span>
                           <ArrowRight className="w-5 h-5 text-primary group-hover:translate-x-2 transition-transform" />
                         </div>
                       </CardContent>
@@ -194,55 +215,85 @@ export default function RatgeberPage() {
             <Link to="/ratgeber/strom" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Strom-Ratgeber</CardTitle>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">
+                    Strom-Ratgeber
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="font-paragraph text-sm text-gray-600 mb-4">Alles über Stromtarife und Wechsel.</p>
-                  <Button variant="outline" size="sm">Mehr erfahren</Button>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">
+                    Alles über Stromtarife und Wechsel.
+                  </p>
+                  <Button variant="outline" size="sm">
+                    Mehr erfahren
+                  </Button>
                 </CardContent>
               </Card>
             </Link>
             <Link to="/ratgeber/gas" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Gas-Ratgeber</CardTitle>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">
+                    Gas-Ratgeber
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="font-paragraph text-sm text-gray-600 mb-4">Ratgeber zu Gastarifen und Heizung.</p>
-                  <Button variant="outline" size="sm">Mehr erfahren</Button>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">
+                    Ratgeber zu Gastarifen und Heizung.
+                  </p>
+                  <Button variant="outline" size="sm">
+                    Mehr erfahren
+                  </Button>
                 </CardContent>
               </Card>
             </Link>
             <Link to="/ratgeber/photovoltaik" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Photovoltaik-Ratgeber</CardTitle>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">
+                    Photovoltaik-Ratgeber
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="font-paragraph text-sm text-gray-600 mb-4">Leitfaden zu Solaranlagen.</p>
-                  <Button variant="outline" size="sm">Mehr erfahren</Button>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">
+                    Leitfaden zu Solaranlagen.
+                  </p>
+                  <Button variant="outline" size="sm">
+                    Mehr erfahren
+                  </Button>
                 </CardContent>
               </Card>
             </Link>
             <Link to="/ratgeber/gewerbe" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Gewerbe-Ratgeber</CardTitle>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">
+                    Gewerbe-Ratgeber
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="font-paragraph text-sm text-gray-600 mb-4">Energie für Unternehmen.</p>
-                  <Button variant="outline" size="sm">Mehr erfahren</Button>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">
+                    Energie für Unternehmen.
+                  </p>
+                  <Button variant="outline" size="sm">
+                    Mehr erfahren
+                  </Button>
                 </CardContent>
               </Card>
             </Link>
             <Link to="/ratgeber/wechselwissen" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Wechselwissen</CardTitle>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">
+                    Wechselwissen
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="font-paragraph text-sm text-gray-600 mb-4">Wichtiges über Anbieterwechsel.</p>
-                  <Button variant="outline" size="sm">Mehr erfahren</Button>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">
+                    Wichtiges über Anbieterwechsel.
+                  </p>
+                  <Button variant="outline" size="sm">
+                    Mehr erfahren
+                  </Button>
                 </CardContent>
               </Card>
             </Link>
@@ -261,33 +312,51 @@ export default function RatgeberPage() {
             <Link to="/ratgeber/strom/grundversorgung" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Grundversorgung: Was bedeutet das?</CardTitle>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">
+                    Grundversorgung: Was bedeutet das?
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="font-paragraph text-sm text-gray-600 mb-4">Verstehen Sie die Grundversorgung.</p>
-                  <Button variant="outline" size="sm">Mehr erfahren</Button>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">
+                    Verstehen Sie die Grundversorgung.
+                  </p>
+                  <Button variant="outline" size="sm">
+                    Mehr erfahren
+                  </Button>
                 </CardContent>
               </Card>
             </Link>
             <Link to="/ratgeber/gas/gasanbieter-wechseln-nrw" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Gasanbieter wechseln in NRW</CardTitle>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">
+                    Gasanbieter wechseln in NRW
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="font-paragraph text-sm text-gray-600 mb-4">Schritt-für-Schritt Anleitung.</p>
-                  <Button variant="outline" size="sm">Mehr erfahren</Button>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">
+                    Schritt-für-Schritt Anleitung.
+                  </p>
+                  <Button variant="outline" size="sm">
+                    Mehr erfahren
+                  </Button>
                 </CardContent>
               </Card>
             </Link>
             <Link to="/ratgeber/photovoltaik/pv-speicher-lohnt-sich" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">PV-Speicher: Lohnt sich das?</CardTitle>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">
+                    PV-Speicher: Lohnt sich das?
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="font-paragraph text-sm text-gray-600 mb-4">Wirtschaftlichkeit von Stromspeichern.</p>
-                  <Button variant="outline" size="sm">Mehr erfahren</Button>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">
+                    Wirtschaftlichkeit von Stromspeichern.
+                  </p>
+                  <Button variant="outline" size="sm">
+                    Mehr erfahren
+                  </Button>
                 </CardContent>
               </Card>
             </Link>
@@ -311,16 +380,17 @@ export default function RatgeberPage() {
             {[
               {
                 title: 'Unabhängig',
-                description: 'Neutrale Informationen ohne Verkaufsabsicht. Wir erklären die Fakten.'
+                description:
+                  'Neutrale Informationen ohne Verkaufsabsicht. Wir erklären die Fakten.',
               },
               {
                 title: 'Verständlich',
-                description: 'Komplexe Themen einfach erklärt. Keine unnötigen Fachbegriffe.'
+                description: 'Komplexe Themen einfach erklärt. Keine unnötigen Fachbegriffe.',
               },
               {
                 title: 'Praktisch',
-                description: 'Mit konkreten Tipps und Checklisten zum Umsetzen.'
-              }
+                description: 'Mit konkreten Tipps und Checklisten zum Umsetzen.',
+              },
             ].map((item, index) => (
               <motion.div
                 key={index}
@@ -331,7 +401,9 @@ export default function RatgeberPage() {
               >
                 <Card>
                   <CardHeader>
-                    <CardTitle className="font-heading text-xl text-primary">{item.title}</CardTitle>
+                    <CardTitle className="font-heading text-xl text-primary">
+                      {item.title}
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="font-paragraph text-gray-600">{item.description}</p>

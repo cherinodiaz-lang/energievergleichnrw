@@ -20,8 +20,19 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import TrustRow from '@/components/TrustRow';
 import RelatedPages from '@/components/RelatedPages';
@@ -195,7 +206,8 @@ export default function StromvergleichDortmundPage() {
         title: 'Stromvergleich Dortmund 2026 | Günstige Tarife für Dortmunder Haushalte',
         description:
           'Stromvergleich für Dortmund – Tarife vergleichen & bis zu 30 % sparen. Kostenloser Stromtarif-Rechner für Dortmunder Haushalte.',
-        keywords: 'Stromvergleich Dortmund, Stromtarife Dortmund, Stromanbieter Dortmund, Stromwechsel Dortmund',
+        keywords:
+          'Stromvergleich Dortmund, Stromtarife Dortmund, Stromanbieter Dortmund, Stromwechsel Dortmund',
         canonical: 'https://www.energievergleich.shop/stromvergleich-dortmund',
         ogTitle: 'Stromvergleich Dortmund 2026 | Günstige Tarife für Dortmunder Haushalte',
         ogDescription:
@@ -220,16 +232,22 @@ export default function StromvergleichDortmundPage() {
               Stromvergleich Dortmund: Günstige Tarife für Dortmunder Haushalte
             </h1>
             <p className="font-paragraph text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
-              Finden Sie den günstigsten Stromtarif in Dortmund. Kostenlos, unabhängig und in wenigen Minuten.
+              Finden Sie den günstigsten Stromtarif in Dortmund. Kostenlos, unabhängig und in
+              wenigen Minuten.
             </p>
             <div className="flex flex-col gap-4">
               <Button
-                onClick={() => document.getElementById('vergleich')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() =>
+                  document.getElementById('vergleich')?.scrollIntoView({ behavior: 'smooth' })
+                }
                 className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 px-8 rounded-full text-lg font-semibold shadow-lg"
               >
                 Jetzt vergleichen
               </Button>
-              <Link to="/methodik" className="text-white/80 hover:text-white transition-colors text-sm font-medium underline">
+              <Link
+                to="/methodik"
+                className="text-white/80 hover:text-white transition-colors text-sm font-medium underline"
+              >
                 So vergleichen wir (Methodik)
               </Link>
             </div>
@@ -257,14 +275,17 @@ export default function StromvergleichDortmundPage() {
                           id="plz"
                           placeholder="z.B. 44135"
                           value={formData.postleitzahl}
-                          onChange={(e) => setFormData({ ...formData, postleitzahl: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, postleitzahl: e.target.value })
+                          }
                           required
                           className="font-paragraph w-full"
                         />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="verbrauch" className="font-paragraph">
-                          Jahresverbrauch (kWh) <span className="text-gray-400 text-sm">(optional)</span>
+                          Jahresverbrauch (kWh){' '}
+                          <span className="text-gray-400 text-sm">(optional)</span>
                         </Label>
                         <Input
                           id="verbrauch"
@@ -312,7 +333,9 @@ export default function StromvergleichDortmundPage() {
                   transition={{ duration: 0.5 }}
                   className="mt-12"
                 >
-                  <h2 className="font-heading text-2xl font-bold text-primary mb-8">Tarifvorschau für {formData.postleitzahl}</h2>
+                  <h2 className="font-heading text-2xl font-bold text-primary mb-8">
+                    Tarifvorschau für {formData.postleitzahl}
+                  </h2>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                     {[
@@ -345,25 +368,43 @@ export default function StromvergleichDortmundPage() {
                         >
                           <Card className="h-full flex flex-col shadow-lg hover:shadow-xl transition-shadow">
                             <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10">
-                              <CardTitle className="font-heading text-xl text-primary">{tariff.name}</CardTitle>
+                              <CardTitle className="font-heading text-xl text-primary">
+                                {tariff.name}
+                              </CardTitle>
                             </CardHeader>
                             <CardContent className="p-6 flex-1 flex flex-col justify-between">
                               <div className="space-y-4 mb-6">
                                 <div>
-                                  <p className="font-paragraph text-sm text-gray-600 mb-1">Arbeitspreis</p>
-                                  <p className="font-heading text-lg font-bold text-primary">{tariff.pricePerKwh.toFixed(2)} €/kWh</p>
+                                  <p className="font-paragraph text-sm text-gray-600 mb-1">
+                                    Arbeitspreis
+                                  </p>
+                                  <p className="font-heading text-lg font-bold text-primary">
+                                    {tariff.pricePerKwh.toFixed(2)} €/kWh
+                                  </p>
                                 </div>
                                 <div>
-                                  <p className="font-paragraph text-sm text-gray-600 mb-1">Grundgebühr</p>
-                                  <p className="font-heading text-lg font-bold text-primary">{tariff.baseFee.toFixed(2)} €/Monat</p>
+                                  <p className="font-paragraph text-sm text-gray-600 mb-1">
+                                    Grundgebühr
+                                  </p>
+                                  <p className="font-heading text-lg font-bold text-primary">
+                                    {tariff.baseFee.toFixed(2)} €/Monat
+                                  </p>
                                 </div>
                                 <div className="border-t pt-4">
-                                  <p className="font-paragraph text-sm text-gray-600 mb-1">Geschätzte monatliche Kosten</p>
-                                  <p className="font-heading text-2xl font-bold text-secondary">{monthlyPrice.toFixed(2)} €</p>
+                                  <p className="font-paragraph text-sm text-gray-600 mb-1">
+                                    Geschätzte monatliche Kosten
+                                  </p>
+                                  <p className="font-heading text-2xl font-bold text-secondary">
+                                    {monthlyPrice.toFixed(2)} €
+                                  </p>
                                 </div>
                                 <div>
-                                  <p className="font-paragraph text-sm text-gray-600 mb-1">Geschätzte jährliche Kosten</p>
-                                  <p className="font-heading text-lg font-bold text-primary">{yearlyPrice.toFixed(2)} €/Jahr</p>
+                                  <p className="font-paragraph text-sm text-gray-600 mb-1">
+                                    Geschätzte jährliche Kosten
+                                  </p>
+                                  <p className="font-heading text-lg font-bold text-primary">
+                                    {yearlyPrice.toFixed(2)} €/Jahr
+                                  </p>
                                 </div>
                               </div>
                               <Link to={ROUTES.kontakt} className="w-full">
@@ -382,7 +423,8 @@ export default function StromvergleichDortmundPage() {
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start gap-3">
                     <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
                     <p className="font-paragraph text-sm text-gray-700">
-                      <strong>Hinweis:</strong> Vorschau basiert auf Beispielrechnung. Finale Tarife nach Anbieterabfrage.
+                      <strong>Hinweis:</strong> Vorschau basiert auf Beispielrechnung. Finale Tarife
+                      nach Anbieterabfrage.
                     </p>
                   </div>
                 </motion.div>
@@ -391,7 +433,9 @@ export default function StromvergleichDortmundPage() {
 
             <div className="space-y-6">
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                <h3 className="font-heading font-bold text-primary mb-4">Warum mit uns vergleichen?</h3>
+                <h3 className="font-heading font-bold text-primary mb-4">
+                  Warum mit uns vergleichen?
+                </h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -421,47 +465,64 @@ export default function StromvergleichDortmundPage() {
         <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-8">
             <div>
-              <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Stromvergleich für Dortmund</h2>
+              <h2 className="font-heading text-3xl font-bold text-primary mb-6">
+                Kurz erklärt: Stromvergleich für Dortmund
+              </h2>
 
               <p className="font-paragraph text-lg text-gray-700 mb-6">
-                Mit unserem Stromvergleich finden Sie in wenigen Minuten den günstigsten Stromtarif für Ihren Haushalt in Dortmund. Der Vergleich ist völlig kostenlos und unverbindlich – Sie geben nur Ihre Postleitzahl und Ihren Stromverbrauch ein und erhalten sofort alle verfügbaren Tarife übersichtlich sortiert. Sparen Sie durchschnittlich 200–400 Euro pro Jahr durch einen Wechsel zu einem besseren Anbieter.
+                Mit unserem Stromvergleich finden Sie in wenigen Minuten den günstigsten Stromtarif
+                für Ihren Haushalt in Dortmund. Der Vergleich ist völlig kostenlos und unverbindlich
+                – Sie geben nur Ihre Postleitzahl und Ihren Stromverbrauch ein und erhalten sofort
+                alle verfügbaren Tarife übersichtlich sortiert. Sparen Sie durchschnittlich 200–400
+                Euro pro Jahr durch einen Wechsel zu einem besseren Anbieter.
               </p>
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4">So funktioniert der Vergleich – 5 einfache Schritte</h3>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">
+                So funktioniert der Vergleich – 5 einfache Schritte
+              </h3>
               <ol className="font-paragraph text-gray-700 space-y-3 mb-6 list-decimal list-inside">
                 <li>
-                  <strong>Postleitzahl eingeben:</strong> Geben Sie Ihre Dortmunder PLZ ein (z.B. 44135, 44139, 44227), um Tarife für Ihren Netzbereich zu sehen
+                  <strong>Postleitzahl eingeben:</strong> Geben Sie Ihre Dortmunder PLZ ein (z.B.
+                  44135, 44139, 44227), um Tarife für Ihren Netzbereich zu sehen
                 </li>
                 <li>
-                  <strong>Stromverbrauch angeben:</strong> Tragen Sie Ihren jährlichen Verbrauch in kWh ein (zu finden auf der Stromrechnung)
+                  <strong>Stromverbrauch angeben:</strong> Tragen Sie Ihren jährlichen Verbrauch in
+                  kWh ein (zu finden auf der Stromrechnung)
                 </li>
                 <li>
-                  <strong>Tarife vergleichen:</strong> Sehen Sie alle verfügbaren Angebote mit Preis, Laufzeit und Preisgarantie
+                  <strong>Tarife vergleichen:</strong> Sehen Sie alle verfügbaren Angebote mit
+                  Preis, Laufzeit und Preisgarantie
                 </li>
                 <li>
-                  <strong>Wunsch-Tarif wählen:</strong> Entscheiden Sie sich für den besten Tarif nach Ihren Kriterien
+                  <strong>Wunsch-Tarif wählen:</strong> Entscheiden Sie sich für den besten Tarif
+                  nach Ihren Kriterien
                 </li>
                 <li>
-                  <strong>Wechsel abschließen:</strong> Wir kümmern uns um die Kündigung beim alten Anbieter und den Wechsel – kostenlos und sicher
+                  <strong>Wechsel abschließen:</strong> Wir kümmern uns um die Kündigung beim alten
+                  Anbieter und den Wechsel – kostenlos und sicher
                 </li>
               </ol>
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Welche Angaben du brauchst</h3>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">
+                Welche Angaben du brauchst
+              </h3>
               <ul className="font-paragraph text-gray-700 space-y-2 mb-6">
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">•</span>
                   <span>
-                    <strong>Postleitzahl:</strong> Bestimmt Ihren Stromnetzbetreiber und verfügbare Tarife in Dortmund
+                    <strong>Postleitzahl:</strong> Bestimmt Ihren Stromnetzbetreiber und verfügbare
+                    Tarife in Dortmund
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">•</span>
                   <span>
-                    <strong>Jahresverbrauch in kWh:</strong> Finden Sie auf Ihrer letzten Stromrechnung unter „Verbrauch"
+                    <strong>Jahresverbrauch in kWh:</strong> Finden Sie auf Ihrer letzten
+                    Stromrechnung unter „Verbrauch"
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
@@ -480,68 +541,94 @@ export default function StromvergleichDortmundPage() {
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Worauf du achten solltest</h3>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">
+                Worauf du achten solltest
+              </h3>
               <ul className="font-paragraph text-gray-700 space-y-3 mb-6">
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">✓</span>
                   <span>
-                    <strong>Laufzeit:</strong> Kurze Laufzeiten (12 Monate) bieten mehr Flexibilität als längere Verträge
+                    <strong>Laufzeit:</strong> Kurze Laufzeiten (12 Monate) bieten mehr Flexibilität
+                    als längere Verträge
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">✓</span>
                   <span>
-                    <strong>Preisgarantie:</strong> Achten Sie auf die Dauer der Preisgarantie – mindestens 12 Monate sind empfehlenswert
+                    <strong>Preisgarantie:</strong> Achten Sie auf die Dauer der Preisgarantie –
+                    mindestens 12 Monate sind empfehlenswert
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">✓</span>
                   <span>
-                    <strong>Neukundenbonus:</strong> Viele Anbieter bieten Wechselboni, die die Gesamtkosten senken
+                    <strong>Neukundenbonus:</strong> Viele Anbieter bieten Wechselboni, die die
+                    Gesamtkosten senken
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">✓</span>
                   <span>
-                    <strong>Abschlag und Kündigungsfristen:</strong> Prüfen Sie die Höhe der monatlichen Abschläge und die Kündigungsfrist zum Vertragsende
+                    <strong>Abschlag und Kündigungsfristen:</strong> Prüfen Sie die Höhe der
+                    monatlichen Abschläge und die Kündigungsfrist zum Vertragsende
                   </span>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Häufige Fehler beim Stromwechsel</h3>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">
+                Häufige Fehler beim Stromwechsel
+              </h3>
               <ul className="font-paragraph text-gray-700 space-y-3 mb-6">
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">✗</span>
                   <span>
-                    <strong>Nur auf den Preis schauen:</strong> Der niedrigste Preis ist nicht immer die beste Wahl – achten Sie auch auf Laufzeit, Preisgarantie und Kündigungsfristen
+                    <strong>Nur auf den Preis schauen:</strong> Der niedrigste Preis ist nicht immer
+                    die beste Wahl – achten Sie auch auf Laufzeit, Preisgarantie und
+                    Kündigungsfristen
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">✗</span>
                   <span>
-                    <strong>Verbrauch falsch eingeben:</strong> Ein falscher Verbrauch führt zu unrealistischen Tarifangeboten – überprüfen Sie die Zahl auf Ihrer Rechnung
+                    <strong>Verbrauch falsch eingeben:</strong> Ein falscher Verbrauch führt zu
+                    unrealistischen Tarifangeboten – überprüfen Sie die Zahl auf Ihrer Rechnung
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">✗</span>
                   <span>
-                    <strong>Kündigungsfristen ignorieren:</strong> Verpassen Sie nicht die Kündigungsfrist beim alten Anbieter – wir kümmern uns darum, aber informieren Sie sich selbst
+                    <strong>Kündigungsfristen ignorieren:</strong> Verpassen Sie nicht die
+                    Kündigungsfrist beim alten Anbieter – wir kümmern uns darum, aber informieren
+                    Sie sich selbst
                   </span>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Stromvergleich speziell für Dortmund</h3>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">
+                Stromvergleich speziell für Dortmund
+              </h3>
               <p className="font-paragraph text-gray-700 mb-4">
-                Dortmund ist mit über 580.000 Einwohnern eine der größten Städte Deutschlands und hat eine vielfältige Strommarkt-Landschaft. Die Strompreise variieren je nach Postleitzahl und Netzbetreiber – in der Innenstadt (44135) können die Tarife anders ausfallen als in Dortmund-Hörde (44263) oder Dortmund-Brackel (44309). Unser Vergleich berücksichtigt diese regionalen Unterschiede und zeigt Ihnen die besten Tarife speziell für Ihren Standort in Dortmund. Dortmund hat eine starke Industriegeschichte und ist heute ein wichtiger Wirtschaftsstandort. Dies spiegelt sich auch in der Strommarkt-Struktur wider, mit vielen lokalen und überregionalen Anbietern.
+                Dortmund ist mit über 580.000 Einwohnern eine der größten Städte Deutschlands und
+                hat eine vielfältige Strommarkt-Landschaft. Die Strompreise variieren je nach
+                Postleitzahl und Netzbetreiber – in der Innenstadt (44135) können die Tarife anders
+                ausfallen als in Dortmund-Hörde (44263) oder Dortmund-Brackel (44309). Unser
+                Vergleich berücksichtigt diese regionalen Unterschiede und zeigt Ihnen die besten
+                Tarife speziell für Ihren Standort in Dortmund. Dortmund hat eine starke
+                Industriegeschichte und ist heute ein wichtiger Wirtschaftsstandort. Dies spiegelt
+                sich auch in der Strommarkt-Struktur wider, mit vielen lokalen und überregionalen
+                Anbietern.
               </p>
             </div>
 
             <div className="bg-secondary/10 border-l-4 border-secondary p-6 rounded">
-              <p className="font-paragraph text-gray-700 italic">Jetzt kostenlos vergleichen und sparen Sie ab sofort bei Ihren Stromkosten in Dortmund!</p>
+              <p className="font-paragraph text-gray-700 italic">
+                Jetzt kostenlos vergleichen und sparen Sie ab sofort bei Ihren Stromkosten in
+                Dortmund!
+              </p>
             </div>
           </div>
         </div>
@@ -552,77 +639,122 @@ export default function StromvergleichDortmundPage() {
         <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-8">
             <div>
-              <h2 className="font-heading text-3xl font-bold text-primary mb-6">Dortmunder Grundversorgung: DSW21 und Alternativen</h2>
+              <h2 className="font-heading text-3xl font-bold text-primary mb-6">
+                Dortmunder Grundversorgung: DSW21 und Alternativen
+              </h2>
 
               <p className="font-paragraph text-lg text-gray-700 mb-6">
-                Dortmunder Stadtwerke (DSW21) ist der Grundversorger für Dortmund und die umliegenden Regionen. Als Grundversorger ist DSW21 verpflichtet, jeden Haushalt mit Strom zu versorgen – unabhängig davon, ob Sie aktiv einen Vertrag abgeschlossen haben oder nicht. Dies ist ein wichtiger Schutzmechanismus für Verbraucher, garantiert aber nicht automatisch die günstigsten Preise.
+                Dortmunder Stadtwerke (DSW21) ist der Grundversorger für Dortmund und die
+                umliegenden Regionen. Als Grundversorger ist DSW21 verpflichtet, jeden Haushalt mit
+                Strom zu versorgen – unabhängig davon, ob Sie aktiv einen Vertrag abgeschlossen
+                haben oder nicht. Dies ist ein wichtiger Schutzmechanismus für Verbraucher,
+                garantiert aber nicht automatisch die günstigsten Preise.
               </p>
 
               <p className="font-paragraph text-lg text-gray-700 mb-6">
-                Die Grundversorgungstarife von DSW21 setzen sich aus mehreren Komponenten zusammen: dem Arbeitspreis (€/kWh), der Grundgebühr (€/Monat) und den Netzentgelte. Diese Tarife sind oft höher als Sondertarife bei anderen Anbietern, weshalb ein Wechsel für viele Dortmunder Haushalte sinnvoll ist. Mit unserem Vergleichsrechner können Sie schnell sehen, wie viel Sie durch einen Wechsel sparen können.
+                Die Grundversorgungstarife von DSW21 setzen sich aus mehreren Komponenten zusammen:
+                dem Arbeitspreis (€/kWh), der Grundgebühr (€/Monat) und den Netzentgelte. Diese
+                Tarife sind oft höher als Sondertarife bei anderen Anbietern, weshalb ein Wechsel
+                für viele Dortmunder Haushalte sinnvoll ist. Mit unserem Vergleichsrechner können
+                Sie schnell sehen, wie viel Sie durch einen Wechsel sparen können.
               </p>
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Kündigungsfristen in Dortmund</h3>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">
+                Kündigungsfristen in Dortmund
+              </h3>
               <p className="font-paragraph text-gray-700 mb-4">
-                Die Kündigungsfristen sind ein wichtiger Faktor beim Stromwechsel. Bei der Grundversorgung von DSW21 beträgt die Kündigungsfrist 2 Wochen zum Ende eines Kalendermonats. Das bedeutet: Wenn Sie Ihren Vertrag am 15. Januar kündigen, endet dieser am 31. Januar. Dies ist eine der kürzeren Fristen und bietet Ihnen Flexibilität.
+                Die Kündigungsfristen sind ein wichtiger Faktor beim Stromwechsel. Bei der
+                Grundversorgung von DSW21 beträgt die Kündigungsfrist 2 Wochen zum Ende eines
+                Kalendermonats. Das bedeutet: Wenn Sie Ihren Vertrag am 15. Januar kündigen, endet
+                dieser am 31. Januar. Dies ist eine der kürzeren Fristen und bietet Ihnen
+                Flexibilität.
               </p>
               <p className="font-paragraph text-gray-700 mb-4">
-                Bei Sondertarifen anderer Anbieter liegt die Kündigungsfrist meist bei 4 Wochen zum Ende eines Kalendermonats. Achten Sie auf die genaue Kündigungsfrist in Ihrem Vertrag – diese finden Sie in den Vertragsbedingungen oder auf Ihrer Rechnung. Besonders wichtig: Wenn Sie einen Vertrag mit längerer Laufzeit (z.B. 24 Monate) abschließen, können Sie diesen oft nur zum Ende der Laufzeit kündigen, es sei denn, es gibt ein Sonderkündigungsrecht (z.B. bei Preiserhöhungen).
+                Bei Sondertarifen anderer Anbieter liegt die Kündigungsfrist meist bei 4 Wochen zum
+                Ende eines Kalendermonats. Achten Sie auf die genaue Kündigungsfrist in Ihrem
+                Vertrag – diese finden Sie in den Vertragsbedingungen oder auf Ihrer Rechnung.
+                Besonders wichtig: Wenn Sie einen Vertrag mit längerer Laufzeit (z.B. 24 Monate)
+                abschließen, können Sie diesen oft nur zum Ende der Laufzeit kündigen, es sei denn,
+                es gibt ein Sonderkündigungsrecht (z.B. bei Preiserhöhungen).
               </p>
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Umzugsszenarien in Dortmund</h3>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">
+                Umzugsszenarien in Dortmund
+              </h3>
               <p className="font-paragraph text-gray-700 mb-4">
-                Dortmund ist eine dynamische Stadt mit vielen Menschen, die umziehen. Wenn Sie in Dortmund umziehen, sollten Sie Ihren Stromvertrag rechtzeitig (mindestens 4 Wochen vorher) kündigen oder einen neuen Tarif für die neue Adresse abschließen. Nutzen Sie unseren Vergleichsrechner mit Ihrer neuen Postleitzahl, um die besten Tarife für Ihre neue Wohnung zu finden.
+                Dortmund ist eine dynamische Stadt mit vielen Menschen, die umziehen. Wenn Sie in
+                Dortmund umziehen, sollten Sie Ihren Stromvertrag rechtzeitig (mindestens 4 Wochen
+                vorher) kündigen oder einen neuen Tarif für die neue Adresse abschließen. Nutzen Sie
+                unseren Vergleichsrechner mit Ihrer neuen Postleitzahl, um die besten Tarife für
+                Ihre neue Wohnung zu finden.
               </p>
               <p className="font-paragraph text-gray-700 mb-4">
-                Wichtig: Die Stromversorgung wird bei einem Umzug nicht unterbrochen. Wenn Sie keinen neuen Vertrag abschließen, werden Sie automatisch von DSW21 in der Grundversorgung beliefert. Dies ist zwar sicher, aber oft teurer als ein Sondertarif. Daher empfehlen wir, rechtzeitig einen neuen Tarif zu suchen. Besonderheit in Dortmund: Je nach Stadtteil (z.B. Dortmund-Hörde, Dortmund-Brackel) können unterschiedliche Netzbetreiber zuständig sein, was zu unterschiedlichen Tarifoptionen führt.
+                Wichtig: Die Stromversorgung wird bei einem Umzug nicht unterbrochen. Wenn Sie
+                keinen neuen Vertrag abschließen, werden Sie automatisch von DSW21 in der
+                Grundversorgung beliefert. Dies ist zwar sicher, aber oft teurer als ein
+                Sondertarif. Daher empfehlen wir, rechtzeitig einen neuen Tarif zu suchen.
+                Besonderheit in Dortmund: Je nach Stadtteil (z.B. Dortmund-Hörde, Dortmund-Brackel)
+                können unterschiedliche Netzbetreiber zuständig sein, was zu unterschiedlichen
+                Tarifoptionen führt.
               </p>
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Besonderheiten der Dortmunder Strommarkt</h3>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">
+                Besonderheiten der Dortmunder Strommarkt
+              </h3>
               <ul className="font-paragraph text-gray-700 space-y-3 mb-6">
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">•</span>
                   <span>
-                    <strong>Vielfältige Netzgebiete:</strong> Dortmund hat mehrere Netzgebiete mit unterschiedlichen Netzbetreibern, was zu unterschiedlichen Tarifoptionen führt
+                    <strong>Vielfältige Netzgebiete:</strong> Dortmund hat mehrere Netzgebiete mit
+                    unterschiedlichen Netzbetreibern, was zu unterschiedlichen Tarifoptionen führt
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">•</span>
                   <span>
-                    <strong>DSW21-Dominanz:</strong> DSW21 ist der größte Anbieter in Dortmund und oft auch der Grundversorger
+                    <strong>DSW21-Dominanz:</strong> DSW21 ist der größte Anbieter in Dortmund und
+                    oft auch der Grundversorger
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">•</span>
                   <span>
-                    <strong>Ökostrom-Optionen:</strong> Dortmund hat eine starke Nachfrage nach Ökostrom, weshalb viele Anbieter grüne Tarife anbieten
+                    <strong>Ökostrom-Optionen:</strong> Dortmund hat eine starke Nachfrage nach
+                    Ökostrom, weshalb viele Anbieter grüne Tarife anbieten
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">•</span>
                   <span>
-                    <strong>Wechselbonus:</strong> Viele Anbieter bieten Wechselboni für Neukunden in Dortmund an
+                    <strong>Wechselbonus:</strong> Viele Anbieter bieten Wechselboni für Neukunden
+                    in Dortmund an
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">•</span>
                   <span>
-                    <strong>Preisgarantie:</strong> Achten Sie auf die Dauer der Preisgarantie – in Dortmund sind 12-24 Monate üblich
+                    <strong>Preisgarantie:</strong> Achten Sie auf die Dauer der Preisgarantie – in
+                    Dortmund sind 12-24 Monate üblich
                   </span>
                 </li>
               </ul>
             </div>
 
             <div className="bg-blue-50 border-l-4 border-primary p-6 rounded">
-              <h4 className="font-heading font-bold text-primary mb-3">Tipp für Dortmunder Haushalte:</h4>
+              <h4 className="font-heading font-bold text-primary mb-3">
+                Tipp für Dortmunder Haushalte:
+              </h4>
               <p className="font-paragraph text-gray-700">
-                Nutzen Sie unseren Vergleichsrechner regelmäßig – mindestens einmal pro Jahr. Die Strompreise ändern sich ständig, und durch einen rechtzeitigen Wechsel können Sie hunderte Euro pro Jahr sparen. Besonders nach Preiserhöhungen von DSW21 lohnt sich ein Vergleich, da Sie oft ein Sonderkündigungsrecht haben.
+                Nutzen Sie unseren Vergleichsrechner regelmäßig – mindestens einmal pro Jahr. Die
+                Strompreise ändern sich ständig, und durch einen rechtzeitigen Wechsel können Sie
+                hunderte Euro pro Jahr sparen. Besonders nach Preiserhöhungen von DSW21 lohnt sich
+                ein Vergleich, da Sie oft ein Sonderkündigungsrecht haben.
               </p>
             </div>
           </div>
@@ -632,8 +764,15 @@ export default function StromvergleichDortmundPage() {
       {/* Why Switch Section */}
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-primary mb-4">Warum wechseln?</h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-primary mb-4">
+              Warum wechseln?
+            </h2>
             <p className="font-paragraph text-lg text-gray-600 max-w-2xl mx-auto">
               Das bringt Ihnen ein Tarifwechsel – klar & einfach erklärt.
             </p>
@@ -641,12 +780,36 @@ export default function StromvergleichDortmundPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: Zap, title: 'Schnell & unkompliziert', description: 'Alle günstigen Tarife auf einen Blick.' },
-              { icon: Globe, title: 'Unabhängig & neutral', description: 'Ergebnisse ohne Anbieter-Bias.' },
-              { icon: DollarSign, title: 'Kostenlos für Sie', description: 'Unser Service kostet Sie keinen Cent.' },
-              { icon: MapPin, title: 'Lokal für Dortmund', description: 'Speziell für Dortmunder Haushalte.' },
-              { icon: BarChart3, title: 'Individuell passend', description: 'Tarife abgestimmt auf Ihren Verbrauch.' },
-              { icon: Rocket, title: 'Sofort entscheidbar', description: 'Direkte Weiterleitung zum Anbieter.' },
+              {
+                icon: Zap,
+                title: 'Schnell & unkompliziert',
+                description: 'Alle günstigen Tarife auf einen Blick.',
+              },
+              {
+                icon: Globe,
+                title: 'Unabhängig & neutral',
+                description: 'Ergebnisse ohne Anbieter-Bias.',
+              },
+              {
+                icon: DollarSign,
+                title: 'Kostenlos für Sie',
+                description: 'Unser Service kostet Sie keinen Cent.',
+              },
+              {
+                icon: MapPin,
+                title: 'Lokal für Dortmund',
+                description: 'Speziell für Dortmunder Haushalte.',
+              },
+              {
+                icon: BarChart3,
+                title: 'Individuell passend',
+                description: 'Tarife abgestimmt auf Ihren Verbrauch.',
+              },
+              {
+                icon: Rocket,
+                title: 'Sofort entscheidbar',
+                description: 'Direkte Weiterleitung zum Anbieter.',
+              },
             ].map((item, index) => {
               const IconComponent = item.icon;
               return (
@@ -663,8 +826,12 @@ export default function StromvergleichDortmundPage() {
                         <IconComponent className="w-8 h-8 md:w-10 md:h-10 text-primary" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="font-heading font-semibold text-lg text-primary mb-2">{item.title}</h3>
-                        <p className="font-paragraph text-base text-gray-600 leading-relaxed">{item.description}</p>
+                        <h3 className="font-heading font-semibold text-lg text-primary mb-2">
+                          {item.title}
+                        </h3>
+                        <p className="font-paragraph text-base text-gray-600 leading-relaxed">
+                          {item.description}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -683,12 +850,22 @@ export default function StromvergleichDortmundPage() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
               <div className="bg-white rounded-2xl p-8 shadow-lg h-full">
-                <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl mb-6">1</div>
-                <h3 className="font-heading text-2xl font-bold text-primary mb-4">Daten eingeben</h3>
+                <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl mb-6">
+                  1
+                </div>
+                <h3 className="font-heading text-2xl font-bold text-primary mb-4">
+                  Daten eingeben
+                </h3>
                 <p className="font-paragraph text-gray-600">
-                  Geben Sie Ihre Postleitzahl und Ihren Stromverbrauch ein. Das dauert nur wenige Sekunden.
+                  Geben Sie Ihre Postleitzahl und Ihren Stromverbrauch ein. Das dauert nur wenige
+                  Sekunden.
                 </p>
               </div>
             </motion.div>
@@ -701,10 +878,15 @@ export default function StromvergleichDortmundPage() {
               className="relative"
             >
               <div className="bg-white rounded-2xl p-8 shadow-lg h-full">
-                <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl mb-6">2</div>
-                <h3 className="font-heading text-2xl font-bold text-primary mb-4">Tarife vergleichen</h3>
+                <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl mb-6">
+                  2
+                </div>
+                <h3 className="font-heading text-2xl font-bold text-primary mb-4">
+                  Tarife vergleichen
+                </h3>
                 <p className="font-paragraph text-gray-600">
-                  Sehen Sie alle verfügbaren Tarife mit Preis, Laufzeit und Preisgarantie auf einen Blick.
+                  Sehen Sie alle verfügbaren Tarife mit Preis, Laufzeit und Preisgarantie auf einen
+                  Blick.
                 </p>
               </div>
             </motion.div>
@@ -717,10 +899,15 @@ export default function StromvergleichDortmundPage() {
               className="relative"
             >
               <div className="bg-white rounded-2xl p-8 shadow-lg h-full">
-                <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl mb-6">3</div>
-                <h3 className="font-heading text-2xl font-bold text-primary mb-4">Wechsel abschließen</h3>
+                <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl mb-6">
+                  3
+                </div>
+                <h3 className="font-heading text-2xl font-bold text-primary mb-4">
+                  Wechsel abschließen
+                </h3>
                 <p className="font-paragraph text-gray-600">
-                  Wählen Sie Ihren Wunsch-Tarif und wir kümmern uns um alle Formalitäten. Kostenlos und sicher.
+                  Wählen Sie Ihren Wunsch-Tarif und wir kümmern uns um alle Formalitäten. Kostenlos
+                  und sicher.
                 </p>
               </div>
             </motion.div>
@@ -731,22 +918,29 @@ export default function StromvergleichDortmundPage() {
       {/* Featured Snippet Section */}
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h3 className="font-heading text-2xl font-bold text-primary mb-8">Stromanbieter wechseln in 5 Schritten</h3>
+          <h3 className="font-heading text-2xl font-bold text-primary mb-8">
+            Stromanbieter wechseln in 5 Schritten
+          </h3>
           <ol className="font-paragraph text-gray-700 space-y-4 list-decimal list-inside">
             <li>
-              <strong>Postleitzahl und Verbrauch eingeben:</strong> Nutzen Sie unseren Vergleichsrechner mit Ihren Basisdaten.
+              <strong>Postleitzahl und Verbrauch eingeben:</strong> Nutzen Sie unseren
+              Vergleichsrechner mit Ihren Basisdaten.
             </li>
             <li>
-              <strong>Tarife vergleichen:</strong> Sehen Sie alle verfügbaren Angebote sortiert nach Preis und Konditionen.
+              <strong>Tarife vergleichen:</strong> Sehen Sie alle verfügbaren Angebote sortiert nach
+              Preis und Konditionen.
             </li>
             <li>
-              <strong>Wunsch-Tarif wählen:</strong> Entscheiden Sie sich für den Tarif, der am besten zu Ihnen passt.
+              <strong>Wunsch-Tarif wählen:</strong> Entscheiden Sie sich für den Tarif, der am
+              besten zu Ihnen passt.
             </li>
             <li>
-              <strong>Angebot anfordern:</strong> Kontaktieren Sie den Anbieter oder lassen Sie sich von uns beraten.
+              <strong>Angebot anfordern:</strong> Kontaktieren Sie den Anbieter oder lassen Sie sich
+              von uns beraten.
             </li>
             <li>
-              <strong>Wechsel abschließen:</strong> Wir kümmern uns um die Kündigung und den Wechsel – kostenlos und sicher.
+              <strong>Wechsel abschließen:</strong> Wir kümmern uns um die Kündigung und den Wechsel
+              – kostenlos und sicher.
             </li>
           </ol>
         </div>
@@ -761,12 +955,32 @@ export default function StromvergleichDortmundPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { title: 'Preis', description: 'Wir vergleichen die Gesamtkosten pro Jahr, nicht nur den Arbeitspreis.' },
-              { title: 'Laufzeit', description: 'Flexible Laufzeiten von 12 bis 24 Monaten für maximale Flexibilität.' },
-              { title: 'Preisgarantie', description: 'Wir zeigen, wie lange der Preis garantiert nicht erhöht wird.' },
-              { title: 'Kündigungsfrist', description: 'Kurze Kündigungsfristen geben Ihnen mehr Flexibilität beim Wechsel.' },
-              { title: 'Boni & Rabatte', description: 'Transparente Darstellung aller Wechselboni und Rabatte.' },
-              { title: 'Öko-Optionen', description: 'Grüne Tarife mit Ökostrom-Zertifikaten sind oft günstiger als gedacht.' },
+              {
+                title: 'Preis',
+                description:
+                  'Wir vergleichen die Gesamtkosten pro Jahr, nicht nur den Arbeitspreis.',
+              },
+              {
+                title: 'Laufzeit',
+                description: 'Flexible Laufzeiten von 12 bis 24 Monaten für maximale Flexibilität.',
+              },
+              {
+                title: 'Preisgarantie',
+                description: 'Wir zeigen, wie lange der Preis garantiert nicht erhöht wird.',
+              },
+              {
+                title: 'Kündigungsfrist',
+                description: 'Kurze Kündigungsfristen geben Ihnen mehr Flexibilität beim Wechsel.',
+              },
+              {
+                title: 'Boni & Rabatte',
+                description: 'Transparente Darstellung aller Wechselboni und Rabatte.',
+              },
+              {
+                title: 'Öko-Optionen',
+                description:
+                  'Grüne Tarife mit Ökostrom-Zertifikaten sind oft günstiger als gedacht.',
+              },
             ].map((item, index) => (
               <motion.div
                 key={index}
@@ -777,7 +991,9 @@ export default function StromvergleichDortmundPage() {
               >
                 <Card className="h-full">
                   <CardHeader>
-                    <CardTitle className="font-heading text-xl text-primary">{item.title}</CardTitle>
+                    <CardTitle className="font-heading text-xl text-primary">
+                      {item.title}
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="font-paragraph text-gray-600">{item.description}</p>
@@ -792,14 +1008,27 @@ export default function StromvergleichDortmundPage() {
       {/* Trust Section */}
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="font-heading text-2xl sm:text-3xl font-bold text-primary mb-6">Warum energievergleich.shop?</h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="font-heading text-2xl sm:text-3xl font-bold text-primary mb-6">
+              Warum energievergleich.shop?
+            </h2>
             <div className="space-y-4 font-paragraph text-gray-700 leading-relaxed">
               <p>
-                Bei energievergleich.shop vergleichen Sie Stromtarife völlig transparent und unabhängig. Wir sind nicht an einen Anbieter gebunden und zeigen Ihnen alle verfügbaren Optionen in Ihrer Region – sortiert nach Preis und Vertragsbedingungen. Unser Service ist für Sie kostenlos: Wir verdienen kein Geld mit Ihrem Wechsel, sondern nur durch Provisionen von Anbietern, die Sie selbst gewählt haben.
+                Bei energievergleich.shop vergleichen Sie Stromtarife völlig transparent und
+                unabhängig. Wir sind nicht an einen Anbieter gebunden und zeigen Ihnen alle
+                verfügbaren Optionen in Ihrer Region – sortiert nach Preis und Vertragsbedingungen.
+                Unser Service ist für Sie kostenlos: Wir verdienen kein Geld mit Ihrem Wechsel,
+                sondern nur durch Provisionen von Anbietern, die Sie selbst gewählt haben.
               </p>
               <p>
-                Wir vergleichen nicht nur Preise, sondern auch Laufzeiten, Preisgarantien und Kündigungsfristen. So finden Sie den Tarif, der wirklich zu Ihnen passt – nicht nur der billigste. Alle Informationen auf dieser Seite sind aktuell und wurden zuletzt im Februar 2026 überprüft.
+                Wir vergleichen nicht nur Preise, sondern auch Laufzeiten, Preisgarantien und
+                Kündigungsfristen. So finden Sie den Tarif, der wirklich zu Ihnen passt – nicht nur
+                der billigste. Alle Informationen auf dieser Seite sind aktuell und wurden zuletzt
+                im Februar 2026 überprüft.
               </p>
               <p>
                 Mehr über unsere Vergleichsmethode erfahren Sie unter{' '}
@@ -847,12 +1076,19 @@ export default function StromvergleichDortmundPage() {
                 a: 'Ja, völlig kostenlos. Es fallen keine Gebühren für Kündigung oder Anmeldung an. Wir kümmern uns um alle Formalitäten.',
               },
             ].map((item, index) => (
-              <Accordion key={index} type="single" collapsible className="bg-white rounded-lg border">
+              <Accordion
+                key={index}
+                type="single"
+                collapsible
+                className="bg-white rounded-lg border"
+              >
                 <AccordionItem value={`item-${index}`} className="border-none">
                   <AccordionTrigger className="font-heading font-bold text-lg hover:text-primary px-6 py-4">
                     {item.q}
                   </AccordionTrigger>
-                  <AccordionContent className="font-paragraph text-gray-600 px-6 pb-4">{item.a}</AccordionContent>
+                  <AccordionContent className="font-paragraph text-gray-600 px-6 pb-4">
+                    {item.a}
+                  </AccordionContent>
                 </AccordionItem>
               </Accordion>
             ))}
@@ -863,15 +1099,21 @@ export default function StromvergleichDortmundPage() {
       {/* Internal Links Section */}
       <section className="w-full py-16 bg-white border-t">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <h3 className="font-heading text-2xl font-bold text-primary mb-8">Weitere Informationen</h3>
+          <h3 className="font-heading text-2xl font-bold text-primary mb-8">
+            Weitere Informationen
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             <Link to={ROUTES.gasvergleich} className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Gasvergleich NRW</CardTitle>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">
+                    Gasvergleich NRW
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="font-paragraph text-sm text-gray-600 mb-4">Vergleichen Sie auch Ihre Gastarife und sparen Sie zusätzlich.</p>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">
+                    Vergleichen Sie auch Ihre Gastarife und sparen Sie zusätzlich.
+                  </p>
                   <Button variant="outline" size="sm">
                     Mehr erfahren
                   </Button>
@@ -881,10 +1123,14 @@ export default function StromvergleichDortmundPage() {
             <Link to={ROUTES.photovoltaik} className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Photovoltaik NRW</CardTitle>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">
+                    Photovoltaik NRW
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="font-paragraph text-sm text-gray-600 mb-4">Produzieren Sie Ihren eigenen Strom mit einer Solaranlage.</p>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">
+                    Produzieren Sie Ihren eigenen Strom mit einer Solaranlage.
+                  </p>
                   <Button variant="outline" size="sm">
                     Mehr erfahren
                   </Button>
@@ -894,10 +1140,14 @@ export default function StromvergleichDortmundPage() {
             <Link to={ROUTES.gewerbestrom} className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Gewerbestrom</CardTitle>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">
+                    Gewerbestrom
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="font-paragraph text-sm text-gray-600 mb-4">Spezielle Stromtarife für Ihr Unternehmen.</p>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">
+                    Spezielle Stromtarife für Ihr Unternehmen.
+                  </p>
                   <Button variant="outline" size="sm">
                     Mehr erfahren
                   </Button>
@@ -907,10 +1157,14 @@ export default function StromvergleichDortmundPage() {
             <Link to={ROUTES.ratgeberStrom} className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Ratgeber Strom</CardTitle>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">
+                    Ratgeber Strom
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="font-paragraph text-sm text-gray-600 mb-4">Tipps und Wissen rund um Stromtarife.</p>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">
+                    Tipps und Wissen rund um Stromtarife.
+                  </p>
                   <Button variant="outline" size="sm">
                     Mehr erfahren
                   </Button>
@@ -920,10 +1174,14 @@ export default function StromvergleichDortmundPage() {
             <Link to="/methodik" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Methodik</CardTitle>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">
+                    Methodik
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="font-paragraph text-sm text-gray-600 mb-4">So funktioniert unser Vergleich.</p>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">
+                    So funktioniert unser Vergleich.
+                  </p>
                   <Button variant="outline" size="sm">
                     Mehr erfahren
                   </Button>
@@ -940,7 +1198,12 @@ export default function StromvergleichDortmundPage() {
       {/* Related Pages - Cross-Linking */}
       <RelatedPages pages={getRelatedPages('/stromvergleich-dortmund')} />
 
-      <FormSubmissionDialog open={showFormDialog} onOpenChange={setShowFormDialog} formData={formData} onSuccess={handleFormSuccess} />
+      <FormSubmissionDialog
+        open={showFormDialog}
+        onOpenChange={setShowFormDialog}
+        formData={formData}
+        onSuccess={handleFormSuccess}
+      />
     </StromvergleichCityLayout>
   );
 }

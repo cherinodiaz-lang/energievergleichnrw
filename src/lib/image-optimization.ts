@@ -14,10 +14,12 @@ export const IMAGE_SIZES = {
  * Determine if an image should be lazy-loaded
  * Hero/LCP images should NOT be lazy-loaded
  */
-export const shouldLazyLoad = (imageType: 'hero' | 'card' | 'icon' | 'thumbnail' | 'default'): boolean => {
+export const shouldLazyLoad = (
+  imageType: 'hero' | 'card' | 'icon' | 'thumbnail' | 'default'
+): boolean => {
   // Hero images are above-the-fold and should use priority loading
   if (imageType === 'hero') return false;
-  
+
   // All other images can be lazy-loaded
   return true;
 };
@@ -25,7 +27,9 @@ export const shouldLazyLoad = (imageType: 'hero' | 'card' | 'icon' | 'thumbnail'
 /**
  * Get image loading attribute
  */
-export const getImageLoading = (imageType: 'hero' | 'card' | 'icon' | 'thumbnail' | 'default'): 'eager' | 'lazy' => {
+export const getImageLoading = (
+  imageType: 'hero' | 'card' | 'icon' | 'thumbnail' | 'default'
+): 'eager' | 'lazy' => {
   return shouldLazyLoad(imageType) ? 'lazy' : 'eager';
 };
 
@@ -35,11 +39,11 @@ export const getImageLoading = (imageType: 'hero' | 'card' | 'icon' | 'thumbnail
  */
 export const optimizeImageUrl = (url: string, width?: number, height?: number): string => {
   if (!url) return '';
-  
+
   // If it's a Wix static URL, it's already optimized
   if (url.includes('wixstatic.com')) {
     return url;
   }
-  
+
   return url;
 };

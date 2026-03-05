@@ -10,7 +10,14 @@ export interface RatgeberArticleMeta {
   teaser: string;
   category: 'strom' | 'gas' | 'gewerbe' | 'photovoltaik' | 'wechselwissen';
   readingTime: number; // in minutes
-  targetMoneyPage: 'stromvergleich-nrw' | 'gasvergleich-nrw' | 'photovoltaik-nrw' | 'gewerbestrom' | 'gewerbegas' | 'kontakt' | 'multiple';
+  targetMoneyPage:
+    | 'stromvergleich-nrw'
+    | 'gasvergleich-nrw'
+    | 'photovoltaik-nrw'
+    | 'gewerbestrom'
+    | 'gewerbegas'
+    | 'kontakt'
+    | 'multiple';
   relatedUrls: string[];
   lastUpdated: string; // ISO date string
 }
@@ -28,9 +35,9 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/strom/grundversorgung-vs-sondervertrag',
       '/ratgeber/wechselwissen/lieferantenwechsel-ablauf',
-      '/stromvergleich-nrw'
+      '/stromvergleich-nrw',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
   {
     id: 'strom-anbieterwechsel',
@@ -43,9 +50,9 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/wechselwissen/lieferantenwechsel-ablauf',
       '/ratgeber/wechselwissen/kuendigungsfristen-strom-gas',
-      '/stromvergleich-nrw'
+      '/stromvergleich-nrw',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
   {
     id: 'strom-grundversorgung-vs-sondervertrag',
@@ -58,9 +65,9 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/strom/grundversorgung',
       '/ratgeber/strom/stromanbieterwechsel-nrw',
-      '/stromvergleich-nrw'
+      '/stromvergleich-nrw',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
   {
     id: 'strom-neukundenboni',
@@ -73,9 +80,9 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/strom/stromanbieterwechsel-nrw',
       '/ratgeber/wechselwissen/lieferantenwechsel-ablauf',
-      '/stromvergleich-nrw'
+      '/stromvergleich-nrw',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
   {
     id: 'strom-preiserhoeung',
@@ -88,9 +95,9 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/wechselwissen/kuendigungsfristen-strom-gas',
       '/ratgeber/strom/stromanbieterwechsel-nrw',
-      '/stromvergleich-nrw'
+      '/stromvergleich-nrw',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
   {
     id: 'strom-umzug',
@@ -103,9 +110,9 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/wechselwissen/kuendigungsfristen-strom-gas',
       '/ratgeber/wechselwissen/lieferantenwechsel-ablauf',
-      '/stromvergleich-nrw'
+      '/stromvergleich-nrw',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
   {
     id: 'strom-vertragslaufzeit',
@@ -118,9 +125,9 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/strom/grundversorgung-vs-sondervertrag',
       '/ratgeber/wechselwissen/kuendigungsfristen-strom-gas',
-      '/stromvergleich-nrw'
+      '/stromvergleich-nrw',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
   {
     id: 'strom-malo-id',
@@ -133,9 +140,9 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/strom/stromanbieterwechsel-nrw',
       '/ratgeber/wechselwissen/lieferantenwechsel-ablauf',
-      '/stromvergleich-nrw'
+      '/stromvergleich-nrw',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
 
   // GAS ARTICLES (6)
@@ -150,9 +157,9 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/wechselwissen/lieferantenwechsel-ablauf',
       '/ratgeber/wechselwissen/kuendigungsfristen-strom-gas',
-      '/gasvergleich-nrw'
+      '/gasvergleich-nrw',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
   {
     id: 'gas-grundversorgung',
@@ -165,9 +172,9 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/gas/gasanbieter-wechseln-nrw',
       '/ratgeber/wechselwissen/lieferantenwechsel-ablauf',
-      '/gasvergleich-nrw'
+      '/gasvergleich-nrw',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
   {
     id: 'gas-preiserhoeung',
@@ -180,9 +187,9 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/wechselwissen/kuendigungsfristen-strom-gas',
       '/ratgeber/gas/gasanbieter-wechseln-nrw',
-      '/gasvergleich-nrw'
+      '/gasvergleich-nrw',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
   {
     id: 'gas-umzug',
@@ -195,9 +202,9 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/wechselwissen/kuendigungsfristen-strom-gas',
       '/ratgeber/wechselwissen/lieferantenwechsel-ablauf',
-      '/gasvergleich-nrw'
+      '/gasvergleich-nrw',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
   {
     id: 'gas-heizungsart',
@@ -210,9 +217,9 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/gas/gasanbieter-wechseln-nrw',
       '/ratgeber/gas/gaspreisgarantie-worauf-achten',
-      '/gasvergleich-nrw'
+      '/gasvergleich-nrw',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
   {
     id: 'gas-preisgarantie',
@@ -225,9 +232,9 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/gas/gasanbieter-wechseln-nrw',
       '/ratgeber/gas/preiserhoeung-gas-rechte',
-      '/gasvergleich-nrw'
+      '/gasvergleich-nrw',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
 
   // GEWERBE ARTICLES (3)
@@ -242,9 +249,9 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/gewerbe/lastprofil-leistungspreis-arbeitspreis',
       '/ratgeber/wechselwissen/lieferantenwechsel-ablauf',
-      '/gewerbestrom'
+      '/gewerbestrom',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
   {
     id: 'gewerbe-gasbeschaffung',
@@ -257,9 +264,9 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/gewerbe/gewerbestrom-vertrag-worauf-achten',
       '/ratgeber/wechselwissen/lieferantenwechsel-ablauf',
-      '/gewerbegas'
+      '/gewerbegas',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
   {
     id: 'gewerbe-lastprofil',
@@ -272,9 +279,9 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/gewerbe/gewerbestrom-vertrag-worauf-achten',
       '/ratgeber/wechselwissen/lieferantenwechsel-ablauf',
-      '/gewerbestrom'
+      '/gewerbestrom',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
 
   // PHOTOVOLTAIK ARTICLES (5)
@@ -282,16 +289,17 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     id: 'pv-kosten',
     slug: 'ratgeber/photovoltaik/pv-kosten-nrw-wovon-abhaengig',
     title: 'PV-Kosten in NRW: Wovon hängen sie ab?',
-    teaser: 'Photovoltaik-Kosten in NRW verstehen. Erfahren Sie, welche Faktoren die Preise beeinflussen.',
+    teaser:
+      'Photovoltaik-Kosten in NRW verstehen. Erfahren Sie, welche Faktoren die Preise beeinflussen.',
     category: 'photovoltaik',
     readingTime: 6,
     targetMoneyPage: 'photovoltaik-nrw',
     relatedUrls: [
       '/ratgeber/photovoltaik/pv-speicher-lohnt-sich',
       '/ratgeber/photovoltaik/einspeiseverguetung-verstehen',
-      '/photovoltaik-nrw'
+      '/photovoltaik-nrw',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
   {
     id: 'pv-speicher',
@@ -304,9 +312,9 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/photovoltaik/pv-kosten-nrw-wovon-abhaengig',
       '/ratgeber/photovoltaik/einspeiseverguetung-verstehen',
-      '/photovoltaik-nrw'
+      '/photovoltaik-nrw',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
   {
     id: 'pv-einspeiseverguetung',
@@ -319,9 +327,9 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/photovoltaik/pv-kosten-nrw-wovon-abhaengig',
       '/ratgeber/photovoltaik/pv-speicher-lohnt-sich',
-      '/photovoltaik-nrw'
+      '/photovoltaik-nrw',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
   {
     id: 'pv-dacheignung',
@@ -334,9 +342,9 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/photovoltaik/pv-kosten-nrw-wovon-abhaengig',
       '/ratgeber/photovoltaik/angebote-vergleichen-fehler',
-      '/photovoltaik-nrw'
+      '/photovoltaik-nrw',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
   {
     id: 'pv-angebote',
@@ -349,9 +357,9 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/photovoltaik/pv-kosten-nrw-wovon-abhaengig',
       '/ratgeber/photovoltaik/dach-eignung-checkliste',
-      '/photovoltaik-nrw'
+      '/photovoltaik-nrw',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
 
   // WECHSELWISSEN ARTICLES (3)
@@ -366,9 +374,9 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/wechselwissen/lieferantenwechsel-ablauf',
       '/ratgeber/wechselwissen/was-tun-wenn-wechsel-schiefgeht',
-      '/stromvergleich-nrw'
+      '/stromvergleich-nrw',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
   {
     id: 'wechsel-ablauf',
@@ -381,9 +389,9 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/wechselwissen/kuendigungsfristen-strom-gas',
       '/ratgeber/wechselwissen/was-tun-wenn-wechsel-schiefgeht',
-      '/stromvergleich-nrw'
+      '/stromvergleich-nrw',
     ],
-    lastUpdated: '2026-01-09'
+    lastUpdated: '2026-01-09',
   },
   {
     id: 'wechsel-probleme',
@@ -396,28 +404,33 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/wechselwissen/lieferantenwechsel-ablauf',
       '/ratgeber/wechselwissen/kuendigungsfristen-strom-gas',
-      '/kontakt'
+      '/kontakt',
     ],
-    lastUpdated: '2026-01-09'
-  }
+    lastUpdated: '2026-01-09',
+  },
 ];
 
 /**
  * Get articles by category
  */
-export function getArticlesByCategory(category: RatgeberArticleMeta['category']): RatgeberArticleMeta[] {
-  return ratgeberArticles.filter(article => article.category === category);
+export function getArticlesByCategory(
+  category: RatgeberArticleMeta['category']
+): RatgeberArticleMeta[] {
+  return ratgeberArticles.filter((article) => article.category === category);
 }
 
 /**
  * Get articles by target money page
  */
-export function getArticlesByMoneyPage(targetMoneyPage: RatgeberArticleMeta['targetMoneyPage']): RatgeberArticleMeta[] {
+export function getArticlesByMoneyPage(
+  targetMoneyPage: RatgeberArticleMeta['targetMoneyPage']
+): RatgeberArticleMeta[] {
   if (targetMoneyPage === 'multiple') {
-    return ratgeberArticles.filter(article => article.targetMoneyPage === 'multiple');
+    return ratgeberArticles.filter((article) => article.targetMoneyPage === 'multiple');
   }
-  return ratgeberArticles.filter(article => 
-    article.targetMoneyPage === targetMoneyPage || article.targetMoneyPage === 'multiple'
+  return ratgeberArticles.filter(
+    (article) =>
+      article.targetMoneyPage === targetMoneyPage || article.targetMoneyPage === 'multiple'
   );
 }
 
@@ -425,12 +438,12 @@ export function getArticlesByMoneyPage(targetMoneyPage: RatgeberArticleMeta['tar
  * Get related articles for a specific article
  */
 export function getRelatedArticles(articleId: string, limit: number = 3): RatgeberArticleMeta[] {
-  const article = ratgeberArticles.find(a => a.id === articleId);
+  const article = ratgeberArticles.find((a) => a.id === articleId);
   if (!article) return [];
 
   // Get articles from same category first
   const sameCategoryArticles = ratgeberArticles.filter(
-    a => a.category === article.category && a.id !== articleId
+    (a) => a.category === article.category && a.id !== articleId
   );
 
   // If we have enough from same category, return those
@@ -440,7 +453,7 @@ export function getRelatedArticles(articleId: string, limit: number = 3): Ratgeb
 
   // Otherwise, supplement with other categories
   const otherArticles = ratgeberArticles.filter(
-    a => a.category !== article.category && a.id !== articleId
+    (a) => a.category !== article.category && a.id !== articleId
   );
 
   return [...sameCategoryArticles, ...otherArticles].slice(0, limit);
@@ -455,9 +468,7 @@ export function getPassendeRatgeber(
   limit: number = 5
 ): RatgeberArticleMeta[] {
   // Get articles specifically for this money page
-  const primaryArticles = ratgeberArticles.filter(
-    a => a.targetMoneyPage === moneyPageId
-  );
+  const primaryArticles = ratgeberArticles.filter((a) => a.targetMoneyPage === moneyPageId);
 
   // If we have enough, return them
   if (primaryArticles.length >= limit) {
@@ -466,7 +477,7 @@ export function getPassendeRatgeber(
 
   // Supplement with 'multiple' category articles (Wechselwissen)
   const supplementArticles = ratgeberArticles.filter(
-    a => a.targetMoneyPage === 'multiple' && !primaryArticles.includes(a)
+    (a) => a.targetMoneyPage === 'multiple' && !primaryArticles.includes(a)
   );
 
   return [...primaryArticles, ...supplementArticles].slice(0, limit);

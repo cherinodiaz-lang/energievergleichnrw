@@ -20,7 +20,7 @@ export default function AuthorBox({ authorName = 'Peter Kohmann', updatedDate }:
       try {
         const result = await BaseCrudService.getAll<TeamMembers>('teammembers');
         const foundAuthor = result.items?.find(
-          member => member.name?.toLowerCase() === authorName.toLowerCase()
+          (member) => member.name?.toLowerCase() === authorName.toLowerCase()
         );
         setAuthor(foundAuthor || null);
       } catch (error) {
@@ -73,9 +73,7 @@ export default function AuthorBox({ authorName = 'Peter Kohmann', updatedDate }:
           <p className="font-paragraph text-sm text-primary font-semibold mb-3">
             {author.position}
           </p>
-          <p className="font-paragraph text-sm text-foreground/80 mb-3">
-            {author.bio}
-          </p>
+          <p className="font-paragraph text-sm text-foreground/80 mb-3">{author.bio}</p>
           {formattedDate && (
             <p className="font-paragraph text-xs text-foreground/60">
               Zuletzt aktualisiert: {formattedDate}

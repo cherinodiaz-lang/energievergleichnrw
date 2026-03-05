@@ -15,7 +15,7 @@ interface CookiePreferences {
 const DEFAULT_PREFERENCES: CookiePreferences = {
   necessary: true, // Immer aktiv
   analytics: false,
-  marketing: false
+  marketing: false,
 };
 
 export function CookieConsent() {
@@ -39,14 +39,14 @@ export function CookieConsent() {
     if (prefs.analytics && typeof window !== 'undefined') {
       // Enable Google Analytics
       (window as any).gtag?.('consent', 'update', {
-        analytics_storage: 'granted'
+        analytics_storage: 'granted',
       });
     }
 
     // Apply marketing consent
     if (prefs.marketing) {
       (window as any).gtag?.('consent', 'update', {
-        ad_storage: 'granted'
+        ad_storage: 'granted',
       });
     }
   };
@@ -55,7 +55,7 @@ export function CookieConsent() {
     const allAccepted = {
       necessary: true,
       analytics: true,
-      marketing: true
+      marketing: true,
     };
     savePreferences(allAccepted);
   };
@@ -81,32 +81,23 @@ export function CookieConsent() {
     <div className="cookie-consent" role="dialog" aria-label="Cookie Einstellungen">
       <div className="cookie-consent-content">
         <h2 className="cookie-consent-title">🍪 Wir verwenden Cookies</h2>
-        
+
         {!showDetails ? (
           <>
             <p className="cookie-consent-text">
-              Wir verwenden Cookies, um Ihnen die bestmögliche Erfahrung auf unserer Website zu bieten.
-              Einige Cookies sind notwendig für die Funktion der Website, während andere uns helfen,
-              die Website und Ihre Erfahrung zu verbessern.
+              Wir verwenden Cookies, um Ihnen die bestmögliche Erfahrung auf unserer Website zu
+              bieten. Einige Cookies sind notwendig für die Funktion der Website, während andere uns
+              helfen, die Website und Ihre Erfahrung zu verbessern.
             </p>
-            
+
             <div className="cookie-consent-actions">
-              <button
-                onClick={handleAcceptAll}
-                className="btn btn-primary"
-              >
+              <button onClick={handleAcceptAll} className="btn btn-primary">
                 Alle akzeptieren
               </button>
-              <button
-                onClick={handleAcceptNecessary}
-                className="btn btn-secondary"
-              >
+              <button onClick={handleAcceptNecessary} className="btn btn-secondary">
                 Nur notwendige
               </button>
-              <button
-                onClick={() => setShowDetails(true)}
-                className="btn btn-outline"
-              >
+              <button onClick={() => setShowDetails(true)} className="btn btn-outline">
                 Einstellungen
               </button>
             </div>
@@ -117,11 +108,7 @@ export function CookieConsent() {
               <div className="cookie-category">
                 <div className="cookie-category-header">
                   <label className="cookie-label">
-                    <input
-                      type="checkbox"
-                      checked={preferences.necessary}
-                      disabled
-                    />
+                    <input type="checkbox" checked={preferences.necessary} disabled />
                     <span className="cookie-name">Notwendige Cookies</span>
                   </label>
                   <span className="cookie-badge">Erforderlich</span>
@@ -169,22 +156,16 @@ export function CookieConsent() {
             </div>
 
             <div className="cookie-consent-actions">
-              <button
-                onClick={handleSaveCustom}
-                className="btn btn-primary"
-              >
+              <button onClick={handleSaveCustom} className="btn btn-primary">
                 Auswahl speichern
               </button>
-              <button
-                onClick={() => setShowDetails(false)}
-                className="btn btn-secondary"
-              >
+              <button onClick={() => setShowDetails(false)} className="btn btn-secondary">
                 Zurück
               </button>
             </div>
           </>
         )}
-        
+
         <p className="cookie-consent-footer">
           Mehr Informationen in unserer{' '}
           <a href="/datenschutz" className="cookie-link">

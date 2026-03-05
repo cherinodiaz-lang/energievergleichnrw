@@ -18,6 +18,7 @@ Dieser Branch behebt **4 kritische DSGVO-Verstöße** auf energievergleich.shop:
 ## 📋 Checklist vor dem Merge
 
 ### 1. Cookie-Banner CSS (SOFORT)
+
 - [x] `cookie-banner.css` erstellt
 - [x] Beide Buttons identisch gestylt (kein Nudging)
 - [ ] In `index.html` einbinden: `<link rel="stylesheet" href="/styles/cookie-banner.css">`
@@ -28,6 +29,7 @@ Dieser Branch behebt **4 kritische DSGVO-Verstöße** auf energievergleich.shop:
 ---
 
 ### 2. Datenschutzbeauftragter (SOFORT)
+
 - [x] Template `datenschutz-dsb-section.html` erstellt
 - [ ] **ENTSCHEIDUNG TREFFEN:**
   - [ ] Option A: Externen DSB beauftragen (80-200 €/Monat)
@@ -41,6 +43,7 @@ Dieser Branch behebt **4 kritische DSGVO-Verstöße** auf energievergleich.shop:
 ---
 
 ### 3. Impressum (VOR MERGE KLÄREN!)
+
 - [x] Template `impressum.html` erstellt
 - [ ] **RECHTSFORM KLÄREN:**
   - [ ] GbR (P. Kohmann & A. Danos GbR)
@@ -56,6 +59,7 @@ Dieser Branch behebt **4 kritische DSGVO-Verstöße** auf energievergleich.shop:
 ---
 
 ### 4. Firmenbezeichnung vereinheitlichen (SOFORT)
+
 - [ ] Überall "ENERGIEVERGLEICH NRW" verwenden
 - [ ] "Energievergleich Muster GmbH" in `datenschutz.html` ersetzen
 - [ ] Footer, Header, alle Templates prüfen
@@ -65,12 +69,14 @@ Dieser Branch behebt **4 kritische DSGVO-Verstöße** auf energievergleich.shop:
 ## 🚀 Deployment-Reihenfolge
 
 ### Phase 1 - Sofort (HEUTE):
+
 1. **Cookie-Banner CSS** → Keine Daten nötig, direkt deployen
 2. **Firmenname** → Such & Replace in allen Dateien
 3. **Datenschutzbeauftragter** → Entscheidung treffen, Text einfügen
 4. **Impressum** → NUR wenn Daten vorliegen (sonst erst klären!)
 
 ### Phase 2 - Diese Woche:
+
 - Cookie-Einwilligungsprotokoll implementieren
 - Drittlandtransfer-Infos verbessern (Google Analytics)
 
@@ -78,13 +84,13 @@ Dieser Branch behebt **4 kritische DSGVO-Verstöße** auf energievergleich.shop:
 
 ## 💰 Kosten-Übersicht
 
-| Maßnahme | Kosten |
-|----------|--------|
-| Cookie-Banner | 0 € (nur CSS) |
-| DSB extern | 960-2.400 €/Jahr |
-| DSB intern | 0 € (Person benennen) |
-| Impressum | 0 € (Texte) |
-| **Minimum** | **0 €** |
+| Maßnahme      | Kosten                |
+| ------------- | --------------------- |
+| Cookie-Banner | 0 € (nur CSS)         |
+| DSB extern    | 960-2.400 €/Jahr      |
+| DSB intern    | 0 € (Person benennen) |
+| Impressum     | 0 € (Texte)           |
+| **Minimum**   | **0 €**               |
 
 ---
 
@@ -133,14 +139,17 @@ grep -r "Energievergleich Muster GmbH" .
 ## 🔒 Rechtliche Hinweise
 
 **§ 5 TMG - Impressumspflicht:**
+
 - Fehlende/falsche Angaben = Abmahngefahr
 - Bußgeld bis 50.000 €
 
 **Art. 37 DSGVO - DSB-Pflicht:**
+
 - Falsche "Musterangabe" = Datenschutzverstoß
 - Bußgeld bis 10 Mio. € oder 2% Jahresumsatz
 
 **Art. 7 DSGVO - Cookie-Nudging:**
+
 - Visuelles "Nudging" unzulässig
 - Einwilligung muss freiwillig sein
 
@@ -149,6 +158,7 @@ grep -r "Energievergleich Muster GmbH" .
 ## 📞 Support
 
 Bei Fragen zu diesem Branch:
+
 - **Erstellt von:** Perplexity AI (via cherinodiaz-lang)
 - **Basis:** DSGVO-Analyse vom 04.03.2026
 - **Rechtsstand:** März 2026
@@ -164,8 +174,10 @@ Bei Fragen zu diesem Branch:
 5. [ ] Google PageSpeed Insights (sollte nicht negativ beeinflusst sein)
 
 **Nächster Schritt:** Phase 2 - SEO-Optimierungen
+
 ```
 
 ---
 
 **Wichtig:** Dieser Branch ist NICHT deploy-ready, solange Platzhalter nicht gefüllt sind!
+```

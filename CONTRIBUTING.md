@@ -27,6 +27,7 @@ git checkout -b fix/dein-bugfix-name
 ```
 
 **Branch Naming Convention:**
+
 - `feature/` - Neue Features
 - `fix/` - Bugfixes
 - `docs/` - Dokumentation
@@ -67,6 +68,7 @@ footer (optional)
 ```
 
 **Types:**
+
 - `feat:` - Neues Feature
 - `fix:` - Bugfix
 - `docs:` - Dokumentation
@@ -77,6 +79,7 @@ footer (optional)
 - `perf:` - Performance-Verbesserung
 
 **Beispiele:**
+
 ```bash
 git commit -m "feat(calculator): add consumption history"
 git commit -m "fix(api): handle timeout errors properly"
@@ -86,6 +89,7 @@ git commit -m "docs(readme): update installation steps"
 ### 4. Pull Request erstellen
 
 1. Pushe deinen Branch:
+
    ```bash
    git push origin feature/dein-feature-name
    ```
@@ -205,11 +209,11 @@ describe('Button', () => {
     render(<Button label="Click me" onClick={() => {}} />);
     expect(screen.getByText('Click me')).toBeInTheDocument();
   });
-  
+
   it('calls onClick when clicked', async () => {
     const handleClick = vi.fn();
     render(<Button label="Click" onClick={handleClick} />);
-    
+
     await userEvent.click(screen.getByText('Click'));
     expect(handleClick).toHaveBeenCalledOnce();
   });
@@ -231,18 +235,14 @@ describe('Button', () => {
 ```typescript
 /**
  * Berechnet die jährlichen Energiekosten
- * 
+ *
  * @param consumption - Jahresverbrauch in kWh
  * @param pricePerKwh - Preis pro kWh in Cent
  * @param basePrice - Grundpreis in Euro/Jahr
  * @returns Gesamtkosten in Euro
  */
-function calculateAnnualCost(
-  consumption: number,
-  pricePerKwh: number,
-  basePrice: number
-): number {
-  return (consumption * pricePerKwh / 100) + basePrice;
+function calculateAnnualCost(consumption: number, pricePerKwh: number, basePrice: number): number {
+  return (consumption * pricePerKwh) / 100 + basePrice;
 }
 ```
 

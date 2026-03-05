@@ -12,12 +12,12 @@ interface SignInProps {
 }
 
 export function SignIn({
-  title = "Sign In Required",
-  message = "Please sign in to access this content.",
-  className = "min-h-screen flex items-center justify-center px-4 ",
-  cardClassName = "w-fit max-w-xl mx-auto text-foreground",
-  buttonClassName = "w-full h-10 max-w-sm mx-auto",
-  buttonText = "Sign In"
+  title = 'Sign In Required',
+  message = 'Please sign in to access this content.',
+  className = 'min-h-screen flex items-center justify-center px-4 ',
+  cardClassName = 'w-fit max-w-xl mx-auto text-foreground',
+  buttonClassName = 'w-full h-10 max-w-sm mx-auto',
+  buttonText = 'Sign In',
 }: SignInProps) {
   const { actions } = useMember();
 

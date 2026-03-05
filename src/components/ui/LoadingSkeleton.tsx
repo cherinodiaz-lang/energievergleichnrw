@@ -18,12 +18,12 @@ export function Skeleton({
   height = 20,
   variant = 'text',
   animation = 'pulse',
-  className = ''
+  className = '',
 }: SkeletonProps) {
   const style: CSSProperties = {
     width: typeof width === 'number' ? `${width}px` : width,
     height: typeof height === 'number' ? `${height}px` : height,
-    borderRadius: variant === 'circular' ? '50%' : variant === 'text' ? '4px' : '8px'
+    borderRadius: variant === 'circular' ? '50%' : variant === 'text' ? '4px' : '8px',
   };
 
   return (
