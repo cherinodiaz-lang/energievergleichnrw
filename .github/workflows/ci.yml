@@ -1,64 +1,151 @@
-name: CI
+name: CI/CD Pipeline
 
 on:
-  pull_request:
   push:
-    branches:
-      - main
-
-concurrency:
-  group: ci-${{ github.ref }}
-  cancel-in-progress: true
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
 
 jobs:
-  verify:
-    name: Code Quality & Structure Check
+  # Lint & Type Check
+  lint:
+    name: Lint & Type Check
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
+      - uses: actions/checkout@v4
+      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run ESLint
+        run: npm run lint
+      
+      - name: Run TypeScript Check
+        run: npm run type-check
 
-      - name: Validate package.json
-        run: |
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "📦 Validating package.json"
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          node -e "const pkg = require('./package.json'); console.log('✓ package.json is valid JSON'); console.log('  Project:', pkg.name); console.log('  Version:', pkg.version);"
+  # Tests
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run Tests
+        run: npm run test
+        env:
+          CI: true
 
-      - name: Check Project Structure
-        run: |
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "📁 Checking project structure"
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          
-          test -f astro.config.mjs && echo "✓ astro.config.mjs exists" || (echo "✗ astro.config.mjs MISSING" && exit 1)
-          test -f tsconfig.json && echo "✓ tsconfig.json exists" || (echo "✗ tsconfig.json MISSING" && exit 1)
-          test -f package.json && echo "✓ package.json exists" || (echo "✗ package.json MISSING" && exit 1)
-          
-          test -d src && echo "✓ src/ directory exists" || (echo "✗ src/ MISSING" && exit 1)
-          test -d public && echo "✓ public/ directory exists" || echo "⚠ public/ missing (optional)"
-          
-          test -f public/robots.txt && echo "✓ robots.txt exists" || echo "⚠ robots.txt missing"
-          test -f public/sitemap.xml && echo "✓ sitemap.xml exists" || echo "⚠ sitemap.xml missing"
+  # Build
+  build:
+    name: Build Application
+    runs-on: ubuntu-latest
+    needs: [lint, test]
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build
+        run: npm run build
+      
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 7
 
-      - name: Check Astro Config
+  # Lighthouse CI
+  lighthouse:
+    name: Lighthouse Performance Audit
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      
+      - name: Run Lighthouse CI
         run: |
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "🚀 Checking Astro configuration"
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          grep -q "output.*server" astro.config.mjs && echo "✓ SSR mode configured" || echo "⚠ Static mode"
-          grep -q "@wix/astro" astro.config.mjs && echo "✓ Wix integration present" || echo "⚠ No Wix integration"
+          npm install -g @lhci/cli
+          lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
-      - name: Summary
+  # Security Audit
+  security:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Run npm audit
+        run: npm audit --audit-level=moderate
+        continue-on-error: true
+      
+      - name: Run Snyk Security Scan
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+  # Deploy to Production
+  deploy:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [build, lighthouse]
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      
+      - name: Deploy to Vercel/Netlify/Cloudflare
         run: |
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "✅ CI Check Complete"
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "Project structure is valid."
-          echo "Note: Full build runs via 'wix build' (not in CI)"
+          # Add your deployment script here
+          echo "Deploying to production..."
+        env:
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
