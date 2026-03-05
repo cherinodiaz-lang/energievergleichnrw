@@ -33,7 +33,7 @@ import FormSubmissionDialog from '@/components/FormSubmissionDialog';
 import { trackMethodikClick } from '@/services/form-submission';
 import { getRelatedPages } from '@/lib/internal-linking';
 import StromvergleichCityLayout from '@/components/pages/stromvergleich/StromvergleichCityLayout';
-import FAQSchema from '@/components/FAQSchema';
+import FAQSchema from ' ../../schemas/FAQSchema';
 
 const FAQ_ITEMS = [
   {

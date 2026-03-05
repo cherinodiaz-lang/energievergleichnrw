@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import cityTemplate from '@content/de/templates/local-stromvergleich.json';
 
+// Für output: 'static' MUSS getStaticPaths() definiert sein!
 export function getStaticPaths() {
   const cities = [
     { slug: 'stromvergleich-essen', city: 'Essen' },

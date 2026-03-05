@@ -1,6 +1,7 @@
 ---
 import { SEO } from '@/components/seo/SEO.astro';
-import { OrganizationSchema, WebsiteSchema, FAQSchema } from '@/components/seo/EnhancedStructuredData';
+// TEMPORÄR DEAKTIVIERT - Datei existiert nicht
+// import { OrganizationSchema, WebsiteSchema, FAQSchema } from '@/components/seo/EnhancedStructuredData';
 import CriticalCSS from '@/components/performance/CriticalCSS.astro';
 import PreloadLinks from '@/components/performance/PreloadLinks.astro';
 import '@/styles/global.css';
@@ -72,10 +73,10 @@ const currentUrl = canonical || Astro.url.href;
     <!-- Critical CSS -->
     <CriticalCSS />
     
-    <!-- Structured Data -->
-    <OrganizationSchema />
-    <WebsiteSchema />
-    {faqItems.length > 0 && <FAQSchema items={faqItems} />}
+    <!-- Structured Data - TEMPORÄR DEAKTIVIERT -->
+    <!-- <OrganizationSchema /> -->
+    <!-- <WebsiteSchema /> -->
+    <!-- {faqItems.length > 0 && <FAQSchema items={faqItems} />} -->
     
     <!-- Service Worker Registration -->
     <script is:inline>

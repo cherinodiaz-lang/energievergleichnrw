@@ -1,6 +1,10 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   site: 'https://energievergleichnrw.de',
@@ -12,7 +16,7 @@ export default defineConfig({
   ],
   
   // Output configuration
-  output: 'static',
+  output: 'static',  // ← GEÄNDERT ZURÜCK ZU 'static' für Wix Vibe
   
   // Build configuration
   build: {
@@ -22,6 +26,11 @@ export default defineConfig({
   
   // Vite configuration
   vite: {
+    resolve: {
+      alias: {
+        '@content': path.resolve(__dirname, './src/content')
+      }
+    },
     build: {
       cssCodeSplit: true,
       rollupOptions: {

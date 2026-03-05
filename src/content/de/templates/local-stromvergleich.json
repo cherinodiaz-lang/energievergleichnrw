@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "title": "Stromvergleich {{city}} - Günstige Stromanbieter vergleichen",
+    "description": "Stromvergleich für {{city}}: Vergleichen Sie Stromanbieter und finden Sie den günstigsten Tarif in Ihrer Region."
+  },
+  "hero": {
+    "badge": "⚡ Stromvergleich {{city}}",
+    "h1": "Günstige Stromanbieter in {{city}} finden",
+    "subline": "Vergleichen Sie jetzt Stromtarife in {{city}} und sparen Sie bis zu 500€ pro Jahr.",
+    "primaryCta": "Jetzt Tarife vergleichen"
+  },
+  "sections": {
+    "localContext": {
+      "title": "Stromvergleich speziell für {{city}}",
+      "cards": [
+        {
+          "title": "Lokale Anbieter",
+          "text": "Vergleichen Sie überregionale und lokale Stromanbieter in {{city}}"
+        },
+        {
+          "title": "Faire Preise",
+          "text": "Transparente Preisgestaltung ohne versteckte Kosten"
+        },
+        {
+          "title": "Einfacher Wechsel",
+          "text": "Wir kümmern uns um die komplette Abwicklung für Sie"
+        }
+      ]
+    },
+    "faq": {
+      "title": "Häufige Fragen zum Stromvergleich in {{city}}",
+      "items": [
+        {
+          "q": "Welche Stromanbieter gibt es in {{city}}?",
+          "a": "In {{city}} stehen Ihnen zahlreiche überregionale und lokale Stromanbieter zur Auswahl. Unser Vergleichsrechner zeigt Ihnen alle verfügbaren Tarife."
+        },
+        {
+          "q": "Wie lange dauert der Wechsel in {{city}}?",
+          "a": "Der Wechsel dauert in der Regel 2-4 Wochen. Ihr neuer Anbieter kümmert sich um die Kündigung beim alten Versorger."
+        },
+        {
+          "q": "Gibt es eine Versorgungslücke?",
+          "a": "Nein, die Stromversorgung ist in {{city}} gesetzlich garantiert. Sie erhalten durchgehend Strom."
+        },
+        {
+          "q": "Kann ich Ökostrom in {{city}} beziehen?",
+          "a": "Ja, viele Anbieter in {{city}} bieten Ökostromtarife an. Diese können Sie in unserem Vergleich gezielt filtern."
+        }
+      ]
+    }
+  }
+}

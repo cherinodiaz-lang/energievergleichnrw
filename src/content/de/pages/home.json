@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "title": "EnergieVergleich NRW - Strom, Gas & Photovoltaik vergleichen",
+    "description": "Vergleichen Sie kostenlos Strom-, Gas- und Photovoltaikanbieter in Nordrhein-Westfalen. Unabhängig, transparent und einfach."
+  },
+  "hero": {
+    "h1": "Energie clever vergleichen in NRW",
+    "subline": "Finden Sie die besten Tarife für Strom, Gas und Photovoltaik in Nordrhein-Westfalen.",
+    "primaryCta": "Jetzt vergleichen",
+    "secondaryCta": "Mehr erfahren"
+  },
+  "sections": {
+    "benefits": {
+      "title": "Ihre Vorteile",
+      "cards": [
+        {
+          "title": "100% Kostenlos",
+          "text": "Unser Vergleich ist komplett kostenlos und unverbindlich"
+        },
+        {
+          "title": "Unabhängig",
+          "text": "Objektive Empfehlungen ohne Provisionsdruck"
+        },
+        {
+          "title": "Schnell & Einfach",
+          "text": "In wenigen Minuten zum passenden Tarif"
+        }
+      ]
+    },
+    "howItWorks": {
+      "title": "So funktioniert's",
+      "steps": [
+        {
+          "title": "PLZ eingeben",
+          "text": "Geben Sie Ihre Postleitzahl und Verbrauch ein"
+        },
+        {
+          "title": "Angebote vergleichen",
+          "text": "Sehen Sie alle verfügbaren Tarife im Überblick"
+        },
+        {
+          "title": "Online wechseln",
+          "text": "Wählen Sie Ihren Wunschtarif und wechseln Sie direkt"
+        }
+      ]
+    },
+    "trust": {
+      "title": "Über 10.000 zufriedene Kunden",
+      "text": "Vertrauen Sie auf unsere langjährige Erfahrung und wechseln Sie jetzt zu einem günstigeren Anbieter."
+    },
+    "faq": {
+      "title": "Häufig gestellte Fragen",
+      "items": [
+        {
+          "q": "Ist der Vergleich wirklich kostenlos?",
+          "a": "Ja, unser Vergleich ist 100% kostenlos und unverbindlich. Es entstehen keine versteckten Kosten."
+        },
+        {
+          "q": "Wie lange dauert ein Anbieterwechsel?",
+          "a": "Der Wechsel dauert in der Regel 2-4 Wochen. Der neue Anbieter kümmert sich um alle Formalitäten."
+        },
+        {
+          "q": "Muss ich meinen alten Vertrag selbst kündigen?",
+          "a": "Nein, in den meisten Fällen übernimmt der neue Anbieter die Kündigung für Sie."
+        },
+        {
+          "q": "Gibt es eine Versorgungslücke beim Wechsel?",
+          "a": "Nein, die Versorgung ist gesetzlich garantiert. Sie erhalten durchgehend Strom oder Gas."
+        }
+      ]
+    }
+  },
+  "closingCta": {
+    "title": "Bereit zum Sparen?",
+    "text": "Starten Sie jetzt Ihren kostenlosen Vergleich und finden Sie den besten Tarif für Ihre Region.",
+    "primaryCta": "Jetzt Tarife vergleichen"
+  }
+}
