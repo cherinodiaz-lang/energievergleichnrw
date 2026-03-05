@@ -22,9 +22,18 @@ export default function GasCategoryPage() {
   ];
 
   const breadcrumbSchema = [
-    { name: 'Startseite', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}` },
-    { name: 'Ratgeber', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.ratgeber}` },
-    { name: 'Gas', url: `${typeof window !== 'undefined' ? window.location.origin : ''}/ratgeber/gas` },
+    {
+      name: 'Startseite',
+      url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}`,
+    },
+    {
+      name: 'Ratgeber',
+      url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.ratgeber}`,
+    },
+    {
+      name: 'Gas',
+      url: `${typeof window !== 'undefined' ? window.location.origin : ''}/ratgeber/gas`,
+    },
   ];
 
   return (
@@ -74,27 +83,42 @@ export default function GasCategoryPage() {
           >
             <div className="max-w-3xl">
               <p className="font-paragraph text-base md:text-lg text-gray-700 mb-8 leading-relaxed">
-                Gaskosten sind ein wesentlicher Bestandteil der Nebenkosten für Haushalte und Unternehmen. Ob Sie gerade einen Gaswechsel planen, Ihre aktuelle Versorgung überprüfen möchten oder Fragen zu Verträgen und Heizungsoptionen haben – unser Ratgeber bietet Ihnen umfassende Informationen. Erfahren Sie, welche Faktoren Ihre Gasrechnung beeinflussen, wie Sie Kosten senken können und worauf Sie bei der Wahl eines Gasanbieters achten sollten.
+                Gaskosten sind ein wesentlicher Bestandteil der Nebenkosten für Haushalte und
+                Unternehmen. Ob Sie gerade einen Gaswechsel planen, Ihre aktuelle Versorgung
+                überprüfen möchten oder Fragen zu Verträgen und Heizungsoptionen haben – unser
+                Ratgeber bietet Ihnen umfassende Informationen. Erfahren Sie, welche Faktoren Ihre
+                Gasrechnung beeinflussen, wie Sie Kosten senken können und worauf Sie bei der Wahl
+                eines Gasanbieters achten sollten.
               </p>
 
               <div className="mb-8 space-y-3">
-                <h3 className="font-heading text-lg font-semibold text-primary mb-4">Häufige Fragen zum Gasvergleich:</h3>
+                <h3 className="font-heading text-lg font-semibold text-primary mb-4">
+                  Häufige Fragen zum Gasvergleich:
+                </h3>
                 <ul className="space-y-2">
                   <li className="flex items-start gap-3">
                     <span className="text-secondary font-bold mt-1">•</span>
-                    <span className="font-paragraph text-gray-700">Wie kann ich meinen Gasanbieter wechseln und wie lange dauert das?</span>
+                    <span className="font-paragraph text-gray-700">
+                      Wie kann ich meinen Gasanbieter wechseln und wie lange dauert das?
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-secondary font-bold mt-1">•</span>
-                    <span className="font-paragraph text-gray-700">Welche Unterschiede gibt es zwischen Grundversorgung und Sondervertrag?</span>
+                    <span className="font-paragraph text-gray-700">
+                      Welche Unterschiede gibt es zwischen Grundversorgung und Sondervertrag?
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-secondary font-bold mt-1">•</span>
-                    <span className="font-paragraph text-gray-700">Was sollte ich bei Preiserhöhungen beachten und welche Rechte habe ich?</span>
+                    <span className="font-paragraph text-gray-700">
+                      Was sollte ich bei Preiserhöhungen beachten und welche Rechte habe ich?
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-secondary font-bold mt-1">•</span>
-                    <span className="font-paragraph text-gray-700">Wie beeinflussen Heizungsart und Verbrauch meine Gaskosten?</span>
+                    <span className="font-paragraph text-gray-700">
+                      Wie beeinflussen Heizungsart und Verbrauch meine Gaskosten?
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -177,7 +201,10 @@ export default function GasCategoryPage() {
           <p className="font-paragraph text-lg text-white/90 mb-8 max-w-2xl mx-auto">
             Nutzen Sie unseren Vergleichsrechner und finden Sie den besten Gastarif für Ihre Region.
           </p>
-          <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 px-8 rounded-lg font-bold">
+          <Button
+            asChild
+            className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 px-8 rounded-lg font-bold"
+          >
             <Link to={ROUTES.gasvergleich}>
               Gastarife vergleichen
               <ArrowRight className="w-5 h-5 ml-2" />

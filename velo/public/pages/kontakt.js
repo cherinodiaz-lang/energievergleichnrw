@@ -5,13 +5,13 @@ $w.onReady(async () => {
   try {
     await setSEO('kontakt');
     const content = await getPageContent('kontakt');
-    
+
     if (!content) return;
-    
+
     // Hero
     $w('#pageTitle').text = content.hero.h1;
     $w('#pageSubline').text = content.hero.subline;
-    
+
     // Form Labels
     const form = content.form;
     $w('#topicLabel').text = form.fieldLabels[0];
@@ -19,10 +19,10 @@ $w.onReady(async () => {
     $w('#emailLabel').text = form.fieldLabels[2];
     $w('#phoneLabel').text = form.fieldLabels[3];
     $w('#consentLabel').text = form.fieldLabels[4];
-    
+
     // Submit Button
     $w('#submitButton').label = form.submit;
-    
+
     // Form Submission
     $w('#contactForm').onSubmit(async (event) => {
       try {
@@ -34,7 +34,6 @@ $w.onReady(async () => {
         $w('#errorMessage').show();
       }
     });
-    
   } catch (error) {
     console.error('Page Error:', error);
   }

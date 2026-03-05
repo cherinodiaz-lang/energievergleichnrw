@@ -43,26 +43,20 @@ import '@/styles/components/skip-link.css';
 ### **2. Button Example**
 
 ```html
-<a href="/stromvergleich-nrw" class="btn btn-primary">
-  Jetzt Tarif prüfen
-</a>
+<a href="/stromvergleich-nrw" class="btn btn-primary"> Jetzt Tarif prüfen </a>
 
-<button class="btn btn-secondary" type="button">
-  Mehr erfahren
-</button>
+<button class="btn btn-secondary" type="button">Mehr erfahren</button>
 ```
 
 ### **3. Form Example (WCAG-compliant)**
 
 ```html
 <div class="field">
-  <label class="label" for="zip" data-required="true">
-    Postleitzahl (PLZ)
-  </label>
-  <input 
-    class="input" 
-    id="zip" 
-    name="zip" 
+  <label class="label" for="zip" data-required="true"> Postleitzahl (PLZ) </label>
+  <input
+    class="input"
+    id="zip"
+    name="zip"
     type="text"
     inputmode="numeric"
     autocomplete="postal-code"
@@ -90,19 +84,15 @@ import '@/styles/components/skip-link.css';
       Arbeitspreis, Grundpreis und regionale Bestandteile verständlich erklärt.
     </p>
   </div>
-  
+
   <div class="card">
     <p class="card-title">Laufzeit & Kündigung</p>
-    <p class="card-text">
-      Kurz und flexibel ist oft besser – wir zeigen dir die Stellschrauben.
-    </p>
+    <p class="card-text">Kurz und flexibel ist oft besser – wir zeigen dir die Stellschrauben.</p>
   </div>
-  
+
   <div class="card">
     <p class="card-title">Bonus & Preisgarantie</p>
-    <p class="card-text">
-      Wir erklären Vor- und Nachteile, damit du sauber vergleichen kannst.
-    </p>
+    <p class="card-text">Wir erklären Vor- und Nachteile, damit du sauber vergleichen kannst.</p>
   </div>
 </div>
 ```
@@ -126,21 +116,26 @@ import '@/styles/components/skip-link.css';
 ## ✅ **WCAG Compliance Checklist**
 
 ### **Contrast (1.4.3)**
+
 - ✅ Text: 4.5:1 minimum (`--text-900` on `--bg`)
 - ✅ Large Text: 3:1 minimum (`--text-700` on `--bg`)
 - ✅ Non-Text: 3:1 minimum (Buttons, Borders, Icons)
 
 ### **Focus Visible (2.4.7)**
+
 - ✅ All interactive elements have visible focus state (`outline: 3px solid var(--focus)`)
 
 ### **Target Size (2.5.8)**
+
 - ✅ All clickable elements: min 44px height/width
 
 ### **Error Identification (3.3.1)**
+
 - ✅ Form errors are textual, not just color-coded
 - ✅ Errors linked via `aria-describedby`
 
 ### **Bypass Blocks (2.4.1)**
+
 - ✅ Skip link allows keyboard users to jump to main content
 
 ---
@@ -148,17 +143,20 @@ import '@/styles/components/skip-link.css';
 ## 🚀 **Performance Optimizations**
 
 ### **CSS Variables**
+
 - ✅ Centralized tokens for easy theming
 - ✅ No runtime CSS-in-JS overhead
 
 ### **Minimal Bundle Size**
+
 - ✅ Component-based CSS (tree-shakeable)
 - ✅ No unused styles shipped
 
 ### **Responsive Images (Next Step)**
+
 ```html
-<img 
-  src="/images/hero.jpg" 
+<img
+  src="/images/hero.jpg"
   srcset="/images/hero-400.jpg 400w, /images/hero-800.jpg 800w"
   sizes="(max-width: 600px) 400px, 800px"
   alt="Stromvergleich NRW"
@@ -173,12 +171,14 @@ import '@/styles/components/skip-link.css';
 ## 📊 **Lighthouse Score Targets**
 
 **Expected Results:**
+
 - 🟢 **Performance:** 95+ (with image optimization)
 - 🟢 **Accessibility:** 100
 - 🟢 **Best Practices:** 100
 - 🟢 **SEO:** 100
 
 **Test Command:**
+
 ```bash
 npx lighthouse https://energievergleich.shop --only-categories=accessibility,seo --view
 ```

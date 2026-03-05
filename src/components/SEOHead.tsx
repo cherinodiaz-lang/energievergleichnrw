@@ -22,7 +22,8 @@ interface SEOHeadProps {
 // Preferred production origin (used as canonical target when possible)
 const PREFERRED_ORIGIN = 'https://www.energievergleich.shop';
 const SITE_NAME = 'energievergleich.shop';
-const DEFAULT_IMAGE = 'https://static.wixstatic.com/media/32e7c0_8cede5e338be484bb8dcaad81c053c82~mv2.png?originWidth=1920&originHeight=1024';
+const DEFAULT_IMAGE =
+  'https://static.wixstatic.com/media/32e7c0_8cede5e338be484bb8dcaad81c053c82~mv2.png?originWidth=1920&originHeight=1024';
 
 const getCanonicalOrigin = () => {
   if (typeof window === 'undefined') return PREFERRED_ORIGIN;
@@ -30,7 +31,8 @@ const getCanonicalOrigin = () => {
   const origin = window.location.origin;
 
   // Normalize known production variants to preferred host
-  if (origin === 'https://energievergleich.shop' || origin === 'http://energievergleich.shop') return PREFERRED_ORIGIN;
+  if (origin === 'https://energievergleich.shop' || origin === 'http://energievergleich.shop')
+    return PREFERRED_ORIGIN;
   if (origin === 'http://www.energievergleich.shop') return PREFERRED_ORIGIN;
 
   // For preview/staging environments, keep the current origin to avoid mismatches
@@ -69,11 +71,21 @@ export default function SEOHead({
     // PHASE 7: Preload critical fonts for better performance
     const preloadFonts = () => {
       const fonts = [
-        { href: '//static.parastorage.com/tag-bundler/api/v1/fonts-cache/googlefont/woff2/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2', as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
-        { href: '//static.parastorage.com/tag-bundler/api/v1/fonts-cache/googlefont/woff2/s/poppins/v22/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2', as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
+        {
+          href: '//static.parastorage.com/tag-bundler/api/v1/fonts-cache/googlefont/woff2/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2',
+          as: 'font',
+          type: 'font/woff2',
+          crossOrigin: 'anonymous',
+        },
+        {
+          href: '//static.parastorage.com/tag-bundler/api/v1/fonts-cache/googlefont/woff2/s/poppins/v22/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2',
+          as: 'font',
+          type: 'font/woff2',
+          crossOrigin: 'anonymous',
+        },
       ];
 
-      fonts.forEach(font => {
+      fonts.forEach((font) => {
         if (!document.querySelector(`link[href="${font.href}"]`)) {
           const link = document.createElement('link');
           link.rel = 'preload';
@@ -88,12 +100,9 @@ export default function SEOHead({
     preloadFonts();
 
     // PHASE 7: DNS Prefetch for external resources (Tarifrechner API)
-    const dnsPrefetchDomains = [
-      'https://api.tarifrechner.de',
-      'https://static.parastorage.com',
-    ];
+    const dnsPrefetchDomains = ['https://api.tarifrechner.de', 'https://static.parastorage.com'];
 
-    dnsPrefetchDomains.forEach(domain => {
+    dnsPrefetchDomains.forEach((domain) => {
       if (!document.querySelector(`link[href="${domain}"]`)) {
         const link = document.createElement('link');
         link.rel = 'dns-prefetch';
@@ -115,7 +124,9 @@ export default function SEOHead({
     metaDescription.setAttribute('content', description);
 
     // Canonical URL
-    const canonicalUrl = canonical ? toAbsoluteUrl(canonicalOrigin, canonical) : `${canonicalOrigin}${location.pathname}`;
+    const canonicalUrl = canonical
+      ? toAbsoluteUrl(canonicalOrigin, canonical)
+      : `${canonicalOrigin}${location.pathname}`;
     let canonicalLink = document.querySelector('link[rel="canonical"]');
     if (!canonicalLink) {
       canonicalLink = document.createElement('link');

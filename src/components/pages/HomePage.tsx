@@ -1,16 +1,43 @@
 // HPI 1.6-G - PHASE 6: Core Web Vitals Optimized
 import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Zap, Flame, CheckCircle, Sun, Download, ChevronDown, Send, Phone, ArrowRight, Leaf, Home, Building2, ShieldCheck, MousePointerClick, Star } from 'lucide-react';
+import {
+  Zap,
+  Flame,
+  CheckCircle,
+  Sun,
+  Download,
+  ChevronDown,
+  Send,
+  Phone,
+  ArrowRight,
+  Leaf,
+  Home,
+  Building2,
+  ShieldCheck,
+  MousePointerClick,
+  Star,
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -67,20 +94,30 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({ children, className, 
       return;
     }
 
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          element.classList.add('is-visible');
-        }, prefersReducedMotion ? 0 : delay);
-        observer.unobserve(element);
-      }
-    }, { threshold: 0.1 });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(
+            () => {
+              element.classList.add('is-visible');
+            },
+            prefersReducedMotion ? 0 : delay
+          );
+          observer.unobserve(element);
+        }
+      },
+      { threshold: 0.1 }
+    );
 
     observer.observe(element);
     return () => observer.disconnect();
   }, [delay, prefersReducedMotion]);
 
-  return <div ref={ref} className={`${className || ''} animate-reveal`}>{children}</div>;
+  return (
+    <div ref={ref} className={`${className || ''} animate-reveal`}>
+      {children}
+    </div>
+  );
 };
 
 // --- Main Component ---
@@ -139,7 +176,7 @@ export default function HomePage() {
   // --- Scroll Hooks for Parallax - REDUCED on mobile ---
   const { scrollY } = useScroll();
   const prefersReducedMotion = useRef(false);
-  
+
   useEffect(() => {
     if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
       return;
@@ -148,10 +185,14 @@ export default function HomePage() {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     prefersReducedMotion.current = mediaQuery.matches;
   }, []);
-  
+
   // Disable parallax on mobile and when reduced motion is preferred
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const heroY = useTransform(scrollY, [0, 1000], prefersReducedMotion.current || isMobile ? [0, 0] : [0, 400]);
+  const heroY = useTransform(
+    scrollY,
+    [0, 1000],
+    prefersReducedMotion.current || isMobile ? [0, 0] : [0, 400]
+  );
   const heroOpacity = useTransform(scrollY, [0, 500], [1, 0]);
 
   // --- Load Data from CMS ---
@@ -172,19 +213,21 @@ export default function HomePage() {
         BaseCrudService.getAll<Informationsmaterial>('informationsmaterial'),
       ]);
 
-      const [faqData, vorteileData, materialsData] = await Promise.race([
+      const [faqData, vorteileData, materialsData] = (await Promise.race([
         dataPromise,
-        timeoutPromise
-      ]) as any;
+        timeoutPromise,
+      ])) as any;
 
-      const sortedFaqs = faqData?.items?.length > 0 
-        ? faqData.items.sort((a: any, b: any) => (a.displayOrder || 0) - (b.displayOrder || 0))
-        : [];
-      const sortedVorteile = vorteileData?.items?.length > 0
-        ? vorteileData.items
-            .filter((v: any) => v.isActive)
-            .sort((a: any, b: any) => (a.displayOrder || 0) - (b.displayOrder || 0))
-        : [];
+      const sortedFaqs =
+        faqData?.items?.length > 0
+          ? faqData.items.sort((a: any, b: any) => (a.displayOrder || 0) - (b.displayOrder || 0))
+          : [];
+      const sortedVorteile =
+        vorteileData?.items?.length > 0
+          ? vorteileData.items
+              .filter((v: any) => v.isActive)
+              .sort((a: any, b: any) => (a.displayOrder || 0) - (b.displayOrder || 0))
+          : [];
 
       setFaqs(sortedFaqs);
       setVorteile(sortedVorteile);
@@ -209,14 +252,14 @@ export default function HomePage() {
     const faqSchema = {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
-      mainEntity: faqs.map(faq => ({
+      mainEntity: faqs.map((faq) => ({
         '@type': 'Question',
         name: faq.question,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: faq.answer
-        }
-      }))
+          text: faq.answer,
+        },
+      })),
     };
 
     const scriptElement = document.getElementById('faq-schema') as HTMLScriptElement | null;
@@ -344,21 +387,25 @@ export default function HomePage() {
             <AnimatedElement>
               <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-xs sm:text-sm font-bold mb-4 sm:mb-6 backdrop-blur-sm">
                 <Leaf className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" aria-hidden="true" />
-                <span className="hidden sm:inline font-heading">Die Nr. 1 für Energievergleiche in NRW</span>
+                <span className="hidden sm:inline font-heading">
+                  Die Nr. 1 für Energievergleiche in NRW
+                </span>
                 <span className="sm:hidden font-heading">Energievergleiche NRW</span>
               </div>
             </AnimatedElement>
 
             <AnimatedElement delay={100}>
               <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white leading-tight mb-4 sm:mb-6 md:mb-8">
-                Energie wechseln.<br />
+                Energie wechseln.
+                <br />
                 <span className="text-secondary">Zukunft sichern.</span>
               </h1>
             </AnimatedElement>
 
             <AnimatedElement delay={200}>
               <p className="font-paragraph text-sm sm:text-lg lg:text-xl text-white/95 mb-6 sm:mb-8 md:mb-10 max-w-2xl leading-relaxed">
-                Der einfache Weg zu günstigerem Strom und Gas in NRW. Mit unserem Vergleichsrechner finden Sie schnell die besten Tarife.
+                Der einfache Weg zu günstigerem Strom und Gas in NRW. Mit unserem Vergleichsrechner
+                finden Sie schnell die besten Tarife.
               </p>
             </AnimatedElement>
 
@@ -384,7 +431,11 @@ export default function HomePage() {
             </AnimatedElement>
 
             <AnimatedElement delay={400}>
-              <Link to="/methodik" onClick={trackMethodikClick} className="inline-block text-white/80 hover:text-white transition-colors text-sm sm:text-base font-medium underline">
+              <Link
+                to="/methodik"
+                onClick={trackMethodikClick}
+                className="inline-block text-white/80 hover:text-white transition-colors text-sm sm:text-base font-medium underline"
+              >
                 So vergleichen wir (Methodik)
               </Link>
             </AnimatedElement>
@@ -414,7 +465,9 @@ export default function HomePage() {
                     <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
                   <div className="min-w-0">
-                    <p className="font-heading font-bold text-base sm:text-xl text-primary">100% Unabhängig</p>
+                    <p className="font-heading font-bold text-base sm:text-xl text-primary">
+                      100% Unabhängig
+                    </p>
                     <p className="text-xs sm:text-sm text-gray-500">Objektiver Vergleich</p>
                   </div>
                 </div>
@@ -423,7 +476,9 @@ export default function HomePage() {
                     <Building2 className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
                   <div className="min-w-0">
-                    <p className="font-heading font-bold text-base sm:text-xl text-primary">Regional in NRW</p>
+                    <p className="font-heading font-bold text-base sm:text-xl text-primary">
+                      Regional in NRW
+                    </p>
                     <p className="text-xs sm:text-sm text-gray-500">Spezialisiert lokal</p>
                   </div>
                 </div>
@@ -432,7 +487,9 @@ export default function HomePage() {
                     <MousePointerClick className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
                   <div className="min-w-0">
-                    <p className="font-heading font-bold text-base sm:text-xl text-primary">Einfacher Wechsel</p>
+                    <p className="font-heading font-bold text-base sm:text-xl text-primary">
+                      Einfacher Wechsel
+                    </p>
                     <p className="text-xs sm:text-sm text-gray-500">Wenige Minuten</p>
                   </div>
                 </div>
@@ -452,17 +509,25 @@ export default function HomePage() {
 
       {/* --- CONTACT SECTION --- */}
       <section id="kontakt" className="w-full py-24 sm:py-32 bg-primary relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)',
+            backgroundSize: '30px 30px',
+          }}
+        ></div>
 
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <div className="text-white">
               <AnimatedElement>
                 <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight mb-6 sm:mb-8">
-                  Wir sind für <br/>Sie da.
+                  Wir sind für <br />
+                  Sie da.
                 </h2>
                 <p className="font-paragraph text-base sm:text-xl text-white/80 mb-8 sm:mb-12 max-w-lg">
-                  Haben Sie Fragen zu Ihrem Tarif oder interessieren Sie sich für eine Solaranlage? Schreiben Sie uns.
+                  Haben Sie Fragen zu Ihrem Tarif oder interessieren Sie sich für eine Solaranlage?
+                  Schreiben Sie uns.
                 </p>
 
                 <div className="space-y-6 sm:space-y-8">
@@ -471,7 +536,9 @@ export default function HomePage() {
                       <Home className="w-5 h-5 sm:w-6 sm:h-6 text-secondary" />
                     </div>
                     <div>
-                      <p className="text-xs sm:text-sm text-white/60 uppercase tracking-wider font-bold">Anschrift</p>
+                      <p className="text-xs sm:text-sm text-white/60 uppercase tracking-wider font-bold">
+                        Anschrift
+                      </p>
                       <p className="text-base sm:text-xl font-medium">
                         {CONTACT.addressLines.map((line, idx) => (
                           <React.Fragment key={idx}>
@@ -488,8 +555,13 @@ export default function HomePage() {
                       <Send className="w-5 h-5 sm:w-6 sm:h-6 text-secondary" />
                     </div>
                     <div>
-                      <p className="text-xs sm:text-sm text-white/60 uppercase tracking-wider font-bold">E-Mail</p>
-                      <a href={mailtoHref} className="text-base sm:text-xl font-medium hover:underline">
+                      <p className="text-xs sm:text-sm text-white/60 uppercase tracking-wider font-bold">
+                        E-Mail
+                      </p>
+                      <a
+                        href={mailtoHref}
+                        className="text-base sm:text-xl font-medium hover:underline"
+                      >
                         {CONTACT.email}
                       </a>
                     </div>
@@ -500,8 +572,13 @@ export default function HomePage() {
                       <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-secondary" />
                     </div>
                     <div>
-                      <p className="text-xs sm:text-sm text-white/60 uppercase tracking-wider font-bold">Telefon</p>
-                      <a href={telHref} className="text-base sm:text-xl font-medium hover:underline">
+                      <p className="text-xs sm:text-sm text-white/60 uppercase tracking-wider font-bold">
+                        Telefon
+                      </p>
+                      <a
+                        href={telHref}
+                        className="text-base sm:text-xl font-medium hover:underline"
+                      >
                         {CONTACT.phone}
                       </a>
                     </div>
@@ -515,9 +592,14 @@ export default function HomePage() {
                 <CardContent className="pt-6 sm:pt-8 px-4 sm:px-8 pb-6 sm:pb-8">
                   <form onSubmit={handleContactSubmit} className="space-y-4 sm:space-y-6">
                     <div className="space-y-2">
-                      <Label htmlFor="contact-type" className="text-sm font-medium">Ich bin...</Label>
+                      <Label htmlFor="contact-type" className="text-sm font-medium">
+                        Ich bin...
+                      </Label>
                       <Select value={contactType} onValueChange={setContactType}>
-                        <SelectTrigger id="contact-type" className="h-10 sm:h-12 bg-gray-50 border-gray-200 text-sm">
+                        <SelectTrigger
+                          id="contact-type"
+                          className="h-10 sm:h-12 bg-gray-50 border-gray-200 text-sm"
+                        >
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -529,7 +611,9 @@ export default function HomePage() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       <div className="space-y-2">
-                        <Label htmlFor="contact-name" className="text-sm font-medium">Name</Label>
+                        <Label htmlFor="contact-name" className="text-sm font-medium">
+                          Name
+                        </Label>
                         <Input
                           id="contact-name"
                           placeholder="Ihr Name"
@@ -540,7 +624,9 @@ export default function HomePage() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="contact-email" className="text-sm font-medium">E-Mail</Label>
+                        <Label htmlFor="contact-email" className="text-sm font-medium">
+                          E-Mail
+                        </Label>
                         <Input
                           id="contact-email"
                           type="email"
@@ -554,7 +640,9 @@ export default function HomePage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="contact-phone" className="text-sm font-medium">Telefon (optional)</Label>
+                      <Label htmlFor="contact-phone" className="text-sm font-medium">
+                        Telefon (optional)
+                      </Label>
                       <Input
                         id="contact-phone"
                         type="tel"
@@ -566,7 +654,9 @@ export default function HomePage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="contact-message" className="text-sm font-medium">Nachricht</Label>
+                      <Label htmlFor="contact-message" className="text-sm font-medium">
+                        Nachricht
+                      </Label>
                       <Textarea
                         id="contact-message"
                         placeholder="Wie können wir Ihnen helfen?"
@@ -603,7 +693,7 @@ export default function HomePage() {
           email: contactEmail,
           phone: contactPhone,
           message: contactMessage,
-          type: contactType
+          type: contactType,
         }}
         requiredFields={['name', 'email', 'message']}
         onSuccess={handleContactSuccess}
@@ -625,7 +715,7 @@ export default function HomePage() {
           strasse: pvStrasse,
           hausnummer: pvHausnummer,
           plz: pvPlz,
-          ort: pvOrt
+          ort: pvOrt,
         }}
         requiredFields={['name', 'email', 'eigentumsart', 'dachform', 'plz', 'ort']}
         onSuccess={handlePvSuccess}

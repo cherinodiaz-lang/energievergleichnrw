@@ -32,4 +32,4 @@ export const useMember = () => {
     throw new Error('useMember must be used within a MemberProvider');
   }
   return context;
-}; 
+};

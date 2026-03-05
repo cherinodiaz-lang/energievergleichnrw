@@ -6,15 +6,15 @@ interface ArticleComparatorCTAProps {
   comparatorTitles?: Record<string, string>;
 }
 
-export default function ArticleComparatorCTA({ 
-  comparatorPages, 
+export default function ArticleComparatorCTA({
+  comparatorPages,
   comparatorTitles = {
     '/stromvergleich-nrw': 'Stromvergleich NRW',
     '/gasvergleich-nrw': 'Gasvergleich NRW',
     '/photovoltaik-nrw': 'Photovoltaik NRW',
     '/gewerbestrom': 'Gewerbestrom',
     '/gewerbegas': 'Gewerbegas',
-  }
+  },
 }: ArticleComparatorCTAProps) {
   if (!comparatorPages || comparatorPages.length === 0) {
     return null;
@@ -26,11 +26,11 @@ export default function ArticleComparatorCTA({
         <h3 className="font-heading text-lg md:text-xl font-bold text-foreground mb-4">
           Jetzt vergleichen und sparen
         </h3>
-        
+
         <p className="font-paragraph text-sm md:text-base text-gray-700 mb-6">
           Nutzen Sie unsere Vergleichsrechner, um die besten Tarife zu finden:
         </p>
-        
+
         <div className="flex flex-col sm:flex-row gap-3 flex-wrap">
           {comparatorPages.map((page) => (
             <Link

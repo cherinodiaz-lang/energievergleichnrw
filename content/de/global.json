@@ -66,20 +66,8 @@
       "phone": "Nur falls du einen Rückruf wünschst."
     },
     "options": {
-      "product": [
-        "Strom",
-        "Gas",
-        "Photovoltaik",
-        "Gewerbestrom",
-        "Gewerbegas"
-      ],
-      "household": [
-        "1 Person",
-        "2 Personen",
-        "3 Personen",
-        "4+ Personen",
-        "5+ Personen"
-      ],
+      "product": ["Strom", "Gas", "Photovoltaik", "Gewerbestrom", "Gewerbegas"],
+      "household": ["1 Person", "2 Personen", "3 Personen", "4+ Personen", "5+ Personen"],
       "consumptionPresets": [
         {
           "label": "Sparsam (1-2 Pers.)",

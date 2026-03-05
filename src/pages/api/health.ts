@@ -16,15 +16,15 @@ export const GET: APIRoute = async () => {
     memory: {
       used: Math.round(process.memoryUsage().heapUsed / 1024 / 1024),
       total: Math.round(process.memoryUsage().heapTotal / 1024 / 1024),
-      unit: 'MB'
-    }
+      unit: 'MB',
+    },
   };
 
   return new Response(JSON.stringify(health, null, 2), {
     status: 200,
     headers: {
       'Content-Type': 'application/json',
-      'Cache-Control': 'no-cache, no-store, must-revalidate'
-    }
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+    },
   });
 };

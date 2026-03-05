@@ -22,9 +22,18 @@ export default function GewerbeCategoryPage() {
   ];
 
   const breadcrumbSchema = [
-    { name: 'Startseite', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}` },
-    { name: 'Ratgeber', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.ratgeber}` },
-    { name: 'Gewerbe', url: `${typeof window !== 'undefined' ? window.location.origin : ''}/ratgeber/gewerbe` },
+    {
+      name: 'Startseite',
+      url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}`,
+    },
+    {
+      name: 'Ratgeber',
+      url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.ratgeber}`,
+    },
+    {
+      name: 'Gewerbe',
+      url: `${typeof window !== 'undefined' ? window.location.origin : ''}/ratgeber/gewerbe`,
+    },
   ];
 
   return (
@@ -77,7 +86,13 @@ export default function GewerbeCategoryPage() {
                 Energieversorgung für Gewerbebetriebe
               </h2>
               <p className="font-paragraph text-base text-gray-700 mb-6 leading-relaxed">
-                Als Gewerbetreibender oder Unternehmer haben Sie spezifische Anforderungen an Ihre Energieversorgung. Gewerbestrom und Gewerbegas unterscheiden sich grundlegend von Privatkundentarifen – sowohl in der Preisgestaltung als auch in den vertraglichen Bedingungen. Unser Ratgeber bietet Ihnen umfassende Informationen, um fundierte Entscheidungen zu treffen und Ihre Energiekosten zu optimieren. Erfahren Sie, worauf Sie bei der Auswahl Ihres Energieanbieters achten sollten und wie Sie von besseren Konditionen profitieren können.
+                Als Gewerbetreibender oder Unternehmer haben Sie spezifische Anforderungen an Ihre
+                Energieversorgung. Gewerbestrom und Gewerbegas unterscheiden sich grundlegend von
+                Privatkundentarifen – sowohl in der Preisgestaltung als auch in den vertraglichen
+                Bedingungen. Unser Ratgeber bietet Ihnen umfassende Informationen, um fundierte
+                Entscheidungen zu treffen und Ihre Energiekosten zu optimieren. Erfahren Sie, worauf
+                Sie bei der Auswahl Ihres Energieanbieters achten sollten und wie Sie von besseren
+                Konditionen profitieren können.
               </p>
 
               <div className="mb-8">
@@ -87,23 +102,33 @@ export default function GewerbeCategoryPage() {
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <span className="text-primary font-bold mt-1">•</span>
-                    <span className="font-paragraph text-gray-700">Welche Unterschiede gibt es zwischen Gewerbestrom und Haushaltsstrom?</span>
+                    <span className="font-paragraph text-gray-700">
+                      Welche Unterschiede gibt es zwischen Gewerbestrom und Haushaltsstrom?
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-primary font-bold mt-1">•</span>
-                    <span className="font-paragraph text-gray-700">Wie kann ich die Energiekosten meines Betriebs senken?</span>
+                    <span className="font-paragraph text-gray-700">
+                      Wie kann ich die Energiekosten meines Betriebs senken?
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-primary font-bold mt-1">•</span>
-                    <span className="font-paragraph text-gray-700">Worauf sollte ich bei Gewerbegas-Verträgen achten?</span>
+                    <span className="font-paragraph text-gray-700">
+                      Worauf sollte ich bei Gewerbegas-Verträgen achten?
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-primary font-bold mt-1">•</span>
-                    <span className="font-paragraph text-gray-700">Wie funktioniert der Wechsel zu einem neuen Energieanbieter?</span>
+                    <span className="font-paragraph text-gray-700">
+                      Wie funktioniert der Wechsel zu einem neuen Energieanbieter?
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-primary font-bold mt-1">•</span>
-                    <span className="font-paragraph text-gray-700">Welche Vertragslaufzeiten sind für Gewerbetreibende üblich?</span>
+                    <span className="font-paragraph text-gray-700">
+                      Welche Vertragslaufzeiten sind für Gewerbetreibende üblich?
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -192,7 +217,10 @@ export default function GewerbeCategoryPage() {
           <p className="font-paragraph text-lg text-white/90 mb-8 max-w-2xl mx-auto">
             Kontaktieren Sie uns für eine individuelle Beratung zu Gewerbestrom und Gewerbegas.
           </p>
-          <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 px-8 rounded-lg font-bold">
+          <Button
+            asChild
+            className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 px-8 rounded-lg font-bold"
+          >
             <Link to="/kontakt">
               Jetzt anfragen
               <ArrowRight className="w-5 h-5 ml-2" />

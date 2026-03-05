@@ -22,7 +22,7 @@ interface PassendeRatgeberProps {
 export default function PassendeRatgeber({
   moneyPageId,
   limit = 4,
-  className = ''
+  className = '',
 }: PassendeRatgeberProps) {
   const articles = getPassendeRatgeber(moneyPageId, limit);
 
@@ -70,7 +70,7 @@ export default function PassendeRatgeber({
                       <span className="text-gray-400">
                         {new Date(article.lastUpdated).toLocaleDateString('de-DE', {
                           month: 'short',
-                          day: 'numeric'
+                          day: 'numeric',
                         })}
                       </span>
                     </div>
@@ -82,7 +82,11 @@ export default function PassendeRatgeber({
         </div>
 
         <div className="mt-8 sm:mt-12 text-center">
-          <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary/5">
+          <Button
+            asChild
+            variant="outline"
+            className="border-primary text-primary hover:bg-primary/5"
+          >
             <Link to={ROUTES.RATGEBER}>
               Alle Ratgeber ansehen
               <ArrowRight className="w-4 h-4 ml-2" />

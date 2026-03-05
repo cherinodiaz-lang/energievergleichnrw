@@ -20,8 +20,10 @@ export default {
       JSXElement(node: JSXElement) {
         const { openingElement } = node;
 
-        if (openingElement.name?.type !== 'JSXIdentifier' ||
-            openingElement.name.name !== 'SelectItem') {
+        if (
+          openingElement.name?.type !== 'JSXIdentifier' ||
+          openingElement.name.name !== 'SelectItem'
+        ) {
           return;
         }
 
@@ -35,8 +37,7 @@ export default {
         if (!valueAttr?.value) return;
 
         const isEmptyString =
-          valueAttr.value.type === 'Literal' &&
-          (valueAttr.value as Literal).value === '';
+          valueAttr.value.type === 'Literal' && (valueAttr.value as Literal).value === '';
 
         if (isEmptyString) {
           context.report({

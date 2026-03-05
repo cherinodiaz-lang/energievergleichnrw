@@ -9,29 +9,32 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
   <div class="offline-container">
     <div class="offline-content">
       <div class="offline-icon">
-        <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <svg
+          width="120"
+          height="120"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        >
           <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
           <polyline points="9 22 9 12 15 12 15 22"></polyline>
           <line x1="1" y1="1" x2="23" y2="23" stroke="#ef4444" stroke-width="2"></line>
         </svg>
       </div>
-      
+
       <h1 class="offline-title">Sie sind offline</h1>
-      
+
       <p class="offline-description">
-        Es scheint, als hätten Sie keine aktive Internetverbindung. 
-        Bitte überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.
+        Es scheint, als hätten Sie keine aktive Internetverbindung. Bitte überprüfen Sie Ihre
+        Verbindung und versuchen Sie es erneut.
       </p>
-      
+
       <div class="offline-actions">
-        <button onclick="window.location.reload()" class="btn btn-primary">
-          🔄 Neu laden
-        </button>
-        <a href="/" class="btn btn-secondary">
-          🏠 Zur Startseite
-        </a>
+        <button onclick="window.location.reload()" class="btn btn-primary"> 🔄 Neu laden </button>
+        <a href="/" class="btn btn-secondary"> 🏠 Zur Startseite </a>
       </div>
-      
+
       <div class="offline-tips">
         <h2>Tipps zur Fehlerbehebung:</h2>
         <ul>
@@ -41,7 +44,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
           <li>Warten Sie einen Moment und versuchen Sie es erneut</li>
         </ul>
       </div>
-      
+
       <div class="cached-pages">
         <h3>Verfügbare Offline-Inhalte:</h3>
         <p>Einige Seiten wurden für die Offline-Nutzung gespeichert:</p>
@@ -64,31 +67,31 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
     padding: 2rem;
     background: linear-gradient(180deg, #f8fafc, #ffffff);
   }
-  
+
   .offline-content {
     max-width: 600px;
     text-align: center;
   }
-  
+
   .offline-icon {
     color: #64748b;
     margin-bottom: 2rem;
   }
-  
+
   .offline-title {
     font-size: 2.5rem;
     font-weight: 800;
     color: #1e293b;
     margin-bottom: 1rem;
   }
-  
+
   .offline-description {
     font-size: 1.125rem;
     color: #475569;
     margin-bottom: 2rem;
     line-height: 1.7;
   }
-  
+
   .offline-actions {
     display: flex;
     gap: 1rem;
@@ -96,7 +99,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
     margin-bottom: 3rem;
     flex-wrap: wrap;
   }
-  
+
   .btn {
     padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
@@ -106,27 +109,27 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
     cursor: pointer;
     transition: all 0.2s;
   }
-  
+
   .btn-primary {
     background: #2563eb;
     color: white;
   }
-  
+
   .btn-primary:hover {
     background: #1d4ed8;
     transform: translateY(-1px);
   }
-  
+
   .btn-secondary {
     background: white;
     color: #2563eb;
     border: 2px solid #2563eb;
   }
-  
+
   .btn-secondary:hover {
     background: #eff6ff;
   }
-  
+
   .offline-tips {
     background: #eff6ff;
     padding: 1.5rem;
@@ -134,26 +137,26 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
     margin-bottom: 2rem;
     text-align: left;
   }
-  
+
   .offline-tips h2 {
     font-size: 1.25rem;
     font-weight: 700;
     color: #1e293b;
     margin-bottom: 1rem;
   }
-  
+
   .offline-tips ul {
     list-style: none;
     padding: 0;
   }
-  
+
   .offline-tips li {
     padding: 0.5rem 0;
     color: #475569;
     display: flex;
     align-items: center;
   }
-  
+
   .offline-tips li::before {
     content: '✓';
     display: inline-block;
@@ -167,41 +170,41 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
     line-height: 1.5rem;
     font-weight: 700;
   }
-  
+
   .cached-pages {
     background: #f8fafc;
     padding: 1.5rem;
     border-radius: 0.75rem;
     text-align: left;
   }
-  
+
   .cached-pages h3 {
     font-size: 1.125rem;
     font-weight: 700;
     color: #1e293b;
     margin-bottom: 0.5rem;
   }
-  
+
   .cached-pages p {
     color: #64748b;
     margin-bottom: 1rem;
   }
-  
+
   .cached-pages ul {
     list-style: none;
     padding: 0;
   }
-  
+
   .cached-pages li {
     padding: 0.5rem 0;
   }
-  
+
   .cached-pages a {
     color: #2563eb;
     text-decoration: none;
     font-weight: 500;
   }
-  
+
   .cached-pages a:hover {
     text-decoration: underline;
   }

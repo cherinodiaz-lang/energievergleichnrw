@@ -86,12 +86,12 @@
   margin-bottom: 0;
 }
 
-.cookie-label input[type="checkbox"] {
+.cookie-label input[type='checkbox'] {
   width: auto;
   cursor: pointer;
 }
 
-.cookie-label input[type="checkbox"]:disabled {
+.cookie-label input[type='checkbox']:disabled {
   cursor: not-allowed;
   opacity: 0.5;
 }
@@ -126,11 +126,11 @@
   .cookie-consent-actions {
     flex-direction: column;
   }
-  
+
   .cookie-consent-actions .btn {
     width: 100%;
   }
-  
+
   .cookie-category-header {
     flex-direction: column;
     align-items: flex-start;
@@ -144,7 +144,7 @@
     background: var(--bg-secondary);
     border-top-color: var(--border-dark);
   }
-  
+
   .cookie-category {
     background: var(--bg-primary);
   }

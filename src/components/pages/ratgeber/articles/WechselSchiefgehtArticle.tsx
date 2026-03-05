@@ -3,7 +3,12 @@ import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -20,42 +25,42 @@ export default function WechselSchiefgehtArticle() {
           name: 'Was tun, wenn der Wechsel nicht funktioniert?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Kontaktieren Sie sofort den neuen Anbieter und den Netzbetreiber. Prüfen Sie, ob die Kündigung beim alten Anbieter eingegangen ist. Dokumentieren Sie alles schriftlich.'
-          }
+            text: 'Kontaktieren Sie sofort den neuen Anbieter und den Netzbetreiber. Prüfen Sie, ob die Kündigung beim alten Anbieter eingegangen ist. Dokumentieren Sie alles schriftlich.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Kann ich ohne Strom sein?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Nein. Ihre Versorgung ist gesetzlich geschützt. Im Notfall springt der Grundversorger ein und beliefert Sie mit Strom oder Gas.'
-          }
+            text: 'Nein. Ihre Versorgung ist gesetzlich geschützt. Im Notfall springt der Grundversorger ein und beliefert Sie mit Strom oder Gas.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Was ist der Grundversorger?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Der Grundversorger ist der Anbieter mit den meisten Kunden in Ihrer Region. Er muss Sie beliefern, wenn kein anderer Anbieter verfügbar ist.'
-          }
+            text: 'Der Grundversorger ist der Anbieter mit den meisten Kunden in Ihrer Region. Er muss Sie beliefern, wenn kein anderer Anbieter verfügbar ist.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Wer hilft mir bei Problemen?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Kontaktieren Sie den neuen Anbieter, den Netzbetreiber oder die Schlichtungsstelle. Die Verbraucherzentrale bietet auch kostenlose Beratung.'
-          }
+            text: 'Kontaktieren Sie den neuen Anbieter, den Netzbetreiber oder die Schlichtungsstelle. Die Verbraucherzentrale bietet auch kostenlose Beratung.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Kann ich Schadensersatz fordern?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Ja, bei Verschulden des Anbieters können Sie Schadensersatz fordern. Dokumentieren Sie alle Schäden und Kosten. Eine Schlichtungsstelle kann helfen.'
-          }
-        }
-      ]
+            text: 'Ja, bei Verschulden des Anbieters können Sie Schadensersatz fordern. Dokumentieren Sie alle Schäden und Kosten. Eine Schlichtungsstelle kann helfen.',
+          },
+        },
+      ],
     };
 
     const script = document.createElement('script');
@@ -106,7 +111,8 @@ export default function WechselSchiefgehtArticle() {
           >
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-12">
               <p className="font-paragraph text-gray-700 leading-relaxed">
-                Probleme beim Lieferantenwechsel sind selten, aber möglich. Erfahren Sie, wie Sie vorgehen, wenn etwas schiefgeht.
+                Probleme beim Lieferantenwechsel sind selten, aber möglich. Erfahren Sie, wie Sie
+                vorgehen, wenn etwas schiefgeht.
               </p>
             </div>
 
@@ -118,19 +124,27 @@ export default function WechselSchiefgehtArticle() {
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Kontaktieren Sie sofort den neuen Anbieter</span>
+                    <span className="font-paragraph text-gray-700">
+                      Kontaktieren Sie sofort den neuen Anbieter
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Prüfen Sie, ob die Kündigung beim alten Anbieter eingegangen ist</span>
+                    <span className="font-paragraph text-gray-700">
+                      Prüfen Sie, ob die Kündigung beim alten Anbieter eingegangen ist
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Dokumentieren Sie alles schriftlich</span>
+                    <span className="font-paragraph text-gray-700">
+                      Dokumentieren Sie alles schriftlich
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Kontaktieren Sie den Netzbetreiber</span>
+                    <span className="font-paragraph text-gray-700">
+                      Kontaktieren Sie den Netzbetreiber
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -140,7 +154,9 @@ export default function WechselSchiefgehtArticle() {
                   Versorgungssicherheit
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Ihre Versorgung ist gesetzlich geschützt. Sie können nicht ohne Strom oder Gas sein. Im Notfall springt der Grundversorger ein und beliefert Sie mit Energie. Dies ist eine Notversorgung, die teurer sein kann.
+                  Ihre Versorgung ist gesetzlich geschützt. Sie können nicht ohne Strom oder Gas
+                  sein. Im Notfall springt der Grundversorger ein und beliefert Sie mit Energie.
+                  Dies ist eine Notversorgung, die teurer sein kann.
                 </p>
               </div>
 
@@ -149,7 +165,9 @@ export default function WechselSchiefgehtArticle() {
                   Hilfe und Beschwerde
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Wenn Sie nicht weiterkommen, können Sie sich an die Schlichtungsstelle wenden. Diese vermittelt kostenlos zwischen Ihnen und dem Energieversorger. Die Verbraucherzentrale bietet auch kostenlose Beratung.
+                  Wenn Sie nicht weiterkommen, können Sie sich an die Schlichtungsstelle wenden.
+                  Diese vermittelt kostenlos zwischen Ihnen und dem Energieversorger. Die
+                  Verbraucherzentrale bietet auch kostenlose Beratung.
                 </p>
               </div>
 
@@ -158,7 +176,9 @@ export default function WechselSchiefgehtArticle() {
                   Schadensersatz
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Bei Verschulden des Anbieters können Sie Schadensersatz fordern. Dokumentieren Sie alle Schäden und Kosten. Eine Schlichtungsstelle kann helfen, eine Einigung zu erreichen.
+                  Bei Verschulden des Anbieters können Sie Schadensersatz fordern. Dokumentieren Sie
+                  alle Schäden und Kosten. Eine Schlichtungsstelle kann helfen, eine Einigung zu
+                  erreichen.
                 </p>
               </div>
 
@@ -174,26 +194,31 @@ export default function WechselSchiefgehtArticle() {
             {[
               {
                 q: 'Was tun, wenn der Wechsel nicht funktioniert?',
-                a: 'Kontaktieren Sie sofort den neuen Anbieter und den Netzbetreiber. Prüfen Sie, ob die Kündigung beim alten Anbieter eingegangen ist. Dokumentieren Sie alles schriftlich.'
+                a: 'Kontaktieren Sie sofort den neuen Anbieter und den Netzbetreiber. Prüfen Sie, ob die Kündigung beim alten Anbieter eingegangen ist. Dokumentieren Sie alles schriftlich.',
               },
               {
                 q: 'Kann ich ohne Strom sein?',
-                a: 'Nein. Ihre Versorgung ist gesetzlich geschützt. Im Notfall springt der Grundversorger ein und beliefert Sie mit Strom oder Gas.'
+                a: 'Nein. Ihre Versorgung ist gesetzlich geschützt. Im Notfall springt der Grundversorger ein und beliefert Sie mit Strom oder Gas.',
               },
               {
                 q: 'Was ist der Grundversorger?',
-                a: 'Der Grundversorger ist der Anbieter mit den meisten Kunden in Ihrer Region. Er muss Sie beliefern, wenn kein anderer Anbieter verfügbar ist.'
+                a: 'Der Grundversorger ist der Anbieter mit den meisten Kunden in Ihrer Region. Er muss Sie beliefern, wenn kein anderer Anbieter verfügbar ist.',
               },
               {
                 q: 'Wer hilft mir bei Problemen?',
-                a: 'Kontaktieren Sie den neuen Anbieter, den Netzbetreiber oder die Schlichtungsstelle. Die Verbraucherzentrale bietet auch kostenlose Beratung.'
+                a: 'Kontaktieren Sie den neuen Anbieter, den Netzbetreiber oder die Schlichtungsstelle. Die Verbraucherzentrale bietet auch kostenlose Beratung.',
               },
               {
                 q: 'Kann ich Schadensersatz fordern?',
-                a: 'Ja, bei Verschulden des Anbieters können Sie Schadensersatz fordern. Dokumentieren Sie alle Schäden und Kosten. Eine Schlichtungsstelle kann helfen.'
-              }
+                a: 'Ja, bei Verschulden des Anbieters können Sie Schadensersatz fordern. Dokumentieren Sie alle Schäden und Kosten. Eine Schlichtungsstelle kann helfen.',
+              },
             ].map((item, index) => (
-              <Accordion key={index} type="single" collapsible className="bg-gray-50 rounded-lg px-6 border-none">
+              <Accordion
+                key={index}
+                type="single"
+                collapsible
+                className="bg-gray-50 rounded-lg px-6 border-none"
+              >
                 <AccordionItem value={`faq-${index}`} className="border-none">
                   <AccordionTrigger className="font-heading text-lg font-medium text-left py-4 hover:text-primary hover:no-underline">
                     {item.q}
@@ -207,13 +232,14 @@ export default function WechselSchiefgehtArticle() {
           </div>
 
           <div className="bg-secondary/10 border border-secondary rounded-lg p-8 my-12">
-            <h3 className="font-heading text-2xl font-bold text-primary mb-4">
-              Kontakt & Hilfe
-            </h3>
+            <h3 className="font-heading text-2xl font-bold text-primary mb-4">Kontakt & Hilfe</h3>
             <p className="font-paragraph text-gray-700 mb-6">
               Haben Sie Probleme? Kontaktieren Sie uns oder die Verbraucherzentrale.
             </p>
-            <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
+            <Button
+              asChild
+              className="bg-secondary text-secondary-foreground hover:bg-secondary/90"
+            >
               <Link to="/kontakt">
                 Kontakt aufnehmen
                 <ArrowRight className="w-5 h-5 ml-2" />
@@ -222,9 +248,7 @@ export default function WechselSchiefgehtArticle() {
           </div>
 
           <div className="border-t pt-12">
-            <h3 className="font-heading text-2xl font-bold text-primary mb-6">
-              Verwandte Artikel
-            </h3>
+            <h3 className="font-heading text-2xl font-bold text-primary mb-6">Verwandte Artikel</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Link to="/ratgeber/wechselwissen/lieferantenwechsel-ablauf" className="group">
                 <Card className="h-full hover:shadow-lg transition-shadow">

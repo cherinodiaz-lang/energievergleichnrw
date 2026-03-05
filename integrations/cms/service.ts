@@ -1,5 +1,5 @@
-import { items } from "@wix/data";
-import { WixDataItem } from ".";
+import { items } from '@wix/data';
+import { WixDataItem } from '.';
 
 /**
  * Pagination options for querying collections
@@ -66,14 +66,14 @@ export class BaseCrudService {
         // Fetch up to 1000 referenced items with total count
         const result = await items.queryReferenced(collectionId, item._id, refField, {
           limit: 1000,
-          returnTotalCount: true
+          returnTotalCount: true,
         });
 
         itemWithRefs[refField] = result.items;
         itemWithRefs._refMeta[refField] = {
           totalCount: result.totalCount ?? result.items.length,
           returnedCount: result.items.length,
-          hasMore: result.hasNext()
+          hasMore: result.hasNext(),
         };
       } catch {
         itemWithRefs[refField] = [];
@@ -109,9 +109,7 @@ export class BaseCrudService {
     } catch (error) {
       // Should consider reverting the insert with a remove in order to prevent partial insert.
       console.error(`Error creating ${collectionId}:`, error);
-      throw new Error(
-        error instanceof Error ? error.message : `Failed to create ${collectionId}`
-      );
+      throw new Error(error instanceof Error ? error.message : `Failed to create ${collectionId}`);
     }
   }
 
@@ -151,9 +149,7 @@ export class BaseCrudService {
       };
     } catch (error) {
       console.error(`Error fetching ${collectionId}s:`, error);
-      throw new Error(
-        error instanceof Error ? error.message : `Failed to fetch ${collectionId}s`
-      );
+      throw new Error(error instanceof Error ? error.message : `Failed to fetch ${collectionId}s`);
     }
   }
 
@@ -170,10 +166,10 @@ export class BaseCrudService {
     try {
       // Support both old format (string[]) and new format ({ singleRef, multiRef })
       const isLegacyFormat = Array.isArray(includeRefs);
-      const singleRefs = isLegacyFormat ? includeRefs : (includeRefs?.singleRef || []);
-      const multiRefs = isLegacyFormat ? [] : (includeRefs?.multiRef || []);
+      const singleRefs = isLegacyFormat ? includeRefs : includeRefs?.singleRef || [];
+      const multiRefs = isLegacyFormat ? [] : includeRefs?.multiRef || [];
 
-      let query = items.query(collectionId).eq("_id", itemId);
+      let query = items.query(collectionId).eq('_id', itemId);
       if (singleRefs.length > 0) {
         query = query.include(...singleRefs);
       }
@@ -185,9 +181,7 @@ export class BaseCrudService {
       return this.populateMultiRefs<T>(collectionId, result.items[0] as T, multiRefs);
     } catch (error) {
       console.error(`Error fetching ${collectionId} by ID:`, error);
-      throw new Error(
-        error instanceof Error ? error.message : `Failed to fetch ${collectionId}`
-      );
+      throw new Error(error instanceof Error ? error.message : `Failed to fetch ${collectionId}`);
     }
   }
 
@@ -210,9 +204,7 @@ export class BaseCrudService {
       return result as T;
     } catch (error) {
       console.error(`Error updating ${collectionId}:`, error);
-      throw new Error(
-        error instanceof Error ? error.message : `Failed to update ${collectionId}`
-      );
+      throw new Error(error instanceof Error ? error.message : `Failed to update ${collectionId}`);
     }
   }
 
@@ -231,9 +223,7 @@ export class BaseCrudService {
       return result as T;
     } catch (error) {
       console.error(`Error deleting ${collectionId}:`, error);
-      throw new Error(
-        error instanceof Error ? error.message : `Failed to delete ${collectionId}`
-      );
+      throw new Error(error instanceof Error ? error.message : `Failed to delete ${collectionId}`);
     }
   }
 
@@ -286,5 +276,4 @@ export class BaseCrudService {
       );
     }
   }
-
 }

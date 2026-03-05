@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
 export default function TableWrap({
   children,
-  className = "",
+  className = '',
 }: {
   children: React.ReactNode;
   className?: string;

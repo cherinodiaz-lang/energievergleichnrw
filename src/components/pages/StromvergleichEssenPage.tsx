@@ -7,7 +7,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import RelatedPages from '@/components/RelatedPages';
@@ -83,7 +88,8 @@ export default function StromvergleichEssenPage() {
 
     setFormErrors({});
 
-    const consumption = formData.verbrauch && parseInt(formData.verbrauch) > 0 ? parseInt(formData.verbrauch) : 3500;
+    const consumption =
+      formData.verbrauch && parseInt(formData.verbrauch) > 0 ? parseInt(formData.verbrauch) : 3500;
     setCalculatedConsumption(consumption);
     setShowResults(true);
   };
@@ -92,11 +98,14 @@ export default function StromvergleichEssenPage() {
     <StromvergleichCityLayout
       seo={{
         title: 'Stromvergleich Essen | Stromtarife vergleichen & sparen',
-        description: 'Stromtarife in Essen vergleichen: passende Angebote finden, Kosten senken und einfach wechseln. Kostenlos und unabhängig.',
-        keywords: 'Stromvergleich Essen, Stromtarife Essen, Stromanbieter Essen, Stromwechsel Essen',
+        description:
+          'Stromtarife in Essen vergleichen: passende Angebote finden, Kosten senken und einfach wechseln. Kostenlos und unabhängig.',
+        keywords:
+          'Stromvergleich Essen, Stromtarife Essen, Stromanbieter Essen, Stromwechsel Essen',
         canonical: 'https://www.energievergleich.shop/stromvergleich-essen',
         ogTitle: 'Stromvergleich Essen | Stromtarife vergleichen & sparen',
-        ogDescription: 'Stromtarife in Essen vergleichen, sparen und einfach wechseln. Kostenlos und unabhängig.',
+        ogDescription:
+          'Stromtarife in Essen vergleichen, sparen und einfach wechseln. Kostenlos und unabhängig.',
       }}
       breadcrumbLabel="Stromvergleich Essen"
       breadcrumbPath="/stromvergleich-essen"
@@ -108,7 +117,12 @@ export default function StromvergleichEssenPage() {
         {/* Hero */}
         <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
           <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="max-w-3xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="max-w-3xl"
+            >
               <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-6 leading-tight max-w-[22ch] sm:max-w-none break-words">
                 Stromvergleich Essen: Tarife finden, Kosten senken
               </h1>
@@ -117,12 +131,17 @@ export default function StromvergleichEssenPage() {
               </p>
               <div className="flex flex-col gap-4">
                 <Button
-                  onClick={() => document.getElementById('vergleich')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() =>
+                    document.getElementById('vergleich')?.scrollIntoView({ behavior: 'smooth' })
+                  }
                   className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 px-8 rounded-full text-lg font-semibold shadow-lg"
                 >
                   Jetzt vergleichen
                 </Button>
-                <Link to="/methodik" className="text-white/80 hover:text-white transition-colors text-sm font-medium underline">
+                <Link
+                  to="/methodik"
+                  className="text-white/80 hover:text-white transition-colors text-sm font-medium underline"
+                >
                   So vergleichen wir (Methodik)
                 </Link>
               </div>
@@ -150,22 +169,29 @@ export default function StromvergleichEssenPage() {
                             id="plz"
                             placeholder="z.B. 45127"
                             value={formData.postleitzahl}
-                            onChange={(e) => setFormData({ ...formData, postleitzahl: e.target.value })}
+                            onChange={(e) =>
+                              setFormData({ ...formData, postleitzahl: e.target.value })
+                            }
                             required
                             className="font-paragraph w-full"
                           />
-                          {formErrors.postleitzahl && <p className="text-sm text-red-600">{formErrors.postleitzahl}</p>}
+                          {formErrors.postleitzahl && (
+                            <p className="text-sm text-red-600">{formErrors.postleitzahl}</p>
+                          )}
                         </div>
                         <div className="space-y-2">
                           <Label htmlFor="verbrauch" className="font-paragraph">
-                            Jahresverbrauch (kWh) <span className="text-gray-400 text-sm">(optional)</span>
+                            Jahresverbrauch (kWh){' '}
+                            <span className="text-gray-400 text-sm">(optional)</span>
                           </Label>
                           <Input
                             id="verbrauch"
                             type="number"
                             placeholder="z.B. 3500"
                             value={formData.verbrauch}
-                            onChange={(e) => setFormData({ ...formData, verbrauch: e.target.value })}
+                            onChange={(e) =>
+                              setFormData({ ...formData, verbrauch: e.target.value })
+                            }
                             className="font-paragraph w-full"
                           />
                         </div>
@@ -182,7 +208,9 @@ export default function StromvergleichEssenPage() {
                           required
                           className="font-paragraph w-full"
                         />
-                        {formErrors.name && <p className="text-sm text-red-600">{formErrors.name}</p>}
+                        {formErrors.name && (
+                          <p className="text-sm text-red-600">{formErrors.name}</p>
+                        )}
                       </div>
 
                       <div className="flex justify-stretch sm:justify-start">
@@ -199,8 +227,15 @@ export default function StromvergleichEssenPage() {
                 </Card>
 
                 {showResults && (
-                  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="mt-12">
-                    <h2 className="font-heading text-2xl font-bold text-primary mb-8">Tarifvorschau für {formData.postleitzahl}</h2>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="mt-12"
+                  >
+                    <h2 className="font-heading text-2xl font-bold text-primary mb-8">
+                      Tarifvorschau für {formData.postleitzahl}
+                    </h2>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                       {[
@@ -209,32 +244,56 @@ export default function StromvergleichEssenPage() {
                         { name: 'Tarif Option C', pricePerKwh: 0.24, baseFee: 16.5 },
                       ].map((tariff, index) => {
                         const monthlyConsumption = calculatedConsumption / 12;
-                        const monthlyPrice = monthlyConsumption * tariff.pricePerKwh + tariff.baseFee;
+                        const monthlyPrice =
+                          monthlyConsumption * tariff.pricePerKwh + tariff.baseFee;
                         const yearlyPrice = monthlyPrice * 12;
 
                         return (
-                          <motion.div key={index} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.1 }}>
+                          <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                          >
                             <Card className="h-full flex flex-col shadow-lg hover:shadow-xl transition-shadow">
                               <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10">
-                                <CardTitle className="font-heading text-xl text-primary">{tariff.name}</CardTitle>
+                                <CardTitle className="font-heading text-xl text-primary">
+                                  {tariff.name}
+                                </CardTitle>
                               </CardHeader>
                               <CardContent className="p-6 flex-1 flex flex-col justify-between">
                                 <div className="space-y-4 mb-6">
                                   <div>
-                                    <p className="font-paragraph text-sm text-gray-600 mb-1">Arbeitspreis</p>
-                                    <p className="font-heading text-lg font-bold text-primary">{tariff.pricePerKwh.toFixed(2)} €/kWh</p>
+                                    <p className="font-paragraph text-sm text-gray-600 mb-1">
+                                      Arbeitspreis
+                                    </p>
+                                    <p className="font-heading text-lg font-bold text-primary">
+                                      {tariff.pricePerKwh.toFixed(2)} €/kWh
+                                    </p>
                                   </div>
                                   <div>
-                                    <p className="font-paragraph text-sm text-gray-600 mb-1">Grundgebühr</p>
-                                    <p className="font-heading text-lg font-bold text-primary">{tariff.baseFee.toFixed(2)} €/Monat</p>
+                                    <p className="font-paragraph text-sm text-gray-600 mb-1">
+                                      Grundgebühr
+                                    </p>
+                                    <p className="font-heading text-lg font-bold text-primary">
+                                      {tariff.baseFee.toFixed(2)} €/Monat
+                                    </p>
                                   </div>
                                   <div className="border-t pt-4">
-                                    <p className="font-paragraph text-sm text-gray-600 mb-1">Geschätzte monatliche Kosten</p>
-                                    <p className="font-heading text-2xl font-bold text-secondary">{monthlyPrice.toFixed(2)} €</p>
+                                    <p className="font-paragraph text-sm text-gray-600 mb-1">
+                                      Geschätzte monatliche Kosten
+                                    </p>
+                                    <p className="font-heading text-2xl font-bold text-secondary">
+                                      {monthlyPrice.toFixed(2)} €
+                                    </p>
                                   </div>
                                   <div>
-                                    <p className="font-paragraph text-sm text-gray-600 mb-1">Geschätzte jährliche Kosten</p>
-                                    <p className="font-heading text-lg font-bold text-primary">{yearlyPrice.toFixed(2)} €/Jahr</p>
+                                    <p className="font-paragraph text-sm text-gray-600 mb-1">
+                                      Geschätzte jährliche Kosten
+                                    </p>
+                                    <p className="font-heading text-lg font-bold text-primary">
+                                      {yearlyPrice.toFixed(2)} €/Jahr
+                                    </p>
                                   </div>
                                 </div>
                                 <Link to={ROUTES.kontakt} className="w-full">
@@ -253,7 +312,8 @@ export default function StromvergleichEssenPage() {
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start gap-3">
                       <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
                       <p className="font-paragraph text-sm text-gray-700">
-                        <strong>Hinweis:</strong> Vorschau basiert auf Beispielrechnung. Finale Tarife nach Anbieterabfrage.
+                        <strong>Hinweis:</strong> Vorschau basiert auf Beispielrechnung. Finale
+                        Tarife nach Anbieterabfrage.
                       </p>
                     </div>
                   </motion.div>
@@ -262,7 +322,9 @@ export default function StromvergleichEssenPage() {
 
               <div className="space-y-6">
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                  <h3 className="font-heading font-bold text-primary mb-4">Warum mit uns vergleichen?</h3>
+                  <h3 className="font-heading font-bold text-primary mb-4">
+                    Warum mit uns vergleichen?
+                  </h3>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -274,7 +336,9 @@ export default function StromvergleichEssenPage() {
                     </li>
                     <li className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="font-paragraph text-sm">Kriterien: Preis, Laufzeit, Preisgarantie</span>
+                      <span className="font-paragraph text-sm">
+                        Kriterien: Preis, Laufzeit, Preisgarantie
+                      </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -284,8 +348,12 @@ export default function StromvergleichEssenPage() {
                 </div>
 
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h3 className="font-heading font-bold text-primary mb-3">PLZ-Beispiele in Essen</h3>
-                  <p className="font-paragraph text-sm text-gray-700">z.B. 45127, 45128, 45130, 45131, 45133, 45136.</p>
+                  <h3 className="font-heading font-bold text-primary mb-3">
+                    PLZ-Beispiele in Essen
+                  </h3>
+                  <p className="font-paragraph text-sm text-gray-700">
+                    z.B. 45127, 45128, 45130, 45131, 45133, 45136.
+                  </p>
                 </div>
               </div>
             </div>
@@ -305,16 +373,32 @@ export default function StromvergleichEssenPage() {
                   q: 'Wie finde ich den passenden Stromtarif in Essen?',
                   a: 'Gib deine Postleitzahl in Essen ein und vergleiche Tarife nach Preis, Laufzeit und Preisgarantie. Optional hilft dein Jahresverbrauch (kWh) für realistischere Kosten.',
                 },
-                { q: 'Welche Angaben brauche ich?', a: 'Mindestens die PLZ. Sinnvoll sind außerdem Jahresverbrauch und optional die Zählernummer.' },
-                { q: 'Kann ich beim Wechsel ohne Strom sein?', a: 'Nein – die Versorgung bleibt in Deutschland durchgehend abgesichert.' },
-                { q: 'Wie lange dauert ein Wechsel?', a: 'Je nach Vertrag/Kündigungsfrist oft einige Wochen. Die Versorgung läuft in der Zeit weiter.' },
+                {
+                  q: 'Welche Angaben brauche ich?',
+                  a: 'Mindestens die PLZ. Sinnvoll sind außerdem Jahresverbrauch und optional die Zählernummer.',
+                },
+                {
+                  q: 'Kann ich beim Wechsel ohne Strom sein?',
+                  a: 'Nein – die Versorgung bleibt in Deutschland durchgehend abgesichert.',
+                },
+                {
+                  q: 'Wie lange dauert ein Wechsel?',
+                  a: 'Je nach Vertrag/Kündigungsfrist oft einige Wochen. Die Versorgung läuft in der Zeit weiter.',
+                },
               ].map((item, index) => (
-                <Accordion key={index} type="single" collapsible className="bg-white rounded-lg border">
+                <Accordion
+                  key={index}
+                  type="single"
+                  collapsible
+                  className="bg-white rounded-lg border"
+                >
                   <AccordionItem value={`item-${index}`} className="border-none">
                     <AccordionTrigger className="font-heading font-bold text-lg hover:text-primary px-6 py-4">
                       {item.q}
                     </AccordionTrigger>
-                    <AccordionContent className="font-paragraph text-gray-600 px-6 pb-4">{item.a}</AccordionContent>
+                    <AccordionContent className="font-paragraph text-gray-600 px-6 pb-4">
+                      {item.a}
+                    </AccordionContent>
                   </AccordionItem>
                 </Accordion>
               ))}

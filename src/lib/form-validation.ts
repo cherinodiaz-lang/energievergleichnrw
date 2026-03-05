@@ -35,7 +35,7 @@ export function validateField(
   if (!value || value.toString().trim() === '') {
     return {
       valid: false,
-      error: ERROR_MESSAGES.required
+      error: ERROR_MESSAGES.required,
     };
   }
 
@@ -47,7 +47,7 @@ export function validateField(
     if (!emailRegex.test(trimmedValue)) {
       return {
         valid: false,
-        error: ERROR_MESSAGES.email
+        error: ERROR_MESSAGES.email,
       };
     }
   }
@@ -58,7 +58,7 @@ export function validateField(
     if (!phoneRegex.test(trimmedValue)) {
       return {
         valid: false,
-        error: ERROR_MESSAGES.phone
+        error: ERROR_MESSAGES.phone,
       };
     }
   }
@@ -69,7 +69,7 @@ export function validateField(
     if (!plzRegex.test(trimmedValue)) {
       return {
         valid: false,
-        error: ERROR_MESSAGES.plz
+        error: ERROR_MESSAGES.plz,
       };
     }
   }
@@ -79,7 +79,7 @@ export function validateField(
     if (isNaN(Number(trimmedValue)) || Number(trimmedValue) <= 0) {
       return {
         valid: false,
-        error: ERROR_MESSAGES.number
+        error: ERROR_MESSAGES.number,
       };
     }
   }
@@ -98,11 +98,7 @@ export function validateFormFields(
 
   for (const config of fieldConfigs) {
     if (config.required) {
-      const validation = validateField(
-        config.name,
-        formData[config.name],
-        config.type || 'text'
-      );
+      const validation = validateField(config.name, formData[config.name], config.type || 'text');
       if (!validation.valid && validation.error) {
         errors[config.name] = validation.error;
       }
@@ -111,7 +107,7 @@ export function validateFormFields(
 
   return {
     valid: Object.keys(errors).length === 0,
-    errors
+    errors,
   };
 }
 

@@ -104,12 +104,12 @@
   .cookie-banner {
     padding: 1rem;
   }
-  
+
   .cookie-banner__buttons {
     flex-direction: column;
     width: 100%;
   }
-  
+
   .cookie-banner__btn {
     width: 100%;
     min-width: unset;

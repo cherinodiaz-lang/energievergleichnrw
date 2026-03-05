@@ -5,12 +5,7 @@ import gasContent from '@content/de/pages/gasvergleich-nrw.json';
 const { meta, badge, h1, subline, primaryCta, jsonLd, faqItems } = gasContent;
 ---
 
-<BaseLayout
-  title={meta.title}
-  description={meta.description}
-  jsonLd={jsonLd}
-  faqItems={faqItems}
->
+<BaseLayout title={meta.title} description={meta.description} jsonLd={jsonLd} faqItems={faqItems}>
   <main>
     <!-- Hero Section -->
     <section class="hero-section">
@@ -40,15 +35,21 @@ const { meta, badge, h1, subline, primaryCta, jsonLd, faqItems } = gasContent;
         <div class="grid-3">
           <div class="card">
             <p class="card-title">Preisbestandteile</p>
-            <p class="card-text">Arbeitspreis, Grundpreis und regionale Bestandteile verständlich erklärt.</p>
+            <p class="card-text">
+              Arbeitspreis, Grundpreis und regionale Bestandteile verständlich erklärt.
+            </p>
           </div>
           <div class="card">
             <p class="card-title">Laufzeit & Kündigung</p>
-            <p class="card-text">Kurz und flexibel ist oft besser – wir zeigen dir die Stellschrauben.</p>
+            <p class="card-text">
+              Kurz und flexibel ist oft besser – wir zeigen dir die Stellschrauben.
+            </p>
           </div>
           <div class="card">
             <p class="card-title">Bonus & Preisgarantie</p>
-            <p class="card-text">Wir erklären Vor- und Nachteile, damit du sauber vergleichen kannst.</p>
+            <p class="card-text">
+              Wir erklären Vor- und Nachteile, damit du sauber vergleichen kannst.
+            </p>
           </div>
         </div>
       </div>
@@ -59,12 +60,14 @@ const { meta, badge, h1, subline, primaryCta, jsonLd, faqItems } = gasContent;
       <div class="container">
         <h2 class="h2 text-center">FAQ Gasvergleich NRW</h2>
         <div class="faq-list">
-          {faqItems.map((item) => (
-            <details class="faq-item">
-              <summary class="faq-question">{item.q}</summary>
-              <p class="faq-answer">{item.a}</p>
-            </details>
-          ))}
+          {
+            faqItems.map((item) => (
+              <details class="faq-item">
+                <summary class="faq-question">{item.q}</summary>
+                <p class="faq-answer">{item.a}</p>
+              </details>
+            ))
+          }
         </div>
       </div>
     </section>
