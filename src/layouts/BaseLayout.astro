@@ -1,9 +1,8 @@
 ---
 import '@/styles/global.css';
-import '@/assets/css/cookie-banner.css';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
-import CookieBanner from '@/components/CookieBanner.astro';
+// CookieBanner.astro disabled - using React ConsentBanner in Router instead
 
 interface Props {
   title?: string;
@@ -138,6 +137,5 @@ const finalJsonLd = jsonLd
     <Header />
     <slot />
     <Footer />
-    <CookieBanner />
   </body>
 </html>

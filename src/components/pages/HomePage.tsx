@@ -346,35 +346,27 @@ export default function HomePage() {
 
             <AnimatedElement delay={300}>
               <div className="flex flex-col sm:flex-row gap-3 pb-8 sm:pb-0">
-                <Button
-                  onClick={() => {
-                    trackCTAClick('Jetzt vergleichen');
-                    // Reset calculator states to show input form
-                    setShowStromResults(false);
-                    setShowGasResults(false);
-                    setShowKombiResults(false);
-                    scrollToSection('vergleichsrechner');
-                  }}
-                  className="bg-secondary text-secondary-foreground hover:bg-secondary/90 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 h-12 sm:h-14 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-bold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
+                <Link
+                  to={ROUTES.stromvergleich}
+                  onClick={() => trackCTAClick('Jetzt vergleichen')}
+                  className="inline-flex items-center justify-center bg-secondary text-secondary-foreground hover:bg-secondary/90 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 h-12 sm:h-14 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-bold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
                 >
                   Jetzt vergleichen
-                </Button>
-                <Button
-                  onClick={() => {
-                    trackCTAClick('Photovoltaik Beratung');
-                    scrollToSection('photovoltaik');
-                  }}
-                  className="bg-white/20 border-2 border-white text-white hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary h-12 sm:h-14 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-semibold backdrop-blur-md transition-all w-full sm:w-auto"
+                </Link>
+                <Link
+                  to={ROUTES.photovoltaik}
+                  onClick={() => trackCTAClick('Photovoltaik Beratung')}
+                  className="inline-flex items-center justify-center bg-white/20 border-2 border-white text-white hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary h-12 sm:h-14 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-semibold backdrop-blur-md transition-all w-full sm:w-auto"
                 >
                   <Sun className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" aria-hidden="true" />
                   <span className="hidden sm:inline">Photovoltaik Beratung</span>
                   <span className="sm:hidden">Photovoltaik</span>
-                </Button>
+                </Link>
               </div>
             </AnimatedElement>
 
             <AnimatedElement delay={400}>
-              <Link to="/methodik" onClick={trackMethodikClick} className="inline-block text-white/80 hover:text-white transition-colors text-sm sm:text-base font-medium underline">
+              <Link to="/ratgeber#methodik" onClick={trackMethodikClick} className="inline-block text-white/80 hover:text-white transition-colors text-sm sm:text-base font-medium underline">
                 So vergleichen wir (Methodik)
               </Link>
             </AnimatedElement>
