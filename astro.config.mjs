@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
+import sitemap from '@astrojs/sitemap';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -12,11 +13,17 @@ export default defineConfig({
     react(),
     tailwind({
       applyBaseStyles: false
+    }),
+    sitemap({
+      filter: (page) => !page.includes('/admin/') && !page.includes('/api/'),
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date()
     })
   ],
   
   // Output configuration
-  output: 'static',  // ← GEÄNDERT ZURÜCK ZU 'static' für Wix Vibe
+  output: 'static',
   
   // Build configuration
   build: {
@@ -37,13 +44,24 @@ export default defineConfig({
         output: {
           manualChunks: {
             'react-vendor': ['react', 'react-dom'],
-            'ui-vendor': ['@radix-ui/react-accordion', '@radix-ui/react-dialog']
+            'ui-vendor': [
+              '@radix-ui/react-accordion',
+              '@radix-ui/react-dialog',
+              '@radix-ui/react-dropdown-menu',
+              '@radix-ui/react-select'
+            ],
+            'form-vendor': ['react-hook-form', '@hookform/resolvers'],
+            'utils': ['clsx', 'tailwind-merge', 'class-variance-authority']
           }
         }
       }
     },
     ssr: {
-      noExternal: ['@radix-ui/*']
+      noExternal: ['@radix-ui/*', '@wix/*']
+    },
+    optimizeDeps: {
+      include: ['react', 'react-dom', '@radix-ui/*'],
+      exclude: []
     }
   },
   

@@ -1,9 +1,8 @@
 ---
 import { SEO } from '@/components/seo/SEO.astro';
-// TEMPORÄR DEAKTIVIERT - Datei existiert nicht
-// import { OrganizationSchema, WebsiteSchema, FAQSchema } from '@/components/seo/EnhancedStructuredData';
 import CriticalCSS from '@/components/performance/CriticalCSS.astro';
 import PreloadLinks from '@/components/performance/PreloadLinks.astro';
+import WixVibeWrapper from '@/components/wix-vibe-wrapper';
 import '@/styles/global.css';
 
 interface Props {
@@ -73,10 +72,9 @@ const currentUrl = canonical || Astro.url.href;
     <!-- Critical CSS -->
     <CriticalCSS />
     
-    <!-- Structured Data - TEMPORÄR DEAKTIVIERT -->
-    <!-- <OrganizationSchema /> -->
-    <!-- <WebsiteSchema /> -->
-    <!-- {faqItems.length > 0 && <FAQSchema items={faqItems} />} -->
+    <!-- Wix Vibe Editor Metadata -->
+    <meta name="wix-vibe-enabled" content="true" />
+    <meta name="wix-vibe-version" content="1.0" />
     
     <!-- Service Worker Registration -->
     <script is:inline>
@@ -86,12 +84,10 @@ const currentUrl = canonical || Astro.url.href;
             (registration) => {
               console.log('SW registered:', registration.scope);
               
-              // Check for updates
               registration.addEventListener('updatefound', () => {
                 const newWorker = registration.installing;
                 newWorker?.addEventListener('statechange', () => {
                   if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                    // New version available
                     if (confirm('Neue Version verfügbar! Jetzt aktualisieren?')) {
                       newWorker.postMessage({ type: 'SKIP_WAITING' });
                       window.location.reload();
@@ -112,13 +108,11 @@ const currentUrl = canonical || Astro.url.href;
     <script>
       import { initWebVitals, observePerformance } from '@/lib/monitoring/webVitals';
       
-      // Initialize Web Vitals tracking
       initWebVitals({
         debug: import.meta.env.DEV,
         analyticsId: 'energievergleichnrw'
       });
       
-      // Observe performance metrics
       observePerformance();
     </script>
     
@@ -138,20 +132,23 @@ const currentUrl = canonical || Astro.url.href;
     <!-- Skip to main content (Accessibility) -->
     <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
     
-    <!-- Header -->
-    <header>
-      <!-- Your header content -->
-    </header>
-    
-    <!-- Main Content -->
-    <main id="main-content">
-      <slot />
-    </main>
-    
-    <!-- Footer -->
-    <footer>
-      <!-- Your footer content -->
-    </footer>
+    <!-- Wix Vibe Wrapper for Editor Compatibility -->
+    <WixVibeWrapper client:load className="min-h-screen flex flex-col">
+      <!-- Header -->
+      <header>
+        <!-- Your header content -->
+      </header>
+      
+      <!-- Main Content -->
+      <main id="main-content" class="flex-1">
+        <slot />
+      </main>
+      
+      <!-- Footer -->
+      <footer>
+        <!-- Your footer content -->
+      </footer>
+    </WixVibeWrapper>
     
     <!-- PWA Install Prompt -->
     <div id="install-prompt" style="display: none;">
@@ -175,7 +172,6 @@ const currentUrl = canonical || Astro.url.href;
         console.log('Gone offline');
       });
       
-      // Check initial state
       if (!navigator.onLine) {
         document.getElementById('network-status').style.display = 'block';
       }
