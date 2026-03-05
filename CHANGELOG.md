@@ -1,83 +1,97 @@
 # Changelog
 
-Alle bedeutenden Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
+Alle bemerkenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
+
+Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/),
+und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
 ## [2.0.0] - 2026-03-05
 
-### 🎉 Major Release - Vollständige Neugestaltung
+### ✨ Hinzugefügt
 
-#### ✨ Added
+#### Performance
+- Critical CSS Inlining für sofortiges First Paint
+- Lazy Loading Components mit IntersectionObserver
+- WebP/AVIF Bildoptimierung
+- Resource Hints (Prefetch, Preload, DNS-Prefetch)
+- Code Splitting & Tree Shaking
+- Service Worker mit Offline-Support
 
-**Performance & Optimization:**
-- ⚡ Critical CSS Inlining für instant First Paint
-- 🖼️ Lazy Loading Images mit WebP/AVIF Support
-- 📦 Code Splitting und Tree Shaking
-- 📡 Resource Hints (Prefetch, Preload, DNS-Prefetch)
-- 🔄 Service Worker mit Offline-Support
-- 📊 Web Vitals Tracking
+#### Security
+- Content Security Policy (CSP)
+- Security Headers (HSTS, X-Frame-Options, XSS Protection)
+- CORS Configuration
+- Input Validation & Sanitization
+- Rate Limiting
 
-**Security:**
-- 🛡️ Content Security Policy (CSP)
-- 🔐 Security Headers (HSTS, X-Frame-Options, etc.)
-- ✅ Input Validation & Sanitization
-- 🚦 Rate Limiting
-- 🔍 CORS Configuration
+#### PWA
+- Progressive Web App Support
+- Web App Manifest
+- Install Prompts (Android & iOS)
+- Offline-Funktionalität
+- Background Sync
+- Push Notifications
 
-**Progressive Web App (PWA):**
-- 📱 Installierbare Web App
-- 🌐 Offline-Funktionalität
-- 🔔 Push Notifications Support
-- 💾 Background Sync
-- 🎨 App Manifest
+#### SEO
+- Enhanced Structured Data (Organization, Website, FAQ, Breadcrumb)
+- Open Graph & Twitter Cards
+- Canonical URLs & Robots Meta
+- Schema.org vollständig implementiert
+- Sitemap Integration
 
-**SEO & Accessibility:**
-- 🏆 Enhanced Structured Data (Schema.org)
-- 🔍 Open Graph & Twitter Cards
-- ♿ WCAG 2.1 AA Compliance
-- 🗣️ Screen Reader Support
-- ⌨️ Full Keyboard Navigation
+#### Testing & CI/CD
+- Vitest + React Testing Library Setup
+- GitHub Actions CI/CD Pipeline
+- Lighthouse CI Integration
+- Automated Testing & Deployment
+- Code Coverage Reports
 
-**Testing & Quality:**
-- ✅ Vitest + React Testing Library Setup
-- 🔬 100% TypeScript Coverage
-- 🤖 CI/CD Pipeline (GitHub Actions)
-- 🔍 Lighthouse CI Integration
-- 📊 Code Coverage Reports
+#### Components
+- Error Boundary für React Components
+- Toast Notification System
+- Loading Spinner & Skeleton Components
+- PWA Install Prompt
+- Network Status Indicator
+- Offline Page
+- 404 Error Page
 
-**User Experience:**
-- 🍪 GDPR-compliant Cookie Consent
-- 📢 Toast Notification System
-- 🔄 Loading Skeletons
-- ⚠️ Custom Error Pages (404, 500, Offline)
-- 🎨 Complete Design System
+#### Utilities
+- Custom React Hooks (useDebounce, useLocalStorage, useMediaQuery, etc.)
+- Formatting Utilities (PLZ, Phone, Currency, Date)
+- Type-safe LocalStorage Wrapper
+- String & Number Helpers
 
-**Developer Experience:**
-- 📝 Comprehensive Documentation
-- 🛐️ EditorConfig & Prettier
-- 🐛 ESLint Configuration
-- 🔧 VS Code Settings & Extensions
-- 📦 Automated Dependency Updates
+#### Developer Experience
+- EditorConfig für konsistente Formatierung
+- Prettier Configuration
+- VS Code Settings & Extensions
+- ESLint Auto-Fix on Save
+- TypeScript Path Aliases
 
-#### 🔄 Changed
-- Komplett neue Architektur mit Astro 4.15
-- Modernisiertes Design mit Tailwind CSS
-- Verbesserte TypeScript Type Definitions
-- Optimierte Component-Struktur
+### 🛠️ Geändert
+- Projekt-Struktur komplett überarbeitet
+- TypeScript zu 100% typisiert
+- Astro auf Version 4.15 aktualisiert
+- React auf Version 18.3 aktualisiert
+- Tailwind CSS auf Version 3.4 aktualisiert
 
-#### 🛠️ Technical Stack
-- **Framework:** Astro 4.15
-- **UI Library:** React 18.3
-- **Language:** TypeScript 5.6
-- **Styling:** Tailwind CSS 3.4 + Custom CSS
-- **Testing:** Vitest + React Testing Library
-- **CI/CD:** GitHub Actions
-- **Monitoring:** Web Vitals + Custom Analytics
+### 🐛 Behoben
+- Performance-Probleme durch Code Splitting gelöst
+- Accessibility-Issues behoben
+- SEO-Optimierungen implementiert
+
+### 📚 Dokumentation
+- Vollständiges README mit allen Features
+- Architektur-Dokumentation
+- Developer Guide
+- Performance Benchmarks
+- Deployment-Anleitung
 
 ---
 
 ## [1.0.0] - 2025-XX-XX
 
-### Initial Release
-- Grundlegende Energievergleichs-Funktionalität
-- EGON API Integration
-- Basis SEO-Optimierung
+### ✨ Hinzugefügt
+- Initiales Release
+- Grundlegende Projekt-Struktur
+- Erste Version der Website
