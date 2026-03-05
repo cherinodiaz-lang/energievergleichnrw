@@ -1,131 +1,83 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+Alle bedeutenden Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [2.0.0] - 2026-03-05
 
-## [1.0.0] - 2026-03-03
+### 🎉 Major Release - Vollständige Neugestaltung
 
-### Added
+#### ✨ Added
 
-#### Performance
-- Code-splitting for React, Forms, UI components, and Icons
-- Lazy loading for heavy components with Suspense
-- Font preloading (Inter font family)
-- Image optimization with Sharp service
-- Prefetch for faster navigation
-- Inline critical CSS for above-the-fold content
-- Bundle size optimization (<500KB per chunk)
+**Performance & Optimization:**
+- ⚡ Critical CSS Inlining für instant First Paint
+- 🖼️ Lazy Loading Images mit WebP/AVIF Support
+- 📦 Code Splitting und Tree Shaking
+- 📡 Resource Hints (Prefetch, Preload, DNS-Prefetch)
+- 🔄 Service Worker mit Offline-Support
+- 📊 Web Vitals Tracking
 
-#### Analytics & Monitoring
-- Complete Analytics service with 9 standard events
-- Form submission tracking (success/error)
-- CTA click tracking
-- Methodology section tracking
-- Contact interaction tracking
-- JavaScript error monitoring
-- 404 page tracking
-- GDPR-compliant implementation
+**Security:**
+- 🛡️ Content Security Policy (CSP)
+- 🔐 Security Headers (HSTS, X-Frame-Options, etc.)
+- ✅ Input Validation & Sanitization
+- 🚦 Rate Limiting
+- 🔍 CORS Configuration
 
-#### Components
-- ComparisonForm with real-time validation
-- ErrorBoundary for React error handling
-- Toast notification system
-- Skeleton loading states
-- Button component (4 variants)
-- Card component (with Header, Title, Content)
-- Badge component (5 variants)
-- LoadingSpinner (3 sizes)
+**Progressive Web App (PWA):**
+- 📱 Installierbare Web App
+- 🌐 Offline-Funktionalität
+- 🔔 Push Notifications Support
+- 💾 Background Sync
+- 🎨 App Manifest
 
-#### SEO
-- LocalBusiness structured data
-- FAQ structured data
-- Breadcrumb structured data
-- Optimized meta tags
-- Automatic sitemap generation
+**SEO & Accessibility:**
+- 🏆 Enhanced Structured Data (Schema.org)
+- 🔍 Open Graph & Twitter Cards
+- ♿ WCAG 2.1 AA Compliance
+- 🗣️ Screen Reader Support
+- ⌨️ Full Keyboard Navigation
 
-#### Developer Experience
-- GitHub Actions CI/CD pipeline
-- Vitest testing setup
-- Testing Library integration
-- Comprehensive unit tests
-- TypeScript strict mode
-- ESLint configuration
-- Prettier formatting
-- VS Code settings
+**Testing & Quality:**
+- ✅ Vitest + React Testing Library Setup
+- 🔬 100% TypeScript Coverage
+- 🤖 CI/CD Pipeline (GitHub Actions)
+- 🔍 Lighthouse CI Integration
+- 📊 Code Coverage Reports
 
-#### Utilities
-- useIntersectionObserver hook
-- useDebounce hook
-- Currency formatters (Euro)
-- Number formatters
-- Date/time formatters
-- Phone number formatter
-- Input validators (ZIP, email, phone, IBAN)
-- String sanitization
-- API error handler
-- City data validator
+**User Experience:**
+- 🍪 GDPR-compliant Cookie Consent
+- 📢 Toast Notification System
+- 🔄 Loading Skeletons
+- ⚠️ Custom Error Pages (404, 500, Offline)
+- 🎨 Complete Design System
 
-#### Documentation
-- Comprehensive README
-- Performance optimization guide
-- Analytics documentation
-- Deployment guide
-- Contributing guidelines
-- Security policy
-- Code of conduct
+**Developer Experience:**
+- 📝 Comprehensive Documentation
+- 🛐️ EditorConfig & Prettier
+- 🐛 ESLint Configuration
+- 🔧 VS Code Settings & Extensions
+- 📦 Automated Dependency Updates
 
-#### API
-- /api/submit-comparison endpoint
-- /api/health health check endpoint
-- Zod validation
-- Error handling
+#### 🔄 Changed
+- Komplett neue Architektur mit Astro 4.15
+- Modernisiertes Design mit Tailwind CSS
+- Verbesserte TypeScript Type Definitions
+- Optimierte Component-Struktur
 
-### Changed
-- Upgraded to Astro 4.0
-- Updated all dependencies to latest stable versions
-- Improved accessibility (WCAG 2.1 compliant)
-- Enhanced form validation feedback
-- Optimized bundle sizes
-
-### Fixed
-- Core Web Vitals issues (LCP, CLS, INP)
-- Layout shift problems
-- Form submission errors
-- Type safety issues
-- Accessibility violations
-
-### Performance Metrics
-
-| Metric | Before | After | Target |
-|--------|--------|-------|--------|
-| Lighthouse Score | 75 | 95 | >90 |
-| LCP | 3.5s | 2.1s | <2.5s |
-| CLS | 0.15 | 0.05 | <0.1 |
-| INP | 250ms | 180ms | <200ms |
-| Bundle Size | 800KB | 450KB | <500KB |
-
-### Security
-- Implemented Content Security Policy
-- Added CSRF protection
-- Enhanced input sanitization
-- Improved error handling
-- Added security headers
+#### 🛠️ Technical Stack
+- **Framework:** Astro 4.15
+- **UI Library:** React 18.3
+- **Language:** TypeScript 5.6
+- **Styling:** Tailwind CSS 3.4 + Custom CSS
+- **Testing:** Vitest + React Testing Library
+- **CI/CD:** GitHub Actions
+- **Monitoring:** Web Vitals + Custom Analytics
 
 ---
 
-## [Unreleased]
+## [1.0.0] - 2025-XX-XX
 
-### Planned
-- User accounts & authentication
-- Saved comparison history
-- Email notifications
-- Provider reviews & ratings
-- Contract management
-- Mobile app
-- Real-time price updates
-
----
-
-[1.0.0]: https://github.com/cherinodiaz-lang/energievergleichnrw/releases/tag/v1.0.0
+### Initial Release
+- Grundlegende Energievergleichs-Funktionalität
+- EGON API Integration
+- Basis SEO-Optimierung

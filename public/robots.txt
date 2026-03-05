@@ -1,17 +1,23 @@
-# robots.txt for energievergleich.shop
-# https://www.robotstxt.org/
+# Robots.txt - Production Version
+# https://www.robotstxt.org/robotstxt.html
 
-# Allow all search engines to crawl the entire site
+# Allow all crawlers
 User-agent: *
 Allow: /
 
-# Sitemap location for search engines
-Sitemap: https://www.energievergleich.shop/sitemap.xml
+# Disallow specific paths
+Disallow: /api/
+Disallow: /_astro/
+Disallow: /admin/
+Disallow: /*.json$
 
-# Optional: Crawl-delay (if needed)
-# Crawl-delay: 10
+# Crawl-delay for specific bots (optional)
+User-agent: Googlebot
+Crawl-delay: 0
 
-# Disallow specific paths (if needed in future)
-# Disallow: /admin/
-# Disallow: /private/
-# Disallow: /api/
+User-agent: Bingbot
+Crawl-delay: 0
+
+# Sitemap location
+Sitemap: https://energievergleichnrw.de/sitemap-index.xml
+Sitemap: https://energievergleichnrw.de/sitemap-0.xml
