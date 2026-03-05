@@ -59,11 +59,5 @@ export default defineConfig({
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'viewport'
-  },
-  
-  // Experimental features
-  experimental: {
-    optimizeHoistedScript: true,
-    contentCollectionCache: true
   }
 });
