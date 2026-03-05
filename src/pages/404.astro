@@ -1,4 +1,7 @@
 ---
+/**
+ * 404 Error Page
+ */
 import BaseLayout from '@/layouts/BaseLayout.astro';
 ---
 
@@ -7,59 +10,56 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
   description="Die angeforderte Seite konnte nicht gefunden werden."
   noindex={true}
 >
-  <section class="error-page">
-    <div class="container">
-      <div class="error-content">
-        <h1 class="error-code">404</h1>
-        <h2 class="error-title">Seite nicht gefunden</h2>
-        <p class="error-text">
-          Die Seite, die Sie suchen, existiert leider nicht oder wurde verschoben.
-        </p>
-        <div class="error-actions">
-          <a href="/" class="btn btn-primary">Zur Startseite</a>
-          <a href="/stromvergleich-nrw" class="btn btn-secondary">Zum Stromvergleich</a>
-        </div>
-        
-        <!-- Quick Links -->
-        <div class="quick-links">
-          <h3>Beliebte Seiten:</h3>
-          <ul>
-            <li><a href="/">Startseite</a></li>
-            <li><a href="/stromvergleich-nrw">Stromvergleich NRW</a></li>
-            <li><a href="/gasvergleich-nrw">Gasvergleich NRW</a></li>
-            <li><a href="/ueber-uns">Über uns</a></li>
-          </ul>
-        </div>
+  <div class="error-container">
+    <div class="error-content">
+      <h1 class="error-code">404</h1>
+      <h2 class="error-title">Seite nicht gefunden</h2>
+      <p class="error-text">
+        Die von Ihnen gesuchte Seite existiert leider nicht oder wurde verschoben.
+      </p>
+      
+      <div class="error-actions">
+        <a href="/" class="btn btn-primary">Zur Startseite</a>
+        <a href="/stromvergleich-nrw" class="btn btn-secondary">Zum Stromvergleich</a>
+      </div>
+      
+      <div class="popular-pages">
+        <h3>Beliebte Seiten:</h3>
+        <ul>
+          <li><a href="/stromvergleich-nrw">Stromvergleich NRW</a></li>
+          <li><a href="/gasvergleich-nrw">Gasvergleich NRW</a></li>
+          <li><a href="/#faq">Häufige Fragen</a></li>
+        </ul>
       </div>
     </div>
-  </section>
+  </div>
 </BaseLayout>
 
 <style>
-  .error-page {
+  .error-container {
     min-height: 70vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--s-8) 0;
+    padding: var(--s-5);
   }
   
   .error-content {
     text-align: center;
     max-width: 600px;
-    margin: 0 auto;
   }
   
   .error-code {
-    font-size: clamp(4rem, 15vw, 10rem);
+    font-size: 8rem;
     font-weight: 900;
     color: var(--primary);
     line-height: 1;
     margin-bottom: var(--s-3);
+    opacity: 0.2;
   }
   
   .error-title {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-size: 2rem;
     font-weight: 700;
     margin-bottom: var(--s-4);
   }
@@ -67,7 +67,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
   .error-text {
     font-size: 1.125rem;
     color: var(--text-700);
-    margin-bottom: var(--s-6);
+    margin-bottom: var(--s-5);
   }
   
   .error-actions {
@@ -78,34 +78,34 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
     margin-bottom: var(--s-7);
   }
   
-  .quick-links {
+  .popular-pages {
     text-align: left;
-    max-width: 400px;
-    margin: 0 auto;
+    padding: var(--s-5);
+    background: var(--bg-soft);
+    border-radius: var(--r-2);
   }
   
-  .quick-links h3 {
-    font-size: 1.25rem;
+  .popular-pages h3 {
+    font-size: 1.125rem;
     margin-bottom: var(--s-3);
   }
   
-  .quick-links ul {
+  .popular-pages ul {
     list-style: none;
     padding: 0;
   }
   
-  .quick-links li {
-    margin-bottom: var(--s-2);
+  .popular-pages li {
+    margin-bottom: var(--s-3);
   }
   
-  .quick-links a {
+  .popular-pages a {
     color: var(--primary);
     text-decoration: none;
-    transition: color 0.2s;
+    font-weight: 500;
   }
   
-  .quick-links a:hover {
-    color: var(--primary-hover);
+  .popular-pages a:hover {
     text-decoration: underline;
   }
 </style>
