@@ -69,8 +69,12 @@ type CartStore = CartState & { actions: CartActions };
 const isCartNotFoundError = (error: unknown): boolean => {
   if (!error || typeof error !== 'object') return false;
   const err = error as { details?: { applicationError?: { code?: string } }; message?: string };
-  return err.details?.applicationError?.code === 'CART_NOT_FOUND' || err.details?.applicationError?.code === 'OWNED_CART_NOT_FOUND' ||
-         err.message?.includes('not found') || false;
+  return (
+    err.details?.applicationError?.code === 'CART_NOT_FOUND' ||
+    err.details?.applicationError?.code === 'OWNED_CART_NOT_FOUND' ||
+    err.message?.includes('not found') ||
+    false
+  );
 };
 
 /** Convert Wix cart line item to our CartItem format */
@@ -78,7 +82,8 @@ const mapLineItemToCartItem = (lineItem: currentCart.LineItem): CartItem | null 
   if (!lineItem._id || !lineItem.catalogReference) return null;
 
   const { catalogReference, quantity, productName, price, image } = lineItem;
-  const collectionId = (catalogReference.options as { collectionId?: string } | null)?.collectionId || '';
+  const collectionId =
+    (catalogReference.options as { collectionId?: string } | null)?.collectionId || '';
   const itemId = catalogReference.catalogItemId || '';
 
   return {
@@ -150,14 +155,16 @@ export const useCartStore = create<CartStore>((set, get) => ({
 
       try {
         const result = await currentCart.addToCurrentCart({
-          lineItems: [{
-            catalogReference: {
-              catalogItemId: input.itemId,
-              appId: CMS_APP_ID,
-              options: { collectionId: input.collectionId },
+          lineItems: [
+            {
+              catalogReference: {
+                catalogItemId: input.itemId,
+                appId: CMS_APP_ID,
+                options: { collectionId: input.collectionId },
+              },
+              quantity: input.quantity || 1,
             },
-            quantity: input.quantity || 1,
-          }],
+          ],
         });
 
         if (result?.cart) {
@@ -185,7 +192,7 @@ export const useCartStore = create<CartStore>((set, get) => ({
       }
 
       // Optimistic update
-      set({ items: items.filter(i => i.id !== item.id) });
+      set({ items: items.filter((i) => i.id !== item.id) });
 
       // Server call (fire and forget, rollback on error)
       currentCart.removeLineItemsFromCurrentCart([item.id]).catch((error) => {
@@ -217,10 +224,10 @@ export const useCartStore = create<CartStore>((set, get) => ({
 
       // Optimistic update
       if (quantity <= 0) {
-        set({ items: items.filter(i => i.id !== item.id) });
+        set({ items: items.filter((i) => i.id !== item.id) });
       } else {
         set({
-          items: items.map(i => i.id === item.id ? { ...i, quantity } : i),
+          items: items.map((i) => (i.id === item.id ? { ...i, quantity } : i)),
         });
       }
 
@@ -244,7 +251,7 @@ export const useCartStore = create<CartStore>((set, get) => ({
       const previousItems = [...items];
 
       // Clear all pending quantity updates
-      _quantityTimers.forEach(timer => clearTimeout(timer));
+      _quantityTimers.forEach((timer) => clearTimeout(timer));
       _quantityTimers.clear();
 
       // Optimistic update

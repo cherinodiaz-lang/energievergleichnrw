@@ -3,7 +3,12 @@ import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -21,42 +26,42 @@ export default function PVSpeicherArticle() {
           name: 'Lohnt sich ein Stromspeicher?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Ein Stromspeicher erhöht Ihre Unabhängigkeit und Eigennutzung. Mit Speicher erreichen Sie bis zu 80% Autarkie. Die Wirtschaftlichkeit hängt von Ihrem Verbrauch und den Strompreisen ab.'
-          }
+            text: 'Ein Stromspeicher erhöht Ihre Unabhängigkeit und Eigennutzung. Mit Speicher erreichen Sie bis zu 80% Autarkie. Die Wirtschaftlichkeit hängt von Ihrem Verbrauch und den Strompreisen ab.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Wie viel kostet ein Stromspeicher?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Ein Stromspeicher kostet etwa 5.000-15.000 Euro, je nach Größe und Qualität. Mit Förderungen reduziert sich der Preis. Die Amortisation dauert 10-15 Jahre.'
-          }
+            text: 'Ein Stromspeicher kostet etwa 5.000-15.000 Euro, je nach Größe und Qualität. Mit Förderungen reduziert sich der Preis. Die Amortisation dauert 10-15 Jahre.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Welche Speichergröße ist sinnvoll?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Die Speichergröße sollte etwa 50-100% Ihres täglichen Stromverbrauchs entsprechen. Ein Energieberater kann die optimale Größe für Ihre Situation ermitteln.'
-          }
+            text: 'Die Speichergröße sollte etwa 50-100% Ihres täglichen Stromverbrauchs entsprechen. Ein Energieberater kann die optimale Größe für Ihre Situation ermitteln.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Wie lange halten Stromspeicher?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Hochwertige Stromspeicher halten 10-15 Jahre oder länger. Die meisten Hersteller geben 10 Jahre Garantie. Nach dieser Zeit ist ein Austausch möglich.'
-          }
+            text: 'Hochwertige Stromspeicher halten 10-15 Jahre oder länger. Die meisten Hersteller geben 10 Jahre Garantie. Nach dieser Zeit ist ein Austausch möglich.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Kann ich einen Speicher später nachrüsten?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Ja, Sie können einen Speicher später nachrüsten. Dies ist besonders sinnvoll, wenn Sie ein Elektroauto anschaffen oder Ihren Stromverbrauch erhöhen.'
-          }
-        }
-      ]
+            text: 'Ja, Sie können einen Speicher später nachrüsten. Dies ist besonders sinnvoll, wenn Sie ein Elektroauto anschaffen oder Ihren Stromverbrauch erhöhen.',
+          },
+        },
+      ],
     };
 
     const script = document.createElement('script');
@@ -107,7 +112,8 @@ export default function PVSpeicherArticle() {
           >
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-12">
               <p className="font-paragraph text-gray-700 leading-relaxed">
-                Ein Stromspeicher erhöht Ihre Unabhängigkeit von Strompreisen und dem Stromnetz. Erfahren Sie, ob ein Speicher für Ihre Solaranlage wirtschaftlich ist.
+                Ein Stromspeicher erhöht Ihre Unabhängigkeit von Strompreisen und dem Stromnetz.
+                Erfahren Sie, ob ein Speicher für Ihre Solaranlage wirtschaftlich ist.
               </p>
             </div>
 
@@ -119,19 +125,27 @@ export default function PVSpeicherArticle() {
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Höhere Eigennutzung des Solarstroms</span>
+                    <span className="font-paragraph text-gray-700">
+                      Höhere Eigennutzung des Solarstroms
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Bis zu 80% Autarkie möglich</span>
+                    <span className="font-paragraph text-gray-700">
+                      Bis zu 80% Autarkie möglich
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Weniger abhängig von Strompreisen</span>
+                    <span className="font-paragraph text-gray-700">
+                      Weniger abhängig von Strompreisen
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Notstromversorgung bei Stromausfall</span>
+                    <span className="font-paragraph text-gray-700">
+                      Notstromversorgung bei Stromausfall
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -141,7 +155,9 @@ export default function PVSpeicherArticle() {
                   Kosten und Amortisation
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Ein Stromspeicher kostet etwa 5.000-15.000 Euro, je nach Größe und Qualität. Mit Förderungen reduziert sich der Preis. Die Amortisation dauert in der Regel 10-15 Jahre. Danach nutzen Sie den Speicher kostenfrei.
+                  Ein Stromspeicher kostet etwa 5.000-15.000 Euro, je nach Größe und Qualität. Mit
+                  Förderungen reduziert sich der Preis. Die Amortisation dauert in der Regel 10-15
+                  Jahre. Danach nutzen Sie den Speicher kostenfrei.
                 </p>
               </div>
 
@@ -150,7 +166,9 @@ export default function PVSpeicherArticle() {
                   Speichergröße wählen
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Die Speichergröße sollte etwa 50-100% Ihres täglichen Stromverbrauchs entsprechen. Ein zu großer Speicher ist unwirtschaftlich, ein zu kleiner bringt nicht den gewünschten Nutzen. Ein Energieberater kann die optimale Größe ermitteln.
+                  Die Speichergröße sollte etwa 50-100% Ihres täglichen Stromverbrauchs entsprechen.
+                  Ein zu großer Speicher ist unwirtschaftlich, ein zu kleiner bringt nicht den
+                  gewünschten Nutzen. Ein Energieberater kann die optimale Größe ermitteln.
                 </p>
               </div>
 
@@ -159,7 +177,9 @@ export default function PVSpeicherArticle() {
                   Haltbarkeit und Garantie
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Hochwertige Stromspeicher halten 10-15 Jahre oder länger. Die meisten Hersteller geben 10 Jahre Garantie. Nach dieser Zeit ist ein Austausch möglich, aber nicht zwingend erforderlich.
+                  Hochwertige Stromspeicher halten 10-15 Jahre oder länger. Die meisten Hersteller
+                  geben 10 Jahre Garantie. Nach dieser Zeit ist ein Austausch möglich, aber nicht
+                  zwingend erforderlich.
                 </p>
               </div>
 
@@ -175,26 +195,31 @@ export default function PVSpeicherArticle() {
             {[
               {
                 q: 'Lohnt sich ein Stromspeicher?',
-                a: 'Ein Stromspeicher erhöht Ihre Unabhängigkeit und Eigennutzung. Mit Speicher erreichen Sie bis zu 80% Autarkie. Die Wirtschaftlichkeit hängt von Ihrem Verbrauch und den Strompreisen ab.'
+                a: 'Ein Stromspeicher erhöht Ihre Unabhängigkeit und Eigennutzung. Mit Speicher erreichen Sie bis zu 80% Autarkie. Die Wirtschaftlichkeit hängt von Ihrem Verbrauch und den Strompreisen ab.',
               },
               {
                 q: 'Wie viel kostet ein Stromspeicher?',
-                a: 'Ein Stromspeicher kostet etwa 5.000-15.000 Euro, je nach Größe und Qualität. Mit Förderungen reduziert sich der Preis. Die Amortisation dauert 10-15 Jahre.'
+                a: 'Ein Stromspeicher kostet etwa 5.000-15.000 Euro, je nach Größe und Qualität. Mit Förderungen reduziert sich der Preis. Die Amortisation dauert 10-15 Jahre.',
               },
               {
                 q: 'Welche Speichergröße ist sinnvoll?',
-                a: 'Die Speichergröße sollte etwa 50-100% Ihres täglichen Stromverbrauchs entsprechen. Ein Energieberater kann die optimale Größe für Ihre Situation ermitteln.'
+                a: 'Die Speichergröße sollte etwa 50-100% Ihres täglichen Stromverbrauchs entsprechen. Ein Energieberater kann die optimale Größe für Ihre Situation ermitteln.',
               },
               {
                 q: 'Wie lange halten Stromspeicher?',
-                a: 'Hochwertige Stromspeicher halten 10-15 Jahre oder länger. Die meisten Hersteller geben 10 Jahre Garantie. Nach dieser Zeit ist ein Austausch möglich.'
+                a: 'Hochwertige Stromspeicher halten 10-15 Jahre oder länger. Die meisten Hersteller geben 10 Jahre Garantie. Nach dieser Zeit ist ein Austausch möglich.',
               },
               {
                 q: 'Kann ich einen Speicher später nachrüsten?',
-                a: 'Ja, Sie können einen Speicher später nachrüsten. Dies ist besonders sinnvoll, wenn Sie ein Elektroauto anschaffen oder Ihren Stromverbrauch erhöhen.'
-              }
+                a: 'Ja, Sie können einen Speicher später nachrüsten. Dies ist besonders sinnvoll, wenn Sie ein Elektroauto anschaffen oder Ihren Stromverbrauch erhöhen.',
+              },
             ].map((item, index) => (
-              <Accordion key={index} type="single" collapsible className="bg-gray-50 rounded-lg px-6 border-none">
+              <Accordion
+                key={index}
+                type="single"
+                collapsible
+                className="bg-gray-50 rounded-lg px-6 border-none"
+              >
                 <AccordionItem value={`faq-${index}`} className="border-none">
                   <AccordionTrigger className="font-heading text-lg font-medium text-left py-4 hover:text-primary hover:no-underline">
                     {item.q}
@@ -212,9 +237,13 @@ export default function PVSpeicherArticle() {
               Kostenlose Beratung anfragen
             </h3>
             <p className="font-paragraph text-gray-700 mb-6">
-              Nutzen Sie unsere kostenlose Beratung und erhalten Sie ein individuelles Angebot mit Speicher.
+              Nutzen Sie unsere kostenlose Beratung und erhalten Sie ein individuelles Angebot mit
+              Speicher.
             </p>
-            <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
+            <Button
+              asChild
+              className="bg-secondary text-secondary-foreground hover:bg-secondary/90"
+            >
               <Link to={ROUTES.photovoltaik}>
                 Zur Photovoltaik-Beratung
                 <ArrowRight className="w-5 h-5 ml-2" />
@@ -223,9 +252,7 @@ export default function PVSpeicherArticle() {
           </div>
 
           <div className="border-t pt-12">
-            <h3 className="font-heading text-2xl font-bold text-primary mb-6">
-              Verwandte Artikel
-            </h3>
+            <h3 className="font-heading text-2xl font-bold text-primary mb-6">Verwandte Artikel</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Link to="/ratgeber/photovoltaik/pv-kosten-nrw-wovon-abhaengig" className="group">
                 <Card className="h-full hover:shadow-lg transition-shadow">
@@ -259,7 +286,10 @@ export default function PVSpeicherArticle() {
           </div>
 
           <div className="mt-12 pt-6 border-t text-center">
-            <Link to="/ratgeber/photovoltaik" className="tap-target text-sm mt-4 mb-4 inline-block text-primary hover:text-primary/80 transition-colors">
+            <Link
+              to="/ratgeber/photovoltaik"
+              className="tap-target text-sm mt-4 mb-4 inline-block text-primary hover:text-primary/80 transition-colors"
+            >
               ← Zurück zum Ratgeber
             </Link>
             <p className="font-paragraph text-sm text-gray-500 mt-4">

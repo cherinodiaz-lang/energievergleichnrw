@@ -13,12 +13,12 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
       <p class="error-description">
         Die von Ihnen gesuchte Seite existiert leider nicht oder wurde verschoben.
       </p>
-      
+
       <div class="error-actions">
         <a href="/" class="btn btn-primary">🏠 Zur Startseite</a>
         <button onclick="history.back()" class="btn btn-secondary">← Zurück</button>
       </div>
-      
+
       <div class="helpful-links">
         <h3>Beliebte Seiten:</h3>
         <ul>
@@ -40,12 +40,12 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
     justify-content: center;
     padding: 2rem;
   }
-  
+
   .error-content {
     max-width: 600px;
     text-align: center;
   }
-  
+
   .error-code {
     font-size: 8rem;
     font-weight: 900;
@@ -53,20 +53,20 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
     line-height: 1;
     margin-bottom: 1rem;
   }
-  
+
   .error-title {
     font-size: 2rem;
     font-weight: 700;
     color: #1e293b;
     margin-bottom: 1rem;
   }
-  
+
   .error-description {
     font-size: 1.125rem;
     color: #64748b;
     margin-bottom: 2rem;
   }
-  
+
   .error-actions {
     display: flex;
     gap: 1rem;
@@ -74,7 +74,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
     margin-bottom: 3rem;
     flex-wrap: wrap;
   }
-  
+
   .btn {
     padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
@@ -84,54 +84,54 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
     cursor: pointer;
     transition: all 0.2s;
   }
-  
+
   .btn-primary {
     background: #2563eb;
     color: white;
   }
-  
+
   .btn-primary:hover {
     background: #1d4ed8;
   }
-  
+
   .btn-secondary {
     background: white;
     color: #2563eb;
     border: 2px solid #2563eb;
   }
-  
+
   .btn-secondary:hover {
     background: #eff6ff;
   }
-  
+
   .helpful-links {
     background: #f8fafc;
     padding: 1.5rem;
     border-radius: 0.75rem;
     text-align: left;
   }
-  
+
   .helpful-links h3 {
     font-size: 1.125rem;
     font-weight: 700;
     margin-bottom: 1rem;
   }
-  
+
   .helpful-links ul {
     list-style: none;
     padding: 0;
   }
-  
+
   .helpful-links li {
     padding: 0.5rem 0;
   }
-  
+
   .helpful-links a {
     color: #2563eb;
     text-decoration: none;
     font-weight: 500;
   }
-  
+
   .helpful-links a:hover {
     text-decoration: underline;
   }

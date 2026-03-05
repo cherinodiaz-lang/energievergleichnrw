@@ -3,9 +3,11 @@
 ## Core Web Vitals Targets
 
 ### LCP (Largest Contentful Paint)
+
 **Target: < 2.5 seconds**
 
 #### Optimizations Implemented:
+
 - ✅ Font preloading (Inter font family)
 - ✅ DNS prefetch for critical domains
 - ✅ Inline critical CSS
@@ -13,6 +15,7 @@
 - ✅ Priority loading for above-the-fold images
 
 #### Best Practices:
+
 ```astro
 <!-- Preload critical fonts -->
 <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin />
@@ -22,22 +25,25 @@
 ```
 
 ### CLS (Cumulative Layout Shift)
+
 **Target: < 0.1**
 
 #### Optimizations Implemented:
+
 - ✅ Explicit dimensions for all images
 - ✅ Reserved space for dynamic content
 - ✅ Stable font loading with font-display: swap
 - ✅ Fixed layout for cards and accordions
 
 #### Best Practices:
+
 ```tsx
 // Always set explicit dimensions
-<img 
-  src="/image.jpg" 
-  width={800} 
-  height={600} 
-  alt="Description" 
+<img
+  src="/image.jpg"
+  width={800}
+  height={600}
+  alt="Description"
   loading="lazy"
 />
 
@@ -48,15 +54,18 @@
 ```
 
 ### INP (Interaction to Next Paint)
+
 **Target: < 200ms**
 
 #### Optimizations Implemented:
+
 - ✅ Debounced form inputs
 - ✅ Lazy loading for non-critical components
 - ✅ Memoized expensive computations
 - ✅ Optimized event handlers
 
 #### Best Practices:
+
 ```tsx
 import { useDebounce } from '@/hooks/useDebounce';
 
@@ -127,14 +136,7 @@ import { Image } from 'astro:assets';
 import heroImage from '../assets/hero.jpg';
 ---
 
-<Image 
-  src={heroImage}
-  alt="Hero image"
-  width={1200}
-  height={600}
-  loading="eager"
-  format="webp"
-/>
+<Image src={heroImage} alt="Hero image" width={1200} height={600} loading="eager" format="webp" />
 ```
 
 ## Performance Monitoring
@@ -161,8 +163,8 @@ Vercel Speed Insights is enabled:
 
 ```javascript
 adapter: vercel({
-  speedInsights: { enabled: true }
-})
+  speedInsights: { enabled: true },
+});
 ```
 
 ## Testing

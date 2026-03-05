@@ -5,11 +5,7 @@ import homeContent from '@content/de/pages/home.json';
 const { meta, hero, sections, closingCta } = homeContent;
 ---
 
-<BaseLayout
-  title={meta.title}
-  description={meta.description}
-  faqItems={sections.faq.items}
->
+<BaseLayout title={meta.title} description={meta.description} faqItems={sections.faq.items}>
   <main>
     <!-- Hero Section -->
     <section class="hero-section">
@@ -39,12 +35,14 @@ const { meta, hero, sections, closingCta } = homeContent;
       <div class="container">
         <h2 class="h2 text-center">{sections.benefits.title}</h2>
         <div class="grid-3">
-          {sections.benefits.cards.map((card) => (
-            <div class="card">
-              <p class="card-title">{card.title}</p>
-              <p class="card-text">{card.text}</p>
-            </div>
-          ))}
+          {
+            sections.benefits.cards.map((card) => (
+              <div class="card">
+                <p class="card-title">{card.title}</p>
+                <p class="card-text">{card.text}</p>
+              </div>
+            ))
+          }
         </div>
       </div>
     </section>
@@ -54,13 +52,15 @@ const { meta, hero, sections, closingCta } = homeContent;
       <div class="container">
         <h2 class="h2 text-center">{sections.howItWorks.title}</h2>
         <div class="grid-3">
-          {sections.howItWorks.steps.map((step, idx) => (
-            <div class="card">
-              <span class="step-number">{idx + 1}</span>
-              <p class="card-title">{step.title}</p>
-              <p class="card-text">{step.text}</p>
-            </div>
-          ))}
+          {
+            sections.howItWorks.steps.map((step, idx) => (
+              <div class="card">
+                <span class="step-number">{idx + 1}</span>
+                <p class="card-title">{step.title}</p>
+                <p class="card-text">{step.text}</p>
+              </div>
+            ))
+          }
         </div>
       </div>
     </section>
@@ -78,12 +78,14 @@ const { meta, hero, sections, closingCta } = homeContent;
       <div class="container">
         <h2 class="h2 text-center">{sections.faq.title}</h2>
         <div class="faq-list">
-          {sections.faq.items.map((item) => (
-            <details class="faq-item">
-              <summary class="faq-question">{item.q}</summary>
-              <p class="faq-answer">{item.a}</p>
-            </details>
-          ))}
+          {
+            sections.faq.items.map((item) => (
+              <details class="faq-item">
+                <summary class="faq-question">{item.q}</summary>
+                <p class="faq-answer">{item.a}</p>
+              </details>
+            ))
+          }
         </div>
       </div>
     </section>

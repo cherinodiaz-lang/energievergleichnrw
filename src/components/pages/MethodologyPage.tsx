@@ -16,41 +16,46 @@ export default function MethodologyPage() {
     {
       icon: BarChart3,
       title: 'Recherche aus offiziellen Datenbanken',
-      description: 'Wir recherchieren Tarife direkt aus offiziellen Datenbanken wie der Bundesnetzagentur und den Energieanbietern. Dies gewährleistet, dass Sie nur aktuelle und verifizierte Tarife sehen.'
+      description:
+        'Wir recherchieren Tarife direkt aus offiziellen Datenbanken wie der Bundesnetzagentur und den Energieanbietern. Dies gewährleistet, dass Sie nur aktuelle und verifizierte Tarife sehen.',
     },
     {
       icon: CheckCircle,
       title: 'Objektive Vergleichskriterien',
-      description: 'Unsere Vergleiche basieren auf objektiven Kriterien: Preis pro kWh, Vertragslaufzeit, Kündigungsfristen, Servicequalität und Kundenbewertungen. Keine versteckten Gebühren, keine Überraschungen.'
+      description:
+        'Unsere Vergleiche basieren auf objektiven Kriterien: Preis pro kWh, Vertragslaufzeit, Kündigungsfristen, Servicequalität und Kundenbewertungen. Keine versteckten Gebühren, keine Überraschungen.',
     },
     {
       icon: RefreshCw,
       title: 'Regelmäßige Aktualisierung',
-      description: 'Die Energiemärkte ändern sich ständig. Wir aktualisieren unsere Daten regelmäßig, um sicherzustellen, dass Sie immer die aktuellsten Tarife und Preise erhalten.'
+      description:
+        'Die Energiemärkte ändern sich ständig. Wir aktualisieren unsere Daten regelmäßig, um sicherzustellen, dass Sie immer die aktuellsten Tarife und Preise erhalten.',
     },
     {
       icon: Shield,
       title: 'Keine unbelegten Sparversprechen',
-      description: 'Wir machen keine unrealistischen Versprechungen über Einsparungen. Alle Sparpotenziale basieren auf realen Daten und Ihrem individuellen Verbrauch.'
-    }
+      description:
+        'Wir machen keine unrealistischen Versprechungen über Einsparungen. Alle Sparpotenziale basieren auf realen Daten und Ihrem individuellen Verbrauch.',
+    },
   ];
 
   const trustedSources = [
     {
       name: 'Bundesnetzagentur',
-      description: 'Offizielle Regulierungsbehörde für Strom, Gas, Telekommunikation, Post und Eisenbahnen',
-      url: 'https://www.bundesnetzagentur.de/'
+      description:
+        'Offizielle Regulierungsbehörde für Strom, Gas, Telekommunikation, Post und Eisenbahnen',
+      url: 'https://www.bundesnetzagentur.de/',
     },
     {
       name: 'Verbraucherzentrale NRW',
       description: 'Unabhängige Beratung und Informationen für Verbraucher in Nordrhein-Westfalen',
-      url: 'https://www.verbraucherzentrale.nrw/'
+      url: 'https://www.verbraucherzentrale.nrw/',
     },
     {
       name: 'Energieverbände',
       description: 'Offizielle Informationen von Energieanbietern und Branchenverbänden',
-      url: 'https://www.bdew.de/'
-    }
+      url: 'https://www.bdew.de/',
+    },
   ];
 
   return (
@@ -70,7 +75,7 @@ export default function MethodologyPage() {
           <Breadcrumb
             items={[
               { label: 'Startseite', href: '/' },
-              { label: 'Methodik', href: '/methodik', current: true }
+              { label: 'Methodik', href: '/methodik', current: true },
             ]}
           />
         </div>
@@ -87,7 +92,8 @@ export default function MethodologyPage() {
               Unsere Methodik
             </h1>
             <p className="font-paragraph text-lg sm:text-xl text-foreground/80 max-w-3xl mx-auto">
-              Transparenz und Objektivität sind die Grundlagen unserer Energievergleiche. Erfahren Sie, wie wir arbeiten.
+              Transparenz und Objektivität sind die Grundlagen unserer Energievergleiche. Erfahren
+              Sie, wie wir arbeiten.
             </p>
           </motion.div>
         </section>
@@ -116,9 +122,7 @@ export default function MethodologyPage() {
                       <h3 className="font-heading text-xl font-bold text-foreground mb-3">
                         {step.title}
                       </h3>
-                      <p className="font-paragraph text-foreground/80">
-                        {step.description}
-                      </p>
+                      <p className="font-paragraph text-foreground/80">{step.description}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -148,7 +152,8 @@ export default function MethodologyPage() {
                     Keine unbelegten Sparversprechen
                   </h3>
                   <p className="font-paragraph text-foreground/80">
-                    Wir zeigen Ihnen realistische Sparpotenziale basierend auf Ihrem individuellen Verbrauch. Alle Berechnungen sind nachvollziehbar und transparent.
+                    Wir zeigen Ihnen realistische Sparpotenziale basierend auf Ihrem individuellen
+                    Verbrauch. Alle Berechnungen sind nachvollziehbar und transparent.
                   </p>
                 </div>
               </div>
@@ -160,7 +165,9 @@ export default function MethodologyPage() {
                     Unabhängigkeit von Energiekonzernen
                   </h3>
                   <p className="font-paragraph text-foreground/80">
-                    Wir arbeiten unabhängig und objektiv. Unsere Empfehlungen basieren ausschließlich auf Ihren Interessen, nicht auf Provisionen oder Partnerschaften mit Energieanbietern.
+                    Wir arbeiten unabhängig und objektiv. Unsere Empfehlungen basieren
+                    ausschließlich auf Ihren Interessen, nicht auf Provisionen oder Partnerschaften
+                    mit Energieanbietern.
                   </p>
                 </div>
               </div>
@@ -172,7 +179,12 @@ export default function MethodologyPage() {
                     Datenschutz und Sicherheit
                   </h3>
                   <p className="font-paragraph text-foreground/80">
-                    Ihre persönlichen Daten sind bei uns sicher. Wir behandeln Ihre Informationen vertraulich und gemäß der DSGVO. Lesen Sie unsere <Link to="/datenschutz" className="text-primary hover:underline">Datenschutzerklärung</Link> für weitere Details.
+                    Ihre persönlichen Daten sind bei uns sicher. Wir behandeln Ihre Informationen
+                    vertraulich und gemäß der DSGVO. Lesen Sie unsere{' '}
+                    <Link to="/datenschutz" className="text-primary hover:underline">
+                      Datenschutzerklärung
+                    </Link>{' '}
+                    für weitere Details.
                   </p>
                 </div>
               </div>
@@ -184,7 +196,8 @@ export default function MethodologyPage() {
                     Aktuelle und verifizierte Daten
                   </h3>
                   <p className="font-paragraph text-foreground/80">
-                    Alle Tarife werden regelmäßig aktualisiert und aus offiziellen Quellen verifiziert. Sie erhalten immer die aktuellsten Informationen.
+                    Alle Tarife werden regelmäßig aktualisiert und aus offiziellen Quellen
+                    verifiziert. Sie erhalten immer die aktuellsten Informationen.
                   </p>
                 </div>
               </div>
@@ -226,12 +239,8 @@ export default function MethodologyPage() {
                   {source.name}
                   <ExternalLink className="w-4 h-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                 </h3>
-                <p className="font-paragraph text-foreground/80 mb-4">
-                  {source.description}
-                </p>
-                <span className="text-primary font-semibold text-sm">
-                  Zur Website →
-                </span>
+                <p className="font-paragraph text-foreground/80 mb-4">{source.description}</p>
+                <span className="text-primary font-semibold text-sm">Zur Website →</span>
               </motion.a>
             ))}
           </div>

@@ -13,7 +13,7 @@ const staticPages = [
   { url: '/stromvergleich-nrw', priority: '0.9', changefreq: 'daily' },
   { url: '/gasvergleich-nrw', priority: '0.9', changefreq: 'daily' },
   { url: '/impressum', priority: '0.3', changefreq: 'monthly' },
-  { url: '/datenschutz', priority: '0.3', changefreq: 'monthly' }
+  { url: '/datenschutz', priority: '0.3', changefreq: 'monthly' },
 ];
 
 // Städte (werden später dynamisch geladen)
@@ -27,7 +27,7 @@ const cities = [
   'wuppertal',
   'bielefeld',
   'bonn',
-  'muenster'
+  'muenster',
 ];
 
 function generateSitemap(): string {
@@ -53,7 +53,7 @@ function generateSitemap(): string {
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>`
-    )
+    ),
   ];
 
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -65,7 +65,7 @@ export const GET: APIRoute = () => {
   return new Response(generateSitemap(), {
     headers: {
       'Content-Type': 'application/xml',
-      'Cache-Control': 'public, max-age=3600'
-    }
+      'Cache-Control': 'public, max-age=3600',
+    },
   });
 };

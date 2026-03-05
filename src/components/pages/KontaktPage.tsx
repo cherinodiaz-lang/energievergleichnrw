@@ -6,7 +6,13 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -68,7 +74,8 @@ export default function KontaktPage() {
               Kontakt
             </h1>
             <p className="font-paragraph text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
-              Haben Sie Fragen zu unseren Angeboten? Wir sind gerne für Sie da und helfen Ihnen weiter.
+              Haben Sie Fragen zu unseren Angeboten? Wir sind gerne für Sie da und helfen Ihnen
+              weiter.
             </p>
           </motion.div>
         </div>
@@ -136,7 +143,9 @@ export default function KontaktPage() {
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                     <Clock className="w-6 h-6 text-primary" />
                   </div>
-                  <CardTitle className="font-heading text-xl text-primary">Öffnungszeiten</CardTitle>
+                  <CardTitle className="font-heading text-xl text-primary">
+                    Öffnungszeiten
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="font-paragraph text-gray-600 mb-2">
@@ -181,7 +190,9 @@ export default function KontaktPage() {
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <Label htmlFor="name" className="font-paragraph">Name *</Label>
+                        <Label htmlFor="name" className="font-paragraph">
+                          Name *
+                        </Label>
                         <Input
                           id="name"
                           placeholder="Ihr Name"
@@ -192,7 +203,9 @@ export default function KontaktPage() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="email" className="font-paragraph">E-Mail *</Label>
+                        <Label htmlFor="email" className="font-paragraph">
+                          E-Mail *
+                        </Label>
                         <Input
                           id="email"
                           type="email"
@@ -207,7 +220,9 @@ export default function KontaktPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <Label htmlFor="phone" className="font-paragraph">Telefon</Label>
+                        <Label htmlFor="phone" className="font-paragraph">
+                          Telefon
+                        </Label>
                         <Input
                           id="phone"
                           type="tel"
@@ -218,8 +233,14 @@ export default function KontaktPage() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="type" className="font-paragraph">Anfrage zu *</Label>
-                        <Select value={formData.type} onValueChange={(value) => setFormData({ ...formData, type: value })} required>
+                        <Label htmlFor="type" className="font-paragraph">
+                          Anfrage zu *
+                        </Label>
+                        <Select
+                          value={formData.type}
+                          onValueChange={(value) => setFormData({ ...formData, type: value })}
+                          required
+                        >
                           <SelectTrigger id="type" className="font-paragraph w-full">
                             <SelectValue />
                           </SelectTrigger>
@@ -234,7 +255,9 @@ export default function KontaktPage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="subject" className="font-paragraph">Betreff *</Label>
+                      <Label htmlFor="subject" className="font-paragraph">
+                        Betreff *
+                      </Label>
                       <Input
                         id="subject"
                         placeholder="Worum geht es?"
@@ -246,7 +269,9 @@ export default function KontaktPage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="message" className="font-paragraph">Nachricht *</Label>
+                      <Label htmlFor="message" className="font-paragraph">
+                        Nachricht *
+                      </Label>
                       <Textarea
                         id="message"
                         placeholder="Wie können wir Ihnen helfen?"
@@ -259,7 +284,10 @@ export default function KontaktPage() {
                     </div>
 
                     <div className="flex justify-stretch sm:justify-start">
-                      <Button type="submit" className="w-full sm:w-auto bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 font-bold text-lg rounded-lg">
+                      <Button
+                        type="submit"
+                        className="w-full sm:w-auto bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 font-bold text-lg rounded-lg"
+                      >
                         <Send className="w-5 h-5 mr-2" />
                         Nachricht senden
                       </Button>
@@ -282,7 +310,9 @@ export default function KontaktPage() {
             <div className="space-y-6">
               <Card className="bg-blue-50 border-blue-200">
                 <CardHeader>
-                  <CardTitle className="font-heading text-lg text-primary">Schnelle Antwort</CardTitle>
+                  <CardTitle className="font-heading text-lg text-primary">
+                    Schnelle Antwort
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="font-paragraph text-sm text-gray-600">
@@ -293,22 +323,39 @@ export default function KontaktPage() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="font-heading text-lg text-primary">Weitere Seiten</CardTitle>
+                  <CardTitle className="font-heading text-lg text-primary">
+                    Weitere Seiten
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <Link to={ROUTES.STROMVERGLEICH_NRW} className="block text-primary hover:underline font-paragraph text-sm">
+                  <Link
+                    to={ROUTES.STROMVERGLEICH_NRW}
+                    className="block text-primary hover:underline font-paragraph text-sm"
+                  >
                     → Stromvergleich NRW
                   </Link>
-                  <Link to={ROUTES.GASVERGLEICH_NRW} className="block text-primary hover:underline font-paragraph text-sm">
+                  <Link
+                    to={ROUTES.GASVERGLEICH_NRW}
+                    className="block text-primary hover:underline font-paragraph text-sm"
+                  >
                     → Gasvergleich NRW
                   </Link>
-                  <Link to={ROUTES.PHOTOVOLTAIK_NRW} className="block text-primary hover:underline font-paragraph text-sm">
+                  <Link
+                    to={ROUTES.PHOTOVOLTAIK_NRW}
+                    className="block text-primary hover:underline font-paragraph text-sm"
+                  >
                     → Photovoltaik NRW
                   </Link>
-                  <Link to={ROUTES.IMPRESSUM} className="block text-primary hover:underline font-paragraph text-sm">
+                  <Link
+                    to={ROUTES.IMPRESSUM}
+                    className="block text-primary hover:underline font-paragraph text-sm"
+                  >
                     → Impressum
                   </Link>
-                  <Link to={ROUTES.DATENSCHUTZ} className="block text-primary hover:underline font-paragraph text-sm">
+                  <Link
+                    to={ROUTES.DATENSCHUTZ}
+                    className="block text-primary hover:underline font-paragraph text-sm"
+                  >
                     → Datenschutz
                   </Link>
                 </CardContent>

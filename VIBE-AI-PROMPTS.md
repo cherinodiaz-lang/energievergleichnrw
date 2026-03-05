@@ -113,6 +113,7 @@ Layout:
 ## 📋 PROMPT 2: Einzelne Pages nacheinander (falls Prompt 1 zu lang)
 
 ### Homepage
+
 ```
 Erstelle eine Homepage (/) mit:
 - Hero Section (H1 #heroTitle, Subline #heroSubline, Button #heroCTA)
@@ -122,6 +123,7 @@ Erstelle eine Homepage (/) mit:
 ```
 
 ### Stromvergleich
+
 ```
 Erstelle Page /stromvergleich-nrw mit:
 - Hero (H1 #pageTitle, Subline #pageSubline, Button #primaryCTA)
@@ -131,24 +133,28 @@ Erstelle Page /stromvergleich-nrw mit:
 ```
 
 ### Gasvergleich
+
 ```
 Kopiere /stromvergleich-nrw nach /gasvergleich-nrw
 (Gleiche Struktur und IDs)
 ```
 
 ### Photovoltaik
+
 ```
 Kopiere /stromvergleich-nrw nach /photovoltaik-nrw
 (Gleiche Struktur und IDs)
 ```
 
 ### Gewerbestrom
+
 ```
 Kopiere /stromvergleich-nrw nach /gewerbestrom
 (Gleiche Struktur und IDs)
 ```
 
 ### Kontakt
+
 ```
 Erstelle Page /kontakt mit:
 - Hero (#pageTitle, #pageSubline)
@@ -163,6 +169,7 @@ Erstelle Page /kontakt mit:
 ```
 
 ### Ratgeber
+
 ```
 Erstelle Page /ratgeber mit:
 - Hero (#pageTitle, #pageSubline)
@@ -183,16 +190,19 @@ Erstelle Page /ratgeber mit:
 3. Code aus GitHub kopieren:
 
 ### Homepage
+
 ```
 https://github.com/cherinodiaz-lang/energievergleichnrw/blob/main/velo/public/pages/home.js
 ```
 
 ### Stromvergleich NRW
+
 ```
 https://github.com/cherinodiaz-lang/energievergleichnrw/blob/main/velo/public/pages/stromvergleich-nrw.js
 ```
 
 ### Alle anderen Pages
+
 ```
 https://github.com/cherinodiaz-lang/energievergleichnrw/tree/main/velo/public/pages
 ```
@@ -202,23 +212,27 @@ https://github.com/cherinodiaz-lang/energievergleichnrw/tree/main/velo/public/pa
 ## ✅ CHECKLISTE
 
 ### Phase 1: Vibe AI
+
 - [ ] Vibe AI Chat öffnen
 - [ ] Prompt kopieren und senden
 - [ ] 7 Pages generiert
 - [ ] Element IDs prüfen (Properties Panel)
 
 ### Phase 2: Velo Backend
+
 - [ ] Dev Mode aktivieren
 - [ ] `backend/pages-router.jsw` erstellen
 - [ ] `backend/seo-manager.jsw` erstellen
 - [ ] Code aus GitHub kopieren
 
 ### Phase 3: Page Code
+
 - [ ] Jede Page: Code aus GitHub einfügen
 - [ ] Preview Mode testen
 - [ ] Console: "✅ CMS loaded" prüfen
 
 ### Phase 4: Publishing
+
 - [ ] Alle Pages testen
 - [ ] Domain verbinden: energievergleich.shop
 - [ ] Site veröffentlichen
@@ -228,7 +242,9 @@ https://github.com/cherinodiaz-lang/energievergleichnrw/tree/main/velo/public/pa
 ## 🐛 TROUBLESHOOTING
 
 ### Vibe AI ignoriert Element-IDs?
+
 **→ Nachfrage-Prompt:**
+
 ```
 Setze für alle Elemente die exakten IDs:
 - Hero H1: #heroTitle
@@ -242,10 +258,13 @@ Prüfe Properties Panel ob IDs gesetzt sind.
 ```
 
 ### Pages werden nicht erstellt?
+
 **→ Single-Page-Prompts verwenden** (Prompt 2)
 
 ### Element IDs fehlen?
+
 **→ Manuell setzen:**
+
 ```
 1. Element auswählen
 2. Properties Panel (rechts)

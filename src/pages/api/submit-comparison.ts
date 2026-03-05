@@ -12,21 +12,21 @@ const comparisonSchema = z.object({
 export const POST: APIRoute = async ({ request }) => {
   try {
     const body = await request.json();
-    
+
     const validatedData = comparisonSchema.parse(body);
-    
+
     // TODO: Implement actual submission logic
     // - Send to CRM
     // - Send confirmation email
     // - Store in database
-    
+
     if (typeof process !== 'undefined' && process.env.DEBUG) {
       console.log('[API] Comparison submission:', validatedData);
     }
-    
+
     // Simulate processing time
-    await new Promise(resolve => setTimeout(resolve, 500));
-    
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
     return new Response(
       JSON.stringify({
         success: true,
@@ -48,7 +48,7 @@ export const POST: APIRoute = async ({ request }) => {
     if (typeof process !== 'undefined' && process.env.DEBUG) {
       console.error('[API Error]', error);
     }
-    
+
     if (error instanceof z.ZodError) {
       return new Response(
         JSON.stringify({
@@ -64,7 +64,7 @@ export const POST: APIRoute = async ({ request }) => {
         }
       );
     }
-    
+
     return new Response(
       JSON.stringify({
         success: false,

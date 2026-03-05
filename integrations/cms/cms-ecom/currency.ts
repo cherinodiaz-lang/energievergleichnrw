@@ -80,10 +80,10 @@ const useCurrencyStore = create<CurrencyStore>((set, get) => ({
         const isNotFound =
           error &&
           typeof error === 'object' &&
-          ((error as { details?: { applicationError?: { code?: string } } }).details?.applicationError
-            ?.code === 'CART_NOT_FOUND' ||
-            (error as { details?: { applicationError?: { code?: string } } }).details?.applicationError
-              ?.code === 'OWNED_CART_NOT_FOUND');
+          ((error as { details?: { applicationError?: { code?: string } } }).details
+            ?.applicationError?.code === 'CART_NOT_FOUND' ||
+            (error as { details?: { applicationError?: { code?: string } } }).details
+              ?.applicationError?.code === 'OWNED_CART_NOT_FOUND');
 
         if (isNotFound) {
           set({ currency: null, isLoading: false, _initialized: true });

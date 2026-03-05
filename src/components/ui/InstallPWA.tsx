@@ -40,18 +40,8 @@ export function InstallPWA() {
   if (!showButton) return null;
 
   return (
-    <button
-      onClick={handleInstall}
-      className="install-pwa-btn"
-      aria-label="App installieren"
-    >
-      <svg
-        width="20"
-        height="20"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
+    <button onClick={handleInstall} className="install-pwa-btn" aria-label="App installieren">
+      <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"

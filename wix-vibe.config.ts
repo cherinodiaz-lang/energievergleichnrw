@@ -1,9 +1,9 @@
 /**
  * Wix Vibe Editor Configuration
- * 
+ *
  * Optimizes AI prompt processing and component recognition
  * in the Wix Vibe Editor environment.
- * 
+ *
  * @see https://dev.wix.com/docs/vibe-editor
  */
 
@@ -38,7 +38,7 @@ const config: WixVibeConfig = {
     model: 'gpt-4',
     temperature: 0.7,
     maxTokens: 2000,
-    enableCodeGeneration: true
+    enableCodeGeneration: true,
   },
   components: {
     autoImport: true,
@@ -46,24 +46,21 @@ const config: WixVibeConfig = {
     includePaths: [
       './src/components/**/*.tsx',
       './src/components/**/*.jsx',
-      './src/components/**/*.astro'
+      './src/components/**/*.astro',
     ],
-    excludePaths: [
-      './src/components/**/*.test.tsx',
-      './src/components/**/*.stories.tsx'
-    ]
+    excludePaths: ['./src/components/**/*.test.tsx', './src/components/**/*.stories.tsx'],
   },
   editor: {
     enablePrompts: true,
     enableCodeCompletion: true,
     enableInlineEditing: true,
-    enableComponentPalette: true
+    enableComponentPalette: true,
   },
   performance: {
     lazyLoad: true,
     codeSplitting: true,
-    prefetch: true
-  }
+    prefetch: true,
+  },
 };
 
 export default config;

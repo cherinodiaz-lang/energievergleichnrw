@@ -23,16 +23,19 @@
 ## 📝 Site-Struktur
 
 ### Hauptseiten
+
 - **Startseite** (`/`) - Hero, Vorteile, Vergleichsrechner
 - **Stromvergleich NRW** (`/stromvergleich-nrw`) - Fokus auf Stromtarife
 - **Gasvergleich NRW** (`/gasvergleich-nrw`) - Fokus auf Gastarife
 
 ### City Pages (Auswahl)
+
 - Köln, Düsseldorf, Dortmund, Essen, Duisburg
 - Bochum, Wuppertal, Bielefeld, Bonn, Münster
 - Mönchengladbach, Gelsenkirchen, Aachen, und mehr...
 
 ### Service Pages
+
 - Impressum
 - Datenschutz
 - AGB
@@ -44,16 +47,20 @@
 ## 🛠️ Entwicklung mit Wix
 
 ### Wix Editor
+
 Bearbeite die Site direkt im [Wix Editor](https://www.wix.com/my-account/site-selector/?buttonText=Select%20Site&title=Select%20a%20Site&autoSelectOnSingleSite=true&actionUrl=https:%2F%2Fwww.wix.com%2Fdashboard%2F52dd1482-1ebb-4472-90a2-bce2af5d763f%2Fhome)
 
 ### Wix Vibe Chat
+
 Nutze Wix Vibe für KI-gestützte Entwicklung:
+
 - Automatische Seitenerstellung
 - Content-Generierung
 - Design-Anpassungen
 - Code-Optimierung
 
 ### Wix CLI (Optional)
+
 ```bash
 # Installation
 npm install -g @wix/cli
@@ -73,6 +80,7 @@ wix push
 ## 🎨 Design-System
 
 ### Farben
+
 - **Primär**: #2563eb (Blau)
 - **Sekundär**: #1d4ed8 (Dunkelblau)
 - **Akzent**: #10b981 (Grün - Energie)
@@ -80,6 +88,7 @@ wix push
 - **Text**: #111827, #374151
 
 ### Typografie
+
 - **Überschriften**: System UI, Sans-Serif
 - **Fließtext**: System UI, Sans-Serif
 - **Buttons**: 600 weight, Sans-Serif
@@ -89,6 +98,7 @@ wix push
 ## 📈 SEO-Strategie
 
 ### On-Page SEO
+
 - [x] Keyword-optimierte Titles & Descriptions
 - [x] H1-H6 Hierarchie korrekt
 - [x] Alt-Texte für alle Bilder
@@ -96,12 +106,14 @@ wix push
 - [x] Schema.org Markup
 
 ### Local SEO
+
 - [x] City-spezifische Landing Pages
 - [x] LocalBusiness Schema
 - [x] Google My Business Integration
 - [x] NAP (Name, Address, Phone) konsistent
 
 ### Technical SEO
+
 - [x] Mobile-Friendly
 - [x] Schnelle Ladezeiten
 - [x] SSL-Verschlüsselung
@@ -113,6 +125,7 @@ wix push
 ## 📊 Performance
 
 ### Ziel-Metriken
+
 - **Lighthouse Score**: > 90/100
 - **PageSpeed**: < 3s Ladezeit
 - **Mobile-Friendly**: 100%
@@ -123,6 +136,7 @@ wix push
 ## 👥 Team
 
 **Entwicklung & Design**
+
 - Joel Noah Cherino Diaz - Lead Developer
 
 ---
@@ -130,6 +144,7 @@ wix push
 ## 📞 Support
 
 Bei Fragen oder Problemen:
+
 - 📧 Email: support@energievergleichnrw.de
 - 🐛 Issues: [GitHub Issues](https://github.com/cherinodiaz-lang/energievergleichnrw/issues)
 

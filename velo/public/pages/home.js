@@ -10,39 +10,38 @@ $w.onReady(async () => {
   try {
     // Set SEO
     await setSEO('home');
-    
+
     // Load content
     const [pageContent, globalContent] = await Promise.all([
       getPageContent('home'),
-      getGlobalContent()
+      getGlobalContent(),
     ]);
-    
+
     if (!pageContent) {
       $w('#errorMessage').text = 'Content konnte nicht geladen werden';
       $w('#errorMessage').show();
       return;
     }
-    
+
     // Render Hero
     renderHero(pageContent.hero);
-    
+
     // Render Benefits
     if (pageContent.sections?.benefits) {
       renderBenefits(pageContent.sections.benefits);
     }
-    
+
     // Render FAQ
     if (pageContent.sections?.faq) {
       renderFAQ(pageContent.sections.faq);
     }
-    
+
     // Render Global Navigation
     if (globalContent?.nav) {
       renderNavigation(globalContent.nav);
     }
-    
+
     console.log('✅ Homepage loaded');
-    
   } catch (error) {
     console.error('❌ Homepage Load Error:', error);
     $w('#errorMessage').text = 'Fehler beim Laden der Seite';
@@ -52,7 +51,7 @@ $w.onReady(async () => {
 
 function renderHero(hero) {
   if (!hero) return;
-  
+
   $w('#heroTitle').text = hero.h1;
   $w('#heroSubline').text = hero.subline;
   $w('#heroCTA').label = hero.primaryCta;
@@ -61,7 +60,7 @@ function renderHero(hero) {
 
 function renderBenefits(benefits) {
   if (!benefits.cards) return;
-  
+
   benefits.cards.forEach((card, i) => {
     const index = i + 1;
     $w(`#benefit${index}Title`).text = card.title;
@@ -71,7 +70,7 @@ function renderBenefits(benefits) {
 
 function renderFAQ(faq) {
   if (!faq.items) return;
-  
+
   // Option 1: Repeater
   if ($w('#faqRepeater')) {
     $w('#faqRepeater').data = faq.items;
@@ -80,7 +79,7 @@ function renderFAQ(faq) {
       $item('#faqAnswer').text = itemData.a;
     });
   }
-  
+
   // Option 2: Static elements
   faq.items.forEach((item, i) => {
     const index = i + 1;

@@ -38,9 +38,9 @@ export default {
         return [fixer.insertTextAfter(lastSpecifier, ', Image')];
       }
 
-      const insertAfter = lastImportNode ?
-        fixer.insertTextAfter(lastImportNode, `\n${importText}`) :
-        fixer.insertTextBeforeRange([0, 0], `${importText}\n`);
+      const insertAfter = lastImportNode
+        ? fixer.insertTextAfter(lastImportNode, `\n${importText}`)
+        : fixer.insertTextBeforeRange([0, 0], `${importText}\n`);
 
       return [insertAfter];
     };
@@ -51,24 +51,28 @@ export default {
 
         if (node.source.value === IMAGE_IMPORT_PATH) {
           imageImportNode = node;
-          hasImageImport = node.specifiers.some(spec =>
-            spec.type === 'ImportSpecifier' &&
-            spec.imported.type === 'Identifier' &&
-            spec.imported.name === 'Image'
+          hasImageImport = node.specifiers.some(
+            (spec) =>
+              spec.type === 'ImportSpecifier' &&
+              spec.imported.type === 'Identifier' &&
+              spec.imported.name === 'Image'
           );
         }
       },
 
       JSXElement(node) {
-        if (node.openingElement.name?.type !== 'JSXIdentifier' || 
-            node.openingElement.name.name !== 'img') return;
+        if (
+          node.openingElement.name?.type !== 'JSXIdentifier' ||
+          node.openingElement.name.name !== 'img'
+        )
+          return;
 
         context.report({
           node,
           messageId: 'useImageComponent',
           fix(fixer: Rule.RuleFixer) {
             const { openingElement: openingEl, closingElement } = node;
-            const attributes = openingEl.attributes.map(attr => sourceCode.getText(attr));
+            const attributes = openingEl.attributes.map((attr) => sourceCode.getText(attr));
 
             const attributesText = attributes.length > 0 ? ` ${attributes.join(' ')}` : '';
             const newOpeningTag = openingEl.selfClosing
@@ -77,7 +81,7 @@ export default {
 
             const fixes: Rule.Fix[] = [
               fixer.replaceText(openingEl, newOpeningTag),
-              ...addImageImport(fixer)
+              ...addImageImport(fixer),
             ];
 
             if (closingElement) {

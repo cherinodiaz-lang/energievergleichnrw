@@ -21,29 +21,29 @@ export class ErrorBoundary extends Component<Props, State> {
     super(props);
     this.state = {
       hasError: false,
-      error: null
+      error: null,
     };
   }
 
   static getDerivedStateFromError(error: Error): State {
     return {
       hasError: true,
-      error
+      error,
     };
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     // Log error to error reporting service
     console.error('ErrorBoundary caught an error:', error, errorInfo);
-    
+
     // Call optional error handler
     this.props.onError?.(error, errorInfo);
-    
+
     // Send to analytics/monitoring service
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('event', 'exception', {
         description: error.toString(),
-        fatal: false
+        fatal: false,
       });
     }
   }
@@ -54,15 +54,15 @@ export class ErrorBoundary extends Component<Props, State> {
       if (this.props.fallback) {
         return this.props.fallback;
       }
-      
+
       // Default fallback UI
       return (
         <div className="error-boundary">
           <div className="error-boundary-content">
             <h2>⚠️ Etwas ist schiefgelaufen</h2>
             <p>
-              Ein unerwarteter Fehler ist aufgetreten. Bitte laden Sie die Seite neu oder
-              versuchen Sie es später erneut.
+              Ein unerwarteter Fehler ist aufgetreten. Bitte laden Sie die Seite neu oder versuchen
+              Sie es später erneut.
             </p>
             <details style={{ whiteSpace: 'pre-wrap' }}>
               <summary>Fehlerdetails (für Entwickler)</summary>

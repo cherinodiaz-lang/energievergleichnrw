@@ -11,7 +11,7 @@ import { CONTACT } from '@/config/contact';
 export default function ThankYouPage() {
   return (
     <>
-      <SEOHead 
+      <SEOHead
         title="Danke – Anfrage erhalten"
         description="Vielen Dank für Ihre Anfrage. Wir melden uns kurzfristig bei Ihnen."
         noindex={true}
@@ -34,7 +34,8 @@ export default function ThankYouPage() {
 
           {/* Subheadline */}
           <p className="font-paragraph text-lg text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            Ihre Anfrage wurde erfolgreich übermittelt. Unser Team wird sich in Kürze mit Ihnen in Verbindung setzen.
+            Ihre Anfrage wurde erfolgreich übermittelt. Unser Team wird sich in Kürze mit Ihnen in
+            Verbindung setzen.
           </p>
 
           {/* Next Steps Section */}
@@ -56,7 +57,8 @@ export default function ThankYouPage() {
                     Unterlagen bereitlegen
                   </h3>
                   <p className="font-paragraph text-gray-600">
-                    Halten Sie Ihre letzte Rechnung und Ihren Jahresverbrauch bereit – das beschleunigt den Vergleich.
+                    Halten Sie Ihre letzte Rechnung und Ihren Jahresverbrauch bereit – das
+                    beschleunigt den Vergleich.
                   </p>
                 </div>
               </li>
@@ -73,7 +75,8 @@ export default function ThankYouPage() {
                     Rückrufzeitfenster nennen
                   </h3>
                   <p className="font-paragraph text-gray-600">
-                    Teilen Sie uns mit, wann wir Sie am besten erreichen können – wir richten uns nach Ihrem Zeitplan.
+                    Teilen Sie uns mit, wann wir Sie am besten erreichen können – wir richten uns
+                    nach Ihrem Zeitplan.
                   </p>
                 </div>
               </li>
@@ -90,7 +93,8 @@ export default function ThankYouPage() {
                     Ratgeber entdecken
                   </h3>
                   <p className="font-paragraph text-gray-600">
-                    Informieren Sie sich in unserem Ratgeber über Strom, Gas, Photovoltaik oder Gewerbeenergie.
+                    Informieren Sie sich in unserem Ratgeber über Strom, Gas, Photovoltaik oder
+                    Gewerbeenergie.
                   </p>
                   <div className="flex flex-wrap gap-2 mt-3">
                     <Link to={ROUTES.ratgeberStrom}>
@@ -122,8 +126,8 @@ export default function ThankYouPage() {
           {/* CTA Button */}
           <div className="flex justify-center">
             <Link to={ROUTES.home}>
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="bg-primary hover:bg-primary/90 text-primary-foreground font-heading font-semibold"
               >
                 Zur Startseite
@@ -136,7 +140,10 @@ export default function ThankYouPage() {
           <div className="mt-16 pt-12 border-t border-light-grey">
             <p className="font-paragraph text-center text-gray-600 text-sm">
               Haben Sie Fragen? Kontaktieren Sie uns jederzeit unter{' '}
-              <a href={`mailto:${CONTACT.email}`} className="text-primary font-semibold hover:underline">
+              <a
+                href={`mailto:${CONTACT.email}`}
+                className="text-primary font-semibold hover:underline"
+              >
                 {CONTACT.email}
               </a>
             </p>

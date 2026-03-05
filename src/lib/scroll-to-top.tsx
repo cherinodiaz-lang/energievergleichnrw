@@ -13,14 +13,13 @@ function smoothScroll(targetY: number, duration: number = SCROLL_DURATION) {
   function scroll(currentTime: number) {
     const elapsed = currentTime - startTime;
     const progress = Math.min(elapsed / duration, 1);
-    
+
     // Easing function for smooth acceleration/deceleration
-    const easeProgress = progress < 0.5 
-      ? 2 * progress * progress 
-      : -1 + (4 - 2 * progress) * progress;
-    
+    const easeProgress =
+      progress < 0.5 ? 2 * progress * progress : -1 + (4 - 2 * progress) * progress;
+
     window.scrollY !== targetY && window.scrollTo(0, startY + distance * easeProgress);
-    
+
     if (progress < 1) {
       requestAnimationFrame(scroll);
     }
@@ -57,7 +56,7 @@ export function ScrollToTop() {
         window.scrollTo({
           top: 0,
           left: 0,
-          behavior: 'auto'
+          behavior: 'auto',
         });
       }
     }

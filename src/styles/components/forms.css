@@ -30,7 +30,9 @@
   background: var(--bg);
   color: var(--text-900);
   min-height: 44px; /* WCAG 2.5.8 Target Size */
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .textarea {
@@ -88,7 +90,7 @@
   align-items: flex-start;
 }
 
-.checkrow input[type="checkbox"] {
+.checkrow input[type='checkbox'] {
   margin-top: 4px;
   min-width: 20px;
   min-height: 20px; /* WCAG Target Size */
@@ -107,7 +109,7 @@
   content: '';
 }
 
-.label[data-required="true"]::after {
+.label[data-required='true']::after {
   content: ' *';
   color: var(--danger);
 }

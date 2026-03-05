@@ -22,9 +22,18 @@ export default function StromCategoryPage() {
   ];
 
   const breadcrumbSchema = [
-    { name: 'Startseite', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}` },
-    { name: 'Ratgeber', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.ratgeber}` },
-    { name: 'Strom', url: `${typeof window !== 'undefined' ? window.location.origin : ''}/ratgeber/strom` },
+    {
+      name: 'Startseite',
+      url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}`,
+    },
+    {
+      name: 'Ratgeber',
+      url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.ratgeber}`,
+    },
+    {
+      name: 'Strom',
+      url: `${typeof window !== 'undefined' ? window.location.origin : ''}/ratgeber/strom`,
+    },
   ];
 
   return (
@@ -77,9 +86,15 @@ export default function StromCategoryPage() {
                 Stromtarife verstehen und optimieren
               </h2>
               <p className="font-paragraph text-base md:text-lg text-gray-700 mb-6 leading-relaxed">
-                Der Strommarkt in Nordrhein-Westfalen bietet vielfältige Möglichkeiten, Ihre Energieversorgung zu optimieren. Ob Sie zum ersten Mal einen Anbieter wechseln möchten, Ihre aktuelle Grundversorgung überprüfen oder die Unterschiede zwischen verschiedenen Tarifmodellen verstehen wollen – unsere Ratgeber bieten Ihnen umfassende Informationen. Wir erklären die wichtigsten Begriffe, zeigen Ihnen worauf Sie bei Verträgen achten sollten und helfen Ihnen, fundierte Entscheidungen zu treffen.
+                Der Strommarkt in Nordrhein-Westfalen bietet vielfältige Möglichkeiten, Ihre
+                Energieversorgung zu optimieren. Ob Sie zum ersten Mal einen Anbieter wechseln
+                möchten, Ihre aktuelle Grundversorgung überprüfen oder die Unterschiede zwischen
+                verschiedenen Tarifmodellen verstehen wollen – unsere Ratgeber bieten Ihnen
+                umfassende Informationen. Wir erklären die wichtigsten Begriffe, zeigen Ihnen worauf
+                Sie bei Verträgen achten sollten und helfen Ihnen, fundierte Entscheidungen zu
+                treffen.
               </p>
-              
+
               <div className="mb-8">
                 <h3 className="font-heading text-lg font-semibold text-gray-900 mb-4">
                   Häufige Fragen zum Stromwechsel:
@@ -87,19 +102,27 @@ export default function StromCategoryPage() {
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <span className="text-primary font-bold mt-1">•</span>
-                    <span className="font-paragraph text-gray-700">Wie funktioniert ein Stromanbieterwechsel und wie lange dauert dieser?</span>
+                    <span className="font-paragraph text-gray-700">
+                      Wie funktioniert ein Stromanbieterwechsel und wie lange dauert dieser?
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-primary font-bold mt-1">•</span>
-                    <span className="font-paragraph text-gray-700">Was ist der Unterschied zwischen Grundversorgung und Sondervertrag?</span>
+                    <span className="font-paragraph text-gray-700">
+                      Was ist der Unterschied zwischen Grundversorgung und Sondervertrag?
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-primary font-bold mt-1">•</span>
-                    <span className="font-paragraph text-gray-700">Welche Kündigungsfristen muss ich beachten?</span>
+                    <span className="font-paragraph text-gray-700">
+                      Welche Kündigungsfristen muss ich beachten?
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-primary font-bold mt-1">•</span>
-                    <span className="font-paragraph text-gray-700">Wie kann ich bei Preiserhöhungen reagieren?</span>
+                    <span className="font-paragraph text-gray-700">
+                      Wie kann ich bei Preiserhöhungen reagieren?
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -182,9 +205,13 @@ export default function StromCategoryPage() {
             Bereit für einen Stromwechsel?
           </h2>
           <p className="font-paragraph text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-            Nutzen Sie unseren Vergleichsrechner und finden Sie den besten Stromtarif für Ihre Region.
+            Nutzen Sie unseren Vergleichsrechner und finden Sie den besten Stromtarif für Ihre
+            Region.
           </p>
-          <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 px-8 rounded-lg font-bold">
+          <Button
+            asChild
+            className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 px-8 rounded-lg font-bold"
+          >
             <Link to={ROUTES.stromvergleich}>
               Stromtarife vergleichen
               <ArrowRight className="w-5 h-5 ml-2" />

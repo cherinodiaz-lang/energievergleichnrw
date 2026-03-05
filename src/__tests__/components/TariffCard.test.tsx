@@ -26,7 +26,7 @@ describe('TariffCard', () => {
   const mockTariff = {
     title: 'Ökostrom Plus',
     price: 45.99,
-    features: ['100% Ökostrom', '12 Monate Preisgarantie', 'Keine Vorkasse']
+    features: ['100% Ökostrom', '12 Monate Preisgarantie', 'Keine Vorkasse'],
   };
 
   it('renders tariff information correctly', () => {

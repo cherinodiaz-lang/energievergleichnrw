@@ -6,7 +6,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import RelatedPages from '@/components/RelatedPages';
 import RelatedCities from '@/components/RelatedCities';
@@ -80,7 +85,8 @@ export default function StromvergleichDuisburgPage() {
 
     setFormErrors({});
 
-    const consumption = formData.verbrauch && parseInt(formData.verbrauch) > 0 ? parseInt(formData.verbrauch) : 3500;
+    const consumption =
+      formData.verbrauch && parseInt(formData.verbrauch) > 0 ? parseInt(formData.verbrauch) : 3500;
     setCalculatedConsumption(consumption);
     setShowResults(true);
   };
@@ -91,10 +97,12 @@ export default function StromvergleichDuisburgPage() {
         title: 'Stromvergleich Duisburg | Stromtarife vergleichen & einfach wechseln',
         description:
           'Stromtarife in Duisburg vergleichen: passende Angebote finden, Kosten senken und unkompliziert wechseln. Kostenlos und unverbindlich.',
-        keywords: 'Stromvergleich Duisburg, Stromtarife Duisburg, Stromanbieter Duisburg, Stromwechsel Duisburg',
+        keywords:
+          'Stromvergleich Duisburg, Stromtarife Duisburg, Stromanbieter Duisburg, Stromwechsel Duisburg',
         canonical: 'https://www.energievergleich.shop/stromvergleich-duisburg',
         ogTitle: 'Stromvergleich Duisburg | Stromtarife vergleichen & wechseln',
-        ogDescription: 'Stromtarife in Duisburg vergleichen, passende Angebote finden und einfach wechseln.',
+        ogDescription:
+          'Stromtarife in Duisburg vergleichen, passende Angebote finden und einfach wechseln.',
       }}
       breadcrumbLabel="Stromvergleich Duisburg"
       breadcrumbPath="/stromvergleich-duisburg"
@@ -114,10 +122,13 @@ export default function StromvergleichDuisburgPage() {
               Stromvergleich Duisburg: Tarife nach PLZ vergleichen
             </h1>
             <p className="font-paragraph text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
-              Vergleichen Sie Stromtarife in Duisburg nach Postleitzahl und Verbrauch – übersichtlich und unverbindlich.
+              Vergleichen Sie Stromtarife in Duisburg nach Postleitzahl und Verbrauch –
+              übersichtlich und unverbindlich.
             </p>
             <Button
-              onClick={() => document.getElementById('vergleich')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() =>
+                document.getElementById('vergleich')?.scrollIntoView({ behavior: 'smooth' })
+              }
               className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 px-8 rounded-full text-lg font-semibold shadow-lg"
             >
               Jetzt vergleichen
@@ -145,15 +156,20 @@ export default function StromvergleichDuisburgPage() {
                           id="plz"
                           placeholder="z.B. 47051"
                           value={formData.postleitzahl}
-                          onChange={(e) => setFormData({ ...formData, postleitzahl: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, postleitzahl: e.target.value })
+                          }
                           required
                           className="font-paragraph w-full"
                         />
-                        {formErrors.postleitzahl && <p className="text-sm text-red-600">{formErrors.postleitzahl}</p>}
+                        {formErrors.postleitzahl && (
+                          <p className="text-sm text-red-600">{formErrors.postleitzahl}</p>
+                        )}
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="verbrauch" className="font-paragraph">
-                          Jahresverbrauch (kWh) <span className="text-gray-400 text-sm">(optional)</span>
+                          Jahresverbrauch (kWh){' '}
+                          <span className="text-gray-400 text-sm">(optional)</span>
                         </Label>
                         <Input
                           id="verbrauch"
@@ -198,7 +214,9 @@ export default function StromvergleichDuisburgPage() {
                   transition={{ duration: 0.5 }}
                   className="mt-12"
                 >
-                  <h2 className="font-heading text-2xl font-bold text-primary mb-8">Tarifvorschau für {formData.postleitzahl}</h2>
+                  <h2 className="font-heading text-2xl font-bold text-primary mb-8">
+                    Tarifvorschau für {formData.postleitzahl}
+                  </h2>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                     {[
@@ -219,25 +237,43 @@ export default function StromvergleichDuisburgPage() {
                         >
                           <Card className="h-full flex flex-col shadow-lg hover:shadow-xl transition-shadow">
                             <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10">
-                              <CardTitle className="font-heading text-xl text-primary">{tariff.name}</CardTitle>
+                              <CardTitle className="font-heading text-xl text-primary">
+                                {tariff.name}
+                              </CardTitle>
                             </CardHeader>
                             <CardContent className="p-6 flex-1 flex flex-col justify-between">
                               <div className="space-y-4 mb-6">
                                 <div>
-                                  <p className="font-paragraph text-sm text-gray-600 mb-1">Arbeitspreis</p>
-                                  <p className="font-heading text-lg font-bold text-primary">{tariff.pricePerKwh.toFixed(2)} €/kWh</p>
+                                  <p className="font-paragraph text-sm text-gray-600 mb-1">
+                                    Arbeitspreis
+                                  </p>
+                                  <p className="font-heading text-lg font-bold text-primary">
+                                    {tariff.pricePerKwh.toFixed(2)} €/kWh
+                                  </p>
                                 </div>
                                 <div>
-                                  <p className="font-paragraph text-sm text-gray-600 mb-1">Grundgebühr</p>
-                                  <p className="font-heading text-lg font-bold text-primary">{tariff.baseFee.toFixed(2)} €/Monat</p>
+                                  <p className="font-paragraph text-sm text-gray-600 mb-1">
+                                    Grundgebühr
+                                  </p>
+                                  <p className="font-heading text-lg font-bold text-primary">
+                                    {tariff.baseFee.toFixed(2)} €/Monat
+                                  </p>
                                 </div>
                                 <div className="border-t pt-4">
-                                  <p className="font-paragraph text-sm text-gray-600 mb-1">Geschätzte monatliche Kosten</p>
-                                  <p className="font-heading text-2xl font-bold text-secondary">{monthlyPrice.toFixed(2)} €</p>
+                                  <p className="font-paragraph text-sm text-gray-600 mb-1">
+                                    Geschätzte monatliche Kosten
+                                  </p>
+                                  <p className="font-heading text-2xl font-bold text-secondary">
+                                    {monthlyPrice.toFixed(2)} €
+                                  </p>
                                 </div>
                                 <div>
-                                  <p className="font-paragraph text-sm text-gray-600 mb-1">Geschätzte jährliche Kosten</p>
-                                  <p className="font-heading text-lg font-bold text-primary">{yearlyPrice.toFixed(2)} €/Jahr</p>
+                                  <p className="font-paragraph text-sm text-gray-600 mb-1">
+                                    Geschätzte jährliche Kosten
+                                  </p>
+                                  <p className="font-heading text-lg font-bold text-primary">
+                                    {yearlyPrice.toFixed(2)} €/Jahr
+                                  </p>
                                 </div>
                               </div>
                               <Link to={ROUTES.kontakt} className="w-full">
@@ -256,7 +292,8 @@ export default function StromvergleichDuisburgPage() {
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start gap-3">
                     <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
                     <p className="font-paragraph text-sm text-gray-700">
-                      <strong>Hinweis:</strong> Vorschau basiert auf Beispielrechnung. Finale Tarife nach Anbieterabfrage.
+                      <strong>Hinweis:</strong> Vorschau basiert auf Beispielrechnung. Finale Tarife
+                      nach Anbieterabfrage.
                     </p>
                   </div>
                 </motion.div>
@@ -265,7 +302,9 @@ export default function StromvergleichDuisburgPage() {
 
             <div className="space-y-6">
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                <h3 className="font-heading font-bold text-primary mb-4">Warum mit uns vergleichen?</h3>
+                <h3 className="font-heading font-bold text-primary mb-4">
+                  Warum mit uns vergleichen?
+                </h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -285,7 +324,9 @@ export default function StromvergleichDuisburgPage() {
           </div>
 
           <div className="mt-16">
-            <h2 className="font-heading text-2xl font-bold text-primary mb-6">Häufige Fragen zum Stromvergleich in Duisburg</h2>
+            <h2 className="font-heading text-2xl font-bold text-primary mb-6">
+              Häufige Fragen zum Stromvergleich in Duisburg
+            </h2>
             <div className="space-y-4">
               {[
                 {
@@ -301,12 +342,19 @@ export default function StromvergleichDuisburgPage() {
                   a: 'Nein. Die Versorgung bleibt auch während eines Anbieterwechsels durchgehend gesichert.',
                 },
               ].map((item, index) => (
-                <Accordion key={index} type="single" collapsible className="bg-white rounded-lg border">
+                <Accordion
+                  key={index}
+                  type="single"
+                  collapsible
+                  className="bg-white rounded-lg border"
+                >
                   <AccordionItem value={`item-${index}`} className="border-none">
                     <AccordionTrigger className="font-heading font-bold text-lg hover:text-primary px-6 py-4">
                       {item.q}
                     </AccordionTrigger>
-                    <AccordionContent className="font-paragraph text-gray-600 px-6 pb-4">{item.a}</AccordionContent>
+                    <AccordionContent className="font-paragraph text-gray-600 px-6 pb-4">
+                      {item.a}
+                    </AccordionContent>
                   </AccordionItem>
                 </Accordion>
               ))}
