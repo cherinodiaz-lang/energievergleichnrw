@@ -40,9 +40,21 @@ export default function ConsentBanner() {
 
   // Initialize banner on mount - defer to avoid blocking render
   useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
     const timer = setTimeout(() => {
-      const storedConsent = localStorage.getItem(CONSENT_STORAGE_KEY);
-      
+      let storedConsent: string | null = null;
+
+      try {
+        storedConsent = localStorage.getItem(CONSENT_STORAGE_KEY);
+      } catch (error) {
+        if (window.location.search.includes('debug=1')) {
+          console.error('Error reading stored consent:', error);
+        }
+      }
+
       if (!storedConsent) {
         // No consent stored, show banner
         setShowBanner(true);
@@ -53,14 +65,14 @@ export default function ConsentBanner() {
           // Apply stored consent
           applyConsent(parsed);
         } catch (error) {
-          if (typeof window !== 'undefined' && window.location.search.includes('debug=1')) {
+          if (window.location.search.includes('debug=1')) {
             console.error('Error parsing stored consent:', error);
           }
           setShowBanner(true);
         }
       }
     }, 100);
-    
+
     return () => clearTimeout(timer);
   }, []);
 
@@ -78,11 +90,13 @@ export default function ConsentBanner() {
     }
 
     // Dispatch custom event for other components
-    window.dispatchEvent(
-      new CustomEvent('consent-updated', {
-        detail: consentState,
-      })
-    );
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(
+        new CustomEvent('consent-updated', {
+          detail: consentState,
+        })
+      );
+    }
   };
 
   const handleAcceptAll = () => {
@@ -108,14 +122,23 @@ export default function ConsentBanner() {
   };
 
   const saveAndApplyConsent = (consentState: ConsentState) => {
-    localStorage.setItem(
-      CONSENT_STORAGE_KEY,
-      JSON.stringify({
-        ...consentState,
-        timestamp: new Date().toISOString(),
-        version: CONSENT_VERSION,
-      })
-    );
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem(
+          CONSENT_STORAGE_KEY,
+          JSON.stringify({
+            ...consentState,
+            timestamp: new Date().toISOString(),
+            version: CONSENT_VERSION,
+          })
+        );
+      } catch (error) {
+        if (window.location.search.includes('debug=1')) {
+          console.error('Error saving consent:', error);
+        }
+      }
+    }
+
     setConsent(consentState);
     applyConsent(consentState);
     setShowBanner(false);
@@ -123,7 +146,16 @@ export default function ConsentBanner() {
   };
 
   const handleResetConsent = () => {
-    localStorage.removeItem(CONSENT_STORAGE_KEY);
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.removeItem(CONSENT_STORAGE_KEY);
+      } catch (error) {
+        if (window.location.search.includes('debug=1')) {
+          console.error('Error resetting consent:', error);
+        }
+      }
+    }
+
     setShowBanner(true);
     setShowSettings(false);
   };
