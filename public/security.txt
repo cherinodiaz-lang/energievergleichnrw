@@ -1,0 +1,19 @@
+# Security Policy
+# https://securitytxt.org/
+
+Contact: mailto:security@energievergleichnrw.de
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: de, en
+Canonical: https://energievergleichnrw.de/.well-known/security.txt
+
+# PGP Key (Optional)
+# Encryption: https://energievergleichnrw.de/pgp-key.txt
+
+# Acknowledgments
+Acknowledgments: https://energievergleichnrw.de/security-acknowledgments
+
+# Policy
+Policy: https://energievergleichnrw.de/security-policy
+
+# Hiring (Optional)
+# Hiring: https://energievergleichnrw.de/jobs

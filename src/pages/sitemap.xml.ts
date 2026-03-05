@@ -1,232 +1,71 @@
-import type { APIRoute } from 'astro';
-import { ratgeberArticles } from '@/lib/ratgeber-map';
-
 /**
- * Sitemap Generator for Energievergleich.shop
- * Generates a complete XML sitemap with all static pages, dynamic ratgeber articles, and legal pages
- * Updated: 2026-02-21
+ * Dynamische Sitemap Generator
+ * Generiert sitemap.xml für besseres SEO
  */
 
-const CANONICAL_ORIGIN = 'https://www.energievergleich.shop';
+import type { APIRoute } from 'astro';
 
-// Helper function to get today's date in ISO format (YYYY-MM-DD)
-const todayISO = () => new Date().toISOString().slice(0, 10);
+const SITE_URL = 'https://energievergleichnrw.de';
 
-// Static lastmod date for all static URLs (YYYY-MM-DD)
-const LASTMOD_STATIC = todayISO();
-
-// All indexable pages and routes
-const pages = [
-  // ===== MAIN PAGES (Priority: 1.0 - 0.7) =====
-  {
-    url: '/',
-    priority: '1.0',
-    changefreq: 'weekly',
-    lastmod: LASTMOD_STATIC
-  },
-
-  // ===== COMPARISON PAGES (Priority: 0.8) =====
-  {
-    url: '/stromvergleich-nrw',
-    priority: '0.8',
-    changefreq: 'weekly',
-    lastmod: LASTMOD_STATIC
-  },
-  {
-    url: '/gasvergleich-nrw',
-    priority: '0.8',
-    changefreq: 'weekly',
-    lastmod: LASTMOD_STATIC
-  },
-  {
-    url: '/photovoltaik-nrw',
-    priority: '0.8',
-    changefreq: 'monthly',
-    lastmod: LASTMOD_STATIC
-  },
-
-  // ===== CITY LANDINGPAGES (Priority: 0.7) =====
-  {
-    url: '/stromvergleich-essen',
-    priority: '0.7',
-    changefreq: 'weekly',
-    lastmod: LASTMOD_STATIC
-  },
-  {
-    url: '/stromvergleich-bochum',
-    priority: '0.7',
-    changefreq: 'weekly',
-    lastmod: LASTMOD_STATIC
-  },
-  {
-    url: '/stromvergleich-duisburg',
-    priority: '0.7',
-    changefreq: 'weekly',
-    lastmod: LASTMOD_STATIC
-  },
-  {
-    url: '/stromvergleich-wuppertal',
-    priority: '0.7',
-    changefreq: 'weekly',
-    lastmod: LASTMOD_STATIC
-  },
-  {
-    url: '/stromvergleich-bielefeld',
-    priority: '0.7',
-    changefreq: 'weekly',
-    lastmod: LASTMOD_STATIC
-  },
-  {
-    url: '/stromvergleich-bonn',
-    priority: '0.7',
-    changefreq: 'weekly',
-    lastmod: LASTMOD_STATIC
-  },
-  {
-    url: '/stromvergleich-muenster',
-    priority: '0.7',
-    changefreq: 'weekly',
-    lastmod: LASTMOD_STATIC
-  },
-  {
-    url: '/stromvergleich-koeln',
-    priority: '0.7',
-    changefreq: 'weekly',
-    lastmod: LASTMOD_STATIC
-  },
-  {
-    url: '/stromvergleich-duesseldorf',
-    priority: '0.7',
-    changefreq: 'weekly',
-    lastmod: LASTMOD_STATIC
-  },
-  {
-    url: '/stromvergleich-dortmund',
-    priority: '0.7',
-    changefreq: 'weekly',
-    lastmod: LASTMOD_STATIC
-  },
-
-  // ===== BUSINESS PAGES (Priority: 0.8) =====
-  {
-    url: '/gewerbestrom',
-    priority: '0.8',
-    changefreq: 'monthly',
-    lastmod: LASTMOD_STATIC
-  },
-  {
-    url: '/gewerbegas',
-    priority: '0.8',
-    changefreq: 'monthly',
-    lastmod: LASTMOD_STATIC
-  },
-
-  // ===== UTILITY PAGES (Priority: 0.7) =====
-  {
-    url: '/kontakt',
-    priority: '0.7',
-    changefreq: 'monthly',
-    lastmod: LASTMOD_STATIC
-  },
-  {
-    url: '/methodik',
-    priority: '0.6',
-    changefreq: 'yearly',
-    lastmod: LASTMOD_STATIC
-  },
-
-  // ===== RATGEBER HUB (Priority: 0.9) =====
-  {
-    url: '/ratgeber',
-    priority: '0.9',
-    changefreq: 'monthly',
-    lastmod: LASTMOD_STATIC
-  },
-
-  // ===== RATGEBER CATEGORY PAGES (Priority: 0.8) =====
-  {
-    url: '/ratgeber/strom',
-    priority: '0.8',
-    changefreq: 'monthly',
-    lastmod: LASTMOD_STATIC
-  },
-  {
-    url: '/ratgeber/gas',
-    priority: '0.8',
-    changefreq: 'monthly',
-    lastmod: LASTMOD_STATIC
-  },
-  {
-    url: '/ratgeber/gewerbe',
-    priority: '0.8',
-    changefreq: 'monthly',
-    lastmod: LASTMOD_STATIC
-  },
-  {
-    url: '/ratgeber/photovoltaik',
-    priority: '0.8',
-    changefreq: 'monthly',
-    lastmod: LASTMOD_STATIC
-  },
-  {
-    url: '/ratgeber/wechselwissen',
-    priority: '0.8',
-    changefreq: 'monthly',
-    lastmod: LASTMOD_STATIC
-  },
-
-  // ===== DYNAMIC RATGEBER ARTICLES (Priority: 0.7) =====
-  // Automatically generated from ratgeber-map.ts
-  ...ratgeberArticles.map(article => ({
-    url: `/${article.slug}`,
-    priority: '0.7',
-    changefreq: 'monthly',
-    lastmod: article.lastUpdated?.slice(0, 10) ?? todayISO()
-  })),
-
-  // ===== LEGAL PAGES (Priority: 0.5) =====
-  {
-    url: '/impressum',
-    priority: '0.5',
-    changefreq: 'yearly',
-    lastmod: LASTMOD_STATIC
-  },
-  {
-    url: '/datenschutz',
-    priority: '0.5',
-    changefreq: 'yearly',
-    lastmod: LASTMOD_STATIC
-  }
+// Statische Pages
+const staticPages = [
+  { url: '', priority: '1.0', changefreq: 'daily' },
+  { url: '/stromvergleich-nrw', priority: '0.9', changefreq: 'daily' },
+  { url: '/gasvergleich-nrw', priority: '0.9', changefreq: 'daily' },
+  { url: '/impressum', priority: '0.3', changefreq: 'monthly' },
+  { url: '/datenschutz', priority: '0.3', changefreq: 'monthly' }
 ];
 
-/**
- * Generate XML sitemap from pages array
- * Ensures proper XML formatting and valid structure
- */
-const generateSiteMap = (
-  domain: string,
-  pages: Array<{ url: string; priority: string; changefreq: string; lastmod: string }>
-): string => {
-  const urlEntries = pages
-    .map(
-      ({ url, priority, changefreq, lastmod }) => `  <url>\n    <loc>${domain}${url}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`
+// Städte (werden später dynamisch geladen)
+const cities = [
+  'koeln',
+  'duesseldorf',
+  'dortmund',
+  'essen',
+  'duisburg',
+  'bochum',
+  'wuppertal',
+  'bielefeld',
+  'bonn',
+  'muenster'
+];
+
+function generateSitemap(): string {
+  const lastmod = new Date().toISOString();
+
+  const urls = [
+    // Statische Pages
+    ...staticPages.map(
+      (page) => `
+  <url>
+    <loc>${SITE_URL}${page.url}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>
+  </url>`
+    ),
+    // Stadt-Seiten
+    ...cities.map(
+      (city) => `
+  <url>
+    <loc>${SITE_URL}/${city}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>`
     )
-    .join('\n');
+  ];
 
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urlEntries}\n</urlset>`;
-};
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.join('')}
+</urlset>`;
+}
 
-/**
- * Astro API Route for sitemap.xml
- * Returns properly formatted XML with correct headers
- */
 export const GET: APIRoute = () => {
-  const sitemapXml = generateSiteMap(CANONICAL_ORIGIN, pages);
-
-  return new Response(sitemapXml, {
+  return new Response(generateSitemap(), {
     headers: {
-      'Content-Type': 'application/xml; charset=utf-8',
-      'Cache-Control': 'public, max-age=3600',
-    },
+      'Content-Type': 'application/xml',
+      'Cache-Control': 'public, max-age=3600'
+    }
   });
 };

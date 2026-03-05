@@ -1,23 +1,24 @@
-# Robots.txt - Production Version
-# https://www.robotstxt.org/robotstxt.html
+# robots.txt für EnergieVergleich NRW
 
-# Allow all crawlers
+# Production
 User-agent: *
 Allow: /
 
-# Disallow specific paths
+# Disallow admin/internal pages
 Disallow: /api/
-Disallow: /_astro/
 Disallow: /admin/
-Disallow: /*.json$
+Disallow: /_astro/
 
-# Crawl-delay for specific bots (optional)
+# Allow specific bots
 User-agent: Googlebot
-Crawl-delay: 0
+Allow: /
 
 User-agent: Bingbot
-Crawl-delay: 0
+Allow: /
 
-# Sitemap location
-Sitemap: https://energievergleichnrw.de/sitemap-index.xml
-Sitemap: https://energievergleichnrw.de/sitemap-0.xml
+# Sitemap
+Sitemap: https://energievergleichnrw.de/sitemap.xml
+
+# Crawl-delay für aggressive Bots
+User-agent: *
+Crawl-delay: 1
