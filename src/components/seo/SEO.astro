@@ -1,0 +1,63 @@
+---
+/**
+ * SEO Component - Meta Tags Verwaltung
+ */
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: string;
+  noindex?: boolean;
+  nofollow?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = '/og-image.png',
+  ogType = 'website',
+  noindex = false,
+  nofollow = false
+} = Astro.props;
+
+const currentUrl = canonical || Astro.url.href;
+const siteUrl = 'https://energievergleichnrw.de';
+const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+
+const robotsContent = [
+  noindex && 'noindex',
+  nofollow && 'nofollow'
+].filter(Boolean).join(', ') || 'index, follow';
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<link rel="canonical" href={currentUrl} />
+<meta name="robots" content={robotsContent} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={currentUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={fullOgImage} />
+<meta property="og:site_name" content="EnergieVergleich NRW" />
+<meta property="og:locale" content="de_DE" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={currentUrl} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={fullOgImage} />
+
+<!-- Additional SEO -->
+<meta name="author" content="EnergieVergleich NRW" />
+<meta name="language" content="German" />
+<meta name="geo.region" content="DE-NW" />
+<meta name="geo.placename" content="Nordrhein-Westfalen" />

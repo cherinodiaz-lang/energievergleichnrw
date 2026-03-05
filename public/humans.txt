@@ -1,25 +1,20 @@
 /* TEAM */
 
-Lead Developer: Joel Noah Cherino Diaz
+Developer: Joel Noah Cherino Diaz
 Contact: cherinodiaz [at] outlook.com
-GitHub: @cherinodiaz-lang
-Location: Erkelenz, NRW, Germany
+Location: Erkelenz, Germany
 
 /* THANKS */
 
-Astro Team
-React Team
-Open Source Community
+Astro - https://astro.build
+React - https://react.dev
+Tailwind CSS - https://tailwindcss.com
+Radix UI - https://www.radix-ui.com
 
 /* SITE */
 
-Last update: 2026-03-05
-Language: Deutsch / German
-Doctype: HTML5
-IDE: VS Code, Cursor
-Framework: Astro 4.15
-UI Library: React 18.3
-Styling: Tailwind CSS 3.4
-Components: shadcn/ui + Radix UI
-Testing: Vitest + React Testing Library
-Deployment: Vercel / Netlify / Cloudflare
+Last update: 2026/03/05
+Standards: HTML5, CSS3, ES2022
+Components: React, Astro, TypeScript
+Software: VS Code, Git, npm
+Language: Deutsch
