@@ -1,0 +1,79 @@
+name: Code Quality
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main, develop]
+
+jobs:
+  lint-and-format:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run ESLint
+        run: npx eslint . --ext .js,.jsx,.ts,.tsx,.astro --max-warnings 50
+        continue-on-error: true
+        
+      - name: Run Prettier check
+        run: npx prettier --check "**/*.{js,jsx,ts,tsx,astro,json,css,md}"
+        continue-on-error: true
+        
+      - name: Check TypeScript
+        run: npx astro check
+        continue-on-error: true
+        
+      - name: Bundle size analysis
+        run: |
+          npm run build
+          du -sh dist/ || true
+          find dist/_astro -name '*.js' -exec ls -lh {} \; || true
+
+  auto-fix:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Auto-fix with ESLint
+        run: npx eslint . --ext .js,.jsx,.ts,.tsx,.astro --fix || true
+        
+      - name: Auto-format with Prettier
+        run: npx prettier --write "**/*.{js,jsx,ts,tsx,astro,json,css,md}" || true
+        
+      - name: Commit fixes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore: auto-fix linting and formatting issues'
+          commit_user_name: 'github-actions[bot]'
+          commit_user_email: 'github-actions[bot]@users.noreply.github.com'
