@@ -1,34 +1,31 @@
 ---
-/**
- * 404 Error Page
- */
 import BaseLayout from '@/layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
   title="404 - Seite nicht gefunden | EnergieVergleich NRW"
-  description="Die angeforderte Seite konnte nicht gefunden werden."
-  noindex={true}
+  description="Die angeforderte Seite wurde nicht gefunden."
 >
   <div class="error-container">
     <div class="error-content">
       <h1 class="error-code">404</h1>
       <h2 class="error-title">Seite nicht gefunden</h2>
-      <p class="error-text">
+      <p class="error-description">
         Die von Ihnen gesuchte Seite existiert leider nicht oder wurde verschoben.
       </p>
       
       <div class="error-actions">
-        <a href="/" class="btn btn-primary">Zur Startseite</a>
-        <a href="/stromvergleich-nrw" class="btn btn-secondary">Zum Stromvergleich</a>
+        <a href="/" class="btn btn-primary">🏠 Zur Startseite</a>
+        <button onclick="history.back()" class="btn btn-secondary">← Zurück</button>
       </div>
       
-      <div class="popular-pages">
+      <div class="helpful-links">
         <h3>Beliebte Seiten:</h3>
         <ul>
+          <li><a href="/">Startseite</a></li>
           <li><a href="/stromvergleich-nrw">Stromvergleich NRW</a></li>
           <li><a href="/gasvergleich-nrw">Gasvergleich NRW</a></li>
-          <li><a href="/#faq">Häufige Fragen</a></li>
+          <li><a href="/kontakt">Kontakt</a></li>
         </ul>
       </div>
     </div>
@@ -37,75 +34,105 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 
 <style>
   .error-container {
-    min-height: 70vh;
+    min-height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--s-5);
+    padding: 2rem;
   }
   
   .error-content {
-    text-align: center;
     max-width: 600px;
+    text-align: center;
   }
   
   .error-code {
     font-size: 8rem;
     font-weight: 900;
-    color: var(--primary);
+    color: #e5e7eb;
     line-height: 1;
-    margin-bottom: var(--s-3);
-    opacity: 0.2;
+    margin-bottom: 1rem;
   }
   
   .error-title {
     font-size: 2rem;
     font-weight: 700;
-    margin-bottom: var(--s-4);
+    color: #1e293b;
+    margin-bottom: 1rem;
   }
   
-  .error-text {
+  .error-description {
     font-size: 1.125rem;
-    color: var(--text-700);
-    margin-bottom: var(--s-5);
+    color: #64748b;
+    margin-bottom: 2rem;
   }
   
   .error-actions {
     display: flex;
-    gap: var(--s-3);
+    gap: 1rem;
     justify-content: center;
+    margin-bottom: 3rem;
     flex-wrap: wrap;
-    margin-bottom: var(--s-7);
   }
   
-  .popular-pages {
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .btn-primary {
+    background: #2563eb;
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background: #1d4ed8;
+  }
+  
+  .btn-secondary {
+    background: white;
+    color: #2563eb;
+    border: 2px solid #2563eb;
+  }
+  
+  .btn-secondary:hover {
+    background: #eff6ff;
+  }
+  
+  .helpful-links {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
     text-align: left;
-    padding: var(--s-5);
-    background: var(--bg-soft);
-    border-radius: var(--r-2);
   }
   
-  .popular-pages h3 {
+  .helpful-links h3 {
     font-size: 1.125rem;
-    margin-bottom: var(--s-3);
+    font-weight: 700;
+    margin-bottom: 1rem;
   }
   
-  .popular-pages ul {
+  .helpful-links ul {
     list-style: none;
     padding: 0;
   }
   
-  .popular-pages li {
-    margin-bottom: var(--s-3);
+  .helpful-links li {
+    padding: 0.5rem 0;
   }
   
-  .popular-pages a {
-    color: var(--primary);
+  .helpful-links a {
+    color: #2563eb;
     text-decoration: none;
     font-weight: 500;
   }
   
-  .popular-pages a:hover {
+  .helpful-links a:hover {
     text-decoration: underline;
   }
 </style>

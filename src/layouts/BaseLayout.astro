@@ -1,31 +1,27 @@
 ---
-import '@/styles/global.css';
+import { SEO } from '@/components/seo/SEO.astro';
+import { OrganizationSchema, WebsiteSchema, FAQSchema } from '@/components/seo/EnhancedStructuredData';
 import CriticalCSS from '@/components/performance/CriticalCSS.astro';
 import PreloadLinks from '@/components/performance/PreloadLinks.astro';
-import { OrganizationSchema, WebsiteSchema, FAQSchema } from '@/components/seo/EnhancedStructuredData';
-import type { FAQItem } from '@/types/content';
+import '@/styles/global.css';
 
 interface Props {
   title: string;
   description: string;
-  image?: string;
-  noindex?: boolean;
+  faqItems?: Array<{ q: string; a: string }>;
   canonical?: string;
-  faqItems?: FAQItem[];
+  ogImage?: string;
 }
 
 const {
   title,
   description,
-  image = '/og-image.jpg',
-  noindex = false,
+  faqItems = [],
   canonical,
-  faqItems
+  ogImage
 } = Astro.props;
 
-const siteUrl = 'https://energievergleichnrw.de';
-const currentUrl = canonical || `${siteUrl}${Astro.url.pathname}`;
-const ogImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
+const currentUrl = canonical || Astro.url.href;
 ---
 
 <!doctype html>
@@ -33,122 +29,80 @@ const ogImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     
-    <!-- Primary Meta Tags -->
+    <!-- SEO -->
     <title>{title}</title>
-    <meta name="title" content={title} />
     <meta name="description" content={description} />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={currentUrl} />
     
-    <!-- Favicon & App Icons -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#2563eb" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="EnergieVergleich NRW" />
-    
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={currentUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content="de_DE" />
+    <meta property="og:image" content={ogImage || '/og-image.png'} />
     <meta property="og:site_name" content="EnergieVergleich NRW" />
+    <meta property="og:locale" content="de_DE" />
     
-    <!-- Twitter -->
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={currentUrl} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={ogImage || '/twitter-image.png'} />
+    
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#2563eb" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="EnergiNRW" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+    
+    <!-- Performance Optimizations -->
+    <PreloadLinks
+      fonts={[]}
+      images={[]}
+      scripts={[]}
+      prefetchPages={['/stromvergleich-nrw', '/gasvergleich-nrw']}
+    />
     
     <!-- Critical CSS -->
     <CriticalCSS />
     
-    <!-- Preload & Prefetch -->
-    <PreloadLinks
-      prefetchPages={[
-        '/stromvergleich-nrw',
-        '/gasvergleich-nrw',
-        '/datenschutz',
-        '/impressum'
-      ]}
-    />
-    
     <!-- Structured Data -->
     <OrganizationSchema />
     <WebsiteSchema />
-    {faqItems && faqItems.length > 0 && <FAQSchema items={faqItems} />}
-    
-    <!-- Google Analytics (Optional) -->
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX', {
-        anonymize_ip: true,
-        cookie_flags: 'SameSite=None;Secure'
-      });
-    </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  </head>
-  <body>
-    <!-- Skip to main content link for accessibility -->
-    <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
-    
-    <!-- Header -->
-    <header role="banner">
-      <nav aria-label="Hauptnavigation">
-        <!-- Navigation will be added here -->
-      </nav>
-    </header>
-    
-    <!-- Main Content -->
-    <main id="main-content" role="main">
-      <slot />
-    </main>
-    
-    <!-- Footer -->
-    <footer role="contentinfo">
-      <!-- Footer will be added here -->
-    </footer>
+    {faqItems.length > 0 && <FAQSchema items={faqItems} />}
     
     <!-- Service Worker Registration -->
     <script is:inline>
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', async () => {
-          try {
-            const registration = await navigator.serviceWorker.register('/sw.js', {
-              scope: '/'
-            });
-            console.log('ServiceWorker registered:', registration.scope);
-            
-            // Check for updates
-            registration.addEventListener('updatefound', () => {
-              const newWorker = registration.installing;
-              newWorker?.addEventListener('statechange', () => {
-                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                  // New version available
-                  if (confirm('Neue Version verfügbar! Jetzt aktualisieren?')) {
-                    window.location.reload();
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').then(
+            (registration) => {
+              console.log('SW registered:', registration.scope);
+              
+              // Check for updates
+              registration.addEventListener('updatefound', () => {
+                const newWorker = registration.installing;
+                newWorker?.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    // New version available
+                    if (confirm('Neue Version verfügbar! Jetzt aktualisieren?')) {
+                      newWorker.postMessage({ type: 'SKIP_WAITING' });
+                      window.location.reload();
+                    }
                   }
-                }
+                });
               });
-            });
-          } catch (error) {
-            console.error('ServiceWorker registration failed:', error);
-          }
+            },
+            (error) => {
+              console.log('SW registration failed:', error);
+            }
+          );
         });
       }
     </script>
@@ -159,55 +113,109 @@ const ogImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
       
       // Initialize Web Vitals tracking
       initWebVitals({
-        analyticsId: 'energievergleichnrw',
-        debug: import.meta.env.DEV
+        debug: import.meta.env.DEV,
+        analyticsId: 'energievergleichnrw'
       });
       
       // Observe performance metrics
       observePerformance();
     </script>
     
-    <!-- PWA Install Prompt -->
-    <script>
-      let deferredPrompt;
-      
-      window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        
-        // Show install button (implement UI separately)
-        const installBtn = document.getElementById('install-pwa-btn');
-        if (installBtn) {
-          installBtn.style.display = 'block';
-          installBtn.addEventListener('click', async () => {
-            if (deferredPrompt) {
-              deferredPrompt.prompt();
-              const { outcome } = await deferredPrompt.userChoice;
-              console.log(`User response: ${outcome}`);
-              deferredPrompt = null;
-              installBtn.style.display = 'none';
-            }
-          });
-        }
-      });
-      
-      window.addEventListener('appinstalled', () => {
-        console.log('PWA installed successfully');
-        deferredPrompt = null;
-      });
-    </script>
+    <!-- Google Analytics (Optional) -->
+    {import.meta.env.PROD && (
+      <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+      <script is:inline>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+      </script>
+    )}
+  </head>
+  
+  <body>
+    <!-- Skip to main content (Accessibility) -->
+    <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
     
-    <!-- Online/Offline Detection -->
+    <!-- Header -->
+    <header>
+      <!-- Your header content -->
+    </header>
+    
+    <!-- Main Content -->
+    <main id="main-content">
+      <slot />
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+      <!-- Your footer content -->
+    </footer>
+    
+    <!-- PWA Install Prompt -->
+    <div id="install-prompt" style="display: none;">
+      <!-- Will be shown by JavaScript when PWA is installable -->
+    </div>
+    
+    <!-- Network Status Indicator -->
+    <div id="network-status" class="network-status" style="display: none;">
+      <span class="offline-indicator">⚠️ Offline-Modus</span>
+    </div>
+    
+    <!-- Offline/Online Detection -->
     <script is:inline>
       window.addEventListener('online', () => {
+        document.getElementById('network-status').style.display = 'none';
         console.log('Back online');
-        // Show toast notification
       });
       
       window.addEventListener('offline', () => {
-        console.log('You are offline');
-        // Show offline indicator
+        document.getElementById('network-status').style.display = 'block';
+        console.log('Gone offline');
       });
+      
+      // Check initial state
+      if (!navigator.onLine) {
+        document.getElementById('network-status').style.display = 'block';
+      }
     </script>
   </body>
 </html>
+
+<style>
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 0 0 0.5rem 0;
+    z-index: 100;
+  }
+  
+  .skip-link:focus {
+    top: 0;
+  }
+  
+  .network-status {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #f59e0b;
+    color: white;
+    padding: 0.5rem;
+    text-align: center;
+    z-index: 9999;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+  
+  .offline-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+</style>
