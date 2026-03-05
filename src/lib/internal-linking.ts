@@ -716,11 +716,11 @@ export function getAllAnchorTexts(pathname: string): string[] {
  * Map article categories to relevant comparison pages
  */
 export const articleToComparatorMapping: Record<string, string[]> = {
-  'strom': ['/stromvergleich-nrw'],
-  'gas': ['/gasvergleich-nrw'],
-  'photovoltaik': ['/photovoltaik-nrw'],
-  'gewerbe': ['/gewerbestrom', '/gewerbegas'],
-  'wechselwissen': ['/stromvergleich-nrw', '/gasvergleich-nrw'],
+  strom: ['/stromvergleich-nrw'],
+  gas: ['/gasvergleich-nrw'],
+  photovoltaik: ['/photovoltaik-nrw'],
+  gewerbe: ['/gewerbestrom', '/gewerbegas'],
+  wechselwissen: ['/stromvergleich-nrw', '/gasvergleich-nrw'],
 };
 
 /**

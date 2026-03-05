@@ -89,7 +89,7 @@ Köln, Düsseldorf, Dortmund, Essen, Duisburg, Bochum, Wuppertal, Bielefeld, Bon
 
 ---
 
-## ⚡  3. STROMVERGLEICH NRW PAGE
+## ⚡ 3. STROMVERGLEICH NRW PAGE
 
 ```
 Erstelle die Seite "Stromvergleich NRW" (/stromvergleich-nrw) mit:
@@ -370,6 +370,7 @@ Definiere und verwende konsequent:
 6. Bei Bedarf nachbessern lassen
 
 **Tipps:**
+
 - Arbeite Schritt für Schritt (nicht alle Prompts auf einmal)
 - Beginne mit der Homepage
 - Teste nach jeder größeren Änderung

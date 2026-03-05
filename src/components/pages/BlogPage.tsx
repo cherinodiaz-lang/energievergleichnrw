@@ -165,11 +165,13 @@ export default function BlogPage() {
                         </div>
                       )}
                       <div className="p-6 flex flex-col flex-grow">
-                        {post.category && typeof post.category === 'object' && 'name' in post.category && (
-                          <span className="inline-block text-xs font-heading font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full mb-3 w-fit">
-                            {(post.category as any).name}
-                          </span>
-                        )}
+                        {post.category &&
+                          typeof post.category === 'object' &&
+                          'name' in post.category && (
+                            <span className="inline-block text-xs font-heading font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full mb-3 w-fit">
+                              {(post.category as any).name}
+                            </span>
+                          )}
                         <h3 className="font-heading text-xl font-bold text-foreground mb-2 line-clamp-2">
                           {post.title}
                         </h3>
@@ -177,12 +179,12 @@ export default function BlogPage() {
                           {post.excerpt}
                         </p>
                         <div className="flex items-center justify-between text-xs text-foreground/60 pt-4 border-t">
-                          {post.author && typeof post.author === 'object' && 'authorName' in post.author && (
-                            <span>Von {(post.author as any).authorName}</span>
-                          )}
-                          {post.readingTime && (
-                            <span>{post.readingTime} min Lesezeit</span>
-                          )}
+                          {post.author &&
+                            typeof post.author === 'object' &&
+                            'authorName' in post.author && (
+                              <span>Von {(post.author as any).authorName}</span>
+                            )}
+                          {post.readingTime && <span>{post.readingTime} min Lesezeit</span>}
                         </div>
                       </div>
                     </motion.article>

@@ -20,17 +20,15 @@ const {
   ogImage = '/og-image.png',
   ogType = 'website',
   noindex = false,
-  nofollow = false
+  nofollow = false,
 } = Astro.props;
 
 const currentUrl = canonical || Astro.url.href;
 const siteUrl = 'https://energievergleichnrw.de';
 const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 
-const robotsContent = [
-  noindex && 'noindex',
-  nofollow && 'nofollow'
-].filter(Boolean).join(', ') || 'index, follow';
+const robotsContent =
+  [noindex && 'noindex', nofollow && 'nofollow'].filter(Boolean).join(', ') || 'index, follow';
 ---
 
 <!-- Primary Meta Tags -->

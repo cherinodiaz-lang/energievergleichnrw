@@ -8,6 +8,7 @@
 ## 🚀 3-SCHRITTE-PLAN
 
 ### SCHRITT 1: Vibe Dashboard öffnen (2 Min)
+
 ```
 https://manage.wix.com/dashboard/52dd1482-1ebb-4472-90a2-bce2af5d763f
 ```
@@ -21,11 +22,13 @@ https://manage.wix.com/dashboard/52dd1482-1ebb-4472-90a2-bce2af5d763f
 ### SCHRITT 2: Backend-Module hinzufügen (5 Min)
 
 #### 2.1 Backend-Ordner erstellen
+
 ```
 Code Panel → Backend → New File
 ```
 
 #### 2.2 Datei: `pages-router.jsw`
+
 **Kopiere aus GitHub:** [velo/backend/pages-router.jsw](https://github.com/cherinodiaz-lang/energievergleichnrw/blob/main/velo/backend/pages-router.jsw)
 
 <details>
@@ -40,22 +43,18 @@ export async function getPageContent(pageKey) {
   if (cachedContent[pageKey]) {
     return cachedContent[pageKey];
   }
-  
+
   try {
-    const result = await wixData.query('SiteContent')
-      .eq('contentKey', pageKey)
-      .limit(1)
-      .find();
-    
+    const result = await wixData.query('SiteContent').eq('contentKey', pageKey).limit(1).find();
+
     if (result.items.length === 0) {
       console.error(`Content not found: ${pageKey}`);
       return null;
     }
-    
+
     const content = result.items[0].data.contentData;
     cachedContent[pageKey] = content;
     return content;
-    
   } catch (error) {
     console.error(`CMS Query Error:`, error);
     return null;
@@ -66,9 +65,11 @@ export async function getGlobalContent() {
   return getPageContent('global');
 }
 ```
+
 </details>
 
 #### 2.3 Datei: `seo-manager.jsw`
+
 **Kopiere aus GitHub:** [velo/backend/seo-manager.jsw](https://github.com/cherinodiaz-lang/energievergleichnrw/blob/main/velo/backend/seo-manager.jsw)
 
 <details>
@@ -80,25 +81,28 @@ import { getPageContent } from './pages-router';
 
 export async function setSEO(pageKey) {
   const content = await getPageContent(pageKey);
-  
+
   if (!content?.meta) return;
-  
+
   wixSeoFrontend.setTitle(content.meta.title);
   wixSeoFrontend.setDescription(content.meta.description);
-  
+
   const baseUrl = 'https://energievergleich.shop';
   const pageUrl = pageKey === 'home' ? baseUrl : `${baseUrl}/${pageKey}`;
-  
-  wixSeoFrontend.setStructuredData([{
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    'name': content.meta.title,
-    'description': content.meta.description,
-    'url': pageUrl,
-    'inLanguage': 'de-DE'
-  }]);
+
+  wixSeoFrontend.setStructuredData([
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: content.meta.title,
+      description: content.meta.description,
+      url: pageUrl,
+      inLanguage: 'de-DE',
+    },
+  ]);
 }
 ```
+
 </details>
 
 ---
@@ -106,6 +110,7 @@ export async function setSEO(pageKey) {
 ### SCHRITT 3: Pages mit Vibe AI erstellen (20 Min)
 
 #### 3.1 Vibe AI Chat öffnen
+
 - Icon unten rechts ODER
 - Toolbar → **"Ask Vibe AI"**
 
@@ -143,6 +148,7 @@ Struktur:
 3. Code einfügen:
 
 **Homepage (`Home.js`):**
+
 ```javascript
 import { getPageContent } from 'backend/pages-router';
 import { setSEO } from 'backend/seo-manager';
@@ -150,14 +156,14 @@ import { setSEO } from 'backend/seo-manager';
 $w.onReady(async () => {
   await setSEO('home');
   const content = await getPageContent('home');
-  
+
   if (!content) return;
-  
+
   // Hero
   $w('#heroTitle').text = content.hero.h1;
   $w('#heroSubline').text = content.hero.subline;
   $w('#heroCTA').label = content.hero.primaryCta;
-  
+
   // FAQ Repeater
   if (content.sections?.faq?.items) {
     $w('#faqRepeater').data = content.sections.faq.items;
@@ -170,6 +176,7 @@ $w.onReady(async () => {
 ```
 
 **Stromvergleich NRW (`Stromvergleich-nrw.js`):**
+
 ```javascript
 import { getPageContent } from 'backend/pages-router';
 import { setSEO } from 'backend/seo-manager';
@@ -177,13 +184,13 @@ import { setSEO } from 'backend/seo-manager';
 $w.onReady(async () => {
   await setSEO('stromvergleich-nrw');
   const content = await getPageContent('stromvergleich-nrw');
-  
+
   if (!content) return;
-  
+
   $w('#pageTitle').text = content.h1;
   $w('#pageSubline').text = content.subline;
   $w('#primaryCTA').label = content.primaryCta;
-  
+
   if (content.faq?.items) {
     $w('#faqRepeater').data = content.faq.items;
     $w('#faqRepeater').onItemReady(($item, itemData) => {
@@ -195,6 +202,7 @@ $w.onReady(async () => {
 ```
 
 **Analog für:**
+
 - `Gasvergleich-nrw.js`
 - `Photovoltaik-nrw.js`
 - `Gewerbestrom.js`
@@ -206,11 +214,13 @@ $w.onReady(async () => {
 ## ✅ FERTIG! Jetzt testen:
 
 ### Preview Mode
+
 ```
 Vibe Editor → Preview Button (oben rechts)
 ```
 
 ### Browser Console prüfen
+
 ```
 F12 → Console → Sollte zeigen:
 ✅ CMS loaded: home
@@ -218,6 +228,7 @@ F12 → Console → Sollte zeigen:
 ```
 
 ### Publish
+
 ```
 Vibe Editor → Publish Button
 → Domain verbinden: energievergleich.shop
@@ -229,26 +240,32 @@ Vibe Editor → Publish Button
 ## 🐛 TROUBLESHOOTING
 
 ### Content wird nicht angezeigt?
+
 **1. Collection Permissions prüfen:**
+
 ```
 Dashboard → CMS → SiteContent → Permissions
 → "Site members (read)"
 ```
 
 **2. Element IDs prüfen:**
+
 ```
 Vibe Editor → Element auswählen → Properties Panel → ID
 → Muss matchen: #heroTitle, #pageTitle, #faqRepeater
 ```
 
 **3. Console Errors:**
+
 ```javascript
 // In Browser Console testen:
 await wixData.query('SiteContent').eq('contentKey', 'home').find();
 ```
 
 ### Vibe AI generiert falsche Struktur?
+
 **→ AI-Prompt präzisieren:**
+
 ```
 "Erstelle eine Page mit EXAKTEN Element-IDs:
 - #heroTitle (Text)

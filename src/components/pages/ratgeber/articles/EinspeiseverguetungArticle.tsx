@@ -3,7 +3,12 @@ import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -21,42 +26,42 @@ export default function EinspeiseverguetungArticle() {
           name: 'Was ist die Einspeisevergütung?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Die Einspeisevergütung ist eine Zahlung für Strom, den Sie mit Ihrer Solaranlage produzieren und ins Stromnetz einspeisen. Sie erhalten diese Vergütung für 20 Jahre.'
-          }
+            text: 'Die Einspeisevergütung ist eine Zahlung für Strom, den Sie mit Ihrer Solaranlage produzieren und ins Stromnetz einspeisen. Sie erhalten diese Vergütung für 20 Jahre.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Wie hoch ist die Einspeisevergütung?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Die Einspeisevergütung liegt derzeit bei etwa 8-10 Cent pro kWh. Sie hängt von der Anlagengröße und dem Zeitpunkt der Inbetriebnahme ab.'
-          }
+            text: 'Die Einspeisevergütung liegt derzeit bei etwa 8-10 Cent pro kWh. Sie hängt von der Anlagengröße und dem Zeitpunkt der Inbetriebnahme ab.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Wie lange erhalte ich die Einspeisevergütung?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Sie erhalten die Einspeisevergütung für 20 Jahre ab dem Zeitpunkt der Inbetriebnahme. Danach können Sie den Strom selbst nutzen oder weiterhin einspeisen.'
-          }
+            text: 'Sie erhalten die Einspeisevergütung für 20 Jahre ab dem Zeitpunkt der Inbetriebnahme. Danach können Sie den Strom selbst nutzen oder weiterhin einspeisen.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Kann ich die Einspeisevergütung erhöhen?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Die Einspeisevergütung ist gesetzlich festgelegt und kann nicht erhöht werden. Sie können aber Ihre Eigennutzung erhöhen, um mehr Strom selbst zu nutzen.'
-          }
+            text: 'Die Einspeisevergütung ist gesetzlich festgelegt und kann nicht erhöht werden. Sie können aber Ihre Eigennutzung erhöhen, um mehr Strom selbst zu nutzen.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Was ist der Unterschied zwischen Eigennutzung und Einspeisevergütung?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Eigennutzung: Sie nutzen den Strom selbst und sparen Stromkosten. Einspeisevergütung: Sie speisen überschüssigen Strom ins Netz ein und erhalten dafür Geld.'
-          }
-        }
-      ]
+            text: 'Eigennutzung: Sie nutzen den Strom selbst und sparen Stromkosten. Einspeisevergütung: Sie speisen überschüssigen Strom ins Netz ein und erhalten dafür Geld.',
+          },
+        },
+      ],
     };
 
     const script = document.createElement('script');
@@ -107,7 +112,9 @@ export default function EinspeiseverguetungArticle() {
           >
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-12">
               <p className="font-paragraph text-gray-700 leading-relaxed">
-                Die Einspeisevergütung ist ein wichtiger Bestandteil der Wirtschaftlichkeit von Solaranlagen. Erfahren Sie, wie dieses System funktioniert und wie Sie davon profitieren.
+                Die Einspeisevergütung ist ein wichtiger Bestandteil der Wirtschaftlichkeit von
+                Solaranlagen. Erfahren Sie, wie dieses System funktioniert und wie Sie davon
+                profitieren.
               </p>
             </div>
 
@@ -117,7 +124,9 @@ export default function EinspeiseverguetungArticle() {
                   Was ist die Einspeisevergütung?
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Die Einspeisevergütung ist eine Zahlung für Strom, den Sie mit Ihrer Solaranlage produzieren und ins öffentliche Stromnetz einspeisen. Der Netzbetreiber zahlt Ihnen für jeden Kilowattstunde Strom, den Sie einspeisen.
+                  Die Einspeisevergütung ist eine Zahlung für Strom, den Sie mit Ihrer Solaranlage
+                  produzieren und ins öffentliche Stromnetz einspeisen. Der Netzbetreiber zahlt
+                  Ihnen für jeden Kilowattstunde Strom, den Sie einspeisen.
                 </p>
               </div>
 
@@ -126,7 +135,9 @@ export default function EinspeiseverguetungArticle() {
                   Höhe der Einspeisevergütung
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Die Einspeisevergütung liegt derzeit bei etwa 8-10 Cent pro kWh. Sie hängt von der Anlagengröße und dem Zeitpunkt der Inbetriebnahme ab. Größere Anlagen erhalten oft eine etwas niedrigere Vergütung.
+                  Die Einspeisevergütung liegt derzeit bei etwa 8-10 Cent pro kWh. Sie hängt von der
+                  Anlagengröße und dem Zeitpunkt der Inbetriebnahme ab. Größere Anlagen erhalten oft
+                  eine etwas niedrigere Vergütung.
                 </p>
               </div>
 
@@ -137,15 +148,21 @@ export default function EinspeiseverguetungArticle() {
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">20 Jahre Garantie ab Inbetriebnahme</span>
+                    <span className="font-paragraph text-gray-700">
+                      20 Jahre Garantie ab Inbetriebnahme
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Danach können Sie den Strom selbst nutzen</span>
+                    <span className="font-paragraph text-gray-700">
+                      Danach können Sie den Strom selbst nutzen
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Oder weiterhin einspeisen (ohne Vergütung)</span>
+                    <span className="font-paragraph text-gray-700">
+                      Oder weiterhin einspeisen (ohne Vergütung)
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -155,7 +172,9 @@ export default function EinspeiseverguetungArticle() {
                   Eigennutzung vs. Einspeisevergütung
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Sie können Ihren Solarstrom selbst nutzen (Eigennutzung) oder ins Netz einspeisen (Einspeisevergütung). Mit Eigennutzung sparen Sie Stromkosten, mit Einspeisevergütung verdienen Sie Geld. Optimal ist eine Kombination aus beiden.
+                  Sie können Ihren Solarstrom selbst nutzen (Eigennutzung) oder ins Netz einspeisen
+                  (Einspeisevergütung). Mit Eigennutzung sparen Sie Stromkosten, mit
+                  Einspeisevergütung verdienen Sie Geld. Optimal ist eine Kombination aus beiden.
                 </p>
               </div>
 
@@ -171,26 +190,31 @@ export default function EinspeiseverguetungArticle() {
             {[
               {
                 q: 'Was ist die Einspeisevergütung?',
-                a: 'Die Einspeisevergütung ist eine Zahlung für Strom, den Sie mit Ihrer Solaranlage produzieren und ins Stromnetz einspeisen. Sie erhalten diese Vergütung für 20 Jahre.'
+                a: 'Die Einspeisevergütung ist eine Zahlung für Strom, den Sie mit Ihrer Solaranlage produzieren und ins Stromnetz einspeisen. Sie erhalten diese Vergütung für 20 Jahre.',
               },
               {
                 q: 'Wie hoch ist die Einspeisevergütung?',
-                a: 'Die Einspeisevergütung liegt derzeit bei etwa 8-10 Cent pro kWh. Sie hängt von der Anlagengröße und dem Zeitpunkt der Inbetriebnahme ab.'
+                a: 'Die Einspeisevergütung liegt derzeit bei etwa 8-10 Cent pro kWh. Sie hängt von der Anlagengröße und dem Zeitpunkt der Inbetriebnahme ab.',
               },
               {
                 q: 'Wie lange erhalte ich die Einspeisevergütung?',
-                a: 'Sie erhalten die Einspeisevergütung für 20 Jahre ab dem Zeitpunkt der Inbetriebnahme. Danach können Sie den Strom selbst nutzen oder weiterhin einspeisen.'
+                a: 'Sie erhalten die Einspeisevergütung für 20 Jahre ab dem Zeitpunkt der Inbetriebnahme. Danach können Sie den Strom selbst nutzen oder weiterhin einspeisen.',
               },
               {
                 q: 'Kann ich die Einspeisevergütung erhöhen?',
-                a: 'Die Einspeisevergütung ist gesetzlich festgelegt und kann nicht erhöht werden. Sie können aber Ihre Eigennutzung erhöhen, um mehr Strom selbst zu nutzen.'
+                a: 'Die Einspeisevergütung ist gesetzlich festgelegt und kann nicht erhöht werden. Sie können aber Ihre Eigennutzung erhöhen, um mehr Strom selbst zu nutzen.',
               },
               {
                 q: 'Was ist der Unterschied zwischen Eigennutzung und Einspeisevergütung?',
-                a: 'Eigennutzung: Sie nutzen den Strom selbst und sparen Stromkosten. Einspeisevergütung: Sie speisen überschüssigen Strom ins Netz ein und erhalten dafür Geld.'
-              }
+                a: 'Eigennutzung: Sie nutzen den Strom selbst und sparen Stromkosten. Einspeisevergütung: Sie speisen überschüssigen Strom ins Netz ein und erhalten dafür Geld.',
+              },
             ].map((item, index) => (
-              <Accordion key={index} type="single" collapsible className="bg-gray-50 rounded-lg px-6 border-none">
+              <Accordion
+                key={index}
+                type="single"
+                collapsible
+                className="bg-gray-50 rounded-lg px-6 border-none"
+              >
                 <AccordionItem value={`faq-${index}`} className="border-none">
                   <AccordionTrigger className="font-heading text-lg font-medium text-left py-4 hover:text-primary hover:no-underline">
                     {item.q}
@@ -208,9 +232,13 @@ export default function EinspeiseverguetungArticle() {
               Kostenlose Beratung anfragen
             </h3>
             <p className="font-paragraph text-gray-700 mb-6">
-              Nutzen Sie unsere kostenlose Beratung und erfahren Sie, wie viel Sie mit Ihrer Solaranlage verdienen können.
+              Nutzen Sie unsere kostenlose Beratung und erfahren Sie, wie viel Sie mit Ihrer
+              Solaranlage verdienen können.
             </p>
-            <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
+            <Button
+              asChild
+              className="bg-secondary text-secondary-foreground hover:bg-secondary/90"
+            >
               <Link to={ROUTES.photovoltaik}>
                 Zur Photovoltaik-Beratung
                 <ArrowRight className="w-5 h-5 ml-2" />
@@ -219,9 +247,7 @@ export default function EinspeiseverguetungArticle() {
           </div>
 
           <div className="border-t pt-12">
-            <h3 className="font-heading text-2xl font-bold text-primary mb-6">
-              Verwandte Artikel
-            </h3>
+            <h3 className="font-heading text-2xl font-bold text-primary mb-6">Verwandte Artikel</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Link to="/ratgeber/photovoltaik/pv-kosten-nrw-wovon-abhaengig" className="group">
                 <Card className="h-full hover:shadow-lg transition-shadow">
@@ -255,7 +281,10 @@ export default function EinspeiseverguetungArticle() {
           </div>
 
           <div className="mt-12 pt-6 border-t text-center">
-            <Link to="/ratgeber/photovoltaik" className="tap-target text-sm mt-4 mb-4 inline-block text-primary hover:text-primary/80 transition-colors">
+            <Link
+              to="/ratgeber/photovoltaik"
+              className="tap-target text-sm mt-4 mb-4 inline-block text-primary hover:text-primary/80 transition-colors"
+            >
               ← Zurück zum Ratgeber
             </Link>
             <p className="font-paragraph text-sm text-gray-500 mt-4">

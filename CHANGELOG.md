@@ -10,6 +10,7 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 ### ✨ Hinzugefügt
 
 #### Performance
+
 - Critical CSS Inlining für sofortiges First Paint
 - Lazy Loading Components mit IntersectionObserver
 - WebP/AVIF Bildoptimierung
@@ -18,6 +19,7 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 - Service Worker mit Offline-Support
 
 #### Security
+
 - Content Security Policy (CSP)
 - Security Headers (HSTS, X-Frame-Options, XSS Protection)
 - CORS Configuration
@@ -25,6 +27,7 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 - Rate Limiting
 
 #### PWA
+
 - Progressive Web App Support
 - Web App Manifest
 - Install Prompts (Android & iOS)
@@ -33,6 +36,7 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 - Push Notifications
 
 #### SEO
+
 - Enhanced Structured Data (Organization, Website, FAQ, Breadcrumb)
 - Open Graph & Twitter Cards
 - Canonical URLs & Robots Meta
@@ -40,6 +44,7 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 - Sitemap Integration
 
 #### Testing & CI/CD
+
 - Vitest + React Testing Library Setup
 - GitHub Actions CI/CD Pipeline
 - Lighthouse CI Integration
@@ -47,6 +52,7 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 - Code Coverage Reports
 
 #### Components
+
 - Error Boundary für React Components
 - Toast Notification System
 - Loading Spinner & Skeleton Components
@@ -56,12 +62,14 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 - 404 Error Page
 
 #### Utilities
+
 - Custom React Hooks (useDebounce, useLocalStorage, useMediaQuery, etc.)
 - Formatting Utilities (PLZ, Phone, Currency, Date)
 - Type-safe LocalStorage Wrapper
 - String & Number Helpers
 
 #### Developer Experience
+
 - EditorConfig für konsistente Formatierung
 - Prettier Configuration
 - VS Code Settings & Extensions
@@ -69,6 +77,7 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 - TypeScript Path Aliases
 
 ### 🛠️ Geändert
+
 - Projekt-Struktur komplett überarbeitet
 - TypeScript zu 100% typisiert
 - Astro auf Version 4.15 aktualisiert
@@ -76,11 +85,13 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 - Tailwind CSS auf Version 3.4 aktualisiert
 
 ### 🐛 Behoben
+
 - Performance-Probleme durch Code Splitting gelöst
 - Accessibility-Issues behoben
 - SEO-Optimierungen implementiert
 
 ### 📚 Dokumentation
+
 - Vollständiges README mit allen Features
 - Architektur-Dokumentation
 - Developer Guide
@@ -92,6 +103,7 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 ## [1.0.0] - 2025-XX-XX
 
 ### ✨ Hinzugefügt
+
 - Initiales Release
 - Grundlegende Projekt-Struktur
 - Erste Version der Website

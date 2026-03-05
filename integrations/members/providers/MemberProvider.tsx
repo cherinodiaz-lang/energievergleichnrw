@@ -50,7 +50,7 @@ export const MemberProvider: React.FC<MemberProviderProps> = ({ children }) => {
 
   // Update state helper
   const updateState = useCallback((updates: Partial<MemberState>) => {
-    setState(prev => ({ ...prev, ...updates }));
+    setState((prev) => ({ ...prev, ...updates }));
   }, []);
 
   // Member actions
@@ -106,19 +106,22 @@ export const MemberProvider: React.FC<MemberProviderProps> = ({ children }) => {
       document
         .hasStorageAccess()
         .catch(() => false)
-        .then(hasAccess => {
+        .then((hasAccess) => {
           if (hasAccess) {
             return true;
           }
 
           // in case access is not granted, we need to clear partitioned cookies
           // otherwise after storage access is granted, we will be getting duplicated cookies.
-          document.cookie = "wixSession=; max-age=0; Secure; SameSite=None; Partitioned";
-          document.cookie = "XSRF-TOKEN=; max-age=0; Secure; SameSite=None; Partitioned";
+          document.cookie = 'wixSession=; max-age=0; Secure; SameSite=None; Partitioned';
+          document.cookie = 'XSRF-TOKEN=; max-age=0; Secure; SameSite=None; Partitioned';
 
-          return document.requestStorageAccess().then(() => true).catch(() => false);
+          return document
+            .requestStorageAccess()
+            .then(() => true)
+            .catch(() => false);
         })
-        .then(accessGranted => {
+        .then((accessGranted) => {
           if (accessGranted) {
             const loginWindow = window.open(loginUrl, '_blank');
             reloadOnceLoggedIn(loginWindow);
@@ -184,11 +187,7 @@ export const MemberProvider: React.FC<MemberProviderProps> = ({ children }) => {
     actions,
   };
 
-  return (
-    <MemberContext.Provider value={contextValue}>
-      {children}
-    </MemberContext.Provider>
-  );
+  return <MemberContext.Provider value={contextValue}>{children}</MemberContext.Provider>;
 };
 
 function reloadOnceLoggedIn(loginWindow: Window) {
@@ -199,7 +198,7 @@ function reloadOnceLoggedIn(loginWindow: Window) {
     const jsonString = decodeURIComponent(cookie.split('=')[1] ?? '');
     const parsed = JSON.parse(jsonString);
 
-    if (parsed?.tokens?.refreshToken?.role === "member") {
+    if (parsed?.tokens?.refreshToken?.role === 'member') {
       loginWindow.close();
       window.location.reload();
 

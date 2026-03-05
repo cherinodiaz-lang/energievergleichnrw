@@ -3,7 +3,12 @@ import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -21,42 +26,42 @@ export default function UmzugGasvertragArticle() {
           name: 'Kann ich meinen Gasvertrag bei einem Umzug mitnehmen?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Nein, normalerweise nicht. Der Gasvertrag ist an die Adresse gebunden. Bei einem Umzug müssen Sie den Vertrag kündigen und einen neuen abschließen.'
-          }
+            text: 'Nein, normalerweise nicht. Der Gasvertrag ist an die Adresse gebunden. Bei einem Umzug müssen Sie den Vertrag kündigen und einen neuen abschließen.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Wie lange vorher muss ich kündigen?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Die Kündigungsfrist beträgt normalerweise 4 Wochen zum Ende eines Kalendermonats. Manche Verträge haben kürzere Fristen. Prüfen Sie Ihren Vertrag.'
-          }
+            text: 'Die Kündigungsfrist beträgt normalerweise 4 Wochen zum Ende eines Kalendermonats. Manche Verträge haben kürzere Fristen. Prüfen Sie Ihren Vertrag.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Wann sollte ich kündigen?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Kündigen Sie mindestens 6-8 Wochen vor dem Umzug. So haben Sie Zeit, einen neuen Anbieter zu finden und den Wechsel abzuwickeln.'
-          }
+            text: 'Kündigen Sie mindestens 6-8 Wochen vor dem Umzug. So haben Sie Zeit, einen neuen Anbieter zu finden und den Wechsel abzuwickeln.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Kann ich bei einem Umzug zu einem neuen Anbieter wechseln?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Ja, das ist sogar eine gute Gelegenheit. Nutzen Sie den Umzug, um zu einem günstigeren Anbieter zu wechseln.'
-          }
+            text: 'Ja, das ist sogar eine gute Gelegenheit. Nutzen Sie den Umzug, um zu einem günstigeren Anbieter zu wechseln.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Was muss ich bei der neuen Adresse beachten?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Prüfen Sie, ob die neue Adresse an das Gasnetz angeschlossen ist. Nicht alle Adressen haben Gasversorgung. Fragen Sie beim Netzbetreiber nach.'
-          }
-        }
-      ]
+            text: 'Prüfen Sie, ob die neue Adresse an das Gasnetz angeschlossen ist. Nicht alle Adressen haben Gasversorgung. Fragen Sie beim Netzbetreiber nach.',
+          },
+        },
+      ],
     };
 
     const script = document.createElement('script');
@@ -107,7 +112,9 @@ export default function UmzugGasvertragArticle() {
           >
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-12">
               <p className="font-paragraph text-gray-700 leading-relaxed">
-                Ein Umzug ist eine gute Gelegenheit, Ihren Gasvertrag zu überprüfen und möglicherweise zu einem günstigeren Anbieter zu wechseln. Erfahren Sie hier, wie Sie vorgehen.
+                Ein Umzug ist eine gute Gelegenheit, Ihren Gasvertrag zu überprüfen und
+                möglicherweise zu einem günstigeren Anbieter zu wechseln. Erfahren Sie hier, wie Sie
+                vorgehen.
               </p>
             </div>
 
@@ -117,7 +124,8 @@ export default function UmzugGasvertragArticle() {
                   Zeitplan für den Umzug
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Beginnen Sie 6-8 Wochen vor dem Umzug mit den Vorbereitungen. So haben Sie genug Zeit, Ihren alten Vertrag zu kündigen und einen neuen abzuschließen.
+                  Beginnen Sie 6-8 Wochen vor dem Umzug mit den Vorbereitungen. So haben Sie genug
+                  Zeit, Ihren alten Vertrag zu kündigen und einen neuen abzuschließen.
                 </p>
               </div>
 
@@ -128,23 +136,34 @@ export default function UmzugGasvertragArticle() {
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700"><strong>Schritt 1:</strong> Kündigungsfrist prüfen (normalerweise 4 Wochen zum Monatsende)</span>
+                    <span className="font-paragraph text-gray-700">
+                      <strong>Schritt 1:</strong> Kündigungsfrist prüfen (normalerweise 4 Wochen zum
+                      Monatsende)
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700"><strong>Schritt 2:</strong> Alten Gasvertrag schriftlich kündigen</span>
+                    <span className="font-paragraph text-gray-700">
+                      <strong>Schritt 2:</strong> Alten Gasvertrag schriftlich kündigen
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700"><strong>Schritt 3:</strong> Neue Adresse auf Gasversorgung prüfen</span>
+                    <span className="font-paragraph text-gray-700">
+                      <strong>Schritt 3:</strong> Neue Adresse auf Gasversorgung prüfen
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700"><strong>Schritt 4:</strong> Gastarife für neue Adresse vergleichen</span>
+                    <span className="font-paragraph text-gray-700">
+                      <strong>Schritt 4:</strong> Gastarife für neue Adresse vergleichen
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700"><strong>Schritt 5:</strong> Neuen Gasvertrag abschließen</span>
+                    <span className="font-paragraph text-gray-700">
+                      <strong>Schritt 5:</strong> Neuen Gasvertrag abschließen
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -161,26 +180,31 @@ export default function UmzugGasvertragArticle() {
             {[
               {
                 q: 'Kann ich meinen Gasvertrag bei einem Umzug mitnehmen?',
-                a: 'Nein, normalerweise nicht. Der Gasvertrag ist an die Adresse gebunden. Bei einem Umzug müssen Sie den Vertrag kündigen und einen neuen abschließen.'
+                a: 'Nein, normalerweise nicht. Der Gasvertrag ist an die Adresse gebunden. Bei einem Umzug müssen Sie den Vertrag kündigen und einen neuen abschließen.',
               },
               {
                 q: 'Wie lange vorher muss ich kündigen?',
-                a: 'Die Kündigungsfrist beträgt normalerweise 4 Wochen zum Ende eines Kalendermonats. Manche Verträge haben kürzere Fristen. Prüfen Sie Ihren Vertrag.'
+                a: 'Die Kündigungsfrist beträgt normalerweise 4 Wochen zum Ende eines Kalendermonats. Manche Verträge haben kürzere Fristen. Prüfen Sie Ihren Vertrag.',
               },
               {
                 q: 'Wann sollte ich kündigen?',
-                a: 'Kündigen Sie mindestens 6-8 Wochen vor dem Umzug. So haben Sie Zeit, einen neuen Anbieter zu finden und den Wechsel abzuwickeln.'
+                a: 'Kündigen Sie mindestens 6-8 Wochen vor dem Umzug. So haben Sie Zeit, einen neuen Anbieter zu finden und den Wechsel abzuwickeln.',
               },
               {
                 q: 'Kann ich bei einem Umzug zu einem neuen Anbieter wechseln?',
-                a: 'Ja, das ist sogar eine gute Gelegenheit. Nutzen Sie den Umzug, um zu einem günstigeren Anbieter zu wechseln.'
+                a: 'Ja, das ist sogar eine gute Gelegenheit. Nutzen Sie den Umzug, um zu einem günstigeren Anbieter zu wechseln.',
               },
               {
                 q: 'Was muss ich bei der neuen Adresse beachten?',
-                a: 'Prüfen Sie, ob die neue Adresse an das Gasnetz angeschlossen ist. Nicht alle Adressen haben Gasversorgung. Fragen Sie beim Netzbetreiber nach.'
-              }
+                a: 'Prüfen Sie, ob die neue Adresse an das Gasnetz angeschlossen ist. Nicht alle Adressen haben Gasversorgung. Fragen Sie beim Netzbetreiber nach.',
+              },
             ].map((item, index) => (
-              <Accordion key={index} type="single" collapsible className="bg-gray-50 rounded-lg px-6 border-none">
+              <Accordion
+                key={index}
+                type="single"
+                collapsible
+                className="bg-gray-50 rounded-lg px-6 border-none"
+              >
                 <AccordionItem value={`faq-${index}`} className="border-none">
                   <AccordionTrigger className="font-heading text-lg font-medium text-left py-4 hover:text-primary hover:no-underline">
                     {item.q}
@@ -200,7 +224,10 @@ export default function UmzugGasvertragArticle() {
             <p className="font-paragraph text-gray-700 mb-6">
               Nutzen Sie unser Vergleichstool und finden Sie den besten Tarif für Ihre neue Adresse.
             </p>
-            <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
+            <Button
+              asChild
+              className="bg-secondary text-secondary-foreground hover:bg-secondary/90"
+            >
               <Link to={ROUTES.gasvergleich}>
                 Zum Gasvergleich
                 <ArrowRight className="w-5 h-5 ml-2" />
@@ -209,9 +236,7 @@ export default function UmzugGasvertragArticle() {
           </div>
 
           <div className="border-t pt-12">
-            <h3 className="font-heading text-2xl font-bold text-primary mb-6">
-              Verwandte Artikel
-            </h3>
+            <h3 className="font-heading text-2xl font-bold text-primary mb-6">Verwandte Artikel</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Link to="/ratgeber/gas/gasanbieter-wechseln-nrw" className="group">
                 <Card className="h-full hover:shadow-lg transition-shadow">

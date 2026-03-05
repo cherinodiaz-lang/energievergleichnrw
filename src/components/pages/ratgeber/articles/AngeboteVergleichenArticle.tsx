@@ -3,7 +3,12 @@ import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -21,42 +26,42 @@ export default function AngeboteVergleichenArticle() {
           name: 'Wie viele Angebote sollte ich einholen?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Holen Sie mindestens 3-5 Angebote ein. So können Sie Preise und Leistungen vergleichen. Mehr Angebote geben Ihnen mehr Sicherheit.'
-          }
+            text: 'Holen Sie mindestens 3-5 Angebote ein. So können Sie Preise und Leistungen vergleichen. Mehr Angebote geben Ihnen mehr Sicherheit.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Worauf sollte ich beim Vergleich achten?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Vergleichen Sie: Anlagengröße, Modulqualität, Wechselrichter, Garantie, Preis und Service. Achten Sie auch auf versteckte Kosten.'
-          }
+            text: 'Vergleichen Sie: Anlagengröße, Modulqualität, Wechselrichter, Garantie, Preis und Service. Achten Sie auch auf versteckte Kosten.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Welche Fehler sollte ich vermeiden?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Vermeiden Sie: Nur auf den Preis achten, Garantiebedingungen ignorieren, Versteckte Kosten übersehen, Zu schnell entscheiden.'
-          }
+            text: 'Vermeiden Sie: Nur auf den Preis achten, Garantiebedingungen ignorieren, Versteckte Kosten übersehen, Zu schnell entscheiden.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Ist der günstigste Anbieter immer die beste Wahl?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Nein. Ein günstiger Preis ist wichtig, aber auch Qualität, Garantie und Service zählen. Das beste Angebot ist nicht immer das günstigste.'
-          }
+            text: 'Nein. Ein günstiger Preis ist wichtig, aber auch Qualität, Garantie und Service zählen. Das beste Angebot ist nicht immer das günstigste.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Wie lange sollte ich mir Zeit für die Entscheidung nehmen?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Nehmen Sie sich mindestens 1-2 Wochen Zeit. Lesen Sie die Angebote sorgfältig, stellen Sie Fragen und vergleichen Sie in Ruhe.'
-          }
-        }
-      ]
+            text: 'Nehmen Sie sich mindestens 1-2 Wochen Zeit. Lesen Sie die Angebote sorgfältig, stellen Sie Fragen und vergleichen Sie in Ruhe.',
+          },
+        },
+      ],
     };
 
     const script = document.createElement('script');
@@ -107,7 +112,8 @@ export default function AngeboteVergleichenArticle() {
           >
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-12">
               <p className="font-paragraph text-gray-700 leading-relaxed">
-                Der Vergleich von Solarangeboten ist wichtig, um die beste Anlage zum besten Preis zu finden. Erfahren Sie, worauf Sie achten sollten.
+                Der Vergleich von Solarangeboten ist wichtig, um die beste Anlage zum besten Preis
+                zu finden. Erfahren Sie, worauf Sie achten sollten.
               </p>
             </div>
 
@@ -117,7 +123,9 @@ export default function AngeboteVergleichenArticle() {
                   Mehrere Angebote einholen
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Holen Sie mindestens 3-5 Angebote von verschiedenen Anbietern ein. So können Sie Preise und Leistungen vergleichen. Mehr Angebote geben Ihnen mehr Sicherheit bei der Entscheidung.
+                  Holen Sie mindestens 3-5 Angebote von verschiedenen Anbietern ein. So können Sie
+                  Preise und Leistungen vergleichen. Mehr Angebote geben Ihnen mehr Sicherheit bei
+                  der Entscheidung.
                 </p>
               </div>
 
@@ -132,7 +140,9 @@ export default function AngeboteVergleichenArticle() {
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Modulqualität und Hersteller</span>
+                    <span className="font-paragraph text-gray-700">
+                      Modulqualität und Hersteller
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -140,11 +150,15 @@ export default function AngeboteVergleichenArticle() {
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Garantie und Gewährleistung</span>
+                    <span className="font-paragraph text-gray-700">
+                      Garantie und Gewährleistung
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Gesamtpreis und versteckte Kosten</span>
+                    <span className="font-paragraph text-gray-700">
+                      Gesamtpreis und versteckte Kosten
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -154,7 +168,9 @@ export default function AngeboteVergleichenArticle() {
                   Häufige Fehler vermeiden
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Vermeiden Sie, nur auf den Preis zu achten. Achten Sie auch auf Qualität, Garantie und Service. Lesen Sie die Angebote sorgfältig und fragen Sie nach versteckten Kosten. Nehmen Sie sich Zeit für die Entscheidung.
+                  Vermeiden Sie, nur auf den Preis zu achten. Achten Sie auch auf Qualität, Garantie
+                  und Service. Lesen Sie die Angebote sorgfältig und fragen Sie nach versteckten
+                  Kosten. Nehmen Sie sich Zeit für die Entscheidung.
                 </p>
               </div>
 
@@ -163,7 +179,9 @@ export default function AngeboteVergleichenArticle() {
                   Die beste Entscheidung treffen
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Das beste Angebot ist nicht immer das günstigste. Berücksichtigen Sie alle Faktoren: Preis, Qualität, Garantie, Service und Referenzen. Vertrauen Sie auf Ihr Bauchgefühl und wählen Sie einen Anbieter, dem Sie vertrauen.
+                  Das beste Angebot ist nicht immer das günstigste. Berücksichtigen Sie alle
+                  Faktoren: Preis, Qualität, Garantie, Service und Referenzen. Vertrauen Sie auf Ihr
+                  Bauchgefühl und wählen Sie einen Anbieter, dem Sie vertrauen.
                 </p>
               </div>
 
@@ -179,26 +197,31 @@ export default function AngeboteVergleichenArticle() {
             {[
               {
                 q: 'Wie viele Angebote sollte ich einholen?',
-                a: 'Holen Sie mindestens 3-5 Angebote ein. So können Sie Preise und Leistungen vergleichen. Mehr Angebote geben Ihnen mehr Sicherheit.'
+                a: 'Holen Sie mindestens 3-5 Angebote ein. So können Sie Preise und Leistungen vergleichen. Mehr Angebote geben Ihnen mehr Sicherheit.',
               },
               {
                 q: 'Worauf sollte ich beim Vergleich achten?',
-                a: 'Vergleichen Sie: Anlagengröße, Modulqualität, Wechselrichter, Garantie, Preis und Service. Achten Sie auch auf versteckte Kosten.'
+                a: 'Vergleichen Sie: Anlagengröße, Modulqualität, Wechselrichter, Garantie, Preis und Service. Achten Sie auch auf versteckte Kosten.',
               },
               {
                 q: 'Welche Fehler sollte ich vermeiden?',
-                a: 'Vermeiden Sie: Nur auf den Preis achten, Garantiebedingungen ignorieren, Versteckte Kosten übersehen, Zu schnell entscheiden.'
+                a: 'Vermeiden Sie: Nur auf den Preis achten, Garantiebedingungen ignorieren, Versteckte Kosten übersehen, Zu schnell entscheiden.',
               },
               {
                 q: 'Ist der günstigste Anbieter immer die beste Wahl?',
-                a: 'Nein. Ein günstiger Preis ist wichtig, aber auch Qualität, Garantie und Service zählen. Das beste Angebot ist nicht immer das günstigste.'
+                a: 'Nein. Ein günstiger Preis ist wichtig, aber auch Qualität, Garantie und Service zählen. Das beste Angebot ist nicht immer das günstigste.',
               },
               {
                 q: 'Wie lange sollte ich mir Zeit für die Entscheidung nehmen?',
-                a: 'Nehmen Sie sich mindestens 1-2 Wochen Zeit. Lesen Sie die Angebote sorgfältig, stellen Sie Fragen und vergleichen Sie in Ruhe.'
-              }
+                a: 'Nehmen Sie sich mindestens 1-2 Wochen Zeit. Lesen Sie die Angebote sorgfältig, stellen Sie Fragen und vergleichen Sie in Ruhe.',
+              },
             ].map((item, index) => (
-              <Accordion key={index} type="single" collapsible className="bg-gray-50 rounded-lg px-6 border-none">
+              <Accordion
+                key={index}
+                type="single"
+                collapsible
+                className="bg-gray-50 rounded-lg px-6 border-none"
+              >
                 <AccordionItem value={`faq-${index}`} className="border-none">
                   <AccordionTrigger className="font-heading text-lg font-medium text-left py-4 hover:text-primary hover:no-underline">
                     {item.q}
@@ -218,7 +241,10 @@ export default function AngeboteVergleichenArticle() {
             <p className="font-paragraph text-gray-700 mb-6">
               Nutzen Sie unsere kostenlose Beratung und erhalten Sie mehrere Angebote zum Vergleich.
             </p>
-            <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
+            <Button
+              asChild
+              className="bg-secondary text-secondary-foreground hover:bg-secondary/90"
+            >
               <Link to={ROUTES.photovoltaik}>
                 Zur Photovoltaik-Beratung
                 <ArrowRight className="w-5 h-5 ml-2" />
@@ -227,9 +253,7 @@ export default function AngeboteVergleichenArticle() {
           </div>
 
           <div className="border-t pt-12">
-            <h3 className="font-heading text-2xl font-bold text-primary mb-6">
-              Verwandte Artikel
-            </h3>
+            <h3 className="font-heading text-2xl font-bold text-primary mb-6">Verwandte Artikel</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Link to="/ratgeber/photovoltaik/pv-kosten-nrw-wovon-abhaengig" className="group">
                 <Card className="h-full hover:shadow-lg transition-shadow">
@@ -263,7 +287,10 @@ export default function AngeboteVergleichenArticle() {
           </div>
 
           <div className="mt-12 pt-6 border-t text-center">
-            <Link to="/ratgeber/photovoltaik" className="tap-target text-sm mt-4 mb-4 inline-block text-primary hover:text-primary/80 transition-colors">
+            <Link
+              to="/ratgeber/photovoltaik"
+              className="tap-target text-sm mt-4 mb-4 inline-block text-primary hover:text-primary/80 transition-colors"
+            >
               ← Zurück zum Ratgeber
             </Link>
             <p className="font-paragraph text-sm text-gray-500 mt-4">

@@ -5,12 +5,7 @@ import pvContent from '@content/de/pages/photovoltaik-nrw.json';
 const { meta, badge, h1, subline, primaryCta, jsonLd, faqItems } = pvContent;
 ---
 
-<BaseLayout
-  title={meta.title}
-  description={meta.description}
-  jsonLd={jsonLd}
-  faqItems={faqItems}
->
+<BaseLayout title={meta.title} description={meta.description} jsonLd={jsonLd} faqItems={faqItems}>
   <main>
     <!-- Hero Section -->
     <section class="hero-section">
@@ -44,11 +39,15 @@ const { meta, badge, h1, subline, primaryCta, jsonLd, faqItems } = pvContent;
           </div>
           <div class="card">
             <p class="card-title">Speicher & Wirtschaftlichkeit</p>
-            <p class="card-text">Wann lohnt sich ein Speicher? Wir geben dir eine klare Entscheidungslogik.</p>
+            <p class="card-text">
+              Wann lohnt sich ein Speicher? Wir geben dir eine klare Entscheidungslogik.
+            </p>
           </div>
           <div class="card">
             <p class="card-title">Angebote vergleichen</p>
-            <p class="card-text">Checkliste: Leistung, Komponenten, Garantien, Ertrag, Wirtschaftlichkeit.</p>
+            <p class="card-text">
+              Checkliste: Leistung, Komponenten, Garantien, Ertrag, Wirtschaftlichkeit.
+            </p>
           </div>
         </div>
       </div>
@@ -59,12 +58,14 @@ const { meta, badge, h1, subline, primaryCta, jsonLd, faqItems } = pvContent;
       <div class="container">
         <h2 class="h2 text-center">FAQ Photovoltaik NRW</h2>
         <div class="faq-list">
-          {faqItems.map((item) => (
-            <details class="faq-item">
-              <summary class="faq-question">{item.q}</summary>
-              <p class="faq-answer">{item.a}</p>
-            </details>
-          ))}
+          {
+            faqItems.map((item) => (
+              <details class="faq-item">
+                <summary class="faq-question">{item.q}</summary>
+                <p class="faq-answer">{item.a}</p>
+              </details>
+            ))
+          }
         </div>
       </div>
     </section>

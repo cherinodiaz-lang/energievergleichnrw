@@ -1,10 +1,5 @@
 import type { Rule } from 'eslint';
-import type { 
-  CallExpression, 
-  IfStatement,
-  JSXElement,
-  Node
-} from 'estree';
+import type { CallExpression, IfStatement, JSXElement, Node } from 'estree';
 
 export default {
   meta: {
@@ -17,7 +12,7 @@ export default {
     fixable: undefined,
     schema: [],
     messages: {
-      earlyReturnBeforeScrollRef: 
+      earlyReturnBeforeScrollRef:
         'Early return detected in component using useScroll({{ target: {{refName}} }}). ' +
         'This likely causes "Target ref is defined but not hydrated" error. ' +
         'Ensure the ref container renders unconditionally: ' +
@@ -93,4 +88,3 @@ export default {
     };
   },
 };
-

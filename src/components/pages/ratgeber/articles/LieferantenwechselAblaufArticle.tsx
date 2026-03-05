@@ -3,7 +3,12 @@ import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -21,42 +26,42 @@ export default function LieferantenwechselAblaufArticle() {
           name: 'Wie lange dauert ein Lieferantenwechsel?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Ein Lieferantenwechsel dauert in der Regel 4-6 Wochen. Dies ist die gesetzliche Kündigungsfrist. Der neue Anbieter kümmert sich um alle Formalitäten.'
-          }
+            text: 'Ein Lieferantenwechsel dauert in der Regel 4-6 Wochen. Dies ist die gesetzliche Kündigungsfrist. Der neue Anbieter kümmert sich um alle Formalitäten.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Was muss ich beim Wechsel beachten?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Beachten Sie: Kündigungsfrist prüfen, neuen Anbieter wählen, Kündigung schreiben, Zählernummer bereithalten, Abschlag klären, Wechsel bestätigen.'
-          }
+            text: 'Beachten Sie: Kündigungsfrist prüfen, neuen Anbieter wählen, Kündigung schreiben, Zählernummer bereithalten, Abschlag klären, Wechsel bestätigen.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Wird meine Versorgung unterbrochen?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Nein. Ihre Versorgung ist gesetzlich geschützt und wird nicht unterbrochen. Im Notfall springt der Grundversorger ein.'
-          }
+            text: 'Nein. Ihre Versorgung ist gesetzlich geschützt und wird nicht unterbrochen. Im Notfall springt der Grundversorger ein.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Wer kümmert sich um die Kündigung?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Sie können selbst kündigen oder der neue Anbieter kümmert sich darum. Viele Anbieter bieten einen kostenlosen Wechselservice an.'
-          }
+            text: 'Sie können selbst kündigen oder der neue Anbieter kümmert sich darum. Viele Anbieter bieten einen kostenlosen Wechselservice an.',
+          },
         },
         {
           '@type': 'Question',
           name: 'Was passiert mit meinen Abschlägen?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Der alte Anbieter berechnet die Abschläge bis zum Kündigungsdatum. Der neue Anbieter setzt neue Abschläge fest. Eine Abrechnung erfolgt später.'
-          }
-        }
-      ]
+            text: 'Der alte Anbieter berechnet die Abschläge bis zum Kündigungsdatum. Der neue Anbieter setzt neue Abschläge fest. Eine Abrechnung erfolgt später.',
+          },
+        },
+      ],
     };
 
     const script = document.createElement('script');
@@ -107,7 +112,8 @@ export default function LieferantenwechselAblaufArticle() {
           >
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-12">
               <p className="font-paragraph text-gray-700 leading-relaxed">
-                Ein Lieferantenwechsel ist einfacher als viele denken. Erfahren Sie, wie der Wechsel Schritt für Schritt funktioniert.
+                Ein Lieferantenwechsel ist einfacher als viele denken. Erfahren Sie, wie der Wechsel
+                Schritt für Schritt funktioniert.
               </p>
             </div>
 
@@ -117,7 +123,8 @@ export default function LieferantenwechselAblaufArticle() {
                   Schritt 1: Tarife vergleichen
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Nutzen Sie einen Vergleichsrechner und finden Sie einen besseren Tarif. Geben Sie Ihre Postleitzahl und Ihren Verbrauch ein. Vergleichen Sie mehrere Angebote.
+                  Nutzen Sie einen Vergleichsrechner und finden Sie einen besseren Tarif. Geben Sie
+                  Ihre Postleitzahl und Ihren Verbrauch ein. Vergleichen Sie mehrere Angebote.
                 </p>
               </div>
 
@@ -126,7 +133,8 @@ export default function LieferantenwechselAblaufArticle() {
                   Schritt 2: Neuen Anbieter wählen
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Wählen Sie einen neuen Anbieter und schließen Sie einen Vertrag ab. Der neue Anbieter kümmert sich meist um die Kündigung beim alten Anbieter.
+                  Wählen Sie einen neuen Anbieter und schließen Sie einen Vertrag ab. Der neue
+                  Anbieter kümmert sich meist um die Kündigung beim alten Anbieter.
                 </p>
               </div>
 
@@ -137,15 +145,21 @@ export default function LieferantenwechselAblaufArticle() {
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Kündigung schriftlich einreichen (Brief oder E-Mail)</span>
+                    <span className="font-paragraph text-gray-700">
+                      Kündigung schriftlich einreichen (Brief oder E-Mail)
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Kündigungsfrist beachten (4 Wochen zum Monatsende)</span>
+                    <span className="font-paragraph text-gray-700">
+                      Kündigungsfrist beachten (4 Wochen zum Monatsende)
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-gray-700">Bestätigung anfordern und aufbewahren</span>
+                    <span className="font-paragraph text-gray-700">
+                      Bestätigung anfordern und aufbewahren
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -155,7 +169,8 @@ export default function LieferantenwechselAblaufArticle() {
                   Schritt 4: Wechsel abwarten
                 </h2>
                 <p className="font-paragraph text-gray-700 leading-relaxed">
-                  Der Wechsel dauert in der Regel 4-6 Wochen. Ihre Versorgung wird nicht unterbrochen. Der neue Anbieter meldet sich mit den neuen Abschlägen.
+                  Der Wechsel dauert in der Regel 4-6 Wochen. Ihre Versorgung wird nicht
+                  unterbrochen. Der neue Anbieter meldet sich mit den neuen Abschlägen.
                 </p>
               </div>
 
@@ -171,26 +186,31 @@ export default function LieferantenwechselAblaufArticle() {
             {[
               {
                 q: 'Wie lange dauert ein Lieferantenwechsel?',
-                a: 'Ein Lieferantenwechsel dauert in der Regel 4-6 Wochen. Dies ist die gesetzliche Kündigungsfrist. Der neue Anbieter kümmert sich um alle Formalitäten.'
+                a: 'Ein Lieferantenwechsel dauert in der Regel 4-6 Wochen. Dies ist die gesetzliche Kündigungsfrist. Der neue Anbieter kümmert sich um alle Formalitäten.',
               },
               {
                 q: 'Was muss ich beim Wechsel beachten?',
-                a: 'Beachten Sie: Kündigungsfrist prüfen, neuen Anbieter wählen, Kündigung schreiben, Zählernummer bereithalten, Abschlag klären, Wechsel bestätigen.'
+                a: 'Beachten Sie: Kündigungsfrist prüfen, neuen Anbieter wählen, Kündigung schreiben, Zählernummer bereithalten, Abschlag klären, Wechsel bestätigen.',
               },
               {
                 q: 'Wird meine Versorgung unterbrochen?',
-                a: 'Nein. Ihre Versorgung ist gesetzlich geschützt und wird nicht unterbrochen. Im Notfall springt der Grundversorger ein.'
+                a: 'Nein. Ihre Versorgung ist gesetzlich geschützt und wird nicht unterbrochen. Im Notfall springt der Grundversorger ein.',
               },
               {
                 q: 'Wer kümmert sich um die Kündigung?',
-                a: 'Sie können selbst kündigen oder der neue Anbieter kümmert sich darum. Viele Anbieter bieten einen kostenlosen Wechselservice an.'
+                a: 'Sie können selbst kündigen oder der neue Anbieter kümmert sich darum. Viele Anbieter bieten einen kostenlosen Wechselservice an.',
               },
               {
                 q: 'Was passiert mit meinen Abschlägen?',
-                a: 'Der alte Anbieter berechnet die Abschläge bis zum Kündigungsdatum. Der neue Anbieter setzt neue Abschläge fest. Eine Abrechnung erfolgt später.'
-              }
+                a: 'Der alte Anbieter berechnet die Abschläge bis zum Kündigungsdatum. Der neue Anbieter setzt neue Abschläge fest. Eine Abrechnung erfolgt später.',
+              },
             ].map((item, index) => (
-              <Accordion key={index} type="single" collapsible className="bg-gray-50 rounded-lg px-6 border-none">
+              <Accordion
+                key={index}
+                type="single"
+                collapsible
+                className="bg-gray-50 rounded-lg px-6 border-none"
+              >
                 <AccordionItem value={`faq-${index}`} className="border-none">
                   <AccordionTrigger className="font-heading text-lg font-medium text-left py-4 hover:text-primary hover:no-underline">
                     {item.q}
@@ -210,7 +230,10 @@ export default function LieferantenwechselAblaufArticle() {
             <p className="font-paragraph text-gray-700 mb-6">
               Nutzen Sie unser Vergleichstool und finden Sie bessere Tarife.
             </p>
-            <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
+            <Button
+              asChild
+              className="bg-secondary text-secondary-foreground hover:bg-secondary/90"
+            >
               <Link to={ROUTES.stromvergleich}>
                 Zum Stromvergleich
                 <ArrowRight className="w-5 h-5 ml-2" />
@@ -219,9 +242,7 @@ export default function LieferantenwechselAblaufArticle() {
           </div>
 
           <div className="border-t pt-12">
-            <h3 className="font-heading text-2xl font-bold text-primary mb-6">
-              Verwandte Artikel
-            </h3>
+            <h3 className="font-heading text-2xl font-bold text-primary mb-6">Verwandte Artikel</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Link to="/ratgeber/wechselwissen/kuendigungsfristen-strom-gas" className="group">
                 <Card className="h-full hover:shadow-lg transition-shadow">

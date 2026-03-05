@@ -6,22 +6,24 @@
   /* ========================================
      TYPOGRAPHY
      ======================================== */
-  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
-  
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+
   /* Text Colors (WCAG AA-compliant) */
-  --text-900: #111827;  /* Primary text */
-  --text-700: #475569;  /* Secondary text */
-  --text-600: #4b5563;  /* Muted text */
+  --text-900: #111827; /* Primary text */
+  --text-700: #475569; /* Secondary text */
+  --text-600: #4b5563; /* Muted text */
 
   /* ========================================
      BRAND COLORS (WCAG AA-friendly)
      ======================================== */
-  --primary: #1d4ed8;        /* AA on white + white text */
+  --primary: #1d4ed8; /* AA on white + white text */
   --primary-strong: #1e40af; /* Hover state */
   --success: #15803d;
-  --warning: #f59e0b;        /* Use dark text on this */
+  --warning: #f59e0b; /* Use dark text on this */
   --danger: #b91c1c;
-  
+
   --bg: #ffffff;
   --bg-soft: #f9fafb;
   --border: #e5e7eb;
@@ -44,8 +46,8 @@
      ======================================== */
   --r-1: 10px;
   --r-2: 14px;
-  --shadow-1: 0 10px 30px rgba(0,0,0,.08);
-  --shadow-2: 0 16px 40px rgba(0,0,0,.12);
+  --shadow-1: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --shadow-2: 0 16px 40px rgba(0, 0, 0, 0.12);
 
   /* ========================================
      FOCUS (WCAG 2.4.7 Focus Visible)

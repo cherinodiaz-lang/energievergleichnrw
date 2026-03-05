@@ -19,6 +19,7 @@ Security vulnerabilities should not be disclosed publicly until they have been a
 Send details to: security@energievergleich-nrw.de
 
 Include:
+
 - Type of vulnerability
 - Steps to reproduce
 - Potential impact

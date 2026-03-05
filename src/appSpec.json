@@ -8,16 +8,9 @@
       "brandIdentity": {
         "designSummary": "**Zenith: Minimalist Energy Transition**\n\nVisual Vision: A clean, trustworthy one-pager designed to guide NRW residents toward sustainable energy choices. The design prioritizes clarity and ease of use, reflecting the simplicity of switching energy providers. The layout is structured and efficient, ensuring a seamless user experience.\n\nExecution Blueprint:\n1. Strict Grid System: A 12-column grid provides the foundation for precise alignment and content organization.\n2. Color Palette Discipline: The primary green (#2C6E49) and orange (#FFB703) are used strategically to highlight key actions and information, maintaining a clean and uncluttered aesthetic.\n3. Typographic Hierarchy: Montserrat or Poppins is used exclusively, with variations in size and weight to establish a clear visual hierarchy.\n4. Iconography: Simple, geometric icons are used to represent energy types and benefits, enhancing comprehension and visual appeal.\n5. Whitespace Emphasis: Generous whitespace is used to create a sense of calm and focus, preventing visual overload.",
         "toneOfVoice": "Direct, trustworthy, simple, with regional references to NRW.",
-        "tones": [
-          "Direct",
-          "Trustworthy",
-          "Simple",
-          "Regional"
-        ],
+        "tones": ["Direct", "Trustworthy", "Simple", "Regional"],
         "designStyle": {
-          "primaryStyle": [
-            "Minimal"
-          ],
+          "primaryStyle": ["Minimal"],
           "supportingStyles": []
         },
         "palette": {
@@ -217,15 +210,8 @@
           "fresh"
         ],
         "designStyle": {
-          "primaryStyle": [
-            "Minimalism",
-            "Modern"
-          ],
-          "supportingStyles": [
-            "Eco-friendly",
-            "Tech-focused",
-            "Clean Typography"
-          ]
+          "primaryStyle": ["Minimalism", "Modern"],
+          "supportingStyles": ["Eco-friendly", "Tech-focused", "Clean Typography"]
         },
         "palette": {
           "colors": {
@@ -259,11 +245,7 @@
               "fontFamily": "work-sans-v2",
               "fontJustification": ""
             },
-            "headingsSimilarFonts": [
-              "raleway",
-              "poppins-v2",
-              "rubik-v2"
-            ],
+            "headingsSimilarFonts": ["raleway", "poppins-v2", "rubik-v2"],
             "headingsUsageGuide": "Use the heading font for all major titles and section headers to create a clear visual hierarchy. Italic styles can be applied selectively to emphasize key words or concepts, adding subtle dynamism without compromising readability. Pair headings with the monospaced paragraph font to balance modernity with technical precision. Maintain consistent spacing and avoid overcrowding to preserve the minimalistic aesthetic. Ensure headings use the 'primary' color for strong brand presence and accessibility.",
             "headingsAccessibilityNotes": "Headings in 'primary' color on 'background' meet WCAG AA contrast standards, ensuring readability for users with visual impairments."
           },
@@ -273,11 +255,7 @@
               "fontFamily": "azeret-mono",
               "fontJustification": ""
             },
-            "paragraphsSimilarFonts": [
-              "open sans",
-              "roboto",
-              "nunito sans"
-            ],
+            "paragraphsSimilarFonts": ["open sans", "roboto", "nunito sans"],
             "paragraphsUsageGuide": "Use the paragraph font for all body text, captions, and smaller UI text to maintain clarity and a technical feel. The monospaced style supports the brand's technology focus and contrasts well with the sans-serif headings. Text should primarily use the 'primary' color on the 'background' for optimal readability. Maintain adequate line height and spacing to enhance legibility, especially for longer text blocks.",
             "paragraphsAccessibilityNotes": "Paragraph text in 'primary' color on 'background' meets WCAG AA contrast requirements, supporting accessible reading experiences."
           },
@@ -432,14 +410,8 @@
           "balanced"
         ],
         "designStyle": {
-          "primaryStyle": [
-            "Minimalism",
-            "Modernism"
-          ],
-          "supportingStyles": [
-            "Bold Typography",
-            "Grid-Based Layout"
-          ]
+          "primaryStyle": ["Minimalism", "Modernism"],
+          "supportingStyles": ["Bold Typography", "Grid-Based Layout"]
         },
         "palette": {
           "colors": {
@@ -481,11 +453,7 @@
               "fontFamily": "helvetica-w01-bold",
               "fontJustification": ""
             },
-            "headingsSimilarFonts": [
-              "oswald",
-              "montserrat-black-new",
-              "titillium-black"
-            ],
+            "headingsSimilarFonts": ["oswald", "montserrat-black-new", "titillium-black"],
             "headingsUsageGuide": "Use the heading font for all major titles and brand names, especially in uppercase to emphasize boldness and clarity. Pair with the paragraph font to create a clear typographic hierarchy. Maintain generous spacing around headings to enhance readability and impact. Avoid using the heading font for body text to preserve legibility.",
             "headingsAccessibilityNotes": "Headings using the 'primaryForeground' color on the 'primary' or 'secondary' backgrounds meet WCAG AA contrast requirements, ensuring clear visibility and accessibility."
           },
@@ -495,11 +463,7 @@
               "fontFamily": "helvetica-w01-light",
               "fontJustification": ""
             },
-            "paragraphsSimilarFonts": [
-              "nunito sans",
-              "raleway",
-              "work-sans-v2"
-            ],
+            "paragraphsSimilarFonts": ["nunito sans", "raleway", "work-sans-v2"],
             "paragraphsUsageGuide": "Use the paragraph font for all body text, navigation links, and smaller informational text. Maintain consistent line height and spacing for readability. Combine with the heading font to create a balanced typographic system. Use 'primaryForeground' or 'secondaryForeground' colors depending on background for optimal contrast.",
             "paragraphsAccessibilityNotes": "Body text colors on their respective backgrounds meet WCAG AA standards for legibility, supporting accessible reading experiences."
           },
@@ -654,14 +618,8 @@
           "Approachable"
         ],
         "designStyle": {
-          "primaryStyle": [
-            "Minimalism",
-            "Modern"
-          ],
-          "supportingStyles": [
-            "Organic",
-            "Editorial"
-          ]
+          "primaryStyle": ["Minimalism", "Modern"],
+          "supportingStyles": ["Organic", "Editorial"]
         },
         "palette": {
           "colors": {
@@ -699,11 +657,7 @@
               "fontFamily": "work-sans-v2",
               "fontJustification": ""
             },
-            "headingsSimilarFonts": [
-              "rubik-v2",
-              "poppins-v2",
-              "raleway"
-            ],
+            "headingsSimilarFonts": ["rubik-v2", "poppins-v2", "raleway"],
             "headingsUsageGuide": "Use the heading font in bold weights for primary titles and section headers to establish hierarchy and focus. Pair with the paragraph font for contrast, ensuring ample spacing and line height for readability. Headings should use the 'primary' color for emphasis or 'primaryForeground' on colored backgrounds. Maintain consistent letter spacing and avoid overly tight kerning to preserve clarity.",
             "headingsAccessibilityNotes": "Headings in 'primary' color on 'background' or 'secondary' backgrounds meet WCAG AA contrast requirements. Use sufficient font size and weight to ensure legibility across devices."
           },
@@ -713,11 +667,7 @@
               "fontFamily": "work-sans-v2",
               "fontJustification": ""
             },
-            "paragraphsSimilarFonts": [
-              "open sans",
-              "nunito sans",
-              "raleway"
-            ],
+            "paragraphsSimilarFonts": ["open sans", "nunito sans", "raleway"],
             "paragraphsUsageGuide": "Use the paragraph font in regular or medium weights for body text, captions, and secondary information. Text color should primarily be 'primaryForeground' or 'secondaryForeground' depending on background. Maintain comfortable line height and letter spacing to enhance readability. Combine with headings to create a clear typographic hierarchy and balanced page flow.",
             "paragraphsAccessibilityNotes": "Body text in 'primaryForeground' on 'background' or 'secondary' backgrounds meets WCAG AA contrast standards. Ensure font sizes are not too small to maintain accessibility."
           },
@@ -856,16 +806,9 @@
     }
   ],
   "brandBook": {
-    "tones": [
-      "Direct",
-      "Trustworthy",
-      "Simple",
-      "Regional"
-    ],
+    "tones": ["Direct", "Trustworthy", "Simple", "Regional"],
     "designStyle": {
-      "primaryStyle": [
-        "Minimal"
-      ],
+      "primaryStyle": ["Minimal"],
       "supportingStyles": []
     },
     "toneOfVoice": "Direct, trustworthy, simple, with regional references to NRW.",

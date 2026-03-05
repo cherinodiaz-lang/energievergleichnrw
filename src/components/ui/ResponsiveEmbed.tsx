@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 type Props = {
   src: string;
@@ -10,10 +10,10 @@ type Props = {
 
 export default function ResponsiveEmbed({
   src,
-  title = "Embedded content",
-  allow = "",
+  title = 'Embedded content',
+  allow = '',
   allowFullScreen = true,
-  className = "",
+  className = '',
 }: Props) {
   return (
     <div className={`ratio-16by9 ${className}`}>

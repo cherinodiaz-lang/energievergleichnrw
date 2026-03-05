@@ -13,13 +13,7 @@
         "name": "topic",
         "label": "Thema",
         "type": "select",
-        "options": [
-          "Strom",
-          "Gas",
-          "Photovoltaik",
-          "Gewerbe",
-          "Website-Feedback"
-        ]
+        "options": ["Strom", "Gas", "Photovoltaik", "Gewerbe", "Website-Feedback"]
       },
       {
         "name": "message",

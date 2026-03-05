@@ -17,8 +17,8 @@ export default [
     plugins: {
       react: reactPlugin,
       '@typescript-eslint': tsPlugin,
-      'import': importPlugin,
-      'custom': {
+      import: importPlugin,
+      custom: {
         rules: {
           'use-image-component': useImageComponent,
           'fix-empty-select-item-value': fixEmptySelectItemValue,
@@ -77,11 +77,14 @@ export default [
         'error',
         {
           selector: 'JSXElement[openingElement.name.name="Route"] JSXText[value="Wix Vibe"]',
-          message: 'Routes are not implemented. The default "Wix Vibe" route is still present, which means pages are probably not visible to the user. Please implement proper routes for your application.',
+          message:
+            'Routes are not implemented. The default "Wix Vibe" route is still present, which means pages are probably not visible to the user. Please implement proper routes for your application.',
         },
         {
-          selector: 'CallExpression[callee.name="createBrowserRouter"] JSXElement[openingElement.name.name="div"] JSXText[value="Wix Vibe"]',
-          message: 'Routes are not implemented. The default "Wix Vibe" route is still present, which means pages are probably not visible to the user. Please implement proper routes for your application.',
+          selector:
+            'CallExpression[callee.name="createBrowserRouter"] JSXElement[openingElement.name.name="div"] JSXText[value="Wix Vibe"]',
+          message:
+            'Routes are not implemented. The default "Wix Vibe" route is still present, which means pages are probably not visible to the user. Please implement proper routes for your application.',
         },
         {
           selector:
@@ -97,9 +100,8 @@ export default [
             '> ObjectExpression:has(Property[key.name="path"] > Literal[value="/"]) ' +
             '> Property[key.name="errorElement"] JSXOpeningElement[name.name="ErrorPage"]',
           message: 'ErrorPage must be imported from "@/integrations/errorHandlers/ErrorPage".',
-        }
+        },
       ],
-
     },
   },
   {

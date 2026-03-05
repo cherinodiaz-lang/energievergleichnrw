@@ -26,8 +26,8 @@ const defaultCities: City[] = [
 
 export default function RelatedCities({ currentCity, cities = defaultCities }: RelatedCitiesProps) {
   // Filter aus aktuelle Stadt
-  const filteredCities = cities.filter(city => city.slug !== currentCity);
-  
+  const filteredCities = cities.filter((city) => city.slug !== currentCity);
+
   // Zeige max 6 Städte
   const displayCities = filteredCities.slice(0, 6);
 
@@ -44,9 +44,7 @@ export default function RelatedCities({ currentCity, cities = defaultCities }: R
               to={`/stromvergleich-${city.slug}`}
               className="flex items-center justify-center px-4 py-3 bg-white rounded-lg shadow hover:shadow-md transition-shadow border border-gray-200 hover:border-primary"
             >
-              <span className="text-sm font-medium text-gray-700">
-                {city.name}
-              </span>
+              <span className="text-sm font-medium text-gray-700">{city.name}</span>
             </Link>
           ))}
         </div>
