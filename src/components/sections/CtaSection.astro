@@ -1,0 +1,102 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  ctaText: string;
+  ctaLink: string;
+  variant?: 'primary' | 'secondary' | 'accent';
+}
+
+const {
+  title,
+  description,
+  ctaText,
+  ctaLink,
+  variant = 'primary'
+} = Astro.props;
+
+const variantClasses = {
+  primary: 'bg-gradient-to-r from-blue-600 to-blue-700',
+  secondary: 'bg-gradient-to-r from-green-600 to-green-700',
+  accent: 'bg-gradient-to-r from-orange-600 to-orange-700'
+};
+---
+
+<section class={`cta-section py-16 sm:py-20 ${variantClasses[variant]} relative overflow-hidden`}>
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"1\"%3E%3Cpath d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v6h4v4h2V6h4V4H6z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+  </div>
+  
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <div class="max-w-4xl mx-auto text-center">
+      <!-- Title -->
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
+        {title}
+      </h2>
+      
+      <!-- Description -->
+      <p class="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+        {description}
+      </p>
+      
+      <!-- CTA Button -->
+      <a
+        href={ctaLink}
+        class="inline-flex items-center px-10 py-5 text-lg font-bold text-blue-900 bg-white rounded-lg shadow-2xl hover:bg-blue-50 hover:shadow-3xl transform hover:scale-105 transition-all duration-300 group"
+      >
+        {ctaText}
+        <svg
+          class="ml-3 w-6 h-6 transform group-hover:translate-x-2 transition-transform duration-300"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+      
+      <!-- Additional Info -->
+      <p class="mt-6 text-sm text-white/70">
+        🔒 Kostenlos & unverbindlich • ⚡ In 2 Minuten fertig • 🎯100% transparent
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    position: relative;
+  }
+  
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: float 20s ease-in-out infinite;
+  }
+  
+  .cta-section::after {
+    content: '';
+    position: absolute;
+    bottom: -50%;
+    left: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: float 20s ease-in-out infinite 10s;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+</style>

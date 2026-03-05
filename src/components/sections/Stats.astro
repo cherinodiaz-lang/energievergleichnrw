@@ -1,0 +1,58 @@
+---
+interface Stat {
+  value: string;
+  label: string;
+  suffix?: string;
+}
+
+interface Props {
+  stats: Stat[];
+  title?: string;
+}
+
+const { stats, title } = Astro.props;
+---
+
+<section class="stats-section py-16 sm:py-20 bg-white">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    {title && (
+      <h2 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-12">
+        {title}
+      </h2>
+    )}
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      {stats.map((stat, index) => (
+        <div
+          class="stat-item text-center"
+          style={`animation-delay: ${index * 0.1}s`}
+        >
+          <div class="text-4xl sm:text-5xl lg:text-6xl font-bold text-blue-600 mb-2">
+            {stat.value}{stat.suffix || ''}
+          </div>
+          <div class="text-sm sm:text-base text-gray-600 font-medium">
+            {stat.label}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stat-item {
+    animation: fade-in-scale 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  
+  @keyframes fade-in-scale {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+</style>
