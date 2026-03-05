@@ -38,20 +38,34 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({ children, className, 
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+      return;
+    }
+
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mediaQuery.matches);
-    
+
     const handleChange = (e: MediaQueryListEvent) => {
       setPrefersReducedMotion(e.matches);
     };
-    
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
+
+    if (typeof mediaQuery.addEventListener === 'function') {
+      mediaQuery.addEventListener('change', handleChange);
+      return () => mediaQuery.removeEventListener('change', handleChange);
+    }
+
+    mediaQuery.addListener(handleChange);
+    return () => mediaQuery.removeListener(handleChange);
   }, []);
 
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
+
+    if (typeof window === 'undefined' || typeof IntersectionObserver === 'undefined') {
+      element.classList.add('is-visible');
+      return;
+    }
 
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
@@ -127,6 +141,10 @@ export default function HomePage() {
   const prefersReducedMotion = useRef(false);
   
   useEffect(() => {
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+      return;
+    }
+
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     prefersReducedMotion.current = mediaQuery.matches;
   }, []);
@@ -186,7 +204,7 @@ export default function HomePage() {
 
   // --- FAQ Schema (JSON-LD) - Now faqs is defined before this effect ---
   useEffect(() => {
-    if (faqs.length === 0) return;
+    if (typeof document === 'undefined' || faqs.length === 0) return;
 
     const faqSchema = {
       '@context': 'https://schema.org',
@@ -366,7 +384,7 @@ export default function HomePage() {
             </AnimatedElement>
 
             <AnimatedElement delay={400}>
-              <Link to="/ratgeber#methodik" onClick={trackMethodikClick} className="inline-block text-white/80 hover:text-white transition-colors text-sm sm:text-base font-medium underline">
+              <Link to="/methodik" onClick={trackMethodikClick} className="inline-block text-white/80 hover:text-white transition-colors text-sm sm:text-base font-medium underline">
                 So vergleichen wir (Methodik)
               </Link>
             </AnimatedElement>
