@@ -1,212 +1,173 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import homeContent from '@content/de/pages/home.json';
+import Hero from '@/components/sections/Hero.astro';
+import Stats from '@/components/sections/Stats.astro';
+import Features from '@/components/sections/Features.astro';
+import CtaSection from '@/components/sections/CtaSection.astro';
+import { ComparisonForm } from '@/components/forms/ComparisonForm';
 
-const { meta, hero, sections, closingCta } = homeContent;
+const features = [
+  {
+    icon: '💰',
+    title: 'Bis zu 800€ sparen',
+    description: 'Vergleichen Sie Hunderte von Tarifen und finden Sie garantiert günstigere Angebote als Ihren aktuellen Vertrag.'
+  },
+  {
+    icon: '⚡',
+    title: 'In 2 Minuten fertig',
+    description: 'Schneller Vergleich ohne Papierkram. Geben Sie einfach Ihre PLZ und Ihren Verbrauch ein - fertig!'
+  },
+  {
+    icon: '🔒',
+    title: '100% kostenlos',
+    description: 'Unser Service ist komplett kostenlos und unverbindlich. Keine versteckten Kosten, keine Abofallen.'
+  },
+  {
+    icon: '🎯',
+    title: 'Alle Anbieter',
+    description: 'Wir vergleichen über 1.000 Tarife von mehr als 100 Anbietern in ganz NRW.'
+  },
+  {
+    icon: '✅',
+    title: 'Geprüft & sicher',
+    description: 'Alle Tarife sind von uns geprüft. Faire Konditionen und transparente Preise garantiert.'
+  },
+  {
+    icon: '📞',
+    title: 'Persönliche Beratung',
+    description: 'Bei Fragen helfen Ihnen unsere Experten gerne weiter - kostenlos und unverbindlich.'
+  }
+];
+
+const stats = [
+  { value: '1000', label: 'Tarife', suffix: '+' },
+  { value: '100', label: 'Anbieter', suffix: '+' },
+  { value: '800', label: 'Ersparnis', suffix: '€' },
+  { value: '50000', label: 'Zufriedene Kunden', suffix: '+' }
+];
 ---
 
 <BaseLayout
-  title={meta.title}
-  description={meta.description}
-  faqItems={sections.faq.items}
+  title="Energievergleich NRW - Strom & Gas vergleichen und bis zu 800€ sparen"
+  description="Vergleichen Sie Strom- und Gasanbieter in NRW. Finden Sie in 2 Minuten den günstigsten Tarif und sparen Sie bis zu 800€ jährlich. 100% kostenlos & unverbindlich."
+  canonical="https://energievergleichnrw.de/"
 >
-  <main>
-    <!-- Hero Section -->
-    <section class="hero-section">
-      <div class="container">
-        <div class="hero-grid">
-          <div class="hero-content">
-            <h1 class="h1">{hero.h1}</h1>
-            <p class="lead">{hero.subline}</p>
-            <div class="hero-cta-group">
-              <a href="#vergleich" class="btn btn-primary">{hero.primaryCta}</a>
-              <a href="#how-it-works" class="btn btn-secondary">{hero.secondaryCta}</a>
-            </div>
-          </div>
-          <div class="hero-form" id="vergleich">
-            <!-- Form will be React component later -->
-            <div class="card">
-              <p class="card-title">Schnell starten</p>
-              <p class="card-text">PLZ eingeben und Bedarf wählen.</p>
-            </div>
-          </div>
+  <!-- Hero Section -->
+  <Hero
+    title="Energiekosten senken in NRW"
+    subtitle="Vergleichen Sie Strom- und Gasanbieter und sparen Sie bis zu 800€ pro Jahr. Kostenlos, schnell und unverbindlich."
+    ctaText="Jetzt kostenlos vergleichen"
+    ctaLink="#vergleich"
+    secondaryCtaText="Mehr erfahren"
+    secondaryCtaLink="#features"
+  />
+  
+  <!-- Stats Section -->
+  <Stats
+    title="Vertrauen Sie auf unsere Erfahrung"
+    stats={stats}
+  />
+  
+  <!-- Features Section -->
+  <Features
+    title="Warum Energievergleich NRW?"
+    subtitle="Ihre Vorteile auf einen Blick"
+    features={features}
+  />
+  
+  <!-- Comparison Form Section -->
+  <section id="vergleich" class="py-16 sm:py-20 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+          Jetzt Tarife vergleichen
+        </h2>
+        <p class="text-xl text-gray-600">
+          In nur 2 Minuten zu Ihrem neuen günstigen Tarif
+        </p>
+      </div>
+      
+      <ComparisonForm client:load />
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <CtaSection
+    title="Bereit zum Wechseln?"
+    description="Starten Sie jetzt Ihren kostenlosen Vergleich und sichern Sie sich die besten Tarife in Nordrhein-Westfalen."
+    ctaText="Jetzt Geld sparen"
+    ctaLink="#vergleich"
+    variant="primary"
+  />
+  
+  <!-- Trust Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
+          Häufig gestellte Fragen
+        </h2>
+        
+        <div class="space-y-6">
+          <details class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+            <summary class="font-semibold text-lg text-gray-900 cursor-pointer">
+              Ist der Vergleich wirklich kostenlos?
+            </summary>
+            <p class="mt-4 text-gray-600">
+              Ja, unser Vergleichsservice ist 100% kostenlos und unverbindlich. Sie zahlen nichts für den Vergleich oder unsere Beratung.
+            </p>
+          </details>
+          
+          <details class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+            <summary class="font-semibold text-lg text-gray-900 cursor-pointer">
+              Wie viel kann ich wirklich sparen?
+            </summary>
+            <p class="mt-4 text-gray-600">
+              Im Durchschnitt sparen unsere Kunden zwischen 300-800€ pro Jahr durch den Wechsel zu einem günstigeren Anbieter. Die genaue Ersparnis hängt von Ihrem Verbrauch und aktuellen Tarif ab.
+            </p>
+          </details>
+          
+          <details class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+            <summary class="font-semibold text-lg text-gray-900 cursor-pointer">
+              Wie lange dauert ein Anbieterwechsel?
+            </summary>
+            <p class="mt-4 text-gray-600">
+              Der Wechsel dauert in der Regel 2-6 Wochen. Ihr neuer Anbieter übernimmt alle Formalitäten, Sie müssen nichts weiter tun. Ihre Versorgung ist während des Wechsels natürlich durchgehend gesichert.
+            </p>
+          </details>
+          
+          <details class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+            <summary class="font-semibold text-lg text-gray-900 cursor-pointer">
+              Gibt es versteckte Kosten?
+            </summary>
+            <p class="mt-4 text-gray-600">
+              Nein! Alle angezeigten Preise sind transparent und beinhalten alle Kosten. Wir zeigen nur geprüfte Tarife ohne versteckte Kosten oder unnötige Zusatzoptionen.
+            </p>
+          </details>
         </div>
       </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section class="section">
-      <div class="container">
-        <h2 class="h2 text-center">{sections.benefits.title}</h2>
-        <div class="grid-3">
-          {sections.benefits.cards.map((card) => (
-            <div class="card">
-              <p class="card-title">{card.title}</p>
-              <p class="card-text">{card.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="section bg-soft" id="how-it-works">
-      <div class="container">
-        <h2 class="h2 text-center">{sections.howItWorks.title}</h2>
-        <div class="grid-3">
-          {sections.howItWorks.steps.map((step, idx) => (
-            <div class="card">
-              <span class="step-number">{idx + 1}</span>
-              <p class="card-title">{step.title}</p>
-              <p class="card-text">{step.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Trust Section -->
-    <section class="section">
-      <div class="container text-center">
-        <h2 class="h2">{sections.trust.title}</h2>
-        <p class="lead">{sections.trust.text}</p>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="section bg-soft">
-      <div class="container">
-        <h2 class="h2 text-center">{sections.faq.title}</h2>
-        <div class="faq-list">
-          {sections.faq.items.map((item) => (
-            <details class="faq-item">
-              <summary class="faq-question">{item.q}</summary>
-              <p class="faq-answer">{item.a}</p>
-            </details>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Closing CTA -->
-    <section class="section">
-      <div class="container text-center">
-        <h2 class="h2">{closingCta.title}</h2>
-        <p class="lead">{closingCta.text}</p>
-        <a href="#vergleich" class="btn btn-primary btn-lg">{closingCta.primaryCta}</a>
-      </div>
-    </section>
-  </main>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
-  .hero-section {
-    padding: var(--s-8) 0;
-    background: linear-gradient(180deg, #f8fafc, #ffffff);
-  }
-
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: var(--s-7);
-    align-items: start;
-  }
-
-  @media (max-width: 900px) {
-    .hero-grid {
-      grid-template-columns: 1fr;
-      gap: var(--s-5);
-    }
-  }
-
-  .hero-content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--s-4);
-  }
-
-  .hero-cta-group {
-    display: flex;
-    gap: var(--s-3);
-    flex-wrap: wrap;
-  }
-
-  .lead {
-    font-size: 1.125rem;
-    color: var(--text-700);
-  }
-
-  .section {
-    padding: var(--s-8) 0;
-  }
-
-  .bg-soft {
-    background: var(--bg-soft);
-  }
-
-  .grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--s-5);
-    margin-top: var(--s-5);
-  }
-
-  @media (max-width: 900px) {
-    .grid-3 {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .text-center {
-    text-align: center;
-  }
-
-  .step-number {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--primary);
-    color: white;
-    font-weight: 700;
-    font-size: 1.25rem;
-    margin-bottom: var(--s-3);
-  }
-
-  .faq-list {
-    max-width: 800px;
-    margin: var(--s-5) auto 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--s-3);
-  }
-
-  .faq-item {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: var(--r-2);
-    padding: var(--s-4);
-  }
-
-  .faq-question {
-    font-weight: 700;
-    cursor: pointer;
+  details summary {
     list-style: none;
   }
-
-  .faq-question::-webkit-details-marker {
+  
+  details summary::-webkit-details-marker {
     display: none;
   }
-
-  .faq-answer {
-    margin-top: var(--s-3);
-    color: var(--text-700);
+  
+  details summary::after {
+    content: '+';
+    float: right;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2563eb;
   }
-
-  .btn-lg {
-    padding: 16px 32px;
-    font-size: 1.125rem;
+  
+  details[open] summary::after {
+    content: '−';
   }
 </style>
