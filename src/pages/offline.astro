@@ -1,0 +1,111 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Offline | EnergieVergleich NRW"
+  description="Sie sind derzeit offline."
+  noindex={true}
+>
+  <section class="offline-page">
+    <div class="container">
+      <div class="offline-content">
+        <div class="offline-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 2.829a4.978 4.978 0 01-1.414-2.83m-1.414 5.658a9 9 0 01-2.167-9.238m7.824 2.167a1 1 0 111.414 1.414m-1.414-1.414L3 3" />
+          </svg>
+        </div>
+        <h1 class="offline-title">Sie sind offline</h1>
+        <p class="offline-text">
+          Es scheint, als hätten Sie keine Internetverbindung.
+          Einige Funktionen sind möglicherweise eingeschränkt.
+        </p>
+        
+        <div class="offline-tips">
+          <h3>Was Sie tun können:</h3>
+          <ul>
+            <li>Überprüfen Sie Ihre Internetverbindung</li>
+            <li>Stellen Sie sicher, dass WLAN oder mobile Daten aktiviert sind</li>
+            <li>Versuchen Sie, die Seite neu zu laden, wenn Sie wieder online sind</li>
+          </ul>
+        </div>
+        
+        <button onclick="window.location.reload()" class="btn btn-primary">
+          Verbindung erneut prüfen
+        </button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .offline-page {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--s-8) 0;
+    background: linear-gradient(180deg, #f8fafc, #ffffff);
+  }
+  
+  .offline-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .offline-icon {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto var(--s-5);
+    color: #6b7280;
+  }
+  
+  .offline-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .offline-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: var(--s-4);
+  }
+  
+  .offline-text {
+    font-size: 1.125rem;
+    color: var(--text-700);
+    margin-bottom: var(--s-6);
+  }
+  
+  .offline-tips {
+    text-align: left;
+    background: white;
+    padding: var(--s-5);
+    border-radius: var(--r-2);
+    border: 1px solid var(--border);
+    margin-bottom: var(--s-6);
+  }
+  
+  .offline-tips h3 {
+    font-size: 1.25rem;
+    margin-bottom: var(--s-3);
+  }
+  
+  .offline-tips ul {
+    list-style: disc;
+    padding-left: var(--s-5);
+  }
+  
+  .offline-tips li {
+    margin-bottom: var(--s-2);
+    color: var(--text-700);
+  }
+</style>
+
+<script>
+  // Auto-reload when online
+  window.addEventListener('online', () => {
+    window.location.reload();
+  });
+</script>

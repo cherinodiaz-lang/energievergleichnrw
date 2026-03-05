@@ -3,32 +3,30 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="404 - Seite nicht gefunden | EnergieVergleich NRW"
-  description="Die angeforderte Seite konnte nicht gefunden werden."
+  title="500 - Serverfehler | EnergieVergleich NRW"
+  description="Ein unerwarteter Fehler ist aufgetreten."
   noindex={true}
 >
   <section class="error-page">
     <div class="container">
       <div class="error-content">
-        <h1 class="error-code">404</h1>
-        <h2 class="error-title">Seite nicht gefunden</h2>
+        <h1 class="error-code">500</h1>
+        <h2 class="error-title">Serverfehler</h2>
         <p class="error-text">
-          Die Seite, die Sie suchen, existiert leider nicht oder wurde verschoben.
+          Ein unerwarteter Fehler ist aufgetreten. Wir arbeiten bereits an einer Lösung.
         </p>
         <div class="error-actions">
           <a href="/" class="btn btn-primary">Zur Startseite</a>
-          <a href="/stromvergleich-nrw" class="btn btn-secondary">Zum Stromvergleich</a>
+          <button onclick="window.location.reload()" class="btn btn-secondary">
+            Seite neu laden
+          </button>
         </div>
         
-        <!-- Quick Links -->
-        <div class="quick-links">
-          <h3>Beliebte Seiten:</h3>
-          <ul>
-            <li><a href="/">Startseite</a></li>
-            <li><a href="/stromvergleich-nrw">Stromvergleich NRW</a></li>
-            <li><a href="/gasvergleich-nrw">Gasvergleich NRW</a></li>
-            <li><a href="/ueber-uns">Über uns</a></li>
-          </ul>
+        <div class="error-info">
+          <p>Falls das Problem weiterhin besteht, kontaktieren Sie uns bitte:</p>
+          <a href="mailto:support@energievergleichnrw.de" class="contact-link">
+            support@energievergleichnrw.de
+          </a>
         </div>
       </div>
     </div>
@@ -53,7 +51,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
   .error-code {
     font-size: clamp(4rem, 15vw, 10rem);
     font-weight: 900;
-    color: var(--primary);
+    color: #dc2626;
     line-height: 1;
     margin-bottom: var(--s-3);
   }
@@ -75,37 +73,22 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
     gap: var(--s-3);
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: var(--s-7);
+    margin-bottom: var(--s-6);
   }
   
-  .quick-links {
-    text-align: left;
-    max-width: 400px;
-    margin: 0 auto;
+  .error-info {
+    margin-top: var(--s-6);
+    padding-top: var(--s-6);
+    border-top: 1px solid var(--border);
   }
   
-  .quick-links h3 {
-    font-size: 1.25rem;
-    margin-bottom: var(--s-3);
-  }
-  
-  .quick-links ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .quick-links li {
-    margin-bottom: var(--s-2);
-  }
-  
-  .quick-links a {
+  .contact-link {
     color: var(--primary);
     text-decoration: none;
-    transition: color 0.2s;
+    font-weight: 600;
   }
   
-  .quick-links a:hover {
-    color: var(--primary-hover);
+  .contact-link:hover {
     text-decoration: underline;
   }
 </style>
