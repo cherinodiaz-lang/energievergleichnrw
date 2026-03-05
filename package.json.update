@@ -1,0 +1,41 @@
+{
+  "name": "energievergleichnrw",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.astro",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx,.astro --fix",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,astro,json,css,md}\"",
+    "type-check": "astro check",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "dependencies": {
+    "@astrojs/react": "^3.6.2",
+    "@astrojs/sitemap": "^3.1.6",
+    "@hookform/resolvers": "^3.9.1",
+    "astro": "^4.16.19",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.54.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/eslint-plugin": "^8.15.0",
+    "@typescript-eslint/parser": "^8.15.0",
+    "eslint": "^9.15.0",
+    "eslint-plugin-astro": "^1.2.4",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.6.3"
+  }
+}
