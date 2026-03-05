@@ -9,7 +9,7 @@ import ErrorPage from '@/integrations/errorHandlers/ErrorPage';
 import HomePage from '@/components/pages/HomePage';
 import SearchConsoleVerification from '@/components/SearchConsoleVerification';
 import SitemapNotification from '@/components/SitemapNotification';
-import ConsentBanner from '@/components/ConsentBanner';
+import { CookieConsent } from '@/components/ui/CookieConsent';
 import { initializeGA4, trackPageView } from '@/services/ga4-tracking';
 import SEOHead from '@/components/SEOHead';
 
@@ -147,7 +147,7 @@ function Layout() {
       ) : null}
       <SearchConsoleVerification verificationCode={SEO_CONFIG.googleSearchConsoleVerification} />
       <SitemapNotification />
-      <ConsentBanner />
+      <CookieConsent />
       <Suspense fallback={<LazyFallback />}>
         <Outlet />
       </Suspense>
