@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 interface SEOHeadProps {
   title: string;
@@ -18,9 +18,11 @@ interface SEOHeadProps {
   author?: string;
 }
 
-const SITE_URL = 'https://energievergleich.shop';
-const SITE_NAME = 'energievergleich.shop';
-const DEFAULT_IMAGE = 'https://static.wixstatic.com/media/32e7c0_8cede5e338be484bb8dcaad81c053c82~mv2.png?originWidth=1920&originHeight=1024';
+const SITE_URL = "https://energievergleich.shop";
+const SITE_NAME = "energievergleich.shop";
+
+const DEFAULT_IMAGE =
+  "https://static.wixstatic.com/media/32e7c0_8cede5e338be484bb8dcaad81c053c82~mv2.png";
 
 export default function SEOHead({
   title,
@@ -29,176 +31,89 @@ export default function SEOHead({
   ogTitle,
   ogDescription,
   ogImage = DEFAULT_IMAGE,
-  ogType = 'website',
-  twitterCard = 'summary_large_image',
+  ogType = "website",
+  twitterCard = "summary_large_image",
   twitterTitle,
   twitterDescription,
   twitterImage = DEFAULT_IMAGE,
   keywords,
-  robots = 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
-  author = 'energievergleich.nrw',
+  robots = "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  author = "energievergleich.shop",
 }: SEOHeadProps) {
   const location = useLocation();
 
+  const canonicalUrl = canonical || `${SITE_URL}${location.pathname}`;
+
   useEffect(() => {
-    // PHASE 7: Preload critical fonts for better performance
-    const preloadFonts = () => {
-      const fonts = [
-        { href: '//static.parastorage.com/tag-bundler/api/v1/fonts-cache/googlefont/woff2/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2', as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
-        { href: '//static.parastorage.com/tag-bundler/api/v1/fonts-cache/googlefont/woff2/s/poppins/v22/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2', as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
-      ];
-      
-      fonts.forEach(font => {
-        if (!document.querySelector(`link[href="${font.href}"]`)) {
-          const link = document.createElement('link');
-          link.rel = 'preload';
-          link.href = font.href;
-          link.as = font.as;
-          link.type = font.type;
-          link.crossOrigin = font.crossOrigin;
-          document.head.appendChild(link);
-        }
-      });
-    };
-    preloadFonts();
-
-    // PHASE 7: DNS Prefetch for external resources (Tarifrechner API)
-    const dnsPrefetchDomains = [
-      'https://api.tarifrechner.de',
-      'https://static.parastorage.com',
-    ];
-    
-    dnsPrefetchDomains.forEach(domain => {
-      if (!document.querySelector(`link[href="${domain}"]`)) {
-        const link = document.createElement('link');
-        link.rel = 'dns-prefetch';
-        link.href = domain;
-        document.head.appendChild(link);
-      }
-    });
-
-    // Set title
     document.title = title;
 
-    // Set meta description
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute('content', description);
-
-    // Set canonical URL - ALWAYS with www prefix
-    const canonicalUrl = canonical || `${SITE_URL}${location.pathname}`;
-    let canonicalLink = document.querySelector('link[rel="canonical"]');
-    if (!canonicalLink) {
-      canonicalLink = document.createElement('link');
-      canonicalLink.setAttribute('rel', 'canonical');
-      document.head.appendChild(canonicalLink);
-    }
-    canonicalLink.setAttribute('href', canonicalUrl);
-
-    // Set keywords
-    if (keywords) {
-      let metaKeywords = document.querySelector('meta[name="keywords"]');
-      if (!metaKeywords) {
-        metaKeywords = document.createElement('meta');
-        metaKeywords.setAttribute('name', 'keywords');
-        document.head.appendChild(metaKeywords);
+    const setMeta = (name: string, content: string) => {
+      let element = document.querySelector(`meta[name="${name}"]`);
+      if (!element) {
+        element = document.createElement("meta");
+        element.setAttribute("name", name);
+        document.head.appendChild(element);
       }
-      metaKeywords.setAttribute('content', keywords);
-    }
+      element.setAttribute("content", content);
+    };
 
-    // Set robots - ALWAYS index, follow for content pages
-    let metaRobots = document.querySelector('meta[name="robots"]');
-    if (!metaRobots) {
-      metaRobots = document.createElement('meta');
-      metaRobots.setAttribute('name', 'robots');
-      document.head.appendChild(metaRobots);
-    }
-    metaRobots.setAttribute('content', robots);
-
-    // Set author
-    let metaAuthor = document.querySelector('meta[name="author"]');
-    if (!metaAuthor) {
-      metaAuthor = document.createElement('meta');
-      metaAuthor.setAttribute('name', 'author');
-      document.head.appendChild(metaAuthor);
-    }
-    metaAuthor.setAttribute('content', author);
-
-    // Set viewport
-    let metaViewport = document.querySelector('meta[name="viewport"]');
-    if (!metaViewport) {
-      metaViewport = document.createElement('meta');
-      metaViewport.setAttribute('name', 'viewport');
-      metaViewport.setAttribute('content', 'width=device-width, initial-scale=1.0');
-      document.head.appendChild(metaViewport);
-    }
-
-    // Set charset
-    let metaCharset = document.querySelector('meta[charset]');
-    if (!metaCharset) {
-      metaCharset = document.createElement('meta');
-      metaCharset.setAttribute('charset', 'UTF-8');
-      document.head.appendChild(metaCharset);
-    }
-
-    // OpenGraph tags
-    const ogTags = [
-      { property: 'og:title', content: ogTitle || title },
-      { property: 'og:description', content: ogDescription || description },
-      { property: 'og:image', content: ogImage },
-      { property: 'og:type', content: ogType },
-      { property: 'og:url', content: canonicalUrl },
-      { property: 'og:site_name', content: SITE_NAME },
-    ];
-
-    ogTags.forEach(({ property, content }) => {
-      let metaTag = document.querySelector(`meta[property="${property}"]`);
-      if (!metaTag) {
-        metaTag = document.createElement('meta');
-        metaTag.setAttribute('property', property);
-        document.head.appendChild(metaTag);
+    const setProperty = (property: string, content: string) => {
+      let element = document.querySelector(`meta[property="${property}"]`);
+      if (!element) {
+        element = document.createElement("meta");
+        element.setAttribute("property", property);
+        document.head.appendChild(element);
       }
-      metaTag.setAttribute('content', content);
-    });
+      element.setAttribute("content", content);
+    };
 
-    // Twitter Card tags
-    const twitterTags = [
-      { name: 'twitter:card', content: twitterCard },
-      { name: 'twitter:title', content: twitterTitle || title },
-      { name: 'twitter:description', content: twitterDescription || description },
-      { name: 'twitter:image', content: twitterImage },
-      { name: 'twitter:site', content: '@energievergleich' },
-    ];
-
-    twitterTags.forEach(({ name, content }) => {
-      let metaTag = document.querySelector(`meta[name="${name}"]`);
-      if (!metaTag) {
-        metaTag = document.createElement('meta');
-        metaTag.setAttribute('name', name);
-        document.head.appendChild(metaTag);
+    const setLink = (rel: string, href: string) => {
+      let element = document.querySelector(`link[rel="${rel}"]`);
+      if (!element) {
+        element = document.createElement("link");
+        element.setAttribute("rel", rel);
+        document.head.appendChild(element);
       }
-      metaTag.setAttribute('content', content);
-    });
+      element.setAttribute("href", href);
+    };
 
-    // Google Site Verification
-    let metaGoogleVerification = document.querySelector('meta[name="google-site-verification"]');
-    if (!metaGoogleVerification) {
-      metaGoogleVerification = document.createElement('meta');
-      metaGoogleVerification.setAttribute('name', 'google-site-verification');
-      metaGoogleVerification.setAttribute('content', 'DTgXuzzEJV2pPqM4FoF_kIkhnUXVuVgmblskXZzdrpQ');
-      document.head.appendChild(metaGoogleVerification);
-    }
+    // Basic SEO
+    setMeta("description", description);
+    if (keywords) setMeta("keywords", keywords);
+    setMeta("robots", robots);
+    setMeta("author", author);
 
-    // Language
-    let htmlLang = document.documentElement.getAttribute('lang');
-    if (!htmlLang) {
-      document.documentElement.setAttribute('lang', 'de');
-    }
-  }, [title, description, canonical, location.pathname, ogTitle, ogDescription, ogImage, ogType, twitterCard, twitterTitle, twitterDescription, twitterImage, keywords, robots, author]);
+    // Canonical
+    setLink("canonical", canonicalUrl);
+
+    // Open Graph
+    setProperty("og:title", ogTitle || title);
+    setProperty("og:description", ogDescription || description);
+    setProperty("og:image", ogImage);
+    setProperty("og:url", canonicalUrl);
+    setProperty("og:type", ogType);
+    setProperty("og:site_name", SITE_NAME);
+
+    // Twitter
+    setMeta("twitter:card", twitterCard);
+    setMeta("twitter:title", twitterTitle || title);
+    setMeta("twitter:description", twitterDescription || description);
+    setMeta("twitter:image", twitterImage);
+  }, [
+    title,
+    description,
+    canonical,
+    ogTitle,
+    ogDescription,
+    ogImage,
+    twitterTitle,
+    twitterDescription,
+    twitterImage,
+    keywords,
+    robots,
+    author,
+    location.pathname,
+  ]);
 
   return null;
 }
