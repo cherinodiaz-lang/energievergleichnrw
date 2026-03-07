@@ -11,7 +11,6 @@ import LocalBusinessSchema from '@/components/LocalBusinessSchema';
 import WebsiteSchema from '@/components/WebsiteSchema';
 import SearchConsoleVerification from '@/components/SearchConsoleVerification';
 import SitemapNotification from '@/components/SitemapNotification';
-import ConsentBanner from '@/components/ConsentBanner';
 import { initializeGA4 } from '@/services/ga4-tracking';
 import HowToSchema from '@/components/HowToSchema';
 import ReviewSchema from '@/components/ReviewSchema';
@@ -98,7 +97,6 @@ function Layout() {
       <BreadcrumbSchema />
       <SearchConsoleVerification verificationCode={SEO_CONFIG.googleSearchConsoleVerification} />
       <SitemapNotification />
-      <ConsentBanner />
       <Suspense fallback={<LazyFallback />}>
         <Outlet />
       </Suspense>
