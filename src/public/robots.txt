@@ -1,5 +1,8 @@
+# robots.txt for energievergleich.shop
+
 User-agent: *
-Allow: /
+
+# Block system pages
 Disallow: /admin
 Disallow: /private
 Disallow: /preview
@@ -8,5 +11,9 @@ Disallow: /cart
 Disallow: /login
 Disallow: /account
 Disallow: /thank-you
-Sitemap: https://energievergleich.shop/sitemap.xml
 
+# Allow all content pages
+Allow: /
+
+# Sitemap location
+Sitemap: https://energievergleich.shop/sitemap.xml
