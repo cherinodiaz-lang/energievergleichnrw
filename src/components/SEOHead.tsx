@@ -18,7 +18,7 @@ interface SEOHeadProps {
   author?: string;
 }
 
-const SITE_URL = "https://energievergleich.shop";
+const SITE_URL = "https://www.energievergleich.shop";
 const SITE_NAME = "energievergleich.shop";
 
 const DEFAULT_IMAGE =

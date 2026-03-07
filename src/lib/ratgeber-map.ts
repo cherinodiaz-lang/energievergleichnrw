@@ -16,7 +16,7 @@ export interface RatgeberArticleMeta {
 }
 
 export const ratgeberArticles: RatgeberArticleMeta[] = [
-  // STROM ARTICLES (7)
+  // STROM ARTICLES (9)
   {
     id: 'strom-grundversorgung',
     slug: 'ratgeber/strom/grundversorgung',
@@ -133,6 +133,22 @@ export const ratgeberArticles: RatgeberArticleMeta[] = [
     relatedUrls: [
       '/ratgeber/strom/stromanbieterwechsel-nrw',
       '/ratgeber/wechselwissen/lieferantenwechsel-ablauf',
+      '/stromvergleich-nrw'
+    ],
+    lastUpdated: '2026-01-09'
+  },
+
+  {
+    id: 'strom-sparmoeglichkeiten',
+    slug: 'ratgeber/strom/sofortige-sparmoeglichkeiten',
+    title: 'Sofortige Sparmöglichkeiten beim Stromtarif',
+    teaser: 'Praktische Tipps, wie Sie sofort Geld bei Ihrem Stromtarif sparen können – ohne Verzicht auf Komfort.',
+    category: 'strom',
+    readingTime: 5,
+    targetMoneyPage: 'stromvergleich-nrw',
+    relatedUrls: [
+      '/ratgeber/strom/stromanbieterwechsel-nrw',
+      '/ratgeber/strom/neukundenboni-fallen',
       '/stromvergleich-nrw'
     ],
     lastUpdated: '2026-01-09'

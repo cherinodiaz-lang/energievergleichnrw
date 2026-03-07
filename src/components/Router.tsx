@@ -75,6 +75,10 @@ const WechselSchiefgehtArticle = lazy(() => import('@/components/pages/ratgeber/
 const ThankYouPage = lazy(() => import('@/components/pages/ThankYouPage').catch(() => ({ default: LazyErrorFallback })));
 const BlogPage = lazy(() => import('@/components/pages/BlogPage').catch(() => ({ default: LazyErrorFallback })));
 const BlogDetailPage = lazy(() => import('@/components/pages/BlogDetailPage').catch(() => ({ default: LazyErrorFallback })));
+const AgbPage = lazy(() => import('@/components/pages/AgbPage').catch(() => ({ default: LazyErrorFallback })));
+const WiderrufPage = lazy(() => import('@/components/pages/WiderrufPage').catch(() => ({ default: LazyErrorFallback })));
+const SitemapPage = lazy(() => import('@/components/pages/SitemapPage').catch(() => ({ default: LazyErrorFallback })));
+const FaqPage = lazy(() => import('@/components/pages/FaqPage').catch(() => ({ default: LazyErrorFallback })));
 
 // Layout component that includes ScrollToTop and SEO components
 function Layout() {
@@ -403,6 +407,26 @@ const router = createBrowserRouter([
         routeMetadata: {
           pageIdentifier: 'ratgeber-wechselwissen-probleme',
         },
+      },
+      {
+        path: ROUTES.agb.slice(1),
+        element: <Suspense fallback={<LazyFallback />}><AgbPage /></Suspense>,
+        routeMetadata: { pageIdentifier: 'agb' },
+      },
+      {
+        path: ROUTES.widerruf.slice(1),
+        element: <Suspense fallback={<LazyFallback />}><WiderrufPage /></Suspense>,
+        routeMetadata: { pageIdentifier: 'widerruf' },
+      },
+      {
+        path: ROUTES.sitemap.slice(1),
+        element: <Suspense fallback={<LazyFallback />}><SitemapPage /></Suspense>,
+        routeMetadata: { pageIdentifier: 'sitemap' },
+      },
+      {
+        path: ROUTES.faq.slice(1),
+        element: <Suspense fallback={<LazyFallback />}><FaqPage /></Suspense>,
+        routeMetadata: { pageIdentifier: 'faq' },
       },
       {
         path: "danke",

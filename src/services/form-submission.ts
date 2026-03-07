@@ -9,7 +9,7 @@
  */
 
 import { BaseCrudService } from '@/integrations';
-import { trackFormSubmit } from '@/services/ga4-tracking';
+import { trackFormSubmit, trackCTAClick as trackCTAClickGA4, trackMethodikClick as trackMethodikClickGA4 } from '@/services/ga4-tracking';
 
 export interface FormSubmissionData {
   _id?: string;
@@ -102,7 +102,6 @@ export function trackFormSubmission(formType: string) {
  * Track CTA button clicks (consent-safe)
  */
 export function trackCTAClick(ctaLabel: string) {
-  const { trackCTAClick: trackCTAClickGA4 } = require('@/services/ga4-tracking');
   trackCTAClickGA4(ctaLabel);
 }
 
@@ -110,7 +109,6 @@ export function trackCTAClick(ctaLabel: string) {
  * Track Methodik link clicks (consent-safe)
  */
 export function trackMethodikClick() {
-  const { trackMethodikClick: trackMethodikClickGA4 } = require('@/services/ga4-tracking');
   trackMethodikClickGA4();
 }
 

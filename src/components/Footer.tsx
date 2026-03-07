@@ -83,19 +83,19 @@ export default function Footer() {
               <li className="flex items-start gap-2 sm:gap-3">
                 <Mail className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <a
-                  href="mailto:support@energievergleich.nrw"
+                  href="mailto:info@energievergleich.nrw"
                   className="font-paragraph text-xs sm:text-sm opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity break-all"
                 >
-                  support@energievergleich.nrw
+                  info@energievergleich.nrw
                 </a>
               </li>
               <li className="flex items-start gap-2 sm:gap-3">
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <a
-                  href="tel:+4921112345678"
+                  href="tel:+492011033939"
                   className="font-paragraph text-xs sm:text-sm opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity"
                 >
-                  +49 211 1234 5678
+                  +49 (0) 2 01 – 1 03 – 39 39
                 </a>
               </li>
             </ul>

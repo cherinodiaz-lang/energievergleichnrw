@@ -60,6 +60,11 @@ function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
     'datenschutz': 'Datenschutz',
     'danke': 'Danke',
     'thank-you': 'Danke',
+    'agb': 'AGB',
+    'widerruf': 'Widerrufsbelehrung',
+    'sitemap': 'Sitemap',
+    'faq': 'FAQ',
+    'blog': 'Blog',
   };
 
   const segments = pathname.split('/').filter(Boolean);

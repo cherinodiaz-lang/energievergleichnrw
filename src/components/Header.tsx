@@ -34,21 +34,7 @@ export default function Header() {
     return location.pathname.startsWith(path);
   };
 
-  const scrollToSection = (sectionId: string) => {
-    if (location.pathname !== '/') {
-      window.location.href = `/#${sectionId}`;
-    } else {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    }
-    setMobileMenuOpen(false);
-  };
-
-  const getCtaLink = () => {
+  const getCtaLink
     const pathname = location.pathname;
     if (pathname.includes('strom')) return ROUTES.stromvergleich;
     if (pathname.includes('gas')) return ROUTES.gasvergleich;

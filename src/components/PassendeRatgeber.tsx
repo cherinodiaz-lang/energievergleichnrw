@@ -83,7 +83,7 @@ export default function PassendeRatgeber({
 
         <div className="mt-8 sm:mt-12 text-center">
           <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary/5">
-            <Link to={ROUTES.RATGEBER}>
+          <Link to={ROUTES.ratgeberHub}>
               Alle Ratgeber ansehen
               <ArrowRight className="w-4 h-4 ml-2" />
             </Link>

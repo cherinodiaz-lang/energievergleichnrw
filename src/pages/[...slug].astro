@@ -1,10 +1,7 @@
 ---
 import { SEO } from '@wix/seo/components';
 import { loadSEOTagsServiceConfig } from '@wix/seo/services';
-import { Head } from "@/components/Head";
 import AppRouter from "@/components/Router";
-import "@wix/wix-vibe-plugins/styles/plugins-vars.css";
-import "@wix/wix-vibe-plugins/styles/plugins-theme.css";
 import "@/styles/global.css";
 
 // CRITICAL: Exclude API routes from catch-all route
@@ -14,20 +11,25 @@ const excludedPaths = ['/sitemap.xml', '/robots.txt'];
 
 if (excludedPaths.includes(pathname)) {
   // Return 404 to allow Astro to serve the API endpoint
-  return Astro.response.status = 404;
+  return new Response(null, { status: 404 });
 }
+
+// Derive a readable page name from the current path for Wix SEO service
+const segments = pathname.split('/').filter(Boolean);
+const pageName = segments.length === 0
+  ? 'Home'
+  : segments.map(s => s.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())).join(' - ');
 
 const seoTagsServiceConfig = await loadSEOTagsServiceConfig({
   pageUrl: Astro.url.href,
   itemData: {
-    pageName: 'Home',
+    pageName,
   },
 });
 ---
 
 <html lang="en" class="w-full h-full">
   <head>
-    <Head />
     <SEO.Tags seoTagsServiceConfig={seoTagsServiceConfig} slot="seo-tags" />
   </head>
   <body class="w-full h-full">

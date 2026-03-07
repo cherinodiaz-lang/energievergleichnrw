@@ -5,6 +5,12 @@ export type InternalLinkItem = {
   keywords?: string[];
 };
 
+export interface RelatedPage {
+  title: string;
+  path: string;
+  description: string;
+}
+
 export const INTERNAL_LINKS: InternalLinkItem[] = [
   {
     title: "Stromvergleich NRW",
@@ -22,7 +28,7 @@ export const INTERNAL_LINKS: InternalLinkItem[] = [
     title: "Photovoltaik NRW",
     href: "/photovoltaik-nrw",
     category: "photovoltaik",
-    keywords: ["photovoltaik", "pv", "solaranlage", "solarstom", "einspeisevergütung"]
+    keywords: ["photovoltaik", "pv", "solaranlage", "solarstrom", "einspeisevergütung"]
   },
   {
     title: "Gewerbestrom",
