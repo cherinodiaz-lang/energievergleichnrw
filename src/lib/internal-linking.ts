@@ -84,3 +84,32 @@ export function getFallbackInternalLinks(currentPath: string, maxLinks = 4): Int
     .filter((item) => item.href !== currentPath)
     .slice(0, maxLinks);
 }
+
+export interface BreadcrumbItem {
+  label: string;
+  path: string;
+}
+
+export function getBreadcrumbItems(pathname: string): BreadcrumbItem[] {
+  const items: BreadcrumbItem[] = [
+    { label: 'Startseite', path: '/' }
+  ];
+
+  // Remove leading/trailing slashes and split path
+  const segments = pathname.split('/').filter(Boolean);
+
+  let currentPath = '';
+  for (const segment of segments) {
+    currentPath += `/${segment}`;
+    
+    // Convert segment to readable label
+    const label = segment
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+
+    items.push({ label, path: currentPath });
+  }
+
+  return items;
+}
