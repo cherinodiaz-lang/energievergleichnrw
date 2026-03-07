@@ -1,0 +1,203 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Sun, Clock, ArrowRight, CheckCircle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import SEOHead from '@/components/SEOHead';
+import Breadcrumb from '@/components/Breadcrumb';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '@/lib/routes';
+import { getArticlesByCategory } from '@/lib/ratgeber-map';
+
+export default function PhotovoltaikCategoryPage() {
+  const articles = getArticlesByCategory('photovoltaik');
+
+  const breadcrumbItems = [
+    { label: 'Startseite', path: '/' },
+    { label: 'Ratgeber', path: '/ratgeber' },
+    { label: 'Photovoltaik', path: '/ratgeber/photovoltaik' },
+  ];
+
+  const breadcrumbSchema = [
+    { name: 'Startseite', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}` },
+    { name: 'Ratgeber', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.ratgeber}` },
+    { name: 'Photovoltaik', url: `${typeof window !== 'undefined' ? window.location.origin : ''}/ratgeber/photovoltaik` },
+  ];
+
+  return (
+    <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Photovoltaik & Solar | Ratgeber | Energievergleich"
+        description="Ratgeber zu Solaranlagen, Photovoltaik-Kosten und Förderungen in NRW. Erfahren Sie alles über Solarenergie."
+        keywords="Photovoltaik, Solaranlage, Solarenergie, PV-Anlage, Einspeisevergütung"
+        ogTitle="Photovoltaik & Solar | Ratgeber"
+        ogDescription="Umfassender Ratgeber zu Solaranlagen und Photovoltaik in NRW"
+      />
+      <BreadcrumbSchema items={breadcrumbSchema} />
+      <Header />
+      <Breadcrumb items={breadcrumbItems} />
+
+      {/* Hero Section */}
+      <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-3xl"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <Sun className="w-8 h-8" />
+              <span className="text-sm font-bold uppercase tracking-wider">Ratgeber</span>
+            </div>
+            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-6 leading-tight max-w-[22ch] sm:max-w-none break-words">
+              Photovoltaik & Solar
+            </h1>
+            <p className="font-paragraph text-lg md:text-xl text-white/90">
+              Leitfaden zu Solaranlagen, Wirtschaftlichkeit und Förderungen
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Introductory Section */}
+      <section className="w-full py-20 bg-white">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="max-w-3xl mb-12">
+              <h2 className="font-heading text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-primary mb-6">
+                Photovoltaik verstehen und richtig nutzen
+              </h2>
+              <p className="font-paragraph text-base sm:text-lg text-gray-700 mb-8 leading-relaxed">
+                Solaranlagen bieten eine nachhaltige Möglichkeit, Ihren Energiebedarf zu decken und langfristig Kosten zu sparen. Ob Sie sich fragen, ob eine Solaranlage wirtschaftlich ist, wie die Einspeisevergütung funktioniert oder welche Förderungen es gibt – unser Ratgeber beantwortet Ihre wichtigsten Fragen. Erfahren Sie, worauf Sie bei der Planung und beim Vergleich von Angeboten achten sollten, und treffen Sie eine informierte Entscheidung für Ihre Energiezukunft.
+              </p>
+              
+              <div className="mb-10">
+                <h3 className="font-heading text-lg font-semibold text-gray-900 mb-4">
+                  Häufig gestellte Fragen:
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="font-paragraph text-gray-700">Wie wirtschaftlich ist eine Solaranlage wirklich?</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="font-paragraph text-gray-700">Welche Förderungen und Zuschüsse gibt es in NRW?</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="font-paragraph text-gray-700">Ist mein Dach für eine Solaranlage geeignet?</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="font-paragraph text-gray-700">Lohnt sich ein Stromspeicher für mich?</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="font-paragraph text-gray-700">Worauf sollte ich beim Vergleich von Angeboten achten?</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="https://www.energievergleich.shop/photovoltaik-nrw"
+                  className="inline-flex items-center justify-center px-6 py-3 bg-secondary text-secondary-foreground font-bold rounded-lg hover:bg-secondary/90 transition-colors"
+                >
+                  Photovoltaik-Angebote anfordern
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </a>
+                <a
+                  href="https://www.energievergleich.shop/kontakt"
+                  className="inline-flex items-center justify-center px-6 py-3 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary/5 transition-colors"
+                >
+                  Kontakt aufnehmen
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Articles Grid */}
+      <section className="w-full py-24 bg-white border-t border-gray-200">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12">
+            <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary mb-4">
+              {articles.length} Artikel in dieser Kategorie
+            </h2>
+            <p className="font-paragraph text-gray-600">
+              Lesen Sie unsere Ratgeber und erfahren Sie alles über Solaranlagen.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {articles.map((article, index) => (
+              <motion.div
+                key={article.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Link to={`/${article.slug}`} className="group h-full">
+                  <Card className="h-full hover:shadow-lg transition-all duration-300 border-none overflow-hidden flex flex-col">
+                    <CardHeader className="pb-3">
+                      <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors line-clamp-2">
+                        {article.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="flex-1 flex flex-col pb-6">
+                      <p className="font-paragraph text-sm text-gray-600 mb-6 line-clamp-3 flex-1">
+                        {article.teaser}
+                      </p>
+                      <div className="flex items-center justify-between text-xs text-gray-500 border-t pt-4">
+                        <div className="flex items-center gap-1">
+                          <Clock className="w-4 h-4" />
+                          <span>{article.readingTime} Min. Lesezeit</span>
+                        </div>
+                        <span className="text-gray-400">
+                          {new Date(article.lastUpdated).toLocaleDateString('de-DE')}
+                        </span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="w-full py-16 bg-primary text-primary-foreground">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight mb-6">
+            Interessiert an einer Solaranlage?
+          </h2>
+          <p className="font-paragraph text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+            Nutzen Sie unsere kostenlose Beratung und erfahren Sie, wie viel Sie mit einer Solaranlage sparen können.
+          </p>
+          <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 px-8 rounded-lg font-bold">
+            <Link to={ROUTES.photovoltaik}>
+              Kostenlose Beratung
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Link>
+          </Button>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+}

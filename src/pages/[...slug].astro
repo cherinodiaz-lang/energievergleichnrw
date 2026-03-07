@@ -1,0 +1,38 @@
+---
+import { SEO } from '@wix/seo/components';
+import { loadSEOTagsServiceConfig } from '@wix/seo/services';
+import { Head } from "@/components/Head";
+import AppRouter from "@/components/Router";
+import "@wix/wix-vibe-plugins/plugins-vars.css";
+import "@wix/wix-vibe-plugins/plugins-theme.css";
+import "@/styles/global.css";
+
+// CRITICAL: Exclude API routes from catch-all route
+// These are handled by dedicated endpoint files (sitemap.xml.ts, robots.txt.ts)
+const pathname = new URL(Astro.request.url).pathname;
+const excludedPaths = ['/sitemap.xml', '/robots.txt'];
+
+if (excludedPaths.includes(pathname)) {
+  // Return 404 to allow Astro to serve the API endpoint
+  return Astro.response.status = 404;
+}
+
+const seoTagsServiceConfig = await loadSEOTagsServiceConfig({
+  pageUrl: Astro.url.href,
+  itemData: {
+    pageName: 'Home',
+  },
+});
+---
+
+<html lang="en" class="w-full h-full">
+  <head>
+    <Head />
+    <SEO.Tags seoTagsServiceConfig={seoTagsServiceConfig} slot="seo-tags" />
+  </head>
+  <body class="w-full h-full">
+    <div id="root" class="w-full h-full">
+      <AppRouter client:only="react" />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,831 @@
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Flame, Building2, TrendingDown, Shield, Clock, Send, Sun, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import SEOHead from '@/components/SEOHead';
+import PassendeRatgeber from '@/components/PassendeRatgeber';
+import Breadcrumb from '@/components/Breadcrumb';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema';
+import TrustRow from '@/components/TrustRow';
+import RelatedPages from '@/components/RelatedPages';
+import { useNavigate, Link } from 'react-router-dom';
+import { getPageSEO } from '@/lib/seo-config';
+import { ROUTES } from '@/lib/routes';
+import { trackMethodikClick } from '@/services/form-submission';
+import { getRelatedPages } from '@/lib/internal-linking';
+
+export default function GewerbegasPage() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Wie oft kann ich meinen Gewerbegas-Anbieter wechseln?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sie können Ihren Gewerbegas-Anbieter jederzeit wechseln, sofern Sie die Kündigungsfrist einhalten. Bei den meisten Verträgen beträgt diese 4 Wochen zum Ende eines Kalendermonats. Nach einem Wechsel können Sie frühestens nach 12 Monaten erneut wechseln.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Ist der Wechsel des Gewerbegas-Anbieters kostenlos?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Ja, völlig kostenlos. Es fallen keine Gebühren für die Kündigung beim alten Anbieter oder die Anmeldung beim neuen an. Wir kümmern uns um alle Formalitäten.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Wie lange dauert ein Gewerbegas-Wechsel?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'In der Regel 4-6 Wochen. Ihre Gasversorgung wird nicht unterbrochen. Der neue Anbieter kümmert sich um alle notwendigen Schritte.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Kann ich während des Wechsels ohne Gas sein?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Nein. Ihre Gasversorgung ist gesetzlich geschützt. Im Notfall springt der Grundversorger ein.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Welche Daten benötige ich für einen Gewerbegas-Vergleich?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Postleitzahl und Gasverbrauch (in kWh). Den Verbrauch finden Sie auf Ihrer letzten Rechnung. Optional: Zählernummer und Heizungsart.'
+          }
+        }
+      ]
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(faqSchema);
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
+  const [companyName, setCompanyName] = useState('');
+  const [contactPerson, setContactPerson] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
+  const [postcode, setPostcode] = useState('');
+  const [city, setCity] = useState('');
+  const [consumption, setConsumption] = useState('');
+  const [companyType, setCompanyType] = useState('');
+  const [heatingType, setHeatingType] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    alert(`Vielen Dank für Ihre Anfrage, ${companyName}! Wir werden uns in Kürze bei Ihnen melden.`);
+    // Reset form
+    setCompanyName('');
+    setContactPerson('');
+    setEmail('');
+    setPhone('');
+    setAddress('');
+    setPostcode('');
+    setCity('');
+    setConsumption('');
+    setCompanyType('');
+    setHeatingType('');
+    setMessage('');
+  };
+
+  const seo = getPageSEO('gewerbegas');
+
+  const breadcrumbItems = [
+    { label: 'Startseite', path: '/' },
+    { label: 'Gewerbe', path: '#' },
+    { label: 'Gewerbegas', path: '/gewerbegas' },
+  ];
+
+  const breadcrumbSchema = [
+    { name: 'Startseite', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}` },
+    { name: 'Gewerbe', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}#gewerbe` },
+    { name: 'Gewerbegas', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.gewerbegas}` },
+  ];
+
+  return (
+    <div className="min-h-screen bg-background break-words leading-mobile">
+      <SEOHead
+        title={seo.title}
+        description={seo.description}
+        keywords={seo.keywords}
+        ogTitle={seo.ogTitle}
+        ogDescription={seo.ogDescription}
+      />
+      <BreadcrumbSchema items={breadcrumbSchema} />
+      <Header />
+      <Breadcrumb items={breadcrumbItems} />
+
+      {/* Hero Section */}
+      <section id="hero" className="w-full bg-primary text-primary-foreground py-32">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center max-w-4xl mx-auto"
+          >
+            <div className="flex justify-center mb-8">
+              <div className="bg-secondary p-4 rounded-2xl shadow-lg">
+                <Flame className="w-16 h-16 text-primary" />
+              </div>
+            </div>
+            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-8 leading-tight max-w-[22ch] sm:max-w-none break-words">
+              Gewerbegas für Ihr Unternehmen
+            </h1>
+            <p className="font-paragraph text-lg md:text-xl text-white font-medium max-w-3xl mx-auto leading-relaxed">
+              Profitieren Sie von maßgeschneiderten Gastarifen für Gewerbekunden in NRW. Senken Sie Ihre Heizkosten und setzen Sie auf nachhaltige Energie.
+            </p>
+            
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
+              <Button
+                onClick={() => document.getElementById('anfrage')?.scrollIntoView({ behavior: 'smooth' })}
+                className="bg-secondary text-secondary-foreground hover:bg-secondary/90 min-h-[44px] h-12 sm:h-14 px-6 sm:px-8 rounded-full text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 w-full sm:w-auto"
+              >
+                Jetzt Angebot anfordern
+              </Button>
+              <Link
+                to="/methodik"
+                onClick={trackMethodikClick}
+                className="text-white/80 hover:text-white transition-colors text-sm sm:text-base font-medium underline self-center sm:self-auto"
+              >
+                So vergleichen wir (Methodik)
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Content Section */}
+      <section className="w-full py-24 bg-white">
+        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="space-y-8">
+            <div>
+              <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Gewerbegas-Anfrage für NRW</h2>
+              
+              <p className="font-paragraph text-lg text-gray-700 mb-6">
+                Mit unserem kostenlosen Gewerbegas-Service finden Sie in wenigen Minuten den günstigsten Gastarif für Ihr Unternehmen in Nordrhein-Westfalen. Die Anfrage ist völlig kostenlos und unverbindlich – Sie geben nur Ihre Verbrauchsdaten ein und erhalten sofort individualisierte Angebote. Sparen Sie bis zu 25% Ihrer Gaskosten durch optimierte Gewerbegas-Tarife und profitieren Sie von persönlicher Beratung durch unsere Experten.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">So funktioniert die Anfrage – 5 Schritte</h3>
+              <ol className="font-paragraph text-gray-700 space-y-3 mb-6 list-decimal list-inside">
+                <li><strong>Jahresverbrauch eingeben:</strong> Geben Sie Ihren jährlichen Gasverbrauch in kWh ein (zu finden auf Ihrer letzten Gasrechnung)</li>
+                <li><strong>Zählernummer/Marktlokation (falls vorhanden):</strong> Tragen Sie diese Nummern ein, falls Sie diese bereits haben – sie ermöglichen präzisere Angebote</li>
+                <li><strong>Heizungsart und Prozesse:</strong> Geben Sie an, wofür Sie Gas nutzen (Heizung, Herd, Produktion)</li>
+                <li><strong>Postleitzahl und Laufzeitwunsch:</strong> Nennen Sie Ihren Standort und Ihre gewünschte Vertragslaufzeit</li>
+                <li><strong>Angebote vergleichen und wählen:</strong> Erhalten Sie mehrere Angebote, vergleichen Sie Preise, Laufzeiten und Konditionen und wählen Sie das beste Angebot</li>
+              </ol>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Gewerbegas anfragen: Welche Daten?</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-sm md:text-base">
+                  <thead>
+                    <tr className="bg-primary text-primary-foreground">
+                      <th className="border border-primary/20 px-3 md:px-4 py-3 text-left font-heading font-semibold">Feld</th>
+                      <th className="border border-primary/20 px-3 md:px-4 py-3 text-left font-heading font-semibold">Beispiel</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="hover:bg-primary/5 transition-colors">
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph font-semibold text-foreground">Jahresverbrauch (kWh)</td>
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph text-foreground/80">z.B. 300.000</td>
+                    </tr>
+                    <tr className="bg-primary/5 hover:bg-primary/10 transition-colors">
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph font-semibold text-foreground">PLZ/Ort</td>
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph text-foreground/80">z.B. 50667 Köln</td>
+                    </tr>
+                    <tr className="hover:bg-primary/5 transition-colors">
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph font-semibold text-foreground">Zählernummer/Marktlokation</td>
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph text-foreground/80">z.B. DE… / falls vorhanden</td>
+                    </tr>
+                    <tr className="bg-primary/5 hover:bg-primary/10 transition-colors">
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph font-semibold text-foreground">Nutzung/Prozess</td>
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph text-foreground/80">z.B. Heizung + Warmwasser</td>
+                    </tr>
+                    <tr className="hover:bg-primary/5 transition-colors">
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph font-semibold text-foreground">Preisgarantie Wunsch</td>
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph text-foreground/80">z.B. 12 Monate</td>
+                    </tr>
+                    <tr className="bg-primary/5 hover:bg-primary/10 transition-colors">
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph font-semibold text-foreground">Vertragslaufzeit</td>
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph text-foreground/80">z.B. 12 Monate</td>
+                    </tr>
+                    <tr className="hover:bg-primary/5 transition-colors">
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph font-semibold text-foreground">Abnahmemenge/Schwankung</td>
+                      <td className="border border-primary/20 px-3 md:px-4 py-3 font-paragraph text-foreground/80">z.B. saisonal</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Welche Angaben du brauchst</h3>
+              <ul className="font-paragraph text-gray-700 space-y-2 mb-6">
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">•</span>
+                  <span><strong>Verbrauch in kWh:</strong> Der wichtigste Wert – finden Sie ihn auf Ihrer letzten Gasrechnung unter „Jahresverbrauch"</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">•</span>
+                  <span><strong>Zählernummer/Marktlokation (falls vorhanden):</strong> Ermöglicht präzisere Angebote und schnellere Bearbeitung</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">•</span>
+                  <span><strong>Heizungsart/Prozess:</strong> Gasheizung, Gasherd, Produktionsprozesse oder Kombination</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">•</span>
+                  <span><strong>Laufzeitwunsch:</strong> Gewünschte Vertragslaufzeit (12, 24 oder 36 Monate)</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">•</span>
+                  <span><strong>Postleitzahl:</strong> Für regionale Tarife und Angebote</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Worauf du achten solltest</h3>
+              <ul className="font-paragraph text-gray-700 space-y-3 mb-6">
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Preisgarantie:</strong> Achten Sie auf die Dauer der Preisgarantie – mindestens 12 Monate sind empfehlenswert für Planungssicherheit</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Laufzeit:</strong> Vergleichen Sie Laufzeiten von 12 bis 36 Monaten – längere Laufzeiten bieten oft bessere Preise</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Kündigungsfrist:</strong> Prüfen Sie die Kündigungsfrist zum Vertragsende – kurze Fristen bieten mehr Flexibilität</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Abnahmemenge:</strong> Prüfen Sie, ob Ihre Verbrauchsmenge in die angebotenen Abnahmebänder passt</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✓</span>
+                  <span><strong>Angebotslaufzeit:</strong> Beachten Sie, wie lange das Angebot gültig ist – bei schnellen Marktveränderungen kann dies wichtig sein</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Häufige Fehler bei der Gewerbegas-Anfrage</h3>
+              <ul className="font-paragraph text-gray-700 space-y-3 mb-6">
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✗</span>
+                  <span><strong>Falscher Verbrauch eingeben:</strong> Ein fehlerhafter Jahresverbrauch führt zu unrealistischen Angeboten – überprüfen Sie die Zahl auf Ihrer Rechnung genau</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✗</span>
+                  <span><strong>Nur auf den Preis achten:</strong> Der niedrigste Preis ist nicht immer die beste Wahl – berücksichtigen Sie auch Laufzeit, Preisgarantie und Kündigungsfristen</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0">✗</span>
+                  <span><strong>Kündigungsfristen beim alten Anbieter ignorieren:</strong> Beachten Sie die Kündigungsfrist Ihres aktuellen Vertrags – wir kümmern uns um die Kündigung, aber Sie sollten die Fristen kennen</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Gewerbegas in NRW</h3>
+              <p className="font-paragraph text-gray-700 mb-4">
+                Nordrhein-Westfalen ist das wirtschaftsstärkste Bundesland Deutschlands mit über 800.000 Unternehmen aller Größen. Von Gastronomiebetrieben über Handwerksbetriebe bis zu Produktionsunternehmen – alle profitieren von optimierten Gewerbegas-Tarifen. Die Gaspreise für Gewerbekunden variieren je nach Verbrauch, Standort und Heizungsart. Unser Vergleich berücksichtigt diese regionalen und branchenspezifischen Unterschiede und zeigt Ihnen die besten Tarife für Ihr Unternehmen – ob in Düsseldorf, Köln, Essen, Dortmund oder einer anderen Stadt in NRW.
+              </p>
+            </div>
+
+            <div className="bg-secondary/10 border-l-4 border-secondary p-6 rounded">
+              <p className="font-paragraph text-gray-700 italic">
+                Jetzt unverbindlich Angebot anfordern und sparen Sie ab sofort bei Ihren Gaskosten!
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section id="vorteile" className="w-full bg-white py-24">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary mb-4">
+              Ihre Vorteile als Gewerbekunde
+            </h2>
+            <p className="font-paragraph text-lg text-foreground/80 max-w-3xl mx-auto">
+              Speziell auf die Bedürfnisse von Unternehmen zugeschnitten
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <Card className="h-full text-center">
+                <CardHeader>
+                  <div className="flex justify-center mb-4">
+                    <div className="bg-primary/10 p-4 rounded-xl">
+                      <TrendingDown className="w-10 h-10 text-primary" />
+                    </div>
+                  </div>
+                  <CardTitle className="font-heading text-xl text-primary">
+                    Kostenersparnis
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-foreground/80">
+                    Bis zu 25% Einsparung durch optimierte Gewerbegas-Tarife
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <Card className="h-full text-center">
+                <CardHeader>
+                  <div className="flex justify-center mb-4">
+                    <div className="bg-primary/10 p-4 rounded-xl">
+                      <Shield className="w-10 h-10 text-primary" />
+                    </div>
+                  </div>
+                  <CardTitle className="font-heading text-xl text-primary">
+                    Preisgarantie
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-foreground/80">
+                    Langfristige Verträge mit stabilen Gaspreisen
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <Card className="h-full text-center">
+                <CardHeader>
+                  <div className="flex justify-center mb-4">
+                    <div className="bg-primary/10 p-4 rounded-xl">
+                      <Flame className="w-10 h-10 text-primary" />
+                    </div>
+                  </div>
+                  <CardTitle className="font-heading text-xl text-primary">
+                    Klimaneutral
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-foreground/80">
+                    Klimaneutrales Gas für Ihr nachhaltiges Unternehmen
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <Card className="h-full text-center">
+                <CardHeader>
+                  <div className="flex justify-center mb-4">
+                    <div className="bg-primary/10 p-4 rounded-xl">
+                      <Clock className="w-10 h-10 text-primary" />
+                    </div>
+                  </div>
+                  <CardTitle className="font-heading text-xl text-primary">
+                    Persönliche Beratung
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-foreground/80">
+                    Dedizierter Ansprechpartner für Ihr Unternehmen
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Info Section */}
+      <section id="info" className="w-full bg-cover bg-center ox-hidden py-24" style={{ backgroundImage: 'linear-gradient(rgba(44, 110, 73, 0.85), rgba(44, 110, 73, 0.85))' }}>
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="bg-primary/10 rounded-2xl p-12 flex items-center justify-center">
+                <Flame className="w-64 h-64 text-primary" />
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary mb-6">
+                Maßgeschneiderte Gastarife für Ihr Gewerbe
+              </h2>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="font-heading text-2xl font-semibold text-foreground mb-3">
+                    Für wen eignet sich Gewerbegas?
+                  </h3>
+                  <p className="font-paragraph text-foreground/80">
+                    Gewerbegas ist ideal für Unternehmen mit Gasheizung, Produktionsbetriebe, Gastronomiebetriebe mit Gasherden, Werkstätten und alle gewerblichen Gasverbraucher in NRW.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-heading text-2xl font-semibold text-foreground mb-3">
+                    Wie funktioniert der Wechsel?
+                  </h3>
+                  <p className="font-paragraph text-foreground/80">
+                    Der Wechsel ist einfach und unkompliziert. Füllen Sie unser Anfrageformular aus, wir erstellen Ihnen ein individuelles Angebot und kümmern uns um alle Formalitäten. Ihre Gasversorgung bleibt während des gesamten Prozesses gesichert.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-heading text-2xl font-semibold text-foreground mb-3">
+                    Klimaneutrales Gas
+                  </h3>
+                  <p className="font-paragraph text-foreground/80">
+                    Wir bieten klimaneutrales Gas an, bei dem die CO₂-Emissionen durch zertifizierte Klimaschutzprojekte ausgeglichen werden. So heizen Sie nachhaltig und tragen aktiv zum Klimaschutz bei.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Request Form Section */}
+      <section id="anfrage" className="w-full bg-white py-24">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary mb-4">
+              Jetzt Angebot anfordern
+            </h2>
+            <p className="font-paragraph text-lg text-foreground/80 max-w-3xl mx-auto">
+              Füllen Sie das Formular aus und erhalten Sie ein individuelles Angebot für Gewerbegas
+            </p>
+          </div>
+
+          <Card className="max-w-4xl mx-auto shadow-sm md:shadow">
+            <CardHeader>
+              <CardTitle className="font-heading text-2xl">Anfrage für Gewerbegas</CardTitle>
+              <CardDescription className="font-paragraph">
+                Alle Felder mit * sind Pflichtfelder
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Company Information */}
+                <div className="space-y-6">
+                  <h3 className="font-heading text-xl font-semibold text-foreground">
+                    Unternehmensinformationen
+                  </h3>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="company-name" className="font-paragraph">Firmenname *</Label>
+                      <Input
+                        id="company-name"
+                        type="text"
+                        placeholder="Ihre Firma GmbH"
+                        value={companyName}
+                        onChange={(e) => setCompanyName(e.target.value)}
+                        required
+                        className="font-paragraph w-full"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="company-type" className="font-paragraph">Branche *</Label>
+                      <Select value={companyType} onValueChange={setCompanyType} required>
+                        <SelectTrigger id="company-type" className="font-paragraph w-full">
+                          <SelectValue placeholder="Wählen Sie..." />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="einzelhandel">Einzelhandel</SelectItem>
+                          <SelectItem value="gastro">Gastronomie</SelectItem>
+                          <SelectItem value="buero">Büro/Verwaltung</SelectItem>
+                          <SelectItem value="handwerk">Handwerk</SelectItem>
+                          <SelectItem value="produktion">Produktion</SelectItem>
+                          <SelectItem value="dienstleistung">Dienstleistung</SelectItem>
+                          <SelectItem value="sonstige">Sonstige</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Contact Person */}
+                <div className="space-y-6">
+                  <h3 className="font-heading text-xl font-semibold text-foreground">
+                    Ansprechpartner
+                  </h3>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="contact-person" className="font-paragraph">Name *</Label>
+                      <Input
+                        id="contact-person"
+                        type="text"
+                        placeholder="Max Mustermann"
+                        value={contactPerson}
+                        onChange={(e) => setContactPerson(e.target.value)}
+                        required
+                        className="font-paragraph w-full"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="email" className="font-paragraph">E-Mail *</Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="max@firma.de"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        className="font-paragraph w-full"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="phone" className="font-paragraph">Telefon *</Label>
+                      <Input
+                        id="phone"
+                        type="tel"
+                        placeholder="+49 211 1234 5678"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        required
+                        className="font-paragraph w-full"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Address */}
+                <div className="space-y-6">
+                  <h3 className="font-heading text-xl font-semibold text-foreground">
+                    Standort
+                  </h3>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="address" className="font-paragraph">Straße und Hausnummer *</Label>
+                    <Input
+                      id="address"
+                      type="text"
+                      placeholder="Musterstraße 123"
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                      required
+                      className="font-paragraph w-full"
+                    />
+                  </div>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="postcode" className="font-paragraph">Postleitzahl *</Label>
+                      <Input
+                        id="postcode"
+                        type="text"
+                        placeholder="40210"
+                        value={postcode}
+                        onChange={(e) => setPostcode(e.target.value)}
+                        required
+                        className="font-paragraph w-full"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="city" className="font-paragraph">Stadt *</Label>
+                      <Input
+                        id="city"
+                        type="text"
+                        placeholder="Düsseldorf"
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                        required
+                        className="font-paragraph w-full"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Consumption */}
+                <div className="space-y-6">
+                  <h3 className="font-heading text-xl font-semibold text-foreground">
+                    Verbrauchsinformationen
+                  </h3>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="consumption" className="font-paragraph">
+                        Jährlicher Gasverbrauch (kWh) *
+                      </Label>
+                      <Input
+                        id="consumption"
+                        type="number"
+                        placeholder="z.B. 100000"
+                        value={consumption}
+                        onChange={(e) => setConsumption(e.target.value)}
+                        required
+                        className="font-paragraph w-full"
+                      />
+                      <p className="font-paragraph text-sm text-foreground/60">
+                        Sie finden diese Information auf Ihrer letzten Gasrechnung
+                      </p>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="heating-type" className="font-paragraph">Heizungsart *</Label>
+                      <Select value={heatingType} onValueChange={setHeatingType} required>
+                        <SelectTrigger id="heating-type" className="font-paragraph w-full">
+                          <SelectValue placeholder="Wählen Sie..." />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="gasheizung">Gasheizung</SelectItem>
+                          <SelectItem value="gasherd">Gasherd</SelectItem>
+                          <SelectItem value="beides">Heizung und Herd</SelectItem>
+                          <SelectItem value="produktion">Produktionsprozesse</SelectItem>
+                          <SelectItem value="sonstige">Sonstige</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Additional Message */}
+                <div className="space-y-2">
+                  <Label htmlFor="message" className="font-paragraph">
+                    Zusätzliche Informationen (optional)
+                  </Label>
+                  <Textarea
+                    id="message"
+                    placeholder="Besondere Anforderungen, Fragen oder Anmerkungen..."
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    rows={4}
+                    className="font-paragraph w-full"
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 rounded-lg py-6 font-paragraph text-lg"
+                >
+                  <Send className="w-5 h-5 mr-2" />
+                  Angebot anfordern
+                </Button>
+
+                <p className="font-paragraph text-sm text-foreground/60 text-center">
+                  Mit dem Absenden des Formulars stimmen Sie unserer Datenschutzerklärung zu.
+                </p>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Trust Section */}
+      <section className="w-full py-24 bg-white">
+        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary mb-6">
+              Warum energievergleich.shop?
+            </h2>
+            <p className="font-paragraph text-lg text-gray-700 leading-relaxed">
+              Wir bieten Ihnen einen unabhängigen und kostenlosen Gewerbegas-Vergleich speziell für Ihre Anforderungen. Unsere Transparenz ist unser Versprechen: Wir vergleichen Gastarife nicht nur nach Preis, sondern auch nach Vertragsbedingungen, Preisgarantie und Kündigungsfristen. So finden Sie den Tarif, der wirklich zu Ihrem Unternehmen passt. Alle Informationen sind aktuell und entsprechen dem Stand Februar 2026. Haben Sie Fragen zu unserer Methodik?{' '}
+              <a 
+                href="/methodik" 
+                className="text-primary font-semibold hover:underline transition-colors"
+              >
+                So vergleichen wir (Methodik)
+              </a>
+              {' '}oder nehmen Sie{' '}
+              <a 
+                href="/kontakt" 
+                className="text-primary font-semibold hover:underline transition-colors"
+              >
+                Kontakt
+              </a>
+              {' '}mit uns auf.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Passende Ratgeber */}
+      <PassendeRatgeber moneyPageId="gewerbegas" limit={4} />
+
+      {/* For Business Important Section */}
+      <section className="w-full py-24 bg-background">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <h2 className="font-heading text-2xl font-bold text-primary mb-12">Für Unternehmen wichtig</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <a href="https://www.energievergleich.shop/gewerbestrom" className="group">
+              <Card className="h-full hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Gewerbestrom vergleichen</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">Optimieren Sie auch Ihre Stromkosten.</p>
+                  <Button variant="outline" size="sm">Mehr erfahren</Button>
+                </CardContent>
+              </Card>
+            </a>
+            <a href="https://www.energievergleich.shop/gasvergleich-nrw" className="group">
+              <Card className="h-full hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Gasvergleich NRW</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">Vergleichen Sie Gastarife für Ihr Gewerbe.</p>
+                  <Button variant="outline" size="sm">Mehr erfahren</Button>
+                </CardContent>
+              </Card>
+            </a>
+            <a href="https://www.energievergleich.shop/ratgeber/gewerbe" className="group">
+              <Card className="h-full hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Ratgeber: Energie fürs Gewerbe</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">Spezielle Informationen für Unternehmen.</p>
+                  <Button variant="outline" size="sm">Mehr erfahren</Button>
+                </CardContent>
+              </Card>
+            </a>
+            <a href="https://www.energievergleich.shop/kontakt" className="group">
+              <Card className="h-full hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Kontakt für Gewerbe-Angebote</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">Kostenlose Beratung für Ihr Unternehmen.</p>
+                  <Button variant="outline" size="sm">Kontakt aufnehmen</Button>
+                </CardContent>
+              </Card>
+            </a>
+            <a href="https://www.energievergleich.shop/methodik" className="group">
+              <Card className="h-full hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">So vergleichen wir: Methodik & Transparenz</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-sm text-gray-600 mb-4">Erfahren Sie unsere Vergleichskriterien.</p>
+                  <Button variant="outline" size="sm">Mehr erfahren</Button>
+                </CardContent>
+              </Card>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+}
