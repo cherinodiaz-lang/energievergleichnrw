@@ -1,5 +1,3 @@
-import { fetch } from 'wix-fetch'; // Annahme: wix-fetch ist im Frontend verfügbar
-
 const BASE_FUNCTIONS_URL = '/_functions'; // Pfad zu den Wix HTTP-Functions
 
 export async function getCities(zip) {
@@ -44,4 +42,11 @@ export async function getRates(params) {
     throw error;
   }
 }
+
+const egonApi = {
+  getCities,
+  getStreets,
+  getRates,
+};
+
 export default egonApi;
