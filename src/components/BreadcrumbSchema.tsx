@@ -1,17 +1,20 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { ROUTES } from '@/lib/routes';
 
 interface BreadcrumbItem {
   name: string;
   url: string;
 }
 
-export default function BreadcrumbSchema() {
+interface BreadcrumbSchemaProps {
+  items?: BreadcrumbItem[];
+}
+
+export default function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
   const location = useLocation();
 
   useEffect(() => {
-    const breadcrumbs = generateBreadcrumbs(location.pathname);
+    const breadcrumbs = items && items.length > 0 ? items : generateBreadcrumbs(location.pathname);
     
     if (breadcrumbs.length <= 1) return; // No breadcrumbs for home page
 
@@ -26,7 +29,7 @@ export default function BreadcrumbSchema() {
       })),
     };
 
-    let script = document.getElementById('breadcrumb-schema');
+    let script = document.getElementById('breadcrumb-schema') as HTMLScriptElement | null;
     if (!script) {
       script = document.createElement('script');
       script.id = 'breadcrumb-schema';
@@ -36,7 +39,7 @@ export default function BreadcrumbSchema() {
     } else {
       script.textContent = JSON.stringify(breadcrumbSchema);
     }
-  }, [location.pathname]);
+  }, [items, location.pathname]);
 
   return null;
 }

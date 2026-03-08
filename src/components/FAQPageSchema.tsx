@@ -35,7 +35,7 @@ export default function FAQPageSchema() {
       })),
     };
 
-    let script = document.getElementById('faq-page-schema');
+    let script = document.getElementById('faq-page-schema') as HTMLScriptElement | null;
     if (!script) {
       script = document.createElement('script');
       script.id = 'faq-page-schema';

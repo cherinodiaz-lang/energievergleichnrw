@@ -54,7 +54,7 @@ export default function LocalBusinessSchema() {
       ],
     };
 
-    let script = document.getElementById('local-business-schema');
+    let script = document.getElementById('local-business-schema') as HTMLScriptElement | null;
     if (!script) {
       script = document.createElement('script');
       script.id = 'local-business-schema';

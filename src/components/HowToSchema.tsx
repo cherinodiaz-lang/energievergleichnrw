@@ -37,7 +37,7 @@ export default function HowToSchema() {
       totalTime: 'PT10M',
     };
 
-    let script = document.getElementById('howto-schema');
+    let script = document.getElementById('howto-schema') as HTMLScriptElement | null;
     if (!script) {
       script = document.createElement('script');
       script.id = 'howto-schema';

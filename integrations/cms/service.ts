@@ -96,11 +96,12 @@ export class BaseCrudService {
   ): Promise<T> {
     try {
       const result = await items.insert(collectionId, itemData as Record<string, unknown>);
+      const insertedItem = result as { _id?: string } & Record<string, unknown>;
 
-      if (multiReferences && Object.keys(multiReferences).length > 0 && result._id) {
+      if (multiReferences && Object.keys(multiReferences).length > 0 && insertedItem._id) {
         for (const [propertyName, refIds] of Object.entries(multiReferences)) {
           if (Array.isArray(refIds) && refIds.length > 0) {
-            await items.insertReference(collectionId, propertyName, result._id, refIds as string[]);
+            await items.insertReference(collectionId, propertyName, insertedItem._id, refIds as string[]);
           }
         }
       }
