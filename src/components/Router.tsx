@@ -5,7 +5,6 @@ import { ScrollToTop } from '@/lib/scroll-to-top';
 import { SEO_CONFIG } from '@/lib/seo-config';
 import { ROUTES } from '@/lib/routes';
 import ErrorPage from '@/integrations/errorHandlers/ErrorPage';
-import HomePage from '@/components/pages/HomePage';
 import OrganizationSchema from '@/components/OrganizationSchema';
 import LocalBusinessSchema from '@/components/LocalBusinessSchema';
 import WebsiteSchema from '@/components/WebsiteSchema';
@@ -20,6 +19,7 @@ import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 const LazyFallback = () => <div className="min-h-screen flex items-center justify-center" />;
 
 // Lazy load non-critical pages for code-splitting
+const HomePage = lazy(() => import('@/components/pages/HomePage'));
 const GewerbestromPage = lazy(() => import('@/components/pages/GewerbestromPage'));
 const GewerbegasPage = lazy(() => import('@/components/pages/GewerbegasPage'));
 const StromvergleichNrwPage = lazy(() => import('@/components/pages/StromvergleichNrwPage'));
