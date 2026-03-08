@@ -34,7 +34,7 @@ export default function Header() {
     return location.pathname.startsWith(path);
   };
 
-  const getCtaLink
+  const getCtaLink = () => {
     const pathname = location.pathname;
     if (pathname.includes('strom')) return ROUTES.stromvergleich;
     if (pathname.includes('gas')) return ROUTES.gasvergleich;
