@@ -114,344 +114,202 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
-        routeMetadata: {
-          pageIdentifier: 'home',
-        },
       },
       {
         path: "gewerbestrom",
         element: <GewerbestromPage />,
-        routeMetadata: {
-          pageIdentifier: 'gewerbestrom',
-        },
       },
       {
         path: "gewerbegas",
         element: <GewerbegasPage />,
-        routeMetadata: {
-          pageIdentifier: 'gewerbegas',
-        },
       },
       {
         path: "stromvergleich-nrw",
         element: <StromvergleichNrwPage />,
-        routeMetadata: {
-          pageIdentifier: 'stromvergleich-nrw',
-        },
       },
       {
         path: "gasvergleich-nrw",
         element: <GasvergleichNrwPage />,
-        routeMetadata: {
-          pageIdentifier: 'gasvergleich-nrw',
-        },
       },
       {
         path: "photovoltaik-nrw",
         element: <PhotovoltaikNrwPage />,
-        routeMetadata: {
-          pageIdentifier: 'photovoltaik-nrw',
-        },
       },
       {
         path: "kontakt",
         element: <KontaktPage />,
-        routeMetadata: {
-          pageIdentifier: 'kontakt',
-        },
       },
       {
         path: ROUTES.impressum.slice(1),
         element: <ImpressumPage />,
-        routeMetadata: {
-          pageIdentifier: 'impressum',
-        },
       },
       {
         path: ROUTES.datenschutz.slice(1),
         element: <DatenschutzPage />,
-        routeMetadata: {
-          pageIdentifier: 'datenschutz',
-        },
       },
       {
         path: "methodik",
         element: <MethodologyPage />,
-        routeMetadata: {
-          pageIdentifier: 'methodik',
-        },
       },
       {
         path: "ratgeber",
         element: <RatgeberPage />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber',
-        },
       },
       {
         path: "ratgeber/strom",
         element: <StromCategoryPage />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-strom',
-        },
       },
       {
         path: "ratgeber/strom/grundversorgung",
         element: <StromGrundversorgungArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-strom-grundversorgung',
-        },
       },
       {
         path: "ratgeber/strom/sofortige-sparmoeglichkeiten",
         element: <SofortSparmoeglichkeitenArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-strom-sparmoeglichkeiten',
-        },
       },
       {
         path: "ratgeber/strom/stromanbieterwechsel-nrw",
         element: <StromanbieterwechselnNrwArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-strom-anbieterwechsel',
-        },
       },
       {
         path: "ratgeber/strom/grundversorgung-vs-sondervertrag",
         element: <GrundversorgungVsSondervertragArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-strom-grundversorgung-vs-sondervertrag',
-        },
       },
       {
         path: "ratgeber/strom/neukundenboni-fallen",
         element: <NeukndenbonusFallenArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-strom-neukundenboni',
-        },
       },
       {
         path: "ratgeber/strom/preiserhoeung-was-tun",
         element: <PreiserhoeungWasTunArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-strom-preiserhoeung',
-        },
       },
       {
         path: "ratgeber/strom/umzug-stromvertrag",
         element: <UmzugStromvertragArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-strom-umzug',
-        },
       },
       {
         path: "ratgeber/strom/stromtarif-vertragslaufzeit",
         element: <StromtarifVertragslaufzeitArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-strom-vertragslaufzeit',
-        },
       },
       {
         path: "ratgeber/strom/malo-id-zaehlernummer",
         element: <MaloIdZaehlernummerArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-strom-malo-id',
-        },
       },
       {
         path: "ratgeber/gas",
         element: <GasCategoryPage />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-gas',
-        },
       },
       {
         path: "ratgeber/gas/gasanbieter-wechseln-nrw",
         element: <GasanbieterWechselnNrwArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-gas-anbieterwechsel',
-        },
       },
       {
         path: "ratgeber/gas/grundversorgung-gas-sondervertrag",
         element: <GrundversorgungGasSondervertragArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-gas-grundversorgung-vs-sondervertrag',
-        },
       },
       {
         path: "ratgeber/gas/preiserhoeung-gas-rechte",
         element: <PreiserhoeungGasRechteArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-gas-preiserhoeung',
-        },
       },
       {
         path: "ratgeber/gas/umzug-gasvertrag",
         element: <UmzugGasvertragArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-gas-umzug',
-        },
       },
       {
         path: "ratgeber/gas/heizungsart-verbrauch",
         element: <HeizungsartVerbrauchArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-gas-heizungsart',
-        },
       },
       {
         path: "ratgeber/gas/gaspreisgarantie-worauf-achten",
         element: <GaspreisgarantieArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-gas-preisgarantie',
-        },
       },
       {
         path: "ratgeber/gewerbe",
         element: <GewerbeCategoryPage />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-gewerbe',
-        },
       },
       {
         path: "ratgeber/gewerbe/gewerbestrom-vertrag-worauf-achten",
         element: <GewerbestromVertragArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-gewerbe-stromvertrag',
-        },
       },
       {
         path: "ratgeber/gewerbe/gewerbegas-beschaffung-tipps",
         element: <GewerbegasBeschaffungArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-gewerbe-gasbeschaffung',
-        },
       },
       {
         path: "ratgeber/gewerbe/lastprofil-leistungspreis-arbeitspreis",
         element: <LastprofilLeistungspreisArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-gewerbe-lastprofil',
-        },
       },
       {
         path: "ratgeber/photovoltaik",
         element: <PhotovoltaikCategoryPage />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-photovoltaik',
-        },
       },
       {
         path: "ratgeber/photovoltaik/pv-kosten-nrw-wovon-abhaengig",
         element: <PVKostenNrwArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-photovoltaik-kosten',
-        },
       },
       {
         path: "ratgeber/photovoltaik/pv-speicher-lohnt-sich",
         element: <PVSpeicherArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-photovoltaik-speicher',
-        },
       },
       {
         path: "ratgeber/photovoltaik/einspeiseverguetung-verstehen",
         element: <EinspeiseverguetungArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-photovoltaik-einspeiseverguetung',
-        },
       },
       {
         path: "ratgeber/photovoltaik/dach-eignung-checkliste",
         element: <DachEignungArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-photovoltaik-dacheignung',
-        },
       },
       {
         path: "ratgeber/photovoltaik/angebote-vergleichen-fehler",
         element: <AngeboteVergleichenArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-photovoltaik-angebote',
-        },
       },
       {
         path: "ratgeber/wechselwissen",
         element: <WechselwissenCategoryPage />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-wechselwissen',
-        },
       },
       {
         path: "ratgeber/wechselwissen/kuendigungsfristen-strom-gas",
         element: <KuendigungsfristenArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-wechselwissen-kuendigungsfristen',
-        },
       },
       {
         path: "ratgeber/wechselwissen/lieferantenwechsel-ablauf",
         element: <LieferantenwechselAblaufArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-wechselwissen-wechselablauf',
-        },
       },
       {
         path: "ratgeber/wechselwissen/was-tun-wenn-wechsel-schiefgeht",
         element: <WechselSchiefgehtArticle />,
-        routeMetadata: {
-          pageIdentifier: 'ratgeber-wechselwissen-probleme',
-        },
       },
       {
         path: ROUTES.agb.slice(1),
         element: <AgbPage />,
-        routeMetadata: { pageIdentifier: 'agb' },
       },
       {
         path: ROUTES.widerruf.slice(1),
         element: <WiderrufPage />,
-        routeMetadata: { pageIdentifier: 'widerruf' },
       },
       {
         path: ROUTES.sitemap.slice(1),
         element: <SitemapPage />,
-        routeMetadata: { pageIdentifier: 'sitemap' },
       },
       {
         path: ROUTES.faq.slice(1),
         element: <FaqPage />,
-        routeMetadata: { pageIdentifier: 'faq' },
       },
       {
         path: "danke",
         element: <ThankYouPage />,
-        routeMetadata: {
-          pageIdentifier: 'thank-you',
-        },
       },
       {
         path: "thank-you",
         element: <ThankYouPage />,
-        routeMetadata: {
-          pageIdentifier: 'thank-you',
-        },
       },
       {
         path: "blog",
         element: <BlogPage />,
-        routeMetadata: {
-          pageIdentifier: 'blog',
-        },
       },
       {
         path: "blog/:slug",
         element: <BlogDetailPage />,
-        routeMetadata: {
-          pageIdentifier: 'blog-detail',
-        },
       },
       {
         path: "*",
