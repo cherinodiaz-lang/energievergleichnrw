@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 
 export type RouteKey =
   | "home"
+  | "ratgeber"
   | "stromvergleich"
   | "gasvergleich"
   | "photovoltaik"
@@ -34,6 +35,7 @@ export type RouteKey =
  */
 export const ROUTES: Record<RouteKey, string> = {
   home: "/",
+  ratgeber: "/ratgeber",
   stromvergleich: "/stromvergleich-nrw",
   gasvergleich: "/gasvergleich-nrw",
   photovoltaik: "/photovoltaik-nrw",

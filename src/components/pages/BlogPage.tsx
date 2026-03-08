@@ -144,46 +144,59 @@ export default function BlogPage() {
                   className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                 >
                   {posts.map((post, index) => (
-                    <motion.article
-                      key={post._id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.05 }}
-                      className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col h-full"
-                    >
-                      {post.thumbnail && (
-                        <div className="relative w-full h-48 overflow-hidden bg-light-grey">
-                          <Image
-                            src={post.thumbnail}
-                            alt={post.title || 'Blog post thumbnail'}
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                            width={400}
-                            height={200}
-                          />
-                        </div>
-                      )}
-                      <div className="p-6 flex flex-col flex-grow">
-                        {post.category && typeof post.category === 'object' && 'name' in post.category && (
-                          <span className="inline-block text-xs font-heading font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full mb-3 w-fit">
-                            {(post.category as any).name}
-                          </span>
-                        )}
-                        <h3 className="font-heading text-xl font-bold text-foreground mb-2 line-clamp-2">
-                          {post.title}
-                        </h3>
-                        <p className="font-paragraph text-sm text-foreground/70 mb-4 line-clamp-3 flex-grow">
-                          {post.excerpt}
-                        </p>
-                        <div className="flex items-center justify-between text-xs text-foreground/60 pt-4 border-t">
-                          {post.author && typeof post.author === 'object' && 'authorName' in post.author && (
-                            <span>Von {(post.author as any).authorName}</span>
+                    (() => {
+                      const categoryObj =
+                        post.category !== null && typeof post.category === 'object'
+                          ? (post.category as Record<string, unknown>)
+                          : null;
+                      const authorObj =
+                        post.author !== null && typeof post.author === 'object'
+                          ? (post.author as Record<string, unknown>)
+                          : null;
+
+                      return (
+                        <motion.article
+                          key={post._id}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.4, delay: index * 0.05 }}
+                          className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col h-full"
+                        >
+                          {post.thumbnail && (
+                            <div className="relative w-full h-48 overflow-hidden bg-light-grey">
+                              <Image
+                                src={post.thumbnail}
+                                alt={post.title || 'Blog post thumbnail'}
+                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                                width={400}
+                                height={200}
+                              />
+                            </div>
                           )}
-                          {post.readingTime && (
-                            <span>{post.readingTime} min Lesezeit</span>
-                          )}
-                        </div>
-                      </div>
-                    </motion.article>
+                          <div className="p-6 flex flex-col flex-grow">
+                            {categoryObj && typeof categoryObj.name === 'string' && (
+                              <span className="inline-block text-xs font-heading font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full mb-3 w-fit">
+                                {categoryObj.name}
+                              </span>
+                            )}
+                            <h3 className="font-heading text-xl font-bold text-foreground mb-2 line-clamp-2">
+                              {post.title}
+                            </h3>
+                            <p className="font-paragraph text-sm text-foreground/70 mb-4 line-clamp-3 flex-grow">
+                              {post.excerpt}
+                            </p>
+                            <div className="flex items-center justify-between text-xs text-foreground/60 pt-4 border-t">
+                              {authorObj && typeof authorObj.authorName === 'string' && (
+                                <span>Von {authorObj.authorName}</span>
+                              )}
+                              {post.readingTime && (
+                                <span>{post.readingTime} min Lesezeit</span>
+                              )}
+                            </div>
+                          </div>
+                        </motion.article>
+                      );
+                    })()
                   ))}
                 </motion.div>
 

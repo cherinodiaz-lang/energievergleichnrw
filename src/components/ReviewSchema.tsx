@@ -63,7 +63,7 @@ export default function ReviewSchema() {
       ],
     };
 
-    let script = document.getElementById('review-schema');
+    let script = document.getElementById('review-schema') as HTMLScriptElement | null;
     if (!script) {
       script = document.createElement('script');
       script.id = 'review-schema';

@@ -91,6 +91,119 @@ export function getFallbackInternalLinks(currentPath: string, maxLinks = 4): Int
     .slice(0, maxLinks);
 }
 
+const RELATED_PAGES_BY_CATEGORY: Record<InternalLinkItem["category"], RelatedPage[]> = {
+  strom: [
+    {
+      title: "Gasvergleich NRW",
+      path: "/gasvergleich-nrw",
+      description: "Vergleichen Sie Gastarife in NRW und senken Sie Ihre Heizkosten."
+    },
+    {
+      title: "Photovoltaik NRW",
+      path: "/photovoltaik-nrw",
+      description: "Erfahren Sie, wie Sie mit Solarstrom dauerhaft Kosten sparen."
+    },
+    {
+      title: "Gewerbestrom",
+      path: "/gewerbestrom",
+      description: "Optimieren Sie Stromkosten für Ihr Unternehmen."
+    }
+  ],
+  gas: [
+    {
+      title: "Stromvergleich NRW",
+      path: "/stromvergleich-nrw",
+      description: "Finden Sie günstige Stromtarife für Ihren Haushalt."
+    },
+    {
+      title: "Photovoltaik NRW",
+      path: "/photovoltaik-nrw",
+      description: "Nutzen Sie Solarenergie als langfristige Ergänzung."
+    },
+    {
+      title: "Gewerbegas",
+      path: "/gewerbegas",
+      description: "Gastarife für Unternehmen in NRW vergleichen."
+    }
+  ],
+  photovoltaik: [
+    {
+      title: "Stromvergleich NRW",
+      path: "/stromvergleich-nrw",
+      description: "Kombinieren Sie PV mit einem günstigen Reststromtarif."
+    },
+    {
+      title: "Gasvergleich NRW",
+      path: "/gasvergleich-nrw",
+      description: "Auch Heizkosten lassen sich effektiv optimieren."
+    },
+    {
+      title: "Ratgeber",
+      path: "/ratgeber",
+      description: "Weitere Praxistipps rund um Energie und Wechsel."
+    }
+  ],
+  ratgeber: [
+    {
+      title: "Stromvergleich NRW",
+      path: "/stromvergleich-nrw",
+      description: "Jetzt passende Stromtarife in NRW finden."
+    },
+    {
+      title: "Gasvergleich NRW",
+      path: "/gasvergleich-nrw",
+      description: "Vergleichen Sie Gastarife und sparen Sie sofort."
+    },
+    {
+      title: "Photovoltaik NRW",
+      path: "/photovoltaik-nrw",
+      description: "Alles über PV, Kosten und Förderung in NRW."
+    }
+  ],
+  gewerbe: [
+    {
+      title: "Gewerbestrom",
+      path: "/gewerbestrom",
+      description: "Stromtarife für Betriebe transparent vergleichen."
+    },
+    {
+      title: "Gewerbegas",
+      path: "/gewerbegas",
+      description: "Gastarife für Unternehmen mit Planungssicherheit."
+    },
+    {
+      title: "Ratgeber Gewerbe",
+      path: "/ratgeber/gewerbe",
+      description: "Praxiswissen für Energieeinkauf im Unternehmen."
+    }
+  ],
+  allgemein: [
+    {
+      title: "Stromvergleich NRW",
+      path: "/stromvergleich-nrw",
+      description: "Stromkosten senken durch Tarifvergleich."
+    },
+    {
+      title: "Gasvergleich NRW",
+      path: "/gasvergleich-nrw",
+      description: "Gastarife prüfen und direkt wechseln."
+    },
+    {
+      title: "Ratgeber",
+      path: "/ratgeber",
+      description: "Hintergrundwissen zu Tarifen, Wechsel und Rechten."
+    }
+  ]
+};
+
+export function getRelatedPages(currentPath: string, maxLinks = 3): RelatedPage[] {
+  const matched = INTERNAL_LINKS.find((item) => currentPath.startsWith(item.href));
+  const category = matched?.category ?? "allgemein";
+  return RELATED_PAGES_BY_CATEGORY[category]
+    .filter((page) => page.path !== currentPath)
+    .slice(0, maxLinks);
+}
+
 export interface BreadcrumbItem {
   label: string;
   path: string;
