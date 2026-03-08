@@ -34,7 +34,7 @@ export default function OrganizationSchema() {
       },
     };
 
-    let script = document.getElementById('organization-schema');
+    let script = document.getElementById('organization-schema') as HTMLScriptElement | null;
     if (!script) {
       script = document.createElement('script');
       script.id = 'organization-schema';

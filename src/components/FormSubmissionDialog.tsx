@@ -14,8 +14,7 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Link, useNavigate } from 'react-router-dom';
-import { submitForm, trackFormSubmission, validateForm } from '@/services/form-submission';
-import { ROUTES } from '@/lib/routes';
+import { submitForm, trackFormSubmission, validateForm, type FormSubmissionData } from '@/services/form-submission';
 
 export interface FormSubmissionDialogProps {
   isOpen: boolean;
@@ -64,10 +63,14 @@ export default function FormSubmissionDialog({
     setErrors({});
 
     try {
-      const result = await submitForm({
-        ...formData,
-        type: formType
-      });
+      const submissionData: FormSubmissionData = {
+        ...(formData as Record<string, any>),
+        type: formType,
+        name: String(formData.name ?? ''),
+        email: String(formData.email ?? ''),
+      };
+
+      const result = await submitForm(submissionData);
 
       if (result.success) {
         // Track in GA4 (consent-safe)

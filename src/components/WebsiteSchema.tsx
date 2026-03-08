@@ -18,7 +18,7 @@ export default function WebsiteSchema() {
       },
     };
 
-    let script = document.getElementById('website-schema');
+    let script = document.getElementById('website-schema') as HTMLScriptElement | null;
     if (!script) {
       script = document.createElement('script');
       script.id = 'website-schema';

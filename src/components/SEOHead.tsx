@@ -5,6 +5,7 @@ interface SEOHeadProps {
   title: string;
   description: string;
   canonical?: string;
+  noindex?: boolean;
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: string;
@@ -35,6 +36,7 @@ export default function SEOHead({
   title,
   description,
   canonical,
+  noindex = false,
   ogTitle,
   ogDescription,
   ogImage = DEFAULT_IMAGE,
@@ -50,6 +52,9 @@ export default function SEOHead({
   const location = useLocation();
 
   const canonicalUrl = getCanonicalUrl(canonical, location.pathname);
+  const effectiveRobots = noindex
+    ? "noindex, nofollow"
+    : robots;
 
   useEffect(() => {
     document.title = title;
@@ -87,7 +92,7 @@ export default function SEOHead({
     // Basic SEO
     setMeta("description", description);
     if (keywords) setMeta("keywords", keywords);
-    setMeta("robots", robots);
+    setMeta("robots", effectiveRobots);
     setMeta("author", author);
 
     // Canonical
@@ -118,6 +123,8 @@ export default function SEOHead({
     twitterImage,
     keywords,
     robots,
+    noindex,
+    effectiveRobots,
     author,
     location.pathname,
   ]);
