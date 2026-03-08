@@ -34,6 +34,7 @@ export default defineConfig({
     wix({
       htmlEmbeds: isBuild,
       auth: true,
+      robots: false,
     }),
     ...(isBuild ? [monitoring()] : []),
     react(isBuild ? {} : {

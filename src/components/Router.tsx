@@ -1,5 +1,5 @@
 import { MemberProvider } from '@/integrations';
-import { createBrowserRouter, RouterProvider, Navigate, Outlet } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Navigate, Outlet, useLocation } from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
 import { ScrollToTop } from '@/lib/scroll-to-top';
 import { SEO_CONFIG } from '@/lib/seo-config';
@@ -10,7 +10,6 @@ import OrganizationSchema from '@/components/OrganizationSchema';
 import LocalBusinessSchema from '@/components/LocalBusinessSchema';
 import WebsiteSchema from '@/components/WebsiteSchema';
 import SearchConsoleVerification from '@/components/SearchConsoleVerification';
-import SitemapNotification from '@/components/SitemapNotification';
 import { initializeGA4 } from '@/services/ga4-tracking';
 import HowToSchema from '@/components/HowToSchema';
 import ReviewSchema from '@/components/ReviewSchema';
@@ -82,6 +81,8 @@ const FaqPage = lazy(() => import('@/components/pages/FaqPage').catch(() => ({ d
 
 // Layout component that includes ScrollToTop and SEO components
 function Layout() {
+  const location = useLocation();
+
   // Initialize GA4 on app load (consent mode enabled by default)
   useEffect(() => {
     if (SEO_CONFIG.googleAnalyticsId) {
@@ -89,18 +90,24 @@ function Layout() {
     }
   }, []);
 
+  const normalizedPath =
+    location.pathname === '/' ? '/' : location.pathname.replace(/\/+$/, '');
+  const isHomePage = normalizedPath === '/';
+  const isFaqPage = normalizedPath === ROUTES.faq;
+  const shouldRenderHowToAndReviewSchema = isHomePage;
+  const shouldRenderFaqSchema = isHomePage || isFaqPage;
+
   return (
     <div className="min-w-0 overflow-x-hidden ox-hidden">
       <ScrollToTop />
       <OrganizationSchema />
       <LocalBusinessSchema />
       <WebsiteSchema />
-      <HowToSchema />
-      <ReviewSchema />
-      <FAQPageSchema />
+      {shouldRenderHowToAndReviewSchema && <HowToSchema />}
+      {shouldRenderHowToAndReviewSchema && <ReviewSchema />}
+      {shouldRenderFaqSchema && <FAQPageSchema />}
       <BreadcrumbSchema />
       <SearchConsoleVerification verificationCode={SEO_CONFIG.googleSearchConsoleVerification} />
-      <SitemapNotification />
       <Suspense fallback={<LazyFallback />}>
         <Outlet />
       </Suspense>
@@ -123,335 +130,335 @@ const router = createBrowserRouter([
       },
       {
         path: "gewerbestrom",
-        element: <Suspense fallback={<LazyFallback />}><GewerbestromPage /></Suspense>,
+        element: <GewerbestromPage />,
         routeMetadata: {
           pageIdentifier: 'gewerbestrom',
         },
       },
       {
         path: "gewerbegas",
-        element: <Suspense fallback={<LazyFallback />}><GewerbegasPage /></Suspense>,
+        element: <GewerbegasPage />,
         routeMetadata: {
           pageIdentifier: 'gewerbegas',
         },
       },
       {
         path: "stromvergleich-nrw",
-        element: <Suspense fallback={<LazyFallback />}><StromvergleichNrwPage /></Suspense>,
+        element: <StromvergleichNrwPage />,
         routeMetadata: {
           pageIdentifier: 'stromvergleich-nrw',
         },
       },
       {
         path: "gasvergleich-nrw",
-        element: <Suspense fallback={<LazyFallback />}><GasvergleichNrwPage /></Suspense>,
+        element: <GasvergleichNrwPage />,
         routeMetadata: {
           pageIdentifier: 'gasvergleich-nrw',
         },
       },
       {
         path: "photovoltaik-nrw",
-        element: <Suspense fallback={<LazyFallback />}><PhotovoltaikNrwPage /></Suspense>,
+        element: <PhotovoltaikNrwPage />,
         routeMetadata: {
           pageIdentifier: 'photovoltaik-nrw',
         },
       },
       {
         path: "kontakt",
-        element: <Suspense fallback={<LazyFallback />}><KontaktPage /></Suspense>,
+        element: <KontaktPage />,
         routeMetadata: {
           pageIdentifier: 'kontakt',
         },
       },
       {
         path: ROUTES.impressum.slice(1),
-        element: <Suspense fallback={<LazyFallback />}><ImpressumPage /></Suspense>,
+        element: <ImpressumPage />,
         routeMetadata: {
           pageIdentifier: 'impressum',
         },
       },
       {
         path: ROUTES.datenschutz.slice(1),
-        element: <Suspense fallback={<LazyFallback />}><DatenschutzPage /></Suspense>,
+        element: <DatenschutzPage />,
         routeMetadata: {
           pageIdentifier: 'datenschutz',
         },
       },
       {
         path: "methodik",
-        element: <Suspense fallback={<LazyFallback />}><MethodologyPage /></Suspense>,
+        element: <MethodologyPage />,
         routeMetadata: {
           pageIdentifier: 'methodik',
         },
       },
       {
         path: "ratgeber",
-        element: <Suspense fallback={<LazyFallback />}><RatgeberPage /></Suspense>,
+        element: <RatgeberPage />,
         routeMetadata: {
           pageIdentifier: 'ratgeber',
         },
       },
       {
         path: "ratgeber/strom",
-        element: <Suspense fallback={<LazyFallback />}><StromCategoryPage /></Suspense>,
+        element: <StromCategoryPage />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-strom',
         },
       },
       {
         path: "ratgeber/strom/grundversorgung",
-        element: <Suspense fallback={<LazyFallback />}><StromGrundversorgungArticle /></Suspense>,
+        element: <StromGrundversorgungArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-strom-grundversorgung',
         },
       },
       {
         path: "ratgeber/strom/sofortige-sparmoeglichkeiten",
-        element: <Suspense fallback={<LazyFallback />}><SofortSparmoeglichkeitenArticle /></Suspense>,
+        element: <SofortSparmoeglichkeitenArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-strom-sparmoeglichkeiten',
         },
       },
       {
         path: "ratgeber/strom/stromanbieterwechsel-nrw",
-        element: <Suspense fallback={<LazyFallback />}><StromanbieterwechselnNrwArticle /></Suspense>,
+        element: <StromanbieterwechselnNrwArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-strom-anbieterwechsel',
         },
       },
       {
         path: "ratgeber/strom/grundversorgung-vs-sondervertrag",
-        element: <Suspense fallback={<LazyFallback />}><GrundversorgungVsSondervertragArticle /></Suspense>,
+        element: <GrundversorgungVsSondervertragArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-strom-grundversorgung-vs-sondervertrag',
         },
       },
       {
         path: "ratgeber/strom/neukundenboni-fallen",
-        element: <Suspense fallback={<LazyFallback />}><NeukndenbonusFallenArticle /></Suspense>,
+        element: <NeukndenbonusFallenArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-strom-neukundenboni',
         },
       },
       {
         path: "ratgeber/strom/preiserhoeung-was-tun",
-        element: <Suspense fallback={<LazyFallback />}><PreiserhoeungWasTunArticle /></Suspense>,
+        element: <PreiserhoeungWasTunArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-strom-preiserhoeung',
         },
       },
       {
         path: "ratgeber/strom/umzug-stromvertrag",
-        element: <Suspense fallback={<LazyFallback />}><UmzugStromvertragArticle /></Suspense>,
+        element: <UmzugStromvertragArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-strom-umzug',
         },
       },
       {
         path: "ratgeber/strom/stromtarif-vertragslaufzeit",
-        element: <Suspense fallback={<LazyFallback />}><StromtarifVertragslaufzeitArticle /></Suspense>,
+        element: <StromtarifVertragslaufzeitArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-strom-vertragslaufzeit',
         },
       },
       {
         path: "ratgeber/strom/malo-id-zaehlernummer",
-        element: <Suspense fallback={<LazyFallback />}><MaloIdZaehlernummerArticle /></Suspense>,
+        element: <MaloIdZaehlernummerArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-strom-malo-id',
         },
       },
       {
         path: "ratgeber/gas",
-        element: <Suspense fallback={<LazyFallback />}><GasCategoryPage /></Suspense>,
+        element: <GasCategoryPage />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-gas',
         },
       },
       {
         path: "ratgeber/gas/gasanbieter-wechseln-nrw",
-        element: <Suspense fallback={<LazyFallback />}><GasanbieterWechselnNrwArticle /></Suspense>,
+        element: <GasanbieterWechselnNrwArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-gas-anbieterwechsel',
         },
       },
       {
         path: "ratgeber/gas/grundversorgung-gas-sondervertrag",
-        element: <Suspense fallback={<LazyFallback />}><GrundversorgungGasSondervertragArticle /></Suspense>,
+        element: <GrundversorgungGasSondervertragArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-gas-grundversorgung-vs-sondervertrag',
         },
       },
       {
         path: "ratgeber/gas/preiserhoeung-gas-rechte",
-        element: <Suspense fallback={<LazyFallback />}><PreiserhoeungGasRechteArticle /></Suspense>,
+        element: <PreiserhoeungGasRechteArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-gas-preiserhoeung',
         },
       },
       {
         path: "ratgeber/gas/umzug-gasvertrag",
-        element: <Suspense fallback={<LazyFallback />}><UmzugGasvertragArticle /></Suspense>,
+        element: <UmzugGasvertragArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-gas-umzug',
         },
       },
       {
         path: "ratgeber/gas/heizungsart-verbrauch",
-        element: <Suspense fallback={<LazyFallback />}><HeizungsartVerbrauchArticle /></Suspense>,
+        element: <HeizungsartVerbrauchArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-gas-heizungsart',
         },
       },
       {
         path: "ratgeber/gas/gaspreisgarantie-worauf-achten",
-        element: <Suspense fallback={<LazyFallback />}><GaspreisgarantieArticle /></Suspense>,
+        element: <GaspreisgarantieArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-gas-preisgarantie',
         },
       },
       {
         path: "ratgeber/gewerbe",
-        element: <Suspense fallback={<LazyFallback />}><GewerbeCategoryPage /></Suspense>,
+        element: <GewerbeCategoryPage />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-gewerbe',
         },
       },
       {
         path: "ratgeber/gewerbe/gewerbestrom-vertrag-worauf-achten",
-        element: <Suspense fallback={<LazyFallback />}><GewerbestromVertragArticle /></Suspense>,
+        element: <GewerbestromVertragArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-gewerbe-stromvertrag',
         },
       },
       {
         path: "ratgeber/gewerbe/gewerbegas-beschaffung-tipps",
-        element: <Suspense fallback={<LazyFallback />}><GewerbegasBeschaffungArticle /></Suspense>,
+        element: <GewerbegasBeschaffungArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-gewerbe-gasbeschaffung',
         },
       },
       {
         path: "ratgeber/gewerbe/lastprofil-leistungspreis-arbeitspreis",
-        element: <Suspense fallback={<LazyFallback />}><LastprofilLeistungspreisArticle /></Suspense>,
+        element: <LastprofilLeistungspreisArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-gewerbe-lastprofil',
         },
       },
       {
         path: "ratgeber/photovoltaik",
-        element: <Suspense fallback={<LazyFallback />}><PhotovoltaikCategoryPage /></Suspense>,
+        element: <PhotovoltaikCategoryPage />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-photovoltaik',
         },
       },
       {
         path: "ratgeber/photovoltaik/pv-kosten-nrw-wovon-abhaengig",
-        element: <Suspense fallback={<LazyFallback />}><PVKostenNrwArticle /></Suspense>,
+        element: <PVKostenNrwArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-photovoltaik-kosten',
         },
       },
       {
         path: "ratgeber/photovoltaik/pv-speicher-lohnt-sich",
-        element: <Suspense fallback={<LazyFallback />}><PVSpeicherArticle /></Suspense>,
+        element: <PVSpeicherArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-photovoltaik-speicher',
         },
       },
       {
         path: "ratgeber/photovoltaik/einspeiseverguetung-verstehen",
-        element: <Suspense fallback={<LazyFallback />}><EinspeiseverguetungArticle /></Suspense>,
+        element: <EinspeiseverguetungArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-photovoltaik-einspeiseverguetung',
         },
       },
       {
         path: "ratgeber/photovoltaik/dach-eignung-checkliste",
-        element: <Suspense fallback={<LazyFallback />}><DachEignungArticle /></Suspense>,
+        element: <DachEignungArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-photovoltaik-dacheignung',
         },
       },
       {
         path: "ratgeber/photovoltaik/angebote-vergleichen-fehler",
-        element: <Suspense fallback={<LazyFallback />}><AngeboteVergleichenArticle /></Suspense>,
+        element: <AngeboteVergleichenArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-photovoltaik-angebote',
         },
       },
       {
         path: "ratgeber/wechselwissen",
-        element: <Suspense fallback={<LazyFallback />}><WechselwissenCategoryPage /></Suspense>,
+        element: <WechselwissenCategoryPage />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-wechselwissen',
         },
       },
       {
         path: "ratgeber/wechselwissen/kuendigungsfristen-strom-gas",
-        element: <Suspense fallback={<LazyFallback />}><KuendigungsfristenArticle /></Suspense>,
+        element: <KuendigungsfristenArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-wechselwissen-kuendigungsfristen',
         },
       },
       {
         path: "ratgeber/wechselwissen/lieferantenwechsel-ablauf",
-        element: <Suspense fallback={<LazyFallback />}><LieferantenwechselAblaufArticle /></Suspense>,
+        element: <LieferantenwechselAblaufArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-wechselwissen-wechselablauf',
         },
       },
       {
         path: "ratgeber/wechselwissen/was-tun-wenn-wechsel-schiefgeht",
-        element: <Suspense fallback={<LazyFallback />}><WechselSchiefgehtArticle /></Suspense>,
+        element: <WechselSchiefgehtArticle />,
         routeMetadata: {
           pageIdentifier: 'ratgeber-wechselwissen-probleme',
         },
       },
       {
         path: ROUTES.agb.slice(1),
-        element: <Suspense fallback={<LazyFallback />}><AgbPage /></Suspense>,
+        element: <AgbPage />,
         routeMetadata: { pageIdentifier: 'agb' },
       },
       {
         path: ROUTES.widerruf.slice(1),
-        element: <Suspense fallback={<LazyFallback />}><WiderrufPage /></Suspense>,
+        element: <WiderrufPage />,
         routeMetadata: { pageIdentifier: 'widerruf' },
       },
       {
         path: ROUTES.sitemap.slice(1),
-        element: <Suspense fallback={<LazyFallback />}><SitemapPage /></Suspense>,
+        element: <SitemapPage />,
         routeMetadata: { pageIdentifier: 'sitemap' },
       },
       {
         path: ROUTES.faq.slice(1),
-        element: <Suspense fallback={<LazyFallback />}><FaqPage /></Suspense>,
+        element: <FaqPage />,
         routeMetadata: { pageIdentifier: 'faq' },
       },
       {
         path: "danke",
-        element: <Suspense fallback={<LazyFallback />}><ThankYouPage /></Suspense>,
+        element: <ThankYouPage />,
         routeMetadata: {
           pageIdentifier: 'thank-you',
         },
       },
       {
         path: "thank-you",
-        element: <Suspense fallback={<LazyFallback />}><ThankYouPage /></Suspense>,
+        element: <ThankYouPage />,
         routeMetadata: {
           pageIdentifier: 'thank-you',
         },
       },
       {
         path: "blog",
-        element: <Suspense fallback={<LazyFallback />}><BlogPage /></Suspense>,
+        element: <BlogPage />,
         routeMetadata: {
           pageIdentifier: 'blog',
         },
       },
       {
         path: "blog/:slug",
-        element: <Suspense fallback={<LazyFallback />}><BlogDetailPage /></Suspense>,
+        element: <BlogDetailPage />,
         routeMetadata: {
           pageIdentifier: 'blog-detail',
         },
