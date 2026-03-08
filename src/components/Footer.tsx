@@ -1,26 +1,15 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Zap, Mail, Phone, MapPin, Facebook, Linkedin, Globe } from 'lucide-react';
-import { ROUTES, NAV_SERVICE, NAV_LEGAL } from '@/lib/routes';
+import { ROUTES, NAV_SERVICE, NAV_LEGAL, NAV_SECONDARY } from '@/lib/routes';
 
 export default function Footer() {
-  const navigate = useNavigate();
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const navigateToSection = (sectionId: string) => {
-    navigate(ROUTES.home);
-    setTimeout(() => {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 100);
-  };
+  const comparisonLinks = [
+    { key: 'stromvergleich', label: 'Stromvergleich NRW', to: ROUTES.stromvergleich },
+    { key: 'gasvergleich', label: 'Gasvergleich NRW', to: ROUTES.gasvergleich },
+    { key: 'photovoltaik', label: 'Photovoltaik NRW', to: ROUTES.photovoltaik },
+    { key: 'gewerbestrom', label: 'Gewerbestrom', to: ROUTES.gewerbestrom },
+    { key: 'gewerbegas', label: 'Gewerbegas', to: ROUTES.gewerbegas },
+  ];
 
   return (
     <footer className="bg-primary text-primary-foreground">
@@ -64,6 +53,23 @@ export default function Footer() {
             <h3 className="font-heading font-semibold text-base sm:text-lg mb-4 sm:mb-6">Service</h3>
             <ul className="space-y-2 sm:space-y-3">
               {NAV_SERVICE.map((item) => (
+                <li key={item.key}>
+                  <Link
+                    to={item.to}
+                    className="font-paragraph text-xs sm:text-sm opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Spalte 3 - Vergleich */}
+          <div>
+            <h3 className="font-heading font-semibold text-base sm:text-lg mb-4 sm:mb-6">Vergleiche</h3>
+            <ul className="space-y-2 sm:space-y-3">
+              {comparisonLinks.map((item) => (
                 <li key={item.key}>
                   <Link
                     to={item.to}
@@ -135,6 +141,21 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-primary-foreground/20 mt-8 sm:mt-12 pt-6 sm:pt-8">
+          <nav aria-label="Interne SEO Links" className="mb-4 sm:mb-6">
+            <ul className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs sm:text-sm leading-snug">
+              {NAV_SECONDARY.map((item) => (
+                <li key={item.key}>
+                  <Link
+                    to={item.to}
+                    className="font-paragraph opacity-80 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-6">
             <p className="font-paragraph text-xs sm:text-sm opacity-80">
               © 2026 energievergleich.shop - Alle Rechte vorbehalten.

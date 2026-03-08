@@ -34,7 +34,7 @@ export default function Header() {
     return location.pathname.startsWith(path);
   };
 
-  const getCtaLink
+  const getCtaLink = () => {
     const pathname = location.pathname;
     if (pathname.includes('strom')) return ROUTES.stromvergleich;
     if (pathname.includes('gas')) return ROUTES.gasvergleich;
@@ -148,28 +148,44 @@ export default function Header() {
                 {NAV_MAIN.map((item) => (
                   <li key={item.key}>
                     <>
-                      <button
-                        onClick={() => {
-                          if (item.submenu) {
-                            setOpenSubmenu(openSubmenu === item.key ? null : item.key);
-                          } else {
-                            setMobileMenuOpen(false);
-                          }
-                        }}
-                        className={`w-full text-left font-paragraph font-medium text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset transition-colors py-3 sm:py-4 px-3 sm:px-4 flex items-center justify-between min-h-12 ${
-                          isActiveLink(item.to)
-                            ? 'text-primary bg-primary/5'
-                            : 'text-foreground hover:text-primary'
-                        }`}
-                      >
-                        <span>{item.label}</span>
-                        {item.submenu && (
-                          <ChevronDown 
-                            className={`w-4 h-4 transition-transform ${openSubmenu === item.key ? 'rotate-180' : ''}`}
-                            aria-hidden="true"
-                          />
-                        )}
-                      </button>
+                      {item.submenu ? (
+                        <div className="flex items-center justify-between py-3 sm:py-4 px-3 sm:px-4 min-h-12">
+                          <Link
+                            to={item.to}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className={`font-paragraph font-medium text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset rounded transition-colors ${
+                              isActiveLink(item.to)
+                                ? 'text-primary'
+                                : 'text-foreground hover:text-primary'
+                            }`}
+                          >
+                            {item.label}
+                          </Link>
+                          <button
+                            onClick={() => setOpenSubmenu(openSubmenu === item.key ? null : item.key)}
+                            className="p-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset rounded"
+                            aria-label={`${item.label} Untermenü ${openSubmenu === item.key ? 'schließen' : 'öffnen'}`}
+                            aria-expanded={openSubmenu === item.key}
+                          >
+                            <ChevronDown
+                              className={`w-4 h-4 transition-transform ${openSubmenu === item.key ? 'rotate-180' : ''}`}
+                              aria-hidden="true"
+                            />
+                          </button>
+                        </div>
+                      ) : (
+                        <Link
+                          to={item.to}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className={`block w-full text-left font-paragraph font-medium text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset transition-colors py-3 sm:py-4 px-3 sm:px-4 min-h-12 ${
+                            isActiveLink(item.to)
+                              ? 'text-primary bg-primary/5'
+                              : 'text-foreground hover:text-primary'
+                          }`}
+                        >
+                          {item.label}
+                        </Link>
+                      )}
                       
                       {/* Mobile Submenu */}
                       {item.submenu && openSubmenu === item.key && (

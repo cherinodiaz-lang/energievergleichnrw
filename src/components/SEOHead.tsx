@@ -24,6 +24,13 @@ const SITE_NAME = "energievergleich.shop";
 const DEFAULT_IMAGE =
   "https://static.wixstatic.com/media/32e7c0_8cede5e338be484bb8dcaad81c053c82~mv2.png";
 
+function getCanonicalUrl(canonical: string | undefined, pathname: string): string {
+  const input = canonical ?? pathname;
+  const parsed = new URL(input, SITE_URL);
+  const normalizedPath = parsed.pathname === "/" ? "/" : parsed.pathname.replace(/\/+$/, "");
+  return `${SITE_URL}${normalizedPath}`;
+}
+
 export default function SEOHead({
   title,
   description,
@@ -42,7 +49,7 @@ export default function SEOHead({
 }: SEOHeadProps) {
   const location = useLocation();
 
-  const canonicalUrl = canonical || `${SITE_URL}${location.pathname}`;
+  const canonicalUrl = getCanonicalUrl(canonical, location.pathname);
 
   useEffect(() => {
     document.title = title;
