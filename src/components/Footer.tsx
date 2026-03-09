@@ -89,10 +89,10 @@ export default function Footer() {
               <li className="flex items-start gap-2 sm:gap-3">
                 <Mail className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <a
-                  href="mailto:info@energievergleich.nrw"
+                  href="mailto:info@energievergleich.shop"
                   className="font-paragraph text-xs sm:text-sm opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity break-all"
                 >
-                  info@energievergleich.nrw
+                  info@energievergleich.shop
                 </a>
               </li>
               <li className="flex items-start gap-2 sm:gap-3">

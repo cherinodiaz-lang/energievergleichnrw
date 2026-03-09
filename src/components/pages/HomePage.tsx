@@ -1402,7 +1402,7 @@ export default function HomePage() {
                     </div>
                     <div>
                       <p className="text-xs sm:text-sm text-white/60 uppercase tracking-wider font-bold">E-Mail</p>
-                      <p className="text-base sm:text-xl font-medium">kontakt@energievergleich.nrw</p>
+                      <p className="text-base sm:text-xl font-medium">kontakt@energievergleich.shop</p>
                     </div>
                   </div>
                 </div>

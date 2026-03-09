@@ -8,6 +8,8 @@ import SEOHead from '@/components/SEOHead';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
+import RelatedPages from '@/components/RelatedPages';
+import { getRelatedPages } from '@/lib/internal-linking';
 
 export default function MethodologyPage() {
   const seo = getPageSEO('methodik');
@@ -298,6 +300,7 @@ export default function MethodologyPage() {
         </div>
       </section>
 
+      <RelatedPages pages={getRelatedPages('/methodik')} />
       <Footer />
     </div>
   );
