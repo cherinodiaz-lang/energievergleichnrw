@@ -1,6 +1,5 @@
 ---
 import AppRouter from "@/components/Router";
-import HomePageEntry from "@/components/HomePageEntry";
 import { getServerSeo } from "@/lib/seo-ssr";
 import "@/styles/global.css";
 
@@ -19,7 +18,6 @@ if (pathname === '/thank-you') {
 }
 
 const seo = getServerSeo(pathname);
-const isHomePage = pathname === '/';
 ---
 
 <html lang="de" class="w-full h-full">
@@ -60,11 +58,7 @@ const isHomePage = pathname === '/';
   </head>
   <body class="w-full h-full">
     <div id="root" class="w-full h-full">
-      {isHomePage ? (
-        <HomePageEntry client:load />
-      ) : (
-        <AppRouter pathname={pathname} client:load />
-      )}
+      <AppRouter pathname={pathname} client:load />
     </div>
   </body>
 </html>
