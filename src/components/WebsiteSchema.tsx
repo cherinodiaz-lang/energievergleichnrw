@@ -1,18 +1,19 @@
 import { useEffect } from 'react';
+import { SEO_CONFIG } from '@/lib/seo-config';
 
 export default function WebsiteSchema() {
   useEffect(() => {
     const websiteSchema = {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      name: 'energievergleich.nrw',
-      url: 'https://www.energievergleich.nrw',
-      description: 'Vergleichen Sie Strom- und Gastarife in Nordrhein-Westfalen. Finden Sie die besten Angebote für Privat- und Gewerbekunden.',
+      name: SEO_CONFIG.siteName,
+      url: SEO_CONFIG.siteUrl,
+      description: SEO_CONFIG.siteDescription,
       potentialAction: {
         '@type': 'SearchAction',
         target: {
           '@type': 'EntryPoint',
-          urlTemplate: 'https://www.energievergleich.nrw/?q={search_term_string}',
+          urlTemplate: `${SEO_CONFIG.siteUrl}/?q={search_term_string}`,
         },
         query_input: 'required name=search_term_string',
       },
