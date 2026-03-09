@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Zap, Mail, Phone, MapPin, Facebook, Linkedin, Globe } from 'lucide-react';
+import { Zap, Mail, Phone } from 'lucide-react';
 import { ROUTES, NAV_SERVICE, NAV_LEGAL, NAV_SECONDARY } from '@/lib/routes';
 
 export default function Footer() {
@@ -82,17 +82,18 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Kontakt & Social Media */}
+          {/* Kontakt */}
           <div>
-            <h3 className="font-heading font-semibold text-base sm:text-lg mb-4 sm:mb-6">Kontakt & Social</h3>
+            <h3 className="font-heading font-semibold text-base sm:text-lg mb-4 sm:mb-6">Kontakt</h3>
             <ul className="space-y-3 sm:space-y-4 mb-6">
               <li className="flex items-start gap-2 sm:gap-3">
                 <Mail className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <a
-                  href="mailto:info@energievergleich.nrw"
+                  href="mailto:info@energievergleich.shop"
                   className="font-paragraph text-xs sm:text-sm opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity break-all"
+                  aria-label="E-Mail an info@energievergleich.shop"
                 >
-                  info@energievergleich.nrw
+                  info@energievergleich.shop
                 </a>
               </li>
               <li className="flex items-start gap-2 sm:gap-3">
@@ -105,37 +106,6 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
-
-            {/* Social Media */}
-            <div className="flex items-center gap-3">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded transition-opacity"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded transition-opacity"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
-              </a>
-              <a
-                href="https://xing.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded transition-opacity"
-                aria-label="Xing"
-              >
-                <Globe className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
-              </a>
-            </div>
           </div>
         </div>
 

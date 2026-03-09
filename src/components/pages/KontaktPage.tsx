@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import FormSubmissionDialog from '@/components/FormSubmissionDialog';
@@ -53,6 +53,7 @@ export default function KontaktPage() {
         ogDescription={seo.ogDescription}
       />
       <Header />
+      <main>
 
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
@@ -93,8 +94,12 @@ export default function KontaktPage() {
                   <p className="font-paragraph text-gray-600 mb-2">
                     Schreiben Sie uns eine E-Mail und wir antworten schnellstmöglich.
                   </p>
-                  <a href="mailto:support@energievergleich.nrw" className="font-bold text-primary hover:underline">
-                    support@energievergleich.nrw
+                  <a
+                    href="mailto:kontakt@energievergleich.shop"
+                    className="font-bold text-primary hover:underline"
+                    aria-label="E-Mail an kontakt@energievergleich.shop"
+                  >
+                    kontakt@energievergleich.shop
                   </a>
                 </CardContent>
               </Card>
@@ -304,7 +309,8 @@ export default function KontaktPage() {
       {/* Passende Ratgeber */}
       <PassendeRatgeber moneyPageId="kontakt" limit={4} />
 
-      <Footer />
+      </main>
+      <DeferredFooter />
     </div>
   );
 }

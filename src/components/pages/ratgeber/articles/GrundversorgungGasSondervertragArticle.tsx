@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
@@ -294,7 +294,7 @@ export default function GrundversorgungGasSondervertragArticle() {
         </div>
       </section>
 
-      <Footer />
+      <DeferredFooter />
     </div>
   );
 }

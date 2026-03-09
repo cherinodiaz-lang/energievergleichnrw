@@ -1,7 +1,7 @@
 ---
-import { SEO } from '@wix/seo/components';
-import { loadSEOTagsServiceConfig } from '@wix/seo/services';
 import AppRouter from "@/components/Router";
+import HomePageEntry from "@/components/HomePageEntry";
+import { getServerSeo } from "@/lib/seo-ssr";
 import "@/styles/global.css";
 
 // CRITICAL: Exclude API routes from catch-all route
@@ -14,27 +14,57 @@ if (excludedPaths.includes(pathname)) {
   return new Response(null, { status: 404 });
 }
 
-// Derive a readable page name from the current path for Wix SEO service
-const segments = pathname.split('/').filter(Boolean);
-const pageName = segments.length === 0
-  ? 'Home'
-  : segments.map(s => s.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())).join(' - ');
+if (pathname === '/thank-you') {
+  return Astro.redirect('/danke', 308);
+}
 
-const seoTagsServiceConfig = await loadSEOTagsServiceConfig({
-  pageUrl: Astro.url.href,
-  itemData: {
-    pageName,
-  },
-});
+const seo = getServerSeo(pathname);
+const isHomePage = pathname === '/';
 ---
 
-<html lang="en" class="w-full h-full">
+<html lang="de" class="w-full h-full">
   <head>
-    <SEO.Tags seoTagsServiceConfig={seoTagsServiceConfig} slot="seo-tags" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{seo.title}</title>
+    <meta name="description" content={seo.description} />
+    {seo.keywords && <meta name="keywords" content={seo.keywords} />}
+    <meta name="robots" content={seo.robots} />
+    <meta name="author" content="energievergleich.shop" />
+    <link rel="canonical" href={seo.canonicalUrl} />
+
+    <meta property="og:title" content={seo.ogTitle} />
+    <meta property="og:description" content={seo.ogDescription} />
+    <meta property="og:image" content={seo.ogImage} />
+    <meta property="og:url" content={seo.ogUrl} />
+    <meta property="og:type" content={seo.ogType} />
+    <meta property="og:site_name" content="energievergleich.shop" />
+    <meta property="og:locale" content="de_DE" />
+
+    <meta name="twitter:card" content={seo.twitterCard} />
+    <meta name="twitter:title" content={seo.ogTitle} />
+    <meta name="twitter:description" content={seo.ogDescription} />
+    <meta name="twitter:image" content={seo.ogImage} />
+    {seo.verificationCode && (
+      <meta name="google-site-verification" content={seo.verificationCode} />
+    )}
+
+    {seo.schemaEntries.map((entry) => (
+      <script
+        id={entry.id}
+        type="application/ld+json"
+        is:inline
+        set:html={JSON.stringify(entry.payload)}
+      />
+    ))}
   </head>
   <body class="w-full h-full">
     <div id="root" class="w-full h-full">
-      <AppRouter client:only="react" />
+      {isHomePage ? (
+        <HomePageEntry client:load />
+      ) : (
+        <AppRouter pathname={pathname} client:load />
+      )}
     </div>
   </body>
 </html>

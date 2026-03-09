@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { CheckCircle, Shield, TrendingUp, Users, BarChart3, Zap } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
@@ -22,6 +22,7 @@ export default function MethodologyPage() {
         ogDescription={seo.ogDescription}
       />
       <Header />
+      <main>
 
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
@@ -298,7 +299,8 @@ export default function MethodologyPage() {
         </div>
       </section>
 
-      <Footer />
+      </main>
+      <DeferredFooter />
     </div>
   );
 }

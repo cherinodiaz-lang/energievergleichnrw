@@ -1,32 +1,25 @@
 // HPI 1.6-G - PHASE 6: Core Web Vitals Optimized
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { lazy, Suspense, useState, useEffect, useRef } from 'react';
 import { Zap, Flame, CheckCircle, Sun, Download, ChevronDown, Send, ArrowRight, Leaf, Home, Building2, ShieldCheck, MousePointerClick, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import NativeSelect from '@/components/ui/native-select';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import SEOHead from '@/components/SEOHead';
-import FormSubmissionDialog from '@/components/FormSubmissionDialog';
+import DeferredFooter from '@/components/DeferredFooter';
 import TrustRow from '@/components/TrustRow';
-import HowToSchema from '@/components/HowToSchema';
-import ReviewSchema from '@/components/ReviewSchema';
-import FAQPageSchema from '@/components/FAQPageSchema';
 import { BaseCrudService } from '@/integrations';
 import { HufiggestellteFragen, Wechselvorteile, Informationsmaterial } from '@/entities';
 import { Image } from '@/components/ui/image';
 import { trackCTAClick, trackMethodikClick } from '@/services/form-submission';
 import { ROUTES } from '@/lib/routes';
-import { getPageSEO } from '@/lib/seo-config';
 
 // --- Utility Components ---
+const LazyFormSubmissionDialog = lazy(() => import('@/components/FormSubmissionDialog'));
 
 type AnimatedElementProps = {
   children: React.ReactNode;
@@ -124,22 +117,6 @@ export default function HomePage() {
   const [showGasResults, setShowGasResults] = useState(false);
   const [showKombiResults, setShowKombiResults] = useState(false);
 
-  // --- Scroll Hooks for Parallax - REDUCED on mobile ---
-  const { scrollY } = useScroll();
-  const prefersReducedMotion = useRef(false);
-  
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    prefersReducedMotion.current = mediaQuery.matches;
-  }, []);
-  
-  // Disable parallax on mobile and when reduced motion is preferred
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const heroY = useTransform(scrollY, [0, 1000], prefersReducedMotion.current || isMobile ? [0, 0] : [0, 400]);
-  const heroOpacity = useTransform(scrollY, [0, 500], [1, 0]);
-
-  // ... keep existing code (state declarations) ...
-
   // --- Load Data from CMS ---
   useEffect(() => {
     loadData();
@@ -167,35 +144,6 @@ export default function HomePage() {
       setLoading(false);
     }
   };
-
-  // --- FAQ Schema (JSON-LD) - Now faqs is defined before this effect ---
-  useEffect(() => {
-    if (faqs.length === 0) return;
-
-    const faqSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: faqs.map(faq => ({
-        '@type': 'Question',
-        name: faq.question,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: faq.answer
-        }
-      }))
-    };
-
-    const scriptElement = document.getElementById('faq-schema') as HTMLScriptElement | null;
-    if (!scriptElement) {
-      const newScript = document.createElement('script') as HTMLScriptElement;
-      newScript.id = 'faq-schema';
-      newScript.type = 'application/ld+json';
-      newScript.textContent = JSON.stringify(faqSchema);
-      document.head.appendChild(newScript);
-    } else {
-      scriptElement.textContent = JSON.stringify(faqSchema);
-    }
-  }, [faqs]);
 
   // Sample tariff data
   const sampleTariffs = {
@@ -349,20 +297,8 @@ export default function HomePage() {
     element?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const seo = getPageSEO('home');
-
   return (
     <div className="min-h-screen bg-background overflow-x-hidden selection:bg-primary selection:text-white">
-      <SEOHead
-        title={seo.title}
-        description={seo.description}
-        keywords={seo.keywords}
-        ogTitle={seo.ogTitle}
-        ogDescription={seo.ogDescription}
-      />
-      <HowToSchema />
-      <ReviewSchema />
-      <FAQPageSchema />
       <style>{`
         /* PHASE 7: Reduced animation intensity from 0.8s to 0.3s for mobile */
         .animate-reveal {
@@ -383,22 +319,23 @@ export default function HomePage() {
         }
       `}</style>
       <Header />
+      <main id="main-content">
       {/* --- HERO SECTION --- */}
       <section className="hero-section relative w-full min-h-[100vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-primary">
-        {/* Parallax Background */}
-        <motion.div
-          style={{ y: heroY, opacity: heroOpacity }}
-          className="absolute inset-0 z-0 overflow-hidden will-change-transform"
-        >
+        <div className="absolute inset-0 z-0 overflow-hidden">
           <Image
             src="https://static.wixstatic.com/media/32e7c0_5f85b8d9458c4ccbafdde2a4f3bc3cce~mv2.png?originWidth=1920&originHeight=1024"
             alt="Grüne Landschaft in Nordrhein-Westfalen mit Windrädern"
             className="w-full h-full object-cover"
             width={1920}
             height={1024}
+            sizes="100vw"
+            fetchPriority="high"
+            loading="eager"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background pointer-events-none" />
-        </motion.div>
+        </div>
 
         {/* Hero Content */}
         <div className="relative z-10 w-full max-w-[120rem] mx-auto px-3 sm:px-6 lg:px-12 py-16 sm:py-20 flex items-center justify-center min-h-[100vh] md:min-h-screen">
@@ -458,15 +395,12 @@ export default function HomePage() {
         </div>
 
         {/* Scroll Indicator - Hidden on Mobile */}
-        <motion.div
-          style={{ opacity: heroOpacity }}
-          className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 z-10 hidden sm:flex"
-        >
+        <div className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 z-10 hidden sm:flex">
           <div className="flex flex-col items-center gap-2 text-white/80">
             <span className="text-xs uppercase tracking-widest font-medium">Scrollen</span>
             <ChevronDown className="w-6 h-6 animate-bounce" aria-hidden="true" />
           </div>
-        </motion.div>
+        </div>
       </section>
       {/* --- TRUST & STATS BAR --- */}
       <section className="relative z-20 -mt-16 sm:-mt-20 w-full mb-16 sm:mb-24">
@@ -612,17 +546,19 @@ export default function HomePage() {
                               </div>
                               <div className="space-y-2">
                                 <Label htmlFor="strom-personen" className="text-sm font-medium">Haushaltsgröße</Label>
-                                <Select value={personenAnzahl} onValueChange={setPersonenAnzahl}>
-                                  <SelectTrigger id="strom-personen" className="h-10 sm:h-12 text-sm">
-                                    <SelectValue placeholder="Bitte wählen" />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectItem value="1">1 Person (ca. 1.500 kWh)</SelectItem>
-                                    <SelectItem value="2">2 Personen (ca. 2.500 kWh)</SelectItem>
-                                    <SelectItem value="3">3 Personen (ca. 3.500 kWh)</SelectItem>
-                                    <SelectItem value="4">4+ Personen (ca. 4.250 kWh)</SelectItem>
-                                  </SelectContent>
-                                </Select>
+                                <NativeSelect
+                                  id="strom-personen"
+                                  value={personenAnzahl}
+                                  onValueChange={setPersonenAnzahl}
+                                  placeholder="Bitte wählen"
+                                  className="h-10 sm:h-12 text-sm"
+                                  options={[
+                                    { value: '1', label: '1 Person (ca. 1.500 kWh)' },
+                                    { value: '2', label: '2 Personen (ca. 2.500 kWh)' },
+                                    { value: '3', label: '3 Personen (ca. 3.500 kWh)' },
+                                    { value: '4', label: '4+ Personen (ca. 4.250 kWh)' },
+                                  ]}
+                                />
                               </div>
                               <div className="space-y-2 sm:col-span-2">
                                 <Label htmlFor="strom-verbrauch" className="text-sm font-medium">Jahresverbrauch (kWh) <span className="text-gray-400 font-normal text-xs">(Optional)</span></Label>
@@ -715,17 +651,19 @@ export default function HomePage() {
                               </div>
                               <div className="space-y-2">
                                 <Label htmlFor="gas-wohnflaeche" className="text-sm font-medium">Wohnfläche (m²)</Label>
-                                <Select value={personenAnzahl} onValueChange={setPersonenAnzahl}>
-                                  <SelectTrigger id="gas-wohnflaeche" className="h-10 sm:h-12 text-sm">
-                                    <SelectValue placeholder="Bitte wählen" />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectItem value="30">30 m²</SelectItem>
-                                    <SelectItem value="50">50 m²</SelectItem>
-                                    <SelectItem value="100">100 m²</SelectItem>
-                                    <SelectItem value="150">150 m²</SelectItem>
-                                  </SelectContent>
-                                </Select>
+                                <NativeSelect
+                                  id="gas-wohnflaeche"
+                                  value={personenAnzahl}
+                                  onValueChange={setPersonenAnzahl}
+                                  placeholder="Bitte wählen"
+                                  className="h-10 sm:h-12 text-sm"
+                                  options={[
+                                    { value: '30', label: '30 m²' },
+                                    { value: '50', label: '50 m²' },
+                                    { value: '100', label: '100 m²' },
+                                    { value: '150', label: '150 m²' },
+                                  ]}
+                                />
                               </div>
                               <div className="space-y-2 sm:col-span-2">
                                 <Label htmlFor="gas-verbrauch" className="text-sm font-medium">Jahresverbrauch (kWh) <span className="text-gray-400 font-normal text-xs">(Optional)</span></Label>
@@ -1091,34 +1029,40 @@ export default function HomePage() {
                     <form onSubmit={handlePvSubmit} className="space-y-4 sm:space-y-6">
                       <div className="space-y-2">
                         <Label htmlFor="pv-eigentumsart" className="text-sm font-medium">Eigentumsart</Label>
-                        <Select value={pvEigentumsart} onValueChange={setPvEigentumsart} required>
-                          <SelectTrigger id="pv-eigentumsart" className="h-10 sm:h-12 bg-gray-50 border-gray-200 text-sm">
-                            <SelectValue placeholder="Bitte wählen" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="einfamilienhaus">Einfamilienhaus</SelectItem>
-                            <SelectItem value="mehrfamilienhaus">Mehrfamilienhaus</SelectItem>
-                            <SelectItem value="gewerbe">Gewerbe</SelectItem>
-                            <SelectItem value="wohnung_miete">Wohnung zur Miete</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <NativeSelect
+                          id="pv-eigentumsart"
+                          value={pvEigentumsart}
+                          onValueChange={setPvEigentumsart}
+                          placeholder="Bitte wählen"
+                          required
+                          className="h-10 sm:h-12 bg-gray-50 border-gray-200 text-sm"
+                          options={[
+                            { value: 'einfamilienhaus', label: 'Einfamilienhaus' },
+                            { value: 'mehrfamilienhaus', label: 'Mehrfamilienhaus' },
+                            { value: 'gewerbe', label: 'Gewerbe' },
+                            { value: 'wohnung_miete', label: 'Wohnung zur Miete' },
+                          ]}
+                        />
                       </div>
 
                       <div className="space-y-2">
                         <Label htmlFor="pv-dachform" className="text-sm font-medium">Dachform</Label>
-                        <Select value={pvDachform} onValueChange={setPvDachform} required>
-                          <SelectTrigger id="pv-dachform" className="h-10 sm:h-12 bg-gray-50 border-gray-200 text-sm">
-                            <SelectValue placeholder="Bitte wählen" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="satteldach">Satteldach</SelectItem>
-                            <SelectItem value="flachdach">Flachdach</SelectItem>
-                            <SelectItem value="pultdach">Pultdach</SelectItem>
-                            <SelectItem value="mansardendach">Mansardendach</SelectItem>
-                            <SelectItem value="walmdach">Walmdach</SelectItem>
-                            <SelectItem value="andere">Andere</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <NativeSelect
+                          id="pv-dachform"
+                          value={pvDachform}
+                          onValueChange={setPvDachform}
+                          placeholder="Bitte wählen"
+                          required
+                          className="h-10 sm:h-12 bg-gray-50 border-gray-200 text-sm"
+                          options={[
+                            { value: 'satteldach', label: 'Satteldach' },
+                            { value: 'flachdach', label: 'Flachdach' },
+                            { value: 'pultdach', label: 'Pultdach' },
+                            { value: 'mansardendach', label: 'Mansardendach' },
+                            { value: 'walmdach', label: 'Walmdach' },
+                            { value: 'andere', label: 'Andere' },
+                          ]}
+                        />
                       </div>
 
                       <div className="space-y-2">
@@ -1356,16 +1300,18 @@ export default function HomePage() {
           <div className="space-y-3 sm:space-y-4">
             {faqs.map((faq, index) => (
               <AnimatedElement key={faq._id} delay={index * 50}>
-                <Accordion type="single" collapsible className="bg-gray-50 rounded-lg sm:rounded-2xl px-4 sm:px-6 border-none">
-                  <AccordionItem value={`item-${index}`} className="border-none">
-                    <AccordionTrigger className="font-heading text-sm sm:text-lg font-medium text-left py-4 sm:py-6 hover:text-primary hover:no-underline">
-                      {faq.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="font-paragraph text-sm sm:text-base text-gray-600 pb-4 sm:pb-6 leading-relaxed">
-                      {faq.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
+                <details className="group rounded-lg bg-gray-50 px-4 sm:rounded-2xl sm:px-6">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 font-heading text-sm font-medium text-left hover:text-primary sm:py-6 sm:text-lg [&::-webkit-details-marker]:hidden">
+                    <span>{faq.question}</span>
+                    <ChevronDown
+                      className="h-5 w-5 flex-shrink-0 transition-transform duration-200 group-open:rotate-180"
+                      aria-hidden="true"
+                    />
+                  </summary>
+                  <div className="pb-4 font-paragraph text-sm leading-relaxed text-gray-600 sm:pb-6 sm:text-base">
+                    {faq.answer}
+                  </div>
+                </details>
               </AnimatedElement>
             ))}
           </div>
@@ -1402,7 +1348,13 @@ export default function HomePage() {
                     </div>
                     <div>
                       <p className="text-xs sm:text-sm text-white/60 uppercase tracking-wider font-bold">E-Mail</p>
-                      <p className="text-base sm:text-xl font-medium">kontakt@energievergleich.nrw</p>
+                      <a
+                        href="mailto:kontakt@energievergleich.shop"
+                        className="text-base sm:text-xl font-medium underline-offset-4 hover:underline"
+                        aria-label="E-Mail an kontakt@energievergleich.shop"
+                      >
+                        kontakt@energievergleich.shop
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -1415,15 +1367,16 @@ export default function HomePage() {
                   <form onSubmit={handleContactSubmit} className="space-y-4 sm:space-y-6">
                     <div className="space-y-2">
                       <Label htmlFor="contact-type" className="text-sm font-medium">Ich bin...</Label>
-                      <Select value={contactType} onValueChange={setContactType}>
-                        <SelectTrigger id="contact-type" className="h-10 sm:h-12 bg-gray-50 border-gray-200 text-sm">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="privat">Privatkunde</SelectItem>
-                          <SelectItem value="gewerbe">Gewerbekunde</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <NativeSelect
+                        id="contact-type"
+                        value={contactType}
+                        onValueChange={setContactType}
+                        className="h-10 sm:h-12 bg-gray-50 border-gray-200 text-sm"
+                        options={[
+                          { value: 'privat', label: 'Privatkunde' },
+                          { value: 'gewerbe', label: 'Gewerbekunde' },
+                        ]}
+                      />
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
@@ -1479,44 +1432,49 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      {/* Contact Form Dialog */}
-      <FormSubmissionDialog
-        isOpen={showContactDialog}
-        onClose={() => setShowContactDialog(false)}
-        formType="kontakt"
-        formData={{
-          name: contactName,
-          email: contactEmail,
-          phone: contactPhone,
-          message: contactMessage,
-          type: contactType
-        }}
-        requiredFields={['name', 'email', 'message']}
-        onSuccess={handleContactSuccess}
-        title="Kontaktanfrage senden"
-      />
-      {/* Photovoltaik Form Dialog */}
-      <FormSubmissionDialog
-        isOpen={showPvDialog}
-        onClose={() => setShowPvDialog(false)}
-        formType="photovoltaik"
-        formData={{
-          name: pvName,
-          email: pvEmail,
-          phone: pvTelefon,
-          eigentumsart: pvEigentumsart,
-          dachform: pvDachform,
-          personen: pvPersonen,
-          strasse: pvStrasse,
-          hausnummer: pvHausnummer,
-          plz: pvPlz,
-          ort: pvOrt
-        }}
-        requiredFields={['name', 'email', 'eigentumsart', 'dachform', 'plz', 'ort']}
-        onSuccess={handlePvSuccess}
-        title="Kostenlose PV-Beratung"
-      />
-      <Footer />
+      <Suspense fallback={null}>
+        {showContactDialog ? (
+          <LazyFormSubmissionDialog
+            isOpen={showContactDialog}
+            onClose={() => setShowContactDialog(false)}
+            formType="kontakt"
+            formData={{
+              name: contactName,
+              email: contactEmail,
+              phone: contactPhone,
+              message: contactMessage,
+              type: contactType
+            }}
+            requiredFields={['name', 'email', 'message']}
+            onSuccess={handleContactSuccess}
+            title="Kontaktanfrage senden"
+          />
+        ) : null}
+        {showPvDialog ? (
+          <LazyFormSubmissionDialog
+            isOpen={showPvDialog}
+            onClose={() => setShowPvDialog(false)}
+            formType="photovoltaik"
+            formData={{
+              name: pvName,
+              email: pvEmail,
+              phone: pvTelefon,
+              eigentumsart: pvEigentumsart,
+              dachform: pvDachform,
+              personen: pvPersonen,
+              strasse: pvStrasse,
+              hausnummer: pvHausnummer,
+              plz: pvPlz,
+              ort: pvOrt
+            }}
+            requiredFields={['name', 'email', 'eigentumsart', 'dachform', 'plz', 'ort']}
+            onSuccess={handlePvSuccess}
+            title="Kostenlose PV-Beratung"
+          />
+        ) : null}
+      </Suspense>
+      </main>
+      <DeferredFooter />
     </div>
   );
 }

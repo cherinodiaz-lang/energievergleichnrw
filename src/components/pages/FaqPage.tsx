@@ -1,5 +1,5 @@
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import Breadcrumb from '@/components/Breadcrumb';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -156,7 +156,7 @@ export default function FaqPage() {
         </div>
       </main>
 
-      <Footer />
+      <DeferredFooter />
     </div>
   );
 }

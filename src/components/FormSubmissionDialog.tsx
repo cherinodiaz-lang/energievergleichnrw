@@ -7,7 +7,7 @@
  * - GA4 tracking (consent-safe)
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, AlertCircle, Loader } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -36,10 +36,53 @@ export default function FormSubmissionDialog({
   title = 'Anfrage senden'
 }: FormSubmissionDialogProps) {
   const navigate = useNavigate();
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+  const dialogRef = useRef<HTMLDivElement | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [privacyConsent, setPrivacyConsent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    if (!isOpen || submitted) {
+      return;
+    }
+
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        handleClose();
+        return;
+      }
+
+      if (event.key !== 'Tab' || !dialogRef.current) {
+        return;
+      }
+
+      const focusableElements = dialogRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), textarea, input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+
+      if (focusableElements.length === 0) {
+        return;
+      }
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, submitted]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -117,10 +160,15 @@ export default function FormSubmissionDialog({
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
           <motion.div
+            ref={dialogRef}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             className="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="form-dialog-title"
+            aria-describedby="form-dialog-description"
           >
             {/* Thank You State */}
             {submitted ? (
@@ -156,8 +204,10 @@ export default function FormSubmissionDialog({
               <>
                 {/* Header */}
                 <div className="bg-primary text-white p-6 border-b">
-                  <h2 className="font-heading text-xl font-bold">{title}</h2>
-                  <p className="text-white/80 text-sm mt-1">
+                  <h2 id="form-dialog-title" className="font-heading text-xl font-bold">
+                    {title}
+                  </h2>
+                  <p id="form-dialog-description" className="text-white/80 text-sm mt-1">
                     Füllen Sie das Formular aus und wir melden uns schnellstmöglich
                   </p>
                 </div>
@@ -166,7 +216,11 @@ export default function FormSubmissionDialog({
                 <form onSubmit={handleSubmit} className="p-6 space-y-4">
                   {/* Error Messages */}
                   {Object.keys(errors).length > 0 && (
-                    <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                    <div
+                      className="bg-red-50 border border-red-200 rounded-lg p-4"
+                      role="alert"
+                      aria-live="assertive"
+                    >
                       {Object.entries(errors).map(([field, error]) => (
                         <div key={field} className="flex items-start gap-2 text-red-700 text-sm mb-2 last:mb-0">
                           <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
@@ -191,6 +245,8 @@ export default function FormSubmissionDialog({
                           }
                         }}
                         className="mt-1"
+                        aria-invalid={Boolean(errors.privacy)}
+                        aria-describedby={errors.privacy ? 'privacy-consent-error' : undefined}
                       />
                       <Label
                         htmlFor="privacy-consent"
@@ -209,7 +265,13 @@ export default function FormSubmissionDialog({
                       </Label>
                     </div>
                     {errors.privacy && (
-                      <p className="text-red-600 text-xs mt-2 ml-7">{errors.privacy}</p>
+                      <p
+                        id="privacy-consent-error"
+                        className="text-red-600 text-xs mt-2 ml-7"
+                        aria-live="polite"
+                      >
+                        {errors.privacy}
+                      </p>
                     )}
                   </div>
 
@@ -231,6 +293,7 @@ export default function FormSubmissionDialog({
 
                   {/* Close Button */}
                   <Button
+                    ref={closeButtonRef}
                     type="button"
                     variant="outline"
                     onClick={handleClose}

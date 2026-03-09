@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
@@ -370,7 +370,7 @@ export default function DatenschutzPage() {
         </div>
       </section>
 
-      <Footer />
+      <DeferredFooter />
     </div>
   );
 }

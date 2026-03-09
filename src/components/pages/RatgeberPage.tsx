@@ -4,7 +4,7 @@ import { BookOpen, Zap, Flame, Building2, Sun, ArrowRight, Search } from 'lucide
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
@@ -96,6 +96,7 @@ export default function RatgeberPage() {
       />
       <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />
+      <main>
       <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero Section */}
@@ -342,7 +343,8 @@ export default function RatgeberPage() {
         </div>
       </section>
 
-      <Footer />
+      </main>
+      <DeferredFooter />
     </div>
   );
 }

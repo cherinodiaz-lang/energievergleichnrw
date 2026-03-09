@@ -1,25 +1,23 @@
 import { MemberProvider } from '@/integrations';
-import { createBrowserRouter, RouterProvider, Navigate, Outlet, useLocation } from 'react-router-dom';
+import {
+  BrowserRouter,
+  MemoryRouter,
+  Navigate,
+  Outlet,
+  useRoutes,
+  type RouteObject,
+} from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
 import { ScrollToTop } from '@/lib/scroll-to-top';
 import { SEO_CONFIG } from '@/lib/seo-config';
 import { ROUTES } from '@/lib/routes';
-import ErrorPage from '@/integrations/errorHandlers/ErrorPage';
-import OrganizationSchema from '@/components/OrganizationSchema';
-import LocalBusinessSchema from '@/components/LocalBusinessSchema';
-import WebsiteSchema from '@/components/WebsiteSchema';
-import SearchConsoleVerification from '@/components/SearchConsoleVerification';
 import { initializeGA4 } from '@/services/ga4-tracking';
-import HowToSchema from '@/components/HowToSchema';
-import ReviewSchema from '@/components/ReviewSchema';
-import FAQPageSchema from '@/components/FAQPageSchema';
-import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 
+const HomePage = lazy(() => import('@/components/HomePageRoute'));
 // Fallback component for lazy-loaded routes
 const LazyFallback = () => <div className="min-h-screen flex items-center justify-center" />;
 
 // Lazy load non-critical pages for code-splitting
-const HomePage = lazy(() => import('@/components/pages/HomePage'));
 const GewerbestromPage = lazy(() => import('@/components/pages/GewerbestromPage'));
 const GewerbegasPage = lazy(() => import('@/components/pages/GewerbegasPage'));
 const StromvergleichNrwPage = lazy(() => import('@/components/pages/StromvergleichNrwPage'));
@@ -71,33 +69,15 @@ const FaqPage = lazy(() => import('@/components/pages/FaqPage'));
 
 // Layout component that includes ScrollToTop and SEO components
 function Layout() {
-  const location = useLocation();
-
-  // Initialize GA4 on app load (consent mode enabled by default)
   useEffect(() => {
     if (SEO_CONFIG.googleAnalyticsId) {
       initializeGA4(SEO_CONFIG.googleAnalyticsId);
     }
   }, []);
 
-  const normalizedPath =
-    location.pathname === '/' ? '/' : location.pathname.replace(/\/+$/, '');
-  const isHomePage = normalizedPath === '/';
-  const isFaqPage = normalizedPath === ROUTES.faq;
-  const shouldRenderHowToAndReviewSchema = isHomePage;
-  const shouldRenderFaqSchema = isHomePage || isFaqPage;
-
   return (
     <div className="min-w-0 overflow-x-hidden ox-hidden">
       <ScrollToTop />
-      <OrganizationSchema />
-      <LocalBusinessSchema />
-      <WebsiteSchema />
-      {shouldRenderHowToAndReviewSchema && <HowToSchema />}
-      {shouldRenderHowToAndReviewSchema && <ReviewSchema />}
-      {shouldRenderFaqSchema && <FAQPageSchema />}
-      <BreadcrumbSchema />
-      <SearchConsoleVerification verificationCode={SEO_CONFIG.googleSearchConsoleVerification} />
       <Suspense fallback={<LazyFallback />}>
         <Outlet />
       </Suspense>
@@ -105,11 +85,10 @@ function Layout() {
   );
 }
 
-const router = createBrowserRouter([
+const routes: RouteObject[] = [
   {
     path: "/",
     element: <Layout />,
-    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -317,14 +296,28 @@ const router = createBrowserRouter([
       },
     ],
   },
-], {
-  basename: import.meta.env.BASE_NAME,
-});
+];
 
-export default function AppRouter() {
+function AppRoutes() {
+  return useRoutes(routes);
+}
+
+type AppRouterProps = {
+  pathname?: string;
+};
+
+export default function AppRouter({ pathname = '/' }: AppRouterProps) {
   return (
     <MemberProvider>
-      <RouterProvider router={router} />
+      {typeof window === 'undefined' ? (
+        <MemoryRouter basename={import.meta.env.BASE_NAME} initialEntries={[pathname]}>
+          <AppRoutes />
+        </MemoryRouter>
+      ) : (
+        <BrowserRouter basename={import.meta.env.BASE_NAME}>
+          <AppRoutes />
+        </BrowserRouter>
+      )}
     </MemberProvider>
   );
 }

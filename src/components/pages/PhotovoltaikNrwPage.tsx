@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sun, CheckCircle, TrendingUp, Leaf, Zap, Send, ArrowRight, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
@@ -22,6 +22,7 @@ import { trackMethodikClick } from '@/services/form-submission';
 import { getRelatedPages } from '@/lib/internal-linking';
 
 export default function PhotovoltaikNrwPage() {
+  const [submitSuccess, setSubmitSuccess] = useState(false);
   const [formData, setFormData] = useState({
     eigentumsart: '',
     dachform: '',
@@ -35,123 +36,9 @@ export default function PhotovoltaikNrwPage() {
     phone: '',
   });
 
-  useEffect(() => {
-    const faqSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: [
-        {
-          '@type': 'Question',
-          name: 'Lohnt sich eine Photovoltaikanlage in NRW?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Ja, auch in NRW lohnt sich eine Photovoltaikanlage. Durch die Einspeisevergütung und die Eigennutzung des Stroms amortisiert sich die Anlage in der Regel nach 8-12 Jahren. Danach produzieren Sie kostenlosen Strom für weitere 15-20 Jahre.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Wie viel Strom produziert eine Solaranlage in NRW?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Eine typische 5-kW-Anlage produziert in NRW etwa 4.500-5.000 kWh pro Jahr. Dies hängt von der Ausrichtung, dem Neigungswinkel und der Verschattung ab. Mit unserem Beratungsgespräch ermitteln wir die optimale Größe für Ihren Bedarf.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Welche Förderungen gibt es für Photovoltaik in NRW?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Es gibt verschiedene Förderungsmöglichkeiten: die KfW-Förderung für Solaranlagen, die Einspeisevergütung für Überschussstrom und regionale Förderprogramme in NRW. Wir informieren Sie über alle verfügbaren Optionen.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Wie lange hält eine Solaranlage?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Hochwertige Solarmodule halten 25-30 Jahre oder länger. Die meisten Hersteller geben eine Leistungsgarantie von 25 Jahren. Der Wechselrichter sollte nach etwa 10-15 Jahren ausgetauscht werden.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Benötige ich einen Stromspeicher?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Ein Stromspeicher ist optional, erhöht aber Ihre Unabhängigkeit und Eigennutzungsquote. Mit einem Speicher können Sie bis zu 80% Autarkie erreichen. Wir beraten Sie, ob ein Speicher für Ihre Situation sinnvoll ist.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Wie viel kostet eine Photovoltaikanlage?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Eine 5-kW-Anlage kostet in NRW etwa 8.000-12.000 Euro (netto). Mit Förderungen und der Einspeisevergütung reduziert sich die Amortisationszeit erheblich. Wir erstellen Ihnen ein individuelles Angebot.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Kann ich eine Solaranlage mieten?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Ja, es gibt Mietmodelle für Solaranlagen. Dabei zahlen Sie eine monatliche Rate, ohne die Anlage zu kaufen. Dies ist eine gute Option, wenn Sie wenig Kapital investieren möchten.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Wie lange dauert die Installation?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Die Installation einer Solaranlage dauert in der Regel 1-3 Tage. Vorher benötigen Sie eine Genehmigung vom Netzbetreiber, was etwa 4-8 Wochen dauert. Insgesamt sollten Sie mit 2-3 Monaten rechnen.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Brauche ich eine Versicherung für meine Solaranlage?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Ja, eine Versicherung ist empfehlenswert. Sie schützt vor Schäden durch Hagel, Blitzschlag oder Diebstahl. Die Kosten liegen bei etwa 100-200 Euro pro Jahr.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Wie funktioniert die Einspeisevergütung?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Für jeden Kilowattstunde Strom, den Sie ins Netz einspeisen, erhalten Sie eine Vergütung. Diese wird monatlich oder jährlich ausbezahlt. Die aktuelle Vergütung liegt bei etwa 8-10 Cent pro kWh.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Kann ich meine Solaranlage später erweitern?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Ja, Sie können Ihre Anlage später erweitern. Dies ist besonders sinnvoll, wenn Sie einen Stromspeicher oder ein Elektroauto anschaffen. Wir beraten Sie zu den Möglichkeiten.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Wie funktioniert die Beratung?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Wir führen ein kostenloses Beratungsgespräch durch, analysieren Ihr Dach und Ihren Stromverbrauch, und erstellen ein individuelles Angebot. Danach kümmern wir uns um alle Formalitäten und die Installation.'
-          }
-        }
-      ]
-    };
-
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.textContent = JSON.stringify(faqSchema);
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Vielen Dank für Ihre Anfrage! Wir werden uns in Kürze bei Ihnen melden.`);
+    setSubmitSuccess(true);
     setFormData({
       eigentumsart: '',
       dachform: '',
@@ -189,6 +76,7 @@ export default function PhotovoltaikNrwPage() {
       />
       <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />
+      <main>
       <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero Section */}
@@ -540,6 +428,15 @@ export default function PhotovoltaikNrwPage() {
                   <CardTitle className="font-heading text-2xl">Kostenlose Beratung anfragen</CardTitle>
                 </CardHeader>
                 <CardContent className="p-8">
+                  {submitSuccess && (
+                    <div
+                      className="mb-6 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800"
+                      role="status"
+                      aria-live="polite"
+                    >
+                      Vielen Dank für Ihre Anfrage. Wir melden uns in Kürze bei Ihnen.
+                    </div>
+                  )}
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
@@ -923,7 +820,8 @@ export default function PhotovoltaikNrwPage() {
         </div>
       </section>
 
-      <Footer />
+      </main>
+      <DeferredFooter />
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { Building2, Clock, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
@@ -201,7 +201,7 @@ export default function GewerbeCategoryPage() {
         </div>
       </section>
 
-      <Footer />
+      <DeferredFooter />
     </div>
   );
 }

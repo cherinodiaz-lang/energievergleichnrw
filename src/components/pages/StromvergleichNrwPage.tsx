@@ -9,7 +9,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
@@ -212,6 +212,7 @@ export default function StromvergleichNrwPage() {
       />
       <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />
+      <main>
       <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero Section - LCP Optimized */}
@@ -880,7 +881,8 @@ export default function StromvergleichNrwPage() {
       {/* Related Pages - Cross-Linking */}
       <RelatedPages pages={getRelatedPages('/stromvergleich-nrw')} />
 
-      <Footer />
+      </main>
+      <DeferredFooter />
     </div>
   );
 }

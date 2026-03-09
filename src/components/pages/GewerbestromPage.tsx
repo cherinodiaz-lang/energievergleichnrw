@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Zap, Building2, TrendingDown, Shield, Clock, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
@@ -22,64 +22,7 @@ import { trackMethodikClick } from '@/services/form-submission';
 import { getRelatedPages } from '@/lib/internal-linking';
 
 export default function GewerbestromPage() {
-  useEffect(() => {
-    const faqSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: [
-        {
-          '@type': 'Question',
-          name: 'Wie oft kann ich meinen Gewerbestrom-Anbieter wechseln?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Sie können Ihren Gewerbestrom-Anbieter jederzeit wechseln, sofern Sie die Kündigungsfrist einhalten. Bei den meisten Verträgen beträgt diese 4 Wochen zum Ende eines Kalendermonats. Nach einem Wechsel können Sie frühestens nach 12 Monaten erneut wechseln.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Ist der Wechsel des Gewerbestrom-Anbieters kostenlos?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Ja, völlig kostenlos. Es fallen keine Gebühren für die Kündigung beim alten Anbieter oder die Anmeldung beim neuen an. Wir kümmern uns um alle Formalitäten.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Wie lange dauert ein Gewerbestrom-Wechsel?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'In der Regel 4-6 Wochen. Ihre Stromversorgung wird nicht unterbrochen. Der neue Anbieter kümmert sich um alle notwendigen Schritte.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Kann ich während des Wechsels ohne Strom sein?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Nein. Ihre Stromversorgung ist gesetzlich geschützt. Im Notfall springt der Grundversorger ein.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Welche Daten benötige ich für einen Gewerbestrom-Vergleich?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Postleitzahl und Stromverbrauch (in kWh). Den Verbrauch finden Sie auf Ihrer letzten Rechnung. Optional: Zählernummer und Lastprofil.'
-          }
-        }
-      ]
-    };
-
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.textContent = JSON.stringify(faqSchema);
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
-
+  const [submitSuccess, setSubmitSuccess] = useState(false);
   const [companyName, setCompanyName] = useState('');
   const [contactPerson, setContactPerson] = useState('');
   const [email, setEmail] = useState('');
@@ -93,7 +36,7 @@ export default function GewerbestromPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Vielen Dank für Ihre Anfrage, ${companyName}! Wir werden uns in Kürze bei Ihnen melden.`);
+    setSubmitSuccess(true);
     // Reset form
     setCompanyName('');
     setContactPerson('');
@@ -132,6 +75,7 @@ export default function GewerbestromPage() {
       />
       <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />
+      <main>
       <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero Section */}
@@ -479,6 +423,15 @@ export default function GewerbestromPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
+              {submitSuccess && (
+                <div
+                  className="mb-6 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800"
+                  role="status"
+                  aria-live="polite"
+                >
+                  Vielen Dank für Ihre Anfrage. Wir melden uns in Kürze bei Ihnen.
+                </div>
+              )}
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Company Information */}
                 <div className="space-y-6">
@@ -756,7 +709,8 @@ export default function GewerbestromPage() {
         </div>
       </section>
 
-      <Footer />
+      </main>
+      <DeferredFooter />
     </div>
   );
 }

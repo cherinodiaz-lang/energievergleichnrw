@@ -14,7 +14,7 @@
  * - Events only tracked AFTER Analytics consent is granted
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Settings, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -31,6 +31,8 @@ const CONSENT_STORAGE_KEY = 'energievergleich_consent';
 const CONSENT_VERSION = '1.0';
 
 export default function ConsentBanner() {
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+  const dialogRef = useRef<HTMLDivElement | null>(null);
   const [showBanner, setShowBanner] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [consent, setConsent] = useState<ConsentState>({
@@ -62,6 +64,47 @@ export default function ConsentBanner() {
     
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (!showSettings) {
+      return;
+    }
+
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setShowSettings(false);
+        return;
+      }
+
+      if (event.key !== 'Tab' || !dialogRef.current) {
+        return;
+      }
+
+      const focusableElements = dialogRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), textarea, input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+
+      if (focusableElements.length === 0) {
+        return;
+      }
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [showSettings]);
 
   const applyConsent = (consentState: ConsentState) => {
     // Update GA4 consent mode via service
@@ -172,11 +215,21 @@ export default function ConsentBanner() {
   if (showSettings) {
     return (
       <div className="fixed inset-0 z-50 bg-black/50 flex items-end sm:items-center justify-center">
-        <div className="bg-white w-full sm:w-full sm:max-w-md rounded-t-2xl sm:rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto">
+        <div
+          ref={dialogRef}
+          className="bg-white w-full sm:w-full sm:max-w-md rounded-t-2xl sm:rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="consent-settings-title"
+          aria-describedby="consent-settings-description"
+        >
           {/* Header */}
           <div className="sticky top-0 bg-primary text-primary-foreground p-4 sm:p-6 flex items-center justify-between border-b border-primary-foreground/10">
-            <h2 className="font-heading text-lg sm:text-xl font-bold">Datenschutzeinstellungen</h2>
+            <h2 id="consent-settings-title" className="font-heading text-lg sm:text-xl font-bold">
+              Datenschutzeinstellungen
+            </h2>
             <button
+              ref={closeButtonRef}
               onClick={() => setShowSettings(false)}
               className="p-1 hover:bg-primary-foreground/10 rounded-lg transition-colors"
               aria-label="Schließen"
@@ -187,13 +240,20 @@ export default function ConsentBanner() {
 
           {/* Content */}
           <div className="p-4 sm:p-6 space-y-6">
+            <p id="consent-settings-description" className="font-paragraph text-xs sm:text-sm text-gray-600">
+              Wählen Sie aus, welche optionalen Technologien geladen werden dürfen.
+            </p>
             {/* Necessary Cookies */}
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="font-heading font-semibold text-gray-900">
+                <label
+                  htmlFor="consent-necessary"
+                  className="font-heading font-semibold text-gray-900"
+                >
                   Notwendige Cookies
                 </label>
                 <input
+                  id="consent-necessary"
                   type="checkbox"
                   checked={true}
                   disabled
@@ -208,10 +268,14 @@ export default function ConsentBanner() {
             {/* Analytics Cookies */}
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="font-heading font-semibold text-gray-900">
+                <label
+                  htmlFor="consent-analytics"
+                  className="font-heading font-semibold text-gray-900"
+                >
                   Analyse-Cookies
                 </label>
                 <input
+                  id="consent-analytics"
                   type="checkbox"
                   checked={consent.analytics}
                   onChange={(e) =>
@@ -228,10 +292,14 @@ export default function ConsentBanner() {
             {/* Marketing Cookies */}
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="font-heading font-semibold text-gray-900">
+                <label
+                  htmlFor="consent-marketing"
+                  className="font-heading font-semibold text-gray-900"
+                >
                   Marketing-Cookies
                 </label>
                 <input
+                  id="consent-marketing"
                   type="checkbox"
                   checked={consent.marketing}
                   onChange={(e) =>

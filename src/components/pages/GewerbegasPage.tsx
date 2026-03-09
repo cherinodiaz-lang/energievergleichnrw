@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Flame, Building2, TrendingDown, Shield, Clock, Send, Sun, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,79 +8,21 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import TrustRow from '@/components/TrustRow';
 import RelatedPages from '@/components/RelatedPages';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getPageSEO } from '@/lib/seo-config';
 import { ROUTES } from '@/lib/routes';
 import { trackMethodikClick } from '@/services/form-submission';
 import { getRelatedPages } from '@/lib/internal-linking';
 
 export default function GewerbegasPage() {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const faqSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: [
-        {
-          '@type': 'Question',
-          name: 'Wie oft kann ich meinen Gewerbegas-Anbieter wechseln?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Sie können Ihren Gewerbegas-Anbieter jederzeit wechseln, sofern Sie die Kündigungsfrist einhalten. Bei den meisten Verträgen beträgt diese 4 Wochen zum Ende eines Kalendermonats. Nach einem Wechsel können Sie frühestens nach 12 Monaten erneut wechseln.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Ist der Wechsel des Gewerbegas-Anbieters kostenlos?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Ja, völlig kostenlos. Es fallen keine Gebühren für die Kündigung beim alten Anbieter oder die Anmeldung beim neuen an. Wir kümmern uns um alle Formalitäten.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Wie lange dauert ein Gewerbegas-Wechsel?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'In der Regel 4-6 Wochen. Ihre Gasversorgung wird nicht unterbrochen. Der neue Anbieter kümmert sich um alle notwendigen Schritte.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Kann ich während des Wechsels ohne Gas sein?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Nein. Ihre Gasversorgung ist gesetzlich geschützt. Im Notfall springt der Grundversorger ein.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Welche Daten benötige ich für einen Gewerbegas-Vergleich?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Postleitzahl und Gasverbrauch (in kWh). Den Verbrauch finden Sie auf Ihrer letzten Rechnung. Optional: Zählernummer und Heizungsart.'
-          }
-        }
-      ]
-    };
-
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.textContent = JSON.stringify(faqSchema);
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const [companyName, setCompanyName] = useState('');
   const [contactPerson, setContactPerson] = useState('');
@@ -96,7 +38,7 @@ export default function GewerbegasPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Vielen Dank für Ihre Anfrage, ${companyName}! Wir werden uns in Kürze bei Ihnen melden.`);
+    setSubmitSuccess(true);
     // Reset form
     setCompanyName('');
     setContactPerson('');
@@ -136,6 +78,7 @@ export default function GewerbegasPage() {
       />
       <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />
+      <main>
       <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero Section */}
@@ -523,6 +466,15 @@ export default function GewerbegasPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
+              {submitSuccess && (
+                <div
+                  className="mb-6 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800"
+                  role="status"
+                  aria-live="polite"
+                >
+                  Vielen Dank für Ihre Anfrage. Wir melden uns in Kürze bei Ihnen.
+                </div>
+              )}
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Company Information */}
                 <div className="space-y-6">
@@ -825,7 +777,8 @@ export default function GewerbegasPage() {
         </div>
       </section>
 
-      <Footer />
+      </main>
+      <DeferredFooter />
     </div>
   );
 }

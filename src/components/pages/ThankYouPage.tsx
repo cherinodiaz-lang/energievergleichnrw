@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import { ROUTES } from '@/lib/routes';
 
@@ -142,7 +142,7 @@ export default function ThankYouPage() {
           </div>
         </div>
       </main>
-      <Footer />
+      <DeferredFooter />
     </>
   );
 }

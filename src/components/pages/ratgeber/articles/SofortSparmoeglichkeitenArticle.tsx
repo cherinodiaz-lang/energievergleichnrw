@@ -4,7 +4,7 @@ import { ArrowRight, CheckCircle, TrendingDown, Zap, Clock, DollarSign } from 'l
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
@@ -310,7 +310,7 @@ export default function SofortSparmoeglichkeitenArticle() {
         </div>
       </section>
 
-      <Footer />
+      <DeferredFooter />
     </div>
   );
 }
