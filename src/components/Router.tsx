@@ -301,7 +301,7 @@ const router = createBrowserRouter([
       },
       {
         path: "thank-you",
-        element: <ThankYouPage />,
+        element: <Navigate to="/danke" replace />,
       },
       {
         path: "blog",
