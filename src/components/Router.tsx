@@ -12,8 +12,8 @@ import { ScrollToTop } from '@/lib/scroll-to-top';
 import { SEO_CONFIG } from '@/lib/seo-config';
 import { ROUTES } from '@/lib/routes';
 import { initializeGA4 } from '@/services/ga4-tracking';
+import HomePage from '@/components/pages/HomePage';
 
-const HomePage = lazy(() => import('@/components/HomePageRoute'));
 // Fallback component for lazy-loaded routes
 const LazyFallback = () => <div className="min-h-screen flex items-center justify-center" />;
 
