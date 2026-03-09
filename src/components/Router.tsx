@@ -4,6 +4,7 @@ import {
   MemoryRouter,
   Navigate,
   Outlet,
+  useLocation,
   useRoutes,
   type RouteObject,
 } from 'react-router-dom';
@@ -69,6 +70,8 @@ const FaqPage = lazy(() => import('@/components/pages/FaqPage'));
 
 // Layout component that includes ScrollToTop and SEO components
 function Layout() {
+  const location = useLocation();
+
   useEffect(() => {
     if (SEO_CONFIG.googleAnalyticsId) {
       initializeGA4(SEO_CONFIG.googleAnalyticsId);
@@ -78,9 +81,13 @@ function Layout() {
   return (
     <div className="min-w-0 overflow-x-hidden ox-hidden">
       <ScrollToTop />
-      <Suspense fallback={<LazyFallback />}>
+      {location.pathname === '/' ? (
         <Outlet />
-      </Suspense>
+      ) : (
+        <Suspense fallback={<LazyFallback />}>
+          <Outlet />
+        </Suspense>
+      )}
     </div>
   );
 }
