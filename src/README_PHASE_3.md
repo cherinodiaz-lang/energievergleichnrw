@@ -11,7 +11,7 @@
 ### What Changed?
 1. **PassendeRatgeber** integrated on 6 money pages
 2. **Sitemap** updated with 37 URLs (dynamic articles)
-3. **Domain** changed to `https://energievergleich.nrw`
+3. **Domain** changed to `https://energievergleich.shop`
 
 ### Files Modified
 - `GasvergleichNrwPage.tsx` - Added PassendeRatgeber
@@ -86,7 +86,7 @@
 ### Sitemap
 ```
 ✅ 37 Total URLs
-✅ Domain: energievergleich.nrw
+✅ Domain: energievergleich.shop
 ✅ Dynamic article generation
 ✅ Valid XML format
 ✅ Proper metadata (priority, changefreq, lastmod)
@@ -133,7 +133,7 @@
 1. Visit /sitemap.xml
 2. Verify valid XML
 3. Count URLs (should be 37)
-4. Check domain is energievergleich.nrw
+4. Check domain is energievergleich.shop
 ```
 
 ### Test Ratgeber Hub
@@ -213,7 +213,7 @@ All documentation is in `/src/` directory:
 All deliverables implemented and tested:
 - ✅ PassendeRatgeber on 6 money pages
 - ✅ Sitemap with 37 URLs
-- ✅ Domain updated to energievergleich.nrw
+- ✅ Domain updated to energievergleich.shop
 - ✅ All routes configured
 - ✅ No breaking changes
 - ✅ Production ready

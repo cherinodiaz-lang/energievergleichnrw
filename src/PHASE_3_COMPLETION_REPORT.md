@@ -59,7 +59,7 @@
 
 #### Changes Made:
 1. **Domain Update:**
-   - Changed from `https://www.energievergleich.shop` to `https://energievergleich.nrw`
+   - Standardized to `https://www.energievergleich.shop`
    - All URLs now use correct canonical domain
 
 2. **Dynamic Article Integration:**
@@ -92,14 +92,14 @@
 #### Sample URLs in Sitemap:
 ```xml
 <url>
-  <loc>https://energievergleich.nrw/</loc>
+  <loc>https://energievergleich.shop/</loc>
   <lastmod>2026-01-09</lastmod>
   <changefreq>weekly</changefreq>
   <priority>1.0</priority>
 </url>
 
 <url>
-  <loc>https://energievergleich.nrw/ratgeber/strom/grundversorgung</loc>
+  <loc>https://energievergleich.shop/ratgeber/strom/grundversorgung</loc>
   <lastmod>2026-01-09</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.7</priority>
@@ -236,7 +236,7 @@
 
 **Sitemap:**
 - ✅ Valid XML structure
-- ✅ Correct domain (energievergleich.nrw)
+- ✅ Correct domain (energievergleich.shop)
 - ✅ All URLs included
 - ✅ Proper priority and changefreq values
 - ✅ lastmod dates from ratgeber-map.ts
@@ -270,7 +270,7 @@
    - Integrated PassendeRatgeber component
 
 6. ✅ `/src/pages/sitemap.xml.ts`
-   - Updated domain to energievergleich.nrw
+   - Updated domain to energievergleich.shop
    - Imported ratgeberArticles from ratgeber-map.ts
    - Dynamically generate all 24 article URLs
    - Added lastmod from article.lastUpdated
@@ -299,7 +299,7 @@
 
 ### Sitemap
 - **File:** `/src/pages/sitemap.xml.ts`
-- **Domain:** https://energievergleich.nrw
+- **Domain:** https://energievergleich.shop
 - **Total URLs:** 37
 - **Dynamic Articles:** 24 from ratgeber-map.ts
 - **Content-Type:** application/xml; charset=utf-8
@@ -317,7 +317,7 @@
 
 - [x] PassendeRatgeber integrated on all 6 money pages
 - [x] Sitemap updated with all 37 URLs
-- [x] Domain changed to energievergleich.nrw
+- [x] Domain changed to energievergleich.shop
 - [x] Dynamic article generation from ratgeber-map.ts
 - [x] All routes verified in Router.tsx
 - [x] No TypeScript errors
@@ -349,7 +349,7 @@
 
 ### Phase 4 Recommendations
 1. **robots.txt Enhancement**
-   - Add Sitemap directive: `Sitemap: https://energievergleich.nrw/sitemap.xml`
+   - Add Sitemap directive: `Sitemap: https://energievergleich.shop/sitemap.xml`
 
 2. **Analytics Integration**
    - Track PassendeRatgeber clicks
@@ -375,7 +375,7 @@
 All deliverables have been successfully implemented:
 - ✅ PassendeRatgeber integrated on all 6 money pages
 - ✅ Sitemap finalized with 37 URLs (dynamic articles)
-- ✅ Domain updated to energievergleich.nrw
+- ✅ Domain updated to energievergleich.shop
 - ✅ Ratgeber hub page verified
 - ✅ All routes properly configured
 - ✅ No breaking changes

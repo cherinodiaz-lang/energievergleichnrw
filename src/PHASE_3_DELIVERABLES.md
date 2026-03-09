@@ -47,7 +47,7 @@
 **File:** `/src/pages/sitemap.xml.ts`
 
 **Changes Made:**
-- [x] Domain updated to `https://energievergleich.nrw`
+- [x] Domain updated to `https://energievergleich.shop`
 - [x] Imported `ratgeberArticles` from `/src/lib/ratgeber-map.ts`
 - [x] Dynamic article generation (all 24 articles)
 - [x] Each article uses `lastUpdated` date (ISO format)
@@ -103,7 +103,7 @@
 - [x] Sitemap accessible at `/sitemap.xml`
 - [x] Valid XML format
 - [x] All 37 URLs included
-- [x] Correct domain (energievergleich.nrw)
+- [x] Correct domain (energievergleich.shop)
 - [x] Proper metadata
 - [x] HTTP 200 status
 
@@ -229,7 +229,7 @@
 |-------------|--------|--------------|
 | PassendeRatgeber on 6 Money Pages | ✅ COMPLETE | ✅ VERIFIED |
 | Sitemap with 37 URLs | ✅ COMPLETE | ✅ VERIFIED |
-| Domain Update to energievergleich.nrw | ✅ COMPLETE | ✅ VERIFIED |
+| Domain Update to energievergleich.shop | ✅ COMPLETE | ✅ VERIFIED |
 | Dynamic Article Generation | ✅ COMPLETE | ✅ VERIFIED |
 | Ratgeber Hub Page | ✅ VERIFIED | ✅ VERIFIED |
 | All Routes Configured | ✅ COMPLETE | ✅ VERIFIED |
@@ -310,7 +310,7 @@ The application is production-ready and can be deployed immediately.
 The application is ready for production deployment with:
 - ✅ PassendeRatgeber integrated on all 6 money pages
 - ✅ Sitemap finalized with 37 URLs
-- ✅ Domain updated to energievergleich.nrw
+- ✅ Domain updated to energievergleich.shop
 - ✅ All routes properly configured
 - ✅ No breaking changes
 - ✅ Responsive design maintained

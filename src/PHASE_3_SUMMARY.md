@@ -32,7 +32,7 @@ All 6 money pages now display contextually relevant articles:
 ### 2. **Sitemap Finalization** ✅
 Updated `/src/pages/sitemap.xml.ts` with:
 
-**Domain:** `https://energievergleich.nrw` (updated from energievergleich.shop)
+**Domain:** `https://www.energievergleich.shop`
 
 **URL Breakdown:**
 - **Money Pages (7):** Home, Strom, Gas, Photovoltaik, Gewerbestrom, Gewerbegas, Kontakt
@@ -98,7 +98,7 @@ All routes properly configured in `/src/components/Router.tsx`:
    - Integrated component with moneyPageId="kontakt"
 
 ✅ /src/pages/sitemap.xml.ts
-   - Updated domain to energievergleich.nrw
+   - Updated domain to energievergleich.shop
    - Imported ratgeberArticles from ratgeber-map.ts
    - Dynamically generate all 24 article URLs
    - Added lastmod from article.lastUpdated
@@ -143,7 +143,7 @@ All 37 routes return HTTP 200:
 ## Sitemap Structure
 
 ```
-https://energievergleich.nrw/
+https://energievergleich.shop/
 ├── Money Pages (7)
 │   ├── /stromvergleich-nrw
 │   ├── /gasvergleich-nrw
@@ -184,7 +184,7 @@ https://energievergleich.nrw/
 ### Sitemap Generation
 - **Location:** `/src/pages/sitemap.xml.ts`
 - **Dynamic:** Articles from `/src/lib/ratgeber-map.ts`
-- **Domain:** https://energievergleich.nrw
+- **Domain:** https://energievergleich.shop
 - **Format:** Valid XML with proper namespace
 - **Total URLs:** 37
 
@@ -200,7 +200,7 @@ https://energievergleich.nrw/
 
 - [x] PassendeRatgeber integrated on all 6 money pages
 - [x] Sitemap updated with all 37 URLs
-- [x] Domain changed to energievergleich.nrw
+- [x] Domain changed to energievergleich.shop
 - [x] Dynamic article generation from ratgeber-map.ts
 - [x] All routes verified in Router.tsx
 - [x] No TypeScript errors
@@ -285,7 +285,7 @@ https://energievergleich.nrw/
 All deliverables implemented, tested, and verified. The application is production-ready with:
 - ✅ Full PassendeRatgeber integration on all money pages
 - ✅ Complete sitemap with 37 URLs
-- ✅ Correct domain (energievergleich.nrw)
+- ✅ Correct domain (energievergleich.shop)
 - ✅ Dynamic article generation
 - ✅ All routes properly configured
 - ✅ No breaking changes

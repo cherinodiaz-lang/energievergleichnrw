@@ -1,5 +1,5 @@
 # Domain Redirect Setup Guide
-## energievergleich.shop as Primary Domain with energievergleich.nrw Redirect
+## www.energievergleich.shop as Primary Domain with energievergleich.shop Redirect
 
 **Last Updated:** January 9, 2026  
 **Status:** Ready for Implementation
@@ -8,18 +8,18 @@
 
 ## 🎯 Objective
 
-Set **energievergleich.shop** as the primary domain and redirect **energievergleich.nrw** to it with a 301 permanent redirect, ensuring only energievergleich.shop is indexed by search engines.
+Set **www.energievergleich.shop** as the primary domain and redirect **energievergleich.shop** to it with a 301 permanent redirect, ensuring only `www.energievergleich.shop` is indexed by search engines.
 
 ---
 
 ## ✅ Current Configuration Status
 
 ### Code-Level Configuration
-- ✅ **SEO Config**: Primary domain set to `energievergleich.shop`
-- ✅ **Canonical URLs**: All pages use `https://energievergleich.shop`
-- ✅ **Robots.txt**: References `energievergleich.shop` only
-- ✅ **Sitemap.xml**: All URLs point to `energievergleich.shop`
-- ✅ **SEO Head Component**: Generates canonical tags for `energievergleich.shop`
+- ✅ **SEO Config**: Primary domain set to `www.energievergleich.shop`
+- ✅ **Canonical URLs**: All pages use `https://www.energievergleich.shop`
+- ✅ **Robots.txt**: References `www.energievergleich.shop` only
+- ✅ **Sitemap.xml**: All URLs point to `www.energievergleich.shop`
+- ✅ **SEO Head Component**: Generates canonical tags for `www.energievergleich.shop`
 
 ### What Still Needs Configuration
 - ⚠️ **Wix Domain Settings**: Set primary domain and configure redirect
@@ -41,9 +41,9 @@ Set **energievergleich.shop** as the primary domain and redirect **energievergle
 6. Confirm the action
 
 #### 1.2 Configure Domain Redirect
-1. In **Domains & URLs**, look for **energievergleich.nrw**
+1. In **Domains & URLs**, look for **energievergleich.shop**
 2. If not listed, click **"Connect Domain"** and add it
-3. Once added, click the **three-dot menu** next to energievergleich.nrw
+3. Once added, click the **three-dot menu** next to energievergleich.shop
 4. Select **"Redirect to Another Domain"**
 5. Choose **energievergleich.shop** as the target
 6. Ensure the redirect type is **301 (Permanent Redirect)**
@@ -62,7 +62,7 @@ Set **energievergleich.shop** as the primary domain and redirect **energievergle
 #### 2.1 Add Both Domains as Properties
 1. Go to [Google Search Console](https://search.google.com/search-console)
 2. Click **"Add Property"**
-3. Add **https://energievergleich.nrw** (if not already added)
+3. Add **https://energievergleich.shop** (if not already added)
 4. Add **https://energievergleich.shop** (if not already added)
 5. Verify ownership for both domains
 
@@ -84,8 +84,8 @@ This combination clearly signals to Google that **energievergleich.shop** is the
 #### 2.4 Monitor Redirect and Consolidation
 1. Go to **Coverage** in the energievergleich.shop property
 2. Look for redirect notices
-3. Verify that Google recognizes the 301 redirect from energievergleich.nrw
-4. Monitor **Crawl Stats** to see when Google stops crawling energievergleich.nrw
+3. Verify that Google recognizes the 301 redirect from energievergleich.shop
+4. Monitor **Crawl Stats** to see when Google stops crawling energievergleich.shop
 5. Check **URL Inspection** tool to verify canonical tags are correct
 
 ---
@@ -101,7 +101,7 @@ This combination clearly signals to Google that **energievergleich.shop** is the
 
 #### 3.2 Update Referral Exclusion List (Optional)
 1. Go to **Admin** → **Data Settings** → **Referral Exclusion List**
-2. Add **energievergleich.nrw** to exclude it from referral traffic
+2. Add **energievergleich.shop** to exclude it from referral traffic
 3. This prevents internal redirects from being counted as referral traffic
 
 ---
@@ -150,9 +150,9 @@ Generates canonical tags pointing to `energievergleich.shop`
    - Confirm the action
 
 ### 2. **Configure 301 Redirect for Secondary Domain**
-   - In **Domains & URLs**, locate **energievergleich.nrw**
+   - In **Domains & URLs**, locate **energievergleich.shop**
    - If not listed, click **"Connect Domain"** to add it
-   - Click the **three-dot menu** next to energievergleich.nrw
+   - Click the **three-dot menu** next to energievergleich.shop
    - Select **"Redirect to Another Domain"**
    - Choose **energievergleich.shop** as the target domain
    - Ensure redirect type is set to **301 (Permanent Redirect)**
@@ -171,7 +171,7 @@ Generates canonical tags pointing to `energievergleich.shop`
    - Monitor Coverage and Crawl Stats for redirect recognition
 
 ### 5. **Monitor and Verify**
-   - Test redirect: `curl -I https://energievergleich.nrw`
+   - Test redirect: `curl -I https://energievergleich.shop`
    - Check canonical tags are correct
    - Verify sitemap URLs
    - Monitor GSC for consolidation progress
@@ -182,7 +182,7 @@ Generates canonical tags pointing to `energievergleich.shop`
 
 ### Before Going Live
 - [ ] Primary domain set to energievergleich.shop in Wix
-- [ ] 301 redirect configured from energievergleich.nrw to energievergleich.shop
+- [ ] 301 redirect configured from energievergleich.shop to www.energievergleich.shop
 - [ ] Both domains have valid SSL certificates
 - [ ] robots.txt references energievergleich.shop
 - [ ] sitemap.xml references energievergleich.shop
@@ -194,12 +194,12 @@ Generates canonical tags pointing to `energievergleich.shop`
 
 #### Test 1: HTTP 301/308 Redirect
 ```bash
-# Test redirect from energievergleich.nrw to energievergleich.shop
-curl -I https://energievergleich.nrw
+# Test redirect from energievergleich.shop to www.energievergleich.shop
+curl -I https://energievergleich.shop
 
 # Expected output:
 # HTTP/1.1 301 Moved Permanently
-# Location: https://energievergleich.shop/
+# Location: https://www.energievergleich.shop/
 ```
 
 #### Test 2: Canonical Tags
@@ -220,7 +220,7 @@ curl -s https://energievergleich.shop/sitemap.xml | grep -o "https://[^<]*"
 # https://energievergleich.shop/
 # https://energievergleich.shop/gewerbestrom
 # https://energievergleich.shop/gewerbegas
-# (NO energievergleich.nrw URLs)
+# (NO energievergleich.shop URLs)
 ```
 
 #### Test 4: Robots.txt Sitemap Entry
@@ -235,7 +235,7 @@ curl -s https://energievergleich.shop/robots.txt | grep -i sitemap
 #### Test 5: Redirect Chain Check
 ```bash
 # Ensure no redirect chains (should be direct 301)
-curl -I -L https://energievergleich.nrw
+curl -I -L https://energievergleich.shop
 
 # Expected: Single 301 redirect, no chains
 ```
@@ -243,12 +243,12 @@ curl -I -L https://energievergleich.nrw
 ### After Going Live
 - [ ] Google Search Console shows 301 redirects recognized
 - [ ] energievergleich.shop appears in search results
-- [ ] energievergleich.nrw traffic redirects properly
+- [ ] non-www energievergleich.shop traffic redirects properly
 - [ ] No duplicate content warnings in GSC
 - [ ] Analytics shows traffic from energievergleich.shop
 - [ ] No crawl errors in GSC
 - [ ] Canonical tags verified in URL Inspection tool
-- [ ] Crawl Stats show energievergleich.nrw crawl frequency decreasing
+- [ ] Crawl Stats show non-www energievergleich.shop crawl frequency decreasing
 
 ---
 
@@ -260,7 +260,7 @@ curl -I -L https://energievergleich.nrw
 | **Redirect Propagation** | Up to 24 hours | DNS and CDN propagation |
 | **Google Crawl** | Days 2-7 | Google discovers and crawls redirects |
 | **Consolidation** | Tage bis mehrere Wochen | Domain authority consolidates (varies by crawling/indexing frequency) |
-| **Cleanup** | Week 4+ | Can remove energievergleich.shop from GSC after consolidation |
+| **Cleanup** | Week 4+ | Can remove the non-www property from GSC after consolidation |
 
 ---
 
@@ -308,8 +308,8 @@ curl -I -L https://energievergleich.nrw
 ### Issue: GSC Shows Duplicate Content
 **Solution:**
 1. Ensure 301 redirect is properly configured
-2. Submit sitemap for energievergleich.nrw only
-3. Verify canonical tags are pointing to energievergleich.nrw
+2. Submit sitemap for energievergleich.shop only
+3. Verify canonical tags are pointing to energievergleich.shop
 4. Wait for Google to re-crawl (timeline varies)
 
 ### Issue: Traffic Drop After Redirect
@@ -336,12 +336,12 @@ curl -I -L https://energievergleich.nrw
 Your application is **fully configured** for the domain redirect. All code-level settings are correct. You only need to:
 
 1. ✅ Set energievergleich.shop as primary domain in Wix
-2. ✅ Configure 301 redirect from energievergleich.nrw in Wix
+2. ✅ Configure 301 redirect from energievergleich.shop to www.energievergleich.shop in Wix
 3. ✅ Update Google Search Console settings
 4. ✅ Monitor the transition
 
 The redirect will ensure that:
-- All traffic from energievergleich.nrw goes to energievergleich.shop
+- All traffic from energievergleich.shop goes to www.energievergleich.shop
 - Search engines recognize this as a permanent move
 - Only energievergleich.shop appears in search results
 - Domain authority consolidates to the primary domain

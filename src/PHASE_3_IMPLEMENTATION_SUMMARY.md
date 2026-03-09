@@ -7,7 +7,7 @@ Phase 3 implementation for https://energievergleich.shop has been completed succ
 
 ### 1. Domain Constants Update ✅
 **File:** `/src/pages/sitemap.xml.ts`
-- **Change:** Updated `DOMAIN` constant from `https://energievergleich.nrw` to `https://energievergleich.shop`
+- **Change:** Standardized `DOMAIN` constant to `https://www.energievergleich.shop`
 - **Line 4:** `const DOMAIN = 'https://energievergleich.shop';`
 - **Status:** ✅ Complete
 

@@ -139,7 +139,7 @@ Canonical: https://www.energievergleich.shop/ratgeber/strom/grundversorgung
 3. **Trailing Slash Consistency:**
    - Configure in Wix Dashboard: Settings → Domains & URLs
    - Set primary domain: `https://www.energievergleich.shop`
-   - Add parked domain: `energievergleich.nrw` → 301 redirect to primary
+   - Add parked domain: `energievergleich.shop` → 301 redirect to primary
 
 **Configuration Location:**
 - Wix Dashboard → Settings → Domains & URLs
@@ -201,7 +201,7 @@ Canonical: https://www.energievergleich.shop/ratgeber/strom/grundversorgung
 
 1. Go to **Settings → Domains & URLs**
 2. Set `energievergleich.shop` as PRIMARY DOMAIN (with www)
-3. Add `energievergleich.nrw` as PARKED DOMAIN with 301 redirect
+3. Add `energievergleich.shop` as PARKED DOMAIN with 301 redirect
 4. Verify in Google Search Console
 5. Submit updated sitemap: `https://www.energievergleich.shop/sitemap.xml`
 

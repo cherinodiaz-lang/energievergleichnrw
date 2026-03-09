@@ -160,7 +160,7 @@ Add all fields from the table below:
 **Step 2: Add Email Action**
 - [ ] Click **Add Action**
 - [ ] Select **Send Email**
-- [ ] **To**: Your email (e.g., `kontakt@energievergleich.nrw`)
+- [ ] **To**: Your email (e.g., `kontakt@energievergleich.shop`)
 - [ ] **Subject**: `Neue Anfrage: {type}`
 
 **Step 3: Configure Email Body**
@@ -220,7 +220,7 @@ vielen Dank für Ihre Anfrage! Wir haben Ihre Nachricht erhalten und werden uns 
 Ihre Anfrage wird von unserem Team bearbeitet. Sie erhalten eine Antwort innerhalb von 24 Stunden.
 
 Falls Sie Fragen haben, kontaktieren Sie uns unter:
-E-Mail: kontakt@energievergleich.nrw
+E-Mail: kontakt@energievergleich.shop
 Telefon: +49 211 1234567
 
 Beste Grüße,

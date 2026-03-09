@@ -22,7 +22,7 @@
 
 ### 2. Sitemap Update
 ```
-Domain: https://energievergleich.nrw (updated)
+Domain: https://energievergleich.shop (updated)
 Total URLs: 37
 ├── Money Pages: 7
 ├── Hub + Categories: 6
@@ -79,23 +79,23 @@ Total URLs: 37
 
 ### Money Pages (7)
 ```
-https://energievergleich.nrw/
-https://energievergleich.nrw/stromvergleich-nrw
-https://energievergleich.nrw/gasvergleich-nrw
-https://energievergleich.nrw/photovoltaik-nrw
-https://energievergleich.nrw/gewerbestrom
-https://energievergleich.nrw/gewerbegas
-https://energievergleich.nrw/kontakt
+https://energievergleich.shop/
+https://energievergleich.shop/stromvergleich-nrw
+https://energievergleich.shop/gasvergleich-nrw
+https://energievergleich.shop/photovoltaik-nrw
+https://energievergleich.shop/gewerbestrom
+https://energievergleich.shop/gewerbegas
+https://energievergleich.shop/kontakt
 ```
 
 ### Hub + Categories (6)
 ```
-https://energievergleich.nrw/ratgeber
-https://energievergleich.nrw/ratgeber/strom
-https://energievergleich.nrw/ratgeber/gas
-https://energievergleich.nrw/ratgeber/gewerbe
-https://energievergleich.nrw/ratgeber/photovoltaik
-https://energievergleich.nrw/ratgeber/wechselwissen
+https://energievergleich.shop/ratgeber
+https://energievergleich.shop/ratgeber/strom
+https://energievergleich.shop/ratgeber/gas
+https://energievergleich.shop/ratgeber/gewerbe
+https://energievergleich.shop/ratgeber/photovoltaik
+https://energievergleich.shop/ratgeber/wechselwissen
 ```
 
 ### Articles (24)
@@ -170,7 +170,7 @@ Wechselwissen (3):
 1. Visit /sitemap.xml
 2. Verify it's valid XML
 3. Count URLs (should be 37)
-4. Check domain is energievergleich.nrw
+4. Check domain is energievergleich.shop
 5. Verify all articles are included
 ```
 
@@ -200,7 +200,7 @@ Wechselwissen (3):
 
 - [x] PassendeRatgeber integrated on all 6 money pages
 - [x] Sitemap updated with 37 URLs
-- [x] Domain changed to energievergleich.nrw
+- [x] Domain changed to energievergleich.shop
 - [x] Dynamic article generation working
 - [x] All routes verified
 - [x] No TypeScript errors

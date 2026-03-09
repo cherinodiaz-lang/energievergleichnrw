@@ -24,8 +24,8 @@
 ### ✅ 3. Client-seitige Redirects entfernt
 - **Datei:** `/src/lib/seo-redirects.ts`
 - **Änderung:** `checkAndApplyRedirects()` ist jetzt ein Stub (keine Funktionalität)
-- **Hinweis:** Domain-Redirects (energievergleich.shop → energievergleich.nrw) müssen via **Wix Domain Settings** konfiguriert werden
-- **Status:** Alle Canonicals zeigen auf `https://energievergleich.nrw`
+- **Hinweis:** Domain-Redirects (energievergleich.shop → www.energievergleich.shop) müssen via **Wix Domain Settings** konfiguriert werden
+- **Status:** Alle Canonicals zeigen auf `https://energievergleich.shop`
 
 ### ✅ 4. robots.txt & sitemap.xml bereinigt
 - **robots.txt:** Entfernt crawl-delay, Googlebot/Bingbot-Spezialregeln
@@ -48,12 +48,12 @@
 
 | Feld | Wert |
 |------|------|
-| **URL** | `https://energievergleich.nrw/` |
+| **URL** | `https://energievergleich.shop/` |
 | **Title** | "Energievergleich NRW - Strom & Gas Tarife vergleichen und sparen" |
 | **Meta Description** | "Vergleichen Sie Strom- und Gastarife in Nordrhein-Westfalen. Finden Sie die besten Angebote für Privat- und Gewerbekunden. Kostenlos und unabhängig." |
 | **H1** | "Energie wechseln. Zukunft sichern." |
 | **H2 Elemente** | "Ihr Weg zum besten Tarif.", "Warum wechseln?", "Ihre eigene Energiequelle.", "Wissen zum Downloaden", "Häufige Fragen", "Wir sind für Sie da." |
-| **Canonical** | `https://energievergleich.nrw/` |
+| **Canonical** | `https://energievergleich.shop/` |
 | **Keywords** | "Energievergleich NRW, Stromvergleich, Gasvergleich, Strom sparen, Gas sparen, Tarife NRW" |
 | **Robots** | "index, follow" |
 | **OpenGraph** | ✓ Implementiert (og:title, og:description, og:image, og:type, og:url, og:site_name) |
@@ -70,12 +70,12 @@
 
 | Feld | Wert |
 |------|------|
-| **URL** | `https://energievergleich.nrw/gewerbestrom` |
+| **URL** | `https://energievergleich.shop/gewerbestrom` |
 | **Title** | "Gewerbestrom NRW - Stromtarife für Unternehmen vergleichen" |
 | **Meta Description** | "Gewerbestrom für Ihr Unternehmen in Nordrhein-Westfalen. Maßgeschneiderte Tarife mit Kostenersparnis und Planungssicherheit. Jetzt Angebot anfordern." |
 | **H1** | "Gewerbestrom für Ihr Unternehmen" |
 | **H2 Elemente** | "Ihre Vorteile als Gewerbekunde", "Maßgeschneiderte Lösungen für Ihr Gewerbe", "Jetzt Angebot anfordern" |
-| **Canonical** | `https://energievergleich.nrw/gewerbestrom` |
+| **Canonical** | `https://energievergleich.shop/gewerbestrom` |
 | **Keywords** | "Gewerbestrom NRW, Stromtarife Unternehmen, Gewerbekunden, Stromvergleich Gewerbe" |
 | **Robots** | "index, follow" |
 | **OpenGraph** | ✓ Implementiert (og:title, og:description, og:image, og:type, og:url, og:site_name) |
@@ -91,12 +91,12 @@
 
 | Feld | Wert |
 |------|------|
-| **URL** | `https://energievergleich.nrw/gewerbegas` |
+| **URL** | `https://energievergleich.shop/gewerbegas` |
 | **Title** | "Gewerbegas NRW - Gastarife für Unternehmen vergleichen" |
 | **Meta Description** | "Gewerbegas für Ihr Unternehmen in Nordrhein-Westfalen. Maßgeschneiderte Gastarife mit Kostenersparnis und Planungssicherheit. Jetzt Angebot anfordern." |
 | **H1** | "Gewerbegas für Ihr Unternehmen" |
 | **H2 Elemente** | "Ihre Vorteile als Gewerbekunde", "Maßgeschneiderte Gastarife für Ihr Gewerbe", "Jetzt Angebot anfordern" |
-| **Canonical** | `https://energievergleich.nrw/gewerbegas` |
+| **Canonical** | `https://energievergleich.shop/gewerbegas` |
 | **Keywords** | "Gewerbegas NRW, Gastarife Unternehmen, Gewerbekunden, Gasvergleich Gewerbe" |
 | **Robots** | "index, follow" |
 | **OpenGraph** | ✓ Implementiert (og:title, og:description, og:image, og:type, og:url, og:site_name) |
@@ -116,7 +116,7 @@
 | **Unique Meta Descriptions** | ✅ | Jede Seite hat eine einzigartige Meta Description |
 | **H1 pro Seite** | ✅ | Genau 1x H1 auf jeder Seite |
 | **H2/H3 Struktur** | ✅ | Saubere Hierarchie ohne Sprünge |
-| **Canonical URLs** | ✅ | Alle zeigen auf energievergleich.nrw |
+| **Canonical URLs** | ✅ | Alle zeigen auf energievergleich.shop |
 | **OpenGraph Tags** | ✅ | Implementiert auf allen Seiten |
 | **Twitter Cards** | ✅ | Implementiert auf allen Seiten |
 | **Organization Schema** | ✅ | Ohne Platzhalter-Adresse |
@@ -134,17 +134,17 @@
 
 ### Erforderlich:
 1. **Wix Domain Settings konfigurieren**
-   - 301 Redirect: energievergleich.shop → energievergleich.nrw
+   - 301 Redirect: energievergleich.shop → www.energievergleich.shop
    - Verifizieren, dass Redirect funktioniert
 
 2. **Google Search Console**
-   - Property hinzufügen: energievergleich.nrw
+   - Property hinzufügen: energievergleich.shop
    - Ownership verifizieren
-   - Sitemap einreichen: https://energievergleich.nrw/sitemap.xml
+   - Sitemap einreichen: https://energievergleich.shop/sitemap.xml
    - robots.txt überprüfen
 
 3. **Bing Webmaster Tools**
-   - Property hinzufügen: energievergleich.nrw
+   - Property hinzufügen: energievergleich.shop
    - Ownership verifizieren
    - Sitemap einreichen
 
