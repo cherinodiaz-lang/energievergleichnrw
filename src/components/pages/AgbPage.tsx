@@ -15,7 +15,7 @@ export default function AgbPage() {
         title="AGB | energievergleich.shop Allgemeine Geschäftsbedingungen"
         description="Allgemeine Geschäftsbedingungen von energievergleich.shop. Lesen Sie unsere Nutzungsbedingungen."
         keywords="AGB, Allgemeine Geschäftsbedingungen, Nutzungsbedingungen"
-        robots="noindex, nofollow"
+        robots="index, follow"
       />
       <Header />
       <Breadcrumb items={breadcrumbItems} />

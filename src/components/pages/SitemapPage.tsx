@@ -53,7 +53,7 @@ export default function SitemapPage() {
         title="Sitemap | energievergleich.shop"
         description="Übersicht aller Seiten von energievergleich.shop."
         keywords="Sitemap, Seitenübersicht"
-        robots="noindex, follow"
+        robots="index, follow"
       />
       <Header />
       <Breadcrumb items={breadcrumbItems} />

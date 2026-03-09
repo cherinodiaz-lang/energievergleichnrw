@@ -15,7 +15,7 @@ export default function WiderrufPage() {
         title="Widerrufsbelehrung | energievergleich.shop"
         description="Widerrufsbelehrung und Widerrufsformular von energievergleich.shop."
         keywords="Widerrufsbelehrung, Widerrufsrecht, Widerrufsformular"
-        robots="noindex, nofollow"
+        robots="index, follow"
       />
       <Header />
       <Breadcrumb items={breadcrumbItems} />
