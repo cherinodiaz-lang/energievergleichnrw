@@ -384,7 +384,7 @@ export default function HomePage() {
       `}</style>
       <Header />
       {/* --- HERO SECTION --- */}
-      <section className="hero-section relative w-full min-h-[100vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-primary">
+      <section className="hero-section relative w-full min-h-screen md:min-h-screen flex items-center justify-center overflow-hidden bg-primary">
         {/* Parallax Background */}
         <motion.div
           style={{ y: heroY, opacity: heroOpacity }}
@@ -401,37 +401,37 @@ export default function HomePage() {
         </motion.div>
 
         {/* Hero Content */}
-        <div className="relative z-10 w-full max-w-[120rem] mx-auto px-3 sm:px-6 lg:px-12 py-16 sm:py-20 flex items-center justify-center min-h-[100vh] md:min-h-screen">
-          <div className="max-w-4xl w-full">
+        <div className="relative z-10 w-full max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16 md:py-20 flex items-center justify-center min-h-screen">
+          <div className="max-w-3xl w-full">
             <AnimatedElement>
-              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-xs sm:text-sm font-bold mb-4 sm:mb-6 backdrop-blur-sm">
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-xs sm:text-sm font-bold mb-4 sm:mb-5 md:mb-6 backdrop-blur-sm">
                 <Leaf className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" aria-hidden="true" />
-                <span className="hidden sm:inline font-heading">Die Nr. 1 für Energievergleiche in NRW</span>
-                <span className="sm:hidden font-heading">Energievergleiche NRW</span>
+                <span className="hidden sm:inline font-heading\">Die Nr. 1 für Energievergleiche in NRW</span>
+                <span className="sm:hidden font-heading\">Energievergleiche NRW</span>
               </div>
             </AnimatedElement>
 
             <AnimatedElement delay={100}>
-              <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white leading-tight mb-4 sm:mb-6 md:mb-8">
-                Energie wechseln.<br />
+              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight mb-3 sm:mb-4 md:mb-6">
+                Energie wechseln.<br className="hidden sm:block" />
                 <span className="text-secondary">Zukunft sichern.</span>
               </h1>
             </AnimatedElement>
 
             <AnimatedElement delay={200}>
-              <p className="font-paragraph text-sm sm:text-lg lg:text-xl text-white/95 mb-6 sm:mb-8 md:mb-10 max-w-2xl leading-relaxed">
+              <p className="font-paragraph text-base sm:text-lg md:text-xl text-white/95 mb-6 sm:mb-7 md:mb-8 max-w-2xl leading-relaxed">
                 Der einfache Weg zu günstigerem Strom und Gas in NRW. Mit unserem Vergleichsrechner finden Sie schnell die besten Tarife.
               </p>
             </AnimatedElement>
 
             <AnimatedElement delay={300}>
-              <div className="flex flex-col sm:flex-row gap-3 pb-8 sm:pb-0">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pb-4 sm:pb-0">
                 <Button
                   onClick={() => {
                     trackCTAClick('Jetzt vergleichen');
                     scrollToSection('vergleichsrechner');
                   }}
-                  className="bg-secondary text-secondary-foreground hover:bg-secondary/90 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 h-12 sm:h-14 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-bold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
+                  className="bg-secondary text-secondary-foreground hover:bg-[#D49700] focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-primary h-12 sm:h-13 md:h-14 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-bold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto active:scale-95"
                 >
                   Jetzt vergleichen
                 </Button>
@@ -440,7 +440,7 @@ export default function HomePage() {
                     trackCTAClick('Photovoltaik Beratung');
                     scrollToSection('photovoltaik');
                   }}
-                  className="bg-white/20 border-2 border-white text-white hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary h-12 sm:h-14 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-semibold backdrop-blur-md transition-all w-full sm:w-auto"
+                  className="bg-white/20 border-2 border-white text-white hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary h-12 sm:h-13 md:h-14 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-semibold backdrop-blur-md transition-all w-full sm:w-auto active:scale-95"
                 >
                   <Sun className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" aria-hidden="true" />
                   <span className="hidden sm:inline">Photovoltaik Beratung</span>
@@ -563,57 +563,57 @@ export default function HomePage() {
                   </div>
 
                   <Tabs defaultValue="strom" className="w-full">
-                    <div className="bg-gray-50 border-b px-4 sm:px-6 pt-3 sm:pt-4 overflow-x-auto">
-                      <TabsList className="grid w-full grid-cols-3 bg-transparent h-auto p-0 gap-2 sm:gap-4">
+                    <div className="bg-gray-50 border-b px-3 sm:px-6 pt-2 sm:pt-4 overflow-x-auto">
+                      <TabsList className="grid w-full grid-cols-3 bg-transparent h-auto p-0 gap-1 sm:gap-4">
                         <TabsTrigger
                           value="strom"
-                          className="data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm data-[state=active]:border-t-4 data-[state=active]:border-primary rounded-none py-3 sm:py-4 transition-all text-xs sm:text-sm"
+                          className="data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm data-[state=active]:border-t-4 data-[state=active]:border-primary rounded-none py-2 sm:py-4 px-2 sm:px-4 transition-all text-xs sm:text-sm font-medium"
                         >
-                          <div className="flex flex-col items-center gap-1">
+                          <div className="flex flex-col items-center gap-0.5 sm:gap-1">
                             <Zap className="w-4 h-4 sm:w-5 sm:h-5" />
-                            <span>Strom</span>
+                            <span className="text-xs sm:text-sm">Strom</span>
                           </div>
                         </TabsTrigger>
                         <TabsTrigger
                           value="gas"
-                          className="data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm data-[state=active]:border-t-4 data-[state=active]:border-primary rounded-none py-3 sm:py-4 transition-all text-xs sm:text-sm"
+                          className="data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm data-[state=active]:border-t-4 data-[state=active]:border-primary rounded-none py-2 sm:py-4 px-2 sm:px-4 transition-all text-xs sm:text-sm font-medium"
                         >
-                          <div className="flex flex-col items-center gap-1">
+                          <div className="flex flex-col items-center gap-0.5 sm:gap-1">
                             <Flame className="w-4 h-4 sm:w-5 sm:h-5" />
-                            <span>Gas</span>
+                            <span className="text-xs sm:text-sm">Gas</span>
                           </div>
                         </TabsTrigger>
                         <TabsTrigger
                           value="kombi"
-                          className="data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm data-[state=active]:border-t-4 data-[state=active]:border-primary rounded-none py-3 sm:py-4 transition-all text-xs sm:text-sm"
+                          className="data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm data-[state=active]:border-t-4 data-[state=active]:border-primary rounded-none py-2 sm:py-4 px-2 sm:px-4 transition-all text-xs sm:text-sm font-medium"
                         >
-                          <div className="flex flex-col items-center gap-1">
+                          <div className="flex flex-col items-center gap-0.5 sm:gap-1">
                             <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5" />
-                            <span>Kombi</span>
+                            <span className="text-xs sm:text-sm">Kombi</span>
                           </div>
                         </TabsTrigger>
                       </TabsList>
                     </div>
 
-                    <div className="p-4 sm:p-8 bg-white">
-                      <TabsContent value="strom" className="mt-0 space-y-6 sm:space-y-8">
+                    <div className="p-3 sm:p-6 md:p-8 bg-white">
+                      <TabsContent value="strom" className="mt-0 space-y-4 sm:space-y-6">
                         {!showStromResults ? (
                           <>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                              <div className="space-y-2">
-                                <Label htmlFor="strom-plz" className="text-sm font-medium">Postleitzahl</Label>
+                            <div className="grid grid-cols-1 gap-3 sm:gap-4">
+                              <div className="space-y-1.5 sm:space-y-2">
+                                <Label htmlFor="strom-plz" className="text-xs sm:text-sm font-medium">Postleitzahl</Label>
                                 <Input
                                   id="strom-plz"
                                   placeholder="z.B. 40210"
                                   value={postleitzahl}
                                   onChange={(e) => setPostleitzahl(e.target.value)}
-                                  className="h-10 sm:h-12 text-sm"
+                                  className="h-11 sm:h-12 text-sm"
                                 />
                               </div>
-                              <div className="space-y-2">
-                                <Label htmlFor="strom-personen" className="text-sm font-medium">Haushaltsgröße</Label>
+                              <div className="space-y-1.5 sm:space-y-2">
+                                <Label htmlFor="strom-personen" className="text-xs sm:text-sm font-medium">Haushaltsgröße</Label>
                                 <Select value={personenAnzahl} onValueChange={setPersonenAnzahl}>
-                                  <SelectTrigger id="strom-personen" className="h-10 sm:h-12 text-sm">
+                                  <SelectTrigger id="strom-personen" className="h-11 sm:h-12 text-sm">
                                     <SelectValue placeholder="Bitte wählen" />
                                   </SelectTrigger>
                                   <SelectContent>
@@ -624,21 +624,21 @@ export default function HomePage() {
                                   </SelectContent>
                                 </Select>
                               </div>
-                              <div className="space-y-2 sm:col-span-2">
-                                <Label htmlFor="strom-verbrauch" className="text-sm font-medium">Jahresverbrauch (kWh) <span className="text-gray-400 font-normal text-xs">(Optional)</span></Label>
+                              <div className="space-y-1.5 sm:space-y-2">
+                                <Label htmlFor="strom-verbrauch" className="text-xs sm:text-sm font-medium">Jahresverbrauch (kWh) <span className="text-gray-400 font-normal text-xs">(Optional)</span></Label>
                                 <Input
                                   id="strom-verbrauch"
                                   type="number"
                                   placeholder="Genauen Verbrauch eingeben"
                                   value={stromVerbrauch}
                                   onChange={(e) => setStromVerbrauch(e.target.value)}
-                                  className="h-10 sm:h-12 text-sm"
+                                  className="h-11 sm:h-12 text-sm"
                                 />
                               </div>
                             </div>
                             <Button
                               onClick={() => handleCalculate('Strom')}
-                              className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-11 sm:h-14 text-sm sm:text-lg font-bold rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl transition-all"
+                              className="w-full bg-secondary text-secondary-foreground hover:bg-[#D49700] h-12 sm:h-14 text-sm sm:text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all active:scale-95"
                             >
                               Stromtarife vergleichen
                             </Button>
@@ -699,24 +699,24 @@ export default function HomePage() {
                         )}
                       </TabsContent>
 
-                      <TabsContent value="gas" className="mt-0 space-y-6 sm:space-y-8">
+                      <TabsContent value="gas" className="mt-0 space-y-4 sm:space-y-6">
                         {!showGasResults ? (
                           <>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                              <div className="space-y-2">
-                                <Label htmlFor="gas-plz" className="text-sm font-medium">Postleitzahl</Label>
+                            <div className="grid grid-cols-1 gap-3 sm:gap-4">
+                              <div className="space-y-1.5 sm:space-y-2">
+                                <Label htmlFor="gas-plz" className="text-xs sm:text-sm font-medium">Postleitzahl</Label>
                                 <Input
                                   id="gas-plz"
                                   placeholder="z.B. 40210"
                                   value={postleitzahl}
                                   onChange={(e) => setPostleitzahl(e.target.value)}
-                                  className="h-10 sm:h-12 text-sm"
+                                  className="h-11 sm:h-12 text-sm"
                                 />
                               </div>
-                              <div className="space-y-2">
-                                <Label htmlFor="gas-wohnflaeche" className="text-sm font-medium">Wohnfläche (m²)</Label>
+                              <div className="space-y-1.5 sm:space-y-2">
+                                <Label htmlFor="gas-wohnflaeche" className="text-xs sm:text-sm font-medium">Wohnfläche (m²)</Label>
                                 <Select value={personenAnzahl} onValueChange={setPersonenAnzahl}>
-                                  <SelectTrigger id="gas-wohnflaeche" className="h-10 sm:h-12 text-sm">
+                                  <SelectTrigger id="gas-wohnflaeche" className="h-11 sm:h-12 text-sm">
                                     <SelectValue placeholder="Bitte wählen" />
                                   </SelectTrigger>
                                   <SelectContent>
@@ -727,21 +727,21 @@ export default function HomePage() {
                                   </SelectContent>
                                 </Select>
                               </div>
-                              <div className="space-y-2 sm:col-span-2">
-                                <Label htmlFor="gas-verbrauch" className="text-sm font-medium">Jahresverbrauch (kWh) <span className="text-gray-400 font-normal text-xs">(Optional)</span></Label>
+                              <div className="space-y-1.5 sm:space-y-2">
+                                <Label htmlFor="gas-verbrauch" className="text-xs sm:text-sm font-medium">Jahresverbrauch (kWh) <span className="text-gray-400 font-normal text-xs">(Optional)</span></Label>
                                 <Input
                                   id="gas-verbrauch"
                                   type="number"
                                   placeholder="Genauen Verbrauch eingeben"
                                   value={gasVerbrauch}
                                   onChange={(e) => setGasVerbrauch(e.target.value)}
-                                  className="h-10 sm:h-12 text-sm"
+                                  className="h-11 sm:h-12 text-sm"
                                 />
                               </div>
                             </div>
                             <Button
                               onClick={() => handleCalculate('Gas')}
-                              className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-11 sm:h-14 text-sm sm:text-lg font-bold rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl transition-all"
+                              className="w-full bg-secondary text-secondary-foreground hover:bg-[#D49700] h-12 sm:h-14 text-sm sm:text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all active:scale-95"
                             >
                               Gastarife vergleichen
                             </Button>
@@ -802,46 +802,46 @@ export default function HomePage() {
                         )}
                       </TabsContent>
 
-                      <TabsContent value="kombi" className="mt-0 space-y-6 sm:space-y-8">
+                      <TabsContent value="kombi" className="mt-0 space-y-4 sm:space-y-6">
                         {!showKombiResults ? (
                           <>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                              <div className="space-y-2 sm:col-span-2">
-                                <Label htmlFor="kombi-plz" className="text-sm font-medium">Postleitzahl</Label>
+                            <div className="grid grid-cols-1 gap-3 sm:gap-4">
+                              <div className="space-y-1.5 sm:space-y-2">
+                                <Label htmlFor="kombi-plz" className="text-xs sm:text-sm font-medium">Postleitzahl</Label>
                                 <Input
                                   id="kombi-plz"
                                   placeholder="z.B. 40210"
                                   value={postleitzahl}
                                   onChange={(e) => setPostleitzahl(e.target.value)}
-                                  className="h-10 sm:h-12 text-sm"
+                                  className="h-11 sm:h-12 text-sm"
                                 />
                               </div>
-                              <div className="space-y-2">
-                                <Label htmlFor="kombi-strom" className="text-sm font-medium">Stromverbrauch (kWh)</Label>
+                              <div className="space-y-1.5 sm:space-y-2">
+                                <Label htmlFor="kombi-strom" className="text-xs sm:text-sm font-medium">Stromverbrauch (kWh)</Label>
                                 <Input
                                   id="kombi-strom"
                                   type="number"
                                   placeholder="z.B. 3500"
                                   value={stromVerbrauch}
                                   onChange={(e) => setStromVerbrauch(e.target.value)}
-                                  className="h-10 sm:h-12 text-sm"
+                                  className="h-11 sm:h-12 text-sm"
                                 />
                               </div>
-                              <div className="space-y-2">
-                                <Label htmlFor="kombi-gas" className="text-sm font-medium">Gasverbrauch (kWh)</Label>
+                              <div className="space-y-1.5 sm:space-y-2">
+                                <Label htmlFor="kombi-gas" className="text-xs sm:text-sm font-medium">Gasverbrauch (kWh)</Label>
                                 <Input
                                   id="kombi-gas"
                                   type="number"
                                   placeholder="z.B. 20000"
                                   value={gasVerbrauch}
                                   onChange={(e) => setGasVerbrauch(e.target.value)}
-                                  className="h-10 sm:h-12 text-sm"
+                                  className="h-11 sm:h-12 text-sm"
                                 />
                               </div>
                             </div>
                             <Button
                               onClick={() => handleCalculate('Kombi')}
-                              className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-11 sm:h-14 text-sm sm:text-lg font-bold rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl transition-all"
+                              className="w-full bg-secondary text-secondary-foreground hover:bg-[#D49700] h-12 sm:h-14 text-sm sm:text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all active:scale-95"
                             >
                               Kombitarife vergleichen
                             </Button>
