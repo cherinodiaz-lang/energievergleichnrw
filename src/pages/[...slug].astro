@@ -8,10 +8,22 @@ import "@/styles/global.css";
 // These are handled by dedicated endpoint files (sitemap.xml.ts, robots.txt.ts)
 const pathname = new URL(Astro.request.url).pathname;
 const excludedPaths = ['/sitemap.xml', '/robots.txt'];
+const redirects: Record<string, string> = {
+  '/thank-you': '/danke',
+};
 
 if (excludedPaths.includes(pathname)) {
   // Return 404 to allow Astro to serve the API endpoint
   return new Response(null, { status: 404 });
+}
+
+if (redirects[pathname]) {
+  return new Response(null, {
+    status: 308,
+    headers: {
+      Location: redirects[pathname],
+    },
+  });
 }
 
 // Derive a readable page name from the current path for Wix SEO service

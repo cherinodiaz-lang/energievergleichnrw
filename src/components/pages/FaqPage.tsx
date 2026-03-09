@@ -5,6 +5,8 @@ import Breadcrumb from '@/components/Breadcrumb';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
+import RelatedPages from '@/components/RelatedPages';
+import { getRelatedPages } from '@/lib/internal-linking';
 
 const faqSections = [
   {
@@ -156,6 +158,7 @@ export default function FaqPage() {
         </div>
       </main>
 
+      <RelatedPages pages={getRelatedPages('/faq')} />
       <Footer />
     </div>
   );
