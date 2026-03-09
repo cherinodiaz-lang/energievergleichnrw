@@ -1,4 +1,4 @@
-// HPI 1.6-G - PHASE 6: Core Web Vitals Optimized
+// HPI 1.7 - PHASE 7: Performance Optimized (LCP, CLS, Mobile)
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Zap, Flame, CheckCircle, Sun, Download, ChevronDown, Send, ArrowRight, Leaf, Home, Building2, ShieldCheck, MousePointerClick, Star } from 'lucide-react';
@@ -34,10 +34,11 @@ type AnimatedElementProps = {
   delay?: number;
 };
 
-// Respect prefers-reduced-motion
+// Optimized AnimatedElement: Reduced motion, no layout shifts
 const AnimatedElement: React.FC<AnimatedElementProps> = ({ children, className, delay = 0 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -57,9 +58,13 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({ children, className, 
 
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
-        setTimeout(() => {
-          element.classList.add('is-visible');
-        }, prefersReducedMotion ? 0 : delay);
+        if (prefersReducedMotion) {
+          setIsVisible(true);
+        } else {
+          setTimeout(() => {
+            setIsVisible(true);
+          }, delay);
+        }
         observer.unobserve(element);
       }
     }, { threshold: 0.1 });
@@ -68,7 +73,14 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({ children, className, 
     return () => observer.disconnect();
   }, [delay, prefersReducedMotion]);
 
-  return <div ref={ref} className={`${className || ''} animate-reveal`}>{children}</div>;
+  return (
+    <div 
+      ref={ref} 
+      className={`${className || ''} ${isVisible ? 'animate-reveal-visible' : 'animate-reveal'}`}
+    >
+      {children}
+    </div>
+  );
 };
 
 // --- Main Component ---
@@ -124,21 +136,20 @@ export default function HomePage() {
   const [showGasResults, setShowGasResults] = useState(false);
   const [showKombiResults, setShowKombiResults] = useState(false);
 
-  // --- Scroll Hooks for Parallax - REDUCED on mobile ---
+  // --- Scroll Hooks for Parallax - DISABLED on mobile for performance ---
   const { scrollY } = useScroll();
   const prefersReducedMotion = useRef(false);
+  const [isMobile, setIsMobile] = useState(false);
   
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     prefersReducedMotion.current = mediaQuery.matches;
+    setIsMobile(window.innerWidth < 768);
   }, []);
   
-  // Disable parallax on mobile and when reduced motion is preferred
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  // Disable parallax on mobile and when reduced motion is preferred (improves LCP)
   const heroY = useTransform(scrollY, [0, 1000], prefersReducedMotion.current || isMobile ? [0, 0] : [0, 400]);
   const heroOpacity = useTransform(scrollY, [0, 500], [1, 0]);
-
-  // ... keep existing code (state declarations) ...
 
   // --- Load Data from CMS ---
   useEffect(() => {
@@ -364,22 +375,39 @@ export default function HomePage() {
       <ReviewSchema />
       <FAQPageSchema />
       <style>{`
-        /* PHASE 7: Reduced animation intensity from 0.8s to 0.3s for mobile */
+        /* PHASE 7: Optimized animations for performance */
         .animate-reveal {
           opacity: 0;
-          transform: translateY(30px);
-          transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+          transform: translateY(20px);
+          transition: none;
         }
-        .animate-reveal.is-visible {
+        .animate-reveal-visible {
           opacity: 1;
           transform: translateY(0);
+          animation: revealIn 0.4s ease-out forwards;
         }
-        @media (prefers-reduced-motion: reduce) {
-          .animate-reveal {
-            transition: none;
+        @keyframes revealIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
             opacity: 1;
             transform: translateY(0);
           }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .animate-reveal,
+          .animate-reveal-visible {
+            transition: none;
+            animation: none;
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        /* Optimize images for LCP */
+        img[loading="lazy"] {
+          content-visibility: auto;
         }
       `}</style>
       <Header />
@@ -406,8 +434,8 @@ export default function HomePage() {
             <AnimatedElement>
               <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-xs sm:text-sm font-bold mb-4 sm:mb-5 md:mb-6 backdrop-blur-sm">
                 <Leaf className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" aria-hidden="true" />
-                <span className="hidden sm:inline font-heading\">Die Nr. 1 für Energievergleiche in NRW</span>
-                <span className="sm:hidden font-heading\">Energievergleiche NRW</span>
+                <span className="hidden sm:inline font-heading">Die Nr. 1 für Energievergleiche in NRW</span>
+                <span className="sm:hidden font-heading">Energievergleiche NRW</span>
               </div>
             </AnimatedElement>
 
@@ -686,8 +714,7 @@ export default function HomePage() {
                                     Tarif wählen
                                   </Button>
                                 </div>
-                              ))}
-                            </div>
+                              ))}</div>
                             <Button
                               onClick={() => setShowStromResults(false)}
                               variant="outline"
@@ -789,8 +816,7 @@ export default function HomePage() {
                                     Tarif wählen
                                   </Button>
                                 </div>
-                              ))}
-                            </div>
+                              ))}</div>
                             <Button
                               onClick={() => setShowGasResults(false)}
                               variant="outline"
@@ -889,8 +915,7 @@ export default function HomePage() {
                                     Tarif wählen
                                   </Button>
                                 </div>
-                              ))}
-                            </div>
+                              ))}</div>
                             <Button
                               onClick={() => setShowKombiResults(false)}
                               variant="outline"
