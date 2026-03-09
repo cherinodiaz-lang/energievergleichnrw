@@ -56,6 +56,11 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({ children, className, 
     const element = ref.current;
     if (!element) return;
 
+    if (typeof window === 'undefined' || typeof IntersectionObserver === 'undefined') {
+      element.classList.add('is-visible');
+      return;
+    }
+
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         if (prefersReducedMotion) {

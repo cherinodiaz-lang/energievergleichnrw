@@ -42,7 +42,14 @@ export default function ConsentBanner() {
   // Initialize banner on mount - defer to avoid blocking render
   useEffect(() => {
     const timer = setTimeout(() => {
-      const storedConsent = localStorage.getItem(CONSENT_STORAGE_KEY);
+      if (typeof window === 'undefined') return;
+      
+      let storedConsent: string | null = null;
+      try {
+        storedConsent = localStorage.getItem(CONSENT_STORAGE_KEY);
+      } catch (error) {
+        console.error('Error accessing localStorage:', error);
+      }
       
       if (!storedConsent) {
         // No consent stored, show banner
@@ -77,11 +84,13 @@ export default function ConsentBanner() {
     }
 
     // Dispatch custom event for other components
-    window.dispatchEvent(
-      new CustomEvent('consent-updated', {
-        detail: consentState,
-      })
-    );
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(
+        new CustomEvent('consent-updated', {
+          detail: consentState,
+        })
+      );
+    }
   };
 
   const handleAcceptAll = () => {
@@ -107,14 +116,20 @@ export default function ConsentBanner() {
   };
 
   const saveAndApplyConsent = (consentState: ConsentState) => {
-    localStorage.setItem(
-      CONSENT_STORAGE_KEY,
-      JSON.stringify({
-        ...consentState,
-        timestamp: new Date().toISOString(),
-        version: CONSENT_VERSION,
-      })
-    );
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem(
+          CONSENT_STORAGE_KEY,
+          JSON.stringify({
+            ...consentState,
+            timestamp: new Date().toISOString(),
+            version: CONSENT_VERSION,
+          })
+        );
+      } catch (error) {
+        console.error('Error saving consent to localStorage:', error);
+      }
+    }
     setConsent(consentState);
     applyConsent(consentState);
     setShowBanner(false);
@@ -122,7 +137,13 @@ export default function ConsentBanner() {
   };
 
   const handleResetConsent = () => {
-    localStorage.removeItem(CONSENT_STORAGE_KEY);
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.removeItem(CONSENT_STORAGE_KEY);
+      } catch (error) {
+        console.error('Error removing consent from localStorage:', error);
+      }
+    }
     setShowBanner(true);
     setShowSettings(false);
   };
