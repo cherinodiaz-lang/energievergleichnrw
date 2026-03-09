@@ -432,7 +432,7 @@ export default function HomePage() {
         <div className="relative z-10 w-full max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16 md:py-20 flex items-center justify-center min-h-screen">
           <div className="max-w-3xl w-full">
             <AnimatedElement>
-              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-xs sm:text-sm font-bold mb-4 sm:mb-5 md:mb-6 backdrop-blur-sm">
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-secondary text-black text-xs sm:text-sm font-bold mb-4 sm:mb-5 md:mb-6 backdrop-blur-sm">
                 <Leaf className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" aria-hidden="true" />
                 <span className="hidden sm:inline font-heading">Die Nr. 1 für Energievergleiche in NRW</span>
                 <span className="sm:hidden font-heading">Energievergleiche NRW</span>
@@ -666,7 +666,7 @@ export default function HomePage() {
                             </div>
                             <Button
                               onClick={() => handleCalculate('Strom')}
-                              className="w-full bg-secondary text-secondary-foreground hover:bg-[#D49700] h-12 sm:h-14 text-sm sm:text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all active:scale-95"
+                              className="w-full bg-secondary text-black hover:bg-[#D49700] h-12 sm:h-14 text-sm sm:text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all active:scale-95"
                             >
                               Stromtarife vergleichen
                             </Button>
@@ -710,7 +710,7 @@ export default function HomePage() {
                                       <p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.preisgarantie}</p>
                                     </div>
                                   </div>
-                                  <Button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-10 sm:h-12 font-bold rounded-lg text-sm sm:text-base">
+                                  <Button className="w-full bg-secondary text-black hover:bg-secondary/90 h-10 sm:h-12 font-bold rounded-lg text-sm sm:text-base">
                                     Tarif wählen
                                   </Button>
                                 </div>
@@ -812,7 +812,7 @@ export default function HomePage() {
                                       <p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.preisgarantie}</p>
                                     </div>
                                   </div>
-                                  <Button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-10 sm:h-12 font-bold rounded-lg text-sm sm:text-base">
+                                  <Button className="w-full bg-secondary text-black hover:bg-secondary/90 h-10 sm:h-12 font-bold rounded-lg text-sm sm:text-base">
                                     Tarif wählen
                                   </Button>
                                 </div>

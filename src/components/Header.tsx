@@ -119,7 +119,7 @@ export default function Header() {
             {/* Desktop CTA Button */}
             <Button
               onClick={handleCtaClick}
-              className="hidden lg:flex bg-secondary hover:bg-secondary/90 text-secondary-foreground font-paragraph font-semibold px-4 xl:px-6 py-2 rounded-lg transition-colors h-10 xl:h-12 text-sm xl:text-base focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2"
+              className="hidden lg:flex bg-secondary hover:bg-secondary/90 text-black font-paragraph font-semibold px-4 xl:px-6 py-2 rounded-lg transition-colors h-10 xl:h-12 text-sm xl:text-base focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2"
               aria-label="Kostenlos vergleichen - Tarifrechner starten"
             >
               Kostenlos vergleichen
@@ -215,7 +215,7 @@ export default function Header() {
               <div className="mt-3 sm:mt-4 px-3 sm:px-4 pt-3 sm:pt-4 border-t border-gray-100">
                 <Button
                   onClick={handleCtaClick}
-                  className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-paragraph font-semibold py-3 sm:py-4 rounded-lg transition-colors h-11 sm:h-12 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2"
+                  className="w-full bg-secondary hover:bg-secondary/90 text-black font-paragraph font-semibold py-3 sm:py-4 rounded-lg transition-colors h-11 sm:h-12 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2"
                 >
                   Kostenlos vergleichen
                 </Button>
