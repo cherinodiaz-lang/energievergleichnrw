@@ -5,8 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import NativeSelect from '@/components/ui/native-select';
 import Header from '@/components/Header';
 import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
@@ -441,33 +440,39 @@ export default function PhotovoltaikNrwPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <Label htmlFor="eigentumsart" className="font-paragraph">Eigentumsart *</Label>
-                        <Select value={formData.eigentumsart} onValueChange={(value) => setFormData({ ...formData, eigentumsart: value })} required>
-                          <SelectTrigger id="eigentumsart" className="font-paragraph">
-                            <SelectValue placeholder="Wählen Sie..." />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="einfamilienhaus">Einfamilienhaus</SelectItem>
-                            <SelectItem value="mehrfamilienhaus">Mehrfamilienhaus</SelectItem>
-                            <SelectItem value="gewerbe">Gewerbe</SelectItem>
-                            <SelectItem value="miete">Wohnung zur Miete</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <NativeSelect
+                          id="eigentumsart"
+                          value={formData.eigentumsart}
+                          onValueChange={(value) => setFormData({ ...formData, eigentumsart: value })}
+                          options={[
+                            { value: 'einfamilienhaus', label: 'Einfamilienhaus' },
+                            { value: 'mehrfamilienhaus', label: 'Mehrfamilienhaus' },
+                            { value: 'gewerbe', label: 'Gewerbe' },
+                            { value: 'miete', label: 'Wohnung zur Miete' },
+                          ]}
+                          placeholder="Wählen Sie..."
+                          required
+                          className="font-paragraph"
+                        />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="dachform" className="font-paragraph">Dachform *</Label>
-                        <Select value={formData.dachform} onValueChange={(value) => setFormData({ ...formData, dachform: value })} required>
-                          <SelectTrigger id="dachform" className="font-paragraph">
-                            <SelectValue placeholder="Wählen Sie..." />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="satteldach">Satteldach</SelectItem>
-                            <SelectItem value="flachdach">Flachdach</SelectItem>
-                            <SelectItem value="pultdach">Pultdach</SelectItem>
-                            <SelectItem value="mansardendach">Mansardendach</SelectItem>
-                            <SelectItem value="walmdach">Walmdach</SelectItem>
-                            <SelectItem value="andere">Andere</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <NativeSelect
+                          id="dachform"
+                          value={formData.dachform}
+                          onValueChange={(value) => setFormData({ ...formData, dachform: value })}
+                          options={[
+                            { value: 'satteldach', label: 'Satteldach' },
+                            { value: 'flachdach', label: 'Flachdach' },
+                            { value: 'pultdach', label: 'Pultdach' },
+                            { value: 'mansardendach', label: 'Mansardendach' },
+                            { value: 'walmdach', label: 'Walmdach' },
+                            { value: 'andere', label: 'Andere' },
+                          ]}
+                          placeholder="Wählen Sie..."
+                          required
+                          className="font-paragraph"
+                        />
                       </div>
                     </div>
 
@@ -693,16 +698,14 @@ export default function PhotovoltaikNrwPage() {
                 a: 'Kostenlose Beratung, Dachanalyse, Stromverbrauchsanalyse und individuelles Angebot. Wir kümmern uns um Formalitäten und Installation.'
               }
             ].map((item, index) => (
-              <Accordion key={index} type="single" collapsible className="bg-background rounded-lg border">
-                <AccordionItem value={`item-${index}`} className="border-none">
-                  <AccordionTrigger className="font-heading font-bold text-lg hover:text-primary px-6 py-4">
-                    {item.q}
-                  </AccordionTrigger>
-                  <AccordionContent className="font-paragraph text-gray-600 px-6 pb-4">
-                    {item.a}
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <details key={index} className="group rounded-lg border bg-background">
+                <summary className="font-heading cursor-pointer list-none px-6 py-4 text-lg font-bold hover:text-primary">
+                  <span>{item.q}</span>
+                </summary>
+                <div className="px-6 pb-4 font-paragraph text-gray-600">
+                  {item.a}
+                </div>
+              </details>
             ))}
           </div>
         </div>

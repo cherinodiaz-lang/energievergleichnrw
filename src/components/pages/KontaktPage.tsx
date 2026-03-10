@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import NativeSelect from '@/components/ui/native-select';
 import Header from '@/components/Header';
 import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
@@ -206,17 +206,19 @@ export default function KontaktPage() {
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="type" className="font-paragraph">Anfrage zu *</Label>
-                        <Select value={formData.type} onValueChange={(value) => setFormData({ ...formData, type: value })} required>
-                          <SelectTrigger id="type" className="font-paragraph w-full">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="strom">Stromvergleich</SelectItem>
-                            <SelectItem value="gas">Gasvergleich</SelectItem>
-                            <SelectItem value="photovoltaik">Photovoltaik</SelectItem>
-                            <SelectItem value="allgemein">Allgemeine Anfrage</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <NativeSelect
+                          id="type"
+                          value={formData.type}
+                          onValueChange={(value) => setFormData({ ...formData, type: value })}
+                          options={[
+                            { value: 'strom', label: 'Stromvergleich' },
+                            { value: 'gas', label: 'Gasvergleich' },
+                            { value: 'photovoltaik', label: 'Photovoltaik' },
+                            { value: 'allgemein', label: 'Allgemeine Anfrage' },
+                          ]}
+                          required
+                          className="font-paragraph w-full"
+                        />
                       </div>
                     </div>
 

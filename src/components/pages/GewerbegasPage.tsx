@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import NativeSelect from '@/components/ui/native-select';
 import Header from '@/components/Header';
 import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
@@ -497,20 +497,23 @@ export default function GewerbegasPage() {
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="company-type" className="font-paragraph">Branche *</Label>
-                      <Select value={companyType} onValueChange={setCompanyType} required>
-                        <SelectTrigger id="company-type" className="font-paragraph w-full">
-                          <SelectValue placeholder="Wählen Sie..." />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="einzelhandel">Einzelhandel</SelectItem>
-                          <SelectItem value="gastro">Gastronomie</SelectItem>
-                          <SelectItem value="buero">Büro/Verwaltung</SelectItem>
-                          <SelectItem value="handwerk">Handwerk</SelectItem>
-                          <SelectItem value="produktion">Produktion</SelectItem>
-                          <SelectItem value="dienstleistung">Dienstleistung</SelectItem>
-                          <SelectItem value="sonstige">Sonstige</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <NativeSelect
+                        id="company-type"
+                        value={companyType}
+                        onValueChange={setCompanyType}
+                        options={[
+                          { value: 'einzelhandel', label: 'Einzelhandel' },
+                          { value: 'gastro', label: 'Gastronomie' },
+                          { value: 'buero', label: 'Büro/Verwaltung' },
+                          { value: 'handwerk', label: 'Handwerk' },
+                          { value: 'produktion', label: 'Produktion' },
+                          { value: 'dienstleistung', label: 'Dienstleistung' },
+                          { value: 'sonstige', label: 'Sonstige' },
+                        ]}
+                        placeholder="Wählen Sie..."
+                        required
+                        className="font-paragraph w-full"
+                      />
                     </div>
                   </div>
                 </div>
@@ -634,18 +637,21 @@ export default function GewerbegasPage() {
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="heating-type" className="font-paragraph">Heizungsart *</Label>
-                      <Select value={heatingType} onValueChange={setHeatingType} required>
-                        <SelectTrigger id="heating-type" className="font-paragraph w-full">
-                          <SelectValue placeholder="Wählen Sie..." />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="gasheizung">Gasheizung</SelectItem>
-                          <SelectItem value="gasherd">Gasherd</SelectItem>
-                          <SelectItem value="beides">Heizung und Herd</SelectItem>
-                          <SelectItem value="produktion">Produktionsprozesse</SelectItem>
-                          <SelectItem value="sonstige">Sonstige</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <NativeSelect
+                        id="heating-type"
+                        value={heatingType}
+                        onValueChange={setHeatingType}
+                        options={[
+                          { value: 'gasheizung', label: 'Gasheizung' },
+                          { value: 'gasherd', label: 'Gasherd' },
+                          { value: 'beides', label: 'Heizung und Herd' },
+                          { value: 'produktion', label: 'Produktionsprozesse' },
+                          { value: 'sonstige', label: 'Sonstige' },
+                        ]}
+                        placeholder="Wählen Sie..."
+                        required
+                        className="font-paragraph w-full"
+                      />
                     </div>
                   </div>
                 </div>
