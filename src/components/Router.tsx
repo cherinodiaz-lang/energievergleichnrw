@@ -1,13 +1,12 @@
 import { MemberProvider } from '@/integrations';
 import {
   BrowserRouter,
-  MemoryRouter,
   Navigate,
   Outlet,
   useLocation,
   useRoutes,
-  type RouteObject,
 } from 'react-router-dom';
+import { StaticRouter, type RouteObject } from 'react-router';
 import { lazy, Suspense, useEffect } from 'react';
 import { ScrollToTop } from '@/lib/scroll-to-top';
 import { SEO_CONFIG } from '@/lib/seo-config';
@@ -317,9 +316,9 @@ export default function AppRouter({ pathname = '/' }: AppRouterProps) {
   return (
     <MemberProvider>
       {typeof window === 'undefined' ? (
-        <MemoryRouter basename={import.meta.env.BASE_NAME} initialEntries={[pathname]}>
+        <StaticRouter basename={import.meta.env.BASE_NAME} location={pathname}>
           <AppRoutes />
-        </MemoryRouter>
+        </StaticRouter>
       ) : (
         <BrowserRouter basename={import.meta.env.BASE_NAME}>
           <AppRoutes />
