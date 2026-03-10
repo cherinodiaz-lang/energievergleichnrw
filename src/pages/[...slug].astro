@@ -1,6 +1,10 @@
 ---
 import AppRouter from "@/components/Router";
 import { getServerSeo } from "@/lib/seo-ssr";
+import {
+  buildMissingWixRuntimeEnvMessage,
+  getMissingWixRuntimeEnvKeys,
+} from "@/lib/runtime-env-guard";
 import "@/styles/global.css";
 
 // CRITICAL: Exclude API routes from catch-all route
@@ -15,6 +19,24 @@ if (excludedPaths.includes(pathname)) {
 
 if (pathname === '/thank-you') {
   return Astro.redirect('/danke', 308);
+}
+
+const missingWixRuntimeEnv = getMissingWixRuntimeEnvKeys();
+if (missingWixRuntimeEnv.length > 0) {
+  const message = buildMissingWixRuntimeEnvMessage(missingWixRuntimeEnv);
+  console.error(`[runtime-env-guard] ${message} (path: ${pathname})`);
+
+  return new Response(
+    `${message}\nSet the variables in Wix runtime configuration and redeploy.`,
+    {
+      status: 500,
+      headers: {
+        "content-type": "text/plain; charset=utf-8",
+        "cache-control": "no-store",
+        "x-runtime-env-guard": "missing-wix-auth-env",
+      },
+    },
+  );
 }
 
 const seo = getServerSeo(pathname);

@@ -11,7 +11,9 @@
     "env": "wix env pull",
     "check": "astro check",
     "test:run": "vitest run",
-    "validate:seo": "tsx scripts/validate-seo.ts"
+    "validate:seo": "tsx scripts/validate-seo.ts",
+    "validate:runtime-env": "tsx scripts/validate-runtime-env.ts",
+    "smoke:runtime": "tsx scripts/smoke-runtime.ts"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.12",
