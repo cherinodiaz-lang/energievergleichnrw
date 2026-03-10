@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import NativeSelect from '@/components/ui/native-select';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Header from '@/components/Header';
 import DeferredFooter from '@/components/DeferredFooter';
@@ -255,17 +255,20 @@ export default function GasvergleichNrwPage() {
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="wohnflaeche" className="font-paragraph">Wohnfläche (m²) *</Label>
-                        <Select value={formData.wohnfläche} onValueChange={(value) => setFormData({ ...formData, wohnfläche: value })} required>
-                          <SelectTrigger id="wohnflaeche" className="font-paragraph">
-                            <SelectValue placeholder="Wählen Sie..." />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="50">bis 50 m² (ca. 5.000 kWh)</SelectItem>
-                            <SelectItem value="100">50-100 m² (ca. 10.000 kWh)</SelectItem>
-                            <SelectItem value="150">100-150 m² (ca. 15.000 kWh)</SelectItem>
-                            <SelectItem value="200">über 150 m² (ca. 20.000 kWh)</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <NativeSelect
+                          id="wohnflaeche"
+                          value={formData.wohnfläche}
+                          onValueChange={(value) => setFormData({ ...formData, wohnfläche: value })}
+                          options={[
+                            { value: '50', label: 'bis 50 m² (ca. 5.000 kWh)' },
+                            { value: '100', label: '50-100 m² (ca. 10.000 kWh)' },
+                            { value: '150', label: '100-150 m² (ca. 15.000 kWh)' },
+                            { value: '200', label: 'über 150 m² (ca. 20.000 kWh)' },
+                          ]}
+                          placeholder="Wählen Sie..."
+                          required
+                          className="font-paragraph"
+                        />
                       </div>
                     </div>
 
