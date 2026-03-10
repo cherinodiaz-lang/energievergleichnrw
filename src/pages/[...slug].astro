@@ -40,6 +40,16 @@ if (missingWixRuntimeEnv.length > 0) {
 }
 
 const seo = getServerSeo(pathname);
+const isHomePath = pathname === '/';
+const HOME_HERO_IMAGE_ID = '32e7c0_5f85b8d9458c4ccbafdde2a4f3bc3cce~mv2.png';
+const HOME_HERO_ASPECT_RATIO = 1024 / 1920;
+const HOME_HERO_WIDTHS = [640, 960, 1280, 1536, 1920];
+const getHomeHeroUrl = (width: number) => {
+  const height = Math.round(width * HOME_HERO_ASPECT_RATIO);
+  return `https://static.wixstatic.com/media/${HOME_HERO_IMAGE_ID}/v1/fill/w_${width},h_${height},al_c,q_82,enc_auto/${HOME_HERO_IMAGE_ID}`;
+};
+const homeHeroSrcSet = HOME_HERO_WIDTHS.map((width) => `${getHomeHeroUrl(width)} ${width}w`).join(', ');
+const homeHeroFallbackSrc = getHomeHeroUrl(1280);
 ---
 
 <html lang="de" class="w-full h-full">
@@ -67,6 +77,16 @@ const seo = getServerSeo(pathname);
     <meta name="twitter:image" content={seo.ogImage} />
     {seo.verificationCode && (
       <meta name="google-site-verification" content={seo.verificationCode} />
+    )}
+    {isHomePath && (
+      <link
+        rel="preload"
+        as="image"
+        href={homeHeroFallbackSrc}
+        imagesrcset={homeHeroSrcSet}
+        imagesizes="100vw"
+        fetchpriority="high"
+      />
     )}
 
     {seo.schemaEntries.map((entry) => (
