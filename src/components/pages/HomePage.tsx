@@ -11,12 +11,34 @@ import NativeSelect from '@/components/ui/native-select';
 import Header from '@/components/Header';
 import DeferredFooter from '@/components/DeferredFooter';
 import TrustRow from '@/components/TrustRow';
-import { Image } from '@/components/ui/image';
-import { trackCTAClick, trackMethodikClick } from '@/services/form-submission';
 import HomeValuableSectionsSSR from '@/components/pages/home/HomeValuableSectionsSSR';
 
 // --- Utility Components ---
 const LazyHomeDeferredSections = lazy(() => import('@/components/pages/home/HomeDeferredSections'));
+const HOME_HERO_IMAGE_ID = '32e7c0_5f85b8d9458c4ccbafdde2a4f3bc3cce~mv2.png';
+const HOME_HERO_ASPECT_RATIO = 1024 / 1920;
+const HOME_HERO_WIDTHS = [640, 960, 1280, 1536, 1920] as const;
+const getHomeHeroUrl = (width: number) => {
+  const height = Math.round(width * HOME_HERO_ASPECT_RATIO);
+  return `https://static.wixstatic.com/media/${HOME_HERO_IMAGE_ID}/v1/fill/w_${width},h_${height},al_c,q_82,enc_auto/${HOME_HERO_IMAGE_ID}`;
+};
+const HOME_HERO_SRCSET = HOME_HERO_WIDTHS.map((width) => `${getHomeHeroUrl(width)} ${width}w`).join(', ');
+
+const trackHomeCTA = (label: string) => {
+  import('@/services/form-submission')
+    .then(({ trackCTAClick }) => trackCTAClick(label))
+    .catch(() => {
+      // Non-critical analytics tracking must never block UX interactions
+    });
+};
+
+const trackHomeMethodikClick = () => {
+  import('@/services/form-submission')
+    .then(({ trackMethodikClick }) => trackMethodikClick())
+    .catch(() => {
+      // Non-critical analytics tracking must never block UX interactions
+    });
+};
 
 type AnimatedElementProps = {
   children: React.ReactNode;
@@ -310,8 +332,9 @@ export default function HomePage() {
       {/* --- HERO SECTION --- */}
       <section className="hero-section relative w-full min-h-[100vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-primary">
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <Image
-            src="https://static.wixstatic.com/media/32e7c0_5f85b8d9458c4ccbafdde2a4f3bc3cce~mv2.png?originWidth=1920&originHeight=1024"
+          <img
+            src={getHomeHeroUrl(1280)}
+            srcSet={HOME_HERO_SRCSET}
             alt="Grüne Landschaft in Nordrhein-Westfalen mit Windrädern"
             className="w-full h-full object-cover"
             width={1920}
@@ -352,7 +375,7 @@ export default function HomePage() {
               <div className="flex flex-col sm:flex-row gap-3 pb-8 sm:pb-0">
                 <Button
                   onClick={() => {
-                    trackCTAClick('Jetzt vergleichen');
+                    trackHomeCTA('Jetzt vergleichen');
                     scrollToSection('vergleichsrechner');
                   }}
                   className="bg-secondary text-secondary-foreground hover:bg-secondary/90 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 h-12 sm:h-14 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-bold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
@@ -361,7 +384,7 @@ export default function HomePage() {
                 </Button>
                 <Button
                   onClick={() => {
-                    trackCTAClick('Photovoltaik Beratung');
+                    trackHomeCTA('Photovoltaik Beratung');
                     scrollToSection('photovoltaik');
                   }}
                   className="bg-white/20 border-2 border-white text-white hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary h-12 sm:h-14 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-semibold backdrop-blur-md transition-all w-full sm:w-auto"
@@ -374,7 +397,7 @@ export default function HomePage() {
             </AnimatedElement>
 
             <AnimatedElement delay={400}>
-              <Link to="/methodik" onClick={trackMethodikClick} className="inline-block text-white/80 hover:text-white transition-colors text-sm sm:text-base font-medium underline">
+              <Link to="/methodik" onClick={trackHomeMethodikClick} className="inline-block text-white/80 hover:text-white transition-colors text-sm sm:text-base font-medium underline">
                 So vergleichen wir (Methodik)
               </Link>
             </AnimatedElement>

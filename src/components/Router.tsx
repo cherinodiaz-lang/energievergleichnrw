@@ -11,7 +11,6 @@ import { lazy, Suspense, useEffect } from 'react';
 import { ScrollToTop } from '@/lib/scroll-to-top';
 import { SEO_CONFIG } from '@/lib/seo-config';
 import { ROUTES } from '@/lib/routes';
-import { initializeGA4 } from '@/services/ga4-tracking';
 import HomePage from '@/components/pages/HomePage';
 
 // Fallback component for lazy-loaded routes
@@ -72,9 +71,34 @@ function Layout() {
   const location = useLocation();
 
   useEffect(() => {
-    if (SEO_CONFIG.googleAnalyticsId) {
-      initializeGA4(SEO_CONFIG.googleAnalyticsId);
+    const measurementId = SEO_CONFIG.googleAnalyticsId;
+    if (!measurementId || typeof window === 'undefined') return;
+
+    let cancelled = false;
+    const runInit = () => {
+      if (cancelled) return;
+      import('@/services/ga4-tracking')
+        .then(({ initializeGA4 }) => initializeGA4(measurementId))
+        .catch((error) => {
+          console.error('[ga4] lazy initialization failed', error);
+        });
+    };
+
+    if ('requestIdleCallback' in window) {
+      const idleId = (window as Window & { requestIdleCallback: (callback: () => void, options?: { timeout: number }) => number }).requestIdleCallback(runInit, { timeout: 2500 });
+      return () => {
+        cancelled = true;
+        if ('cancelIdleCallback' in window) {
+          (window as Window & { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(idleId);
+        }
+      };
     }
+
+    const timeoutId = window.setTimeout(runInit, 0);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timeoutId);
+    };
   }, []);
 
   return (
