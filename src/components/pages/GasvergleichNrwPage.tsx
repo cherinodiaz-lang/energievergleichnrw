@@ -7,7 +7,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import NativeSelect from '@/components/ui/native-select';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Header from '@/components/Header';
 import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
@@ -1008,16 +1007,14 @@ export default function GasvergleichNrwPage() {
                 a: 'Nein. Der Wechsel ist komplett kostenlos. Alle Kosten sind transparent aufgeführt. Wir zeigen immer die Gesamtkosten pro Jahr.'
               }
             ].map((item, index) => (
-              <Accordion key={index} type="single" collapsible className="bg-white rounded-lg border">
-                <AccordionItem value={`item-${index}`} className="border-none">
-                  <AccordionTrigger className="font-heading font-bold text-lg hover:text-primary px-6 py-4">
-                    {item.q}
-                  </AccordionTrigger>
-                  <AccordionContent className="font-paragraph text-gray-600 px-6 pb-4">
-                    {item.a}
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <details key={index} className="group rounded-lg border bg-white">
+                <summary className="font-heading cursor-pointer list-none px-6 py-4 text-lg font-bold hover:text-primary">
+                  <span>{item.q}</span>
+                </summary>
+                <div className="px-6 pb-4 font-paragraph text-gray-600">
+                  {item.a}
+                </div>
+              </details>
             ))}
           </div>
         </div>
