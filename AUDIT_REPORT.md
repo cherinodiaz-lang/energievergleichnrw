@@ -222,3 +222,24 @@ Hinweise:
 6. `client:load` auf `client:visible` oder `client:idle` reduzieren, wo keine Above-the-Fold-Interaktion nötig ist.
 7. Offene `any`-Typen in `src/services`, `src/lib` und Blog-Komponenten abbauen.
 8. Netzwerkgültigen Sicherheitslauf außerhalb der Sandbox ergänzen: `npm audit`, echte HTTP-Header-Prüfung und Production Smoke Test.
+
+## Astro 6 Upgrade - Blocker (Stand: 15.03.2026)
+
+Status: BLOCKIERT - kein Upgrade durchgeführt
+
+Ursache (extern, nicht behebbar):
+- `@wix/astro` 2.32.0 unterstützt nur `astro ^5.0.0`
+- `@wix/cloud-provider-fetch-adapter` verlangt `@astrojs/cloudflare ~12.5.3`
+- Astro 6 benötigt `@astrojs/cloudflare >= 13.x`
+- Fehlermeldung: `Missing "./entrypoints/middleware.js" in "@astrojs/cloudflare"`
+
+Aktueller Stand:
+- `astro`: 5.18.1 (stabil, Build SUCCESS)
+- `@astrojs/cloudflare`: 12.6.13
+- Branch `upgrade/astro-6`: zurückgesetzt, kein Merge
+
+Nächste Aktion:
+- `npm view @wix/astro` beobachten
+- Upgrade erneut starten sobald `@wix/astro >= 3.x` erscheint
+- GitHub Issue beim Wix-Repo öffnen:
+  `https://github.com/wix/wix-headless-astro/issues`
