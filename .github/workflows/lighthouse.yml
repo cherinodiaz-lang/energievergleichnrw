@@ -17,6 +17,10 @@ jobs:
       SENTRY_PROJECT_SERVER: ${{ secrets.SENTRY_PROJECT_SERVER }}
       PUBLIC_SENTRY_DSN: ${{ secrets.PUBLIC_SENTRY_DSN }}
       SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+      WIX_CLIENT_ID: ${{ secrets.WIX_CLIENT_ID }}
+      WIX_CLIENT_SECRET: ${{ secrets.WIX_CLIENT_SECRET }}
+      WIX_CLIENT_PUBLIC_KEY: ${{ secrets.WIX_CLIENT_PUBLIC_KEY }}
+      WIX_CLIENT_INSTANCE_ID: ${{ secrets.WIX_CLIENT_INSTANCE_ID }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
