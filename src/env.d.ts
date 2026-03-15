@@ -19,6 +19,8 @@ declare global {
 
   interface ImportMetaEnv {
     readonly BASE_NAME: string;
+    readonly SENTRY_DSN: string;
+    readonly SENTRY_AUTH_TOKEN: string;
   }
 }
 

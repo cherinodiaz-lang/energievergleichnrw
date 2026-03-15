@@ -15,6 +15,7 @@ import customErrorOverlayPlugin from "./vite-error-overlay-plugin.js";
 import postcssPseudoToData from "@wix/postcss-pseudo-to-data";
 
 const isBuild = process.env.NODE_ENV == "production";
+const hasSentryAuthToken = Boolean(process.env.SENTRY_AUTH_TOKEN);
 
 // https://astro.build/config
 export default defineConfig({
@@ -37,11 +38,13 @@ export default defineConfig({
     },
     tailwind(),
     sentry({
-      dsn: process.env.SENTRY_DSN,
-      sourceMapsUploadOptions: {
-        project: "energievergleich-shop",
-        authToken: process.env.SENTRY_AUTH_TOKEN,
+      enabled: {
+        client: false,
+        server: true,
       },
+      project: "energievergleich-shop",
+      telemetry: false,
+      ...(hasSentryAuthToken ? { authToken: process.env.SENTRY_AUTH_TOKEN } : {}),
     }),
     partytown({
       config: {
@@ -53,6 +56,10 @@ export default defineConfig({
       HTML: true,
       JavaScript: true,
       Image: false,
+      Exclude: [
+        (file) =>
+          file.includes("/dist/_worker.js/pages/_wix/extensions/service-plugins/"),
+      ],
     }),
     robotsTxt({
       policy: [
