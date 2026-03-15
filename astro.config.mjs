@@ -75,10 +75,16 @@ export default defineConfig({
     domains: ["static.wixstatic.com"],
   },
   server: {
-    allowedHosts: true,
+    allowedHosts: ["energievergleich.shop", "localhost"],
     host: true,
+    headers: {
+      "X-Frame-Options": "DENY",
+      "X-Content-Type-Options": "nosniff",
+      "Referrer-Policy": "strict-origin-when-cross-origin",
+      "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+    },
   },
   security: {
-    checkOrigin: false
+    checkOrigin: true
   }
 });
