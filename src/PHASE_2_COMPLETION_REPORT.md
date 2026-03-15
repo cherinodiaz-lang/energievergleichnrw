@@ -3,9 +3,9 @@
 
 **Status:** ✅ **PHASE 2 COMPLETE – Ready for Next Step**
 
-**Completion Date:** 2026-01-09  
-**Total Articles:** 24 (7 Strom + 6 Gas + 3 Gewerbe + 5 Photovoltaik + 3 Wechselwissen)  
-**Hub Pages:** 6 (Main Hub + 5 Category Pages)  
+**Completion Date:** 2026-01-09
+**Total Articles:** 24 (7 Strom + 6 Gas + 3 Gewerbe + 5 Photovoltaik + 3 Wechselwissen)
+**Hub Pages:** 6 (Main Hub + 5 Category Pages)
 **Money Pages Enhanced:** 6 (with Passende Ratgeber module)
 
 ---
@@ -353,7 +353,7 @@ getPassendeRatgeber('stromvergleich-nrw', 4) // Returns 4 articles (primary + fa
 
 ```typescript
 // PassendeRatgeber component
-<PassendeRatgeber 
+<PassendeRatgeber
   moneyPageId="stromvergleich-nrw"  // Required
   limit={4}                          // Optional (default: 5)
   className=""                       // Optional

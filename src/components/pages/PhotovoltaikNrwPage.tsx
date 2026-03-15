@@ -227,7 +227,7 @@ export default function PhotovoltaikNrwPage() {
            <div className="space-y-8">
              <div>
                <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Photovoltaik-Angebotsvergleich für NRW</h2>
-               
+
                <p className="font-paragraph text-lg text-gray-700 mb-6">
                  Mit unserem kostenlosen Photovoltaik-Vergleich finden Sie in wenigen Minuten die beste Solaranlage für Ihr Zuhause in Nordrhein-Westfalen. Der Vergleich ist völlig kostenlos und unverbindlich – Sie geben nur wenige Angaben ein und erhalten sofort Angebote von zertifizierten Fachbetrieben. Sparen Sie bis zu 40% der Installationskosten durch den Vergleich mehrerer Anbieter und profitieren Sie von maßgeschneiderten Lösungen für Ihr Dach.
                </p>
@@ -721,13 +721,13 @@ export default function PhotovoltaikNrwPage() {
               Bei energievergleich.shop vergleichen wir Photovoltaik-Angebote mit vollständiger Transparenz und Unabhängigkeit. Wir arbeiten nicht für einzelne Anbieter, sondern für Sie – und das völlig kostenlos. Unser Vergleich berücksichtigt nicht nur den Preis, sondern auch Vertragsbedingungen, Komponenten-Qualität und Garantieleistungen. So finden Sie die beste Solaranlage für Ihre Situation in NRW. Alle Informationen auf dieser Seite sind aktuell zum Stand Februar 2026.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 text-sm">
-              <Link 
+              <Link
                 to="/methodik"
                 className="text-primary hover:text-primary/80 font-semibold underline transition-colors"
               >
                 So vergleichen wir (Methodik)
               </Link>
-              <Link 
+              <Link
                 to="/kontakt"
                 className="text-primary hover:text-primary/80 font-semibold underline transition-colors"
               >

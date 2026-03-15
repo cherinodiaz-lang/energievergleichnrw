@@ -2,7 +2,7 @@
 
 ## ✅ COMPLETED (7 Articles)
 1. ✅ StromanbieterwechselnNrwArticle.tsx
-2. ✅ GrundversorgungVsSondervertragArticle.tsx  
+2. ✅ GrundversorgungVsSondervertragArticle.tsx
 3. ✅ NeukndenbonusFallenArticle.tsx
 4. ✅ PreiserhoeungWasTunArticle.tsx
 5. ✅ UmzugStromvertragArticle.tsx

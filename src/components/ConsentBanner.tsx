@@ -1,6 +1,6 @@
 /**
  * Custom Consent Banner Component
- * 
+ *
  * A compact, German-language cookie consent banner that appears at the bottom of the page.
  * Features:
  * - Compact banner layout (not a large panel)
@@ -43,14 +43,14 @@ export default function ConsentBanner() {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (typeof window === 'undefined') return;
-      
+
       let storedConsent: string | null = null;
       try {
         storedConsent = localStorage.getItem(CONSENT_STORAGE_KEY);
       } catch (error) {
         console.error('Error accessing localStorage:', error);
       }
-      
+
       if (!storedConsent) {
         // No consent stored, show banner
         setShowBanner(true);
@@ -66,7 +66,7 @@ export default function ConsentBanner() {
         }
       }
     }, 100);
-    
+
     return () => clearTimeout(timer);
   }, []);
 

@@ -15,7 +15,7 @@ export default function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
 
   useEffect(() => {
     const breadcrumbs = items && items.length > 0 ? items : generateBreadcrumbs(location.pathname);
-    
+
     if (breadcrumbs.length <= 1) return; // No breadcrumbs for home page
 
     const breadcrumbSchema = {

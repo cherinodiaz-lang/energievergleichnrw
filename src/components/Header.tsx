@@ -58,8 +58,8 @@ export default function Header() {
         <div className="max-w-[120rem] mx-auto px-3 sm:px-6 lg:px-12 h-full">
           <div className="flex items-center justify-between h-full">
             {/* Logo */}
-            <Link 
-              to={ROUTES.home} 
+            <Link
+              to={ROUTES.home}
               className="flex items-center gap-2 sm:gap-3 group min-w-0 flex-shrink-0"
               aria-label="Energievergleich NRW - Startseite"
             >
@@ -83,8 +83,8 @@ export default function Header() {
                   <Link
                     to={item.to}
                     className={`font-paragraph text-sm xl:text-base font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1 transition-colors flex items-center gap-1 min-h-12 ${
-                      isActiveLink(item.to) 
-                        ? 'text-primary border-b-2 border-primary' 
+                      isActiveLink(item.to)
+                        ? 'text-primary border-b-2 border-primary'
                         : 'text-foreground hover:text-primary'
                     }`}
                   >
@@ -93,7 +93,7 @@ export default function Header() {
                       <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" aria-hidden="true" />
                     )}
                   </Link>
-                  
+
                   {/* Desktop Submenu */}
                   {item.submenu && (
                     <div className="absolute left-0 mt-0 w-56 bg-white border border-gray-100 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
@@ -139,7 +139,7 @@ export default function Header() {
 
           {/* Mobile Navigation - CLS Prevention */}
           {mobileMenuOpen && (
-            <nav 
+            <nav
               id="mobile-menu"
               className="lg:hidden py-3 sm:py-4 border-t border-gray-100 overflow-y-auto max-h-[calc(100vh-56px)] sm:max-h-[calc(100vh-64px)] lg:max-h-[calc(100vh-80px)]"
               aria-label="Mobile Navigation"
@@ -186,7 +186,7 @@ export default function Header() {
                           {item.label}
                         </Link>
                       )}
-                      
+
                       {/* Mobile Submenu */}
                       {item.submenu && openSubmenu === item.key && (
                         <ul className="bg-gray-50 divide-y divide-gray-100">

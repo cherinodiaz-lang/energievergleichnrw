@@ -74,7 +74,7 @@ const eventWithDebug = debugMode
 ### Event Details
 - **Event Name:** `ga4_test_ping`
 - **Trigger:** Automatically sent once per page load
-- **Conditions:** 
+- **Conditions:**
   - URL parameter `?debug=1` must be present
   - Analytics consent must be granted
   - Sent exactly once per page load (duplicate prevention)

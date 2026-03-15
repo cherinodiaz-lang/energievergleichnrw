@@ -146,7 +146,7 @@ export default function StromvergleichNrwPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate required fields for private form
     const validation = validateFormFields(formData, FORM_CONFIGS.private);
     if (!validation.valid) {
@@ -311,7 +311,7 @@ export default function StromvergleichNrwPage() {
                   className="mt-12"
                 >
                   <h2 className="font-heading text-2xl font-bold text-primary mb-8">Tarifvorschau für {formData.postleitzahl}</h2>
-                  
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                     {[
                       {
@@ -420,7 +420,7 @@ export default function StromvergleichNrwPage() {
           <div className="space-y-8">
             <div>
               <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Stromvergleich für NRW</h2>
-              
+
               <p className="font-paragraph text-lg text-gray-700 mb-6">
                 Mit unserem Stromvergleich finden Sie in wenigen Minuten den günstigsten Stromtarif für Ihren Haushalt in Nordrhein-Westfalen. Der Vergleich ist völlig kostenlos und unverbindlich – Sie geben nur Ihre Postleitzahl und Ihren Stromverbrauch ein und erhalten sofort alle verfügbaren Tarife übersichtlich sortiert. Sparen Sie durchschnittlich 200–400 Euro pro Jahr durch einen Wechsel zu einem besseren Anbieter.
               </p>

@@ -43,11 +43,11 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({ children, className, 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mediaQuery.matches);
-    
+
     const handleChange = (e: MediaQueryListEvent) => {
       setPrefersReducedMotion(e.matches);
     };
-    
+
     mediaQuery.addEventListener('change', handleChange);
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
@@ -79,8 +79,8 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({ children, className, 
   }, [delay, prefersReducedMotion]);
 
   return (
-    <div 
-      ref={ref} 
+    <div
+      ref={ref}
       className={`${className || ''} ${isVisible ? 'animate-reveal-visible' : 'animate-reveal'}`}
     >
       {children}
@@ -145,13 +145,13 @@ export default function HomePage() {
   const { scrollY } = useScroll();
   const prefersReducedMotion = useRef(false);
   const [isMobile, setIsMobile] = useState(false);
-  
+
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     prefersReducedMotion.current = mediaQuery.matches;
     setIsMobile(window.innerWidth < 768);
   }, []);
-  
+
   // Disable parallax on mobile and when reduced motion is preferred (improves LCP)
   const heroY = useTransform(scrollY, [0, 1000], prefersReducedMotion.current || isMobile ? [0, 0] : [0, 400]);
   const heroOpacity = useTransform(scrollY, [0, 500], [1, 0]);
@@ -1298,7 +1298,7 @@ export default function HomePage() {
               {materials.map((material, index) => {
                 let linkPath = ROUTES.ratgeberHub;
                 const title = material.title?.toLowerCase() || '';
-                
+
                 if (title.includes('strom')) {
                   linkPath = ROUTES.ratgeberStrom;
                 } else if (title.includes('gas')) {
@@ -1306,7 +1306,7 @@ export default function HomePage() {
                 } else if (title.includes('photovoltaik') || title.includes('pv') || title.includes('solar')) {
                   linkPath = ROUTES.ratgeberPhotovoltaik;
                 }
-                
+
                 return (
                   <AnimatedElement key={material._id} delay={index * 100}>
                     <Link to={linkPath} className="block h-full">

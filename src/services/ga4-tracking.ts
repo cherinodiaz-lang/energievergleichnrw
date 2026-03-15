@@ -1,10 +1,10 @@
 /**
  * GA4 Tracking Service
  * Handles all Google Analytics 4 tracking with consent management
- * 
+ *
  * CRITICAL: All events are only tracked AFTER Analytics consent is granted
  * Events are queued if consent is not yet determined, then flushed when consent is given
- * 
+ *
  * EXECUTION ORDER (FIXED):
  * 1. Script load (async)
  * 2. gtag('js') initialization
@@ -34,7 +34,7 @@ let scriptLoaded = false;
 /**
  * Initialize GA4 with consent mode
  * Must be called early in app lifecycle
- * 
+ *
  * CRITICAL: gtag('config') is NOT called here - it's called AFTER consent is granted
  */
 export function initializeGA4(measurementId: string) {
@@ -71,7 +71,7 @@ export function initializeGA4(measurementId: string) {
   const script = document.createElement('script');
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
-  
+
   // Mark script as loaded when it completes
   script.onload = () => {
     scriptLoaded = true;
@@ -79,7 +79,7 @@ export function initializeGA4(measurementId: string) {
       console.log('[GA4 DEBUG] Script loaded successfully for ID:', measurementId);
     }
   };
-  
+
   script.onerror = () => {
     console.error('[GA4 ERROR] Failed to load GA4 script');
   };
@@ -93,7 +93,7 @@ export function initializeGA4(measurementId: string) {
 
 /**
  * Update consent status and flush queued events
- * 
+ *
  * CRITICAL EXECUTION ORDER:
  * 1. Update consent mode
  * 2. Call gtag('config') with send_page_view:true AFTER consent is granted
@@ -247,7 +247,7 @@ function flushEventQueue() {
         ...eventWithDebug,
         'timestamp': new Date().toISOString(),
       };
-      
+
       window.gtag?.('event', event.eventName, eventWithTimestamp);
       flushedCount++;
 

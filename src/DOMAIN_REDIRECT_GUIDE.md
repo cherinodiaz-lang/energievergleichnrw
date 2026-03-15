@@ -7,7 +7,7 @@
 
 ## PROBLEM STATEMENT
 
-Currently: `energievergleich.nrw` returns 404 instead of 301 redirect  
+Currently: `energievergleich.nrw` returns 404 instead of 301 redirect
 Goal: `https://energievergleich.nrw/` → `https://www.energievergleich.shop/` (1 hop)
 
 ---
@@ -250,5 +250,5 @@ Location: https://www.energievergleich.shop/stromvergleich-nrw
 
 ---
 
-**Last Updated:** 2026-02-17  
+**Last Updated:** 2026-02-17
 **Status:** Ready for Implementation

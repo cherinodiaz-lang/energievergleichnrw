@@ -13,11 +13,11 @@ The execution order is now strictly enforced:
 ```
 1. Script Load (async)
    └─ GA4 script loads asynchronously from Google
-   
+
 2. gtag('js') Initialization
    └─ Called in initializeGA4() BEFORE script loads
    └─ Queues gtag('js', new Date()) in dataLayer
-   
+
 3. Consent Update → gtag('config') → Flush
    └─ User grants consent
    └─ updateConsent() is called

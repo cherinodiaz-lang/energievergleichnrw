@@ -158,7 +158,7 @@ export default function GewerbegasPage() {
             <p className="font-paragraph text-lg md:text-xl text-white font-medium max-w-3xl mx-auto leading-relaxed">
               Profitieren Sie von maßgeschneiderten Gastarifen für Gewerbekunden in NRW. Senken Sie Ihre Heizkosten und setzen Sie auf nachhaltige Energie.
             </p>
-            
+
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
               <Button
@@ -185,7 +185,7 @@ export default function GewerbegasPage() {
           <div className="space-y-8">
             <div>
               <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Gewerbegas-Anfrage für NRW</h2>
-              
+
               <p className="font-paragraph text-lg text-gray-700 mb-6">
                 Mit unserem kostenlosen Gewerbegas-Service finden Sie in wenigen Minuten den günstigsten Gastarif für Ihr Unternehmen in Nordrhein-Westfalen. Die Anfrage ist völlig kostenlos und unverbindlich – Sie geben nur Ihre Verbrauchsdaten ein und erhalten sofort individualisierte Angebote. Sparen Sie bis zu 25% Ihrer Gaskosten durch optimierte Gewerbegas-Tarife und profitieren Sie von persönlicher Beratung durch unsere Experten.
               </p>
@@ -529,7 +529,7 @@ export default function GewerbegasPage() {
                   <h3 className="font-heading text-xl font-semibold text-foreground">
                     Unternehmensinformationen
                   </h3>
-                  
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="company-name" className="font-paragraph">Firmenname *</Label>
@@ -568,7 +568,7 @@ export default function GewerbegasPage() {
                   <h3 className="font-heading text-xl font-semibold text-foreground">
                     Ansprechpartner
                   </h3>
-                  
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="contact-person" className="font-paragraph">Name *</Label>
@@ -614,7 +614,7 @@ export default function GewerbegasPage() {
                   <h3 className="font-heading text-xl font-semibold text-foreground">
                     Standort
                   </h3>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="address" className="font-paragraph">Straße und Hausnummer *</Label>
                     <Input
@@ -627,7 +627,7 @@ export default function GewerbegasPage() {
                       className="font-paragraph w-full"
                     />
                   </div>
-                  
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="postcode" className="font-paragraph">Postleitzahl *</Label>
@@ -661,7 +661,7 @@ export default function GewerbegasPage() {
                   <h3 className="font-heading text-xl font-semibold text-foreground">
                     Verbrauchsinformationen
                   </h3>
-                  
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="consumption" className="font-paragraph">
@@ -739,15 +739,15 @@ export default function GewerbegasPage() {
             </h2>
             <p className="font-paragraph text-lg text-gray-700 leading-relaxed">
               Wir bieten Ihnen einen unabhängigen und kostenlosen Gewerbegas-Vergleich speziell für Ihre Anforderungen. Unsere Transparenz ist unser Versprechen: Wir vergleichen Gastarife nicht nur nach Preis, sondern auch nach Vertragsbedingungen, Preisgarantie und Kündigungsfristen. So finden Sie den Tarif, der wirklich zu Ihrem Unternehmen passt. Alle Informationen sind aktuell und entsprechen dem Stand Februar 2026. Haben Sie Fragen zu unserer Methodik?{' '}
-              <a 
-                href="/methodik" 
+              <a
+                href="/methodik"
                 className="text-primary font-semibold hover:underline transition-colors"
               >
                 So vergleichen wir (Methodik)
               </a>
               {' '}oder nehmen Sie{' '}
-              <a 
-                href="/kontakt" 
+              <a
+                href="/kontakt"
                 className="text-primary font-semibold hover:underline transition-colors"
               >
                 Kontakt

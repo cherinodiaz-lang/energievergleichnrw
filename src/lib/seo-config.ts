@@ -9,7 +9,7 @@ export const SEO_CONFIG = {
   siteName: 'www.energievergleich.shop',
   siteUrl: 'https://www.energievergleich.shop',
   siteDescription: 'Vergleichen Sie Strom- und Gastarife in Nordrhein-Westfalen. Finden Sie die besten Angebote für Privat- und Gewerbekunden. Kostenlos und unabhängig.',
-  
+
   // Organization Information (complete details for schema)
   organization: {
     name: 'energievergleich.shop',
@@ -29,7 +29,7 @@ export const SEO_CONFIG = {
       addressCountry: 'DE',
     },
   },
-  
+
   // Social Media
   social: {
     facebook: 'https://facebook.com/energievergleich',
@@ -37,20 +37,20 @@ export const SEO_CONFIG = {
     linkedin: 'https://linkedin.com/company/energievergleich',
     twitterHandle: '@energievergleich',
   },
-  
+
   // Default OG Image
   defaultOgImage: 'https://static.wixstatic.com/media/32e7c0_8cede5e338be484bb8dcaad81c053c82~mv2.png?originWidth=1920&originHeight=1024',
-  
+
   // Language
   language: 'de',
-  
+
   // Search Console & Analytics (add your IDs here)
   googleSearchConsoleVerification: '', // Add your verification code
   googleAnalyticsId: 'G-X60BTL057V', // GA4 Measurement ID for energievergleich.shop
-  
+
   // Robots Meta
   robots: 'index, follow',
-  
+
   // Keywords
   keywords: {
     home: 'Energievergleich NRW, Stromvergleich, Gasvergleich, Strom sparen, Gas sparen, Tarife NRW',

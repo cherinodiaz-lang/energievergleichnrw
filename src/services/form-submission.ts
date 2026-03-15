@@ -2,7 +2,7 @@
  * Form Submission Service
  * Handles all form submissions to Wix Collections
  * Integrates with GA4 tracking (consent-safe)
- * 
+ *
  * IMPORTANT: All tracking goes through GA4 only.
  * No PII (email, name, phone) is sent to analytics.
  * Events are only tracked after Analytics consent is granted.

@@ -146,7 +146,7 @@ export default function GasvergleichNrwPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate required fields for private form
     const validation = validateFormFields(formData, FORM_CONFIGS.private);
     if (!validation.valid) {
@@ -334,7 +334,7 @@ export default function GasvergleichNrwPage() {
                   className="mt-12"
                 >
                   <h2 className="font-heading text-2xl font-bold text-primary mb-8">Tarifvorschau für {formData.postleitzahl}</h2>
-                  
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                     {[
                       {
@@ -443,7 +443,7 @@ export default function GasvergleichNrwPage() {
           <div className="space-y-8">
             <div>
               <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Gasvergleich für NRW</h2>
-              
+
               <p className="font-paragraph text-lg text-gray-700 mb-6">
                 Mit unserem Gasvergleich finden Sie in wenigen Minuten den günstigsten Gastarif für Ihren Haushalt in Nordrhein-Westfalen. Der Vergleich ist völlig kostenlos und unverbindlich – Sie geben nur Ihre Postleitzahl und Ihren Gasverbrauch ein und erhalten sofort alle verfügbaren Tarife übersichtlich sortiert. Ersparnis hängt von Verbrauch, Region und Tarif ab.
               </p>
@@ -942,11 +942,11 @@ export default function GasvergleichNrwPage() {
             <h2 className="font-heading text-3xl sm:text-4xl font-semibold tracking-tight text-primary">
               Warum energievergleich.shop?
             </h2>
-            
+
             <p className="font-paragraph text-lg text-gray-700 leading-relaxed">
               Bei energievergleich.shop vertrauen Sie auf vollständige Transparenz und Unabhängigkeit. Wir vergleichen Gastarife objektiv nach Preis und Vertragsbedingungen – ohne versteckte Gebühren, ohne Anbieter-Bias. Unser Service ist für Sie kostenlos und unverbindlich. Wir zeigen Ihnen alle verfügbaren Optionen in Ihrer Region und helfen Ihnen, die beste Entscheidung zu treffen. Ersparnis hängt von Verbrauch, Region und Tarif ab. Erfahren Sie mehr über unsere Methodik und wie wir arbeiten: <Link to="/methodik" className="text-primary font-semibold hover:underline">So vergleichen wir (Methodik)</Link>. Bei Fragen stehen wir Ihnen jederzeit zur Verfügung – <Link to="/kontakt" className="text-primary font-semibold hover:underline">Kontakt</Link>.
             </p>
-            
+
             <p className="font-paragraph text-sm text-gray-500 italic">
               Stand: Februar 2026
             </p>

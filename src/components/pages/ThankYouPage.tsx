@@ -10,7 +10,7 @@ import { ROUTES } from '@/lib/routes';
 export default function ThankYouPage() {
   return (
     <>
-      <SEOHead 
+      <SEOHead
         title="Danke – Anfrage erhalten"
         description="Vielen Dank für Ihre Anfrage. Wir melden uns kurzfristig bei Ihnen."
         noindex={true}
@@ -121,8 +121,8 @@ export default function ThankYouPage() {
           {/* CTA Button */}
           <div className="flex justify-center">
             <Link to={ROUTES.home}>
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="bg-primary hover:bg-primary/90 text-primary-foreground font-heading font-semibold"
               >
                 Zur Startseite

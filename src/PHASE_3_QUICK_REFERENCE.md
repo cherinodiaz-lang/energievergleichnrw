@@ -16,8 +16,8 @@
 ✅ /kontakt → moneyPageId="kontakt"
 ```
 
-**Location:** After main content, before footer  
-**Limit:** 4 articles  
+**Location:** After main content, before footer
+**Limit:** 4 articles
 **Responsive:** 1 col mobile → 4 cols desktop
 
 ### 2. Sitemap Update
@@ -29,8 +29,8 @@ Total URLs: 37
 └── Articles: 24 (dynamic from ratgeber-map.ts)
 ```
 
-**File:** `/src/pages/sitemap.xml.ts`  
-**Format:** Valid XML with proper namespace  
+**File:** `/src/pages/sitemap.xml.ts`
+**Format:** Valid XML with proper namespace
 **Content-Type:** `application/xml; charset=utf-8`
 
 ### 3. Ratgeber Hub Page
@@ -238,5 +238,5 @@ Wechselwissen (3):
 
 **✅ PHASE 3 COMPLETE – PRODUCTION READY**
 
-All deliverables implemented, tested, and verified.  
+All deliverables implemented, tested, and verified.
 Ready for deployment.

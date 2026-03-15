@@ -83,7 +83,7 @@ export default function MethodologyPage() {
               <p className="font-paragraph text-lg text-gray-700">
                 <strong>Transparenz ist unser Grundprinzip:</strong> Wir nutzen die in unserem Vergleich/Rechner hinterlegten Tarif- und Anbieterinformationen sowie öffentlich verfügbare Anbieter-Preisblätter und Produktinformationen. Es gibt keine versteckten Datenquellen.
               </p>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                 <Card>
                   <CardHeader>

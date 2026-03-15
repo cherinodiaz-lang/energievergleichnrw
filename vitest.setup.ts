@@ -22,7 +22,7 @@ console.error = (...args) => {
   }
   originalError.call(console, ...args)
 }
-configure({ 
+configure({
   testIdAttribute: 'data-testid',
 })
 

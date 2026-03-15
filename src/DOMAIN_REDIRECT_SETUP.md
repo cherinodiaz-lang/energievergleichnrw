@@ -1,7 +1,7 @@
 # Domain Redirect Setup Guide
 ## energievergleich.shop as Primary Domain with energievergleich.nrw Redirect
 
-**Last Updated:** January 9, 2026  
+**Last Updated:** January 9, 2026
 **Status:** Ready for Implementation
 
 ---
