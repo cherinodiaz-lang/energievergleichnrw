@@ -1,7 +1,7 @@
 {
   "ci": {
     "collect": {
-      "urls": [
+      "url": [
         "http://localhost:4321/",
         "http://localhost:4321/stromvergleich-nrw",
         "http://localhost:4321/gasvergleich-nrw"
