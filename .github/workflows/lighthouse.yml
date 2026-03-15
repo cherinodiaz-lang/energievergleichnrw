@@ -29,6 +29,8 @@ jobs:
       - run: npm ci
       - run: npm install -g @wix/cli
       - run: npm run build
-      - run: npx lhci autorun
+      - run: npx lhci collect --config=lighthouserc.json
+      - run: npx lhci assert --config=lighthouserc.json
+      - run: npx lhci upload --config=lighthouserc.json
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
