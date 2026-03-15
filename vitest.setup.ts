@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom'
-import { configure } from '@testing-library/react'
+import { cleanup, configure } from '@testing-library/react'
+import { afterEach } from 'vitest'
 
 const originalWarn = console.warn
 const originalError = console.error
@@ -24,6 +25,13 @@ console.error = (...args) => {
 }
 configure({
   testIdAttribute: 'data-testid',
+})
+
+afterEach(() => {
+  cleanup()
+  document.head.innerHTML = ''
+  document.body.innerHTML = ''
+  document.title = ''
 })
 
 // Make React's act available globally for testing-library

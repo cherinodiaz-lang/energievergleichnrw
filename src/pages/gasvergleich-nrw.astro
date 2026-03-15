@@ -1,0 +1,21 @@
+---
+import AstroRouterProvider from "@/components/AstroRouterProvider";
+import GasvergleichNrwPage from "@/components/pages/GasvergleichNrwPage";
+import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
+import { getPageSEO } from "@/lib/seo-config";
+
+const seo = getPageSEO("gasvergleich");
+---
+
+<SeoPageLayout
+  title={seo.title}
+  description={seo.description}
+  canonicalPath="/gasvergleich-nrw"
+  keywords={seo.keywords}
+  ogTitle={seo.ogTitle}
+  ogDescription={seo.ogDescription}
+>
+  <AstroRouterProvider path={Astro.url.pathname} client:load>
+    <GasvergleichNrwPage />
+  </AstroRouterProvider>
+</SeoPageLayout>

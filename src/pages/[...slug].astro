@@ -8,9 +8,17 @@ import "@/styles/global.css";
 // These are handled by dedicated endpoint files (sitemap.xml.ts, robots.txt.ts)
 const pathname = new URL(Astro.request.url).pathname;
 const excludedPaths = ['/sitemap.xml', '/robots.txt'];
+const spaPrefixes = ['/blog', '/danke', '/thank-you'];
+const isAllowedSpaRoute = spaPrefixes.some((prefix) =>
+  pathname === prefix || pathname.startsWith(`${prefix}/`)
+);
 
 if (excludedPaths.includes(pathname)) {
   // Return 404 to allow Astro to serve the API endpoint
+  return new Response(null, { status: 404 });
+}
+
+if (!isAllowedSpaRoute) {
   return new Response(null, { status: 404 });
 }
 
@@ -28,7 +36,7 @@ const seoTagsServiceConfig = await loadSEOTagsServiceConfig({
 });
 ---
 
-<html lang="en" class="w-full h-full">
+<html lang="de" class="w-full h-full">
   <head>
     <SEO.Tags seoTagsServiceConfig={seoTagsServiceConfig} slot="seo-tags" />
   </head>

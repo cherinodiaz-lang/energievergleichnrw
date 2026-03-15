@@ -1,0 +1,21 @@
+---
+import AstroRouterProvider from "@/components/AstroRouterProvider";
+import GewerbestromPage from "@/components/pages/GewerbestromPage";
+import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
+import { getPageSEO } from "@/lib/seo-config";
+
+const seo = getPageSEO("gewerbestrom");
+---
+
+<SeoPageLayout
+  title={seo.title}
+  description={seo.description}
+  canonicalPath="/gewerbestrom"
+  keywords={seo.keywords}
+  ogTitle={seo.ogTitle}
+  ogDescription={seo.ogDescription}
+>
+  <AstroRouterProvider path={Astro.url.pathname} client:load>
+    <GewerbestromPage />
+  </AstroRouterProvider>
+</SeoPageLayout>

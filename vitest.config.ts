@@ -1,9 +1,23 @@
+import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vitest/config'
-import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
-  // @ts-expect-error - vite-tsconfig-paths is not typed correctly
-  plugins: [tsconfigPaths()],
+  resolve: {
+    alias: [
+      {
+        find: '@/integrations',
+        replacement: fileURLToPath(new URL('./integrations', import.meta.url)),
+      },
+      {
+        find: '@wix/codegen-framework-packages',
+        replacement: fileURLToPath(new URL('./integrations', import.meta.url)),
+      },
+      {
+        find: '@',
+        replacement: fileURLToPath(new URL('./src', import.meta.url)),
+      },
+    ],
+  },
   test: {
     globals: true,
     environment: 'jsdom',
