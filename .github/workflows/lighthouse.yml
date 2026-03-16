@@ -10,6 +10,7 @@ on:
 jobs:
   lighthouse:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     env:
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
       SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
@@ -22,15 +23,20 @@ jobs:
       WIX_CLIENT_PUBLIC_KEY: ${{ secrets.WIX_CLIENT_PUBLIC_KEY }}
       WIX_CLIENT_INSTANCE_ID: ${{ secrets.WIX_CLIENT_INSTANCE_ID }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
+      - id: chrome
+        uses: browser-actions/setup-chrome@v1
       - run: npm ci
       - run: npm install -g @wix/cli
       - run: npm run build
       - run: npx lhci collect --config=lighthouserc.json
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
       - run: npx lhci assert --config=lighthouserc.json
       - run: npx lhci upload --config=lighthouserc.json
         env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

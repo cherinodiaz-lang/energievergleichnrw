@@ -103,7 +103,7 @@ export default defineConfig({
     domains: ["static.wixstatic.com"],
   },
   server: {
-    allowedHosts: ["www.energievergleich.shop", "energievergleich.shop", "localhost"],
+    allowedHosts: ["www.energievergleich.shop", "energievergleich.shop", "localhost", "127.0.0.1"],
     host: true,
     headers: {
       "X-Frame-Options": "DENY",
