@@ -1,6 +1,6 @@
 import { z } from "astro/zod";
 
-export const ALLOWED_HOSTS = ["energievergleich.shop", "localhost"] as const;
+export const ALLOWED_HOSTS = ["www.energievergleich.shop", "energievergleich.shop", "localhost"] as const;
 
 export const PLZSchema = z.string().regex(/^\d{5}$/);
 

@@ -1,13 +1,10 @@
-@import './fonts.css';
 @import './fonts.swap.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* PHASE 7: Font optimization - Restrict to essential weights only */
-/* Only montserrat (400, 600, 700) and poppins-v2 (400, 600, 700) are loaded */
-/* All other font weights and styles are removed from fonts.css */
+/* Use the generated swap-enabled font bundle to avoid malformed @font-face output. */
 
 /* Mobile safety defaults */
 img, video { max-width: 100%; height: auto; display: block; }
