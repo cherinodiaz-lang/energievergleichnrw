@@ -13,7 +13,7 @@ import { CheckCircle, AlertCircle, Loader } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { submitForm, trackFormSubmission, validateForm, type FormSubmissionData } from '@/services/form-submission';
 
 export interface FormSubmissionDialogProps {
@@ -35,7 +35,6 @@ export default function FormSubmissionDialog({
   onSuccess,
   title = 'Anfrage senden'
 }: FormSubmissionDialogProps) {
-  const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [privacyConsent, setPrivacyConsent] = useState(false);
@@ -87,7 +86,7 @@ export default function FormSubmissionDialog({
         // Redirect to /danke after 2 seconds
         setTimeout(() => {
           handleClose();
-          navigate('/danke');
+          window.location.assign('/danke');
         }, 2000);
       } else {
         setErrors({

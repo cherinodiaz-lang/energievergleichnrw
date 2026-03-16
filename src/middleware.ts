@@ -2,6 +2,7 @@ import { defineMiddleware } from "astro:middleware";
 import { isAllowedHost, isLocalHost, PLZSchema } from "@/lib/security";
 
 const PLZ_QUERY_KEYS = ["plz", "zip", "postcode", "postleitzahl"] as const;
+const LHCI_HEAD_PATHS = new Set(["/", "/stromvergleich-nrw", "/gasvergleich-nrw"]);
 const SECURITY_HEADERS = {
   "X-Frame-Options": "DENY",
   "X-Content-Type-Options": "nosniff",
@@ -35,6 +36,10 @@ export const onRequest = defineMiddleware(async ({ request, url }, next) => {
       new Response("Unzulaessiger Host-Header.", { status: 400 }),
       hostHeader
     );
+  }
+
+  if (request.method === "HEAD" && LHCI_HEAD_PATHS.has(url.pathname)) {
+    return withSecurityHeaders(new Response(null, { status: 200 }), hostHeader);
   }
 
   for (const key of PLZ_QUERY_KEYS) {

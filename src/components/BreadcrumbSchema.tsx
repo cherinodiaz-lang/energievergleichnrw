@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 
 interface BreadcrumbItem {
   name: string;
@@ -8,13 +7,13 @@ interface BreadcrumbItem {
 
 interface BreadcrumbSchemaProps {
   items?: BreadcrumbItem[];
+  pathname?: string;
 }
 
-export default function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
-  const location = useLocation();
-
+export default function BreadcrumbSchema({ items, pathname = '/' }: BreadcrumbSchemaProps) {
   useEffect(() => {
-    const breadcrumbs = items && items.length > 0 ? items : generateBreadcrumbs(location.pathname);
+    const currentPathname = pathname || window.location.pathname;
+    const breadcrumbs = items && items.length > 0 ? items : generateBreadcrumbs(currentPathname);
 
     if (breadcrumbs.length <= 1) return; // No breadcrumbs for home page
 
@@ -39,7 +38,7 @@ export default function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
     } else {
       script.textContent = JSON.stringify(breadcrumbSchema);
     }
-  }, [items, location.pathname]);
+  }, [items, pathname]);
 
   return null;
 }

@@ -17,7 +17,7 @@ import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import TrustRow from '@/components/TrustRow';
 import RelatedPages from '@/components/RelatedPages';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
 import { validateFormFields, FORM_CONFIGS } from '@/lib/form-validation';
@@ -25,7 +25,6 @@ import { trackMethodikClick } from '@/services/form-submission';
 import { getRelatedPages } from '@/lib/internal-linking';
 
 export default function GasvergleichNrwPage() {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     postleitzahl: '',
     wohnfläche: '',
