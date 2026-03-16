@@ -6,7 +6,7 @@
         "http://localhost:4321/stromvergleich-nrw",
         "http://localhost:4321/gasvergleich-nrw"
       ],
-      "startServerCommand": "npx astro preview --host 0.0.0.0 --port 4321",
+      "startServerCommand": "npx wrangler dev dist/_worker.js/index.js --local --ip 0.0.0.0 --port 4321 --show-interactive-dev-session=false",
       "numberOfRuns": 3
     },
     "assert": {
