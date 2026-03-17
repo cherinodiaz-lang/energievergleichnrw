@@ -1,5 +1,6 @@
 ---
 import "@/styles/global.css";
+import AnalyticsBootstrap from "@/components/AnalyticsBootstrap";
 import { SEO_CONFIG } from "@/lib/seo-config";
 
 interface SchemaValue {
@@ -131,6 +132,7 @@ const robots = noindex
     <slot name="head" />
   </head>
   <body class="w-full h-full">
+    <AnalyticsBootstrap client:load measurementId={SEO_CONFIG.googleAnalyticsId} />
     <slot />
   </body>
 </html>

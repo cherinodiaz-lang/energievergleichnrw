@@ -1,14 +1,14 @@
 import { MemberProvider } from '@/integrations';
 import { createBrowserRouter, RouterProvider, Outlet, useLocation } from 'react-router-dom';
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense } from 'react';
 import { ScrollToTop } from '@/lib/scroll-to-top';
 import { SEO_CONFIG } from '@/lib/seo-config';
 import ErrorPage from '@/integrations/errorHandlers/ErrorPage';
+import AnalyticsBootstrap from '@/components/AnalyticsBootstrap';
 import OrganizationSchema from '@/components/OrganizationSchema';
 import LocalBusinessSchema from '@/components/LocalBusinessSchema';
 import WebsiteSchema from '@/components/WebsiteSchema';
 import SearchConsoleVerification from '@/components/SearchConsoleVerification';
-import { initializeGA4 } from '@/services/ga4-tracking';
 import HowToSchema from '@/components/HowToSchema';
 import ReviewSchema from '@/components/ReviewSchema';
 import FAQPageSchema from '@/components/FAQPageSchema';
@@ -25,13 +25,6 @@ const NotFoundPage = lazy(() => import('@/components/pages/NotFoundPage'));
 // Layout component that includes ScrollToTop and SEO components
 function Layout() {
   const location = useLocation();
-
-  // Initialize GA4 on app load (consent mode enabled by default)
-  useEffect(() => {
-    if (SEO_CONFIG.googleAnalyticsId) {
-      initializeGA4(SEO_CONFIG.googleAnalyticsId);
-    }
-  }, []);
 
   const normalizedPath =
     location.pathname === '/' ? '/' : location.pathname.replace(/\/+$/, '');
@@ -50,6 +43,7 @@ function Layout() {
       {shouldRenderHowToAndReviewSchema && <ReviewSchema />}
       {shouldRenderFaqSchema && <FAQPageSchema />}
       <BreadcrumbSchema />
+      <AnalyticsBootstrap measurementId={SEO_CONFIG.googleAnalyticsId} />
       <SearchConsoleVerification verificationCode={SEO_CONFIG.googleSearchConsoleVerification} />
       <Suspense fallback={<LazyFallback />}>
         <Outlet />

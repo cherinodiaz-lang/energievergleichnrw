@@ -19,6 +19,8 @@ declare global {
 
   interface ImportMetaEnv {
     readonly BASE_NAME: string;
+    readonly PUBLIC_GA4_MEASUREMENT_ID: string;
+    readonly PUBLIC_GOOGLE_SITE_VERIFICATION: string;
     readonly PUBLIC_SENTRY_DSN: string;
     readonly SENTRY_DSN: string;
     readonly SENTRY_AUTH_TOKEN: string;

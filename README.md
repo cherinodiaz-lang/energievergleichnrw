@@ -41,6 +41,7 @@ Beispielwerte stehen in [.env.example](/Users/joelcherinodiaz/Downloads/energiev
 Relevante Gruppen:
 
 - Wix: `WIX_CLIENT_ID`, `WIX_ACCOUNT_ID`, `WIX_SITE_ID`
+- Public SEO/Analytics: `PUBLIC_GA4_MEASUREMENT_ID`, `PUBLIC_GOOGLE_SITE_VERIFICATION`, `PUBLIC_SENTRY_DSN`
 - Sentry: `PUBLIC_SENTRY_DSN`, `SENTRY_DSN`, `SENTRY_AUTH_TOKEN`, `SENTRY_ORG`, `SENTRY_PROJECT_FRONTEND`, `SENTRY_PROJECT_SERVER`
 
 Hinweis:
@@ -88,3 +89,5 @@ scripts/                    projektinterne Validierungs-Skripte
 ## Deployment
 
 Der Production-Build erzeugt einen Cloudflare-kompatiblen Server-Output ueber den Wix Cloud Provider Fetch Adapter. Die Lighthouse-CI startet dafuer lokal `wrangler dev` gegen das gebaute Worker-Artefakt.
+
+Wenn du den Worker ausserhalb der bestehenden Wix-/CI-Pipeline direkt mit Wrangler betreibst, lege auf Basis von [wrangler.jsonc.example](/Users/joelcherinodiaz/Downloads/energievergleichnrw-clean/wrangler.jsonc.example) eine lokale `wrangler.jsonc` an und trage die Cloudflare-KV-IDs fuer `SESSION` ein. Ohne diese Bindung bleibt der Build erfolgreich, aber Wrangler meldet zu Recht die fehlende Session-KV-Konfiguration.
