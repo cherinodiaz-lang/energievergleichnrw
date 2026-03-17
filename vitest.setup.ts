@@ -36,3 +36,13 @@ afterEach(() => {
 
 // Make React's act available globally for testing-library
 global.IS_REACT_ACT_ENVIRONMENT = true
+
+class ResizeObserverMock {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+
+if (!global.ResizeObserver) {
+  global.ResizeObserver = ResizeObserverMock as typeof ResizeObserver
+}
