@@ -31,6 +31,7 @@ npm run lint
 npm run check
 npm run test
 npm run validate:seo
+npm run audit:stromrechner
 npm run build
 npm run preview:worker
 npm run lhci:collect
@@ -45,10 +46,13 @@ Relevante Gruppen:
 
 - Wix: `WIX_CLIENT_ID`, `WIX_ACCOUNT_ID`, `WIX_SITE_ID`
 - Public SEO/Analytics: `PUBLIC_GA4_MEASUREMENT_ID`, `PUBLIC_GOOGLE_SITE_VERIFICATION`, `PUBLIC_SENTRY_DSN`
+- Tarifrechner: `STROM_TARIFF_API_BASE_URL`, `STROM_TARIFF_API_KEY`, `STROM_TARIFF_API_PATH`, `STROM_TARIFF_API_AUTH_HEADER`
 - Sentry: `PUBLIC_SENTRY_DSN`, `SENTRY_DSN`, `SENTRY_AUTH_TOKEN`, `SENTRY_ORG`, `SENTRY_PROJECT_FRONTEND`, `SENTRY_PROJECT_SERVER`
 
 Hinweis:
 Ohne `SENTRY_AUTH_TOKEN` bleibt der Build erfolgreich, erstellt aber lokal keine Releases und laedt keine Sourcemaps hoch.
+
+Ohne `STROM_TARIFF_API_BASE_URL` bleibt der Stromrechner technisch funktionsfaehig, liefert aber bewusst nur den Non-Live-Status statt erfundener Tarife.
 
 ## QA-Gate
 
@@ -59,6 +63,7 @@ npm run lint
 npm run check
 npm run test
 npm run validate:seo
+npm run audit:stromrechner
 npm run build
 ```
 
@@ -72,8 +77,34 @@ Lokale Lighthouse-Reihenfolge:
 ```bash
 npm run build
 npm run preview:worker
+npm run audit:stromrechner
 npm run lhci:collect
 npm run lhci:assert
+
+## Stromtarifrechner
+
+Die oeffentliche Route [src/pages/stromvergleich-nrw.astro](/Users/joelcherinodiaz/Downloads/energievergleichnrw-clean/src/pages/stromvergleich-nrw.astro) nutzt den React-Rechner in [src/components/pages/StromvergleichNrwPage.tsx](/Users/joelcherinodiaz/Downloads/energievergleichnrw-clean/src/components/pages/StromvergleichNrwPage.tsx) und den serverseitigen Endpoint [src/pages/api/stromtarife.ts](/Users/joelcherinodiaz/Downloads/energievergleichnrw-clean/src/pages/api/stromtarife.ts).
+
+Live-Tarifquelle:
+
+- `STROM_TARIFF_API_BASE_URL` auf den echten Provider setzen
+- optional `STROM_TARIFF_API_KEY` und `STROM_TARIFF_API_AUTH_HEADER` setzen
+- optional `STROM_TARIFF_API_PATH` anpassen, Standard ist `/rates`
+
+Der Endpoint sendet `POST` JSON in diesem Format an die externe Quelle:
+
+```json
+{
+  "energyType": "electricity",
+  "postcode": "40210",
+  "annualConsumption": 3500,
+  "householdSize": 3,
+  "ecoOnly": true,
+  "bonusOnly": false
+}
+```
+
+Ohne diese Konfiguration zeigt die UI absichtlich keine Platzhalter-Ergebnisse, sondern den klaren Hinweis `Zurzeit sind noch keine Live-Tarifdaten angebunden.`.
 ```
 
 ## Projektstruktur
