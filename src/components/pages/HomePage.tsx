@@ -123,24 +123,6 @@ export default function HomePage() {
   const [pvEmail, setPvEmail] = useState('');
   const [pvTelefon, setPvTelefon] = useState('');
 
-  // Tariff results states
-  type TariffResult = {
-    id: number;
-    provider: string;
-    logo: string;
-    jahreskosten: number;
-    arbeitspreis: number;
-    grundpreis: number;
-    vertragslaufzeit: string;
-    preisgarantie: string;
-  };
-  const [stromResults, setStromResults] = useState<TariffResult[]>([]);
-  const [gasResults, setGasResults] = useState<TariffResult[]>([]);
-  const [kombiResults, setKombiResults] = useState<TariffResult[]>([]);
-  const [showStromResults, setShowStromResults] = useState(false);
-  const [showGasResults, setShowGasResults] = useState(false);
-  const [showKombiResults, setShowKombiResults] = useState(false);
-
   // --- Scroll Hooks for Parallax - DISABLED on mobile for performance ---
   const { scrollY } = useScroll();
   const prefersReducedMotion = useRef(false);
@@ -213,117 +195,38 @@ export default function HomePage() {
     }
   }, [faqs]);
 
-  // Sample tariff data
-  const sampleTariffs = {
-    strom: [
-      {
-        id: 1,
-        provider: 'GrünerStrom NRW',
-        logo: '⚡',
-        jahreskosten: 1245,
-        arbeitspreis: 0.32,
-        grundpreis: 12.50,
-        vertragslaufzeit: '12 Monate',
-        preisgarantie: '12 Monate',
-      },
-      {
-        id: 2,
-        provider: 'EnergiePlus Rheinland',
-        logo: '🔋',
-        jahreskosten: 1189,
-        arbeitspreis: 0.30,
-        grundpreis: 11.99,
-        vertragslaufzeit: '24 Monate',
-        preisgarantie: '24 Monate',
-      },
-      {
-        id: 3,
-        provider: 'NRW Energie AG',
-        logo: '⚙️',
-        jahreskosten: 1312,
-        arbeitspreis: 0.35,
-        grundpreis: 13.00,
-        vertragslaufzeit: '12 Monate',
-        preisgarantie: '6 Monate',
-      },
-    ],
-    gas: [
-      {
-        id: 1,
-        provider: 'WärmeWechsel NRW',
-        logo: '🔥',
-        jahreskosten: 1890,
-        arbeitspreis: 0.085,
-        grundpreis: 15.00,
-        vertragslaufzeit: '12 Monate',
-        preisgarantie: '12 Monate',
-      },
-      {
-        id: 2,
-        provider: 'KlimaGas Westfalen',
-        logo: '♻️',
-        jahreskosten: 1756,
-        arbeitspreis: 0.078,
-        grundpreis: 14.50,
-        vertragslaufzeit: '24 Monate',
-        preisgarantie: '24 Monate',
-      },
-      {
-        id: 3,
-        provider: 'Heizenergie Plus',
-        logo: '🌡️',
-        jahreskosten: 1945,
-        arbeitspreis: 0.092,
-        grundpreis: 15.50,
-        vertragslaufzeit: '12 Monate',
-        preisgarantie: '6 Monate',
-      },
-    ],
-    kombi: [
-      {
-        id: 1,
-        provider: 'AllEnergy NRW',
-        logo: '⚡',
-        jahreskosten: 3089,
-        arbeitspreis: 0.32,
-        grundpreis: 27.50,
-        vertragslaufzeit: '12 Monate',
-        preisgarantie: '12 Monate',
-      },
-      {
-        id: 2,
-        provider: 'DualPower Rheinland',
-        logo: '🔋',
-        jahreskosten: 2945,
-        arbeitspreis: 0.30,
-        grundpreis: 26.49,
-        vertragslaufzeit: '24 Monate',
-        preisgarantie: '24 Monate',
-      },
-      {
-        id: 3,
-        provider: 'Kombi Energie AG',
-        logo: '⚙️',
-        jahreskosten: 3257,
-        arbeitspreis: 0.35,
-        grundpreis: 28.50,
-        vertragslaufzeit: '12 Monate',
-        preisgarantie: '6 Monate',
-      },
-    ],
-  };
-
-  const handleCalculate = (type: string) => {
-    if (type === 'Strom') {
-      setStromResults(sampleTariffs.strom.sort((a, b) => a.jahreskosten - b.jahreskosten));
-      setShowStromResults(true);
-    } else if (type === 'Gas') {
-      setGasResults(sampleTariffs.gas.sort((a, b) => a.jahreskosten - b.jahreskosten));
-      setShowGasResults(true);
-    } else if (type === 'Kombi') {
-      setKombiResults(sampleTariffs.kombi.sort((a, b) => a.jahreskosten - b.jahreskosten));
-      setShowKombiResults(true);
+  const openComparisonRoute = (type: 'strom' | 'gas' | 'kombi') => {
+    if (typeof window === 'undefined') {
+      return;
     }
+
+    const targetPath =
+      type === 'strom'
+        ? ROUTES.stromvergleich
+        : type === 'gas'
+          ? ROUTES.gasvergleich
+          : ROUTES.kontakt;
+
+    const params = new URLSearchParams();
+
+    if (postleitzahl) {
+      params.set('postcode', postleitzahl);
+    }
+
+    if (type === 'strom' && stromVerbrauch) {
+      params.set('annualConsumption', stromVerbrauch);
+    }
+
+    if (type === 'gas' && gasVerbrauch) {
+      params.set('annualConsumption', gasVerbrauch);
+    }
+
+    if (personenAnzahl) {
+      params.set('householdSize', personenAnzahl);
+    }
+
+    const url = params.toString() ? `${targetPath}?${params.toString()}` : targetPath;
+    window.location.assign(url);
   };
 
   const [showContactDialog, setShowContactDialog] = useState(false);
@@ -621,306 +524,153 @@ export default function HomePage() {
 
                     <div className="p-3 sm:p-6 md:p-8 bg-white">
                       <TabsContent value="strom" className="mt-0 space-y-4 sm:space-y-6">
-                        {!showStromResults ? (
-                          <>
-                            <div className="grid grid-cols-1 gap-3 sm:gap-4">
-                              <div className="space-y-1.5 sm:space-y-2">
-                                <Label htmlFor="strom-plz" className="text-xs sm:text-sm font-medium">Postleitzahl</Label>
-                                <Input
-                                  id="strom-plz"
-                                  placeholder="z.B. 40210"
-                                  value={postleitzahl}
-                                  onChange={(e) => setPostleitzahl(e.target.value)}
-                                  className="h-11 sm:h-12 text-sm"
-                                />
-                              </div>
-                              <div className="space-y-1.5 sm:space-y-2">
-                                <Label htmlFor="strom-personen" className="text-xs sm:text-sm font-medium">Haushaltsgröße</Label>
-                                <Select value={personenAnzahl} onValueChange={setPersonenAnzahl}>
-                                  <SelectTrigger id="strom-personen" className="h-11 sm:h-12 text-sm">
-                                    <SelectValue placeholder="Bitte wählen" />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectItem value="1">1 Person (ca. 1.500 kWh)</SelectItem>
-                                    <SelectItem value="2">2 Personen (ca. 2.500 kWh)</SelectItem>
-                                    <SelectItem value="3">3 Personen (ca. 3.500 kWh)</SelectItem>
-                                    <SelectItem value="4">4+ Personen (ca. 4.250 kWh)</SelectItem>
-                                  </SelectContent>
-                                </Select>
-                              </div>
-                              <div className="space-y-1.5 sm:space-y-2">
-                                <Label htmlFor="strom-verbrauch" className="text-xs sm:text-sm font-medium">Jahresverbrauch (kWh) <span className="text-gray-400 font-normal text-xs">(Optional)</span></Label>
-                                <Input
-                                  id="strom-verbrauch"
-                                  type="number"
-                                  placeholder="Genauen Verbrauch eingeben"
-                                  value={stromVerbrauch}
-                                  onChange={(e) => setStromVerbrauch(e.target.value)}
-                                  className="h-11 sm:h-12 text-sm"
-                                />
-                              </div>
-                            </div>
-                            <Button
-                              onClick={() => handleCalculate('Strom')}
-                              className="w-full bg-secondary text-black hover:bg-[#D49700] h-12 sm:h-14 text-sm sm:text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all active:scale-95"
-                            >
-                              Stromtarife vergleichen
-                            </Button>
-                          </>
-                        ) : (
-                          <>
-                            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
-                              <p className="text-xs sm:text-sm text-blue-800 font-medium">ℹ️ Dies sind Beispielwerte. Eine echte API-Verbindung wird in Kürze implementiert.</p>
-                            </div>
-                            <div className="space-y-3 sm:space-y-4">
-                              {stromResults.map((tariff) => (
-                                <div key={tariff.id} className="border rounded-lg p-4 sm:p-6 hover:shadow-lg transition-shadow">
-                                  <div className="flex items-start justify-between mb-3 sm:mb-4 gap-2">
-                                    <div className="flex items-center gap-2 sm:gap-4 min-w-0">
-                                      <div className="text-2xl sm:text-4xl flex-shrink-0">{tariff.logo}</div>
-                                      <div className="min-w-0">
-                                        <h4 className="font-bold text-sm sm:text-lg text-gray-900 truncate">{tariff.provider}</h4>
-                                        <p className="text-xs sm:text-sm text-gray-500">Stromversorger</p>
-                                      </div>
-                                    </div>
-                                    <div className="text-right flex-shrink-0">
-                                      <p className="text-xl sm:text-3xl font-bold text-primary">{tariff.jahreskosten.toFixed(2)}€</p>
-                                      <p className="text-xs text-gray-500">pro Jahr</p>
-                                    </div>
-                                  </div>
-                                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 mb-4 sm:mb-6 py-3 sm:py-4 border-y border-gray-200">
-                                    <div>
-                                      <p className="text-xs text-gray-500 uppercase font-bold">Arbeitspreis</p>
-                                      <p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.arbeitspreis.toFixed(2)}€/kWh</p>
-                                    </div>
-                                    <div>
-                                      <p className="text-xs text-gray-500 uppercase font-bold">Grundpreis</p>
-                                      <p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.grundpreis.toFixed(2)}€/M</p>
-                                    </div>
-                                    <div>
-                                      <p className="text-xs text-gray-500 uppercase font-bold">Laufzeit</p>
-                                      <p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.vertragslaufzeit}</p>
-                                    </div>
-                                    <div>
-                                      <p className="text-xs text-gray-500 uppercase font-bold">Garantie</p>
-                                      <p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.preisgarantie}</p>
-                                    </div>
-                                  </div>
-                                  <Button className="w-full bg-secondary text-black hover:bg-secondary/90 h-10 sm:h-12 font-bold rounded-lg text-sm sm:text-base">
-                                    Tarif wählen
-                                  </Button>
-                                </div>
-                              ))}</div>
-                            <Button
-                              onClick={() => setShowStromResults(false)}
-                              variant="outline"
-                              className="w-full mt-4 sm:mt-6"
-                            >
-                              Neue Berechnung
-                            </Button>
-                          </>
-                        )}
+                        <div className="grid grid-cols-1 gap-3 sm:gap-4">
+                          <div className="space-y-1.5 sm:space-y-2">
+                            <Label htmlFor="strom-plz" className="text-xs sm:text-sm font-medium">Postleitzahl</Label>
+                            <Input
+                              id="strom-plz"
+                              placeholder="z.B. 40210"
+                              value={postleitzahl}
+                              onChange={(e) => setPostleitzahl(e.target.value)}
+                              className="h-11 sm:h-12 text-sm"
+                            />
+                          </div>
+                          <div className="space-y-1.5 sm:space-y-2">
+                            <Label htmlFor="strom-personen" className="text-xs sm:text-sm font-medium">Haushaltsgröße</Label>
+                            <Select value={personenAnzahl} onValueChange={setPersonenAnzahl}>
+                              <SelectTrigger id="strom-personen" className="h-11 sm:h-12 text-sm">
+                                <SelectValue placeholder="Bitte wählen" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="1">1 Person (ca. 1.500 kWh)</SelectItem>
+                                <SelectItem value="2">2 Personen (ca. 2.500 kWh)</SelectItem>
+                                <SelectItem value="3">3 Personen (ca. 3.500 kWh)</SelectItem>
+                                <SelectItem value="4">4+ Personen (ca. 4.250 kWh)</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div className="space-y-1.5 sm:space-y-2">
+                            <Label htmlFor="strom-verbrauch" className="text-xs sm:text-sm font-medium">Jahresverbrauch (kWh)</Label>
+                            <Input
+                              id="strom-verbrauch"
+                              type="number"
+                              placeholder="Genauen Verbrauch eingeben"
+                              value={stromVerbrauch}
+                              onChange={(e) => setStromVerbrauch(e.target.value)}
+                              className="h-11 sm:h-12 text-sm"
+                            />
+                          </div>
+                        </div>
+                        <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 sm:p-4">
+                          <p className="text-xs sm:text-sm text-amber-900 font-medium">
+                            Auf der Startseite werden keine Beispieltarife mehr gerendert. Die Eingaben fuehren direkt in den echten Stromrechnerpfad mit serverseitiger Tarifabfrage und ehrlichem Non-Live-Status.
+                          </p>
+                        </div>
+                        <Button
+                          onClick={() => openComparisonRoute('strom')}
+                          className="w-full bg-secondary text-black hover:bg-[#D49700] h-12 sm:h-14 text-sm sm:text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all active:scale-95"
+                        >
+                          Zum Stromrechner
+                        </Button>
                       </TabsContent>
 
                       <TabsContent value="gas" className="mt-0 space-y-4 sm:space-y-6">
-                        {!showGasResults ? (
-                          <>
-                            <div className="grid grid-cols-1 gap-3 sm:gap-4">
-                              <div className="space-y-1.5 sm:space-y-2">
-                                <Label htmlFor="gas-plz" className="text-xs sm:text-sm font-medium">Postleitzahl</Label>
-                                <Input
-                                  id="gas-plz"
-                                  placeholder="z.B. 40210"
-                                  value={postleitzahl}
-                                  onChange={(e) => setPostleitzahl(e.target.value)}
-                                  className="h-11 sm:h-12 text-sm"
-                                />
-                              </div>
-                              <div className="space-y-1.5 sm:space-y-2">
-                                <Label htmlFor="gas-wohnflaeche" className="text-xs sm:text-sm font-medium">Wohnfläche (m²)</Label>
-                                <Select value={personenAnzahl} onValueChange={setPersonenAnzahl}>
-                                  <SelectTrigger id="gas-wohnflaeche" className="h-11 sm:h-12 text-sm">
-                                    <SelectValue placeholder="Bitte wählen" />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectItem value="30">30 m²</SelectItem>
-                                    <SelectItem value="50">50 m²</SelectItem>
-                                    <SelectItem value="100">100 m²</SelectItem>
-                                    <SelectItem value="150">150 m²</SelectItem>
-                                  </SelectContent>
-                                </Select>
-                              </div>
-                              <div className="space-y-1.5 sm:space-y-2">
-                                <Label htmlFor="gas-verbrauch" className="text-xs sm:text-sm font-medium">Jahresverbrauch (kWh) <span className="text-gray-400 font-normal text-xs">(Optional)</span></Label>
-                                <Input
-                                  id="gas-verbrauch"
-                                  type="number"
-                                  placeholder="Genauen Verbrauch eingeben"
-                                  value={gasVerbrauch}
-                                  onChange={(e) => setGasVerbrauch(e.target.value)}
-                                  className="h-11 sm:h-12 text-sm"
-                                />
-                              </div>
-                            </div>
-                            <Button
-                              onClick={() => handleCalculate('Gas')}
-                              className="w-full bg-secondary text-secondary-foreground hover:bg-[#D49700] h-12 sm:h-14 text-sm sm:text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all active:scale-95"
-                            >
-                              Gastarife vergleichen
-                            </Button>
-                          </>
-                        ) : (
-                          <>
-                            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
-                              <p className="text-xs sm:text-sm text-blue-800 font-medium">ℹ️ Dies sind Beispielwerte. Eine echte API-Verbindung wird in Kürze implementiert.</p>
-                            </div>
-                            <div className="space-y-3 sm:space-y-4">
-                              {gasResults.map((tariff) => (
-                                <div key={tariff.id} className="border rounded-lg p-4 sm:p-6 hover:shadow-lg transition-shadow">
-                                  <div className="flex items-start justify-between mb-3 sm:mb-4 gap-2">
-                                    <div className="flex items-center gap-2 sm:gap-4 min-w-0">
-                                      <div className="text-2xl sm:text-4xl flex-shrink-0">{tariff.logo}</div>
-                                      <div className="min-w-0">
-                                        <h4 className="font-bold text-sm sm:text-lg text-gray-900 truncate">{tariff.provider}</h4>
-                                        <p className="text-xs sm:text-sm text-gray-500">Gasversorger</p>
-                                      </div>
-                                    </div>
-                                    <div className="text-right flex-shrink-0">
-                                      <p className="text-xl sm:text-3xl font-bold text-primary">{tariff.jahreskosten.toFixed(2)}€</p>
-                                      <p className="text-xs text-gray-500">pro Jahr</p>
-                                    </div>
-                                  </div>
-                                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 mb-4 sm:mb-6 py-3 sm:py-4 border-y border-gray-200">
-                                    <div>
-                                      <p className="text-xs text-gray-500 uppercase font-bold">Arbeitspreis</p>
-                                      <p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.arbeitspreis.toFixed(3)}€/kWh</p>
-                                    </div>
-                                    <div>
-                                      <p className="text-xs text-gray-500 uppercase font-bold">Grundpreis</p>
-                                      <p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.grundpreis.toFixed(2)}€/M</p>
-                                    </div>
-                                    <div>
-                                      <p className="text-xs text-gray-500 uppercase font-bold">Laufzeit</p>
-                                      <p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.vertragslaufzeit}</p>
-                                    </div>
-                                    <div>
-                                      <p className="text-xs text-gray-500 uppercase font-bold">Garantie</p>
-                                      <p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.preisgarantie}</p>
-                                    </div>
-                                  </div>
-                                  <Button className="w-full bg-secondary text-black hover:bg-secondary/90 h-10 sm:h-12 font-bold rounded-lg text-sm sm:text-base">
-                                    Tarif wählen
-                                  </Button>
-                                </div>
-                              ))}</div>
-                            <Button
-                              onClick={() => setShowGasResults(false)}
-                              variant="outline"
-                              className="w-full mt-4 sm:mt-6"
-                            >
-                              Neue Berechnung
-                            </Button>
-                          </>
-                        )}
+                        <div className="grid grid-cols-1 gap-3 sm:gap-4">
+                          <div className="space-y-1.5 sm:space-y-2">
+                            <Label htmlFor="gas-plz" className="text-xs sm:text-sm font-medium">Postleitzahl</Label>
+                            <Input
+                              id="gas-plz"
+                              placeholder="z.B. 40210"
+                              value={postleitzahl}
+                              onChange={(e) => setPostleitzahl(e.target.value)}
+                              className="h-11 sm:h-12 text-sm"
+                            />
+                          </div>
+                          <div className="space-y-1.5 sm:space-y-2">
+                            <Label htmlFor="gas-wohnflaeche" className="text-xs sm:text-sm font-medium">Wohnfläche (m²)</Label>
+                            <Select value={personenAnzahl} onValueChange={setPersonenAnzahl}>
+                              <SelectTrigger id="gas-wohnflaeche" className="h-11 sm:h-12 text-sm">
+                                <SelectValue placeholder="Bitte wählen" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="30">30 m²</SelectItem>
+                                <SelectItem value="50">50 m²</SelectItem>
+                                <SelectItem value="100">100 m²</SelectItem>
+                                <SelectItem value="150">150 m²</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div className="space-y-1.5 sm:space-y-2">
+                            <Label htmlFor="gas-verbrauch" className="text-xs sm:text-sm font-medium">Jahresverbrauch (kWh)</Label>
+                            <Input
+                              id="gas-verbrauch"
+                              type="number"
+                              placeholder="Genauen Verbrauch eingeben"
+                              value={gasVerbrauch}
+                              onChange={(e) => setGasVerbrauch(e.target.value)}
+                              className="h-11 sm:h-12 text-sm"
+                            />
+                          </div>
+                        </div>
+                        <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 sm:p-4">
+                          <p className="text-xs sm:text-sm text-slate-800 font-medium">
+                            Die Startseite dient nur als Einstieg. Ergebnisse werden nicht mehr mit statischen Beispieltarifen simuliert.
+                          </p>
+                        </div>
+                        <Button
+                          onClick={() => openComparisonRoute('gas')}
+                          className="w-full bg-secondary text-secondary-foreground hover:bg-[#D49700] h-12 sm:h-14 text-sm sm:text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all active:scale-95"
+                        >
+                          Zum Gasvergleich
+                        </Button>
                       </TabsContent>
 
                       <TabsContent value="kombi" className="mt-0 space-y-4 sm:space-y-6">
-                        {!showKombiResults ? (
-                          <>
-                            <div className="grid grid-cols-1 gap-3 sm:gap-4">
-                              <div className="space-y-1.5 sm:space-y-2">
-                                <Label htmlFor="kombi-plz" className="text-xs sm:text-sm font-medium">Postleitzahl</Label>
-                                <Input
-                                  id="kombi-plz"
-                                  placeholder="z.B. 40210"
-                                  value={postleitzahl}
-                                  onChange={(e) => setPostleitzahl(e.target.value)}
-                                  className="h-11 sm:h-12 text-sm"
-                                />
-                              </div>
-                              <div className="space-y-1.5 sm:space-y-2">
-                                <Label htmlFor="kombi-strom" className="text-xs sm:text-sm font-medium">Stromverbrauch (kWh)</Label>
-                                <Input
-                                  id="kombi-strom"
-                                  type="number"
-                                  placeholder="z.B. 3500"
-                                  value={stromVerbrauch}
-                                  onChange={(e) => setStromVerbrauch(e.target.value)}
-                                  className="h-11 sm:h-12 text-sm"
-                                />
-                              </div>
-                              <div className="space-y-1.5 sm:space-y-2">
-                                <Label htmlFor="kombi-gas" className="text-xs sm:text-sm font-medium">Gasverbrauch (kWh)</Label>
-                                <Input
-                                  id="kombi-gas"
-                                  type="number"
-                                  placeholder="z.B. 20000"
-                                  value={gasVerbrauch}
-                                  onChange={(e) => setGasVerbrauch(e.target.value)}
-                                  className="h-11 sm:h-12 text-sm"
-                                />
-                              </div>
-                            </div>
-                            <Button
-                              onClick={() => handleCalculate('Kombi')}
-                              className="w-full bg-secondary text-secondary-foreground hover:bg-[#D49700] h-12 sm:h-14 text-sm sm:text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all active:scale-95"
-                            >
-                              Kombitarife vergleichen
-                            </Button>
-                          </>
-                        ) : (
-                          <>
-                            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
-                              <p className="text-xs sm:text-sm text-blue-800 font-medium">ℹ️ Dies sind Beispielwerte. Eine echte API-Verbindung wird in Kürze implementiert.</p>
-                            </div>
-                            <div className="space-y-3 sm:space-y-4">
-                              {kombiResults.map((tariff) => (
-                                <div key={tariff.id} className="border rounded-lg p-4 sm:p-6 hover:shadow-lg transition-shadow">
-                                  <div className="flex items-start justify-between mb-3 sm:mb-4 gap-2">
-                                    <div className="flex items-center gap-2 sm:gap-4 min-w-0">
-                                      <div className="text-2xl sm:text-4xl flex-shrink-0">{tariff.logo}</div>
-                                      <div className="min-w-0">
-                                        <h4 className="font-bold text-sm sm:text-lg text-gray-900 truncate">{tariff.provider}</h4>
-                                        <p className="text-xs sm:text-sm text-gray-500">Kombi-Angebot</p>
-                                      </div>
-                                    </div>
-                                    <div className="text-right flex-shrink-0">
-                                      <p className="text-xl sm:text-3xl font-bold text-primary">{tariff.jahreskosten.toFixed(2)}€</p>
-                                      <p className="text-xs text-gray-500">pro Jahr</p>
-                                    </div>
-                                  </div>
-                                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 mb-4 sm:mb-6 py-3 sm:py-4 border-y border-gray-200">
-                                    <div>
-                                      <p className="text-xs text-gray-500 uppercase font-bold">Arbeitspreis</p>
-                                      <p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.arbeitspreis.toFixed(2)}€/kWh</p>
-                                    </div>
-                                    <div>
-                                      <p className="text-xs text-gray-500 uppercase font-bold">Grundpreis</p>
-                                      <p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.grundpreis.toFixed(2)}€/M</p>
-                                    </div>
-                                    <div>
-                                      <p className="text-xs text-gray-500 uppercase font-bold">Laufzeit</p>
-                                      <p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.vertragslaufzeit}</p>
-                                    </div>
-                                    <div>
-                                      <p className="text-xs text-gray-500 uppercase font-bold">Garantie</p>
-                                      <p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.preisgarantie}</p>
-                                    </div>
-                                  </div>
-                                  <Button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-10 sm:h-12 font-bold rounded-lg text-sm sm:text-base">
-                                    Tarif wählen
-                                  </Button>
-                                </div>
-                              ))}</div>
-                            <Button
-                              onClick={() => setShowKombiResults(false)}
-                              variant="outline"
-                              className="w-full mt-4 sm:mt-6"
-                            >
-                              Neue Berechnung
-                            </Button>
-                          </>
-                        )}
+                        <div className="grid grid-cols-1 gap-3 sm:gap-4">
+                          <div className="space-y-1.5 sm:space-y-2">
+                            <Label htmlFor="kombi-plz" className="text-xs sm:text-sm font-medium">Postleitzahl</Label>
+                            <Input
+                              id="kombi-plz"
+                              placeholder="z.B. 40210"
+                              value={postleitzahl}
+                              onChange={(e) => setPostleitzahl(e.target.value)}
+                              className="h-11 sm:h-12 text-sm"
+                            />
+                          </div>
+                          <div className="space-y-1.5 sm:space-y-2">
+                            <Label htmlFor="kombi-strom" className="text-xs sm:text-sm font-medium">Stromverbrauch (kWh)</Label>
+                            <Input
+                              id="kombi-strom"
+                              type="number"
+                              placeholder="z.B. 3500"
+                              value={stromVerbrauch}
+                              onChange={(e) => setStromVerbrauch(e.target.value)}
+                              className="h-11 sm:h-12 text-sm"
+                            />
+                          </div>
+                          <div className="space-y-1.5 sm:space-y-2">
+                            <Label htmlFor="kombi-gas" className="text-xs sm:text-sm font-medium">Gasverbrauch (kWh)</Label>
+                            <Input
+                              id="kombi-gas"
+                              type="number"
+                              placeholder="z.B. 20000"
+                              value={gasVerbrauch}
+                              onChange={(e) => setGasVerbrauch(e.target.value)}
+                              className="h-11 sm:h-12 text-sm"
+                            />
+                          </div>
+                        </div>
+                        <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 sm:p-4">
+                          <p className="text-xs sm:text-sm text-slate-800 font-medium">
+                            Kombitarife werden aktuell nicht als eigene Live-Ergebnisliste simuliert. Fuer ein kombiniertes Angebot fuehren wir in die korrekte Beratungsstrecke statt erfundene Preise zu zeigen.
+                          </p>
+                        </div>
+                        <Button
+                          onClick={() => openComparisonRoute('kombi')}
+                          className="w-full bg-secondary text-secondary-foreground hover:bg-[#D49700] h-12 sm:h-14 text-sm sm:text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all active:scale-95"
+                        >
+                          Kombi-Beratung anfragen
+                        </Button>
                       </TabsContent>
                     </div>
                   </Tabs>
