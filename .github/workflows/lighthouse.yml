@@ -34,7 +34,7 @@ jobs:
       - run: npm run build
       - name: Start Wrangler preview
         run: |
-          npx wrangler dev dist/_worker.js/index.js --local --ip 127.0.0.1 --port 4321 --show-interactive-dev-session=false --compatibility-date=2024-09-23 --compatibility-flag=nodejs_compat > wrangler-preview.log 2>&1 &
+          npm run preview:worker > wrangler-preview.log 2>&1 &
           echo $! > wrangler-preview.pid
       - name: Wait for Lighthouse routes
         run: |
@@ -59,10 +59,10 @@ jobs:
               exit 1
             fi
           done
-      - run: npx lhci collect --config=lighthouserc.json
+      - run: npm run lhci:collect
         env:
           CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
-      - run: npx lhci assert --config=lighthouserc.json
+      - run: npm run lhci:assert
       - run: npx lhci upload --config=lighthouserc.json
         env:
           CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}

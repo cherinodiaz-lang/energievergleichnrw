@@ -32,6 +32,9 @@ npm run check
 npm run test
 npm run validate:seo
 npm run build
+npm run preview:worker
+npm run lhci:collect
+npm run lhci:assert
 ```
 
 ## Umgebungsvariablen
@@ -64,6 +67,15 @@ CI:
 - PR Validation: Lint, SEO-Validation, Tests, Production Build
 - Lighthouse CI: Build + Wrangler Preview + LHCI Collect/Assert/Upload
 
+Lokale Lighthouse-Reihenfolge:
+
+```bash
+npm run build
+npm run preview:worker
+npm run lhci:collect
+npm run lhci:assert
+```
+
 ## Projektstruktur
 
 ```text
@@ -88,6 +100,6 @@ scripts/                    projektinterne Validierungs-Skripte
 
 ## Deployment
 
-Der Production-Build erzeugt einen Cloudflare-kompatiblen Server-Output ueber den Wix Cloud Provider Fetch Adapter. Die Lighthouse-CI startet dafuer lokal `wrangler dev` gegen das gebaute Worker-Artefakt.
+Der Production-Build erzeugt einen Cloudflare-kompatiblen Server-Output ueber den Wix Cloud Provider Fetch Adapter. [wrangler.jsonc](/Users/joelcherinodiaz/Downloads/energievergleichnrw-clean/wrangler.jsonc) bildet dafuer den repo-seitig belastbaren lokalen Preview-Stand mit `ASSETS`-Binding, `nodejs_compat` und fixer `compatibility_date` ab.
 
-Wenn du den Worker ausserhalb der bestehenden Wix-/CI-Pipeline direkt mit Wrangler betreibst, lege auf Basis von [wrangler.jsonc.example](/Users/joelcherinodiaz/Downloads/energievergleichnrw-clean/wrangler.jsonc.example) eine lokale `wrangler.jsonc` an und trage die Cloudflare-KV-IDs fuer `SESSION` ein. Ohne diese Bindung bleibt der Build erfolgreich, aber Wrangler meldet zu Recht die fehlende Session-KV-Konfiguration.
+Wenn du den Worker mit echten Cloudflare-Bindings deployen oder lokal mit Session-KV testen willst, erweitere [wrangler.jsonc](/Users/joelcherinodiaz/Downloads/energievergleichnrw-clean/wrangler.jsonc) nach der Vorlage in [wrangler.jsonc.example](/Users/joelcherinodiaz/Downloads/energievergleichnrw-clean/wrangler.jsonc.example) um die realen `kv_namespaces` fuer `SESSION`.
