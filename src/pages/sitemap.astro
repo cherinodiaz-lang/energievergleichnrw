@@ -12,7 +12,7 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogTitle="Sitemap | energievergleich.shop"
   ogDescription="Sitemap und Seitenübersicht von energievergleich.shop"
 >
-  <AstroRouterProvider path={Astro.url.pathname} client:load>
+  <AstroRouterProvider path={Astro.url.pathname} client:idle>
     <SitemapPage />
   </AstroRouterProvider>
 </SeoPageLayout>

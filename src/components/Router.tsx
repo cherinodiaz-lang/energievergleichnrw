@@ -1,5 +1,5 @@
 import { MemberProvider } from '@/integrations';
-import { createBrowserRouter, RouterProvider, Navigate, Outlet, useLocation } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Outlet, useLocation } from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
 import { ScrollToTop } from '@/lib/scroll-to-top';
 import { SEO_CONFIG } from '@/lib/seo-config';
@@ -20,6 +20,7 @@ const LazyFallback = () => <div className="min-h-screen flex items-center justif
 const ThankYouPage = lazy(() => import('@/components/pages/ThankYouPage'));
 const BlogPage = lazy(() => import('@/components/pages/BlogPage'));
 const BlogDetailPage = lazy(() => import('@/components/pages/BlogDetailPage'));
+const NotFoundPage = lazy(() => import('@/components/pages/NotFoundPage'));
 
 // Layout component that includes ScrollToTop and SEO components
 function Layout() {
@@ -69,7 +70,7 @@ const router = createBrowserRouter([
       },
       {
         path: "thank-you",
-        element: <Navigate to="/danke" replace />,
+        element: <ThankYouPage />,
       },
       {
         path: "blog",
@@ -81,7 +82,7 @@ const router = createBrowserRouter([
       },
       {
         path: "*",
-        element: <Navigate to="/" replace />,
+        element: <NotFoundPage />,
       },
     ],
   },
