@@ -5,7 +5,7 @@ import React from "react"
 const Collapsible = CollapsiblePrimitive.Root
 
 const CollapsibleTrigger = React.forwardRef<
-  React.ElementRef<typeof CollapsiblePrimitive.CollapsibleTrigger>,
+  React.ComponentRef<typeof CollapsiblePrimitive.CollapsibleTrigger>,
   React.ComponentPropsWithoutRef<typeof CollapsiblePrimitive.CollapsibleTrigger>
 >(({ className, ...props }, ref) => (
   <CollapsiblePrimitive.CollapsibleTrigger
@@ -21,7 +21,7 @@ const CollapsibleTrigger = React.forwardRef<
 CollapsibleTrigger.displayName = "CollapsibleTrigger"
 
 const CollapsibleContent = React.forwardRef<
-  React.ElementRef<typeof CollapsiblePrimitive.CollapsibleContent>,
+  React.ComponentRef<typeof CollapsiblePrimitive.CollapsibleContent>,
   React.ComponentPropsWithoutRef<typeof CollapsiblePrimitive.CollapsibleContent>
 >(({ className, ...props }, ref) => (
   <CollapsiblePrimitive.CollapsibleContent

@@ -1,6 +1,7 @@
+import type { ComponentProps } from 'react';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Flame, Building2, TrendingDown, Shield, Clock, Send, Sun, ArrowRight } from 'lucide-react';
+import { Flame, TrendingDown, Shield, Clock, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -13,15 +14,13 @@ import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
-import TrustRow from '@/components/TrustRow';
-import RelatedPages from '@/components/RelatedPages';
 import { Link } from 'react-router-dom';
 import { getPageSEO } from '@/lib/seo-config';
 import { ROUTES } from '@/lib/routes';
 import { trackMethodikClick } from '@/services/form-submission';
-import { getRelatedPages } from '@/lib/internal-linking';
 
 export default function GewerbegasPage() {
+  type FormSubmitEvent = Parameters<NonNullable<ComponentProps<'form'>['onSubmit']>>[0];
   useEffect(() => {
     const faqSchema = {
       '@context': 'https://schema.org',
@@ -92,7 +91,7 @@ export default function GewerbegasPage() {
   const [heatingType, setHeatingType] = useState('');
   const [message, setMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormSubmitEvent) => {
     e.preventDefault();
     alert(`Vielen Dank für Ihre Anfrage, ${companyName}! Wir werden uns in Kürze bei Ihnen melden.`);
     // Reset form

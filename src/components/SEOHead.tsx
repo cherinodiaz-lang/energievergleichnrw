@@ -50,10 +50,6 @@ export default function SEOHead({
   author = "energievergleich.shop",
   pathname,
 }: SEOHeadProps) {
-  const resolvedPathname =
-    pathname ?? (typeof window !== "undefined" ? window.location.pathname : "/");
-  const fallbackPathname = canonical ? new URL(canonical, SITE_URL).pathname : resolvedPathname;
-  const canonicalUrl = getCanonicalUrl(canonical, fallbackPathname);
   const effectiveRobots = noindex
     ? "noindex, nofollow"
     : robots;

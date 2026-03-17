@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, type ComponentProps } from 'react';
 import { motion } from 'framer-motion';
-import { Sun, CheckCircle, TrendingUp, Leaf, Zap, Send, ArrowRight, Home } from 'lucide-react';
+import { Sun, CheckCircle, TrendingUp, Leaf, Zap, Send, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,7 +13,6 @@ import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
-import TrustRow from '@/components/TrustRow';
 import RelatedPages from '@/components/RelatedPages';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
@@ -22,6 +21,7 @@ import { trackMethodikClick } from '@/services/form-submission';
 import { getRelatedPages } from '@/lib/internal-linking';
 
 export default function PhotovoltaikNrwPage() {
+  type FormSubmitEvent = Parameters<NonNullable<ComponentProps<'form'>['onSubmit']>>[0];
   const [formData, setFormData] = useState({
     eigentumsart: '',
     dachform: '',
@@ -149,7 +149,7 @@ export default function PhotovoltaikNrwPage() {
     };
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormSubmitEvent) => {
     e.preventDefault();
     alert(`Vielen Dank für Ihre Anfrage! Wir werden uns in Kürze bei Ihnen melden.`);
     setFormData({

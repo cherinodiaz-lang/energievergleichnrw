@@ -70,7 +70,7 @@ export async function submitForm(
     // Submit to Wix Collection
     // Note: Collection ID should be 'formsubmissions' or similar
     // This will trigger automations configured in Wix Dashboard
-    const result = await BaseCrudService.create('formsubmissions', data);
+    await BaseCrudService.create('formsubmissions', data);
 
     // Track event in GA4 (consent-safe) - NO PII included
     trackFormSubmit(data.type);

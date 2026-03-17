@@ -1,3 +1,4 @@
+import type { ComponentProps } from 'react';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Zap, Building2, TrendingDown, Shield, Clock, Send } from 'lucide-react';
@@ -13,7 +14,6 @@ import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
-import TrustRow from '@/components/TrustRow';
 import RelatedPages from '@/components/RelatedPages';
 import { Link } from 'react-router-dom';
 import { getPageSEO } from '@/lib/seo-config';
@@ -22,6 +22,7 @@ import { trackMethodikClick } from '@/services/form-submission';
 import { getRelatedPages } from '@/lib/internal-linking';
 
 export default function GewerbestromPage() {
+  type FormSubmitEvent = Parameters<NonNullable<ComponentProps<'form'>['onSubmit']>>[0];
   useEffect(() => {
     const faqSchema = {
       '@context': 'https://schema.org',
@@ -91,7 +92,7 @@ export default function GewerbestromPage() {
   const [companyType, setCompanyType] = useState('');
   const [message, setMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormSubmitEvent) => {
     e.preventDefault();
     alert(`Vielen Dank für Ihre Anfrage, ${companyName}! Wir werden uns in Kürze bei Ihnen melden.`);
     // Reset form
@@ -203,7 +204,41 @@ export default function GewerbestromPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="hover:bg-gray-50 transition-colors\">\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Jahresverbrauch (kWh)</td>\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. 120.000</td>\n                    </tr>\n                    <tr className="bg-gray-50 hover:bg-gray-100 transition-colors\">\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">PLZ/Ort</td>\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. 40210 Düsseldorf</td>\n                    </tr>\n                    <tr className="hover:bg-gray-50 transition-colors\">\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Zählernummer/Marktlokation</td>\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. DE… / falls vorhanden</td>\n                    </tr>\n                    <tr className="bg-gray-50 hover:bg-gray-100 transition-colors\">\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Leistung (kW)</td>\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. 85</td>\n                    </tr>\n                    <tr className="hover:bg-gray-50 transition-colors\">\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Lastprofil (SLP/RLM)</td>\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. RLM</td>\n                    </tr>\n                    <tr className="bg-gray-50 hover:bg-gray-100 transition-colors\">\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Vertragslaufzeit</td>\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. 12 Monate</td>\n                    </tr>\n                    <tr className="hover:bg-gray-50 transition-colors\">\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Branche/Nutzung</td>\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. Produktion</td>\n                    </tr>\n                  </tbody>\n                </table>\n              </div>\n            </div>\n\n            <div>\n              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Welche Angaben du brauchst</h3>
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Jahresverbrauch (kWh)</td>
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. 120.000</td>
+                    </tr>
+                    <tr className="bg-gray-50 hover:bg-gray-100 transition-colors">
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">PLZ/Ort</td>
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. 40210 Düsseldorf</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Zählernummer/Marktlokation</td>
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. DE… / falls vorhanden</td>
+                    </tr>
+                    <tr className="bg-gray-50 hover:bg-gray-100 transition-colors">
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Leistung (kW)</td>
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. 85</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Lastprofil (SLP/RLM)</td>
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. RLM</td>
+                    </tr>
+                    <tr className="bg-gray-50 hover:bg-gray-100 transition-colors">
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Vertragslaufzeit</td>
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. 12 Monate</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Branche/Nutzung</td>
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. Produktion</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Welche Angaben du brauchst</h3>
               <ul className="font-paragraph text-gray-700 space-y-2 mb-6">
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">•</span>

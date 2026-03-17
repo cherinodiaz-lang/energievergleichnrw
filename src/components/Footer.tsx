@@ -1,6 +1,23 @@
+import type { SVGProps } from 'react';
 import { Link } from 'react-router-dom';
-import { Zap, Mail, Phone, MapPin, Facebook, Linkedin, Globe } from 'lucide-react';
+import { Zap, Mail, Phone, Globe } from 'lucide-react';
 import { ROUTES, NAV_SERVICE, NAV_LEGAL, NAV_SECONDARY } from '@/lib/routes';
+
+function FacebookIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.6 1.6-1.6H16V4.8c-.3 0-1.1-.1-2-.1-2 0-3.4 1.2-3.4 3.5V11H8v3h2.6v7h2.9Z" />
+    </svg>
+  );
+}
+
+function LinkedInIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M6.9 8.2a1.7 1.7 0 1 1 0-3.5 1.7 1.7 0 0 1 0 3.5ZM8.3 19H5.5V9.8h2.8V19Zm10.2 0h-2.8v-4.5c0-1.1 0-2.5-1.5-2.5s-1.8 1.2-1.8 2.4V19H9.6V9.8h2.7V11h0c.4-.7 1.3-1.5 2.7-1.5 2.9 0 3.5 1.9 3.5 4.4V19Z" />
+    </svg>
+  );
+}
 
 export default function Footer() {
   const comparisonLinks = [
@@ -115,7 +132,7 @@ export default function Footer() {
                 className="inline-flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded transition-opacity"
                 aria-label="Facebook"
               >
-                <Facebook className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
+                <FacebookIcon className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
               <a
                 href="https://linkedin.com"
@@ -124,7 +141,7 @@ export default function Footer() {
                 className="inline-flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded transition-opacity"
                 aria-label="LinkedIn"
               >
-                <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
+                <LinkedInIcon className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
               <a
                 href="https://xing.com"

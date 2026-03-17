@@ -1,5 +1,6 @@
 // HPI 1.7 - PHASE 7: Performance Optimized (LCP, CLS, Mobile)
-import React, { useState, useEffect, useRef } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Zap, Flame, CheckCircle, Sun, Download, ChevronDown, Send, ArrowRight, Leaf, Home, Building2, ShieldCheck, MousePointerClick, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -23,18 +24,17 @@ import { HufiggestellteFragen, Wechselvorteile, Informationsmaterial } from '@/e
 import { Image } from '@/components/ui/image';
 import { trackCTAClick, trackMethodikClick } from '@/services/form-submission';
 import { ROUTES } from '@/lib/routes';
-import { getPageSEO } from '@/lib/seo-config';
 
 // --- Utility Components ---
 
 type AnimatedElementProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   delay?: number;
 };
 
 // Optimized AnimatedElement: Reduced motion, no layout shifts
-const AnimatedElement: React.FC<AnimatedElementProps> = ({ children, className, delay = 0 }) => {
+function AnimatedElement({ children, className, delay = 0 }: AnimatedElementProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -85,11 +85,12 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({ children, className, 
       {children}
     </div>
   );
-};
+}
 
 // --- Main Component ---
 
 export default function HomePage() {
+  type FormSubmitEvent = Parameters<NonNullable<ComponentProps<'form'>['onSubmit']>>[0];
   // --- Data Fidelity Protocol: Canonical Data Sources ---
   const [faqs, setFaqs] = useState<HufiggestellteFragen[]>([]);
   const [vorteile, setVorteile] = useState<Wechselvorteile[]>([]);
@@ -117,7 +118,7 @@ export default function HomePage() {
   const [pvHausnummer, setPvHausnummer] = useState('');
   const [pvPlz, setPvPlz] = useState('');
   const [pvOrt, setPvOrt] = useState('');
-  const [pvFoto, setPvFoto] = useState<File | null>(null);
+  const [, setPvFoto] = useState<File | null>(null);
   const [pvName, setPvName] = useState('');
   const [pvEmail, setPvEmail] = useState('');
   const [pvTelefon, setPvTelefon] = useState('');
@@ -328,7 +329,7 @@ export default function HomePage() {
   const [showContactDialog, setShowContactDialog] = useState(false);
   const [showPvDialog, setShowPvDialog] = useState(false);
 
-  const handleContactSubmit = (e: React.FormEvent) => {
+  const handleContactSubmit = (e: FormSubmitEvent) => {
     e.preventDefault();
     setShowContactDialog(true);
   };
@@ -340,7 +341,7 @@ export default function HomePage() {
     setContactMessage('');
   };
 
-  const handlePvSubmit = (e: React.FormEvent) => {
+  const handlePvSubmit = (e: FormSubmitEvent) => {
     e.preventDefault();
     setShowPvDialog(true);
   };
@@ -363,8 +364,6 @@ export default function HomePage() {
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: 'smooth' });
   };
-
-  const seo = getPageSEO('home');
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden selection:bg-primary selection:text-white">

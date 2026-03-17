@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import type { ComponentProps } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Flame, CheckCircle, TrendingDown, Shield, Clock, Send, ArrowRight, Globe, DollarSign, MapPin, BarChart3, Rocket, AlertCircle } from 'lucide-react';
+import { Flame, CheckCircle, Send, ArrowRight, Globe, DollarSign, MapPin, BarChart3, Rocket, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -11,19 +11,17 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
-import ResponsiveEmbed from '@/components/ui/ResponsiveEmbed';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
-import TrustRow from '@/components/TrustRow';
 import RelatedPages from '@/components/RelatedPages';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
-import { getPageSEO } from '@/lib/seo-config';
 import { validateFormFields, FORM_CONFIGS } from '@/lib/form-validation';
 import { trackMethodikClick } from '@/services/form-submission';
 import { getRelatedPages } from '@/lib/internal-linking';
 
 export default function GasvergleichNrwPage() {
+  type FormSubmitEvent = Parameters<NonNullable<ComponentProps<'form'>['onSubmit']>>[0];
   const [formData, setFormData] = useState({
     postleitzahl: '',
     wohnfläche: '',
@@ -142,7 +140,7 @@ export default function GasvergleichNrwPage() {
     };
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormSubmitEvent) => {
     e.preventDefault();
 
     // Validate required fields for private form
@@ -171,8 +169,6 @@ export default function GasvergleichNrwPage() {
     setCalculatedConsumption(consumption);
     setShowResults(true);
   };
-
-  const seo = getPageSEO('gasvergleich');
 
   const breadcrumbItems = [
     { label: 'Startseite', path: '/' },
@@ -231,6 +227,11 @@ export default function GasvergleichNrwPage() {
                 </CardHeader>
                 <CardContent className="p-8">
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    {Object.keys(formErrors).length > 0 && (
+                      <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                        Bitte pruefen Sie die markierten Pflichtfelder im Formular.
+                      </div>
+                    )}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <Label htmlFor="plz" className="font-paragraph">Postleitzahl *</Label>

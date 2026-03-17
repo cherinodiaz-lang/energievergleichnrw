@@ -7,7 +7,7 @@
  * - GA4 tracking (consent-safe)
  */
 
-import React, { useState } from 'react';
+import { useState, type ComponentProps } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, AlertCircle, Loader } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -35,12 +35,13 @@ export default function FormSubmissionDialog({
   onSuccess,
   title = 'Anfrage senden'
 }: FormSubmissionDialogProps) {
+  type FormSubmitEvent = Parameters<NonNullable<ComponentProps<'form'>['onSubmit']>>[0];
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [privacyConsent, setPrivacyConsent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormSubmitEvent) => {
     e.preventDefault();
 
     // Check privacy consent

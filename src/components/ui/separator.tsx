@@ -22,7 +22,7 @@ interface SeparatorProps
     VariantProps<typeof separatorVariants> {}
 
 const Separator = React.forwardRef<
-  React.ElementRef<typeof SeparatorPrimitive.Root>,
+  React.ComponentRef<typeof SeparatorPrimitive.Root>,
   SeparatorProps
 >(
   (
