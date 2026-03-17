@@ -20,7 +20,7 @@ export interface FormSubmissionDialogProps {
   isOpen: boolean;
   onClose: () => void;
   formType: 'kontakt' | 'stromvergleich' | 'gasvergleich' | 'photovoltaik' | 'gewerbestrom' | 'gewerbegas';
-  formData: Record<string, any>;
+  formData: Record<string, unknown>;
   requiredFields: string[];
   onSuccess?: () => void;
   title?: string;
@@ -53,7 +53,10 @@ export default function FormSubmissionDialog({
     }
 
     // Validate form
-    const validation = validateForm(formData, requiredFields);
+    const validation = validateForm(
+      formData as Record<string, string | number | null | undefined>,
+      requiredFields,
+    );
     if (!validation.valid) {
       setErrors(validation.errors);
       return;
@@ -64,7 +67,7 @@ export default function FormSubmissionDialog({
 
     try {
       const submissionData: FormSubmissionData = {
-        ...(formData as Record<string, any>),
+        ...formData,
         type: formType,
         name: String(formData.name ?? ''),
         email: String(formData.email ?? ''),

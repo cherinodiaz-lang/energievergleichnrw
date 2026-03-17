@@ -42,6 +42,10 @@ export interface PaginatedResult<T> {
   nextSkip: number | null;
 }
 
+type ItemWithRefs<T extends WixDataItem> = T & {
+  _refMeta?: Record<string, RefFieldMeta>;
+} & Record<string, unknown>;
+
 /**
  * Generic CRUD Service class for Wix Data collections
  * Provides type-safe CRUD operations with error handling
@@ -58,7 +62,8 @@ export class BaseCrudService {
   ): Promise<T> {
     if (multiRefs.length === 0) return item;
 
-    const itemWithRefs = { ...item } as any;
+    const itemWithRefs: ItemWithRefs<T> = { ...item };
+    const refValues = itemWithRefs as Record<string, unknown>;
     itemWithRefs._refMeta = {};
 
     for (const refField of multiRefs) {
@@ -69,14 +74,14 @@ export class BaseCrudService {
           returnTotalCount: true
         });
 
-        itemWithRefs[refField] = result.items;
+        refValues[refField] = result.items;
         itemWithRefs._refMeta[refField] = {
           totalCount: result.totalCount ?? result.items.length,
           returnedCount: result.items.length,
           hasMore: result.hasNext()
         };
       } catch {
-        itemWithRefs[refField] = [];
+        refValues[refField] = [];
         itemWithRefs._refMeta[refField] = { totalCount: 0, returnedCount: 0, hasMore: false };
       }
     }
@@ -92,7 +97,7 @@ export class BaseCrudService {
   static async create<T extends WixDataItem>(
     collectionId: string,
     itemData: Partial<T> | Record<string, unknown>,
-    multiReferences?: Record<string, any>
+    multiReferences?: Record<string, string[]>
   ): Promise<T> {
     try {
       const result = await items.insert(collectionId, itemData as Record<string, unknown>);

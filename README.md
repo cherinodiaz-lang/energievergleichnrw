@@ -1,147 +1,90 @@
-# Wixstro - Wix Astro Template
+# energievergleich.shop
 
-A modern, full-featured Wix Astro template built with React, TypeScript, and Tailwind CSS. This template provides a solid foundation for building dynamic, interactive websites with Wix's powerful ecosystem.
+Produktionsnahe Astro-/React-Website fuer `https://www.energievergleich.shop` mit Wix-Headless-Integration, Cloudflare-Adapter, technischer SEO, Formular-/Lead-Strecken und CI-Checks fuer Build, SEO und Lighthouse.
 
-## 🚀 Features
+## Stack
 
-- **Astro Framework** - Modern static site generator with server-side rendering
-- **React Integration** - Full React support with JSX components
-- **TypeScript** - Type-safe development experience
-- **Tailwind CSS** - Utility-first CSS framework with custom components
-- **Wix Integration** - Seamless integration with Wix services and APIs
-- **Modern UI Components** - Radix UI components with custom styling
-- **Authentication** - Built-in member authentication and protected routes
-- **CMS Integration** - Content management system integration
-- **Client-side Routing** - React Router for seamless navigation
-- **Responsive Design** - Mobile-first responsive design
-- **Testing** - Vitest testing framework setup
-- **Development Tools** - ESLint, TypeScript checking, and more
+- Astro 5
+- React 18
+- TypeScript
+- Tailwind CSS
+- Wix Headless / `@wix/astro`
+- Cloudflare Worker Output
+- Vitest
+- ESLint
+- Lighthouse CI
+- Sentry
 
-## 🛠️ Tech Stack
+## Lokale Entwicklung
 
-- **Framework**: Astro 5.8.0
-- **Frontend**: React 18.3.0
-- **Styling**: Tailwind CSS 3.4.14
-- **Language**: TypeScript 5.8.3
-- **UI Components**: Radix UI
-- **State Management**: Zustand
-- **Forms**: React Hook Form with Zod validation
-- **Testing**: Vitest
-- **Build Tool**: Vite
-- **Deployment**: Cloudflare
+Voraussetzungen:
 
+- Node.js 22
+- npm
+- gueltige lokale Umgebungsvariablen in `.env.local`
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js (version 18 or higher)
-- npm or yarn package manager
-- Wix account and site
-
-### Installation
-
-1. **Install dependencies**:
-   ```bash
-   npm run install-template
-   ```
-
-2. **Set up environment variables**:
-   ```bash
-   npm run env
-   ```
-
-3. **Start development server**:
-   ```bash
-   npm run dev
-   ```
-
-The development server will start and you can view your site at `http://localhost:4321`.
-
-## 📁 Project Structure
-
-```
-main/
-├── src/
-│   ├── components/          # React components
-│   │   ├── ui/             # Reusable UI components
-│   │   ├── Head.tsx        # Page head component
-│   │   └── Router.tsx      # Routing component
-│   ├── hooks/              # Custom React hooks
-│   ├── lib/                # Utility functions
-│   ├── pages/              # Astro pages
-│   └── styles/             # Global styles
-├── integrations/           # Wix integrations
-│   ├── cms/               # CMS integration
-│   └── members/           # Member authentication
-├── public/                # Static assets
-└── eslint-rules/          # Custom ESLint rules
-```
-
-## 🎨 UI Components
-
-This template includes a comprehensive set of UI components built with Radix UI and styled with Tailwind CSS:
-
-- **Layout**: Accordion, Collapsible, Tabs, Sheet
-- **Forms**: Input, Select, Checkbox, Radio Group, Switch
-- **Navigation**: Navigation Menu, Menubar, Breadcrumb
-- **Feedback**: Alert, Toast, Progress, Skeleton
-- **Overlays**: Dialog, Popover, Tooltip, Hover Card
-- **Data Display**: Table, Card, Badge, Avatar
-- **Interactive**: Button, Toggle, Slider, Command
-
-## 🔧 Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run release` - Release to Wix
-- `npm run env` - Pull environment variables
-- `npm run check` - Type check with Astro
-- `npm run test:run` - Run tests
-- `npm run install-template` - Install dependencies
-
-## 🧪 Testing
-
-The project includes Vitest for testing:
+Wichtige Scripts:
 
 ```bash
-npm run test:run
-```
-
-## 📱 Responsive Design
-
-The template is built with a mobile-first approach and includes:
-
-- Responsive breakpoints
-- Touch-friendly interactions
-- Optimized images
-- Flexible layouts
-
-## 🚀 Deployment
-
-The template is configured for deployment on Cloudflare:
-
-```bash
+npm run dev
+npm run lint
+npm run check
+npm run test
+npm run validate:seo
 npm run build
 ```
 
-## 🤝 Contributing
+## Umgebungsvariablen
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests and linting
-5. Submit a pull request
+Beispielwerte stehen in [.env.example](/Users/joelcherinodiaz/Downloads/energievergleichnrw-clean/.env.example).
 
-## 🆘 Support
+Relevante Gruppen:
 
-For support and questions:
+- Wix: `WIX_CLIENT_ID`, `WIX_ACCOUNT_ID`, `WIX_SITE_ID`
+- Sentry: `PUBLIC_SENTRY_DSN`, `SENTRY_DSN`, `SENTRY_AUTH_TOKEN`, `SENTRY_ORG`, `SENTRY_PROJECT_FRONTEND`, `SENTRY_PROJECT_SERVER`
 
-- Check the [Wix Developer Documentation](https://dev.wix.com/)
-- Review the [Astro Documentation](https://docs.astro.build/)
+Hinweis:
+Ohne `SENTRY_AUTH_TOKEN` bleibt der Build erfolgreich, erstellt aber lokal keine Releases und laedt keine Sourcemaps hoch.
 
+## QA-Gate
 
----
+Der erwartete Minimalstandard vor einem Merge ist:
 
-Built with ❤️ using Wix Vibe, Astro, and modern web technologies.
+```bash
+npm run lint
+npm run check
+npm run test
+npm run validate:seo
+npm run build
+```
+
+CI:
+
+- PR Validation: Lint, SEO-Validation, Tests, Production Build
+- Lighthouse CI: Build + Wrangler Preview + LHCI Collect/Assert/Upload
+
+## Projektstruktur
+
+```text
+src/pages/                  Astro-Routen
+src/components/             React- und Astro-Komponenten
+src/components/pages/       aktive React-Seitenlogik
+src/components/ui/          UI-Layer auf Radix-Basis
+src/layouts/                Astro-Layouts
+src/lib/                    Routing, SEO, Security, Utility-Code
+src/services/               Formular- und Tracking-Services
+integrations/               Wix CMS / Members / Error Handling
+scripts/                    projektinterne Validierungs-Skripte
+.github/workflows/          CI-Workflows
+```
+
+## Architekturhinweise
+
+- Die indexierbaren Hauptseiten werden ueber Astro-Routen ausgeliefert.
+- Der React-Router bedient nur die verbleibenden clientseitigen Pfade wie Blog-Details und Danke-Seite.
+- SEO-Metadaten, Canonicals und strukturierte Daten laufen zentral ueber [src/layouts/SeoPageLayout.astro](/Users/joelcherinodiaz/Downloads/energievergleichnrw-clean/src/layouts/SeoPageLayout.astro) und [src/components/SEOHead.tsx](/Users/joelcherinodiaz/Downloads/energievergleichnrw-clean/src/components/SEOHead.tsx).
+- Sicherheitspruefungen fuer Host-Header und PLZ-Query-Parameter liegen in [src/middleware.ts](/Users/joelcherinodiaz/Downloads/energievergleichnrw-clean/src/middleware.ts).
+
+## Deployment
+
+Der Production-Build erzeugt einen Cloudflare-kompatiblen Server-Output ueber den Wix Cloud Provider Fetch Adapter. Die Lighthouse-CI startet dafuer lokal `wrangler dev` gegen das gebaute Worker-Artefakt.
