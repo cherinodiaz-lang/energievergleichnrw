@@ -10,7 +10,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import ResponsiveEmbed from '@/components/ui/ResponsiveEmbed';
 import Breadcrumb from '@/components/Breadcrumb';
@@ -187,13 +186,6 @@ export default function GasvergleichNrwPage() {
 
   return (
     <div className="min-h-screen bg-background break-words leading-mobile">
-      <SEOHead
-        title={seo.title}
-        description={seo.description}
-        keywords={seo.keywords}
-        ogTitle={seo.ogTitle}
-        ogDescription={seo.ogDescription}
-      />
       <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />
       <Breadcrumb items={breadcrumbItems} />

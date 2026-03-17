@@ -32,6 +32,33 @@ jobs:
       - run: npm ci
       - run: npm install -g @wix/cli
       - run: npm run build
+      - name: Start Wrangler preview
+        run: |
+          npx wrangler dev dist/_worker.js/index.js --local --ip 127.0.0.1 --port 4321 --show-interactive-dev-session=false --compatibility-date=2024-09-23 --compatibility-flag=nodejs_compat > wrangler-preview.log 2>&1 &
+          echo $! > wrangler-preview.pid
+      - name: Wait for Lighthouse routes
+        run: |
+          urls=(
+            "http://127.0.0.1:4321/"
+            "http://127.0.0.1:4321/stromvergleich-nrw"
+            "http://127.0.0.1:4321/gasvergleich-nrw"
+          )
+          for url in "${urls[@]}"; do
+            ready=0
+            for attempt in {1..30}; do
+              status="$(curl -s -o /dev/null -w '%{http_code}' -A 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36' "$url" || true)"
+              if [ "$status" = "200" ]; then
+                ready=1
+                break
+              fi
+              sleep 2
+            done
+            if [ "$ready" -ne 1 ]; then
+              echo "Preview route failed readiness check: $url"
+              cat wrangler-preview.log
+              exit 1
+            fi
+          done
       - run: npx lhci collect --config=lighthouserc.json
         env:
           CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
@@ -40,3 +67,12 @@ jobs:
         env:
           CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+      - name: Stop Wrangler preview
+        if: always()
+        run: |
+          if [ -f wrangler-preview.pid ]; then
+            kill "$(cat wrangler-preview.pid)" || true
+          fi
+      - name: Show Wrangler preview log
+        if: failure()
+        run: cat wrangler-preview.log

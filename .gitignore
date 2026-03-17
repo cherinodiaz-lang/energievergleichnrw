@@ -17,6 +17,7 @@ dist
 .astro/
 .wix
 .wrangler/
+.lighthouseci/
 
 # dependencies
 node_modules

@@ -48,9 +48,11 @@ export default function SEOHead({
   keywords,
   robots = "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
   author = "energievergleich.shop",
-  pathname = "/",
+  pathname,
 }: SEOHeadProps) {
-  const fallbackPathname = canonical ? new URL(canonical, SITE_URL).pathname : pathname;
+  const resolvedPathname =
+    pathname ?? (typeof window !== "undefined" ? window.location.pathname : "/");
+  const fallbackPathname = canonical ? new URL(canonical, SITE_URL).pathname : resolvedPathname;
   const canonicalUrl = getCanonicalUrl(canonical, fallbackPathname);
   const effectiveRobots = noindex
     ? "noindex, nofollow"
@@ -91,7 +93,7 @@ export default function SEOHead({
 
     const currentPathname = canonical
       ? new URL(canonical, SITE_URL).pathname
-      : pathname || window.location.pathname;
+      : pathname ?? window.location.pathname;
     const canonicalUrl = getCanonicalUrl(canonical, currentPathname);
 
     // Basic SEO

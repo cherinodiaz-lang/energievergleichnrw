@@ -13,7 +13,6 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEOHead from '@/components/SEOHead';
 import FormSubmissionDialog from '@/components/FormSubmissionDialog';
 import TrustRow from '@/components/TrustRow';
 import HowToSchema from '@/components/HowToSchema';
@@ -369,13 +368,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden selection:bg-primary selection:text-white">
-      <SEOHead
-        title={seo.title}
-        description={seo.description}
-        keywords={seo.keywords}
-        ogTitle={seo.ogTitle}
-        ogDescription={seo.ogDescription}
-      />
       <HowToSchema />
       <ReviewSchema />
       <FAQPageSchema />
