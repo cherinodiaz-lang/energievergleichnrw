@@ -45,7 +45,7 @@ export const SEO_CONFIG = {
   language: 'de',
 
   // Search Console & Analytics (add your IDs here)
-  googleSearchConsoleVerification: '', // Add your verification code
+  googleSearchConsoleVerification: 'nirROusqBNxCLF7xk8jC0pqhCmu9YNd5f9P9-tj_NPw', // Add your verification code
   googleAnalyticsId: 'G-X60BTL057V', // GA4 Measurement ID for energievergleich.shop
 
   // Robots Meta
