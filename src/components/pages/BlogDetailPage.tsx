@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { BaseCrudService } from '@/integrations';
-import { BlogPosts, Authors, Categories } from '@/entities/index';
+import { BlogPosts } from '@/entities/index';
 import { Image } from '@/components/ui/image';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
@@ -11,6 +11,25 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, User, Clock } from 'lucide-react';
 import { format } from 'date-fns';
 import { de } from 'date-fns/locale';
+
+type BlogAuthorData = {
+  authorName?: string;
+  authorPhoto?: string;
+  authorPosition?: string;
+  authorBio?: string;
+};
+
+type BlogCategoryData = {
+  name?: string;
+};
+
+function isBlogAuthorData(value: unknown): value is BlogAuthorData {
+  return typeof value === 'object' && value !== null;
+}
+
+function isBlogCategoryData(value: unknown): value is BlogCategoryData {
+  return typeof value === 'object' && value !== null;
+}
 
 export default function BlogDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -91,8 +110,8 @@ export default function BlogDetailPage() {
     );
   }
 
-  const author = typeof post.author === 'object' && post.author ? post.author : null;
-  const category = typeof post.category === 'object' && post.category ? post.category : null;
+  const author = isBlogAuthorData(post.author) ? post.author : null;
+  const category = isBlogCategoryData(post.category) ? post.category : null;
   const publishedDate = post.publishedDate
     ? format(new Date(post.publishedDate), 'd. MMMM yyyy', { locale: de })
     : null;
@@ -130,14 +149,14 @@ export default function BlogDetailPage() {
             </motion.button>
 
             {/* Category Badge */}
-            {category && 'name' in category && (
+            {category?.name && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
               >
                 <span className="inline-block text-xs font-heading font-semibold text-primary bg-primary/10 px-4 py-2 rounded-full mb-6">
-                  {(category as any).name}
+                  {category.name}
                 </span>
               </motion.div>
             )}
@@ -165,10 +184,10 @@ export default function BlogDetailPage() {
                   <span>{publishedDate}</span>
                 </div>
               )}
-              {author && 'authorName' in author && (
+              {author?.authorName && (
                 <div className="flex items-center gap-2">
                   <User className="w-4 h-4" />
-                  <span>Von {(author as any).authorName}</span>
+                  <span>Von {author.authorName}</span>
                 </div>
               )}
               {post.readingTime && (
@@ -203,7 +222,7 @@ export default function BlogDetailPage() {
             )}
 
             {/* Author Bio */}
-            {author && 'authorName' in author && (
+            {author?.authorName && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -211,10 +230,10 @@ export default function BlogDetailPage() {
                 className="mt-16 pt-8 border-t"
               >
                 <div className="flex gap-6 items-start">
-                  {(author as any).authorPhoto && (
+                  {author.authorPhoto && (
                     <Image
-                      src={(author as any).authorPhoto}
-                      alt={(author as any).authorName}
+                      src={author.authorPhoto}
+                      alt={author.authorName}
                       className="w-16 h-16 rounded-full object-cover flex-shrink-0"
                       width={64}
                       height={64}
@@ -222,16 +241,16 @@ export default function BlogDetailPage() {
                   )}
                   <div>
                     <h3 className="font-heading font-bold text-foreground mb-2">
-                      {(author as any).authorName}
+                      {author.authorName}
                     </h3>
-                    {(author as any).authorPosition && (
+                    {author.authorPosition && (
                       <p className="text-sm text-foreground/60 mb-2">
-                        {(author as any).authorPosition}
+                        {author.authorPosition}
                       </p>
                     )}
-                    {(author as any).authorBio && (
+                    {author.authorBio && (
                       <p className="font-paragraph text-foreground/70">
-                        {(author as any).authorBio}
+                        {author.authorBio}
                       </p>
                     )}
                   </div>

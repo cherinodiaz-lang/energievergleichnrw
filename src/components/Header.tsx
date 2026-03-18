@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Zap, Menu, X, ChevronDown } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
@@ -10,13 +10,23 @@ import { getBreadcrumbItems } from '@/lib/internal-linking';
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
-  const location = useLocation();
-  const navigate = useNavigate();
+  const [pathname, setPathname] = useState('/');
 
   // Close mobile menu when route changes
   useEffect(() => {
     setMobileMenuOpen(false);
-  }, [location.pathname]);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const syncPathname = () => setPathname(window.location.pathname);
+    syncPathname();
+    window.addEventListener('popstate', syncPathname);
+    return () => window.removeEventListener('popstate', syncPathname);
+  }, []);
 
   // Close mobile menu on Escape key
   useEffect(() => {
@@ -30,12 +40,11 @@ export default function Header() {
   }, [mobileMenuOpen]);
 
   const isActiveLink = (path: string): boolean => {
-    if (path === '/') return location.pathname === '/';
-    return location.pathname.startsWith(path);
+    if (path === '/') return pathname === '/';
+    return pathname.startsWith(path);
   };
 
   const getCtaLink = () => {
-    const pathname = location.pathname;
     if (pathname.includes('strom')) return ROUTES.stromvergleich;
     if (pathname.includes('gas')) return ROUTES.gasvergleich;
     if (pathname.includes('photovoltaik')) return ROUTES.photovoltaik;
@@ -45,12 +54,12 @@ export default function Header() {
 
   const handleCtaClick = () => {
     trackCTAClick('Kostenlos vergleichen');
-    navigate(getCtaLink());
+    window.location.assign(getCtaLink());
     setMobileMenuOpen(false);
   };
 
   // Get breadcrumb items for current page (only show on non-homepage)
-  const breadcrumbItems = location.pathname !== '/' ? getBreadcrumbItems(location.pathname) : [];
+  const breadcrumbItems = pathname !== '/' ? getBreadcrumbItems(pathname) : [];
 
   return (
     <>

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState, type ComponentProps } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Clock } from 'lucide-react';
+import { Mail, Phone, Send, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -18,6 +18,7 @@ import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
 
 export default function KontaktPage() {
+  type FormSubmitEvent = Parameters<NonNullable<ComponentProps<'form'>['onSubmit']>>[0];
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -28,7 +29,7 @@ export default function KontaktPage() {
   });
   const [showDialog, setShowDialog] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormSubmitEvent) => {
     e.preventDefault();
     // Track CTA click
     trackCTAClick('Kontaktformular');

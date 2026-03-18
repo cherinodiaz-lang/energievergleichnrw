@@ -14,6 +14,8 @@ export interface FormFieldConfig {
   type?: 'email' | 'phone' | 'plz' | 'number' | 'text';
 }
 
+type FormFieldValue = string | number | null | undefined;
+
 // German error messages
 const ERROR_MESSAGES: Record<string, string> = {
   required: 'Dieses Feld ist erforderlich.',
@@ -27,8 +29,8 @@ const ERROR_MESSAGES: Record<string, string> = {
  * Validate a single field
  */
 export function validateField(
-  fieldName: string,
-  value: any,
+  _fieldName: string,
+  value: FormFieldValue,
   fieldType: 'email' | 'phone' | 'plz' | 'number' | 'text' = 'text'
 ): { valid: boolean; error?: string } {
   // Check if empty
@@ -91,7 +93,7 @@ export function validateField(
  * Validate entire form
  */
 export function validateFormFields(
-  formData: Record<string, any>,
+  formData: Record<string, FormFieldValue>,
   fieldConfigs: FormFieldConfig[]
 ): ValidationResult {
   const errors: Record<string, string> = {};

@@ -74,6 +74,7 @@ describe('SEOHead', () => {
         title="Danke"
         description="Vielen Dank."
         noindex={true}
+        pathname="/danke"
       />,
       ['/danke']
     )

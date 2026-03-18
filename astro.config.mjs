@@ -4,7 +4,6 @@ import tailwind from "@astrojs/tailwind";
 import sentry from "@sentry/astro";
 import partytown from "@astrojs/partytown";
 import compress from "astro-compress";
-import robotsTxt from "astro-robots-txt";
 import cloudProviderFetchAdapter from "@wix/cloud-provider-fetch-adapter";
 import wix from "@wix/astro";
 import monitoring from "@wix/monitoring-astro";
@@ -15,11 +14,9 @@ import customErrorOverlayPlugin from "./vite-error-overlay-plugin.js";
 import postcssPseudoToData from "@wix/postcss-pseudo-to-data";
 
 const isBuild = process.env.NODE_ENV == "production";
-const hasSentryAuthToken = Boolean(process.env.SENTRY_AUTH_TOKEN);
-
 // https://astro.build/config
 export default defineConfig({
-  site: "https://energievergleich.shop",
+  site: "https://www.energievergleich.shop",
   output: "server",
   integrations: [
     {
@@ -38,13 +35,14 @@ export default defineConfig({
     },
     tailwind(),
     sentry({
+      org: process.env.SENTRY_ORG,
+      project: process.env.SENTRY_PROJECT_SERVER,
+      authToken: process.env.SENTRY_AUTH_TOKEN,
       enabled: {
-        client: false,
+        client: true,
         server: true,
       },
-      project: "energievergleich-shop",
       telemetry: false,
-      ...(hasSentryAuthToken ? { authToken: process.env.SENTRY_AUTH_TOKEN } : {}),
     }),
     partytown({
       config: {
@@ -60,16 +58,6 @@ export default defineConfig({
         (file) =>
           file.includes("/dist/_worker.js/pages/_wix/extensions/service-plugins/"),
       ],
-    }),
-    robotsTxt({
-      policy: [
-        {
-          userAgent: "*",
-          allow: "/",
-          disallow: ["/api/", "/_astro/"],
-        },
-      ],
-      sitemap: "https://energievergleich.shop/sitemap.xml",
     }),
     wix({
       htmlEmbeds: isBuild,
@@ -115,7 +103,7 @@ export default defineConfig({
     domains: ["static.wixstatic.com"],
   },
   server: {
-    allowedHosts: ["energievergleich.shop", "localhost"],
+    allowedHosts: ["www.energievergleich.shop", "energievergleich.shop", "localhost", "127.0.0.1"],
     host: true,
     headers: {
       "X-Frame-Options": "DENY",

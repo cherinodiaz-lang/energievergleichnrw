@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, type ComponentProps } from 'react';
 import { motion } from 'framer-motion';
-import { Sun, CheckCircle, TrendingUp, Leaf, Zap, Send, ArrowRight, Home } from 'lucide-react';
+import { Sun, CheckCircle, TrendingUp, Leaf, Zap, Send, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -11,29 +11,33 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
+import FormSubmissionDialog from '@/components/FormSubmissionDialog';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
-import TrustRow from '@/components/TrustRow';
 import RelatedPages from '@/components/RelatedPages';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
-import { trackMethodikClick } from '@/services/form-submission';
+import { trackCTAClick, trackMethodikClick } from '@/services/form-submission';
 import { getRelatedPages } from '@/lib/internal-linking';
 
+const initialFormData = {
+  eigentumsart: '',
+  dachform: '',
+  personen: '',
+  strasse: '',
+  hausnummer: '',
+  plz: '',
+  ort: '',
+  name: '',
+  email: '',
+  phone: '',
+};
+
 export default function PhotovoltaikNrwPage() {
-  const [formData, setFormData] = useState({
-    eigentumsart: '',
-    dachform: '',
-    personen: '',
-    strasse: '',
-    hausnummer: '',
-    plz: '',
-    ort: '',
-    name: '',
-    email: '',
-    phone: '',
-  });
+  type FormSubmitEvent = Parameters<NonNullable<ComponentProps<'form'>['onSubmit']>>[0];
+  const [formData, setFormData] = useState(initialFormData);
+  const [showDialog, setShowDialog] = useState(false);
 
   useEffect(() => {
     const faqSchema = {
@@ -149,21 +153,14 @@ export default function PhotovoltaikNrwPage() {
     };
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormSubmitEvent) => {
     e.preventDefault();
-    alert(`Vielen Dank für Ihre Anfrage! Wir werden uns in Kürze bei Ihnen melden.`);
-    setFormData({
-      eigentumsart: '',
-      dachform: '',
-      personen: '',
-      strasse: '',
-      hausnummer: '',
-      plz: '',
-      ort: '',
-      name: '',
-      email: '',
-      phone: '',
-    });
+    trackCTAClick('Photovoltaik Beratung');
+    setShowDialog(true);
+  };
+
+  const handleDialogSuccess = () => {
+    setFormData(initialFormData);
   };
 
   const seo = getPageSEO('photovoltaik');
@@ -683,6 +680,16 @@ export default function PhotovoltaikNrwPage() {
                   </form>
                 </CardContent>
               </Card>
+
+              <FormSubmissionDialog
+                isOpen={showDialog}
+                onClose={() => setShowDialog(false)}
+                formType="photovoltaik"
+                formData={formData}
+                requiredFields={['eigentumsart', 'dachform', 'strasse', 'hausnummer', 'plz', 'ort', 'name', 'email']}
+                onSuccess={handleDialogSuccess}
+                title="Photovoltaik-Beratung anfragen"
+              />
             </div>
 
             <div className="space-y-6">

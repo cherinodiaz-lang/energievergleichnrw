@@ -12,7 +12,7 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogTitle="AGB | energievergleich.shop"
   ogDescription="Allgemeine Geschäftsbedingungen von energievergleich.shop"
 >
-  <AstroRouterProvider path={Astro.url.pathname} client:load>
+  <AstroRouterProvider path={Astro.url.pathname} client:idle>
     <AgbPage />
   </AstroRouterProvider>
 </SeoPageLayout>

@@ -99,7 +99,12 @@ export const Image = forwardRef<HTMLImageElement, ImageProps>(({ src, ...props }
     return <div data-empty-image ref={ref} {...props} />
   }
 
-  const imageProps = { ...props, onError: () => setImgSrc(FALLBACK_IMAGE_URL) }
+  const imageProps = {
+    decoding: props.decoding ?? 'async',
+    loading: props.loading ?? (props.fetchPriority === 'high' ? undefined : 'lazy'),
+    ...props,
+    onError: () => setImgSrc(FALLBACK_IMAGE_URL),
+  }
   const imageData = getImageData(imgSrc, imageProps)
 
   if (!imageData) {

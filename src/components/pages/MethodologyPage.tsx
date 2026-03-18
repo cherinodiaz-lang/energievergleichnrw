@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle, Shield, TrendingUp, Users, BarChart3, Zap } from 'lucide-react';
+import { CheckCircle, Shield, TrendingUp, BarChart3, Zap } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';

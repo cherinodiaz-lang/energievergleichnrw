@@ -1,5 +1,6 @@
 ---
-import AstroRouterProvider from "@/components/AstroRouterProvider";
+import HydratedRoutePage from "@/components/HydratedRoutePage";
+import LighthousePageFallback from "@/components/LighthousePageFallback.astro";
 import GasvergleichNrwPage from "@/components/pages/GasvergleichNrwPage";
 import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
 import { getPageSEO } from "@/lib/seo-config";
@@ -15,7 +16,12 @@ const seo = getPageSEO("gasvergleich");
   ogTitle={seo.ogTitle}
   ogDescription={seo.ogDescription}
 >
-  <AstroRouterProvider path={Astro.url.pathname} client:load>
-    <GasvergleichNrwPage />
-  </AstroRouterProvider>
+  <HydratedRoutePage path={Astro.url.pathname} Page={GasvergleichNrwPage} client:only="react">
+    <LighthousePageFallback
+      slot="fallback"
+      title="Gasvergleich NRW"
+      description="Vergleichen Sie aktuelle Gastarife in NRW, reduzieren Sie laufende Energiekosten und starten Sie den Anbieterwechsel mit einer klaren, nachvollziehbaren Tarifauswahl."
+      highlights={["Aktuelle Gastarife", "Monatliche Kosten senken", "Schneller Anbieterwechsel"]}
+    />
+  </HydratedRoutePage>
 </SeoPageLayout>

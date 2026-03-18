@@ -14,7 +14,7 @@ export interface SiteContent {
   /** @wixFieldType text */
   contentKey?: string;
   /** @wixFieldType object */
-  contentData?: Record<string, any>;
+  contentData?: Record<string, unknown>;
   /** @wixFieldType text */
   contentType?: string;
   /** @wixFieldType text */

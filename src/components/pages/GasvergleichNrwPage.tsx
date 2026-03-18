@@ -1,31 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import type { ComponentProps } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Flame, CheckCircle, TrendingDown, Shield, Clock, Send, ArrowRight, Globe, DollarSign, MapPin, BarChart3, Rocket, AlertCircle } from 'lucide-react';
+import { Flame, CheckCircle, Send, ArrowRight, Globe, DollarSign, MapPin, BarChart3, Rocket, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
-import ResponsiveEmbed from '@/components/ui/ResponsiveEmbed';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
-import TrustRow from '@/components/TrustRow';
 import RelatedPages from '@/components/RelatedPages';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
-import { getPageSEO } from '@/lib/seo-config';
 import { validateFormFields, FORM_CONFIGS } from '@/lib/form-validation';
 import { trackMethodikClick } from '@/services/form-submission';
 import { getRelatedPages } from '@/lib/internal-linking';
 
 export default function GasvergleichNrwPage() {
-  const navigate = useNavigate();
+  type FormSubmitEvent = Parameters<NonNullable<ComponentProps<'form'>['onSubmit']>>[0];
   const [formData, setFormData] = useState({
     postleitzahl: '',
     wohnfläche: '',
@@ -144,7 +140,7 @@ export default function GasvergleichNrwPage() {
     };
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormSubmitEvent) => {
     e.preventDefault();
 
     // Validate required fields for private form
@@ -174,8 +170,6 @@ export default function GasvergleichNrwPage() {
     setShowResults(true);
   };
 
-  const seo = getPageSEO('gasvergleich');
-
   const breadcrumbItems = [
     { label: 'Startseite', path: '/' },
     { label: 'Gasvergleich NRW', path: '/gasvergleich-nrw' },
@@ -188,13 +182,6 @@ export default function GasvergleichNrwPage() {
 
   return (
     <div className="min-h-screen bg-background break-words leading-mobile">
-      <SEOHead
-        title={seo.title}
-        description={seo.description}
-        keywords={seo.keywords}
-        ogTitle={seo.ogTitle}
-        ogDescription={seo.ogDescription}
-      />
       <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />
       <Breadcrumb items={breadcrumbItems} />
@@ -240,6 +227,11 @@ export default function GasvergleichNrwPage() {
                 </CardHeader>
                 <CardContent className="p-8">
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    {Object.keys(formErrors).length > 0 && (
+                      <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                        Bitte pruefen Sie die markierten Pflichtfelder im Formular.
+                      </div>
+                    )}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <Label htmlFor="plz" className="font-paragraph">Postleitzahl *</Label>
@@ -333,22 +325,22 @@ export default function GasvergleichNrwPage() {
                   transition={{ duration: 0.5 }}
                   className="mt-12"
                 >
-                  <h2 className="font-heading text-2xl font-bold text-primary mb-8">Tarifvorschau für {formData.postleitzahl}</h2>
+                  <h2 className="font-heading text-2xl font-bold text-primary mb-8">Kosten-Szenarien für {formData.postleitzahl}</h2>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                     {[
                       {
-                        name: 'Tarif Option A',
+                        name: 'Kostenmodell Effizienz',
                         pricePerKwh: 0.08,
                         baseFee: 18.50,
                       },
                       {
-                        name: 'Tarif Option B',
+                        name: 'Kostenmodell Ausgewogen',
                         pricePerKwh: 0.075,
                         baseFee: 22.00,
                       },
                       {
-                        name: 'Tarif Option C',
+                        name: 'Kostenmodell Preisstabil',
                         pricePerKwh: 0.07,
                         baseFee: 25.50,
                       },
@@ -403,7 +395,7 @@ export default function GasvergleichNrwPage() {
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start gap-3">
                     <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
                     <p className="font-paragraph text-sm text-gray-700">
-                      <strong>Hinweis:</strong> Vorschau basiert auf Beispielrechnung. Finale Tarife nach Anbieterabfrage.
+                      <strong>Hinweis:</strong> Diese Gasergebnisse sind aktuell transparente Kosten-Szenarien auf Basis Ihrer Eingaben und der dargestellten Preisannahmen, keine Live-Anbieterangebote.
                     </p>
                   </div>
                 </motion.div>
