@@ -33,6 +33,7 @@ import { ROUTES } from '@/lib/routes';
 import {
   type StromTariffResult,
   type StromTariffSearchErrors,
+  type StromTariffSearchResponse,
   type StromTariffSearchStatus,
   validateStromTariffInput,
 } from '@/lib/strom-tariff-provider';
@@ -45,6 +46,7 @@ type SearchState = {
   message: string;
   tariffs: StromTariffResult[];
   configured: boolean;
+  source: StromTariffSearchResponse['source'] | null;
 };
 
 type CalculatorFormData = {
@@ -68,6 +70,7 @@ const INITIAL_STATE: SearchState = {
   message: 'Geben Sie Ihre PLZ und Ihren Jahresverbrauch ein, um verfuegbare Stromtarife fuer Ihren Haushalt abzurufen.',
   tariffs: [],
   configured: false,
+  source: null,
 };
 
 const FAQ_ITEMS = [
@@ -77,15 +80,15 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Werden echte Tarife angezeigt?',
-    a: 'Nur wenn eine Live-Tarifdatenquelle angebunden ist. Ohne aktive Datenquelle zeigt der Rechner bewusst keine erfundenen Tarife an, sondern einen klaren Non-Live-Status.',
+    a: 'Ja. Wenn eine Live-Tarifdatenquelle aktiv ist, werden echte Tarife ausgegeben. Ohne Live-Quelle berechnet der Rechner stattdessen transparente Stromkosten-Szenarien auf Basis Ihrer Eingaben.',
   },
   {
-    q: 'Was bedeutet der Non-Live-Status?',
-    a: 'Der technische Rechnerpfad ist vorhanden, aber die externe Tarifquelle ist aktuell nicht konfiguriert. In diesem Fall werden keine Platzhalter oder Beispielpreise als echte Ergebnisse ausgegeben.',
+    q: 'Wie funktioniert der Rechner ohne Live-Tarifquelle?',
+    a: 'Dann rechnet das System ehrliche Vergleichsszenarien mit offen ausgewiesenen Annahmen. Sie erhalten reale Kosten- und Sparpotenzialwerte aus Ihrem Verbrauch, aber keine als live getarnten Anbieterangebote.',
   },
   {
     q: 'Kann ich nur Oekostrom anzeigen lassen?',
-    a: 'Ja. Ueber den Oekostrom-Filter werden nur Tarife angefragt, die als gruen bzw. oekologisch gekennzeichnet sind, sobald eine Live-Quelle verbunden ist.',
+    a: 'Ja. Ueber den Oekostrom-Filter werden Live-Tarife entsprechend gefiltert oder die Modellrechnung auf gruene Szenarien umgestellt.',
   },
   {
     q: 'Wie oft sollte ich Stromtarife neu vergleichen?',
@@ -111,10 +114,6 @@ function buildFaqSchema() {
 function getStatusTone(status: SearchState['status']) {
   if (status === 'error') {
     return 'border-red-200 bg-red-50 text-red-800';
-  }
-
-  if (status === 'non_live') {
-    return 'border-amber-200 bg-amber-50 text-amber-900';
   }
 
   if (status === 'empty') {
@@ -204,6 +203,7 @@ export function StromTarifCalculator() {
         ...INITIAL_STATE,
         status: 'error',
         message: 'Bitte pruefen Sie die markierten Eingaben.',
+        source: null,
       });
       return;
     }
@@ -214,6 +214,7 @@ export function StromTarifCalculator() {
       message: 'Stromtarife werden geladen ...',
       tariffs: [],
       configured: false,
+      source: null,
     });
 
     trackEvent('tariff_calculator_submit', {
@@ -238,6 +239,7 @@ export function StromTarifCalculator() {
         message?: string;
         tariffs?: StromTariffResult[];
         configured?: boolean;
+        source?: StromTariffSearchResponse['source'];
         errors?: StromTariffSearchErrors;
       };
 
@@ -247,6 +249,7 @@ export function StromTarifCalculator() {
           ...INITIAL_STATE,
           status: 'error',
           message: payload.message ?? 'Bitte pruefen Sie die Eingaben.',
+          source: null,
         });
         return;
       }
@@ -257,6 +260,7 @@ export function StromTarifCalculator() {
         message: payload.message ?? 'Es ist ein unerwarteter Fehler aufgetreten.',
         tariffs: payload.tariffs ?? [],
         configured: Boolean(payload.configured),
+        source: payload.source ?? null,
       };
 
       setSearchState(nextState);
@@ -271,6 +275,7 @@ export function StromTarifCalculator() {
         message: 'Die Anfrage konnte nicht gesendet werden. Bitte pruefen Sie Ihre Verbindung und versuchen Sie es erneut.',
         tariffs: [],
         configured: false,
+        source: null,
       });
       trackEvent('tariff_calculator_error', {
         calculator_type: 'strom',
@@ -287,7 +292,7 @@ export function StromTarifCalculator() {
             <CardHeader className="bg-primary text-white">
               <CardTitle className="font-heading text-2xl">Stromtarifrechner fuer NRW</CardTitle>
               <p className="text-sm text-white/85">
-                Technische Ergebnisstrecke mit serverseitigem Tarifabruf. Ohne aktive Live-Quelle werden keine Beispieltarife gezeigt.
+                Live-Tarife bei aktiver Datenquelle, ansonsten transparente Kosten- und Sparszenarien statt Platzhalter-Angeboten.
               </p>
             </CardHeader>
             <CardContent className="p-8">
@@ -379,7 +384,7 @@ export function StromTarifCalculator() {
                     />
                     <span>
                       <span className="block font-medium text-slate-900">Nur Oekostrom</span>
-                      <span className="block text-sm text-slate-600">Blendet nur nachhaltig gekennzeichnete Tarife ein, wenn die Live-Quelle das unterstuetzt.</span>
+                      <span className="block text-sm text-slate-600">Filtert Live-Tarife oder verschiebt die Modellrechnung auf gruene Kostenprofile.</span>
                     </span>
                   </label>
 
@@ -435,7 +440,6 @@ export function StromTarifCalculator() {
                   <div>
                     <p className="font-semibold">
                       {searchState.status === 'success' && 'Tarifergebnisse verfuegbar'}
-                      {searchState.status === 'non_live' && 'Tarifrechner derzeit im Aufbau'}
                       {searchState.status === 'empty' && 'Keine Stromtarife gefunden'}
                       {searchState.status === 'error' && 'Tarifabfrage fehlgeschlagen'}
                       {(searchState.status === 'idle' || searchState.status === 'loading') && 'Stromvergleich'}
@@ -489,6 +493,7 @@ export function StromTarifCalculator() {
                               {tariff.eco && <Badge>Oekostrom</Badge>}
                               {tariff.bonus ? <Badge variant="secondary">Bonus {formatMoney(tariff.bonus)}</Badge> : null}
                               {index === 0 && <Badge variant="outline">Beste Kostenposition</Badge>}
+                              {searchState.source === 'transparent_model' && <Badge variant="outline">Transparente Modellrechnung</Badge>}
                             </div>
                           </CardHeader>
                           <CardContent className="space-y-6">
@@ -528,7 +533,7 @@ export function StromTarifCalculator() {
                               ) : (
                                 <Link to={ROUTES.kontakt} className="w-full sm:w-auto">
                                   <Button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90">
-                                    Beratung anfragen
+                                    {searchState.source === 'transparent_model' ? 'Persoenliches Angebot anfragen' : 'Beratung anfragen'}
                                     <ArrowRight className="ml-2 h-4 w-4" />
                                   </Button>
                                 </Link>
@@ -538,27 +543,6 @@ export function StromTarifCalculator() {
                         </Card>
                       </motion.div>
                     ))}
-                  </div>
-                )}
-
-                {searchState.status === 'non_live' && (
-                  <div className="rounded-2xl border border-amber-200 bg-amber-50 p-6">
-                    <h3 className="font-heading text-2xl font-semibold text-amber-950">Keine Live-Tarifquelle aktiv</h3>
-                    <p className="mt-3 text-sm leading-6 text-amber-900">
-                      Der Rechnerpfad ist technisch fertig, aber ohne konfigurierte Tarifdatenquelle werden bewusst keine Tariflisten gerendert. Sobald eine echte Quelle angebunden ist, erscheinen hier Anbieter, Tarifname, Jahreskosten, Grundpreis und Arbeitspreis.
-                    </p>
-                    <div className="mt-5 flex flex-col sm:flex-row gap-3">
-                      <Link to="/methodik" className="w-full sm:w-auto">
-                        <Button variant="outline" className="w-full border-amber-300 bg-white text-amber-950 hover:bg-amber-100">
-                          Methodik ansehen
-                        </Button>
-                      </Link>
-                      <Link to={ROUTES.kontakt} className="w-full sm:w-auto">
-                        <Button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90">
-                          Beratung anfragen
-                        </Button>
-                      </Link>
-                    </div>
                   </div>
                 )}
 
@@ -597,7 +581,7 @@ export function StromTarifCalculator() {
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle className="mt-0.5 h-5 w-5 text-primary" />
-                  <span>Klare Zustandslogik fuer Loading, Success, Empty, Error und Non-Live</span>
+                  <span>Klare Zustandslogik fuer Loading, Success, Empty und Error</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle className="mt-0.5 h-5 w-5 text-primary" />
@@ -680,7 +664,7 @@ export default function StromvergleichNrwPage() {
               Stromtarife fuer NRW ehrlich abrufen, ohne Fake-Ergebnisse
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-white/90">
-              Diese Seite liefert nur dann Tarifkarten, wenn eine echte Datenquelle antwortet. Andernfalls sehen Sie einen klaren Non-Live-Zustand statt Beispielpreisen oder Platzhalter-Anbietern.
+              Diese Seite liefert echte Live-Tarife, wenn eine Datenquelle aktiv ist. Ohne Live-Quelle rechnet sie stattdessen transparente Stromkosten-Szenarien aus Ihren Eingaben, statt Ihnen Platzhalter-Anbieter zu zeigen.
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Button
@@ -716,7 +700,7 @@ export default function StromvergleichNrwPage() {
               {
                 icon: Rocket,
                 title: 'Saubere Ergebniszustande',
-                text: 'Loading, Success, Empty, Error und Non-Live sind getrennt modelliert und sauber gerendert.',
+                text: 'Loading, Success, Empty und Error sind getrennt modelliert. Ohne Live-Quelle greift automatisch die transparente Modellrechnung.',
               },
               {
                 icon: ShieldCheck,

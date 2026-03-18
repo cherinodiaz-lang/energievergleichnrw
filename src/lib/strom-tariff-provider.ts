@@ -1,5 +1,5 @@
 const POSTCODE_REGEX = /^\d{5}$/;
-const NON_LIVE_MESSAGE = 'Zurzeit sind noch keine Live-Tarifdaten angebunden.';
+const MODEL_MESSAGE = 'Es werden transparente Stromkosten-Szenarien auf Basis Ihrer Eingaben berechnet, weil aktuell keine Live-Tarifquelle aktiv ist.';
 const PROVIDER_ERROR_MESSAGE = 'Die Tarifdaten konnten gerade nicht geladen werden. Bitte versuchen Sie es spaeter erneut.';
 const EMPTY_RESULTS_MESSAGE = 'Fuer diese Eingabe konnten aktuell keine Stromtarife gefunden werden.';
 
@@ -32,14 +32,14 @@ export interface StromTariffResult {
   notes?: string[];
 }
 
-export type StromTariffSearchStatus = 'success' | 'empty' | 'error' | 'non_live';
+export type StromTariffSearchStatus = 'success' | 'empty' | 'error';
 
 export interface StromTariffSearchResponse {
   status: StromTariffSearchStatus;
   message: string;
   tariffs: StromTariffResult[];
   configured: boolean;
-  source: 'provider_api' | 'non_live';
+  source: 'provider_api' | 'transparent_model';
 }
 
 interface RawTariffRecord {
@@ -199,6 +199,106 @@ export function hasStromTariffProviderConfig(env: ImportMetaEnv | NodeJS.Process
   return Boolean(env.STROM_TARIFF_API_BASE_URL);
 }
 
+function calculateScenarioAnnualCost(annualConsumption: number, workPriceCt: number, basePriceMonthly: number, bonus: number | null = null) {
+  const grossAnnualCost = (annualConsumption * (workPriceCt / 100)) + (basePriceMonthly * 12);
+  return Math.max(grossAnnualCost - (bonus ?? 0), 0);
+}
+
+function buildTransparentModelTariffs(input: StromTariffSearchInput): StromTariffResult[] {
+  const annualConsumption = input.annualConsumption;
+  const householdSize = input.householdSize ?? (
+    annualConsumption <= 1800 ? 1 :
+      annualConsumption <= 2800 ? 2 :
+        annualConsumption <= 4200 ? 3 :
+          annualConsumption <= 5500 ? 4 : 5
+  );
+
+  const baseWorkPriceCt = annualConsumption <= 1800
+    ? 33.4
+    : annualConsumption <= 2800
+      ? 31.8
+      : annualConsumption <= 4200
+        ? 30.6
+        : annualConsumption <= 5500
+          ? 29.8
+          : 29.1;
+
+  const ecoMarkup = input.ecoOnly ? 0.6 : 0;
+  const bonusAmount = input.bonusOnly ? 90 : null;
+  const profileBasePrice = 11.4 + Math.min(Math.max(householdSize - 1, 0), 4) * 0.7;
+
+  const scenarios = [
+    {
+      tariffName: 'Kostenkorridor Effizienz',
+      workPriceCt: Math.max(baseWorkPriceCt - 1.4, 24),
+      basePriceMonthly: Math.max(profileBasePrice - 0.8, 8.5),
+      contractMonths: 12,
+      priceGuaranteeMonths: 12,
+      eco: input.ecoOnly,
+      bonus: bonusAmount,
+      notes: [
+        'Modellrechnung fuer ein preisorientiertes Wechselziel.',
+        'Keine Live-Tarifzusage, sondern transparente Rechenbasis aus Ihrem Verbrauch.',
+      ],
+    },
+    {
+      tariffName: 'Kostenkorridor Ausgewogen',
+      workPriceCt: baseWorkPriceCt + ecoMarkup,
+      basePriceMonthly: profileBasePrice,
+      contractMonths: 12,
+      priceGuaranteeMonths: 12,
+      eco: input.ecoOnly,
+      bonus: bonusAmount,
+      notes: [
+        'Ausgewogenes Referenzszenario fuer typische Haushaltsprofile in NRW.',
+        input.ecoOnly ? 'Oekostrom-Aufschlag ist in diesem Modell bereits enthalten.' : 'Ohne expliziten Oekostrom-Aufschlag gerechnet.',
+      ],
+    },
+    {
+      tariffName: input.ecoOnly ? 'Kostenkorridor Oekostrom Plus' : 'Kostenkorridor Preisstabil',
+      workPriceCt: baseWorkPriceCt + ecoMarkup + (input.ecoOnly ? 1.1 : 0.9),
+      basePriceMonthly: profileBasePrice + (input.ecoOnly ? 1.2 : 1.0),
+      contractMonths: 24,
+      priceGuaranteeMonths: 18,
+      eco: true,
+      bonus: input.bonusOnly ? Math.max((bonusAmount ?? 0) - 20, 0) : null,
+      notes: [
+        input.ecoOnly
+          ? 'Fokus auf zertifizierte Gruenstrom-Profile mit stabilerer Kalkulation.'
+          : 'Preisstabileres Szenario mit etwas hoeherem Sicherheitspuffer in Arbeitspreis und Grundpreis.',
+        'Die Berechnung bleibt modellbasiert und ersetzt kein konkretes Anbieterangebot.',
+      ],
+    },
+  ];
+
+  return scenarios.map((scenario) => {
+    const annualCost = calculateScenarioAnnualCost(
+      annualConsumption,
+      scenario.workPriceCt,
+      scenario.basePriceMonthly,
+      scenario.bonus,
+    );
+
+    return {
+      providerName: 'Modellrechnung NRW',
+      tariffName: scenario.tariffName,
+      annualCost,
+      monthlyCost: annualCost / 12,
+      basePriceMonthly: scenario.basePriceMonthly,
+      workPriceCt: scenario.workPriceCt,
+      contractMonths: scenario.contractMonths,
+      priceGuaranteeMonths: scenario.priceGuaranteeMonths,
+      eco: scenario.eco,
+      bonus: scenario.bonus,
+      ctaUrl: null,
+      notes: [
+        `Berechnet fuer ${annualConsumption} kWh/Jahr und ${householdSize} Person${householdSize === 1 ? '' : 'en'}.`,
+        ...scenario.notes,
+      ],
+    } satisfies StromTariffResult;
+  }).sort((left, right) => left.annualCost - right.annualCost);
+}
+
 export function normalizeProviderTariffs(payload: unknown, annualConsumption: number): StromTariffResult[] {
   const records = extractResultRecords(payload);
   const normalizedTariffs: Array<StromTariffResult | null> = records.map((record) => {
@@ -244,12 +344,13 @@ export async function searchStromTariffs(
   fetchImpl: typeof fetch = fetch,
 ): Promise<StromTariffSearchResponse> {
   if (!hasStromTariffProviderConfig(env)) {
+    const tariffs = buildTransparentModelTariffs(input);
     return {
-      status: 'non_live',
-      message: NON_LIVE_MESSAGE,
-      tariffs: [],
+      status: 'success',
+      message: MODEL_MESSAGE,
+      tariffs,
       configured: false,
-      source: 'non_live',
+      source: 'transparent_model',
     };
   }
 

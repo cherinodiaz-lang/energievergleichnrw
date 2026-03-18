@@ -52,7 +52,7 @@ Relevante Gruppen:
 Hinweis:
 Ohne `SENTRY_AUTH_TOKEN` bleibt der Build erfolgreich, erstellt aber lokal keine Releases und laedt keine Sourcemaps hoch.
 
-Ohne `STROM_TARIFF_API_BASE_URL` bleibt der Stromrechner technisch funktionsfaehig, liefert aber bewusst nur den Non-Live-Status statt erfundener Tarife.
+Ohne `STROM_TARIFF_API_BASE_URL` bleibt der Stromrechner technisch funktionsfaehig und liefert transparente Kosten- und Vergleichsszenarien auf Basis der Nutzereingaben statt erfundener Anbieterangebote.
 
 ## QA-Gate
 
@@ -104,7 +104,7 @@ Der Endpoint sendet `POST` JSON in diesem Format an die externe Quelle:
 }
 ```
 
-Ohne diese Konfiguration zeigt die UI absichtlich keine Platzhalter-Ergebnisse, sondern den klaren Hinweis `Zurzeit sind noch keine Live-Tarifdaten angebunden.`.
+Ohne diese Konfiguration zeigt die UI keine Platzhalter-Ergebnisse, sondern berechnet ehrliche Stromkosten-Szenarien mit offengelegter Modellbasis aus Verbrauch, Haushaltsgroesse und Filtereinstellungen.
 ```
 
 ## Projektstruktur

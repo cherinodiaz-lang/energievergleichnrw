@@ -47,7 +47,7 @@ describe('strom-tariff-provider', () => {
     });
   });
 
-  it('returns a non-live response when no provider is configured', async () => {
+  it('returns transparent model results when no provider is configured', async () => {
     const result = await searchStromTariffs(
       {
         postcode: '40210',
@@ -59,9 +59,10 @@ describe('strom-tariff-provider', () => {
       vi.fn(),
     );
 
-    expect(result.status).toBe('non_live');
-    expect(result.tariffs).toEqual([]);
+    expect(result.status).toBe('success');
+    expect(result.tariffs.length).toBeGreaterThan(0);
     expect(result.configured).toBe(false);
+    expect(result.source).toBe('transparent_model');
   });
 
   it('returns an error response when the provider request fails', async () => {

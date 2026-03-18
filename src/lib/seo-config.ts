@@ -3,6 +3,8 @@
  * Centralized SEO settings and metadata
  */
 
+const GOOGLE_SITE_VERIFICATION_FALLBACK = "nirROusqBNxCLF7xk8jC0pqhCmu9YNd5f9P9-tj_NPw";
+
 export const SEO_CONFIG = {
   // Site Information
   // PRIMARY DOMAIN: https://www.energievergleich.shop
@@ -45,7 +47,8 @@ export const SEO_CONFIG = {
   language: 'de',
 
   // Search Console & Analytics
-  googleSearchConsoleVerification: import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION ?? '',
+  googleSearchConsoleVerification:
+    import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION ?? GOOGLE_SITE_VERIFICATION_FALLBACK,
   googleAnalyticsId: import.meta.env.PUBLIC_GA4_MEASUREMENT_ID ?? 'G-X60BTL057V',
 
   // Robots Meta

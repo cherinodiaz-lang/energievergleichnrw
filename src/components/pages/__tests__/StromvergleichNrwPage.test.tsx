@@ -68,14 +68,30 @@ describe('StromTarifCalculator', () => {
     expect(screen.getByRole('link', { name: /zum tarif/i })).toHaveAttribute('href', 'https://anbieter.example/fix-12');
   });
 
-  it('renders the non-live state without fake tariffs', async () => {
+  it('renders transparent model results when no live provider is configured', async () => {
     global.fetch = vi.fn().mockResolvedValue({
       status: 200,
       json: async () => ({
-        status: 'non_live',
-        message: 'Zurzeit sind noch keine Live-Tarifdaten angebunden.',
+        status: 'success',
+        source: 'transparent_model',
+        message: 'Es werden transparente Stromkosten-Szenarien auf Basis Ihrer Eingaben berechnet, weil aktuell keine Live-Tarifquelle aktiv ist.',
         configured: false,
-        tariffs: [],
+        tariffs: [
+          {
+            providerName: 'Modellrechnung NRW',
+            tariffName: 'Kostenkorridor Ausgewogen',
+            annualCost: 1234,
+            monthlyCost: 102.83,
+            basePriceMonthly: 12,
+            workPriceCt: 30.6,
+            contractMonths: 12,
+            priceGuaranteeMonths: 12,
+            eco: false,
+            bonus: null,
+            ctaUrl: null,
+            notes: ['Transparente Modellrechnung'],
+          },
+        ],
       }),
     }) as typeof fetch;
 
@@ -85,7 +101,8 @@ describe('StromTarifCalculator', () => {
     fireEvent.change(screen.getByLabelText(/jahresverbrauch in kwh/i), { target: { value: '3500' } });
     fireEvent.click(screen.getByRole('button', { name: /tarife abrufen/i }));
 
-    expect(await screen.findByText(/keine live-tarifquelle aktiv/i)).toBeInTheDocument();
+    expect(await screen.findByText(/modellrechnung nrw/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/transparente modellrechnung/i).length).toBeGreaterThan(0);
     expect(screen.queryByText(/tarif option/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/gruenerstrom nrw/i)).not.toBeInTheDocument();
   });

@@ -325,22 +325,22 @@ export default function GasvergleichNrwPage() {
                   transition={{ duration: 0.5 }}
                   className="mt-12"
                 >
-                  <h2 className="font-heading text-2xl font-bold text-primary mb-8">Tarifvorschau für {formData.postleitzahl}</h2>
+                  <h2 className="font-heading text-2xl font-bold text-primary mb-8">Kosten-Szenarien für {formData.postleitzahl}</h2>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                     {[
                       {
-                        name: 'Tarif Option A',
+                        name: 'Kostenmodell Effizienz',
                         pricePerKwh: 0.08,
                         baseFee: 18.50,
                       },
                       {
-                        name: 'Tarif Option B',
+                        name: 'Kostenmodell Ausgewogen',
                         pricePerKwh: 0.075,
                         baseFee: 22.00,
                       },
                       {
-                        name: 'Tarif Option C',
+                        name: 'Kostenmodell Preisstabil',
                         pricePerKwh: 0.07,
                         baseFee: 25.50,
                       },
@@ -395,7 +395,7 @@ export default function GasvergleichNrwPage() {
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start gap-3">
                     <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
                     <p className="font-paragraph text-sm text-gray-700">
-                      <strong>Hinweis:</strong> Vorschau basiert auf Beispielrechnung. Finale Tarife nach Anbieterabfrage.
+                      <strong>Hinweis:</strong> Diese Gasergebnisse sind aktuell transparente Kosten-Szenarien auf Basis Ihrer Eingaben und der dargestellten Preisannahmen, keine Live-Anbieterangebote.
                     </p>
                   </div>
                 </motion.div>

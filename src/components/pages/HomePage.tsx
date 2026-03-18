@@ -563,7 +563,7 @@ export default function HomePage() {
                         </div>
                         <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 sm:p-4">
                           <p className="text-xs sm:text-sm text-amber-900 font-medium">
-                            Auf der Startseite werden keine Beispieltarife mehr gerendert. Die Eingaben fuehren direkt in den echten Stromrechnerpfad mit serverseitiger Tarifabfrage und ehrlichem Non-Live-Status.
+                            Auf der Startseite werden keine Beispieltarife mehr gerendert. Die Eingaben fuehren direkt in den echten Stromrechnerpfad mit Live-Tarifen oder transparenter Kostenmodellrechnung.
                           </p>
                         </div>
                         <Button
