@@ -1,5 +1,5 @@
 ---
-import AstroRouterProvider from "@/components/AstroRouterProvider";
+import HydratedRoutePage from "@/components/HydratedRoutePage";
 import SitemapPage from "@/components/pages/SitemapPage";
 import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
 ---
@@ -12,7 +12,5 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogTitle="Sitemap | energievergleich.shop"
   ogDescription="Sitemap und Seitenübersicht von energievergleich.shop"
 >
-  <AstroRouterProvider path={Astro.url.pathname} client:idle>
-    <SitemapPage />
-  </AstroRouterProvider>
+  <HydratedRoutePage path={Astro.url.pathname} Page={SitemapPage} client:idle />
 </SeoPageLayout>

@@ -1,5 +1,5 @@
 ---
-import AstroRouterProvider from "@/components/AstroRouterProvider";
+import HydratedRoutePage from "@/components/HydratedRoutePage";
 import AgbPage from "@/components/pages/AgbPage";
 import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
 ---
@@ -12,7 +12,5 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogTitle="AGB | energievergleich.shop"
   ogDescription="Allgemeine Geschäftsbedingungen von energievergleich.shop"
 >
-  <AstroRouterProvider path={Astro.url.pathname} client:idle>
-    <AgbPage />
-  </AstroRouterProvider>
+  <HydratedRoutePage path={Astro.url.pathname} Page={AgbPage} client:idle />
 </SeoPageLayout>

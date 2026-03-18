@@ -1,5 +1,5 @@
 ---
-import AstroRouterProvider from "@/components/AstroRouterProvider";
+import HydratedRoutePage from "@/components/HydratedRoutePage";
 import StromCategoryPage from "@/components/pages/ratgeber/StromCategoryPage";
 import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
 ---
@@ -12,7 +12,5 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogTitle="Stromvergleich & Tarife | Ratgeber"
   ogDescription="Umfassender Ratgeber zu Stromtarifen und Stromwechsel in NRW"
 >
-  <AstroRouterProvider path={Astro.url.pathname} client:idle>
-    <StromCategoryPage />
-  </AstroRouterProvider>
+  <HydratedRoutePage path={Astro.url.pathname} Page={StromCategoryPage} client:idle />
 </SeoPageLayout>

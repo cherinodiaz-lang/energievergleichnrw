@@ -1,5 +1,5 @@
 ---
-import AstroRouterProvider from "@/components/AstroRouterProvider";
+import HydratedRoutePage from "@/components/HydratedRoutePage";
 import DatenschutzPage from "@/components/pages/DatenschutzPage";
 import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
 import { getPageSEO } from "@/lib/seo-config";
@@ -15,7 +15,5 @@ const seo = getPageSEO("datenschutz");
   ogTitle={seo.ogTitle}
   ogDescription={seo.ogDescription}
 >
-  <AstroRouterProvider path={Astro.url.pathname} client:idle>
-    <DatenschutzPage />
-  </AstroRouterProvider>
+  <HydratedRoutePage path={Astro.url.pathname} Page={DatenschutzPage} client:idle />
 </SeoPageLayout>

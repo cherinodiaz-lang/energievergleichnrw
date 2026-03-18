@@ -1,5 +1,5 @@
 ---
-import AstroRouterProvider from "@/components/AstroRouterProvider";
+import HydratedRoutePage from "@/components/HydratedRoutePage";
 import PhotovoltaikCategoryPage from "@/components/pages/ratgeber/PhotovoltaikCategoryPage";
 import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
 ---
@@ -12,7 +12,5 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogTitle="Photovoltaik & Solar | Ratgeber"
   ogDescription="Umfassender Ratgeber zu Solaranlagen und Photovoltaik in NRW"
 >
-  <AstroRouterProvider path={Astro.url.pathname} client:idle>
-    <PhotovoltaikCategoryPage />
-  </AstroRouterProvider>
+  <HydratedRoutePage path={Astro.url.pathname} Page={PhotovoltaikCategoryPage} client:idle />
 </SeoPageLayout>

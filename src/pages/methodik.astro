@@ -1,5 +1,5 @@
 ---
-import AstroRouterProvider from "@/components/AstroRouterProvider";
+import HydratedRoutePage from "@/components/HydratedRoutePage";
 import MethodologyPage from "@/components/pages/MethodologyPage";
 import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
 import { getPageSEO } from "@/lib/seo-config";
@@ -15,7 +15,5 @@ const seo = getPageSEO("methodik");
   ogTitle={seo.ogTitle}
   ogDescription={seo.ogDescription}
 >
-  <AstroRouterProvider path={Astro.url.pathname} client:idle>
-    <MethodologyPage />
-  </AstroRouterProvider>
+  <HydratedRoutePage path={Astro.url.pathname} Page={MethodologyPage} client:idle />
 </SeoPageLayout>
