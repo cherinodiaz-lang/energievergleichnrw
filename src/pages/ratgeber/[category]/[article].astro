@@ -1,5 +1,5 @@
 ---
-import AstroRouterProvider from "@/components/AstroRouterProvider";
+import HydratedRoutePage from "@/components/HydratedRoutePage";
 import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
 import { ratgeberArticles } from "@/lib/ratgeber-map";
 import AngeboteVergleichenArticle from "@/components/pages/ratgeber/articles/AngeboteVergleichenArticle";
@@ -75,7 +75,5 @@ if (!articleMeta || !ArticleComponent) {
   ogTitle={articleMeta.title}
   ogDescription={articleMeta.teaser}
 >
-  <AstroRouterProvider path={Astro.url.pathname} client:idle>
-    <ArticleComponent />
-  </AstroRouterProvider>
+  <HydratedRoutePage path={Astro.url.pathname} Page={ArticleComponent} client:idle />
 </SeoPageLayout>

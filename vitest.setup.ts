@@ -29,9 +29,11 @@ configure({
 
 afterEach(() => {
   cleanup()
-  document.head.innerHTML = ''
-  document.body.innerHTML = ''
-  document.title = ''
+  if (typeof document !== 'undefined') {
+    document.head.innerHTML = ''
+    document.body.innerHTML = ''
+    document.title = ''
+  }
 })
 
 // Make React's act available globally for testing-library

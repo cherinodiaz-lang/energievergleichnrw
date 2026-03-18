@@ -1,5 +1,5 @@
 import type { ComponentType } from "react";
-import { BrowserRouter, MemoryRouter } from "react-router-dom";
+import { BrowserRouter, StaticRouter } from "react-router-dom";
 
 interface HydratedRoutePageProps {
   path: string;
@@ -7,11 +7,11 @@ interface HydratedRoutePageProps {
 }
 
 export default function HydratedRoutePage({ path, Page }: HydratedRoutePageProps) {
-  if (import.meta.env.SSR) {
+  if (typeof window === "undefined") {
     return (
-      <MemoryRouter initialEntries={[path]}>
+      <StaticRouter location={path}>
         <Page />
-      </MemoryRouter>
+      </StaticRouter>
     );
   }
 

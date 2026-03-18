@@ -1,5 +1,5 @@
 ---
-import AstroRouterProvider from "@/components/AstroRouterProvider";
+import HydratedRoutePage from "@/components/HydratedRoutePage";
 import GewerbeCategoryPage from "@/components/pages/ratgeber/GewerbeCategoryPage";
 import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
 ---
@@ -12,7 +12,5 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogTitle="Gewerbeenergie | Ratgeber"
   ogDescription="Ratgeber für Gewerbekunden und Unternehmen"
 >
-  <AstroRouterProvider path={Astro.url.pathname} client:idle>
-    <GewerbeCategoryPage />
-  </AstroRouterProvider>
+  <HydratedRoutePage path={Astro.url.pathname} Page={GewerbeCategoryPage} client:idle />
 </SeoPageLayout>
