@@ -30,8 +30,8 @@ export default function Footer() {
 
   return (
     <footer className="bg-primary text-primary-foreground">
-      <div className="max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16 lg:py-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-12">
+      <div className="max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-12 py-16 sm:py-20 lg:py-24">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 sm:gap-12 lg:gap-14">
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <Link to={ROUTES.home} className="flex items-center gap-2 sm:gap-3 mb-6" aria-label="Energievergleich NRW - Startseite">
@@ -157,7 +157,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-primary-foreground/20 mt-8 sm:mt-12 pt-6 sm:pt-8">
+        <div className="border-t border-primary-foreground/20 mt-12 sm:mt-16 lg:mt-20 pt-8 sm:pt-10 lg:pt-12">
           <nav aria-label="Interne SEO Links" className="mb-4 sm:mb-6">
             <ul className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs sm:text-sm leading-snug">
               {NAV_SECONDARY.map((item) => (

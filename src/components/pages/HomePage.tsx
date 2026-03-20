@@ -328,7 +328,7 @@ export default function HomePage() {
         </motion.div>
 
         {/* Hero Content */}
-        <div className="relative z-10 w-full max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16 md:py-20 flex items-center justify-center min-h-screen">
+        <div className="relative z-10 w-full max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-12 py-16 sm:py-20 md:py-24 flex items-center justify-center min-h-screen">
           <div className="max-w-3xl w-full">
             <AnimatedElement>
               <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-secondary text-black text-xs sm:text-sm font-bold mb-4 sm:mb-5 md:mb-6 backdrop-blur-sm">
