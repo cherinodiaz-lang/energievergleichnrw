@@ -55,7 +55,7 @@ export default function ImpressumPage() {
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Kontaktinformationen:</p>
-                  <p>E-Mail: <a href="mailto:info@energievergleich.shop" className="text-primary hover:underline font-bold">info@energievergleich.shop</a><br />Website: <a href="https://www.energievergleich.shop" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-bold">https://www.energievergleich.shop</a></p>
+                  <p>E-Mail: <a href="mailto:support@energievergleich.nrw" className="text-primary hover:underline font-bold">support@energievergleich.nrw</a><br />Website: <a href="https://www.energievergleich.shop" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-bold">https://www.energievergleich.shop</a></p>
                 </div>
 
                 <div className="border-t pt-4">

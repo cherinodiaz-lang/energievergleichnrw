@@ -55,7 +55,7 @@ export default function DatenschutzPage() {
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Kontakt:</p>
-                  <p>E-Mail: kontakt@energievergleich.shop<br />Telefon: +49 000 0000000<br />Website: energievergleich.shop</p>
+                  <p>E-Mail: support@energievergleich.nrw<br />Telefon: +49 000 0000000<br />Website: energievergleich.shop</p>
                 </div>
 
                 <div className="border-t pt-4">
@@ -323,7 +323,7 @@ export default function DatenschutzPage() {
 
                 <div>
                   <p className="font-bold mb-2">E-Mail:</p>
-                  <p>kontakt@energievergleich.shop</p>
+                  <p>support@energievergleich.nrw</p>
                 </div>
 
                 <div className="border-t pt-4">
