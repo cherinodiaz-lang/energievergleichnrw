@@ -8,7 +8,25 @@ import "@/styles/global.css";
 // These are handled by dedicated endpoint files (sitemap.xml.ts, robots.txt.ts)
 const pathname = new URL(Astro.request.url).pathname;
 const excludedPaths = ['/sitemap.xml', '/robots.txt'];
-const spaPrefixes = ['/blog', '/danke', '/thank-you'];
+const spaPrefixes = [
+  '/blog', 
+  '/danke', 
+  '/thank-you',
+  '/stromvergleich-nrw',
+  '/gasvergleich-nrw',
+  '/photovoltaik-nrw',
+  '/gewerbestrom',
+  '/gewerbegas',
+  '/kontakt',
+  '/impressum',
+  '/datenschutz',
+  '/agb',
+  '/widerruf',
+  '/sitemap',
+  '/faq',
+  '/ratgeber',
+  '/methodik'
+];
 const isAllowedSpaRoute = spaPrefixes.some((prefix) =>
   pathname === prefix || pathname.startsWith(`${prefix}/`)
 );
