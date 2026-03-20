@@ -34,7 +34,7 @@ function Layout() {
   const shouldRenderFaqSchema = isHomePage || isFaqPage;
 
   return (
-    <div className="min-w-0 overflow-x-hidden ox-hidden">
+    <div className="min-w-0 overflow-x-hidden">
       <ScrollToTop />
       <OrganizationSchema />
       <LocalBusinessSchema />
