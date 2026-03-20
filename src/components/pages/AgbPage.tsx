@@ -30,8 +30,8 @@ export default function AgbPage() {
           </p>
           <p>
             Bei Fragen wenden Sie sich bitte an:{' '}
-            <a href="mailto:info@energievergleich.nrw" className="text-primary hover:underline">
-              info@energievergleich.nrw
+            <a href="mailto:support@energievergleich.nrw" className="text-primary hover:underline">
+              support@energievergleich.nrw
             </a>
           </p>
         </div>
