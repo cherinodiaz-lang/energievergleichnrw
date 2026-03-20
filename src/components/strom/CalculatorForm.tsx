@@ -177,24 +177,24 @@ export default function CalculatorForm() {
   };
 
   return (
-    <section id="vergleich" className="w-full py-8 sm:py-12 bg-white">
+    <section id="vergleich" className="w-full py-6 sm:py-8 md:py-10 bg-white">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-        <Card className="shadow-xl">
-          <CardHeader className="bg-primary text-white p-6 sm:p-8">
-            <CardTitle className="font-heading text-xl sm:text-2xl md:text-3xl">Stromtarifrechner für NRW</CardTitle>
-            <p className="text-xs sm:text-sm text-white/85 mt-2">
+        <Card className="shadow-lg">
+          <CardHeader className="bg-primary text-white p-5 sm:p-6 md:p-7">
+            <CardTitle className="font-heading text-lg sm:text-xl md:text-2xl">Stromtarifrechner für NRW</CardTitle>
+            <p className="text-xs sm:text-sm text-white/85 mt-1.5 sm:mt-2">
               Finden Sie die besten Tarife für Ihren Haushalt
             </p>
           </CardHeader>
-          <CardContent className="p-6 sm:p-8">
-            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+          <CardContent className="p-5 sm:p-6 md:p-7">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5" noValidate>
               {validationSummary.length > 0 && (
-                <div className={`border-l-4 p-4 rounded ${getStatusTone('error')}`}>
-                  <div className="flex gap-3">
-                    <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="font-semibold mb-1">Eingabefehler</p>
-                      <ul className="text-sm space-y-1">
+                <div className={`border-l-4 p-3 sm:p-4 rounded ${getStatusTone('error')}`}>
+                  <div className="flex gap-2 sm:gap-3">
+                    <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 mt-0.5" />
+                    <div className="min-w-0">
+                      <p className="font-semibold text-sm mb-1">Eingabefehler</p>
+                      <ul className="text-xs sm:text-sm space-y-0.5">
                         {validationSummary.map((error, i) => (
                           <li key={i}>• {error}</li>
                         ))}
@@ -204,9 +204,9 @@ export default function CalculatorForm() {
                 </div>
               )}
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-5">
                 <div>
-                  <Label htmlFor="postcode" className="font-heading font-semibold text-sm">
+                  <Label htmlFor="postcode" className="font-heading font-semibold text-xs sm:text-sm">
                     Postleitzahl *
                   </Label>
                   <Input
@@ -215,15 +215,15 @@ export default function CalculatorForm() {
                     placeholder="z.B. 40210"
                     value={formData.postcode}
                     onChange={(e) => handleFieldChange('postcode', e.target.value)}
-                    className={formErrors.postcode ? 'border-red-500' : ''}
+                    className={`text-sm ${formErrors.postcode ? 'border-red-500' : ''}`}
                   />
                   {formErrors.postcode && (
-                    <p className="text-red-600 text-xs sm:text-sm mt-1">{formErrors.postcode}</p>
+                    <p className="text-red-600 text-xs mt-1">{formErrors.postcode}</p>
                   )}
                 </div>
 
                 <div>
-                  <Label htmlFor="consumption" className="font-heading font-semibold text-sm">
+                  <Label htmlFor="consumption" className="font-heading font-semibold text-xs sm:text-sm">
                     Jahresverbrauch (kWh) *
                   </Label>
                   <Input
@@ -232,15 +232,15 @@ export default function CalculatorForm() {
                     placeholder="z.B. 3500"
                     value={formData.annualConsumption}
                     onChange={(e) => handleFieldChange('annualConsumption', e.target.value)}
-                    className={formErrors.annualConsumption ? 'border-red-500' : ''}
+                    className={`text-sm ${formErrors.annualConsumption ? 'border-red-500' : ''}`}
                   />
                   {formErrors.annualConsumption && (
-                    <p className="text-red-600 text-xs sm:text-sm mt-1">{formErrors.annualConsumption}</p>
+                    <p className="text-red-600 text-xs mt-1">{formErrors.annualConsumption}</p>
                   )}
                 </div>
 
                 <div>
-                  <Label htmlFor="household" className="font-heading font-semibold text-sm">
+                  <Label htmlFor="household" className="font-heading font-semibold text-xs sm:text-sm">
                     Haushaltsgröße
                   </Label>
                   <Input
@@ -249,18 +249,19 @@ export default function CalculatorForm() {
                     placeholder="z.B. 3"
                     value={formData.householdSize}
                     onChange={(e) => handleFieldChange('householdSize', e.target.value)}
+                    className="text-sm"
                   />
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6">
                 <div className="flex items-center space-x-2">
                   <Checkbox
                     id="eco"
                     checked={formData.ecoOnly}
                     onCheckedChange={(checked) => handleFieldChange('ecoOnly', Boolean(checked))}
                   />
-                  <Label htmlFor="eco" className="font-paragraph cursor-pointer text-sm">
+                  <Label htmlFor="eco" className="font-paragraph cursor-pointer text-xs sm:text-sm">
                     Nur Ökostrom
                   </Label>
                 </div>
@@ -270,7 +271,7 @@ export default function CalculatorForm() {
                     checked={formData.bonusOnly}
                     onCheckedChange={(checked) => handleFieldChange('bonusOnly', Boolean(checked))}
                   />
-                  <Label htmlFor="bonus" className="font-paragraph cursor-pointer text-sm">
+                  <Label htmlFor="bonus" className="font-paragraph cursor-pointer text-xs sm:text-sm">
                     Nur mit Bonus
                   </Label>
                 </div>
@@ -279,7 +280,7 @@ export default function CalculatorForm() {
               <Button
                 type="submit"
                 disabled={searchState.status === 'loading'}
-                className="w-full bg-secondary hover:bg-secondary/90 text-black font-semibold h-11 sm:h-12 text-sm sm:text-base"
+                className="w-full bg-secondary hover:bg-secondary/90 text-black font-semibold h-10 sm:h-11 text-sm sm:text-base"
               >
                 {searchState.status === 'loading' ? (
                   <>
@@ -295,21 +296,21 @@ export default function CalculatorForm() {
         </Card>
 
         {searchState.status !== 'idle' && (
-          <div className={`mt-6 sm:mt-8 border-l-4 p-4 sm:p-6 rounded ${getStatusTone(searchState.status)}`}>
-            <div className="flex gap-3">
+          <div className={`mt-4 sm:mt-6 md:mt-8 border-l-4 p-3 sm:p-4 md:p-5 rounded ${getStatusTone(searchState.status)}`}>
+            <div className="flex gap-2 sm:gap-3">
               {searchState.status === 'loading' && (
-                <LoaderCircle className="w-5 h-5 flex-shrink-0 animate-spin" />
+                <LoaderCircle className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 animate-spin" />
               )}
               {searchState.status === 'success' && (
-                <CheckCircle className="w-5 h-5 flex-shrink-0 text-emerald-600" />
+                <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 text-emerald-600" />
               )}
               {searchState.status === 'error' && (
-                <AlertCircle className="w-5 h-5 flex-shrink-0 text-red-600" />
+                <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 text-red-600" />
               )}
-              <div>
-                <p className="font-semibold text-sm sm:text-base">{searchState.message}</p>
+              <div className="min-w-0">
+                <p className="font-semibold text-xs sm:text-sm md:text-base">{searchState.message}</p>
                 {searchState.tariffs.length > 0 && (
-                  <p className="text-xs sm:text-sm mt-2">
+                  <p className="text-xs mt-1 sm:mt-2">
                     {searchState.tariffs.length} Tarife gefunden
                     {searchState.configured && ' (Konfiguriert)'}
                   </p>
@@ -320,33 +321,33 @@ export default function CalculatorForm() {
         )}
 
         {searchState.tariffs.length > 0 && (
-          <div className="mt-6 sm:mt-8 space-y-3 sm:space-y-4">
-            <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold">Verfügbare Tarife</h3>
+          <div className="mt-4 sm:mt-6 md:mt-8 space-y-2 sm:space-y-3 md:space-y-4">
+            <h3 className="font-heading text-base sm:text-lg md:text-xl font-bold">Verfügbare Tarife</h3>
             {searchState.tariffs.map((tariff, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-4 sm:p-6">
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 sm:gap-4 mb-4">
+                <CardContent className="p-3 sm:p-4 md:p-5">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-3 md:gap-4 mb-3 sm:mb-4">
                     <div className="min-w-0">
-                      <h4 className="font-heading font-semibold text-base sm:text-lg">{tariff.provider}</h4>
-                      <p className="text-gray-600 text-xs sm:text-sm truncate">{tariff.name}</p>
+                      <h4 className="font-heading font-semibold text-sm sm:text-base">{tariff.provider}</h4>
+                      <p className="text-gray-600 text-xs truncate">{tariff.name}</p>
                     </div>
-                    <Badge variant="default" className="w-fit whitespace-nowrap">{formatMoney(tariff.monthlyPrice)}/Monat</Badge>
+                    <Badge variant="default" className="w-fit whitespace-nowrap text-xs sm:text-sm">{formatMoney(tariff.monthlyPrice)}/Monat</Badge>
                   </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-xs sm:text-sm">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 md:gap-4 text-xs sm:text-sm">
                     <div>
-                      <p className="text-gray-600">Jahrespreis</p>
-                      <p className="font-semibold">{formatMoney(tariff.annualPrice)}</p>
+                      <p className="text-gray-600 text-xs">Jahrespreis</p>
+                      <p className="font-semibold text-sm">{formatMoney(tariff.annualPrice)}</p>
                     </div>
                     <div>
-                      <p className="text-gray-600">Grundgebühr</p>
-                      <p className="font-semibold">{formatMoney(tariff.baseFee)}/Monat</p>
+                      <p className="text-gray-600 text-xs">Grundgebühr</p>
+                      <p className="font-semibold text-sm">{formatMoney(tariff.baseFee)}/Monat</p>
                     </div>
                     <div>
-                      <p className="text-gray-600">Arbeitspreis</p>
-                      <p className="font-semibold">{tariff.workPrice.toFixed(2)}¢/kWh</p>
+                      <p className="text-gray-600 text-xs">Arbeitspreis</p>
+                      <p className="font-semibold text-sm">{tariff.workPrice.toFixed(2)}¢/kWh</p>
                     </div>
                     <div>
-                      <p className="text-gray-600">Vertragslaufzeit</p>
+                      <p className="text-gray-600 text-xs">Vertragslaufzeit</p>
                       <p className="font-semibold">{tariff.contractMonths} Monate</p>
                     </div>
                   </div>

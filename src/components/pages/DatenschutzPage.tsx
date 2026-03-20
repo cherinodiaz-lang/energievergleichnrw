@@ -18,13 +18,13 @@ export default function DatenschutzPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
+      <section className="w-full bg-primary text-primary-foreground py-12 sm:py-16 md:py-24 lg:py-32">
+        <div className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-12">
           <div className="max-w-3xl">
-            <h1 className="font-heading text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
               Datenschutz
             </h1>
-            <p className="font-paragraph text-lg md:text-xl text-white/90">
+            <p className="font-paragraph text-base sm:text-lg md:text-xl text-white/90">
               Ihre Privatsphäre ist uns wichtig
             </p>
           </div>
@@ -32,120 +32,120 @@ export default function DatenschutzPage() {
       </section>
 
       {/* Content Section */}
-      <section className="w-full py-24 bg-white pb-10">
-        <div className="max-w-4xl mx-auto px-6 lg:px-12">
-          <div className="space-y-8 break-words overflow-x-hidden min-w-0">
+      <section className="w-full py-12 sm:py-16 md:py-24 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="space-y-6 sm:space-y-8 break-words overflow-x-hidden min-w-0">
             {/* Info Box */}
-            <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-6">
-              <h3 className="font-heading text-lg font-bold text-blue-900 mb-4">ℹ️ Datenschutzerklärung</h3>
-              <p className="text-sm text-blue-800 font-paragraph">
+            <div className="bg-blue-50 border-l-4 border-blue-400 rounded p-4 sm:p-5">
+              <h3 className="font-heading text-base sm:text-lg font-bold text-blue-900 mb-2">Datenschutzerklärung</h3>
+              <p className="text-xs sm:text-sm text-blue-800 font-paragraph leading-relaxed">
                 Diese Datenschutzerklärung entspricht den Anforderungen der DSGVO und informiert Sie über die Verarbeitung Ihrer personenbezogenen Daten.
               </p>
             </div>
 
             {/* 1. Verantwortlicher */}
-            <div>
-              <h2 className="font-heading text-3xl font-bold text-primary mb-6 mt-6">1. Verantwortlicher für die Datenverarbeitung</h2>
+            <div className="pt-4 sm:pt-6">
+              <h2 className="font-heading text-2xl sm:text-3xl font-bold text-primary mb-4 sm:mb-6">1. Verantwortlicher für die Datenverarbeitung</h2>
 
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 break-words">
+              <div className="bg-gray-50 border border-gray-200 rounded p-4 sm:p-5 space-y-3 sm:space-y-4 font-paragraph text-slate-900 break-words text-sm sm:text-base">
                 <div>
-                  <p className="font-bold mb-2">Verantwortlicher (Art. 4 Abs. 7 DSGVO):</p>
-                  <p>Energievergleich Muster GmbH<br />Musterstraße 1<br />40210 Düsseldorf<br />Deutschland</p>
+                  <p className="font-bold mb-1 sm:mb-2">Verantwortlicher (Art. 4 Abs. 7 DSGVO):</p>
+                  <p className="text-slate-700">Energievergleich Muster GmbH<br />Musterstraße 1<br />40210 Düsseldorf<br />Deutschland</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Kontakt:</p>
-                  <p>E-Mail: support@energievergleich.nrw<br />Telefon: +49 000 0000000<br />Website: energievergleich.shop</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1 sm:mb-2">Kontakt:</p>
+                  <p className="text-slate-700">E-Mail: support@energievergleich.nrw<br />Telefon: +49 000 0000000<br />Website: energievergleich.shop</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Datenschutzbeauftragter:</p>
-                  <p>Derzeit nicht benannt (Musterangabe)</p>
-                  <p className="text-sm text-gray-500 mt-2">Hinweis: Für Datenschutzfragen kontaktieren Sie bitte direkt die oben genannte Adresse.</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1 sm:mb-2">Datenschutzbeauftragter:</p>
+                  <p className="text-slate-700">Derzeit nicht benannt (Musterangabe)</p>
+                  <p className="text-xs text-gray-500 mt-2">Hinweis: Für Datenschutzfragen kontaktieren Sie bitte direkt die oben genannte Adresse.</p>
                 </div>
               </div>
             </div>
 
             {/* 2. Übersicht der Verarbeitungen */}
-            <div>
-              <h2 className="font-heading text-3xl font-bold text-primary mb-6 mt-6">2. Übersicht der Datenverarbeitungen</h2>
+            <div className="pt-4 sm:pt-6">
+              <h2 className="font-heading text-2xl sm:text-3xl font-bold text-primary mb-4 sm:mb-6">2. Übersicht der Datenverarbeitungen</h2>
 
-              <p className="font-paragraph text-slate-900 mb-6">
+              <p className="font-paragraph text-slate-900 mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed">
                 Wir verarbeiten personenbezogene Daten nur, wenn dies rechtlich zulässig ist. Nachfolgend erhalten Sie einen Überblick über die Verarbeitungen:
               </p>
 
               {/* 2.1 Hosting & Server-Logs */}
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 mb-6 break-words">
-                <h3 className="font-bold text-lg text-primary">2.1 Hosting und Server-Logs</h3>
+              <div className="bg-gray-50 border border-gray-200 rounded p-4 sm:p-5 space-y-3 sm:space-y-4 font-paragraph text-slate-900 mb-4 sm:mb-6 break-words text-sm sm:text-base">
+                <h3 className="font-bold text-base text-primary">2.1 Hosting und Server-Logs</h3>
 
                 <div>
-                  <p className="font-bold mb-2">Verarbeitete Daten:</p>
-                  <p>IP-Adresse, Browser-Typ, Betriebssystem, Referrer-URL, Zugriffsdatum und -uhrzeit, Anfragegröße, HTTP-Statuscode</p>
+                  <p className="font-bold mb-1 sm:mb-2">Verarbeitete Daten:</p>
+                  <p className="text-slate-700">IP-Adresse, Browser-Typ, Betriebssystem, Referrer-URL, Zugriffsdatum und -uhrzeit, Anfragegröße, HTTP-Statuscode</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Zweck:</p>
-                  <p>Bereitstellung und Sicherheit der Website, Fehleranalyse</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1 sm:mb-2">Zweck:</p>
+                  <p className="text-slate-700">Bereitstellung und Sicherheit der Website, Fehleranalyse</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Rechtsgrundlage:</p>
-                  <p>Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse)</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1 sm:mb-2">Rechtsgrundlage:</p>
+                  <p className="text-slate-700">Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse)</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Speicherdauer:</p>
-                  <p>Server-Logs: in der Regel 7-30 Tage (Musterwert)</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1 sm:mb-2">Speicherdauer:</p>
+                  <p className="text-slate-700">Server-Logs: in der Regel 7-30 Tage (Musterwert)</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Auftragsverarbeiter:</p>
-                  <p>Wix.com Ltd. (Hosting-Provider)<br />Datenschutzerklärung: <a href="https://www.wix.com/de/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline break-all">https://www.wix.com/de/privacy</a></p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1 sm:mb-2">Auftragsverarbeiter:</p>
+                  <p className="text-slate-700">Wix.com Ltd. (Hosting-Provider)<br />Datenschutzerklärung: <a href="https://www.wix.com/de/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline break-all">https://www.wix.com/de/privacy</a></p>
                 </div>
               </div>
 
               {/* 2.2 Kontaktformular */}
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 mb-6 break-words">
-                <h3 className="font-bold text-lg text-primary">2.2 Kontaktformular</h3>
+              <div className="bg-gray-50 border border-gray-200 rounded p-4 sm:p-5 space-y-3 sm:space-y-4 font-paragraph text-slate-900 mb-4 sm:mb-6 break-words text-sm sm:text-base">
+                <h3 className="font-bold text-base text-primary">2.2 Kontaktformular</h3>
 
                 <div>
-                  <p className="font-bold mb-2">Verarbeitete Daten:</p>
-                  <p>Name, E-Mail-Adresse, Telefonnummer (optional), Nachrichtentext, Anfragekategorie</p>
+                  <p className="font-bold mb-1 sm:mb-2">Verarbeitete Daten:</p>
+                  <p className="text-slate-700">Name, E-Mail-Adresse, Telefonnummer (optional), Nachrichtentext, Anfragekategorie</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Zweck:</p>
-                  <p>Bearbeitung Ihrer Anfrage und Kontaktaufnahme</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1 sm:mb-2">Zweck:</p>
+                  <p className="text-slate-700">Bearbeitung Ihrer Anfrage und Kontaktaufnahme</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Rechtsgrundlage:</p>
-                  <p>Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) oder Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1 sm:mb-2">Rechtsgrundlage:</p>
+                  <p className="text-slate-700">Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) oder Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Speicherdauer:</p>
-                  <p>Bis zur vollständigen Bearbeitung der Anfrage, danach 12 Monate (Musterwert für Archivierung)</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1 sm:mb-2">Speicherdauer:</p>
+                  <p className="text-slate-700">Bis zur vollständigen Bearbeitung der Anfrage, danach 12 Monate (Musterwert für Archivierung)</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Empfänger:</p>
-                  <p>Interne Bearbeitung durch Energievergleich Muster GmbH, ggf. Weitergabe an externe Dienstleister</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1 sm:mb-2">Empfänger:</p>
+                  <p className="text-slate-700">Interne Bearbeitung durch Energievergleich Muster GmbH, ggf. Weitergabe an externe Dienstleister</p>
                 </div>
               </div>
 
               {/* 2.3 E-Mail und Telefon */}
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 mb-6 break-words">
-                <h3 className="font-bold text-lg text-primary">2.3 Direktkontakt per E-Mail oder Telefon</h3>
+              <div className="bg-gray-50 border border-gray-200 rounded p-4 sm:p-5 space-y-3 sm:space-y-4 font-paragraph text-slate-900 mb-4 sm:mb-6 break-words text-sm sm:text-base">
+                <h3 className="font-bold text-base text-primary">2.3 Direktkontakt per E-Mail oder Telefon</h3>
 
                 <div>
-                  <p className="font-bold mb-2">Verarbeitete Daten:</p>
-                  <p>E-Mail-Adresse, Telefonnummer, Name, Inhalt der Kommunikation</p>
+                  <p className="font-bold mb-1 sm:mb-2">Verarbeitete Daten:</p>
+                  <p className="text-slate-700">E-Mail-Adresse, Telefonnummer, Name, Inhalt der Kommunikation</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Zweck:</p>
-                  <p>Beantwortung Ihrer Anfrage und Kommunikation</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1 sm:mb-2">Zweck:</p>
+                  <p className="text-slate-700">Beantwortung Ihrer Anfrage und Kommunikation</p>
                 </div>
 
                 <div className="border-t pt-4">
