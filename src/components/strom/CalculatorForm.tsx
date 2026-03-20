@@ -177,16 +177,16 @@ export default function CalculatorForm() {
   };
 
   return (
-    <section id="vergleich" className="w-full py-6 sm:py-8 md:py-10 bg-white">
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+    <section id="vergleich" className="w-full py-5 sm:py-6 md:py-8 bg-white">
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-5 lg:px-6">
         <Card className="shadow-lg">
-          <CardHeader className="bg-primary text-white p-5 sm:p-6 md:p-7">
+          <CardHeader className="bg-primary text-white p-5 sm:p-6">
             <CardTitle className="font-heading text-lg sm:text-xl md:text-2xl">Stromtarifrechner für NRW</CardTitle>
             <p className="text-xs sm:text-sm text-white/85 mt-1.5 sm:mt-2">
               Finden Sie die besten Tarife für Ihren Haushalt
             </p>
           </CardHeader>
-          <CardContent className="p-5 sm:p-6 md:p-7">
+          <CardContent className="p-5 sm:p-6">
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5" noValidate>
               {validationSummary.length > 0 && (
                 <div className={`border-l-4 p-3 sm:p-4 rounded ${getStatusTone('error')}`}>
@@ -204,7 +204,7 @@ export default function CalculatorForm() {
                 </div>
               )}
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                 <div>
                   <Label htmlFor="postcode" className="font-heading font-semibold text-xs sm:text-sm">
                     Postleitzahl *
@@ -296,7 +296,7 @@ export default function CalculatorForm() {
         </Card>
 
         {searchState.status !== 'idle' && (
-          <div className={`mt-4 sm:mt-6 md:mt-8 border-l-4 p-3 sm:p-4 md:p-5 rounded ${getStatusTone(searchState.status)}`}>
+          <div className={`mt-4 sm:mt-5 border-l-4 p-3 sm:p-4 rounded ${getStatusTone(searchState.status)}`}>
             <div className="flex gap-2 sm:gap-3">
               {searchState.status === 'loading' && (
                 <LoaderCircle className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 animate-spin" />
@@ -321,19 +321,19 @@ export default function CalculatorForm() {
         )}
 
         {searchState.tariffs.length > 0 && (
-          <div className="mt-4 sm:mt-6 md:mt-8 space-y-2 sm:space-y-3 md:space-y-4">
+          <div className="mt-4 sm:mt-5 space-y-2 sm:space-y-3">
             <h3 className="font-heading text-base sm:text-lg md:text-xl font-bold">Verfügbare Tarife</h3>
             {searchState.tariffs.map((tariff, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-3 sm:p-4 md:p-5">
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-3 md:gap-4 mb-3 sm:mb-4">
+                <CardContent className="p-3 sm:p-4">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-3 mb-3 sm:mb-4">
                     <div className="min-w-0">
                       <h4 className="font-heading font-semibold text-sm sm:text-base">{tariff.provider}</h4>
                       <p className="text-gray-600 text-xs truncate">{tariff.name}</p>
                     </div>
                     <Badge variant="default" className="w-fit whitespace-nowrap text-xs sm:text-sm">{formatMoney(tariff.monthlyPrice)}/Monat</Badge>
                   </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 md:gap-4 text-xs sm:text-sm">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 text-xs sm:text-sm">
                     <div>
                       <p className="text-gray-600 text-xs">Jahrespreis</p>
                       <p className="font-semibold text-sm">{formatMoney(tariff.annualPrice)}</p>

@@ -75,9 +75,9 @@ export default function KontaktPage() {
       </section>
 
       {/* Contact Information Section */}
-      <section className="w-full py-12 sm:py-16 md:py-24 bg-white">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
+      <section className="w-full py-12 sm:py-14 md:py-18 bg-white">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-5 lg:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 mb-10 sm:mb-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -152,8 +152,8 @@ export default function KontaktPage() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="w-full py-12 sm:py-16 md:py-24 bg-background">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+      <section className="w-full py-12 sm:py-14 md:py-18 bg-background">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-5 lg:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-start">
             <div className="lg:col-span-2">
               <Card className="shadow-lg">

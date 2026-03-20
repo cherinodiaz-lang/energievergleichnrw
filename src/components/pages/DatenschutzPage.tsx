@@ -33,11 +33,11 @@ export default function DatenschutzPage() {
 
       {/* Content Section */}
       <section className="w-full py-12 sm:py-16 md:py-24 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-6 sm:space-y-8 break-words overflow-x-hidden min-w-0">
+        <div className="max-w-3xl mx-auto px-4 sm:px-5 lg:px-6">
+          <div className="space-y-8 sm:space-y-10 break-words overflow-x-hidden min-w-0">
             {/* Info Box */}
             <div className="bg-blue-50 border-l-4 border-blue-400 rounded p-4 sm:p-5">
-              <h3 className="font-heading text-base sm:text-lg font-bold text-blue-900 mb-2">Datenschutzerklärung</h3>
+              <h3 className="font-heading text-sm sm:text-base font-bold text-blue-900 mb-2">Datenschutzerklärung</h3>
               <p className="text-xs sm:text-sm text-blue-800 font-paragraph leading-relaxed">
                 Diese Datenschutzerklärung entspricht den Anforderungen der DSGVO und informiert Sie über die Verarbeitung Ihrer personenbezogenen Daten.
               </p>
@@ -45,9 +45,9 @@ export default function DatenschutzPage() {
 
             {/* 1. Verantwortlicher */}
             <div className="pt-4 sm:pt-6">
-              <h2 className="font-heading text-2xl sm:text-3xl font-bold text-primary mb-4 sm:mb-6">1. Verantwortlicher für die Datenverarbeitung</h2>
+              <h2 className="font-heading text-xl sm:text-2xl font-bold text-primary mb-4 sm:mb-5">1. Verantwortlicher für die Datenverarbeitung</h2>
 
-              <div className="bg-gray-50 border border-gray-200 rounded p-4 sm:p-5 space-y-3 sm:space-y-4 font-paragraph text-slate-900 break-words text-sm sm:text-base">
+              <div className="bg-gray-50 border border-gray-200 rounded p-4 sm:p-5 space-y-3 sm:space-y-4 font-paragraph text-slate-900 break-words text-xs sm:text-sm">
                 <div>
                   <p className="font-bold mb-1 sm:mb-2">Verantwortlicher (Art. 4 Abs. 7 DSGVO):</p>
                   <p className="text-slate-700">Energievergleich Muster GmbH<br />Musterstraße 1<br />40210 Düsseldorf<br />Deutschland</p>
@@ -68,15 +68,15 @@ export default function DatenschutzPage() {
 
             {/* 2. Übersicht der Verarbeitungen */}
             <div className="pt-4 sm:pt-6">
-              <h2 className="font-heading text-2xl sm:text-3xl font-bold text-primary mb-4 sm:mb-6">2. Übersicht der Datenverarbeitungen</h2>
+              <h2 className="font-heading text-xl sm:text-2xl font-bold text-primary mb-4 sm:mb-5">2. Übersicht der Datenverarbeitungen</h2>
 
-              <p className="font-paragraph text-slate-900 mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed">
+              <p className="font-paragraph text-slate-900 mb-4 sm:mb-5 text-xs sm:text-sm leading-relaxed">
                 Wir verarbeiten personenbezogene Daten nur, wenn dies rechtlich zulässig ist. Nachfolgend erhalten Sie einen Überblick über die Verarbeitungen:
               </p>
 
               {/* 2.1 Hosting & Server-Logs */}
-              <div className="bg-gray-50 border border-gray-200 rounded p-4 sm:p-5 space-y-3 sm:space-y-4 font-paragraph text-slate-900 mb-4 sm:mb-6 break-words text-sm sm:text-base">
-                <h3 className="font-bold text-base text-primary">2.1 Hosting und Server-Logs</h3>
+              <div className="bg-gray-50 border border-gray-200 rounded p-4 sm:p-5 space-y-3 sm:space-y-4 font-paragraph text-slate-900 mb-4 sm:mb-5 break-words text-xs sm:text-sm">
+                <h3 className="font-bold text-sm text-primary">2.1 Hosting und Server-Logs</h3>
 
                 <div>
                   <p className="font-bold mb-1 sm:mb-2">Verarbeitete Daten:</p>
@@ -105,8 +105,8 @@ export default function DatenschutzPage() {
               </div>
 
               {/* 2.2 Kontaktformular */}
-              <div className="bg-gray-50 border border-gray-200 rounded p-4 sm:p-5 space-y-3 sm:space-y-4 font-paragraph text-slate-900 mb-4 sm:mb-6 break-words text-sm sm:text-base">
-                <h3 className="font-bold text-base text-primary">2.2 Kontaktformular</h3>
+              <div className="bg-gray-50 border border-gray-200 rounded p-4 sm:p-5 space-y-3 sm:space-y-4 font-paragraph text-slate-900 mb-4 sm:mb-5 break-words text-xs sm:text-sm">
+                <h3 className="font-bold text-sm text-primary">2.2 Kontaktformular</h3>
 
                 <div>
                   <p className="font-bold mb-1 sm:mb-2">Verarbeitete Daten:</p>
@@ -135,8 +135,8 @@ export default function DatenschutzPage() {
               </div>
 
               {/* 2.3 E-Mail und Telefon */}
-              <div className="bg-gray-50 border border-gray-200 rounded p-4 sm:p-5 space-y-3 sm:space-y-4 font-paragraph text-slate-900 mb-4 sm:mb-6 break-words text-sm sm:text-base">
-                <h3 className="font-bold text-base text-primary">2.3 Direktkontakt per E-Mail oder Telefon</h3>
+              <div className="bg-gray-50 border border-gray-200 rounded p-4 sm:p-5 space-y-3 sm:space-y-4 font-paragraph text-slate-900 mb-4 sm:mb-5 break-words text-xs sm:text-sm">
+                <h3 className="font-bold text-sm text-primary">2.3 Direktkontakt per E-Mail oder Telefon</h3>
 
                 <div>
                   <p className="font-bold mb-1 sm:mb-2">Verarbeitete Daten:</p>
@@ -148,120 +148,120 @@ export default function DatenschutzPage() {
                   <p className="text-slate-700">Beantwortung Ihrer Anfrage und Kommunikation</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Rechtsgrundlage:</p>
-                  <p>Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung)</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1 sm:mb-2">Rechtsgrundlage:</p>
+                  <p className="text-slate-700">Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung)</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Speicherdauer:</p>
-                  <p>12 Monate nach letztem Kontakt (Musterwert)</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1 sm:mb-2">Speicherdauer:</p>
+                  <p className="text-slate-700">12 Monate nach letztem Kontakt (Musterwert)</p>
                 </div>
               </div>
 
               {/* 2.4 Cookies - Technisch notwendig */}
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 mb-6 break-words">
-                <h3 className="font-bold text-lg text-primary">2.4 Cookies (technisch notwendig)</h3>
+              <div className="bg-gray-50 border border-gray-200 rounded p-4 sm:p-5 space-y-3 sm:space-y-4 font-paragraph text-slate-900 mb-4 sm:mb-5 break-words text-xs sm:text-sm">
+                <h3 className="font-bold text-sm text-primary">2.4 Cookies (technisch notwendig)</h3>
 
                 <div>
-                  <p className="font-bold mb-2">Verarbeitete Daten:</p>
+                  <p className="font-bold mb-1.5">Verarbeitete Daten:</p>
                   <p>Cookie-ID, Sitzungsinformationen, Benutzereinstellungen, Consent-Status</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Zweck:</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1.5">Zweck:</p>
                   <p>Gewährleistung der Funktionalität der Website, Speicherung von Benutzereinstellungen, Verwaltung von Datenschutzeinwilligungen</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Rechtsgrundlage:</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1.5">Rechtsgrundlage:</p>
                   <p>Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse) für notwendige Cookies; Art. 6 Abs. 1 lit. a DSGVO (Einwilligung) für nicht-notwendige Cookies</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Speicherdauer:</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1.5">Speicherdauer:</p>
                   <p>Abhängig vom Cookie-Typ, in der Regel bis zum Ende der Browsersitzung oder bis zur Löschung (Musterwert)</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="text-sm text-gray-500">
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="text-xs text-gray-500">
                     Hinweis: Weitere Informationen zu Cookies finden Sie in unserem Cookie-Banner auf der Website. Sie können Ihre Cookie-Einstellungen jederzeit über die Datenschutzeinstellungen ändern.
                   </p>
                 </div>
               </div>
 
               {/* 2.5 Analyse und Tracking - Google Analytics 4 */}
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 mb-6 break-words">
-                <h3 className="font-bold text-lg text-primary">2.5 Analyse und Tracking - Google Analytics 4 (GA4)</h3>
+              <div className="bg-gray-50 border border-gray-200 rounded p-4 sm:p-5 space-y-3 sm:space-y-4 font-paragraph text-slate-900 mb-4 sm:mb-5 break-words text-xs sm:text-sm">
+                <h3 className="font-bold text-sm text-primary">2.5 Analyse und Tracking - Google Analytics 4 (GA4)</h3>
 
-                <div className="bg-green-50 border border-green-200 rounded p-4 mb-4">
-                  <p className="text-sm text-green-800 font-bold">Status: Aktiv (mit Consent-Handling)</p>
-                  <p className="text-sm text-green-700 mt-2">Google Analytics 4 wird nur nach ausdrücklicher Einwilligung des Nutzers aktiviert.</p>
+                <div className="bg-green-50 border border-green-200 rounded p-3 mb-3">
+                  <p className="text-xs text-green-800 font-bold">Status: Aktiv (mit Consent-Handling)</p>
+                  <p className="text-xs text-green-700 mt-1.5">Google Analytics 4 wird nur nach ausdrücklicher Einwilligung des Nutzers aktiviert.</p>
                 </div>
 
                 <div>
-                  <p className="font-bold mb-2">Verarbeitete Daten:</p>
+                  <p className="font-bold mb-1.5">Verarbeitete Daten:</p>
                   <p>IP-Adresse (anonymisiert), Geräte-ID, Browser-Informationen, Betriebssystem, Besuchte Seiten, Verweildauer, Klicks, Scroll-Verhalten, Referrer, Gerätetyp, Spracheinstellungen</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Zweck:</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1.5">Zweck:</p>
                   <p>Analyse des Nutzerverhaltens, Optimierung der Website-Performance, Erstellung von Statistiken, Verbesserung der Benutzerfreundlichkeit</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Rechtsgrundlage:</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1.5">Rechtsgrundlage:</p>
                   <p>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung) - GA4 wird AUSSCHLIESSLICH nach Erteilung der Einwilligung durch den Nutzer aktiviert</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Speicherdauer:</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1.5">Speicherdauer:</p>
                   <p>Standardmäßig 14 Monate (Google Analytics Standard-Aufbewahrungsfrist)</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Auftragsverarbeiter:</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1.5">Auftragsverarbeiter:</p>
                   <p>Google Ireland Limited<br />Gordon House, Barrow Street<br />Dublin 4, Irland<br />Datenschutzerklärung: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline break-all">https://policies.google.com/privacy</a></p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Drittlandtransfer:</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1.5">Drittlandtransfer:</p>
                   <p>Daten werden in die USA übermittelt. Google hat sich dem EU-US Data Privacy Framework angeschlossen. Weitere Informationen: <a href="https://policies.google.com/privacy/frameworks" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline break-all">https://policies.google.com/privacy/frameworks</a></p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="text-sm text-gray-500">
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="text-xs text-gray-500">
                     Hinweis: Sie können Ihre Einwilligung jederzeit über die Datenschutzeinstellungen (Cookie-Banner) widerrufen. GA4 wird dann sofort deaktiviert.
                   </p>
                 </div>
               </div>
 
               {/* 2.6 Externe Dienste */}
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 mb-6 break-words">
-                <h3 className="font-bold text-lg text-primary">2.6 Eingebettete externe Inhalte</h3>
+              <div className="bg-gray-50 border border-gray-200 rounded p-4 sm:p-5 space-y-3 sm:space-y-4 font-paragraph text-slate-900 mb-4 sm:mb-5 break-words text-xs sm:text-sm">
+                <h3 className="font-bold text-sm text-primary">2.6 Eingebettete externe Inhalte</h3>
 
-                <div className="bg-blue-50 border border-blue-200 rounded p-4 mb-4">
-                  <p className="text-sm text-blue-800 font-bold">Status: Nicht im Einsatz (Musterangabe)</p>
-                  <p className="text-sm text-blue-700 mt-2">Derzeit werden keine externen Dienste eingebettet.</p>
+                <div className="bg-blue-50 border border-blue-200 rounded p-3 mb-3">
+                  <p className="text-xs text-blue-800 font-bold">Status: Nicht im Einsatz (Musterangabe)</p>
+                  <p className="text-xs text-blue-700 mt-1.5">Derzeit werden keine externen Dienste eingebettet.</p>
                 </div>
 
                 <div>
-                  <p className="font-bold mb-2">Falls zukünftig aktiv - Verwendete Dienste:</p>
+                  <p className="font-bold mb-1.5">Falls zukünftig aktiv - Verwendete Dienste:</p>
                   <p>Beispiele: YouTube, Google Maps, Vimeo, etc.</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Falls zukünftig aktiv - Verarbeitete Daten:</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1.5">Falls zukünftig aktiv - Verarbeitete Daten:</p>
                   <p>IP-Adresse, Cookie-Daten, Geräte-Informationen (abhängig vom Dienst)</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Falls zukünftig aktiv - Rechtsgrundlage:</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1.5">Falls zukünftig aktiv - Rechtsgrundlage:</p>
                   <p>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung) oder Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse)</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="text-sm text-gray-500">
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="text-xs text-gray-500">
                     Hinweis: Sollten externe Dienste zukünftig eingesetzt werden, wird diese Datenschutzerklärung entsprechend aktualisiert. Externe Dienste können Daten in Länder außerhalb der EU übermitteln.
                   </p>
                 </div>
@@ -270,45 +270,45 @@ export default function DatenschutzPage() {
 
             {/* 3. Betroffenenrechte */}
             <div>
-              <h2 className="font-heading text-3xl font-bold text-primary mb-6 mt-6">3. Ihre Rechte nach der DSGVO (Art. 15-22 DSGVO)</h2>
+              <h2 className="font-heading text-xl sm:text-2xl font-bold text-primary mb-4 sm:mb-5 mt-6 sm:mt-8">3. Ihre Rechte nach der DSGVO (Art. 15-22 DSGVO)</h2>
 
-              <p className="font-paragraph text-slate-900 mb-6">
+              <p className="font-paragraph text-slate-900 mb-4 sm:mb-5 text-xs sm:text-sm">
                 Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:
               </p>
 
-              <div className="space-y-4 font-paragraph text-slate-900">
-                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                  <p className="font-bold mb-2">1. Auskunftsrecht (Art. 15 DSGVO)</p>
+              <div className="space-y-3 sm:space-y-4 font-paragraph text-slate-900 text-xs sm:text-sm">
+                <div className="bg-gray-50 border border-gray-200 rounded p-3 sm:p-4">
+                  <p className="font-bold mb-1.5">1. Auskunftsrecht (Art. 15 DSGVO)</p>
                   <p>Sie können jederzeit Auskunft darüber verlangen, welche personenbezogenen Daten wir über Sie speichern, woher diese stammen und wie wir sie verwenden.</p>
                 </div>
 
-                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                  <p className="font-bold mb-2">2. Recht auf Berichtigung (Art. 16 DSGVO)</p>
+                <div className="bg-gray-50 border border-gray-200 rounded p-3 sm:p-4">
+                  <p className="font-bold mb-1.5">2. Recht auf Berichtigung (Art. 16 DSGVO)</p>
                   <p>Sie können die Berichtigung unrichtiger oder unvollständiger Daten verlangen.</p>
                 </div>
 
-                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                  <p className="font-bold mb-2">3. Recht auf Löschung (Art. 17 DSGVO)</p>
+                <div className="bg-gray-50 border border-gray-200 rounded p-3 sm:p-4">
+                  <p className="font-bold mb-1.5">3. Recht auf Löschung (Art. 17 DSGVO)</p>
                   <p>Sie können unter bestimmten Bedingungen die Löschung Ihrer Daten verlangen („Recht auf Vergessenwerden").</p>
                 </div>
 
-                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                  <p className="font-bold mb-2">4. Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</p>
+                <div className="bg-gray-50 border border-gray-200 rounded p-3 sm:p-4">
+                  <p className="font-bold mb-1.5">4. Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</p>
                   <p>Sie können die Einschränkung der Verarbeitung Ihrer Daten verlangen, z.B. wenn Sie die Richtigkeit der Daten bestreiten.</p>
                 </div>
 
-                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                  <p className="font-bold mb-2">5. Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</p>
+                <div className="bg-gray-50 border border-gray-200 rounded p-3 sm:p-4">
+                  <p className="font-bold mb-1.5">5. Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</p>
                   <p>Sie können Ihre Daten in einem strukturierten, gängigen und maschinenlesbaren Format erhalten und an einen anderen Verantwortlichen übermitteln.</p>
                 </div>
 
-                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                  <p className="font-bold mb-2">6. Widerspruchsrecht (Art. 21 DSGVO)</p>
+                <div className="bg-gray-50 border border-gray-200 rounded p-3 sm:p-4">
+                  <p className="font-bold mb-1.5">6. Widerspruchsrecht (Art. 21 DSGVO)</p>
                   <p>Sie können der Verarbeitung Ihrer Daten widersprechen, insbesondere bei Verarbeitung für Direktmarketing oder Profiling.</p>
                 </div>
 
-                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                  <p className="font-bold mb-2">7. Recht auf Beschwerde (Art. 77 DSGVO)</p>
+                <div className="bg-gray-50 border border-gray-200 rounded p-3 sm:p-4">
+                  <p className="font-bold mb-1.5">7. Recht auf Beschwerde (Art. 77 DSGVO)</p>
                   <p>Sie haben das Recht, sich bei einer Datenschutzbehörde zu beschweren, wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer Daten gegen die DSGVO verstößt.</p>
                 </div>
               </div>
@@ -316,23 +316,23 @@ export default function DatenschutzPage() {
 
             {/* 4. Kontakt für Datenschutz */}
             <div>
-              <h2 className="font-heading text-3xl font-bold text-primary mb-6 mt-6">4. Kontakt für Datenschutzfragen</h2>
+              <h2 className="font-heading text-xl sm:text-2xl font-bold text-primary mb-4 sm:mb-5 mt-6 sm:mt-8">4. Kontakt für Datenschutzfragen</h2>
 
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 break-words">
+              <div className="bg-gray-50 border border-gray-200 rounded p-4 sm:p-5 space-y-3 sm:space-y-4 font-paragraph text-slate-900 break-words text-xs sm:text-sm">
                 <p>Wenn Sie Fragen zum Datenschutz haben oder Ihre Rechte ausüben möchten, kontaktieren Sie uns bitte:</p>
 
                 <div>
-                  <p className="font-bold mb-2">E-Mail:</p>
+                  <p className="font-bold mb-1.5">E-Mail:</p>
                   <p>support@energievergleich.nrw</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Postanschrift:</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1.5">Postanschrift:</p>
                   <p>Energievergleich Muster GmbH<br />Musterstraße 1<br />40210 Düsseldorf<br />Deutschland</p>
                 </div>
 
-                <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Telefon:</p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold mb-1.5">Telefon:</p>
                   <p>+49 000 0000000</p>
                 </div>
               </div>
@@ -340,27 +340,27 @@ export default function DatenschutzPage() {
 
             {/* 5. Zuständige Aufsichtsbehörde */}
             <div>
-              <h2 className="font-heading text-3xl font-bold text-primary mb-6 mt-6">5. Zuständige Datenschutzbehörde</h2>
+              <h2 className="font-heading text-xl sm:text-2xl font-bold text-primary mb-4 sm:mb-5 mt-6 sm:mt-8">5. Zuständige Datenschutzbehörde</h2>
 
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 font-paragraph text-slate-900 break-words">
-                <p className="mb-4">Die zuständige Datenschutzbehörde ist:</p>
-                <p className="font-bold mb-4">Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW)</p>
-                <p className="text-sm text-gray-500">Diese Angabe ist eine Musterangabe für Unternehmen in NRW.</p>
+              <div className="bg-gray-50 border border-gray-200 rounded p-4 sm:p-5 font-paragraph text-slate-900 break-words text-xs sm:text-sm">
+                <p className="mb-3">Die zuständige Datenschutzbehörde ist:</p>
+                <p className="font-bold mb-3">Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW)</p>
+                <p className="text-xs text-gray-500">Diese Angabe ist eine Musterangabe für Unternehmen in NRW.</p>
               </div>
             </div>
 
             {/* 6. Änderungen */}
             <div>
-              <h2 className="font-heading text-3xl font-bold text-primary mb-6 mt-6">6. Änderungen dieser Datenschutzerklärung</h2>
+              <h2 className="font-heading text-xl sm:text-2xl font-bold text-primary mb-4 sm:mb-5 mt-6 sm:mt-8">6. Änderungen dieser Datenschutzerklärung</h2>
 
-              <p className="font-paragraph text-slate-900">
+              <p className="font-paragraph text-slate-900 text-xs sm:text-sm">
                 Wir behalten uns das Recht vor, diese Datenschutzerklärung jederzeit zu ändern. Die aktuelle Fassung finden Sie immer auf dieser Seite. Wesentliche Änderungen werden wir Ihnen per E-Mail oder durch einen prominenten Hinweis auf unserer Website mitteilen.
               </p>
             </div>
 
             {/* Hinweis */}
-            <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-6 mt-8">
-              <p className="font-paragraph text-sm text-slate-900">
+            <div className="bg-blue-50 border-2 border-blue-300 rounded p-4 sm:p-5 mt-8">
+              <p className="font-paragraph text-xs sm:text-sm text-slate-900">
                 <strong>Hinweis:</strong> Diese Datenschutzerklärung ist ein Muster und muss an die spezifischen Anforderungen und Praktiken Ihres Unternehmens angepasst werden. Bitte konsultieren Sie einen Rechtsanwalt, um sicherzustellen, dass Ihre Datenschutzerklärung vollständig und konform mit der DSGVO ist.
               </p>
             </div>
