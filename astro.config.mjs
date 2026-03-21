@@ -34,7 +34,6 @@ export default defineConfig({
     wix({
       htmlEmbeds: isBuild,
       auth: true,
-      robots: false,
     }),
     ...(isBuild ? [monitoring()] : []),
     react(isBuild ? {} : {
@@ -75,16 +74,10 @@ export default defineConfig({
     domains: ["static.wixstatic.com"],
   },
   server: {
-    allowedHosts: ["energievergleich.shop", "localhost"],
+    allowedHosts: true,
     host: true,
-    headers: {
-      "X-Frame-Options": "DENY",
-      "X-Content-Type-Options": "nosniff",
-      "Referrer-Policy": "strict-origin-when-cross-origin",
-      "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
-    },
   },
   security: {
-    checkOrigin: true
+    checkOrigin: false
   }
 });

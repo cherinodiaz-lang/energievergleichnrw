@@ -41,5 +41,3 @@ docs/*
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
-.env.local
-.aider*
