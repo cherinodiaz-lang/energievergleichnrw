@@ -20,7 +20,7 @@ export const SEO_CONFIG = {
     logo: 'https://static.wixstatic.com/media/32e7c0_8cede5e338be484bb8dcaad81c053c82~mv2.png?originWidth=1920&originHeight=1024',
     areaServed: 'Nordrhein-Westfalen',
     contact: {
-      email: 'info@energievergleich.nrw',
+      email: 'info@energievergleich.shop',
       telephone: '+49 (0) 2 01 - 1 03 - 39 39',
     },
     address: {

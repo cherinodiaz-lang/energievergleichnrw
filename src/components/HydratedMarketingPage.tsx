@@ -1,3 +1,4 @@
+import type { ComponentType } from "react";
 import { BrowserRouter, StaticRouter } from "react-router-dom";
 import HomePage from "@/components/pages/HomePage";
 import ImpressumPage from "@/components/pages/ImpressumPage";
@@ -14,7 +15,7 @@ const PAGE_COMPONENTS = {
   home: HomePage,
   impressum: ImpressumPage,
   stromvergleich: StromvergleichNrwPage,
-} satisfies Record<MarketingPageKey, () => JSX.Element>;
+} satisfies Record<MarketingPageKey, ComponentType>;
 
 export default function HydratedMarketingPage({ path, page }: HydratedMarketingPageProps) {
   const Page = PAGE_COMPONENTS[page];
