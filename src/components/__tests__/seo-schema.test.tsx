@@ -35,7 +35,7 @@ describe('SEO schema components', () => {
   it('adds breadcrumb schema for the current route', async () => {
     render(
       <MemoryRouter initialEntries={['/ratgeber/strom']}>
-        <BreadcrumbSchema pathname="/ratgeber/strom" />
+        <BreadcrumbSchema />
       </MemoryRouter>
     )
 

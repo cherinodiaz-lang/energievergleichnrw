@@ -1,4 +1,3 @@
-import type { ComponentProps } from 'react';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Zap, Building2, TrendingDown, Shield, Clock, Send } from 'lucide-react';
@@ -12,32 +11,17 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
-import FormSubmissionDialog from '@/components/FormSubmissionDialog';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
+import TrustRow from '@/components/TrustRow';
 import RelatedPages from '@/components/RelatedPages';
 import { Link } from 'react-router-dom';
 import { getPageSEO } from '@/lib/seo-config';
 import { ROUTES } from '@/lib/routes';
-import { trackCTAClick, trackMethodikClick } from '@/services/form-submission';
+import { trackMethodikClick } from '@/services/form-submission';
 import { getRelatedPages } from '@/lib/internal-linking';
 
-const initialFormData = {
-  companyName: '',
-  companyType: '',
-  contactPerson: '',
-  name: '',
-  email: '',
-  phone: '',
-  address: '',
-  plz: '',
-  city: '',
-  verbrauch: '',
-  message: '',
-};
-
 export default function GewerbestromPage() {
-  type FormSubmitEvent = Parameters<NonNullable<ComponentProps<'form'>['onSubmit']>>[0];
   useEffect(() => {
     const faqSchema = {
       '@context': 'https://schema.org',
@@ -96,17 +80,31 @@ export default function GewerbestromPage() {
     };
   }, []);
 
-  const [formData, setFormData] = useState(initialFormData);
-  const [showDialog, setShowDialog] = useState(false);
+  const [companyName, setCompanyName] = useState('');
+  const [contactPerson, setContactPerson] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
+  const [postcode, setPostcode] = useState('');
+  const [city, setCity] = useState('');
+  const [consumption, setConsumption] = useState('');
+  const [companyType, setCompanyType] = useState('');
+  const [message, setMessage] = useState('');
 
-  const handleSubmit = (e: FormSubmitEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    trackCTAClick('Gewerbestrom Angebot');
-    setShowDialog(true);
-  };
-
-  const handleDialogSuccess = () => {
-    setFormData(initialFormData);
+    alert(`Vielen Dank für Ihre Anfrage, ${companyName}! Wir werden uns in Kürze bei Ihnen melden.`);
+    // Reset form
+    setCompanyName('');
+    setContactPerson('');
+    setEmail('');
+    setPhone('');
+    setAddress('');
+    setPostcode('');
+    setCity('');
+    setConsumption('');
+    setCompanyType('');
+    setMessage('');
   };
 
   const seo = getPageSEO('gewerbestrom');
@@ -124,7 +122,7 @@ export default function GewerbestromPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background break-words leading-relaxed">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title={seo.title}
         description={seo.description}
@@ -205,41 +203,7 @@ export default function GewerbestromPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="hover:bg-gray-50 transition-colors">
-                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Jahresverbrauch (kWh)</td>
-                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. 120.000</td>
-                    </tr>
-                    <tr className="bg-gray-50 hover:bg-gray-100 transition-colors">
-                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">PLZ/Ort</td>
-                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. 40210 Düsseldorf</td>
-                    </tr>
-                    <tr className="hover:bg-gray-50 transition-colors">
-                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Zählernummer/Marktlokation</td>
-                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. DE… / falls vorhanden</td>
-                    </tr>
-                    <tr className="bg-gray-50 hover:bg-gray-100 transition-colors">
-                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Leistung (kW)</td>
-                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. 85</td>
-                    </tr>
-                    <tr className="hover:bg-gray-50 transition-colors">
-                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Lastprofil (SLP/RLM)</td>
-                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. RLM</td>
-                    </tr>
-                    <tr className="bg-gray-50 hover:bg-gray-100 transition-colors">
-                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Vertragslaufzeit</td>
-                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. 12 Monate</td>
-                    </tr>
-                    <tr className="hover:bg-gray-50 transition-colors">
-                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Branche/Nutzung</td>
-                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. Produktion</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Welche Angaben du brauchst</h3>
+                    <tr className="hover:bg-gray-50 transition-colors\">\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Jahresverbrauch (kWh)</td>\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. 120.000</td>\n                    </tr>\n                    <tr className="bg-gray-50 hover:bg-gray-100 transition-colors\">\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">PLZ/Ort</td>\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. 40210 Düsseldorf</td>\n                    </tr>\n                    <tr className="hover:bg-gray-50 transition-colors\">\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Zählernummer/Marktlokation</td>\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. DE… / falls vorhanden</td>\n                    </tr>\n                    <tr className="bg-gray-50 hover:bg-gray-100 transition-colors\">\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Leistung (kW)</td>\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. 85</td>\n                    </tr>\n                    <tr className="hover:bg-gray-50 transition-colors\">\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Lastprofil (SLP/RLM)</td>\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. RLM</td>\n                    </tr>\n                    <tr className="bg-gray-50 hover:bg-gray-100 transition-colors\">\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Vertragslaufzeit</td>\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. 12 Monate</td>\n                    </tr>\n                    <tr className="hover:bg-gray-50 transition-colors\">\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Branche/Nutzung</td>\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. Produktion</td>\n                    </tr>\n                  </tbody>\n                </table>\n              </div>\n            </div>\n\n            <div>\n              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Welche Angaben du brauchst</h3>
               <ul className="font-paragraph text-gray-700 space-y-2 mb-6">
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">•</span>
@@ -529,19 +493,15 @@ export default function GewerbestromPage() {
                         id="company-name"
                         type="text"
                         placeholder="Ihre Firma GmbH"
-                        value={formData.companyName}
-                        onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                        value={companyName}
+                        onChange={(e) => setCompanyName(e.target.value)}
                         required
                         className="font-paragraph"
                       />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="company-type" className="font-paragraph">Branche *</Label>
-                      <Select
-                        value={formData.companyType}
-                        onValueChange={(value) => setFormData({ ...formData, companyType: value })}
-                        required
-                      >
+                      <Select value={companyType} onValueChange={setCompanyType} required>
                         <SelectTrigger id="company-type" className="font-paragraph">
                           <SelectValue placeholder="Wählen Sie..." />
                         </SelectTrigger>
@@ -572,13 +532,8 @@ export default function GewerbestromPage() {
                         id="contact-person"
                         type="text"
                         placeholder="Max Mustermann"
-                        value={formData.contactPerson}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            contactPerson: e.target.value,
-                            name: e.target.value,
-                          })}
+                        value={contactPerson}
+                        onChange={(e) => setContactPerson(e.target.value)}
                         required
                         className="font-paragraph"
                       />
@@ -589,8 +544,8 @@ export default function GewerbestromPage() {
                         id="email"
                         type="email"
                         placeholder="max@firma.de"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         required
                         className="font-paragraph"
                       />
@@ -601,8 +556,8 @@ export default function GewerbestromPage() {
                         id="phone"
                         type="tel"
                         placeholder="+49 211 1234 5678"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
                         required
                         className="font-paragraph"
                       />
@@ -622,8 +577,8 @@ export default function GewerbestromPage() {
                       id="address"
                       type="text"
                       placeholder="Musterstraße 123"
-                      value={formData.address}
-                      onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
                       required
                       className="font-paragraph"
                     />
@@ -636,8 +591,8 @@ export default function GewerbestromPage() {
                         id="postcode"
                         type="text"
                         placeholder="40210"
-                        value={formData.plz}
-                        onChange={(e) => setFormData({ ...formData, plz: e.target.value })}
+                        value={postcode}
+                        onChange={(e) => setPostcode(e.target.value)}
                         required
                         className="font-paragraph"
                       />
@@ -648,8 +603,8 @@ export default function GewerbestromPage() {
                         id="city"
                         type="text"
                         placeholder="Düsseldorf"
-                        value={formData.city}
-                        onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
                         required
                         className="font-paragraph"
                       />
@@ -671,8 +626,8 @@ export default function GewerbestromPage() {
                       id="consumption"
                       type="number"
                       placeholder="z.B. 50000"
-                      value={formData.verbrauch}
-                      onChange={(e) => setFormData({ ...formData, verbrauch: e.target.value })}
+                      value={consumption}
+                      onChange={(e) => setConsumption(e.target.value)}
                       required
                       className="font-paragraph"
                     />
@@ -690,8 +645,8 @@ export default function GewerbestromPage() {
                   <Textarea
                     id="message"
                     placeholder="Besondere Anforderungen, Fragen oder Anmerkungen..."
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                     rows={4}
                     className="font-paragraph"
                   />
@@ -704,19 +659,13 @@ export default function GewerbestromPage() {
                   <Send className="w-5 h-5 mr-2" />
                   Angebot anfordern
                 </Button>
+
+                <p className="font-paragraph text-sm text-foreground/60 text-center">
+                  Mit dem Absenden des Formulars stimmen Sie unserer Datenschutzerklärung zu.
+                </p>
               </form>
             </CardContent>
           </Card>
-
-          <FormSubmissionDialog
-            isOpen={showDialog}
-            onClose={() => setShowDialog(false)}
-            formType="gewerbestrom"
-            formData={formData}
-            requiredFields={['companyName', 'companyType', 'name', 'email', 'phone', 'address', 'plz', 'city', 'verbrauch']}
-            onSuccess={handleDialogSuccess}
-            title="Gewerbestrom-Angebot anfordern"
-          />
         </div>
       </section>
 

@@ -1,6 +1,6 @@
-import { useState, type ComponentProps } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, Send, Clock } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -18,7 +18,6 @@ import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
 
 export default function KontaktPage() {
-  type FormSubmitEvent = Parameters<NonNullable<ComponentProps<'form'>['onSubmit']>>[0];
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -29,7 +28,7 @@ export default function KontaktPage() {
   });
   const [showDialog, setShowDialog] = useState(false);
 
-  const handleSubmit = (e: FormSubmitEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Track CTA click
     trackCTAClick('Kontaktformular');
@@ -160,7 +159,7 @@ export default function KontaktPage() {
                 <CardHeader className="bg-primary text-white">
                   <CardTitle className="font-heading text-2xl">Kontaktformular</CardTitle>
                 </CardHeader>
-                <CardContent className="p-8 ox-hidden">
+                <CardContent className="p-8">
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">

@@ -1,5 +1,5 @@
 ---
-import HydratedRoutePage from "@/components/HydratedRoutePage";
+import AstroRouterProvider from "@/components/AstroRouterProvider";
 import GasCategoryPage from "@/components/pages/ratgeber/GasCategoryPage";
 import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
 ---
@@ -12,5 +12,7 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogTitle="Gasvergleich & Heizung | Ratgeber"
   ogDescription="Umfassender Ratgeber zu Gastarifen und Gaswechsel in NRW"
 >
-  <HydratedRoutePage path={Astro.url.pathname} Page={GasCategoryPage} client:idle />
+  <AstroRouterProvider path={Astro.url.pathname} client:load>
+    <GasCategoryPage />
+  </AstroRouterProvider>
 </SeoPageLayout>

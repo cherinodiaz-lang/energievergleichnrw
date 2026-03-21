@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Zap, CheckCircle, ArrowRight } from 'lucide-react';
+import { Zap, CheckCircle, AlertCircle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -248,7 +248,7 @@ export default function StromGrundversorgungArticle() {
         <div className="max-w-4xl mx-auto px-6 lg:px-12">
           <h2 className="font-heading text-2xl font-bold text-primary mb-8">Verwandte Artikel</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <Link to="/ratgeber/strom/stromtarif-vertragslaufzeit" className="group">
+            <Link to="/ratgeber/strom/preisgarantie" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">
@@ -262,7 +262,7 @@ export default function StromGrundversorgungArticle() {
                 </CardContent>
               </Card>
             </Link>
-            <Link to="/ratgeber/wechselwissen/kuendigungsfristen-strom-gas" className="group">
+            <Link to="/ratgeber/strom/laufzeit-kündigung" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">

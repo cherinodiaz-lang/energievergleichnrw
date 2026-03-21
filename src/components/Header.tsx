@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Zap, Menu, X, ChevronDown } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -10,26 +10,16 @@ import { getBreadcrumbItems } from '@/lib/internal-linking';
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
-  const [pathname, setPathname] = useState('/');
   const mobileMenuTriggerRef = useRef<HTMLButtonElement>(null);
   const mobileMenuDialogRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   // Close mobile menu when route changes
   useEffect(() => {
     setMobileMenuOpen(false);
     setOpenSubmenu(null);
-  }, [pathname]);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') {
-      return;
-    }
-
-    const syncPathname = () => setPathname(window.location.pathname);
-    syncPathname();
-    window.addEventListener('popstate', syncPathname);
-    return () => window.removeEventListener('popstate', syncPathname);
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (!mobileMenuOpen || typeof document === 'undefined') {
@@ -105,11 +95,12 @@ export default function Header() {
   }, [mobileMenuOpen]);
 
   const isActiveLink = (path: string): boolean => {
-    if (path === '/') return pathname === '/';
-    return pathname.startsWith(path);
+    if (path === '/') return location.pathname === '/';
+    return location.pathname.startsWith(path);
   };
 
   const getCtaLink = () => {
+    const pathname = location.pathname;
     if (pathname.includes('strom')) return ROUTES.stromvergleich;
     if (pathname.includes('gas')) return ROUTES.gasvergleich;
     if (pathname.includes('photovoltaik')) return ROUTES.photovoltaik;
@@ -119,12 +110,12 @@ export default function Header() {
 
   const handleCtaClick = () => {
     trackCTAClick('Kostenlos vergleichen');
-    window.location.assign(getCtaLink());
+    navigate(getCtaLink());
     setMobileMenuOpen(false);
   };
 
   // Get breadcrumb items for current page (only show on non-homepage)
-  const breadcrumbItems = pathname !== '/' ? getBreadcrumbItems(pathname) : [];
+  const breadcrumbItems = location.pathname !== '/' ? getBreadcrumbItems(location.pathname) : [];
 
   return (
     <>

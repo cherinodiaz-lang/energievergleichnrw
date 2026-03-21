@@ -1,5 +1,5 @@
 ---
-import HydratedRoutePage from "@/components/HydratedRoutePage";
+import AstroRouterProvider from "@/components/AstroRouterProvider";
 import FaqPage from "@/components/pages/FaqPage";
 import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
 ---
@@ -12,5 +12,7 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogTitle="FAQ | Energievergleich"
   ogDescription="Häufige Fragen zu Strom, Gas, Photovoltaik und Anbieterwechsel"
 >
-  <HydratedRoutePage path={Astro.url.pathname} Page={FaqPage} client:idle />
+  <AstroRouterProvider path={Astro.url.pathname} client:load>
+    <FaqPage />
+  </AstroRouterProvider>
 </SeoPageLayout>

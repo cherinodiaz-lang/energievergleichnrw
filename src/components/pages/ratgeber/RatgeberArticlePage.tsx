@@ -1,0 +1,76 @@
+import { useParams } from 'react-router-dom';
+import { ratgeberArticles } from '@/lib/ratgeber-map';
+import AngeboteVergleichenArticle from '@/components/pages/ratgeber/articles/AngeboteVergleichenArticle';
+import DachEignungArticle from '@/components/pages/ratgeber/articles/DachEignungArticle';
+import EinspeiseverguetungArticle from '@/components/pages/ratgeber/articles/EinspeiseverguetungArticle';
+import GasanbieterWechselnNrwArticle from '@/components/pages/ratgeber/articles/GasanbieterWechselnNrwArticle';
+import GaspreisgarantieArticle from '@/components/pages/ratgeber/articles/GaspreisgarantieArticle';
+import GewerbegasBeschaffungArticle from '@/components/pages/ratgeber/articles/GewerbegasBeschaffungArticle';
+import GewerbestromVertragArticle from '@/components/pages/ratgeber/articles/GewerbestromVertragArticle';
+import GrundversorgungGasSondervertragArticle from '@/components/pages/ratgeber/articles/GrundversorgungGasSondervertragArticle';
+import GrundversorgungVsSondervertragArticle from '@/components/pages/ratgeber/articles/GrundversorgungVsSondervertragArticle';
+import HeizungsartVerbrauchArticle from '@/components/pages/ratgeber/articles/HeizungsartVerbrauchArticle';
+import KuendigungsfristenArticle from '@/components/pages/ratgeber/articles/KuendigungsfristenArticle';
+import LastprofilLeistungspreisArticle from '@/components/pages/ratgeber/articles/LastprofilLeistungspreisArticle';
+import LieferantenwechselAblaufArticle from '@/components/pages/ratgeber/articles/LieferantenwechselAblaufArticle';
+import MaloIdZaehlernummerArticle from '@/components/pages/ratgeber/articles/MaloIdZaehlernummerArticle';
+import NeukndenbonusFallenArticle from '@/components/pages/ratgeber/articles/NeukndenbonusFallenArticle';
+import PVKostenNrwArticle from '@/components/pages/ratgeber/articles/PVKostenNrwArticle';
+import PVSpeicherArticle from '@/components/pages/ratgeber/articles/PVSpeicherArticle';
+import PreiserhoeungGasRechteArticle from '@/components/pages/ratgeber/articles/PreiserhoeungGasRechteArticle';
+import PreiserhoeungWasTunArticle from '@/components/pages/ratgeber/articles/PreiserhoeungWasTunArticle';
+import SofortSparmoeglichkeitenArticle from '@/components/pages/ratgeber/articles/SofortSparmoeglichkeitenArticle';
+import StromGrundversorgungArticle from '@/components/pages/ratgeber/articles/StromGrundversorgungArticle';
+import StromanbieterwechselnNrwArticle from '@/components/pages/ratgeber/articles/StromanbieterwechselnNrwArticle';
+import StromtarifVertragslaufzeitArticle from '@/components/pages/ratgeber/articles/StromtarifVertragslaufzeitArticle';
+import UmzugGasvertragArticle from '@/components/pages/ratgeber/articles/UmzugGasvertragArticle';
+import UmzugStromvertragArticle from '@/components/pages/ratgeber/articles/UmzugStromvertragArticle';
+import WechselSchiefgehtArticle from '@/components/pages/ratgeber/articles/WechselSchiefgehtArticle';
+import NotFoundPage from '@/components/pages/NotFoundPage';
+
+const articleComponents = {
+  "ratgeber/strom/grundversorgung": StromGrundversorgungArticle,
+  "ratgeber/strom/sofortige-sparmoeglichkeiten": SofortSparmoeglichkeitenArticle,
+  "ratgeber/strom/stromanbieterwechsel-nrw": StromanbieterwechselnNrwArticle,
+  "ratgeber/strom/grundversorgung-vs-sondervertrag": GrundversorgungVsSondervertragArticle,
+  "ratgeber/strom/neukundenboni-fallen": NeukndenbonusFallenArticle,
+  "ratgeber/strom/preiserhoeung-was-tun": PreiserhoeungWasTunArticle,
+  "ratgeber/strom/umzug-stromvertrag": UmzugStromvertragArticle,
+  "ratgeber/strom/stromtarif-vertragslaufzeit": StromtarifVertragslaufzeitArticle,
+  "ratgeber/strom/malo-id-zaehlernummer": MaloIdZaehlernummerArticle,
+  "ratgeber/gas/gasanbieter-wechseln-nrw": GasanbieterWechselnNrwArticle,
+  "ratgeber/gas/grundversorgung-gas-sondervertrag": GrundversorgungGasSondervertragArticle,
+  "ratgeber/gas/preiserhoeung-gas-rechte": PreiserhoeungGasRechteArticle,
+  "ratgeber/gas/umzug-gasvertrag": UmzugGasvertragArticle,
+  "ratgeber/gas/heizungsart-verbrauch": HeizungsartVerbrauchArticle,
+  "ratgeber/gas/gaspreisgarantie-worauf-achten": GaspreisgarantieArticle,
+  "ratgeber/gewerbe/gewerbestrom-vertrag-worauf-achten": GewerbestromVertragArticle,
+  "ratgeber/gewerbe/gewerbegas-beschaffung-tipps": GewerbegasBeschaffungArticle,
+  "ratgeber/gewerbe/lastprofil-leistungspreis-arbeitspreis": LastprofilLeistungspreisArticle,
+  "ratgeber/photovoltaik/pv-kosten-nrw-wovon-abhaengig": PVKostenNrwArticle,
+  "ratgeber/photovoltaik/pv-speicher-lohnt-sich": PVSpeicherArticle,
+  "ratgeber/photovoltaik/einspeiseverguetung-verstehen": EinspeiseverguetungArticle,
+  "ratgeber/photovoltaik/dach-eignung-checkliste": DachEignungArticle,
+  "ratgeber/photovoltaik/angebote-vergleichen-fehler": AngeboteVergleichenArticle,
+  "ratgeber/wechselwissen/kuendigungsfristen-strom-gas": KuendigungsfristenArticle,
+  "ratgeber/wechselwissen/lieferantenwechsel-ablauf": LieferantenwechselAblaufArticle,
+  "ratgeber/wechselwissen/was-tun-wenn-wechsel-schiefgeht": WechselSchiefgehtArticle,
+} as const;
+
+export default function RatgeberArticlePage() {
+  const { category, article } = useParams<{ category: string; article: string }>();
+  
+  if (!category || !article) {
+    return <NotFoundPage />;
+  }
+
+  const slug = `ratgeber/${category}/${article}`;
+  const articleMeta = ratgeberArticles.find((a) => a.slug === slug);
+  const ArticleComponent = articleComponents[slug as keyof typeof articleComponents];
+
+  if (!articleMeta || !ArticleComponent) {
+    return <NotFoundPage />;
+  }
+
+  return <ArticleComponent />;
+}

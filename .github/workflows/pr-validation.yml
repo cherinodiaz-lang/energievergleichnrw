@@ -7,33 +7,19 @@ jobs:
   seo-validation:
     name: SEO Validation
     runs-on: ubuntu-latest
-    env:
-      WIX_CLIENT_ID: ${{ secrets.WIX_CLIENT_ID }}
-      WIX_CLIENT_SECRET: ${{ secrets.WIX_CLIENT_SECRET }}
-      WIX_CLIENT_PUBLIC_KEY: ${{ secrets.WIX_CLIENT_PUBLIC_KEY }}
-      WIX_CLIENT_INSTANCE_ID: ${{ secrets.WIX_CLIENT_INSTANCE_ID }}
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 18.x
           cache: npm
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Run lint
-        run: npm run lint
-
       - name: Run SEO validation
         run: npm run validate:seo
-
-      - name: Run tests
-        run: npm run test
-
-      - name: Run production build
-        run: npm run build

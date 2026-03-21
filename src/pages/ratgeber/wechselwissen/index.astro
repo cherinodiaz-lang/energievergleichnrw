@@ -1,5 +1,5 @@
 ---
-import HydratedRoutePage from "@/components/HydratedRoutePage";
+import AstroRouterProvider from "@/components/AstroRouterProvider";
 import WechselwissenCategoryPage from "@/components/pages/ratgeber/WechselwissenCategoryPage";
 import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
 ---
@@ -12,5 +12,7 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogTitle="Wechselwissen | Ratgeber"
   ogDescription="Alles über Anbieterwechsel und Kündigungsfristen"
 >
-  <HydratedRoutePage path={Astro.url.pathname} Page={WechselwissenCategoryPage} client:idle />
+  <AstroRouterProvider path={Astro.url.pathname} client:load>
+    <WechselwissenCategoryPage />
+  </AstroRouterProvider>
 </SeoPageLayout>

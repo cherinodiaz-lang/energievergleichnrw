@@ -7,20 +7,20 @@
  * - GA4 tracking (consent-safe)
  */
 
-import { useState, type ComponentProps } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, AlertCircle, Loader } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { submitForm, trackFormSubmission, validateForm, type FormSubmissionData } from '@/services/form-submission';
 
 export interface FormSubmissionDialogProps {
   isOpen: boolean;
   onClose: () => void;
   formType: 'kontakt' | 'stromvergleich' | 'gasvergleich' | 'photovoltaik' | 'gewerbestrom' | 'gewerbegas';
-  formData: Record<string, unknown>;
+  formData: Record<string, any>;
   requiredFields: string[];
   onSuccess?: () => void;
   title?: string;
@@ -35,13 +35,13 @@ export default function FormSubmissionDialog({
   onSuccess,
   title = 'Anfrage senden'
 }: FormSubmissionDialogProps) {
-  type FormSubmitEvent = Parameters<NonNullable<ComponentProps<'form'>['onSubmit']>>[0];
+  const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [privacyConsent, setPrivacyConsent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const handleSubmit = async (e: FormSubmitEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Check privacy consent
@@ -53,10 +53,7 @@ export default function FormSubmissionDialog({
     }
 
     // Validate form
-    const validation = validateForm(
-      formData as Record<string, string | number | null | undefined>,
-      requiredFields,
-    );
+    const validation = validateForm(formData, requiredFields);
     if (!validation.valid) {
       setErrors(validation.errors);
       return;
@@ -67,7 +64,7 @@ export default function FormSubmissionDialog({
 
     try {
       const submissionData: FormSubmissionData = {
-        ...formData,
+        ...(formData as Record<string, any>),
         type: formType,
         name: String(formData.name ?? ''),
         email: String(formData.email ?? ''),
@@ -90,7 +87,7 @@ export default function FormSubmissionDialog({
         // Redirect to /danke after 2 seconds
         setTimeout(() => {
           handleClose();
-          window.location.assign('/danke');
+          navigate('/danke');
         }, 2000);
       } else {
         setErrors({

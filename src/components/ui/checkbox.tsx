@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils"
 import { CheckIcon } from "@radix-ui/react-icons"
 
 const Checkbox = React.forwardRef<
-  React.ComponentRef<typeof CheckboxPrimitive.Root>,
+  React.ElementRef<typeof CheckboxPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
 >(({ className, ...props }, ref) => (
   <CheckboxPrimitive.Root
@@ -26,7 +26,7 @@ Checkbox.displayName = CheckboxPrimitive.Root.displayName
 
 // Wrapper component that includes a label with primary text color
 const CheckboxWithText = React.forwardRef<
-  React.ComponentRef<typeof CheckboxPrimitive.Root>,
+  React.ElementRef<typeof CheckboxPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root> & {
     label: string;
     labelClassName?: string;

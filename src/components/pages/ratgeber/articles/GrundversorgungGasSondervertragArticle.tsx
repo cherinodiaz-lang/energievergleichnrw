@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -269,7 +269,7 @@ export default function GrundversorgungGasSondervertragArticle() {
                   </CardContent>
                 </Card>
               </Link>
-              <Link to="/ratgeber/gas/preiserhoeung-gas-rechte" className="group">
+              <Link to="/ratgeber/gas/preiserhoehung-gas-rechte" className="group">
                 <Card className="h-full hover:shadow-lg transition-shadow">
                   <CardHeader>
                     <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">

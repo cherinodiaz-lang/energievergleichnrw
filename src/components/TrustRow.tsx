@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle, Shield, Info } from 'lucide-react';
 

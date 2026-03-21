@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 interface SEOHeadProps {
   title: string;
@@ -16,7 +17,6 @@ interface SEOHeadProps {
   keywords?: string;
   robots?: string;
   author?: string;
-  pathname?: string;
 }
 
 const SITE_URL = "https://www.energievergleich.shop";
@@ -48,8 +48,10 @@ export default function SEOHead({
   keywords,
   robots = "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
   author = "energievergleich.shop",
-  pathname,
 }: SEOHeadProps) {
+  const location = useLocation();
+
+  const canonicalUrl = getCanonicalUrl(canonical, location.pathname);
   const effectiveRobots = noindex
     ? "noindex, nofollow"
     : robots;
@@ -86,11 +88,6 @@ export default function SEOHead({
       }
       element.setAttribute("href", href);
     };
-
-    const currentPathname = canonical
-      ? new URL(canonical, SITE_URL).pathname
-      : pathname ?? window.location.pathname;
-    const canonicalUrl = getCanonicalUrl(canonical, currentPathname);
 
     // Basic SEO
     setMeta("description", description);
@@ -129,7 +126,7 @@ export default function SEOHead({
     noindex,
     effectiveRobots,
     author,
-    pathname,
+    location.pathname,
   ]);
 
   return null;

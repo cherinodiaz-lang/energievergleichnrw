@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { BrowserRouter, StaticRouter } from 'react-router-dom';
+import { BrowserRouter, StaticRouter } from 'react-router';
 
 interface AstroRouterProviderProps {
   path: string;
@@ -7,7 +7,7 @@ interface AstroRouterProviderProps {
 }
 
 export default function AstroRouterProvider({ path, children }: AstroRouterProviderProps) {
-  if (typeof window === 'undefined') {
+  if (import.meta.env.SSR) {
     return <StaticRouter location={path}>{children}</StaticRouter>;
   }
 

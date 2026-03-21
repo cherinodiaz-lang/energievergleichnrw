@@ -29,15 +29,10 @@ configure({
 
 afterEach(() => {
   cleanup()
-  if (typeof document !== 'undefined') {
-    document.head.innerHTML = ''
-    document.body.innerHTML = ''
-    document.title = ''
-  }
+  document.head.innerHTML = ''
+  document.body.innerHTML = ''
+  document.title = ''
 })
-
-// Make React's act available globally for testing-library
-global.IS_REACT_ACT_ENVIRONMENT = true
 
 class ResizeObserverMock {
   observe() {}
@@ -45,6 +40,7 @@ class ResizeObserverMock {
   disconnect() {}
 }
 
-if (!global.ResizeObserver) {
-  global.ResizeObserver = ResizeObserverMock as typeof ResizeObserver
-}
+global.ResizeObserver = ResizeObserverMock as typeof ResizeObserver
+
+// Make React's act available globally for testing-library
+global.IS_REACT_ACT_ENVIRONMENT = true

@@ -1,5 +1,5 @@
 ---
-import HydratedRoutePage from "@/components/HydratedRoutePage";
+import AstroRouterProvider from "@/components/AstroRouterProvider";
 import PhotovoltaikNrwPage from "@/components/pages/PhotovoltaikNrwPage";
 import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
 import { getPageSEO } from "@/lib/seo-config";
@@ -15,5 +15,7 @@ const seo = getPageSEO("photovoltaik");
   ogTitle={seo.ogTitle}
   ogDescription={seo.ogDescription}
 >
-  <HydratedRoutePage path={Astro.url.pathname} Page={PhotovoltaikNrwPage} client:load />
+  <AstroRouterProvider path={Astro.url.pathname} client:load>
+    <PhotovoltaikNrwPage />
+  </AstroRouterProvider>
 </SeoPageLayout>

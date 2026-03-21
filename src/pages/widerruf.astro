@@ -1,5 +1,5 @@
 ---
-import HydratedRoutePage from "@/components/HydratedRoutePage";
+import AstroRouterProvider from "@/components/AstroRouterProvider";
 import WiderrufPage from "@/components/pages/WiderrufPage";
 import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
 ---
@@ -12,5 +12,7 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogTitle="Widerrufsbelehrung | energievergleich.shop"
   ogDescription="Informationen zum Widerrufsrecht bei energievergleich.shop"
 >
-  <HydratedRoutePage path={Astro.url.pathname} Page={WiderrufPage} client:idle />
+  <AstroRouterProvider path={Astro.url.pathname} client:load>
+    <WiderrufPage />
+  </AstroRouterProvider>
 </SeoPageLayout>
