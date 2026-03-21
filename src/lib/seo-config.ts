@@ -3,8 +3,6 @@
  * Centralized SEO settings and metadata
  */
 
-const GOOGLE_SITE_VERIFICATION_FALLBACK = "nirROusqBNxCLF7xk8jC0pqhCmu9YNd5f9P9-tj_NPw";
-
 export const SEO_CONFIG = {
   // Site Information
   // PRIMARY DOMAIN: https://www.energievergleich.shop
@@ -20,7 +18,7 @@ export const SEO_CONFIG = {
     logo: 'https://static.wixstatic.com/media/32e7c0_8cede5e338be484bb8dcaad81c053c82~mv2.png?originWidth=1920&originHeight=1024',
     areaServed: 'Nordrhein-Westfalen',
     contact: {
-      email: 'support@energievergleich.nrw',
+      email: 'info@energievergleich.nrw',
       telephone: '+49 (0) 2 01 - 1 03 - 39 39',
     },
     address: {
@@ -46,10 +44,9 @@ export const SEO_CONFIG = {
   // Language
   language: 'de',
 
-  // Search Console & Analytics
-  googleSearchConsoleVerification:
-    import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION ?? GOOGLE_SITE_VERIFICATION_FALLBACK,
-  googleAnalyticsId: import.meta.env.PUBLIC_GA4_MEASUREMENT_ID ?? 'G-X60BTL057V',
+  // Search Console & Analytics (add your IDs here)
+  googleSearchConsoleVerification: '', // Add your verification code
+  googleAnalyticsId: 'G-X60BTL057V', // GA4 Measurement ID for energievergleich.shop
 
   // Robots Meta
   robots: 'index, follow',

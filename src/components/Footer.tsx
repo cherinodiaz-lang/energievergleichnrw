@@ -1,23 +1,6 @@
-import type { SVGProps } from 'react';
 import { Link } from 'react-router-dom';
-import { Zap, Mail, Phone, Globe } from 'lucide-react';
+import { Zap, Mail, Phone, MapPin, Facebook, Linkedin, Globe } from 'lucide-react';
 import { ROUTES, NAV_SERVICE, NAV_LEGAL, NAV_SECONDARY } from '@/lib/routes';
-
-function FacebookIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
-      <path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.6 1.6-1.6H16V4.8c-.3 0-1.1-.1-2-.1-2 0-3.4 1.2-3.4 3.5V11H8v3h2.6v7h2.9Z" />
-    </svg>
-  );
-}
-
-function LinkedInIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
-      <path d="M6.9 8.2a1.7 1.7 0 1 1 0-3.5 1.7 1.7 0 0 1 0 3.5ZM8.3 19H5.5V9.8h2.8V19Zm10.2 0h-2.8v-4.5c0-1.1 0-2.5-1.5-2.5s-1.8 1.2-1.8 2.4V19H9.6V9.8h2.7V11h0c.4-.7 1.3-1.5 2.7-1.5 2.9 0 3.5 1.9 3.5 4.4V19Z" />
-    </svg>
-  );
-}
 
 export default function Footer() {
   const comparisonLinks = [
@@ -30,8 +13,8 @@ export default function Footer() {
 
   return (
     <footer className="bg-primary text-primary-foreground">
-      <div className="max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-12 py-16 sm:py-20 lg:py-24">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 sm:gap-12 lg:gap-14">
+      <div className="max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16 lg:py-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-12">
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <Link to={ROUTES.home} className="flex items-center gap-2 sm:gap-3 mb-6" aria-label="Energievergleich NRW - Startseite">
@@ -106,10 +89,10 @@ export default function Footer() {
               <li className="flex items-start gap-2 sm:gap-3">
                 <Mail className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <a
-                  href="mailto:support@energievergleich.nrw"
+                  href="mailto:info@energievergleich.nrw"
                   className="font-paragraph text-xs sm:text-sm opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity break-all"
                 >
-                  support@energievergleich.nrw
+                  info@energievergleich.nrw
                 </a>
               </li>
               <li className="flex items-start gap-2 sm:gap-3">
@@ -132,7 +115,7 @@ export default function Footer() {
                 className="inline-flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded transition-opacity"
                 aria-label="Facebook"
               >
-                <FacebookIcon className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Facebook className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
               </a>
               <a
                 href="https://linkedin.com"
@@ -141,7 +124,7 @@ export default function Footer() {
                 className="inline-flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded transition-opacity"
                 aria-label="LinkedIn"
               >
-                <LinkedInIcon className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
               </a>
               <a
                 href="https://xing.com"
@@ -157,7 +140,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-primary-foreground/20 mt-12 sm:mt-16 lg:mt-20 pt-8 sm:pt-10 lg:pt-12">
+        <div className="border-t border-primary-foreground/20 mt-8 sm:mt-12 pt-6 sm:pt-8">
           <nav aria-label="Interne SEO Links" className="mb-4 sm:mb-6">
             <ul className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs sm:text-sm leading-snug">
               {NAV_SECONDARY.map((item) => (

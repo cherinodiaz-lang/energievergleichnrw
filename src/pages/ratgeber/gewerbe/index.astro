@@ -1,0 +1,18 @@
+---
+import AstroRouterProvider from "@/components/AstroRouterProvider";
+import GewerbeCategoryPage from "@/components/pages/ratgeber/GewerbeCategoryPage";
+import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
+---
+
+<SeoPageLayout
+  title="Gewerbeenergie | Ratgeber | Energievergleich"
+  description="Ratgeber für Gewerbekunden: Gewerbestrom, Gewerbegas und Energieoptimierung für Unternehmen in NRW."
+  canonicalPath="/ratgeber/gewerbe"
+  keywords="Gewerbeenergie, Gewerbestrom, Gewerbegas, Unternehmen, Energiekosten"
+  ogTitle="Gewerbeenergie | Ratgeber"
+  ogDescription="Ratgeber für Gewerbekunden und Unternehmen"
+>
+  <AstroRouterProvider path={Astro.url.pathname} client:load>
+    <GewerbeCategoryPage />
+  </AstroRouterProvider>
+</SeoPageLayout>

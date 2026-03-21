@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, ArrowRight } from 'lucide-react';
@@ -134,8 +135,8 @@ export default function ThankYouPage() {
           <div className="mt-16 pt-12 border-t border-light-grey">
             <p className="font-paragraph text-center text-gray-600 text-sm">
               Haben Sie Fragen? Kontaktieren Sie uns jederzeit unter{' '}
-              <a href="mailto:support@energievergleich.nrw" className="text-primary font-semibold hover:underline">
-                support@energievergleich.nrw
+              <a href="mailto:info@energievergleich.shop" className="text-primary font-semibold hover:underline">
+                info@energievergleich.shop
               </a>
             </p>
           </div>

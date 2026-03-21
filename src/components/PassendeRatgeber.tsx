@@ -4,6 +4,7 @@
  * Filters by targetMoneyPage, supplements with Wechselwissen if needed
  */
 
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Clock, ArrowRight } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -82,7 +83,7 @@ export default function PassendeRatgeber({
 
         <div className="mt-8 sm:mt-12 text-center">
           <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary/5">
-            <Link to={ROUTES.ratgeberHub}>
+          <Link to={ROUTES.ratgeberHub}>
               Alle Ratgeber ansehen
               <ArrowRight className="w-4 h-4 ml-2" />
             </Link>

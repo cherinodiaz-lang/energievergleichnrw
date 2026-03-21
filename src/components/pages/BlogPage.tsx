@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { BaseCrudService } from '@/integrations';
-import { BlogPosts, Categories } from '@/entities/index';
+import { BlogPosts, Categories, Authors } from '@/entities/index';
 import { Image } from '@/components/ui/image';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
@@ -37,32 +37,22 @@ export default function BlogPage() {
         );
         setCategories(categoriesResult.items || []);
 
+        // Load posts with pagination and category filter
+        let query: any[] = [];
+        if (selectedCategory) {
+          query = [{ fieldName: 'category', value: selectedCategory }];
+        }
+
         const postsResult = await BaseCrudService.getAll<BlogPosts>(
           'blogposts',
           {
             singleRef: ['category', 'author'],
           },
-          { limit: 1000 }
+          { limit: POSTS_PER_PAGE, skip }
         );
 
-        const filteredPosts = (postsResult.items || []).filter((post) => {
-          if (!selectedCategory) {
-            return true;
-          }
-
-          if (typeof post.category === 'string') {
-            return post.category === selectedCategory;
-          }
-
-          if (post.category && typeof post.category === 'object' && '_id' in post.category) {
-            return (post.category as { _id: string })._id === selectedCategory;
-          }
-
-          return false;
-        });
-
-        setTotalCount(filteredPosts.length);
-        setPosts(filteredPosts.slice(skip, skip + POSTS_PER_PAGE));
+        setPosts(postsResult.items || []);
+        setTotalCount(postsResult.totalCount || 0);
       } catch (error) {
         console.error('Error loading blog data:', error);
       } finally {
@@ -172,45 +162,40 @@ export default function BlogPage() {
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.4, delay: index * 0.05 }}
-                          className="h-full"
+                          className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col h-full"
                         >
-                          <Link
-                            to={`/blog/${post.urlSlug}`}
-                            className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col h-full"
-                          >
-                            {post.thumbnail && (
-                              <div className="relative w-full h-48 overflow-hidden bg-light-grey">
-                                <Image
-                                  src={post.thumbnail}
-                                  alt={post.title || 'Blog post thumbnail'}
-                                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                                  width={400}
-                                  height={200}
-                                />
-                              </div>
-                            )}
-                            <div className="p-6 flex flex-col flex-grow">
-                              {categoryObj && typeof categoryObj.name === 'string' && (
-                                <span className="inline-block text-xs font-heading font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full mb-3 w-fit">
-                                  {categoryObj.name}
-                                </span>
-                              )}
-                              <h3 className="font-heading text-xl font-bold text-foreground mb-2 line-clamp-2">
-                                {post.title}
-                              </h3>
-                              <p className="font-paragraph text-sm text-foreground/70 mb-4 line-clamp-3 flex-grow">
-                                {post.excerpt}
-                              </p>
-                              <div className="flex items-center justify-between text-xs text-foreground/60 pt-4 border-t">
-                                {authorObj && typeof authorObj.authorName === 'string' && (
-                                  <span>Von {authorObj.authorName}</span>
-                                )}
-                                {post.readingTime && (
-                                  <span>{post.readingTime} min Lesezeit</span>
-                                )}
-                              </div>
+                          {post.thumbnail && (
+                            <div className="relative w-full h-48 overflow-hidden bg-light-grey">
+                              <Image
+                                src={post.thumbnail}
+                                alt={post.title || 'Blog post thumbnail'}
+                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                                width={400}
+                                height={200}
+                              />
                             </div>
-                          </Link>
+                          )}
+                          <div className="p-6 flex flex-col flex-grow">
+                            {categoryObj && typeof categoryObj.name === 'string' && (
+                              <span className="inline-block text-xs font-heading font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full mb-3 w-fit">
+                                {categoryObj.name}
+                              </span>
+                            )}
+                            <h3 className="font-heading text-xl font-bold text-foreground mb-2 line-clamp-2">
+                              {post.title}
+                            </h3>
+                            <p className="font-paragraph text-sm text-foreground/70 mb-4 line-clamp-3 flex-grow">
+                              {post.excerpt}
+                            </p>
+                            <div className="flex items-center justify-between text-xs text-foreground/60 pt-4 border-t">
+                              {authorObj && typeof authorObj.authorName === 'string' && (
+                                <span>Von {authorObj.authorName}</span>
+                              )}
+                              {post.readingTime && (
+                                <span>{post.readingTime} min Lesezeit</span>
+                              )}
+                            </div>
+                          </div>
                         </motion.article>
                       );
                     })()

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen, Zap, Flame, Building2, Sun, ArrowRight, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';

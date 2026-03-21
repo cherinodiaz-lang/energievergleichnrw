@@ -1,0 +1,18 @@
+---
+import AstroRouterProvider from "@/components/AstroRouterProvider";
+import WiderrufPage from "@/components/pages/WiderrufPage";
+import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
+---
+
+<SeoPageLayout
+  title="Widerrufsbelehrung | energievergleich.shop"
+  description="Informationen zum Widerrufsrecht bei energievergleich.shop."
+  canonicalPath="/widerruf"
+  keywords="Widerruf, Widerrufsbelehrung"
+  ogTitle="Widerrufsbelehrung | energievergleich.shop"
+  ogDescription="Informationen zum Widerrufsrecht bei energievergleich.shop"
+>
+  <AstroRouterProvider path={Astro.url.pathname} client:load>
+    <WiderrufPage />
+  </AstroRouterProvider>
+</SeoPageLayout>

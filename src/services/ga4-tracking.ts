@@ -14,14 +14,14 @@
 
 declare global {
   interface Window {
-    dataLayer?: unknown[];
-    gtag?: (...args: unknown[]) => void;
+    dataLayer?: any[];
+    gtag?: (...args: any[]) => void;
   }
 }
 
 interface QueuedEvent {
   eventName: string;
-  eventData: Record<string, unknown>;
+  eventData: Record<string, any>;
 }
 
 let eventQueue: QueuedEvent[] = [];
@@ -30,7 +30,6 @@ let debugMode = false;
 let debugTestPingSent = false;
 let measurementIdGlobal = '';
 let scriptLoaded = false;
-let initializedMeasurementId = '';
 
 /**
  * Initialize GA4 with consent mode
@@ -40,14 +39,8 @@ let initializedMeasurementId = '';
  */
 export function initializeGA4(measurementId: string) {
   if (typeof window === 'undefined') return;
-  if (!measurementId) return;
-
-  if (initializedMeasurementId === measurementId && window.gtag) {
-    return;
-  }
 
   measurementIdGlobal = measurementId;
-  initializedMeasurementId = measurementId;
 
   // Check for debug mode via URL parameter (?debug=1)
   debugMode = new URLSearchParams(window.location.search).get('debug') === '1';
@@ -75,15 +68,6 @@ export function initializeGA4(measurementId: string) {
   window.gtag('js', new Date());
 
   // Load GA4 script - ASYNC
-  const existingScript = document.querySelector<HTMLScriptElement>(
-    `script[src="https://www.googletagmanager.com/gtag/js?id=${measurementId}"]`
-  );
-
-  if (existingScript) {
-    scriptLoaded = true;
-    return;
-  }
-
   const script = document.createElement('script');
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
@@ -170,7 +154,7 @@ export function updateConsent(analyticsConsent: boolean, marketingConsent: boole
  * Events are queued if consent is not yet determined
  * If debug mode is active, adds debug_mode: true to all events
  */
-export function trackEvent(eventName: string, eventData: Record<string, unknown> = {}) {
+export function trackEvent(eventName: string, eventData: Record<string, any> = {}) {
   if (typeof window === 'undefined') return;
 
   // If consent not yet determined, queue the event

@@ -1,0 +1,18 @@
+---
+import AstroRouterProvider from "@/components/AstroRouterProvider";
+import StromCategoryPage from "@/components/pages/ratgeber/StromCategoryPage";
+import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
+---
+
+<SeoPageLayout
+  title="Stromvergleich & Tarife | Ratgeber | Energievergleich"
+  description="Ratgeber zu Stromtarifen, Stromwechsel und Sparpotenziale in NRW. Erfahren Sie alles über Grundversorgung, Sonderverträge und mehr."
+  canonicalPath="/ratgeber/strom"
+  keywords="Stromtarife, Stromvergleich, Stromwechsel, Grundversorgung, Sondervertrag"
+  ogTitle="Stromvergleich & Tarife | Ratgeber"
+  ogDescription="Umfassender Ratgeber zu Stromtarifen und Stromwechsel in NRW"
+>
+  <AstroRouterProvider path={Astro.url.pathname} client:load>
+    <StromCategoryPage />
+  </AstroRouterProvider>
+</SeoPageLayout>

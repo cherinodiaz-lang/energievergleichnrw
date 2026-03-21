@@ -1,0 +1,21 @@
+---
+import AstroRouterProvider from "@/components/AstroRouterProvider";
+import MethodologyPage from "@/components/pages/MethodologyPage";
+import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
+import { getPageSEO } from "@/lib/seo-config";
+
+const seo = getPageSEO("methodik");
+---
+
+<SeoPageLayout
+  title={seo.title}
+  description={seo.description}
+  canonicalPath="/methodik"
+  keywords={seo.keywords}
+  ogTitle={seo.ogTitle}
+  ogDescription={seo.ogDescription}
+>
+  <AstroRouterProvider path={Astro.url.pathname} client:load>
+    <MethodologyPage />
+  </AstroRouterProvider>
+</SeoPageLayout>

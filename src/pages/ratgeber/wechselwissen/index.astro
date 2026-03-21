@@ -1,0 +1,18 @@
+---
+import AstroRouterProvider from "@/components/AstroRouterProvider";
+import WechselwissenCategoryPage from "@/components/pages/ratgeber/WechselwissenCategoryPage";
+import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
+---
+
+<SeoPageLayout
+  title="Wechselwissen | Ratgeber | Energievergleich"
+  description="Ratgeber zum Anbieterwechsel: Kündigungsfristen, Ablauf und Tipps für Strom- und Gaswechsel in NRW."
+  canonicalPath="/ratgeber/wechselwissen"
+  keywords="Wechselwissen, Anbieterwechsel, Kündigungsfrist, Lieferantenwechsel"
+  ogTitle="Wechselwissen | Ratgeber"
+  ogDescription="Alles über Anbieterwechsel und Kündigungsfristen"
+>
+  <AstroRouterProvider path={Astro.url.pathname} client:load>
+    <WechselwissenCategoryPage />
+  </AstroRouterProvider>
+</SeoPageLayout>

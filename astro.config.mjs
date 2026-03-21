@@ -1,9 +1,6 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
-import sentry from "@sentry/astro";
-import partytown from "@astrojs/partytown";
-import compress from "astro-compress";
 import cloudProviderFetchAdapter from "@wix/cloud-provider-fetch-adapter";
 import wix from "@wix/astro";
 import monitoring from "@wix/monitoring-astro";
@@ -14,9 +11,9 @@ import customErrorOverlayPlugin from "./vite-error-overlay-plugin.js";
 import postcssPseudoToData from "@wix/postcss-pseudo-to-data";
 
 const isBuild = process.env.NODE_ENV == "production";
+
 // https://astro.build/config
 export default defineConfig({
-  site: "https://www.energievergleich.shop",
   output: "server",
   integrations: [
     {
@@ -34,31 +31,6 @@ export default defineConfig({
       },
     },
     tailwind(),
-    sentry({
-      org: process.env.SENTRY_ORG,
-      project: process.env.SENTRY_PROJECT_SERVER,
-      authToken: process.env.SENTRY_AUTH_TOKEN,
-      enabled: {
-        client: true,
-        server: true,
-      },
-      telemetry: false,
-    }),
-    partytown({
-      config: {
-        forward: ["dataLayer.push"],
-      },
-    }),
-    compress({
-      CSS: true,
-      HTML: true,
-      JavaScript: true,
-      Image: false,
-      Exclude: [
-        (file) =>
-          file.includes("/dist/_worker.js/pages/_wix/extensions/service-plugins/"),
-      ],
-    }),
     wix({
       htmlEmbeds: isBuild,
       auth: true,
@@ -103,7 +75,7 @@ export default defineConfig({
     domains: ["static.wixstatic.com"],
   },
   server: {
-    allowedHosts: ["www.energievergleich.shop", "energievergleich.shop", "localhost", "127.0.0.1"],
+    allowedHosts: ["energievergleich.shop", "localhost"],
     host: true,
     headers: {
       "X-Frame-Options": "DENY",
@@ -114,8 +86,5 @@ export default defineConfig({
   },
   security: {
     checkOrigin: true
-  },
-  experimental: {
-    csp: true,
   }
 });
