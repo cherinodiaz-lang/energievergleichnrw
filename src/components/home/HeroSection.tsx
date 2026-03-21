@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full bg-gradient-to-br from-primary via-primary to-primary-dark py-10 sm:py-14 md:py-20 lg:py-28 overflow-hidden">
+    <section className="relative w-full bg-gradient-to-br from-primary via-primary to-primary py-10 sm:py-14 md:py-20 lg:py-28 overflow-hidden">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 right-0 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-secondary rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-secondary rounded-full blur-3xl" />
