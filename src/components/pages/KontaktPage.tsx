@@ -159,7 +159,7 @@ export default function KontaktPage() {
                 <CardHeader className="bg-primary text-white">
                   <CardTitle className="font-heading text-2xl">Kontaktformular</CardTitle>
                 </CardHeader>
-                <CardContent className="p-8 ox-hidden">
+                <CardContent className="p-8">
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">

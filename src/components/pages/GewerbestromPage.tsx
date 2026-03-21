@@ -122,7 +122,7 @@ export default function GewerbestromPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background break-words leading-relaxed">
+    <div className="min-h-screen bg-background break-words leading-mobile">
       <SEOHead
         title={seo.title}
         description={seo.description}

@@ -33,6 +33,9 @@ export default {
                 "destructive-foreground": "#FFFFFF",
                 foreground: "#000000"
             },
+            lineHeight: {
+                mobile: '1.6',
+            },
         },
     },
     future: {
