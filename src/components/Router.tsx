@@ -17,10 +17,32 @@ import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 // Fallback component for lazy-loaded routes
 const LazyFallback = () => <div className="min-h-screen flex items-center justify-center" />;
 
+// Lazy-loaded page components
+const HomePage = lazy(() => import('@/components/pages/HomePage'));
 const ThankYouPage = lazy(() => import('@/components/pages/ThankYouPage'));
 const BlogPage = lazy(() => import('@/components/pages/BlogPage'));
 const BlogDetailPage = lazy(() => import('@/components/pages/BlogDetailPage'));
 const NotFoundPage = lazy(() => import('@/components/pages/NotFoundPage'));
+const AgbPage = lazy(() => import('@/components/pages/AgbPage'));
+const DatenschutzPage = lazy(() => import('@/components/pages/DatenschutzPage'));
+const FaqPage = lazy(() => import('@/components/pages/FaqPage'));
+const GasvergleichNrwPage = lazy(() => import('@/components/pages/GasvergleichNrwPage'));
+const GewerbegasPage = lazy(() => import('@/components/pages/GewerbegasPage'));
+const GewerbestromPage = lazy(() => import('@/components/pages/GewerbestromPage'));
+const ImpressumPage = lazy(() => import('@/components/pages/ImpressumPage'));
+const KontaktPage = lazy(() => import('@/components/pages/KontaktPage'));
+const MethodologyPage = lazy(() => import('@/components/pages/MethodologyPage'));
+const PhotovoltaikNrwPage = lazy(() => import('@/components/pages/PhotovoltaikNrwPage'));
+const StromvergleichNrwPage = lazy(() => import('@/components/pages/StromvergleichNrwPage'));
+const WiderrufPage = lazy(() => import('@/components/pages/WiderrufPage'));
+const SitemapPage = lazy(() => import('@/components/pages/SitemapPage'));
+const RatgeberPage = lazy(() => import('@/components/pages/RatgeberPage'));
+const GasCategoryPage = lazy(() => import('@/components/pages/ratgeber/GasCategoryPage'));
+const StromCategoryPage = lazy(() => import('@/components/pages/ratgeber/StromCategoryPage'));
+const PhotovoltaikCategoryPage = lazy(() => import('@/components/pages/ratgeber/PhotovoltaikCategoryPage'));
+const GewerbeCategoryPage = lazy(() => import('@/components/pages/ratgeber/GewerbeCategoryPage'));
+const WechselwissenCategoryPage = lazy(() => import('@/components/pages/ratgeber/WechselwissenCategoryPage'));
+const RatgeberArticlePage = lazy(() => import('@/components/pages/ratgeber/RatgeberArticlePage'));
 
 // Layout component that includes ScrollToTop and SEO components
 function Layout() {
@@ -59,6 +81,10 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
+        index: true,
+        element: <HomePage />,
+      },
+      {
         path: "danke",
         element: <ThankYouPage />,
       },
@@ -73,6 +99,86 @@ const router = createBrowserRouter([
       {
         path: "blog/:slug",
         element: <BlogDetailPage />,
+      },
+      {
+        path: "agb",
+        element: <AgbPage />,
+      },
+      {
+        path: "datenschutz",
+        element: <DatenschutzPage />,
+      },
+      {
+        path: "faq",
+        element: <FaqPage />,
+      },
+      {
+        path: "gasvergleich-nrw",
+        element: <GasvergleichNrwPage />,
+      },
+      {
+        path: "gewerbegas",
+        element: <GewerbegasPage />,
+      },
+      {
+        path: "gewerbestrom",
+        element: <GewerbestromPage />,
+      },
+      {
+        path: "impressum",
+        element: <ImpressumPage />,
+      },
+      {
+        path: "kontakt",
+        element: <KontaktPage />,
+      },
+      {
+        path: "methodik",
+        element: <MethodologyPage />,
+      },
+      {
+        path: "photovoltaik-nrw",
+        element: <PhotovoltaikNrwPage />,
+      },
+      {
+        path: "stromvergleich-nrw",
+        element: <StromvergleichNrwPage />,
+      },
+      {
+        path: "widerruf",
+        element: <WiderrufPage />,
+      },
+      {
+        path: "sitemap",
+        element: <SitemapPage />,
+      },
+      {
+        path: "ratgeber",
+        element: <RatgeberPage />,
+      },
+      {
+        path: "ratgeber/gas",
+        element: <GasCategoryPage />,
+      },
+      {
+        path: "ratgeber/strom",
+        element: <StromCategoryPage />,
+      },
+      {
+        path: "ratgeber/photovoltaik",
+        element: <PhotovoltaikCategoryPage />,
+      },
+      {
+        path: "ratgeber/gewerbe",
+        element: <GewerbeCategoryPage />,
+      },
+      {
+        path: "ratgeber/wechselwissen",
+        element: <WechselwissenCategoryPage />,
+      },
+      {
+        path: "ratgeber/:category/:article",
+        element: <RatgeberArticlePage />,
       },
       {
         path: "*",
