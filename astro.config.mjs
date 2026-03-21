@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from "astro/config";
+import { fileURLToPath } from "node:url";
 import tailwind from "@astrojs/tailwind";
 import sentry from "@sentry/astro";
 import partytown from "@astrojs/partytown";
@@ -14,6 +15,7 @@ import customErrorOverlayPlugin from "./vite-error-overlay-plugin.js";
 import postcssPseudoToData from "@wix/postcss-pseudo-to-data";
 
 const isBuild = process.env.NODE_ENV == "production";
+const reactRouterDomEsmPath = fileURLToPath(new URL("./node_modules/react-router-dom/dist/index.mjs", import.meta.url));
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.energievergleich.shop",
@@ -59,11 +61,11 @@ export default defineConfig({
           file.includes("/dist/_worker.js/pages/_wix/extensions/service-plugins/"),
       ],
     }),
-    wix({
-      htmlEmbeds: isBuild,
+    ...(isBuild ? [wix({
+      htmlEmbeds: true,
       auth: true,
       robots: false,
-    }),
+    })] : []),
     ...(isBuild ? [monitoring()] : []),
     react(isBuild ? {} : {
       babel: { plugins: [sourceAttrsPlugin, dynamicDataPlugin] },
@@ -72,10 +74,16 @@ export default defineConfig({
   vite: {
     plugins: [customErrorOverlayPlugin()],
     cacheDir: 'node_modules/.cache/.vite',
+    resolve: {
+      alias: {
+        'react-router-dom': reactRouterDomEsmPath,
+      },
+    },
     optimizeDeps: {
       include: [
         'react',
         'react-dom',
+        'react-router-dom',
         'zustand',
         'framer-motion',
         'date-fns',

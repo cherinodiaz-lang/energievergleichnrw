@@ -18,7 +18,6 @@ import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
-import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import RelatedPages from '@/components/RelatedPages';
 import { Badge } from '@/components/ui/badge';
@@ -67,7 +66,7 @@ const INITIAL_FORM_DATA: CalculatorFormData = {
 
 const INITIAL_STATE: SearchState = {
   status: 'idle',
-  message: 'Geben Sie Ihre PLZ und Ihren Jahresverbrauch ein, um verfuegbare Stromtarife fuer Ihren Haushalt abzurufen.',
+  message: 'Geben Sie Ihre PLZ und Ihren Jahresverbrauch ein. Solange keine Live-Tarifquelle aktiv ist, sehen Sie klar gekennzeichnete Beispielrechnungen statt echter Anbieterlisten.',
   tariffs: [],
   configured: false,
   source: null,
@@ -80,7 +79,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Werden echte Tarife angezeigt?',
-    a: 'Ja. Wenn eine Live-Tarifdatenquelle aktiv ist, werden echte Tarife ausgegeben. Ohne Live-Quelle berechnet der Rechner stattdessen transparente Stromkosten-Szenarien auf Basis Ihrer Eingaben.',
+    a: 'Nur wenn die Live-Tarifdatenquelle aktiv geschaltet ist. Ohne Live-Quelle berechnet der Rechner stattdessen klar gekennzeichnete Beispiel- und Kostenszenarien auf Basis Ihrer Eingaben.',
   },
   {
     q: 'Wie funktioniert der Rechner ohne Live-Tarifquelle?',
@@ -88,7 +87,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Kann ich nur Oekostrom anzeigen lassen?',
-    a: 'Ja. Ueber den Oekostrom-Filter werden Live-Tarife entsprechend gefiltert oder die Modellrechnung auf gruene Szenarien umgestellt.',
+    a: 'Ja. Ueber den Oekostrom-Filter werden echte Live-Tarife gefiltert oder die Beispielrechnung auf gruene Szenarien umgestellt.',
   },
   {
     q: 'Wie oft sollte ich Stromtarife neu vergleichen?',
@@ -285,25 +284,41 @@ export function StromTarifCalculator() {
   };
 
   return (
-    <section id="vergleich" className="w-full py-24 bg-white">
+    <section id="vergleich" className="w-full bg-white py-8 sm:py-16 lg:py-20">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.3fr)_minmax(300px,0.7fr)] gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.3fr)_minmax(300px,0.7fr)] gap-8 lg:gap-12 items-start">
           <Card className="shadow-xl">
-            <CardHeader className="bg-primary text-white">
-              <CardTitle className="font-heading text-2xl">Stromtarifrechner fuer NRW</CardTitle>
-              <p className="text-sm text-white/85">
-                Live-Tarife bei aktiver Datenquelle, ansonsten transparente Kosten- und Sparszenarien statt Platzhalter-Angeboten.
+            <CardHeader className="space-y-3 bg-primary px-4 py-4 text-white sm:px-6 sm:py-6">
+              <Badge variant="secondary" className="w-fit bg-white/15 text-white hover:bg-white/15">
+                Stromvergleich NRW
+              </Badge>
+              <h1 className="font-heading text-2xl font-semibold tracking-tight sm:text-4xl">
+                Stromtarife fuer NRW ehrlich pruefen
+              </h1>
+              <p className="max-w-3xl text-sm text-white/90 sm:text-base">
+                Solange `LIVE_TARIFFS_ACTIVE=false` ist, sehen Sie klar gekennzeichnete Beispielrechnungen auf Basis Ihrer Eingaben statt Live-Anbieterlisten.
               </p>
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+                <Button
+                  className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-11 px-6 font-semibold"
+                  onClick={() => document.getElementById('strom-postcode')?.focus()}
+                >
+                  Jetzt Vergleich starten
+                </Button>
+                <p className="text-xs text-white/80">
+                  Fuer die erste Einschaetzung reichen PLZ und Jahresverbrauch.
+                </p>
+              </div>
             </CardHeader>
-            <CardContent className="p-8">
-              <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+            <CardContent className="p-4 sm:p-8">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5" noValidate>
                 {validationSummary.length > 0 && (
                   <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">
                     Bitte pruefen Sie Ihre Eingaben. Fuer belastbare Tarifergebnisse sind PLZ und Jahresverbrauch erforderlich.
                   </div>
                 )}
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="strom-postcode">Postleitzahl *</Label>
                     <Input
@@ -345,7 +360,35 @@ export function StromTarifCalculator() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <Button type="submit" className="w-full sm:w-auto bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 px-8 font-bold">
+                    {searchState.status === 'loading' ? (
+                      <>
+                        <LoaderCircle className="mr-2 h-5 w-5 animate-spin" />
+                        Tarife werden geladen
+                      </>
+                    ) : (
+                      <>
+                        <Search className="mr-2 h-5 w-5" />
+                        Tarife abrufen
+                      </>
+                    )}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="w-full sm:w-auto"
+                    onClick={() => {
+                      setFormData(INITIAL_FORM_DATA);
+                      setFormErrors({});
+                      setSearchState(INITIAL_STATE);
+                    }}
+                  >
+                    Eingaben zuruecksetzen
+                  </Button>
+                </div>
+
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="strom-household-size">Haushaltsgroesse (optional)</Label>
                     <Input
@@ -375,7 +418,7 @@ export function StromTarifCalculator() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <label className="flex items-start gap-3 rounded-lg border border-slate-200 p-4">
                     <Checkbox
                       id="strom-eco-only"
@@ -400,34 +443,6 @@ export function StromTarifCalculator() {
                     </span>
                   </label>
                 </div>
-
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button type="submit" className="w-full sm:w-auto bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 px-8 font-bold">
-                    {searchState.status === 'loading' ? (
-                      <>
-                        <LoaderCircle className="mr-2 h-5 w-5 animate-spin" />
-                        Tarife werden geladen
-                      </>
-                    ) : (
-                      <>
-                        <Search className="mr-2 h-5 w-5" />
-                        Tarife abrufen
-                      </>
-                    )}
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className="w-full sm:w-auto"
-                    onClick={() => {
-                      setFormData(INITIAL_FORM_DATA);
-                      setFormErrors({});
-                      setSearchState(INITIAL_STATE);
-                    }}
-                  >
-                    Eingaben zuruecksetzen
-                  </Button>
-                </div>
               </form>
 
               <div className={`mt-8 rounded-xl border px-4 py-4 ${getStatusTone(searchState.status)}`} role={searchState.status === 'error' ? 'alert' : 'status'}>
@@ -439,7 +454,7 @@ export function StromTarifCalculator() {
                   )}
                   <div>
                     <p className="font-semibold">
-                      {searchState.status === 'success' && 'Tarifergebnisse verfuegbar'}
+                      {searchState.status === 'success' && (searchState.source === 'transparent_model' ? 'Beispielrechnungen verfuegbar' : 'Tarifergebnisse verfuegbar')}
                       {searchState.status === 'empty' && 'Keine Stromtarife gefunden'}
                       {searchState.status === 'error' && 'Tarifabfrage fehlgeschlagen'}
                       {(searchState.status === 'idle' || searchState.status === 'loading') && 'Stromvergleich'}
@@ -484,16 +499,21 @@ export function StromTarifCalculator() {
                                 <CardTitle className="text-2xl text-primary">{tariff.tariffName}</CardTitle>
                               </div>
                               <div className="text-right">
-                                <p className="text-sm text-slate-500">Jahreskosten</p>
+                                <p className="text-sm text-slate-500">
+                                  {searchState.source === 'transparent_model' ? 'Beispiel-Jahreskosten' : 'Jahreskosten'}
+                                </p>
                                 <p className="text-3xl font-bold text-primary">{formatMoney(tariff.annualCost)}</p>
-                                <p className="text-sm text-slate-500">{formatMoney(tariff.monthlyCost)} / Monat</p>
+                                <p className="text-sm text-slate-500">
+                                  {formatMoney(tariff.monthlyCost)} / Monat
+                                  {searchState.source === 'transparent_model' ? ' (Beispiel)' : ''}
+                                </p>
                               </div>
                             </div>
                             <div className="flex flex-wrap gap-2">
                               {tariff.eco && <Badge>Oekostrom</Badge>}
                               {tariff.bonus ? <Badge variant="secondary">Bonus {formatMoney(tariff.bonus)}</Badge> : null}
                               {index === 0 && <Badge variant="outline">Beste Kostenposition</Badge>}
-                              {searchState.source === 'transparent_model' && <Badge variant="outline">Transparente Modellrechnung</Badge>}
+                              {searchState.source === 'transparent_model' && <Badge variant="outline">Beispielrechnung</Badge>}
                             </div>
                           </CardHeader>
                           <CardContent className="space-y-6">
@@ -533,7 +553,7 @@ export function StromTarifCalculator() {
                               ) : (
                                 <Link to={ROUTES.kontakt} className="w-full sm:w-auto">
                                   <Button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90">
-                                    {searchState.source === 'transparent_model' ? 'Persoenliches Angebot anfragen' : 'Beratung anfragen'}
+                                    {searchState.source === 'transparent_model' ? 'Individuelles Angebot anfragen' : 'Beratung anfragen'}
                                     <ArrowRight className="ml-2 h-4 w-4" />
                                   </Button>
                                 </Link>
@@ -585,7 +605,7 @@ export function StromTarifCalculator() {
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle className="mt-0.5 h-5 w-5 text-primary" />
-                  <span>Keine Beispieltarife, keine erfundenen Preise, keine Platzhalter-Anbieter</span>
+                  <span>Keine Fantasie-Anbieter, keine als live getarnten Ergebnisse und klar markierte Beispielrechnungen im Fallback-Modus</span>
                 </li>
               </ul>
             </div>
@@ -633,11 +653,6 @@ export default function StromvergleichNrwPage() {
     };
   }, []);
 
-  const breadcrumbItems = [
-    { label: 'Startseite', path: ROUTES.home },
-    { label: 'Stromvergleich NRW', path: ROUTES.stromvergleich },
-  ];
-
   const breadcrumbSchema = [
     { name: 'Startseite', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.home}` },
     { name: 'Stromvergleich NRW', url: `${typeof window !== 'undefined' ? window.location.origin : ''}${ROUTES.stromvergleich}` },
@@ -647,39 +662,6 @@ export default function StromvergleichNrwPage() {
     <div className="min-h-screen bg-background break-words leading-mobile">
       <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />
-      <Breadcrumb items={breadcrumbItems} />
-
-      <section className="w-full bg-primary py-20 text-primary-foreground md:py-28">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="max-w-3xl"
-          >
-            <Badge variant="secondary" className="mb-6 bg-white/15 text-white">
-              Stromtarifrechner NRW
-            </Badge>
-            <h1 className="font-heading text-4xl font-semibold tracking-tight sm:text-5xl">
-              Stromtarife fuer NRW ehrlich abrufen, ohne Fake-Ergebnisse
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg text-white/90">
-              Diese Seite liefert echte Live-Tarife, wenn eine Datenquelle aktiv ist. Ohne Live-Quelle rechnet sie stattdessen transparente Stromkosten-Szenarien aus Ihren Eingaben, statt Ihnen Platzhalter-Anbieter zu zeigen.
-            </p>
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <Button
-                className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 px-8 font-semibold"
-                onClick={() => document.getElementById('vergleich')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Zum Rechner
-              </Button>
-              <Link to="/methodik" className="inline-flex items-center text-sm font-medium text-white underline underline-offset-4">
-                So vergleichen wir
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
       <StromTarifCalculator />
 

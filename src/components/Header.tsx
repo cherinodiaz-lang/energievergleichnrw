@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Zap, Menu, X, ChevronDown } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { NAV_MAIN, ROUTES } from '@/lib/routes';
 import { trackCTAClick } from '@/services/form-submission';
@@ -11,10 +11,13 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const [pathname, setPathname] = useState('/');
+  const mobileMenuTriggerRef = useRef<HTMLButtonElement>(null);
+  const mobileMenuDialogRef = useRef<HTMLDivElement>(null);
 
   // Close mobile menu when route changes
   useEffect(() => {
     setMobileMenuOpen(false);
+    setOpenSubmenu(null);
   }, [pathname]);
 
   useEffect(() => {
@@ -28,15 +31,77 @@ export default function Header() {
     return () => window.removeEventListener('popstate', syncPathname);
   }, []);
 
-  // Close mobile menu on Escape key
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setMobileMenuOpen(false);
-    };
-    if (mobileMenuOpen) {
-      document.addEventListener('keydown', handleEscape);
-      return () => document.removeEventListener('keydown', handleEscape);
+    if (!mobileMenuOpen || typeof document === 'undefined') {
+      return;
     }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const focusableSelector = [
+      'a[href]',
+      'button:not([disabled])',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      'textarea:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+    ].join(',');
+
+    const focusFirstElement = () => {
+      const dialog = mobileMenuDialogRef.current;
+      if (!dialog) {
+        return;
+      }
+
+      const focusableElements = Array.from(dialog.querySelectorAll<HTMLElement>(focusableSelector));
+      focusableElements[0]?.focus();
+    };
+
+    const frameId = window.requestAnimationFrame(focusFirstElement);
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setMobileMenuOpen(false);
+        return;
+      }
+
+      if (event.key !== 'Tab') {
+        return;
+      }
+
+      const dialog = mobileMenuDialogRef.current;
+      if (!dialog) {
+        return;
+      }
+
+      const focusableElements = Array.from(dialog.querySelectorAll<HTMLElement>(focusableSelector));
+      if (focusableElements.length === 0) {
+        return;
+      }
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+      const activeElement = document.activeElement as HTMLElement | null;
+
+      if (event.shiftKey && activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', handleKeyDown);
+      mobileMenuTriggerRef.current?.focus();
+    };
   }, [mobileMenuOpen]);
 
   const isActiveLink = (path: string): boolean => {
@@ -137,6 +202,7 @@ export default function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              ref={mobileMenuTriggerRef}
               className="lg:hidden p-2 text-foreground hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary rounded transition-colors min-h-12 min-w-12"
               aria-label={mobileMenuOpen ? "Menü schließen" : "Menü öffnen"}
               aria-expanded={mobileMenuOpen}
@@ -146,93 +212,119 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Mobile Navigation - CLS Prevention */}
-          {mobileMenuOpen && (
-            <nav
-              id="mobile-menu"
-              className="lg:hidden py-3 sm:py-4 border-t border-gray-100 overflow-y-auto max-h-[calc(100vh-56px)] sm:max-h-[calc(100vh-64px)] lg:max-h-[calc(100vh-80px)]"
-              aria-label="Mobile Navigation"
-            >
-              <ul className="flex flex-col divide-y divide-gray-100">
-                {NAV_MAIN.map((item) => (
-                  <li key={item.key}>
-                    <>
-                      {item.submenu ? (
-                        <div className="flex items-center justify-between py-3 sm:py-4 px-3 sm:px-4 min-h-12">
+        </div>
+      </header>
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-[60] lg:hidden">
+          <button
+            type="button"
+            className="absolute inset-0 bg-slate-950/45"
+            aria-label="Menü schließen"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <div
+            ref={mobileMenuDialogRef}
+            id="mobile-menu"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="mobile-menu-title"
+            className="absolute inset-x-0 top-0 max-h-screen overflow-y-auto border-b border-gray-200 bg-white shadow-2xl"
+          >
+            <div className="mx-auto max-w-[120rem] px-3 sm:px-6 lg:px-12">
+              <div className="flex min-h-14 items-center justify-between border-b border-gray-100 sm:min-h-16">
+                <p id="mobile-menu-title" className="font-heading text-base font-semibold text-primary">
+                  Navigation
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-2 text-foreground hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary rounded transition-colors min-h-12 min-w-12"
+                  aria-label="Menü schließen"
+                >
+                  <X className="h-6 w-6" aria-hidden="true" />
+                </button>
+              </div>
+
+              <nav className="py-3 sm:py-4" aria-label="Mobile Navigation">
+                <ul className="flex flex-col divide-y divide-gray-100">
+                  {NAV_MAIN.map((item) => (
+                    <li key={item.key}>
+                      <>
+                        {item.submenu ? (
+                          <div className="flex items-center justify-between py-3 sm:py-4 px-3 sm:px-4 min-h-12">
+                            <Link
+                              to={item.to}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className={`font-paragraph font-medium text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset rounded transition-colors ${
+                                isActiveLink(item.to)
+                                  ? 'text-primary'
+                                  : 'text-foreground hover:text-primary'
+                              }`}
+                            >
+                              {item.label}
+                            </Link>
+                            <button
+                              onClick={() => setOpenSubmenu(openSubmenu === item.key ? null : item.key)}
+                              className="p-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset rounded"
+                              aria-label={`${item.label} Untermenü ${openSubmenu === item.key ? 'schließen' : 'öffnen'}`}
+                              aria-expanded={openSubmenu === item.key}
+                            >
+                              <ChevronDown
+                                className={`w-4 h-4 transition-transform ${openSubmenu === item.key ? 'rotate-180' : ''}`}
+                                aria-hidden="true"
+                              />
+                            </button>
+                          </div>
+                        ) : (
                           <Link
                             to={item.to}
                             onClick={() => setMobileMenuOpen(false)}
-                            className={`font-paragraph font-medium text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset rounded transition-colors ${
+                            className={`block w-full text-left font-paragraph font-medium text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset transition-colors py-3 sm:py-4 px-3 sm:px-4 min-h-12 ${
                               isActiveLink(item.to)
-                                ? 'text-primary'
+                                ? 'text-primary bg-primary/5'
                                 : 'text-foreground hover:text-primary'
                             }`}
                           >
                             {item.label}
                           </Link>
-                          <button
-                            onClick={() => setOpenSubmenu(openSubmenu === item.key ? null : item.key)}
-                            className="p-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset rounded"
-                            aria-label={`${item.label} Untermenü ${openSubmenu === item.key ? 'schließen' : 'öffnen'}`}
-                            aria-expanded={openSubmenu === item.key}
-                          >
-                            <ChevronDown
-                              className={`w-4 h-4 transition-transform ${openSubmenu === item.key ? 'rotate-180' : ''}`}
-                              aria-hidden="true"
-                            />
-                          </button>
-                        </div>
-                      ) : (
-                        <Link
-                          to={item.to}
-                          onClick={() => setMobileMenuOpen(false)}
-                          className={`block w-full text-left font-paragraph font-medium text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset transition-colors py-3 sm:py-4 px-3 sm:px-4 min-h-12 ${
-                            isActiveLink(item.to)
-                              ? 'text-primary bg-primary/5'
-                              : 'text-foreground hover:text-primary'
-                          }`}
-                        >
-                          {item.label}
-                        </Link>
-                      )}
+                        )}
 
-                      {/* Mobile Submenu */}
-                      {item.submenu && openSubmenu === item.key && (
-                        <ul className="bg-gray-50 divide-y divide-gray-100">
-                          {item.submenu.map((subitem) => (
-                            <li key={subitem.key}>
-                              <Link
-                                to={subitem.to}
-                                onClick={() => setMobileMenuOpen(false)}
-                                className={`block font-paragraph text-sm font-medium transition-colors py-3 sm:py-4 px-6 sm:px-8 min-h-12 flex items-center ${
-                                  isActiveLink(subitem.to)
-                                    ? 'text-primary bg-primary/10'
-                                    : 'text-foreground hover:text-primary hover:bg-primary/5'
-                                }`}
-                              >
-                                {subitem.label}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </>
-                  </li>
-                ))}
-              </ul>
-              {/* Mobile CTA Button */}
-              <div className="mt-3 sm:mt-4 px-3 sm:px-4 pt-3 sm:pt-4 border-t border-gray-100">
-                <Button
-                  onClick={handleCtaClick}
-                  className="w-full bg-secondary hover:bg-secondary/90 text-black font-paragraph font-semibold py-3 sm:py-4 rounded-lg transition-colors h-11 sm:h-12 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2"
-                >
-                  Kostenlos vergleichen
-                </Button>
-              </div>
-            </nav>
-          )}
+                        {item.submenu && openSubmenu === item.key && (
+                          <ul className="bg-gray-50 divide-y divide-gray-100">
+                            {item.submenu.map((subitem) => (
+                              <li key={subitem.key}>
+                                <Link
+                                  to={subitem.to}
+                                  onClick={() => setMobileMenuOpen(false)}
+                                  className={`block font-paragraph text-sm font-medium transition-colors py-3 sm:py-4 px-6 sm:px-8 min-h-12 flex items-center ${
+                                    isActiveLink(subitem.to)
+                                      ? 'text-primary bg-primary/10'
+                                      : 'text-foreground hover:text-primary hover:bg-primary/5'
+                                  }`}
+                                >
+                                  {subitem.label}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-3 sm:mt-4 px-3 sm:px-4 pt-3 sm:pt-4 border-t border-gray-100">
+                  <Button
+                    onClick={handleCtaClick}
+                    className="w-full bg-secondary hover:bg-secondary/90 text-black font-paragraph font-semibold py-3 sm:py-4 rounded-lg transition-colors h-11 sm:h-12 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2"
+                  >
+                    Kostenlos vergleichen
+                  </Button>
+                </div>
+              </nav>
+            </div>
+          </div>
         </div>
-      </header>
+      )}
       {/* Breadcrumb Navigation - Only on non-homepage */}
       {breadcrumbItems.length > 0 && <Breadcrumb items={breadcrumbItems} />}
     </>

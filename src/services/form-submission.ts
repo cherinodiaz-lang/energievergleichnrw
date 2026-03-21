@@ -8,7 +8,6 @@
  * Events are only tracked after Analytics consent is granted.
  */
 
-import { BaseCrudService } from '@/integrations';
 import { trackFormSubmit, trackCTAClick as trackCTAClickGA4, trackMethodikClick as trackMethodikClickGA4 } from '@/services/ga4-tracking';
 
 export interface FormSubmissionData {
@@ -72,6 +71,7 @@ export async function submitForm(
     // Submit to Wix Collection
     // Note: Collection ID should be 'formsubmissions' or similar
     // This will trigger automations configured in Wix Dashboard
+    const { BaseCrudService } = await import('@/integrations');
     await BaseCrudService.create('formsubmissions', data);
 
     // Track event in GA4 (consent-safe) - NO PII included
