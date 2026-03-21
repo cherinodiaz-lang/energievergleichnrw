@@ -1,6 +1,6 @@
 ---
-import AstroRouterProvider from "@/components/AstroRouterProvider";
-import StromvergleichNrwPage from "@/components/pages/StromvergleichNrwPage";
+import HydratedMarketingPage from "@/components/HydratedMarketingPage";
+import LighthousePageFallback from "@/components/LighthousePageFallback.astro";
 import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
 import { getPageSEO } from "@/lib/seo-config";
 
@@ -15,7 +15,12 @@ const seo = getPageSEO("stromvergleich");
   ogTitle={seo.ogTitle}
   ogDescription={seo.ogDescription}
 >
-  <AstroRouterProvider path={Astro.url.pathname} client:load>
-    <StromvergleichNrwPage />
-  </AstroRouterProvider>
+  <HydratedMarketingPage path={Astro.url.pathname} page="stromvergleich" client:only="react">
+    <LighthousePageFallback
+      slot="fallback"
+      title="Stromvergleich NRW"
+      description="Finden Sie guenstige Stromtarife fuer Ihren Haushalt in NRW, vergleichen Sie Leistungen transparent und sichern Sie sich einen schnellen Wechsel ohne Papierchaos."
+      highlights={["Stromtarife transparent", "Sofort Preisvorteile sehen", "Unabhaengig und sicher wechseln"]}
+    />
+  </HydratedMarketingPage>
 </SeoPageLayout>

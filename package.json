@@ -6,6 +6,7 @@
     "dev": "wix dev",
     "build": "wix build",
     "preview": "wix preview",
+    "preview:worker": "wix preview",
     "release": "wix release",
     "env": "wix env pull",
     "check": "npx astro check --js-only",

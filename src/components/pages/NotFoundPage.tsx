@@ -11,7 +11,7 @@ export default function NotFoundPage() {
         title="Seite nicht gefunden | energievergleich.shop"
         description="Die angeforderte Seite wurde nicht gefunden."
         noindex={true}
-        pathname="/404"
+        canonical="/404"
       />
       <Header />
       <main className="min-h-screen bg-background">

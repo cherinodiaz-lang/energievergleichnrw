@@ -78,7 +78,7 @@ describe('StromTarifCalculator', () => {
         configured: false,
         tariffs: [
           {
-            providerName: 'Modellrechnung NRW',
+            providerName: 'Transparente Modellrechnung',
             tariffName: 'Kostenkorridor Ausgewogen',
             annualCost: 1234,
             monthlyCost: 102.83,
@@ -101,8 +101,8 @@ describe('StromTarifCalculator', () => {
     fireEvent.change(screen.getByLabelText(/jahresverbrauch in kwh/i), { target: { value: '3500' } });
     fireEvent.click(screen.getByRole('button', { name: /tarife abrufen/i }));
 
-    expect(await screen.findByText(/modellrechnung nrw/i)).toBeInTheDocument();
-    expect(screen.getAllByText(/transparente modellrechnung/i).length).toBeGreaterThan(0);
+    expect(await screen.findByText('Transparente Modellrechnung', { selector: 'p' })).toBeInTheDocument();
+    expect(screen.getByText(/beispiel-jahreskosten/i)).toBeInTheDocument();
     expect(screen.queryByText(/tarif option/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/gruenerstrom nrw/i)).not.toBeInTheDocument();
   });

@@ -30,8 +30,8 @@ export default function WiderrufPage() {
           </p>
           <p>
             Bei Fragen wenden Sie sich bitte an:{' '}
-            <a href="mailto:info@energievergleich.nrw" className="text-primary hover:underline">
-              info@energievergleich.nrw
+            <a href="mailto:info@energievergleich.shop" className="text-primary hover:underline">
+              info@energievergleich.shop
             </a>
           </p>
         </div>

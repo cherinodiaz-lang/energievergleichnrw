@@ -5,7 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import RelatedPages from '@/components/RelatedPages';
 import { Link } from 'react-router-dom';
+import { getRelatedPages } from '@/lib/internal-linking';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
 
@@ -294,6 +296,8 @@ export default function MethodologyPage() {
                 </button>
               </Link>
             </motion.div>
+
+            <RelatedPages pages={getRelatedPages('/methodik')} />
           </div>
         </div>
       </section>

@@ -9,9 +9,21 @@ import "@/styles/global.css";
 const pathname = new URL(Astro.request.url).pathname;
 const excludedPaths = ['/sitemap.xml', '/robots.txt'];
 const spaPrefixes = ['/blog', '/danke', '/thank-you'];
+const redirects: Record<string, string> = {
+  '/thank-you': '/danke',
+};
 const isAllowedSpaRoute = spaPrefixes.some((prefix) =>
   pathname === prefix || pathname.startsWith(`${prefix}/`)
 );
+
+if (redirects[pathname]) {
+  return new Response(null, {
+    status: 308,
+    headers: {
+      Location: redirects[pathname],
+    },
+  });
+}
 
 if (excludedPaths.includes(pathname)) {
   // Return 404 to allow Astro to serve the API endpoint

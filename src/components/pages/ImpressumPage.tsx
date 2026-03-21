@@ -20,13 +20,13 @@ export default function ImpressumPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-12">
+      <section className="w-full bg-primary text-primary-foreground py-14 sm:py-16 md:py-24">
+        <div className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-12">
           <div className="max-w-3xl">
-            <h1 className="font-heading text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="font-heading text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
               Impressum
             </h1>
-            <p className="font-paragraph text-lg md:text-xl text-white/90">
+            <p className="font-paragraph text-base sm:text-lg md:text-xl text-white/90">
               Rechtliche Informationen gemäß § 5 TMG und § 18 MStV
             </p>
           </div>
@@ -34,8 +34,8 @@ export default function ImpressumPage() {
       </section>
 
       {/* Content Section */}
-      <section className="w-full py-24 bg-white">
-        <div className="max-w-4xl mx-auto px-6 lg:px-12">
+      <section className="w-full py-12 sm:py-16 lg:py-24 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-12">
           <div className="space-y-8 break-words overflow-x-hidden min-w-0">
 
             {/* 1. Betreiber */}

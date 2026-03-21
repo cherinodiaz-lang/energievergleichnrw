@@ -34,5 +34,13 @@ afterEach(() => {
   document.title = ''
 })
 
+class ResizeObserverMock {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+
+global.ResizeObserver = ResizeObserverMock as typeof ResizeObserver
+
 // Make React's act available globally for testing-library
 global.IS_REACT_ACT_ENVIRONMENT = true

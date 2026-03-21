@@ -134,6 +134,24 @@ export class BaseCrudService {
         : [...(includeRefs?.singleRef || []), ...(includeRefs?.multiRef || [])];
 
       let query = items.query(collectionId);
+      if (
+        typeof query.include !== "function" ||
+        typeof query.skip !== "function" ||
+        typeof query.limit !== "function" ||
+        typeof query.find !== "function"
+      ) {
+        // In local dev without the Wix Astro integration, the client SDK may not
+        // expose the full query builder. Return an empty result so pages still render.
+        return {
+          items: [],
+          totalCount: 0,
+          hasNext: false,
+          currentPage: 0,
+          pageSize: limit,
+          nextSkip: null,
+        };
+      }
+
       if (allRefs.length > 0) {
         query = query.include(...allRefs);
       }
