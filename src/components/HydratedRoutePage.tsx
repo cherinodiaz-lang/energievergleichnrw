@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import { BrowserRouter, StaticRouter } from "react-router-dom";
+import EditorBridge from "@/components/EditorBridge";
 
 interface HydratedRoutePageProps {
   path: string;
@@ -16,8 +17,11 @@ export default function HydratedRoutePage({ path, Page }: HydratedRoutePageProps
   }
 
   return (
-    <BrowserRouter>
-      <Page />
-    </BrowserRouter>
+    <>
+      <EditorBridge />
+      <BrowserRouter>
+        <Page />
+      </BrowserRouter>
+    </>
   );
 }

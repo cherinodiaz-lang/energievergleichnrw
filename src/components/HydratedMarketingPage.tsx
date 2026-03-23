@@ -3,6 +3,7 @@ import { BrowserRouter, StaticRouter } from "react-router-dom";
 import HomePage from "@/components/pages/HomePage";
 import ImpressumPage from "@/components/pages/ImpressumPage";
 import StromvergleichNrwPage from "@/components/pages/StromvergleichNrwPage";
+import EditorBridge from "@/components/EditorBridge";
 
 type MarketingPageKey = "home" | "impressum" | "stromvergleich";
 
@@ -29,8 +30,11 @@ export default function HydratedMarketingPage({ path, page }: HydratedMarketingP
   }
 
   return (
-    <BrowserRouter>
-      <Page />
-    </BrowserRouter>
+    <>
+      <EditorBridge />
+      <BrowserRouter>
+        <Page />
+      </BrowserRouter>
+    </>
   );
 }

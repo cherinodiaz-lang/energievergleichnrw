@@ -14,6 +14,7 @@ import HowToSchema from '@/components/HowToSchema';
 import ReviewSchema from '@/components/ReviewSchema';
 import FAQPageSchema from '@/components/FAQPageSchema';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
+import EditorBridge from '@/components/EditorBridge';
 
 // Fallback component for lazy-loaded routes
 const LazyFallback = () => <div className="min-h-screen flex items-center justify-center" />;
@@ -89,6 +90,7 @@ function Layout() {
 
   return (
     <div className="min-w-0 overflow-x-hidden">
+      <EditorBridge />
       <ScrollToTop />
       <OrganizationSchema />
       <LocalBusinessSchema />
