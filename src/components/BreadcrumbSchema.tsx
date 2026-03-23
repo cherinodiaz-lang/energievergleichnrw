@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 
 interface BreadcrumbItem {
@@ -12,8 +12,13 @@ interface BreadcrumbSchemaProps {
 
 export default function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
   const location = useLocation();
+  const lastPathRef = useRef<string>('');
 
   useEffect(() => {
+    // Skip if path hasn't changed - prevents infinite loops
+    if (lastPathRef.current === location.pathname) return;
+    lastPathRef.current = location.pathname;
+
     const breadcrumbs = items && items.length > 0 ? items : generateBreadcrumbs(location.pathname);
 
     if (breadcrumbs.length <= 1) return; // No breadcrumbs for home page
