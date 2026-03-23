@@ -2,12 +2,13 @@
  * Form Submission Service
  * Handles all form submissions to Wix Collections
  * Integrates with GA4 tracking (consent-safe)
- *
+ * 
  * IMPORTANT: All tracking goes through GA4 only.
  * No PII (email, name, phone) is sent to analytics.
  * Events are only tracked after Analytics consent is granted.
  */
 
+import { BaseCrudService } from '@/integrations';
 import { trackFormSubmit, trackCTAClick as trackCTAClickGA4, trackMethodikClick as trackMethodikClickGA4 } from '@/services/ga4-tracking';
 
 export interface FormSubmissionData {
@@ -19,12 +20,10 @@ export interface FormSubmissionData {
   message?: string;
   postleitzahl?: string;
   verbrauch?: string;
-  [key: string]: unknown;
+  [key: string]: any;
   _createdDate?: Date;
   _updatedDate?: Date;
 }
-
-type FormFieldValue = string | number | null | undefined;
 
 export interface FormSubmissionResponse {
   success: boolean;
@@ -71,8 +70,7 @@ export async function submitForm(
     // Submit to Wix Collection
     // Note: Collection ID should be 'formsubmissions' or similar
     // This will trigger automations configured in Wix Dashboard
-    const { BaseCrudService } = await import('@/integrations');
-    await BaseCrudService.create('formsubmissions', data);
+    const result = await BaseCrudService.create('formsubmissions', data);
 
     // Track event in GA4 (consent-safe) - NO PII included
     trackFormSubmit(data.type);
@@ -119,7 +117,7 @@ export function trackMethodikClick() {
  */
 export function validateField(
   fieldName: string,
-  value: FormFieldValue,
+  value: any,
   required: boolean = true,
   customErrorMessage?: string
 ): { valid: boolean; error?: string } {
@@ -133,7 +131,7 @@ export function validateField(
   // Email validation
   if (fieldName.toLowerCase().includes('email') && value) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(String(value))) {
+    if (!emailRegex.test(value)) {
       return {
         valid: false,
         error: 'Bitte eine gültige E-Mail-Adresse eingeben.'
@@ -144,7 +142,7 @@ export function validateField(
   // Phone validation (optional, but if provided should be valid)
   if (fieldName.toLowerCase().includes('phone') && value) {
     const phoneRegex = /^[\d\s\-\+\(\)]+$/;
-    if (!phoneRegex.test(String(value))) {
+    if (!phoneRegex.test(value)) {
       return {
         valid: false,
         error: 'Bitte eine gültige Telefonnummer eingeben.'
@@ -165,7 +163,7 @@ export function validateField(
 
   // Verbrauch validation (kWh)
   if (fieldName.toLowerCase().includes('verbrauch') && value) {
-    const verbrauchNum = parseFloat(String(value));
+    const verbrauchNum = parseFloat(value);
     if (isNaN(verbrauchNum) || verbrauchNum <= 0) {
       return {
         valid: false,
@@ -181,7 +179,7 @@ export function validateField(
  * Validate entire form
  */
 export function validateForm(
-  formData: Record<string, FormFieldValue>,
+  formData: Record<string, any>,
   requiredFields: string[]
 ): { valid: boolean; errors: Record<string, string> } {
   const errors: Record<string, string> = {};

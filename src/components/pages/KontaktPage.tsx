@@ -6,9 +6,9 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import NativeSelect from '@/components/ui/native-select';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import FormSubmissionDialog from '@/components/FormSubmissionDialog';
@@ -53,6 +53,7 @@ export default function KontaktPage() {
         ogDescription={seo.ogDescription}
       />
       <Header />
+      <main>
 
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
@@ -93,8 +94,12 @@ export default function KontaktPage() {
                   <p className="font-paragraph text-gray-600 mb-2">
                     Schreiben Sie uns eine E-Mail und wir antworten schnellstmöglich.
                   </p>
-                  <a href="mailto:kontakt@energievergleich.shop" className="font-bold text-primary hover:underline">
-                    kontakt@energievergleich.shop
+                  <a
+                    href="mailto:support@energievergleich.nrw"
+                    className="font-bold text-primary hover:underline"
+                    aria-label="E-Mail an support@energievergleich.nrw"
+                  >
+                    support@energievergleich.nrw
                   </a>
                 </CardContent>
               </Card>
@@ -159,7 +164,7 @@ export default function KontaktPage() {
                 <CardHeader className="bg-primary text-white">
                   <CardTitle className="font-heading text-2xl">Kontaktformular</CardTitle>
                 </CardHeader>
-                <CardContent className="p-8">
+                <CardContent className="p-8 ox-hidden">
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
@@ -201,17 +206,19 @@ export default function KontaktPage() {
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="type" className="font-paragraph">Anfrage zu *</Label>
-                        <Select value={formData.type} onValueChange={(value) => setFormData({ ...formData, type: value })} required>
-                          <SelectTrigger id="type" className="font-paragraph w-full">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="strom">Stromvergleich</SelectItem>
-                            <SelectItem value="gas">Gasvergleich</SelectItem>
-                            <SelectItem value="photovoltaik">Photovoltaik</SelectItem>
-                            <SelectItem value="allgemein">Allgemeine Anfrage</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <NativeSelect
+                          id="type"
+                          value={formData.type}
+                          onValueChange={(value) => setFormData({ ...formData, type: value })}
+                          options={[
+                            { value: 'strom', label: 'Stromvergleich' },
+                            { value: 'gas', label: 'Gasvergleich' },
+                            { value: 'photovoltaik', label: 'Photovoltaik' },
+                            { value: 'allgemein', label: 'Allgemeine Anfrage' },
+                          ]}
+                          required
+                          className="font-paragraph w-full"
+                        />
                       </div>
                     </div>
 
@@ -304,7 +311,8 @@ export default function KontaktPage() {
       {/* Passende Ratgeber */}
       <PassendeRatgeber moneyPageId="kontakt" limit={4} />
 
-      <Footer />
+      </main>
+      <DeferredFooter />
     </div>
   );
 }

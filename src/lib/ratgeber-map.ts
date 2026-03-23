@@ -432,7 +432,7 @@ export function getArticlesByMoneyPage(targetMoneyPage: RatgeberArticleMeta['tar
   if (targetMoneyPage === 'multiple') {
     return ratgeberArticles.filter(article => article.targetMoneyPage === 'multiple');
   }
-  return ratgeberArticles.filter(article =>
+  return ratgeberArticles.filter(article => 
     article.targetMoneyPage === targetMoneyPage || article.targetMoneyPage === 'multiple'
   );
 }

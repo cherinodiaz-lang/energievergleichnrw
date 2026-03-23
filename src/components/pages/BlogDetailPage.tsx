@@ -5,7 +5,7 @@ import { BlogPosts, Authors, Categories } from '@/entities/index';
 import { Image } from '@/components/ui/image';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, User, Clock } from 'lucide-react';
@@ -62,7 +62,7 @@ export default function BlogDetailPage() {
         <main className="min-h-screen bg-background flex items-center justify-center">
           <LoadingSpinner />
         </main>
-        <Footer />
+        <DeferredFooter />
       </>
     );
   }
@@ -86,7 +86,7 @@ export default function BlogDetailPage() {
             </div>
           </div>
         </main>
-        <Footer />
+        <DeferredFooter />
       </>
     );
   }
@@ -253,7 +253,7 @@ export default function BlogDetailPage() {
           </div>
         </article>
       </main>
-      <Footer />
+      <DeferredFooter />
     </>
   );
 }

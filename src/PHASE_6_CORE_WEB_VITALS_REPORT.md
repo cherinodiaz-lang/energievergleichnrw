@@ -1,8 +1,8 @@
 # PHASE 6 — PERFORMANCE & MOBILE OPTIMIZATION
 ## Core Web Vitals Optimization Report
 
-**Date:** 2026-02-12
-**Status:** ✅ COMPLETE
+**Date:** 2026-02-12  
+**Status:** ✅ COMPLETE  
 **Build Status:** OK
 
 ---
@@ -234,7 +234,7 @@ img[width][height] { aspect-ratio: attr(width) / attr(height); }
 **Parallax Disabled on Mobile:**
 ```tsx
 const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-const heroY = useTransform(scrollY, [0, 1000],
+const heroY = useTransform(scrollY, [0, 1000], 
   prefersReducedMotion.current || isMobile ? [0, 0] : [0, 400]
 );
 ```

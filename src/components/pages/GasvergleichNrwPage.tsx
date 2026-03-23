@@ -6,10 +6,9 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import NativeSelect from '@/components/ui/native-select';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import ResponsiveEmbed from '@/components/ui/ResponsiveEmbed';
@@ -56,7 +55,7 @@ export default function GasvergleichNrwPage() {
           name: 'Ist der Gaswechsel in NRW kostenlos?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Ja, der Wechsel zu einem neuen Gasanbieter ist völlig kostenlos. Es fallen keine Gebühren für die Kündigung beim alten Anbieter oder für die Anmeldung beim neuen Anbieter an. Der Wechsel wird von uns komplett übernommen.'
+            text: 'Unsere Beratung und Erstorientierung sind kostenlos. Ob und wie ein Anbieterwechsel durchgeführt wird, hängt vom ausgewählten Angebot und dem jeweiligen Prozess ab.'
           }
         },
         {
@@ -64,7 +63,7 @@ export default function GasvergleichNrwPage() {
           name: 'Wie lange dauert ein Gaswechsel?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Ein Gaswechsel dauert in der Regel 4-6 Wochen. Dies ist die gesetzliche Kündigungsfrist. Während dieser Zeit wird Ihre Gasversorgung nicht unterbrochen. Der neue Anbieter kümmert sich um alle notwendigen Formalitäten.'
+            text: 'Die tatsächliche Dauer hängt vom gewählten Anbieter und Ihrer Vertragssituation ab. Eine Unterbrechung der Gasversorgung ist dabei in der Regel nicht zu erwarten.'
           }
         },
         {
@@ -80,7 +79,7 @@ export default function GasvergleichNrwPage() {
           name: 'Welche Daten benötige ich für einen Gaswechsel?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Sie benötigen Ihre Postleitzahl, Ihre Wohnfläche oder Ihren jährlichen Gasverbrauch (in kWh). Den Gasverbrauch finden Sie auf Ihrer letzten Gasrechnung. Mit diesen Informationen können wir Ihnen die besten Tarife anzeigen.'
+            text: 'Für die Erstorientierung genügen Postleitzahl sowie Wohnfläche oder jährlicher Gasverbrauch in kWh.'
           }
         },
         {
@@ -88,7 +87,7 @@ export default function GasvergleichNrwPage() {
           name: 'Wie viel kann ich durch einen Gaswechsel sparen?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Die Einsparungen variieren je nach Ihrem Verbrauch und Ihrer Region in NRW. Im Durchschnitt sparen Haushalte 150-300 Euro pro Jahr durch einen Wechsel zu einem günstigeren Anbieter. Mit unserem Vergleichsrechner sehen Sie sofort, wie viel Sie sparen können.'
+            text: 'Mögliche Einsparungen hängen von Verbrauch, Region und Tarifdetails ab. Die Seite zeigt zunächst eine unverbindliche Beispielvorschau.'
           }
         },
         {
@@ -120,7 +119,7 @@ export default function GasvergleichNrwPage() {
           name: 'Wie funktioniert der Gasvergleichsrechner?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Geben Sie Ihre Postleitzahl und Ihre Wohnfläche oder Ihren Gasverbrauch ein. Der Rechner zeigt Ihnen dann alle verfügbaren Tarife in Ihrer Region, sortiert nach Preis. Sie sehen alle wichtigen Informationen wie Arbeitspreis, Grundpreis, Laufzeit und Preisgarantie auf einen Blick.'
+            text: 'Geben Sie Postleitzahl und Wohnfläche oder Verbrauch ein. Der Rechner zeigt eine Beispielvorschau mit typischen Kennzahlen wie Arbeitspreis, Grundpreis, Laufzeit und Preisgarantie.'
           }
         },
         {
@@ -128,7 +127,7 @@ export default function GasvergleichNrwPage() {
           name: 'Gibt es versteckte Gebühren beim Gaswechsel?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Nein. Der Wechsel ist komplett kostenlos. Es gibt keine versteckten Gebühren. Alle Kosten sind transparent in den Tarifdetails aufgeführt. Wir zeigen Ihnen immer die Gesamtkosten pro Jahr.'
+            text: 'Unsere Erstorientierung ist kostenlos. Verbindliche Kosten entstehen nur aus dem später gewählten Tarif beim Anbieter.'
           }
         }
       ]
@@ -146,7 +145,7 @@ export default function GasvergleichNrwPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
+    
     // Validate required fields for private form
     const validation = validateFormFields(formData, FORM_CONFIGS.private);
     if (!validation.valid) {
@@ -197,6 +196,7 @@ export default function GasvergleichNrwPage() {
       />
       <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />
+      <main>
       <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero Section */}
@@ -212,14 +212,14 @@ export default function GasvergleichNrwPage() {
               Gasvergleich für NRW
             </h1>
             <p className="font-paragraph text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
-              Finden Sie den günstigsten Gastarif in Ihrer Region. Kostenlos, unabhängig und in wenigen Minuten.
+              Erhalten Sie eine unverbindliche Tarif-Orientierung für Ihre Region. Kostenlos und transparent.
             </p>
             <div className="flex flex-col gap-4">
               <Button
                 onClick={() => document.getElementById('vergleich')?.scrollIntoView({ behavior: 'smooth' })}
                 className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 px-8 rounded-full text-lg font-semibold shadow-lg"
               >
-                Jetzt vergleichen
+                Zur Orientierung starten
               </Button>
               <Link to="/methodik" onClick={trackMethodikClick} className="text-white/80 hover:text-white transition-colors text-sm font-medium underline">
                 So vergleichen wir (Methodik)
@@ -236,7 +236,7 @@ export default function GasvergleichNrwPage() {
             <div className="lg:col-span-2">
               <Card className="shadow-xl">
                 <CardHeader className="bg-primary text-white">
-                  <CardTitle className="font-heading text-2xl">Gastarife vergleichen</CardTitle>
+                  <CardTitle className="font-heading text-2xl">Gastarif-Orientierung</CardTitle>
                 </CardHeader>
                 <CardContent className="p-8">
                   <form onSubmit={handleSubmit} className="space-y-6">
@@ -254,17 +254,20 @@ export default function GasvergleichNrwPage() {
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="wohnflaeche" className="font-paragraph">Wohnfläche (m²) *</Label>
-                        <Select value={formData.wohnfläche} onValueChange={(value) => setFormData({ ...formData, wohnfläche: value })} required>
-                          <SelectTrigger id="wohnflaeche" className="font-paragraph">
-                            <SelectValue placeholder="Wählen Sie..." />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="50">bis 50 m² (ca. 5.000 kWh)</SelectItem>
-                            <SelectItem value="100">50-100 m² (ca. 10.000 kWh)</SelectItem>
-                            <SelectItem value="150">100-150 m² (ca. 15.000 kWh)</SelectItem>
-                            <SelectItem value="200">über 150 m² (ca. 20.000 kWh)</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <NativeSelect
+                          id="wohnflaeche"
+                          value={formData.wohnfläche}
+                          onValueChange={(value) => setFormData({ ...formData, wohnfläche: value })}
+                          options={[
+                            { value: '50', label: 'bis 50 m² (ca. 5.000 kWh)' },
+                            { value: '100', label: '50-100 m² (ca. 10.000 kWh)' },
+                            { value: '150', label: '100-150 m² (ca. 15.000 kWh)' },
+                            { value: '200', label: 'über 150 m² (ca. 20.000 kWh)' },
+                          ]}
+                          placeholder="Wählen Sie..."
+                          required
+                          className="font-paragraph"
+                        />
                       </div>
                     </div>
 
@@ -319,7 +322,7 @@ export default function GasvergleichNrwPage() {
 
                     <Button type="submit" className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 font-bold text-lg rounded-lg">
                       <Send className="w-5 h-5 mr-2" />
-                      Tarife vergleichen
+                      Orientierung anzeigen
                     </Button>
                   </form>
                 </CardContent>
@@ -334,7 +337,7 @@ export default function GasvergleichNrwPage() {
                   className="mt-12"
                 >
                   <h2 className="font-heading text-2xl font-bold text-primary mb-8">Tarifvorschau für {formData.postleitzahl}</h2>
-
+                  
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                     {[
                       {
@@ -412,7 +415,7 @@ export default function GasvergleichNrwPage() {
 
             <div className="space-y-6">
               <div className="bg-orange-50 border border-orange-200 rounded-lg p-6">
-                <h3 className="font-heading font-bold text-primary mb-4">Warum mit uns vergleichen?</h3>
+                <h3 className="font-heading font-bold text-primary mb-4">Warum diese Orientierung nutzen?</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -420,7 +423,7 @@ export default function GasvergleichNrwPage() {
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-sm">Alle Anbieter in NRW</span>
+                    <span className="font-paragraph text-sm">Unverbindliche Orientierung für NRW</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -428,7 +431,7 @@ export default function GasvergleichNrwPage() {
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-sm">Wir kümmern uns um den Wechsel</span>
+                    <span className="font-paragraph text-sm">Begleitung ab der Anfrage</span>
                   </li>
                 </ul>
               </div>
@@ -443,31 +446,31 @@ export default function GasvergleichNrwPage() {
           <div className="space-y-8">
             <div>
               <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Gasvergleich für NRW</h2>
-
+              
               <p className="font-paragraph text-lg text-gray-700 mb-6">
-                Mit unserem Gasvergleich finden Sie in wenigen Minuten den günstigsten Gastarif für Ihren Haushalt in Nordrhein-Westfalen. Der Vergleich ist völlig kostenlos und unverbindlich – Sie geben nur Ihre Postleitzahl und Ihren Gasverbrauch ein und erhalten sofort alle verfügbaren Tarife übersichtlich sortiert. Ersparnis hängt von Verbrauch, Region und Tarif ab.
+                Mit unserer Gas-Tariforientierung erhalten Sie in wenigen Minuten eine erste Einordnung für Nordrhein-Westfalen. Die Vorschau ist kostenlos und unverbindlich: Sie geben Postleitzahl und Gasverbrauch ein und sehen Beispielwerte als Grundlage für Ihre weitere Entscheidung.
               </p>
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4">So funktioniert der Vergleich – 5 einfache Schritte</h3>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">So funktioniert die Orientierung – 5 einfache Schritte</h3>
               <ol className="font-paragraph text-gray-700 space-y-3 mb-6 list-decimal list-inside">
-                <li><strong>Postleitzahl eingeben:</strong> Geben Sie Ihre PLZ ein, um Tarife für Ihren Netzbereich zu sehen</li>
+                <li><strong>Postleitzahl eingeben:</strong> Geben Sie Ihre PLZ ein, um Beispielwerte für Ihren Netzbereich zu sehen</li>
                 <li><strong>Wohnfläche oder Verbrauch angeben:</strong> Tragen Sie Ihre Wohnfläche ein oder geben Sie Ihren jährlichen Verbrauch in kWh an (zu finden auf der Gasrechnung)</li>
-                <li><strong>Tarife vergleichen:</strong> Sehen Sie alle verfügbaren Angebote mit Preis, Laufzeit und Preisgarantie</li>
-                <li><strong>Wunsch-Tarif wählen:</strong> Entscheiden Sie sich für den besten Tarif nach Ihren Kriterien</li>
-                <li><strong>Wechsel abschließen:</strong> Wir kümmern uns um die Kündigung beim alten Anbieter und den Wechsel – kostenlos und sicher</li>
+                <li><strong>Beispielübersicht ansehen:</strong> Sehen Sie Beispielangebote mit Preis, Laufzeit und Preisgarantie</li>
+                <li><strong>Optionen einordnen:</strong> Ordnen Sie die gezeigten Beispielangebote nach Ihren Kriterien ein</li>
+                <li><strong>Unverbindliche Anfrage senden:</strong> Senden Sie Ihre Anfrage für eine Rückmeldung zum weiteren Vorgehen</li>
               </ol>
             </div>
 
             <div>
-              <h3 className="font-heading text-xl font-bold text-primary mb-4">Gasanbieter wechseln in 5 Schritten</h3>
+              <h3 className="font-heading text-xl font-bold text-primary mb-4">Gasanbieter-Orientierung in 5 Schritten</h3>
               <ol className="font-paragraph text-gray-700 space-y-3 mb-6 list-decimal list-inside">
                 <li><strong>Aktuelle Gasrechnung bereitstellen:</strong> Suchen Sie Ihre letzte Gasrechnung heraus, um Ihren Verbrauch und Ihre Zählernummer zu finden.</li>
-                <li><strong>Neuen Anbieter auswählen:</strong> Nutzen Sie unseren Vergleichsrechner, um den günstigsten Tarif für Ihre Situation zu finden.</li>
-                <li><strong>Wechsel beauftragen:</strong> Geben Sie Ihre Daten ein und beauftragen Sie den Wechsel – wir kümmern uns um die Kündigung beim alten Anbieter.</li>
-                <li><strong>Kündigungsfrist einhalten:</strong> Der neue Anbieter kümmert sich um die Einhaltung der Kündigungsfrist (meist 4 Wochen zum Monatsende).</li>
-                <li><strong>Wechsel abgeschlossen:</strong> Nach 4-6 Wochen ist der Wechsel komplett – Sie zahlen ab sofort den neuen, günstigeren Tarif.</li>
+                <li><strong>Optionen prüfen:</strong> Nutzen Sie unseren Rechner für eine erste Orientierung zu passenden Optionen.</li>
+                <li><strong>Anfrage senden:</strong> Geben Sie Ihre Daten ein und senden Sie eine unverbindliche Anfrage für die nächsten Schritte.</li>
+                <li><strong>Vertragsfristen prüfen:</strong> Prüfen Sie Ihre Vertragsfristen und Details beim aktuellen Anbieter.</li>
+                <li><strong>Rückmeldung erhalten:</strong> Danach erhalten Sie Informationen zum weiteren Ablauf.</li>
               </ol>
             </div>
 
@@ -488,7 +491,7 @@ export default function GasvergleichNrwPage() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">•</span>
-                  <span><strong>Name und E-Mail:</strong> Für die Kontaktaufnahme durch Anbieter</span>
+                  <span><strong>Name und E-Mail:</strong> Für die Rückmeldung zu Ihrer Anfrage</span>
                 </li>
               </ul>
             </div>
@@ -528,7 +531,7 @@ export default function GasvergleichNrwPage() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">✗</span>
-                  <span><strong>Kündigungsfristen ignorieren:</strong> Verpassen Sie nicht die Kündigungsfrist beim alten Anbieter – wir kümmern uns darum, aber informieren Sie sich selbst</span>
+                  <span><strong>Kündigungsfristen ignorieren:</strong> Verpassen Sie nicht die Kündigungsfrist beim alten Anbieter und prüfen Sie Ihre Vertragsdetails</span>
                 </li>
               </ul>
             </div>
@@ -536,13 +539,13 @@ export default function GasvergleichNrwPage() {
             <div>
               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Gasvergleich speziell für NRW</h3>
               <p className="font-paragraph text-gray-700 mb-4">
-                Nordrhein-Westfalen ist das bevölkerungsreichste Bundesland Deutschlands mit großer Vielfalt bei Gasanbietern und Tarifen. Die Gaspreise variieren je nach Postleitzahl und Netzbetreiber – in Düsseldorf können die Tarife anders ausfallen als in Köln, Essen oder Dortmund. Unser Vergleich berücksichtigt diese regionalen Unterschiede und zeigt Ihnen die besten Tarife speziell für Ihren Standort in NRW.
+                Nordrhein-Westfalen ist das bevölkerungsreichste Bundesland Deutschlands mit großer Vielfalt bei Gasanbietern und Tarifen. Die Gaspreise variieren je nach Postleitzahl und Netzbetreiber – in Düsseldorf können die Tarife anders ausfallen als in Köln, Essen oder Dortmund. Unsere Vorschau hilft bei einer ersten regionalen Einordnung für Ihren Standort in NRW.
               </p>
             </div>
 
             <div className="bg-secondary/10 border-l-4 border-secondary p-6 rounded">
               <p className="font-paragraph text-gray-700 italic">
-                Jetzt kostenlos vergleichen und sparen Sie ab sofort bei Ihren Gaskosten!
+                Jetzt unverbindlich orientieren und passende nächste Schritte für Ihren Gasvertrag prüfen.
               </p>
             </div>
           </div>
@@ -559,10 +562,10 @@ export default function GasvergleichNrwPage() {
             className="text-center mb-16"
           >
             <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-primary mb-4">
-              Warum wechseln?
+              Warum diese Orientierung?
             </h2>
             <p className="font-paragraph text-lg text-gray-600 max-w-2xl mx-auto">
-              Das bringt Ihnen ein Tarifwechsel – klar & einfach erklärt.
+              Das bringt Ihnen eine unverbindliche Tarif-Einordnung – klar & einfach erklärt.
             </p>
           </motion.div>
 
@@ -571,7 +574,7 @@ export default function GasvergleichNrwPage() {
               {
                 icon: Flame,
                 title: 'Schnell & unkompliziert',
-                description: 'Alle günstigen Tarife auf einen Blick.'
+                description: 'Schnelle Erstorientierung auf einen Blick.'
               },
               {
                 icon: Globe,
@@ -595,8 +598,8 @@ export default function GasvergleichNrwPage() {
               },
               {
                 icon: Rocket,
-                title: 'Sofort entscheidbar',
-                description: 'Direkte Weiterleitung zum Anbieter.'
+                title: 'Nächste Schritte klar',
+                description: 'Konkrete Rückmeldung nach Ihrer Anfrage.'
               },
             ].map((item, index) => {
               const IconComponent = item.icon;
@@ -634,7 +637,7 @@ export default function GasvergleichNrwPage() {
       <section className="w-full py-24 bg-background">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary mb-16 text-center">
-            So funktioniert der Gaswechsel
+            So funktioniert die Gas-Tariforientierung
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -666,9 +669,9 @@ export default function GasvergleichNrwPage() {
                 <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl mb-6">
                   2
                 </div>
-                <h3 className="font-heading text-2xl font-bold text-primary mb-4">Tarife vergleichen</h3>
+                <h3 className="font-heading text-2xl font-bold text-primary mb-4">Beispielangebote einordnen</h3>
                 <p className="font-paragraph text-gray-600">
-                  Sehen Sie alle verfügbaren Tarife mit Preis, Laufzeit und Preisgarantie auf einen Blick.
+                  Sehen Sie eine Beispielvorschau mit Preis, Laufzeit und Preisgarantie auf einen Blick.
                 </p>
               </div>
             </motion.div>
@@ -684,9 +687,9 @@ export default function GasvergleichNrwPage() {
                 <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl mb-6">
                   3
                 </div>
-                <h3 className="font-heading text-2xl font-bold text-primary mb-4">Wechsel abschließen</h3>
+                <h3 className="font-heading text-2xl font-bold text-primary mb-4">Unverbindliche Anfrage senden</h3>
                 <p className="font-paragraph text-gray-600">
-                  Wählen Sie Ihren Wunsch-Tarif und wir kümmern uns um alle Formalitäten. Kostenlos und sicher.
+                  Markieren Sie eine passende Option als Grundlage und senden Sie Ihre Anfrage für die nächsten Schritte.
                 </p>
               </div>
             </motion.div>
@@ -694,11 +697,11 @@ export default function GasvergleichNrwPage() {
         </div>
       </section>
 
-      {/* Gasanbieter wechseln in 5 Schritten Section */}
+      {/* Gasanbieter-Orientierung in 5 Schritten Section */}
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary mb-12 text-center">
-            Gasanbieter wechseln in 5 Schritten
+            Gas-Tariforientierung in 5 Schritten
           </h2>
 
           <div className="max-w-3xl mx-auto">
@@ -711,23 +714,23 @@ export default function GasvergleichNrwPage() {
                 },
                 {
                   step: 2,
-                  title: 'Tarife vergleichen',
-                  description: 'Nutzen Sie unseren Vergleichsrechner. Geben Sie Ihre Postleitzahl und Ihren Verbrauch ein und sehen Sie alle verfügbaren Tarife.'
+                  title: 'Beispielangebote ansehen',
+                  description: 'Nutzen Sie unseren Orientierungsrechner. Geben Sie Ihre Postleitzahl und Ihren Verbrauch ein und sehen Sie eine Beispielvorschau.'
                 },
                 {
                   step: 3,
-                  title: 'Besten Tarif auswählen',
-                  description: 'Vergleichen Sie Preis, Laufzeit und Preisgarantie. Wählen Sie den Tarif, der am besten zu Ihnen passt.'
+                  title: 'Passende Option vormerken',
+                  description: 'Ordnen Sie Preis, Laufzeit und Preisgarantie ein und markieren Sie eine passende Option zur Orientierung.'
                 },
                 {
                   step: 4,
-                  title: 'Wechsel beauftragen',
-                  description: 'Geben Sie Ihre Daten ein und beauftragen Sie den Wechsel. Wir kümmern uns um die Kündigung beim alten Anbieter.'
+                  title: 'Anfrage senden',
+                  description: 'Geben Sie Ihre Daten ein und senden Sie eine unverbindliche Anfrage für die nächsten Schritte.'
                 },
                 {
                   step: 5,
-                  title: 'Wechsel abgeschlossen',
-                  description: 'Nach 4-6 Wochen ist der Wechsel komplett. Sie zahlen ab sofort den neuen, günstigeren Tarif.'
+                  title: 'Rückmeldung erhalten',
+                  description: 'Danach erhalten Sie Informationen zum weiteren Ablauf.'
                 }
               ].map((item, index) => (
                 <motion.div
@@ -818,7 +821,7 @@ export default function GasvergleichNrwPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="font-paragraph text-sm text-gray-600 mb-4">
-                    Finden Sie auch die besten Stromtarife in Ihrer Region und sparen Sie zusätzlich.
+                    Finden Sie auch passende Stromtarife in Ihrer Region zur unverbindlichen Orientierung.
                   </p>
                   <Button variant="outline" size="sm" className="group-hover:bg-primary group-hover:text-white transition-colors">
                     Zum Stromvergleich <ArrowRight className="w-4 h-4 ml-2" />
@@ -893,7 +896,7 @@ export default function GasvergleichNrwPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="font-paragraph text-sm text-gray-600 mb-4">
-                    Umfassende Tipps und Informationen zum Thema Gaswechsel und Kostenersparnis.
+                    Umfassende Tipps und Informationen zum Thema Gasvertrag und Kostenplanung.
                   </p>
                   <Button variant="outline" size="sm" className="group-hover:bg-primary group-hover:text-white transition-colors">
                     Zum Ratgeber <ArrowRight className="w-4 h-4 ml-2" />
@@ -942,11 +945,11 @@ export default function GasvergleichNrwPage() {
             <h2 className="font-heading text-3xl sm:text-4xl font-semibold tracking-tight text-primary">
               Warum energievergleich.shop?
             </h2>
-
+            
             <p className="font-paragraph text-lg text-gray-700 leading-relaxed">
-              Bei energievergleich.shop vertrauen Sie auf vollständige Transparenz und Unabhängigkeit. Wir vergleichen Gastarife objektiv nach Preis und Vertragsbedingungen – ohne versteckte Gebühren, ohne Anbieter-Bias. Unser Service ist für Sie kostenlos und unverbindlich. Wir zeigen Ihnen alle verfügbaren Optionen in Ihrer Region und helfen Ihnen, die beste Entscheidung zu treffen. Ersparnis hängt von Verbrauch, Region und Tarif ab. Erfahren Sie mehr über unsere Methodik und wie wir arbeiten: <Link to="/methodik" className="text-primary font-semibold hover:underline">So vergleichen wir (Methodik)</Link>. Bei Fragen stehen wir Ihnen jederzeit zur Verfügung – <Link to="/kontakt" className="text-primary font-semibold hover:underline">Kontakt</Link>.
+              Bei energievergleich.shop erhalten Sie Transparenz und Unabhängigkeit in der Erstorientierung zu Gastarifen. Wir zeigen Beispielwerte nach Preis und Vertragsbedingungen als Grundlage für Ihre Entscheidung. Unser Service ist kostenlos und unverbindlich. Ersparnis hängt von Verbrauch, Region und Tarif ab. Erfahren Sie mehr über unsere Methodik und wie wir arbeiten: <Link to="/methodik" className="text-primary font-semibold hover:underline">So vergleichen wir (Methodik)</Link>. Bei Fragen stehen wir Ihnen jederzeit zur Verfügung – <Link to="/kontakt" className="text-primary font-semibold hover:underline">Kontakt</Link>.
             </p>
-
+            
             <p className="font-paragraph text-sm text-gray-500 italic">
               Stand: Februar 2026
             </p>
@@ -969,11 +972,11 @@ export default function GasvergleichNrwPage() {
               },
               {
                 q: 'Ist der Gaswechsel kostenlos?',
-                a: 'Ja, völlig kostenlos. Es fallen keine Gebühren für Kündigung oder Anmeldung an. Wir kümmern uns um alle Formalitäten.'
+                a: 'Unsere Erstorientierung ist kostenlos. Ob und welche Kosten beim späteren Tarif entstehen, richtet sich nach dem gewählten Anbieterangebot.'
               },
               {
                 q: 'Wie lange dauert ein Gaswechsel?',
-                a: 'In der Regel 4-6 Wochen. Ihre Gasversorgung wird nicht unterbrochen. Der neue Anbieter kümmert sich um alle notwendigen Schritte.'
+                a: 'Die Dauer hängt vom gewählten Anbieter und Ihrer Vertragssituation ab. Eine Unterbrechung der Gasversorgung ist in der Regel nicht zu erwarten.'
               },
               {
                 q: 'Kann ich während des Wechsels ohne Gas sein?',
@@ -997,23 +1000,21 @@ export default function GasvergleichNrwPage() {
               },
               {
                 q: 'Wie funktioniert der Vergleichsrechner?',
-                a: 'Geben Sie Postleitzahl und Verbrauch ein. Der Rechner zeigt alle Tarife sortiert nach Preis mit Arbeitspreis, Grundpreis, Laufzeit und Garantie.'
+                a: 'Geben Sie Postleitzahl und Verbrauch ein. Der Rechner zeigt eine Beispielvorschau mit Arbeitspreis, Grundpreis, Laufzeit und Garantie.'
               },
               {
                 q: 'Gibt es versteckte Gebühren?',
-                a: 'Nein. Der Wechsel ist komplett kostenlos. Alle Kosten sind transparent aufgeführt. Wir zeigen immer die Gesamtkosten pro Jahr.'
+                a: 'Die Erstorientierung auf dieser Seite ist kostenlos. Verbindliche Kosten ergeben sich erst aus einem später gewählten Tarif beim Anbieter.'
               }
             ].map((item, index) => (
-              <Accordion key={index} type="single" collapsible className="bg-white rounded-lg border">
-                <AccordionItem value={`item-${index}`} className="border-none">
-                  <AccordionTrigger className="font-heading font-bold text-lg hover:text-primary px-6 py-4">
-                    {item.q}
-                  </AccordionTrigger>
-                  <AccordionContent className="font-paragraph text-gray-600 px-6 pb-4">
-                    {item.a}
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <details key={index} className="group rounded-lg border bg-white">
+                <summary className="font-heading cursor-pointer list-none px-6 py-4 text-lg font-bold hover:text-primary">
+                  <span>{item.q}</span>
+                </summary>
+                <div className="px-6 pb-4 font-paragraph text-gray-600">
+                  {item.a}
+                </div>
+              </details>
             ))}
           </div>
         </div>
@@ -1067,7 +1068,8 @@ export default function GasvergleichNrwPage() {
       {/* Related Pages - Cross-Linking */}
       <RelatedPages pages={getRelatedPages('/gasvergleich-nrw')} />
 
-      <Footer />
+      </main>
+      <DeferredFooter />
     </div>
   );
 }

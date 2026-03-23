@@ -3,6 +3,10 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "react",
+    "types": [
+      "vitest/globals",
+      "@testing-library/jest-dom"
+    ],
     "rootDir": ".",
     "baseUrl": ".",
     "incremental": true,
@@ -39,6 +43,7 @@
   "include": [
     "src",
     "integrations",
-    ".astro/types.d.ts"
+    ".astro/types.d.ts",
+    "vitest.setup.ts"
   ]
 }

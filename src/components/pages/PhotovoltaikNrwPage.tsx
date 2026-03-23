@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sun, CheckCircle, TrendingUp, Leaf, Zap, Send, ArrowRight, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import NativeSelect from '@/components/ui/native-select';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
@@ -22,6 +21,7 @@ import { trackMethodikClick } from '@/services/form-submission';
 import { getRelatedPages } from '@/lib/internal-linking';
 
 export default function PhotovoltaikNrwPage() {
+  const [submitSuccess, setSubmitSuccess] = useState(false);
   const [formData, setFormData] = useState({
     eigentumsart: '',
     dachform: '',
@@ -35,123 +35,9 @@ export default function PhotovoltaikNrwPage() {
     phone: '',
   });
 
-  useEffect(() => {
-    const faqSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: [
-        {
-          '@type': 'Question',
-          name: 'Lohnt sich eine Photovoltaikanlage in NRW?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Ja, auch in NRW lohnt sich eine Photovoltaikanlage. Durch die Einspeisevergütung und die Eigennutzung des Stroms amortisiert sich die Anlage in der Regel nach 8-12 Jahren. Danach produzieren Sie kostenlosen Strom für weitere 15-20 Jahre.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Wie viel Strom produziert eine Solaranlage in NRW?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Eine typische 5-kW-Anlage produziert in NRW etwa 4.500-5.000 kWh pro Jahr. Dies hängt von der Ausrichtung, dem Neigungswinkel und der Verschattung ab. Mit unserem Beratungsgespräch ermitteln wir die optimale Größe für Ihren Bedarf.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Welche Förderungen gibt es für Photovoltaik in NRW?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Es gibt verschiedene Förderungsmöglichkeiten: die KfW-Förderung für Solaranlagen, die Einspeisevergütung für Überschussstrom und regionale Förderprogramme in NRW. Wir informieren Sie über alle verfügbaren Optionen.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Wie lange hält eine Solaranlage?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Hochwertige Solarmodule halten 25-30 Jahre oder länger. Die meisten Hersteller geben eine Leistungsgarantie von 25 Jahren. Der Wechselrichter sollte nach etwa 10-15 Jahren ausgetauscht werden.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Benötige ich einen Stromspeicher?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Ein Stromspeicher ist optional, erhöht aber Ihre Unabhängigkeit und Eigennutzungsquote. Mit einem Speicher können Sie bis zu 80% Autarkie erreichen. Wir beraten Sie, ob ein Speicher für Ihre Situation sinnvoll ist.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Wie viel kostet eine Photovoltaikanlage?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Eine 5-kW-Anlage kostet in NRW etwa 8.000-12.000 Euro (netto). Mit Förderungen und der Einspeisevergütung reduziert sich die Amortisationszeit erheblich. Wir erstellen Ihnen ein individuelles Angebot.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Kann ich eine Solaranlage mieten?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Ja, es gibt Mietmodelle für Solaranlagen. Dabei zahlen Sie eine monatliche Rate, ohne die Anlage zu kaufen. Dies ist eine gute Option, wenn Sie wenig Kapital investieren möchten.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Wie lange dauert die Installation?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Die Installation einer Solaranlage dauert in der Regel 1-3 Tage. Vorher benötigen Sie eine Genehmigung vom Netzbetreiber, was etwa 4-8 Wochen dauert. Insgesamt sollten Sie mit 2-3 Monaten rechnen.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Brauche ich eine Versicherung für meine Solaranlage?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Ja, eine Versicherung ist empfehlenswert. Sie schützt vor Schäden durch Hagel, Blitzschlag oder Diebstahl. Die Kosten liegen bei etwa 100-200 Euro pro Jahr.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Wie funktioniert die Einspeisevergütung?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Für jeden Kilowattstunde Strom, den Sie ins Netz einspeisen, erhalten Sie eine Vergütung. Diese wird monatlich oder jährlich ausbezahlt. Die aktuelle Vergütung liegt bei etwa 8-10 Cent pro kWh.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Kann ich meine Solaranlage später erweitern?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Ja, Sie können Ihre Anlage später erweitern. Dies ist besonders sinnvoll, wenn Sie einen Stromspeicher oder ein Elektroauto anschaffen. Wir beraten Sie zu den Möglichkeiten.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Wie funktioniert die Beratung?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Wir führen ein kostenloses Beratungsgespräch durch, analysieren Ihr Dach und Ihren Stromverbrauch, und erstellen ein individuelles Angebot. Danach kümmern wir uns um alle Formalitäten und die Installation.'
-          }
-        }
-      ]
-    };
-
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.textContent = JSON.stringify(faqSchema);
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Vielen Dank für Ihre Anfrage! Wir werden uns in Kürze bei Ihnen melden.`);
+    setSubmitSuccess(true);
     setFormData({
       eigentumsart: '',
       dachform: '',
@@ -189,6 +75,7 @@ export default function PhotovoltaikNrwPage() {
       />
       <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />
+      <main>
       <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero Section */}
@@ -227,7 +114,7 @@ export default function PhotovoltaikNrwPage() {
            <div className="space-y-8">
              <div>
                <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Photovoltaik-Angebotsvergleich für NRW</h2>
-
+               
                <p className="font-paragraph text-lg text-gray-700 mb-6">
                  Mit unserem kostenlosen Photovoltaik-Vergleich finden Sie in wenigen Minuten die beste Solaranlage für Ihr Zuhause in Nordrhein-Westfalen. Der Vergleich ist völlig kostenlos und unverbindlich – Sie geben nur wenige Angaben ein und erhalten sofort Angebote von zertifizierten Fachbetrieben. Sparen Sie bis zu 40% der Installationskosten durch den Vergleich mehrerer Anbieter und profitieren Sie von maßgeschneiderten Lösungen für Ihr Dach.
                </p>
@@ -540,37 +427,52 @@ export default function PhotovoltaikNrwPage() {
                   <CardTitle className="font-heading text-2xl">Kostenlose Beratung anfragen</CardTitle>
                 </CardHeader>
                 <CardContent className="p-8">
+                  {submitSuccess && (
+                    <div
+                      className="mb-6 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800"
+                      role="status"
+                      aria-live="polite"
+                    >
+                      Vielen Dank für Ihre Anfrage. Wir melden uns in Kürze bei Ihnen.
+                    </div>
+                  )}
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <Label htmlFor="eigentumsart" className="font-paragraph">Eigentumsart *</Label>
-                        <Select value={formData.eigentumsart} onValueChange={(value) => setFormData({ ...formData, eigentumsart: value })} required>
-                          <SelectTrigger id="eigentumsart" className="font-paragraph">
-                            <SelectValue placeholder="Wählen Sie..." />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="einfamilienhaus">Einfamilienhaus</SelectItem>
-                            <SelectItem value="mehrfamilienhaus">Mehrfamilienhaus</SelectItem>
-                            <SelectItem value="gewerbe">Gewerbe</SelectItem>
-                            <SelectItem value="miete">Wohnung zur Miete</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <NativeSelect
+                          id="eigentumsart"
+                          value={formData.eigentumsart}
+                          onValueChange={(value) => setFormData({ ...formData, eigentumsart: value })}
+                          options={[
+                            { value: 'einfamilienhaus', label: 'Einfamilienhaus' },
+                            { value: 'mehrfamilienhaus', label: 'Mehrfamilienhaus' },
+                            { value: 'gewerbe', label: 'Gewerbe' },
+                            { value: 'miete', label: 'Wohnung zur Miete' },
+                          ]}
+                          placeholder="Wählen Sie..."
+                          required
+                          className="font-paragraph"
+                        />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="dachform" className="font-paragraph">Dachform *</Label>
-                        <Select value={formData.dachform} onValueChange={(value) => setFormData({ ...formData, dachform: value })} required>
-                          <SelectTrigger id="dachform" className="font-paragraph">
-                            <SelectValue placeholder="Wählen Sie..." />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="satteldach">Satteldach</SelectItem>
-                            <SelectItem value="flachdach">Flachdach</SelectItem>
-                            <SelectItem value="pultdach">Pultdach</SelectItem>
-                            <SelectItem value="mansardendach">Mansardendach</SelectItem>
-                            <SelectItem value="walmdach">Walmdach</SelectItem>
-                            <SelectItem value="andere">Andere</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <NativeSelect
+                          id="dachform"
+                          value={formData.dachform}
+                          onValueChange={(value) => setFormData({ ...formData, dachform: value })}
+                          options={[
+                            { value: 'satteldach', label: 'Satteldach' },
+                            { value: 'flachdach', label: 'Flachdach' },
+                            { value: 'pultdach', label: 'Pultdach' },
+                            { value: 'mansardendach', label: 'Mansardendach' },
+                            { value: 'walmdach', label: 'Walmdach' },
+                            { value: 'andere', label: 'Andere' },
+                          ]}
+                          placeholder="Wählen Sie..."
+                          required
+                          className="font-paragraph"
+                        />
                       </div>
                     </div>
 
@@ -721,13 +623,13 @@ export default function PhotovoltaikNrwPage() {
               Bei energievergleich.shop vergleichen wir Photovoltaik-Angebote mit vollständiger Transparenz und Unabhängigkeit. Wir arbeiten nicht für einzelne Anbieter, sondern für Sie – und das völlig kostenlos. Unser Vergleich berücksichtigt nicht nur den Preis, sondern auch Vertragsbedingungen, Komponenten-Qualität und Garantieleistungen. So finden Sie die beste Solaranlage für Ihre Situation in NRW. Alle Informationen auf dieser Seite sind aktuell zum Stand Februar 2026.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 text-sm">
-              <Link
+              <Link 
                 to="/methodik"
                 className="text-primary hover:text-primary/80 font-semibold underline transition-colors"
               >
                 So vergleichen wir (Methodik)
               </Link>
-              <Link
+              <Link 
                 to="/kontakt"
                 className="text-primary hover:text-primary/80 font-semibold underline transition-colors"
               >
@@ -796,16 +698,14 @@ export default function PhotovoltaikNrwPage() {
                 a: 'Kostenlose Beratung, Dachanalyse, Stromverbrauchsanalyse und individuelles Angebot. Wir kümmern uns um Formalitäten und Installation.'
               }
             ].map((item, index) => (
-              <Accordion key={index} type="single" collapsible className="bg-background rounded-lg border">
-                <AccordionItem value={`item-${index}`} className="border-none">
-                  <AccordionTrigger className="font-heading font-bold text-lg hover:text-primary px-6 py-4">
-                    {item.q}
-                  </AccordionTrigger>
-                  <AccordionContent className="font-paragraph text-gray-600 px-6 pb-4">
-                    {item.a}
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <details key={index} className="group rounded-lg border bg-background">
+                <summary className="font-heading cursor-pointer list-none px-6 py-4 text-lg font-bold hover:text-primary">
+                  <span>{item.q}</span>
+                </summary>
+                <div className="px-6 pb-4 font-paragraph text-gray-600">
+                  {item.a}
+                </div>
+              </details>
             ))}
           </div>
         </div>
@@ -923,7 +823,8 @@ export default function PhotovoltaikNrwPage() {
         </div>
       </section>
 
-      <Footer />
+      </main>
+      <DeferredFooter />
     </div>
   );
 }

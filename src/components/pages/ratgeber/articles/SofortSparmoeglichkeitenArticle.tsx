@@ -4,7 +4,7 @@ import { ArrowRight, CheckCircle, TrendingDown, Zap, Clock, DollarSign } from 'l
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
@@ -91,7 +91,7 @@ export default function SofortSparmoeglichkeitenArticle() {
                 <Zap className="w-8 h-8" />
                 Praktische Spartipps für Ihren Stromtarif
               </h2>
-
+              
               <div className="space-y-6">
                 <Card>
                   <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10">
@@ -162,7 +162,7 @@ export default function SofortSparmoeglichkeitenArticle() {
                 <Clock className="w-8 h-8" />
                 Vertragslaufzeiten verstehen
               </h2>
-
+              
               <p className="font-paragraph text-gray-700">
                 Die Vertragslaufzeit ist ein wichtiger Faktor bei der Tarifwahl. Hier sind die Vor- und Nachteile:
               </p>
@@ -246,7 +246,7 @@ export default function SofortSparmoeglichkeitenArticle() {
                 <DollarSign className="w-8 h-8" />
                 Neukundenboni und Rabatte maximieren
               </h2>
-
+              
               <p className="font-paragraph text-gray-700">
                 Neukundenboni sind eine großartige Möglichkeit, sofort Geld zu sparen. Hier sind wichtige Punkte zu beachten:
               </p>
@@ -310,7 +310,7 @@ export default function SofortSparmoeglichkeitenArticle() {
         </div>
       </section>
 
-      <Footer />
+      <DeferredFooter />
     </div>
   );
 }

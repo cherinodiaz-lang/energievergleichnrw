@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
@@ -48,21 +48,21 @@ export default function DatenschutzPage() {
             {/* 1. Verantwortlicher */}
             <div>
               <h2 className="font-heading text-3xl font-bold text-primary mb-6 mt-6">1. Verantwortlicher für die Datenverarbeitung</h2>
-
+              
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 break-words">
                 <div>
                   <p className="font-bold mb-2">Verantwortlicher (Art. 4 Abs. 7 DSGVO):</p>
-                  <p>Energievergleich Muster GmbH<br />Musterstraße 1<br />40210 Düsseldorf<br />Deutschland</p>
+                  <p>ENERGIEVERGLEICH NRW<br />59302 Oelde, NRW</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Kontakt:</p>
-                  <p>E-Mail: kontakt@energievergleich.shop<br />Telefon: +49 000 0000000<br />Website: energievergleich.shop</p>
+                  <p>E-Mail: support@energievergleich.nrw<br />Telefon: +49 (0) 2 01 - 1 03 - 39 39<br />Website: energievergleich.shop</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Datenschutzbeauftragter:</p>
-                  <p>Derzeit nicht benannt (Musterangabe)</p>
+                  <p>Derzeit nicht benannt</p>
                   <p className="text-sm text-gray-500 mt-2">Hinweis: Für Datenschutzfragen kontaktieren Sie bitte direkt die oben genannte Adresse.</p>
                 </div>
               </div>
@@ -71,7 +71,7 @@ export default function DatenschutzPage() {
             {/* 2. Übersicht der Verarbeitungen */}
             <div>
               <h2 className="font-heading text-3xl font-bold text-primary mb-6 mt-6">2. Übersicht der Datenverarbeitungen</h2>
-
+              
               <p className="font-paragraph text-slate-900 mb-6">
                 Wir verarbeiten personenbezogene Daten nur, wenn dies rechtlich zulässig ist. Nachfolgend erhalten Sie einen Überblick über die Verarbeitungen:
               </p>
@@ -79,7 +79,7 @@ export default function DatenschutzPage() {
               {/* 2.1 Hosting & Server-Logs */}
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 mb-6 break-words">
                 <h3 className="font-bold text-lg text-primary">2.1 Hosting und Server-Logs</h3>
-
+                
                 <div>
                   <p className="font-bold mb-2">Verarbeitete Daten:</p>
                   <p>IP-Adresse, Browser-Typ, Betriebssystem, Referrer-URL, Zugriffsdatum und -uhrzeit, Anfragegröße, HTTP-Statuscode</p>
@@ -109,7 +109,7 @@ export default function DatenschutzPage() {
               {/* 2.2 Kontaktformular */}
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 mb-6 break-words">
                 <h3 className="font-bold text-lg text-primary">2.2 Kontaktformular</h3>
-
+                
                 <div>
                   <p className="font-bold mb-2">Verarbeitete Daten:</p>
                   <p>Name, E-Mail-Adresse, Telefonnummer (optional), Nachrichtentext, Anfragekategorie</p>
@@ -132,14 +132,14 @@ export default function DatenschutzPage() {
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Empfänger:</p>
-                  <p>Interne Bearbeitung durch Energievergleich Muster GmbH, ggf. Weitergabe an externe Dienstleister</p>
+                  <p>Interne Bearbeitung durch ENERGIEVERGLEICH NRW, ggf. Weitergabe an externe Dienstleister</p>
                 </div>
               </div>
 
               {/* 2.3 E-Mail und Telefon */}
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 mb-6 break-words">
                 <h3 className="font-bold text-lg text-primary">2.3 Direktkontakt per E-Mail oder Telefon</h3>
-
+                
                 <div>
                   <p className="font-bold mb-2">Verarbeitete Daten:</p>
                   <p>E-Mail-Adresse, Telefonnummer, Name, Inhalt der Kommunikation</p>
@@ -164,7 +164,7 @@ export default function DatenschutzPage() {
               {/* 2.4 Cookies - Technisch notwendig */}
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 mb-6 break-words">
                 <h3 className="font-bold text-lg text-primary">2.4 Cookies (technisch notwendig)</h3>
-
+                
                 <div>
                   <p className="font-bold mb-2">Verarbeitete Daten:</p>
                   <p>Cookie-ID, Sitzungsinformationen, Benutzereinstellungen, Consent-Status</p>
@@ -195,7 +195,7 @@ export default function DatenschutzPage() {
               {/* 2.5 Analyse und Tracking - Google Analytics 4 */}
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 mb-6 break-words">
                 <h3 className="font-bold text-lg text-primary">2.5 Analyse und Tracking - Google Analytics 4 (GA4)</h3>
-
+                
                 <div className="bg-green-50 border border-green-200 rounded p-4 mb-4">
                   <p className="text-sm text-green-800 font-bold">Status: Aktiv (mit Consent-Handling)</p>
                   <p className="text-sm text-green-700 mt-2">Google Analytics 4 wird nur nach ausdrücklicher Einwilligung des Nutzers aktiviert.</p>
@@ -241,7 +241,7 @@ export default function DatenschutzPage() {
               {/* 2.6 Externe Dienste */}
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 mb-6 break-words">
                 <h3 className="font-bold text-lg text-primary">2.6 Eingebettete externe Inhalte</h3>
-
+                
                 <div className="bg-blue-50 border border-blue-200 rounded p-4 mb-4">
                   <p className="text-sm text-blue-800 font-bold">Status: Nicht im Einsatz (Musterangabe)</p>
                   <p className="text-sm text-blue-700 mt-2">Derzeit werden keine externen Dienste eingebettet.</p>
@@ -273,7 +273,7 @@ export default function DatenschutzPage() {
             {/* 3. Betroffenenrechte */}
             <div>
               <h2 className="font-heading text-3xl font-bold text-primary mb-6 mt-6">3. Ihre Rechte nach der DSGVO (Art. 15-22 DSGVO)</h2>
-
+              
               <p className="font-paragraph text-slate-900 mb-6">
                 Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:
               </p>
@@ -319,23 +319,23 @@ export default function DatenschutzPage() {
             {/* 4. Kontakt für Datenschutz */}
             <div>
               <h2 className="font-heading text-3xl font-bold text-primary mb-6 mt-6">4. Kontakt für Datenschutzfragen</h2>
-
+              
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 break-words">
                 <p>Wenn Sie Fragen zum Datenschutz haben oder Ihre Rechte ausüben möchten, kontaktieren Sie uns bitte:</p>
-
+                
                 <div>
                   <p className="font-bold mb-2">E-Mail:</p>
-                  <p>kontakt@energievergleich.shop</p>
+                  <p>support@energievergleich.nrw</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Postanschrift:</p>
-                  <p>Energievergleich Muster GmbH<br />Musterstraße 1<br />40210 Düsseldorf<br />Deutschland</p>
+                  <p>ENERGIEVERGLEICH NRW<br />59302 Oelde, NRW</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Telefon:</p>
-                  <p>+49 000 0000000</p>
+                  <p>+49 (0) 2 01 - 1 03 - 39 39</p>
                 </div>
               </div>
             </div>
@@ -343,7 +343,7 @@ export default function DatenschutzPage() {
             {/* 5. Zuständige Aufsichtsbehörde */}
             <div>
               <h2 className="font-heading text-3xl font-bold text-primary mb-6 mt-6">5. Zuständige Datenschutzbehörde</h2>
-
+              
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 font-paragraph text-slate-900 break-words">
                 <p className="mb-4">Die zuständige Datenschutzbehörde ist:</p>
                 <p className="font-bold mb-4">Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW)</p>
@@ -354,7 +354,7 @@ export default function DatenschutzPage() {
             {/* 6. Änderungen */}
             <div>
               <h2 className="font-heading text-3xl font-bold text-primary mb-6 mt-6">6. Änderungen dieser Datenschutzerklärung</h2>
-
+              
               <p className="font-paragraph text-slate-900">
                 Wir behalten uns das Recht vor, diese Datenschutzerklärung jederzeit zu ändern. Die aktuelle Fassung finden Sie immer auf dieser Seite. Wesentliche Änderungen werden wir Ihnen per E-Mail oder durch einen prominenten Hinweis auf unserer Website mitteilen.
               </p>
@@ -370,7 +370,7 @@ export default function DatenschutzPage() {
         </div>
       </section>
 
-      <Footer />
+      <DeferredFooter />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { render, waitFor } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { describe, expect, it } from 'vitest'
 import SEOHead from '@/components/SEOHead'
@@ -8,8 +8,8 @@ function renderSEOHead(ui: React.ReactElement, initialEntries = ['/']) {
 }
 
 describe('SEOHead', () => {
-  it('writes core SEO tags to the document head', async () => {
-    renderSEOHead(
+  it('keeps backward compatibility while head tags are emitted server-side', () => {
+    const { container } = renderSEOHead(
       <SEOHead
         title="Stromvergleich NRW"
         description="Vergleichen Sie Stromtarife in NRW."
@@ -23,53 +23,14 @@ describe('SEOHead', () => {
       ['/stromvergleich-nrw/']
     )
 
-    await waitFor(() => {
-      expect(document.title).toBe('Stromvergleich NRW')
-      expect(document.head.querySelector('meta[name="description"]')).toHaveAttribute(
-        'content',
-        'Vergleichen Sie Stromtarife in NRW.'
-      )
-      expect(document.head.querySelector('meta[name="keywords"]')).toHaveAttribute(
-        'content',
-        'stromvergleich, nrw'
-      )
-      expect(document.head.querySelector('meta[name="robots"]')).toHaveAttribute(
-        'content',
-        'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
-      )
-      expect(document.head.querySelector('link[rel="canonical"]')).toHaveAttribute(
-        'href',
-        'https://www.energievergleich.shop/stromvergleich-nrw'
-      )
-      expect(document.head.querySelector('meta[property="og:title"]')).toHaveAttribute(
-        'content',
-        'OG Stromvergleich'
-      )
-      expect(document.head.querySelector('meta[property="og:description"]')).toHaveAttribute(
-        'content',
-        'OG Beschreibung'
-      )
-      expect(document.head.querySelector('meta[property="og:url"]')).toHaveAttribute(
-        'content',
-        'https://www.energievergleich.shop/stromvergleich-nrw'
-      )
-      expect(document.head.querySelector('meta[name="twitter:card"]')).toHaveAttribute(
-        'content',
-        'summary_large_image'
-      )
-      expect(document.head.querySelector('meta[name="twitter:title"]')).toHaveAttribute(
-        'content',
-        'Twitter Stromvergleich'
-      )
-      expect(document.head.querySelector('meta[name="twitter:description"]')).toHaveAttribute(
-        'content',
-        'Twitter Beschreibung'
-      )
-    })
+    expect(container).toBeEmptyDOMElement()
+    expect(document.title).toBe('')
+    expect(document.head.querySelector('meta[name="description"]')).toBeNull()
+    expect(document.head.querySelector('link[rel="canonical"]')).toBeNull()
   })
 
-  it('applies noindex robots directives when requested', async () => {
-    renderSEOHead(
+  it('does not mutate head state in client tests', () => {
+    const { container } = renderSEOHead(
       <SEOHead
         title="Danke"
         description="Vielen Dank."
@@ -78,15 +39,8 @@ describe('SEOHead', () => {
       ['/danke']
     )
 
-    await waitFor(() => {
-      expect(document.head.querySelector('meta[name="robots"]')).toHaveAttribute(
-        'content',
-        'noindex, nofollow'
-      )
-      expect(document.head.querySelector('link[rel="canonical"]')).toHaveAttribute(
-        'href',
-        'https://www.energievergleich.shop/danke'
-      )
-    })
+    expect(container).toBeEmptyDOMElement()
+    expect(document.head.querySelector('meta[name="robots"]')).toBeNull()
+    expect(document.head.querySelector('link[rel="canonical"]')).toBeNull()
   })
 })

@@ -1,11 +1,9 @@
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import Breadcrumb from '@/components/Breadcrumb';
-import RelatedPages from '@/components/RelatedPages';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Link } from 'react-router-dom';
-import { getRelatedPages } from '@/lib/internal-linking';
 import { ROUTES } from '@/lib/routes';
 
 const faqSections = [
@@ -156,11 +154,9 @@ export default function FaqPage() {
             Zur Kontaktseite
           </Link>
         </div>
-
-        <RelatedPages pages={getRelatedPages('/faq')} />
       </main>
 
-      <Footer />
+      <DeferredFooter />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import Breadcrumb from '@/components/Breadcrumb';
 import { ROUTES } from '@/lib/routes';
@@ -86,7 +86,7 @@ export default function SitemapPage() {
         </div>
       </main>
 
-      <Footer />
+      <DeferredFooter />
     </div>
   );
 }

@@ -277,9 +277,9 @@
 
 ## Summary
 
-**Total Checks:** 150+
-**Passed:** 150+
-**Failed:** 0
+**Total Checks:** 150+  
+**Passed:** 150+  
+**Failed:** 0  
 **Success Rate:** 100%
 
 ---

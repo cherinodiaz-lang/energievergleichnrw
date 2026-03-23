@@ -186,7 +186,7 @@ GA4 only loads if user gives analytics consent:
 // In GoogleAnalytics.tsx
 useEffect(() => {
   if (!measurementId || !hasConsent) return; // Only load if consent given
-
+  
   // Load GA4 script
   const script = document.createElement('script');
   script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
@@ -289,18 +289,18 @@ Once verified, you can:
    - Body:
      ```
      Neue Anfrage eingegangen:
-
+     
      Name: {name}
      E-Mail: {email}
      Telefon: {phone}
      Typ: {type}
-
+     
      Nachricht:
      {message}
-
+     
      Postleitzahl: {postleitzahl}
      Verbrauch: {verbrauch}
-
+     
      Eingangsdatum: {_createdDate}
      ```
 
@@ -316,15 +316,15 @@ Once verified, you can:
    - Body:
      ```
      Liebe/r {name},
-
+     
      vielen Dank für Ihre Anfrage! Wir haben Ihre Nachricht erhalten und werden uns in Kürze bei Ihnen melden.
-
+     
      Ihre Anfrage wird von unserem Team bearbeitet. Sie erhalten eine Antwort innerhalb von 24 Stunden.
-
+     
      Falls Sie Fragen haben, kontaktieren Sie uns unter:
      E-Mail: kontakt@energievergleich.shop
      Telefon: +49 211 1234567
-
+     
      Beste Grüße,
      Das Energievergleich Team
      ```

@@ -79,15 +79,28 @@ function normalizePagePath(href: string, baseUrl: string): string | null {
 }
 
 async function fetchRoute(baseUrl: string, route: string): Promise<{ response: Response; body: string }> {
-  const response = await fetch(new URL(route, baseUrl), {
-    headers: {
-      "user-agent": "Vitest Link Integrity Runner",
-    },
-  });
+  const targetUrl = new URL(route, baseUrl);
+  let lastError: unknown;
 
-  const body = await response.text();
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    try {
+      const response = await fetch(targetUrl, {
+        headers: {
+          "user-agent": "Vitest Link Integrity Runner",
+        },
+      });
 
-  return { response, body };
+      const body = await response.text();
+      return { response, body };
+    } catch (error) {
+      lastError = error;
+      if (attempt < 3) {
+        await new Promise((resolve) => setTimeout(resolve, 250 * attempt));
+      }
+    }
+  }
+
+  throw lastError instanceof Error ? lastError : new Error(String(lastError));
 }
 
 async function fetchSitemapRoutes(baseUrl: string): Promise<string[]> {

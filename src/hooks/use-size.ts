@@ -1,6 +1,4 @@
-import useResizeObserver from "@react-hook/resize-observer"
 import { useLayoutEffect, useState, useRef, useCallback, useEffect } from "react"
-import '@/components/ui/image.css'
 
 type Size = {
   width: number
@@ -9,10 +7,12 @@ type Size = {
 
 export const useSize = (ref: React.RefObject<HTMLElement>, threshold: number = 50): Size | null => {
   const [size, setSize] = useState<Size | null>(null)
+  const canUseDOM = typeof window !== 'undefined' && typeof ResizeObserver !== 'undefined'
   // Reference to the request animation frame numbers
   const rafNumbers = useRef<number[]>([])
   // Store the size from the first animation frame
   const pendingSize = useRef<Size | null>(null)
+  const useIsomorphicLayoutEffect = canUseDOM ? useLayoutEffect : useEffect
 
   const updateSize = useCallback((newSize: Size): void => {
     setSize((currentSize) => {
@@ -30,7 +30,11 @@ export const useSize = (ref: React.RefObject<HTMLElement>, threshold: number = 5
     })
   }, [threshold])
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
+    if (!canUseDOM) {
+      return
+    }
+
     if (ref.current) {
       const { width, height } = ref.current.getBoundingClientRect()
       if (width === 0 || height === 0) {
@@ -40,41 +44,62 @@ export const useSize = (ref: React.RefObject<HTMLElement>, threshold: number = 5
       // Initial size, set immediately
       updateSize({ width, height })
     }
-  }, [updateSize])
+  }, [canUseDOM, ref, updateSize])
 
-  useResizeObserver(ref, (entry) => {
-    const { width, height } = entry.contentRect
-    if (width === 0 || height === 0) {
+  useEffect(() => {
+    if (!canUseDOM || !ref.current) {
       return
     }
 
-    // Size was changed, cancel any pending animation frames that are waiting for the size to stabilize
-    rafNumbers.current.forEach(rafNumber => {
-      cancelAnimationFrame(rafNumber)
-    })
+    const element = ref.current
+    const observer = new ResizeObserver(([entry]) => {
+      const { width, height } = entry.contentRect
+      if (width === 0 || height === 0) {
+        return
+      }
 
-    rafNumbers.current = []
-    pendingSize.current = { width, height }
-    // Wait for 3 animation frames to ensure the size is stable
-    rafNumbers.current.push(requestAnimationFrame(() => {
+      // Size was changed, cancel any pending animation frames that are waiting for the size to stabilize
+      rafNumbers.current.forEach(rafNumber => {
+        cancelAnimationFrame(rafNumber)
+      })
+
+      rafNumbers.current = []
+      pendingSize.current = { width, height }
+      // Wait for 3 animation frames to ensure the size is stable
       rafNumbers.current.push(requestAnimationFrame(() => {
         rafNumbers.current.push(requestAnimationFrame(() => {
-          // If no resize changed observed after 3 animation frames, update the size
-          updateSize(pendingSize.current)
-          pendingSize.current = null
+          rafNumbers.current.push(requestAnimationFrame(() => {
+            // If no resize changed observed after 3 animation frames, update the size
+            updateSize(pendingSize.current)
+            pendingSize.current = null
+          }))
         }))
       }))
-    }))
-  })
+    })
+
+    observer.observe(element)
+
+    return () => {
+      observer.disconnect()
+      rafNumbers.current.forEach(rafNumber => {
+        cancelAnimationFrame(rafNumber)
+      })
+      rafNumbers.current = []
+      pendingSize.current = null
+    }
+  }, [canUseDOM, ref, updateSize])
 
   // Cleanup RAF on unmount
   useEffect(() => {
+    if (!canUseDOM) {
+      return
+    }
     return () => {
       rafNumbers.current.forEach(rafNumber => {
         cancelAnimationFrame(rafNumber)
       })
     }
-  }, [])
+  }, [canUseDOM])
 
   return size
 }

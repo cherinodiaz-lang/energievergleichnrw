@@ -1,26 +1,24 @@
 import { MemberProvider } from '@/integrations';
-import { createBrowserRouter, RouterProvider, Navigate, Outlet, useLocation } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  useLocation,
+  useRoutes,
+} from 'react-router-dom';
+import { StaticRouter, type RouteObject } from 'react-router';
 import { lazy, Suspense, useEffect } from 'react';
 import { ScrollToTop } from '@/lib/scroll-to-top';
 import { SEO_CONFIG } from '@/lib/seo-config';
 import { ROUTES } from '@/lib/routes';
-import ErrorPage from '@/integrations/errorHandlers/ErrorPage';
-import OrganizationSchema from '@/components/OrganizationSchema';
-import LocalBusinessSchema from '@/components/LocalBusinessSchema';
-import WebsiteSchema from '@/components/WebsiteSchema';
-import SearchConsoleVerification from '@/components/SearchConsoleVerification';
 import { initializeGA4 } from '@/services/ga4-tracking';
-import HowToSchema from '@/components/HowToSchema';
-import ReviewSchema from '@/components/ReviewSchema';
-import FAQPageSchema from '@/components/FAQPageSchema';
-import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import EditorBridge from '@/components/EditorBridge';
+import HomePage from '@/components/pages/HomePage';
 
 // Fallback component for lazy-loaded routes
 const LazyFallback = () => <div className="min-h-screen flex items-center justify-center" />;
 
 // Lazy load non-critical pages for code-splitting
-const HomePage = lazy(() => import('@/components/pages/HomePage'));
 const GewerbestromPage = lazy(() => import('@/components/pages/GewerbestromPage'));
 const GewerbegasPage = lazy(() => import('@/components/pages/GewerbegasPage'));
 const StromvergleichNrwPage = lazy(() => import('@/components/pages/StromvergleichNrwPage'));
@@ -74,44 +72,43 @@ const FaqPage = lazy(() => import('@/components/pages/FaqPage'));
 function Layout() {
   const location = useLocation();
 
-  // Initialize GA4 on app load (consent mode enabled by default)
   useEffect(() => {
-    if (SEO_CONFIG.googleAnalyticsId) {
-      initializeGA4(SEO_CONFIG.googleAnalyticsId);
-    }
-  }, []);
+    const measurementId = SEO_CONFIG.googleAnalyticsId;
+    if (!measurementId || typeof window === 'undefined') return;
+    const runInit = () => initializeGA4(measurementId);
 
-  const normalizedPath =
-    location.pathname === '/' ? '/' : location.pathname.replace(/\/+$/, '');
-  const isHomePage = normalizedPath === '/';
-  const isFaqPage = normalizedPath === ROUTES.faq;
-  const shouldRenderHowToAndReviewSchema = isHomePage;
-  const shouldRenderFaqSchema = isHomePage || isFaqPage;
+    if ('requestIdleCallback' in window) {
+      const idleId = (window as Window & { requestIdleCallback: (callback: () => void, options?: { timeout: number }) => number }).requestIdleCallback(runInit, { timeout: 2500 });
+      return () => {
+        if ('cancelIdleCallback' in window) {
+          (window as Window & { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(idleId);
+        }
+      };
+    }
+
+    const timeoutId = globalThis.setTimeout(runInit, 0);
+    return () => globalThis.clearTimeout(timeoutId);
+  }, []);
 
   return (
     <div className="min-w-0 overflow-x-hidden">
       <EditorBridge />
       <ScrollToTop />
-      <OrganizationSchema />
-      <LocalBusinessSchema />
-      <WebsiteSchema />
-      {shouldRenderHowToAndReviewSchema && <HowToSchema />}
-      {shouldRenderHowToAndReviewSchema && <ReviewSchema />}
-      {shouldRenderFaqSchema && <FAQPageSchema />}
-      <BreadcrumbSchema />
-      <SearchConsoleVerification verificationCode={SEO_CONFIG.googleSearchConsoleVerification} />
-      <Suspense fallback={<LazyFallback />}>
+      {location.pathname === '/' ? (
         <Outlet />
-      </Suspense>
+      ) : (
+        <Suspense fallback={<LazyFallback />}>
+          <Outlet />
+        </Suspense>
+      )}
     </div>
   );
 }
 
-const router = createBrowserRouter([
+const routes: RouteObject[] = [
   {
     path: "/",
     element: <Layout />,
-    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -319,14 +316,28 @@ const router = createBrowserRouter([
       },
     ],
   },
-], {
-  basename: import.meta.env.BASE_NAME,
-});
+];
 
-export default function AppRouter() {
+function AppRoutes() {
+  return useRoutes(routes);
+}
+
+type AppRouterProps = {
+  pathname?: string;
+};
+
+export default function AppRouter({ pathname = '/' }: AppRouterProps) {
   return (
     <MemberProvider>
-      <RouterProvider router={router} />
+      {typeof window === 'undefined' ? (
+        <StaticRouter basename={import.meta.env.BASE_NAME} location={pathname}>
+          <AppRoutes />
+        </StaticRouter>
+      ) : (
+        <BrowserRouter basename={import.meta.env.BASE_NAME}>
+          <AppRoutes />
+        </BrowserRouter>
+      )}
     </MemberProvider>
   );
 }

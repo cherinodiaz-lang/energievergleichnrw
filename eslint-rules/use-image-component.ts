@@ -60,7 +60,7 @@ export default {
       },
 
       JSXElement(node) {
-        if (node.openingElement.name?.type !== 'JSXIdentifier' ||
+        if (node.openingElement.name?.type !== 'JSXIdentifier' || 
             node.openingElement.name.name !== 'img') return;
 
         context.report({

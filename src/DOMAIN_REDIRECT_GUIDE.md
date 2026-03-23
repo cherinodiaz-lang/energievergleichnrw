@@ -1,14 +1,14 @@
 # DOMAIN REDIRECT SETUP GUIDE
-## energievergleich.nrw → energievergleich.shop (301 Redirect)
+## energievergleich.shop → energievergleich.shop (301 Redirect)
 
-**Objective:** Configure Wix Dashboard to redirect all traffic from `energievergleich.nrw` to `https://www.energievergleich.shop` with 301 (permanent) redirects.
+**Objective:** Configure Wix Dashboard to redirect all traffic from `energievergleich.shop` to `https://www.energievergleich.shop` with 301 (permanent) redirects.
 
 ---
 
 ## PROBLEM STATEMENT
 
-Currently: `energievergleich.nrw` returns 404 instead of 301 redirect
-Goal: `https://energievergleich.nrw/` → `https://www.energievergleich.shop/` (1 hop)
+Currently: `energievergleich.shop` returns 404 instead of 301 redirect  
+Goal: `https://energievergleich.shop/` → `https://www.energievergleich.shop/` (1 hop)
 
 ---
 
@@ -41,7 +41,7 @@ Dashboard → Settings → Domains → Add Domain
 **Action:**
 1. Click **"Add Domain"** button
 2. Select **"I already own this domain"**
-3. Enter domain: `energievergleich.nrw`
+3. Enter domain: `energievergleich.shop`
 4. Click **"Next"**
 5. Complete domain verification (DNS records)
 6. Once verified, select **"Redirect this domain"**
@@ -49,7 +49,7 @@ Dashboard → Settings → Domains → Add Domain
 8. Enter target: `https://www.energievergleich.shop`
 9. Click **"Save"**
 
-**Result:** All traffic to `energievergleich.nrw` → 301 redirects to `www.energievergleich.shop`
+**Result:** All traffic to `energievergleich.shop` → 301 redirects to `www.energievergleich.shop`
 
 ---
 
@@ -81,7 +81,7 @@ Dashboard → Settings → Domains → Add Domain
 
 **Command (Terminal/PowerShell):**
 ```bash
-curl -I https://energievergleich.nrw/
+curl -I https://energievergleich.shop/
 ```
 
 **Expected Output:**
@@ -119,7 +119,7 @@ Location: https://www.energievergleich.shop/
 
 **Command (Terminal/PowerShell):**
 ```bash
-curl -I https://energievergleich.nrw/stromvergleich-nrw
+curl -I https://energievergleich.shop/stromvergleich-nrw
 ```
 
 **Expected Output:**
@@ -138,7 +138,7 @@ Location: https://www.energievergleich.shop/stromvergleich-nrw
 
 **Steps:**
 1. Open browser
-2. Navigate to: `https://energievergleich.nrw/`
+2. Navigate to: `https://energievergleich.shop/`
 3. Check address bar → Should show: `https://www.energievergleich.shop/`
 4. Check page loads correctly
 
@@ -157,7 +157,7 @@ Location: https://www.energievergleich.shop/stromvergleich-nrw
 
 **Fix:**
 1. Go to **Settings → Domains**
-2. Check if `energievergleich.nrw` shows **"Verified"** status
+2. Check if `energievergleich.shop` shows **"Verified"** status
 3. If not verified, complete DNS verification steps
 4. If verified, check redirect settings are saved
 5. Wait 5-10 minutes for DNS propagation
@@ -170,7 +170,7 @@ Location: https://www.energievergleich.shop/stromvergleich-nrw
 
 **Fix:**
 1. Go to **Settings → Domains**
-2. Click on `energievergleich.nrw`
+2. Click on `energievergleich.shop`
 3. Edit redirect settings
 4. Select **"Permanent (301)"** (not "Temporary (302)")
 5. Save changes
@@ -194,14 +194,14 @@ Location: https://www.energievergleich.shop/stromvergleich-nrw
 ## VERIFICATION CHECKLIST
 
 - [ ] Primary domain set to `www.energievergleich.shop`
-- [ ] `energievergleich.nrw` added as parked domain
-- [ ] `energievergleich.nrw` redirect type: **301 (Permanent)**
-- [ ] `energievergleich.nrw` target: `https://www.energievergleich.shop`
+- [ ] `energievergleich.shop` added as parked domain
+- [ ] `energievergleich.shop` redirect type: **301 (Permanent)**
+- [ ] `energievergleich.shop` target: `https://www.energievergleich.shop`
 - [ ] `energievergleich.shop` (non-www) added as parked domain
 - [ ] `energievergleich.shop` redirect type: **301 (Permanent)**
 - [ ] `energievergleich.shop` target: `https://www.energievergleich.shop`
 - [ ] DNS verified for all domains
-- [ ] Test 1: `curl -I https://energievergleich.nrw/` → 301
+- [ ] Test 1: `curl -I https://energievergleich.shop/` → 301
 - [ ] Test 2: `curl -I https://energievergleich.shop/` → 301
 - [ ] Test 3: Browser test → No 404, page loads
 - [ ] Test 4: GA4 tracking working on redirected traffic
@@ -218,7 +218,7 @@ Location: https://www.energievergleich.shop/stromvergleich-nrw
 
 ### Search Console:
 1. Add `https://www.energievergleich.shop` as primary property
-2. Add `https://energievergleich.nrw` as secondary property
+2. Add `https://energievergleich.shop` as secondary property
 3. Set `.nrw` to redirect to `.shop` in Search Console settings
 4. Monitor redirect traffic in Search Console
 
@@ -250,5 +250,5 @@ Location: https://www.energievergleich.shop/stromvergleich-nrw
 
 ---
 
-**Last Updated:** 2026-02-17
+**Last Updated:** 2026-02-17  
 **Status:** Ready for Implementation

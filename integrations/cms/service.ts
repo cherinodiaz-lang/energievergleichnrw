@@ -95,17 +95,18 @@ export class BaseCrudService {
     multiReferences?: Record<string, any>
   ): Promise<T> {
     try {
-      const result = (await items.insert(collectionId, itemData as Record<string, unknown>)) as T;
+      const result = await items.insert(collectionId, itemData as Record<string, unknown>);
+      const insertedItem = result as { _id?: string } & Record<string, unknown>;
 
-      if (multiReferences && Object.keys(multiReferences).length > 0 && result._id) {
+      if (multiReferences && Object.keys(multiReferences).length > 0 && insertedItem._id) {
         for (const [propertyName, refIds] of Object.entries(multiReferences)) {
           if (Array.isArray(refIds) && refIds.length > 0) {
-            await items.insertReference(collectionId, propertyName, result._id, refIds as string[]);
+            await items.insertReference(collectionId, propertyName, insertedItem._id, refIds as string[]);
           }
         }
       }
 
-      return result;
+      return result as T;
     } catch (error) {
       // Should consider reverting the insert with a remove in order to prevent partial insert.
       console.error(`Error creating ${collectionId}:`, error);
@@ -134,24 +135,6 @@ export class BaseCrudService {
         : [...(includeRefs?.singleRef || []), ...(includeRefs?.multiRef || [])];
 
       let query = items.query(collectionId);
-      if (
-        typeof query.include !== "function" ||
-        typeof query.skip !== "function" ||
-        typeof query.limit !== "function" ||
-        typeof query.find !== "function"
-      ) {
-        // In local dev without the Wix Astro integration, the client SDK may not
-        // expose the full query builder. Return an empty result so pages still render.
-        return {
-          items: [],
-          totalCount: 0,
-          hasNext: false,
-          currentPage: 0,
-          pageSize: limit,
-          nextSkip: null,
-        };
-      }
-
       if (allRefs.length > 0) {
         query = query.include(...allRefs);
       }

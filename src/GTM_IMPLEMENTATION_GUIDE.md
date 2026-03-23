@@ -69,7 +69,7 @@ Replace `GTM-XXXXXXX` with your actual GTM Container ID.
 ```html
 <script>
   window.dataLayer = window.dataLayer || [];
-
+  
   // Initialize with default consent state (all denied)
   window.dataLayer.push({
     'event': 'consent_init',
@@ -84,7 +84,7 @@ Replace `GTM-XXXXXXX` with your actual GTM Container ID.
     window.consentManager.addEventListener('consent', function(consentData) {
       const analyticsConsent = consentData?.categories?.analytics?.consent === true ? 'granted' : 'denied';
       const marketingConsent = consentData?.categories?.marketing?.consent === true ? 'granted' : 'denied';
-
+      
       // Update GTM consent mode
       window.dataLayer.push({
         'event': 'consent_update',
@@ -139,7 +139,7 @@ Replace `GTM-XXXXXXX` with your actual GTM Container ID.
    - **page_title**: `{{Page Title}}`
    - **page_location**: `{{Page URL}}`
 
-3. **Trigger**:
+3. **Trigger**: 
    - Use the same "Consent - Analytics Granted" trigger
    - **Additional Condition**: Fire once per page
 

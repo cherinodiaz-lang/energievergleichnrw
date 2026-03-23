@@ -5,7 +5,7 @@ import { BlogPosts, Categories, Authors } from '@/entities/index';
 import { Image } from '@/components/ui/image';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -74,9 +74,7 @@ export default function BlogPage() {
       params.category = selectedCategory;
     }
     setSearchParams(params);
-    if (typeof window !== 'undefined') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -211,6 +209,7 @@ export default function BlogPage() {
                       variant="outline"
                       size="icon"
                       className="rounded-full"
+                      aria-label="Vorherige Blog-Seite"
                     >
                       <ChevronLeft className="w-4 h-4" />
                     </Button>
@@ -237,6 +236,7 @@ export default function BlogPage() {
                       variant="outline"
                       size="icon"
                       className="rounded-full"
+                      aria-label="Nächste Blog-Seite"
                     >
                       <ChevronRight className="w-4 h-4" />
                     </Button>
@@ -253,7 +253,7 @@ export default function BlogPage() {
           </div>
         </section>
       </main>
-      <Footer />
+      <DeferredFooter />
     </>
   );
 }

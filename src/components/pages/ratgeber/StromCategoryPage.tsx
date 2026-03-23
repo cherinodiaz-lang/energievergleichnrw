@@ -4,7 +4,7 @@ import { Zap, Clock, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
@@ -79,7 +79,7 @@ export default function StromCategoryPage() {
               <p className="font-paragraph text-base md:text-lg text-gray-700 mb-6 leading-relaxed">
                 Der Strommarkt in Nordrhein-Westfalen bietet vielfältige Möglichkeiten, Ihre Energieversorgung zu optimieren. Ob Sie zum ersten Mal einen Anbieter wechseln möchten, Ihre aktuelle Grundversorgung überprüfen oder die Unterschiede zwischen verschiedenen Tarifmodellen verstehen wollen – unsere Ratgeber bieten Ihnen umfassende Informationen. Wir erklären die wichtigsten Begriffe, zeigen Ihnen worauf Sie bei Verträgen achten sollten und helfen Ihnen, fundierte Entscheidungen zu treffen.
               </p>
-
+              
               <div className="mb-8">
                 <h3 className="font-heading text-lg font-semibold text-gray-900 mb-4">
                   Häufige Fragen zum Stromwechsel:
@@ -193,7 +193,7 @@ export default function StromCategoryPage() {
         </div>
       </section>
 
-      <Footer />
+      <DeferredFooter />
     </div>
   );
 }

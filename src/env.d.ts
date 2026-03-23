@@ -1,5 +1,4 @@
 import type { PageMetadata } from "@wix/astro-pages";
-import "@testing-library/jest-dom/vitest";
 
 /// <reference types="astro/client" />
 /// <reference types="vitest/globals" />

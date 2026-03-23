@@ -51,6 +51,12 @@ A modern, full-featured Wix Astro template built with React, TypeScript, and Tai
    npm run env
    ```
 
+   Required Wix runtime variables:
+   - `WIX_CLIENT_ID`
+   - `WIX_CLIENT_INSTANCE_ID`
+   - `WIX_CLIENT_PUBLIC_KEY`
+   - `WIX_CLIENT_SECRET`
+
 3. **Start development server**:
    ```bash
    npm run dev
@@ -100,6 +106,25 @@ This template includes a comprehensive set of UI components built with Radix UI 
 - `npm run check` - Type check with Astro
 - `npm run test:run` - Run tests
 - `npm run install-template` - Install dependencies
+- `npm run validate:runtime-env` - Verify required Wix runtime env/secret variables
+- `npm run smoke:runtime` - Smoke-check live runtime (`200`, no `x-astro-noop`, `<main>`, canonical)
+
+## Runtime Guard
+
+This project includes a runtime env guard in the catch-all route (`src/pages/[...slug].astro`).
+If required Wix auth variables are missing, it fails fast with:
+- clear server log message
+- explicit `500` plain-text response
+- `x-runtime-env-guard: missing-wix-auth-env`
+
+Recommended release sequence:
+
+```bash
+npm run validate:runtime-env
+npm run build
+npm run release
+npm run smoke:runtime -- --base-url https://www.energievergleich.shop
+```
 
 ## 🧪 Testing
 

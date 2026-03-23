@@ -1,6 +1,6 @@
 # SEO Fix Summary - Site-Wide Implementation
 
-**Date:** 2026-02-03
+**Date:** 2026-02-03  
 **Status:** ✅ COMPLETE
 
 ---
@@ -11,7 +11,7 @@
 
 1. **Removed deprecated Head.tsx component**
    - File: `/src/components/Head.tsx`
-   - Old canonical: `https://energievergleich.nrw` (REMOVED)
+   - Old canonical: `https://energievergleich.shop` (REMOVED)
    - Old robots: `index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1` (REMOVED)
    - Status: Deprecated - all SEO now handled by SEOHead.tsx
 
@@ -139,7 +139,7 @@ Canonical: https://www.energievergleich.shop/ratgeber/strom/grundversorgung
 3. **Trailing Slash Consistency:**
    - Configure in Wix Dashboard: Settings → Domains & URLs
    - Set primary domain: `https://www.energievergleich.shop`
-   - Add parked domain: `energievergleich.nrw` → 301 redirect to primary
+   - Add parked domain: `energievergleich.shop` → 301 redirect to primary
 
 **Configuration Location:**
 - Wix Dashboard → Settings → Domains & URLs
@@ -190,9 +190,9 @@ Canonical: https://www.energievergleich.shop/ratgeber/strom/grundversorgung
 
 ## BUILD STATUS
 
-✅ All changes implemented
-✅ No breaking changes
-✅ All pages maintain existing functionality
+✅ All changes implemented  
+✅ No breaking changes  
+✅ All pages maintain existing functionality  
 ✅ Ready for deployment
 
 ---
@@ -201,7 +201,7 @@ Canonical: https://www.energievergleich.shop/ratgeber/strom/grundversorgung
 
 1. Go to **Settings → Domains & URLs**
 2. Set `energievergleich.shop` as PRIMARY DOMAIN (with www)
-3. Add `energievergleich.nrw` as PARKED DOMAIN with 301 redirect
+3. Add `energievergleich.shop` as PARKED DOMAIN with 301 redirect
 4. Verify in Google Search Console
 5. Submit updated sitemap: `https://www.energievergleich.shop/sitemap.xml`
 

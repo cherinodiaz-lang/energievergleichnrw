@@ -4,7 +4,7 @@ import { BookOpen, Clock, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import { Link } from 'react-router-dom';
 import { getArticlesByCategory } from '@/lib/ratgeber-map';
@@ -154,7 +154,7 @@ export default function WechselwissenCategoryPage() {
         </div>
       </section>
 
-      <Footer />
+      <DeferredFooter />
     </div>
   );
 }

@@ -220,7 +220,7 @@ export function getBreadcrumbItems(pathname: string): BreadcrumbItem[] {
   let currentPath = '';
   for (const segment of segments) {
     currentPath += `/${segment}`;
-
+    
     // Convert segment to readable label
     const label = segment
       .split('-')

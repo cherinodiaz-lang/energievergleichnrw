@@ -61,20 +61,43 @@ const WixImage = forwardRef<HTMLImageElement, WixImageProps>(
     const ref = useRef<HTMLImageElement | null>(null)
     const size = useSize(ref)
     const { width, height, focalPoint } = data
+    const scale = fittingType === 'fit' ? sdk.getScaleToFitImageURL : sdk.getScaleToFillImageURL
+    const transformOptions: ImageTransformOptions = focalPoint ? { focalPoint } : undefined
+
+    const getNumericDimension = (value: ImgHTMLAttributes<HTMLImageElement>['width'] | ImgHTMLAttributes<HTMLImageElement>['height'], fallback: number) => {
+      if (typeof value === 'number') {
+        return value
+      }
+
+      if (typeof value === 'string') {
+        const parsed = Number.parseInt(value, 10)
+        if (!Number.isNaN(parsed)) {
+          return parsed
+        }
+      }
+
+      return fallback
+    }
 
     // Expose the ref to the parent component
     useImperativeHandle(parentRef, () => ref.current as HTMLImageElement)
 
     if (!size) {
+      if (typeof window === 'undefined') {
+        const targetWidth = getNumericDimension(imgProps.width, width)
+        const targetHeight = getNumericDimension(imgProps.height, height)
+        const src = scale(data.id, data.width, data.height, targetWidth, targetHeight, transformOptions)
+
+        return <img ref={ref} {...imgProps} src={src} />
+      }
+
       const { uri, ...placeholder } = getPlaceholder(fittingType ?? 'fit', data, { htmlTag: 'img' })
       // @ts-expect-error placeholder.css.img properties are not typed correctly.
       return <img ref={ref} src={`${STATIC_MEDIA_URL}${uri}`} style={placeholder.css.img} {...placeholder.attr}  {...imgProps} />
     }
 
-    const scale = fittingType === 'fit' ? sdk.getScaleToFitImageURL : sdk.getScaleToFillImageURL
     const targetHeight = size.height || height * (size.width / width) || height
     const targetWidth = size.width || width * (size.height / height) || width
-    const transformOptions: ImageTransformOptions = focalPoint ? { focalPoint } : undefined
     const src = scale(data.id, data.width, data.height, targetWidth, targetHeight, transformOptions)
 
     return <img ref={ref} {...imgProps} src={src} />
@@ -84,6 +107,7 @@ WixImage.displayName = 'WixImage'
 
 export const Image = forwardRef<HTMLImageElement, ImageProps>(({ src, ...props }, ref) => {
   const [imgSrc, setImgSrc] = useState<string | undefined>(src)
+  const { fetchPriority, ...restProps } = props
 
   useEffect(() => {
     // If src prop changes, update the imgSrc state
@@ -99,7 +123,13 @@ export const Image = forwardRef<HTMLImageElement, ImageProps>(({ src, ...props }
     return <div data-empty-image ref={ref} {...props} />
   }
 
-  const imageProps = { ...props, onError: () => setImgSrc(FALLBACK_IMAGE_URL) }
+  const imageProps = {
+    ...restProps,
+    loading: restProps.loading ?? (fetchPriority === 'high' ? 'eager' : 'lazy'),
+    decoding: restProps.decoding ?? 'async',
+    ...(fetchPriority ? { fetchpriority: fetchPriority } : {}),
+    onError: () => setImgSrc(FALLBACK_IMAGE_URL),
+  }
   const imageData = getImageData(imgSrc, imageProps)
 
   if (!imageData) {

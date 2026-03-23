@@ -1,7 +1,7 @@
 # SEO Implementation Guide - Phase 1 Complete ✅
 
 ## Overview
-This document outlines the comprehensive SEO optimization implemented for energievergleich.nrw. All Phase 1 (SEO Basics) features have been successfully implemented.
+This document outlines the comprehensive SEO optimization implemented for energievergleich.shop. All Phase 1 (SEO Basics) features have been successfully implemented.
 
 ---
 
@@ -33,12 +33,12 @@ This document outlines the comprehensive SEO optimization implemented for energi
 
 ### 4. **Domain Redirects (301)**
 - ✅ Implemented in `/src/lib/seo-redirects.ts`
-- Redirects: energievergleich.shop → energievergleich.nrw
+- Redirects: energievergleich.shop → energievergleich.shop
 - Preserves paths, query parameters, and hash fragments
 
 ### 5. **Canonical URLs**
 - ✅ Automatically set on every page
-- Format: `https://energievergleich.nrw{pathname}`
+- Format: `https://energievergleich.shop{pathname}`
 - Prevents duplicate content penalties
 
 ### 6. **OpenGraph & Twitter Cards**
@@ -77,8 +77,8 @@ googleSearchConsoleVerification: 'your-verification-code'
 ```
 
 ### 3. Verify Files Are Accessible
-- robots.txt: `https://energievergleich.nrw/robots.txt`
-- sitemap.xml: `https://energievergleich.nrw/sitemap.xml`
+- robots.txt: `https://energievergleich.shop/robots.txt`
+- sitemap.xml: `https://energievergleich.shop/sitemap.xml`
 
 ### 4. Submit to Search Engines
 - Google Search Console: Add property and submit sitemap

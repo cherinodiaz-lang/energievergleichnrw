@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import { ROUTES } from '@/lib/routes';
 
 export default function ThankYouPage() {
   return (
     <>
-      <SEOHead
+      <SEOHead 
         title="Danke – Anfrage erhalten"
         description="Vielen Dank für Ihre Anfrage. Wir melden uns kurzfristig bei Ihnen."
         noindex={true}
@@ -121,8 +121,8 @@ export default function ThankYouPage() {
           {/* CTA Button */}
           <div className="flex justify-center">
             <Link to={ROUTES.home}>
-              <Button
-                size="lg"
+              <Button 
+                size="lg" 
                 className="bg-primary hover:bg-primary/90 text-primary-foreground font-heading font-semibold"
               >
                 Zur Startseite
@@ -135,14 +135,14 @@ export default function ThankYouPage() {
           <div className="mt-16 pt-12 border-t border-light-grey">
             <p className="font-paragraph text-center text-gray-600 text-sm">
               Haben Sie Fragen? Kontaktieren Sie uns jederzeit unter{' '}
-              <a href="mailto:info@energievergleich.shop" className="text-primary font-semibold hover:underline">
-                info@energievergleich.shop
+              <a href="mailto:support@energievergleich.nrw" className="text-primary font-semibold hover:underline">
+                support@energievergleich.nrw
               </a>
             </p>
           </div>
         </div>
       </main>
-      <Footer />
+      <DeferredFooter />
     </>
   );
 }

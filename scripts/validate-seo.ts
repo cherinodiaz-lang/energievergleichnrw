@@ -124,26 +124,26 @@ function printCheckResult(result: CheckResult): number {
 }
 
 async function validateWebsiteSchema(): Promise<CheckResult> {
-  const websiteSchema = await readFile('src/components/WebsiteSchema.tsx');
+  const seoSsr = await readFile('src/lib/seo-ssr.ts');
   const seoConfig = await readFile('src/lib/seo-config.ts');
   const findings: Finding[] = [];
 
-  if (!websiteSchema.content.includes("url: SEO_CONFIG.siteUrl")) {
+  if (!seoSsr.content.includes("id: 'website-schema'")) {
     findings.push(
       createFinding(
-        websiteSchema,
-        /url:/,
-        'WebsiteSchema muss die Schema-URL aus SEO_CONFIG.siteUrl beziehen.',
+        seoSsr,
+        /website-schema/,
+        'Serverseitiges WebSite-Schema muss in seo-ssr.ts definiert sein.',
       ),
     );
   }
 
-  if (!websiteSchema.content.includes('urlTemplate: `${SEO_CONFIG.siteUrl}/?q={search_term_string}`')) {
+  if (!seoSsr.content.includes('urlTemplate: `${SEO_CONFIG.siteUrl}/?q={search_term_string}`')) {
     findings.push(
       createFinding(
-        websiteSchema,
+        seoSsr,
         /urlTemplate/,
-        'WebsiteSchema SearchAction muss SEO_CONFIG.siteUrl mit .shop-Domain verwenden.',
+        'Das serverseitige WebSite-Schema muss die SearchAction auf SEO_CONFIG.siteUrl aufbauen.',
       ),
     );
   }
@@ -168,7 +168,7 @@ async function validateWebsiteSchema(): Promise<CheckResult> {
     );
   }
 
-  findings.push(...findInvalidDomainLines(websiteSchema));
+  findings.push(...findInvalidDomainLines(seoSsr));
   findings.push(
     ...findInvalidDomainLines(
       seoConfig,
@@ -215,32 +215,32 @@ async function validateSitemap(): Promise<CheckResult> {
 }
 
 async function validateCanonicals(): Promise<CheckResult> {
-  const seoHead = await readFile('src/components/SEOHead.tsx');
+  const astroPage = await readFile('src/pages/[...slug].astro');
+  const seoSsr = await readFile('src/lib/seo-ssr.ts');
   const findings: Finding[] = [];
 
-  if (!seoHead.content.includes('const SITE_URL = "https://www.energievergleich.shop";')) {
+  if (!astroPage.content.includes('<link rel="canonical" href={seo.canonicalUrl} />')) {
     findings.push(
       createFinding(
-        seoHead,
-        /const SITE_URL/,
-        `Canonical-Basis muss exakt "${EXPECTED_BASE_URL}" sein.`,
-      ),
-    );
-  }
-
-  if (!seoHead.content.includes('setLink("canonical", canonicalUrl);')) {
-    findings.push(
-      createFinding(
-        seoHead,
+        astroPage,
         /canonical/,
-        'Canonical-Link muss explizit auf canonicalUrl gesetzt werden.',
+        'Canonical-Link muss serverseitig im Astro-Head auf seo.canonicalUrl gesetzt werden.',
       ),
     );
   }
 
-  findings.push(
-    ...findInvalidDomainLines(seoHead, (line) => /canonical|SITE_URL|new URL/i.test(line)),
-  );
+  if (!seoSsr.content.includes('const canonicalUrl = toAbsoluteUrl(normalizedPath);')) {
+    findings.push(
+      createFinding(
+        seoSsr,
+        /canonicalUrl/,
+        'Canonical-URL muss serverseitig aus dem normalisierten Pfad erzeugt werden.',
+      ),
+    );
+  }
+
+  findings.push(...findInvalidDomainLines(astroPage, (line) => /canonical/i.test(line)));
+  findings.push(...findInvalidDomainLines(seoSsr, (line) => /canonicalUrl|siteUrl|toAbsoluteUrl/i.test(line)));
 
   return {
     name: 'Canonical-Prüfung',
@@ -271,20 +271,32 @@ async function validateRobots(): Promise<CheckResult> {
 }
 
 async function validateOgUrls(): Promise<CheckResult> {
-  const seoHead = await readFile('src/components/SEOHead.tsx');
+  const astroPage = await readFile('src/pages/[...slug].astro');
+  const seoSsr = await readFile('src/lib/seo-ssr.ts');
   const findings: Finding[] = [];
 
-  if (!seoHead.content.includes('setProperty("og:url", canonicalUrl);')) {
+  if (!astroPage.content.includes('<meta property="og:url" content={seo.ogUrl} />')) {
     findings.push(
       createFinding(
-        seoHead,
+        astroPage,
         /og:url/,
-        'og:url muss aus canonicalUrl gesetzt werden.',
+        'og:url muss serverseitig im Astro-Head gesetzt werden.',
       ),
     );
   }
 
-  findings.push(...findInvalidDomainLines(seoHead, (line) => /og:url|SITE_URL|canonicalUrl/i.test(line)));
+  if (!seoSsr.content.includes('ogUrl: canonicalUrl')) {
+    findings.push(
+      createFinding(
+        seoSsr,
+        /ogUrl:/,
+        'og:url muss auf dieselbe serverseitige Canonical-URL zeigen.',
+      ),
+    );
+  }
+
+  findings.push(...findInvalidDomainLines(astroPage, (line) => /og:url|og:site_name/i.test(line)));
+  findings.push(...findInvalidDomainLines(seoSsr, (line) => /ogUrl|canonicalUrl/i.test(line)));
 
   const sourceFiles = await walk('src');
   const metaFiles = sourceFiles.filter((file) => /\.(astro|ts|tsx|js|jsx)$/.test(file));

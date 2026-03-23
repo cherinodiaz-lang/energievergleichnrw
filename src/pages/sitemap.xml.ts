@@ -78,6 +78,24 @@ const pages = [
     changefreq: 'monthly',
     lastmod: LASTMOD_STATIC
   },
+  {
+    url: '/agb',
+    priority: '0.5',
+    changefreq: 'yearly',
+    lastmod: LASTMOD_STATIC
+  },
+  {
+    url: '/widerruf',
+    priority: '0.5',
+    changefreq: 'yearly',
+    lastmod: LASTMOD_STATIC
+  },
+  {
+    url: '/sitemap',
+    priority: '0.4',
+    changefreq: 'monthly',
+    lastmod: LASTMOD_STATIC
+  },
 
   // ===== RATGEBER HUB (Priority: 0.9) =====
   {
@@ -139,24 +157,6 @@ const pages = [
     url: '/datenschutz',
     priority: '0.5',
     changefreq: 'yearly',
-    lastmod: LASTMOD_STATIC
-  },
-  {
-    url: '/agb',
-    priority: '0.4',
-    changefreq: 'yearly',
-    lastmod: LASTMOD_STATIC
-  },
-  {
-    url: '/widerruf',
-    priority: '0.4',
-    changefreq: 'yearly',
-    lastmod: LASTMOD_STATIC
-  },
-  {
-    url: '/sitemap',
-    priority: '0.3',
-    changefreq: 'monthly',
     lastmod: LASTMOD_STATIC
   }
 ];

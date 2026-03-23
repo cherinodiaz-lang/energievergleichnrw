@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Zap, Building2, TrendingDown, Shield, Clock, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -6,9 +6,9 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import NativeSelect from '@/components/ui/native-select';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
@@ -22,64 +22,7 @@ import { trackMethodikClick } from '@/services/form-submission';
 import { getRelatedPages } from '@/lib/internal-linking';
 
 export default function GewerbestromPage() {
-  useEffect(() => {
-    const faqSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: [
-        {
-          '@type': 'Question',
-          name: 'Wie oft kann ich meinen Gewerbestrom-Anbieter wechseln?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Sie können Ihren Gewerbestrom-Anbieter jederzeit wechseln, sofern Sie die Kündigungsfrist einhalten. Bei den meisten Verträgen beträgt diese 4 Wochen zum Ende eines Kalendermonats. Nach einem Wechsel können Sie frühestens nach 12 Monaten erneut wechseln.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Ist der Wechsel des Gewerbestrom-Anbieters kostenlos?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Ja, völlig kostenlos. Es fallen keine Gebühren für die Kündigung beim alten Anbieter oder die Anmeldung beim neuen an. Wir kümmern uns um alle Formalitäten.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Wie lange dauert ein Gewerbestrom-Wechsel?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'In der Regel 4-6 Wochen. Ihre Stromversorgung wird nicht unterbrochen. Der neue Anbieter kümmert sich um alle notwendigen Schritte.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Kann ich während des Wechsels ohne Strom sein?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Nein. Ihre Stromversorgung ist gesetzlich geschützt. Im Notfall springt der Grundversorger ein.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Welche Daten benötige ich für einen Gewerbestrom-Vergleich?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Postleitzahl und Stromverbrauch (in kWh). Den Verbrauch finden Sie auf Ihrer letzten Rechnung. Optional: Zählernummer und Lastprofil.'
-          }
-        }
-      ]
-    };
-
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.textContent = JSON.stringify(faqSchema);
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
-
+  const [submitSuccess, setSubmitSuccess] = useState(false);
   const [companyName, setCompanyName] = useState('');
   const [contactPerson, setContactPerson] = useState('');
   const [email, setEmail] = useState('');
@@ -93,7 +36,7 @@ export default function GewerbestromPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Vielen Dank für Ihre Anfrage, ${companyName}! Wir werden uns in Kürze bei Ihnen melden.`);
+    setSubmitSuccess(true);
     // Reset form
     setCompanyName('');
     setContactPerson('');
@@ -122,7 +65,7 @@ export default function GewerbestromPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background break-words leading-mobile">
+    <div className="min-h-screen bg-background break-words leading-relaxed">
       <SEOHead
         title={seo.title}
         description={seo.description}
@@ -132,6 +75,7 @@ export default function GewerbestromPage() {
       />
       <BreadcrumbSchema items={breadcrumbSchema} />
       <Header />
+      <main>
       <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero Section */}
@@ -175,7 +119,7 @@ export default function GewerbestromPage() {
           <div className="space-y-8">
             <div>
               <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Gewerbestrom-Anfrage für NRW</h2>
-
+              
               <p className="font-paragraph text-lg text-gray-700 mb-6">
                 Mit unserem kostenlosen Gewerbestrom-Service finden Sie in wenigen Minuten den günstigsten Stromtarif für Ihr Unternehmen in Nordrhein-Westfalen. Die Anfrage ist völlig kostenlos und unverbindlich – Sie geben nur Ihre Verbrauchsdaten ein und erhalten sofort individualisierte Angebote. Sparen Sie bis zu 30% Ihrer Stromkosten durch optimierte Gewerbestromtarife und profitieren Sie von persönlicher Beratung durch unsere Experten.
               </p>
@@ -479,13 +423,22 @@ export default function GewerbestromPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
+              {submitSuccess && (
+                <div
+                  className="mb-6 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800"
+                  role="status"
+                  aria-live="polite"
+                >
+                  Vielen Dank für Ihre Anfrage. Wir melden uns in Kürze bei Ihnen.
+                </div>
+              )}
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Company Information */}
                 <div className="space-y-6">
                   <h3 className="font-heading text-xl font-semibold text-foreground">
                     Unternehmensinformationen
                   </h3>
-
+                  
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="company-name" className="font-paragraph">Firmenname *</Label>
@@ -501,20 +454,23 @@ export default function GewerbestromPage() {
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="company-type" className="font-paragraph">Branche *</Label>
-                      <Select value={companyType} onValueChange={setCompanyType} required>
-                        <SelectTrigger id="company-type" className="font-paragraph">
-                          <SelectValue placeholder="Wählen Sie..." />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="einzelhandel">Einzelhandel</SelectItem>
-                          <SelectItem value="gastro">Gastronomie</SelectItem>
-                          <SelectItem value="buero">Büro/Verwaltung</SelectItem>
-                          <SelectItem value="handwerk">Handwerk</SelectItem>
-                          <SelectItem value="produktion">Produktion</SelectItem>
-                          <SelectItem value="dienstleistung">Dienstleistung</SelectItem>
-                          <SelectItem value="sonstige">Sonstige</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <NativeSelect
+                        id="company-type"
+                        value={companyType}
+                        onValueChange={setCompanyType}
+                        options={[
+                          { value: 'einzelhandel', label: 'Einzelhandel' },
+                          { value: 'gastro', label: 'Gastronomie' },
+                          { value: 'buero', label: 'Büro/Verwaltung' },
+                          { value: 'handwerk', label: 'Handwerk' },
+                          { value: 'produktion', label: 'Produktion' },
+                          { value: 'dienstleistung', label: 'Dienstleistung' },
+                          { value: 'sonstige', label: 'Sonstige' },
+                        ]}
+                        placeholder="Wählen Sie..."
+                        required
+                        className="font-paragraph"
+                      />
                     </div>
                   </div>
                 </div>
@@ -524,7 +480,7 @@ export default function GewerbestromPage() {
                   <h3 className="font-heading text-xl font-semibold text-foreground">
                     Ansprechpartner
                   </h3>
-
+                  
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="contact-person" className="font-paragraph">Name *</Label>
@@ -570,7 +526,7 @@ export default function GewerbestromPage() {
                   <h3 className="font-heading text-xl font-semibold text-foreground">
                     Standort
                   </h3>
-
+                  
                   <div className="space-y-2">
                     <Label htmlFor="address" className="font-paragraph">Straße und Hausnummer *</Label>
                     <Input
@@ -583,7 +539,7 @@ export default function GewerbestromPage() {
                       className="font-paragraph"
                     />
                   </div>
-
+                  
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="postcode" className="font-paragraph">Postleitzahl *</Label>
@@ -617,7 +573,7 @@ export default function GewerbestromPage() {
                   <h3 className="font-heading text-xl font-semibold text-foreground">
                     Verbrauchsinformationen
                   </h3>
-
+                  
                   <div className="space-y-2">
                     <Label htmlFor="consumption" className="font-paragraph">
                       Jährlicher Stromverbrauch (kWh) *
@@ -674,7 +630,7 @@ export default function GewerbestromPage() {
         <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-6">
             <h2 className="font-heading text-3xl font-bold text-primary">Warum energievergleich.shop?</h2>
-
+            
             <p className="font-paragraph text-lg text-gray-700 leading-relaxed">
               Bei der Wahl eines Gewerbestrom-Anbieters vertrauen Sie auf Transparenz und Unabhängigkeit. energievergleich.shop bietet Ihnen einen kostenlosen, unabhängigen Vergleich von Gewerbestromtarifen – ohne versteckte Gebühren oder Provisionen. Wir vergleichen Tarife nach Preis und Vertragsbedingungen, um Ihnen die beste Lösung für Ihr Unternehmen zu zeigen. Unsere Daten sind aktuell und werden regelmäßig aktualisiert. Stand: Februar 2026.
             </p>
@@ -756,7 +712,8 @@ export default function GewerbestromPage() {
         </div>
       </section>
 
-      <Footer />
+      </main>
+      <DeferredFooter />
     </div>
   );
 }

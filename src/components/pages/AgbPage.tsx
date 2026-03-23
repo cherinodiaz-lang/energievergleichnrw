@@ -1,5 +1,5 @@
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import Breadcrumb from '@/components/Breadcrumb';
 
@@ -30,14 +30,14 @@ export default function AgbPage() {
           </p>
           <p>
             Bei Fragen wenden Sie sich bitte an:{' '}
-            <a href="mailto:info@energievergleich.shop" className="text-primary hover:underline">
-              info@energievergleich.shop
+            <a href="mailto:support@energievergleich.nrw" className="text-primary hover:underline">
+              support@energievergleich.nrw
             </a>
           </p>
         </div>
       </main>
 
-      <Footer />
+      <DeferredFooter />
     </div>
   );
 }

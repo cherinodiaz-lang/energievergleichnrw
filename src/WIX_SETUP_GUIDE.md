@@ -152,28 +152,28 @@ Add the following fields to your collection:
    - Select **Send Email**
 
 4. **Configure Email:**
-   - **To**: Your email address (e.g., `kontakt@energievergleich.nrw`)
+   - **To**: Your email address (e.g., `kontakt@energievergleich.shop`)
    - **Subject**: `Neue Anfrage: {type}`
    - **Body**: Use the template below
 
 5. **Email Template:**
    ```
    Neue Anfrage eingegangen!
-
+   
    Name: {name}
    E-Mail: {email}
    Telefon: {phone}
    Anfrage-Typ: {type}
-
+   
    Nachricht:
    {message}
-
+   
    Zusätzliche Informationen:
    Postleitzahl: {postleitzahl}
    Verbrauch: {verbrauch}
-
+   
    Eingangsdatum: {_createdDate}
-
+   
    ---
    Bitte antworten Sie dem Kunden schnellstmöglich.
    ```
@@ -201,15 +201,15 @@ Add the following fields to your collection:
 4. **Email Template:**
    ```
    Liebe/r {name},
-
+   
    vielen Dank für Ihre Anfrage! Wir haben Ihre Nachricht erhalten und werden uns in Kürze bei Ihnen melden.
-
+   
    Ihre Anfrage wird von unserem Team bearbeitet. Sie erhalten eine Antwort innerhalb von 24 Stunden.
-
+   
    Falls Sie Fragen haben, kontaktieren Sie uns unter:
-   E-Mail: kontakt@energievergleich.nrw
+   E-Mail: kontakt@energievergleich.shop
    Telefon: +49 211 1234567
-
+   
    Beste Grüße,
    Das Energievergleich Team
    ```

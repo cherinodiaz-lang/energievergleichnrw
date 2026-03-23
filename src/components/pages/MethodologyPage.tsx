@@ -3,11 +3,9 @@ import { motion } from 'framer-motion';
 import { CheckCircle, Shield, TrendingUp, Users, BarChart3, Zap } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
-import RelatedPages from '@/components/RelatedPages';
 import { Link } from 'react-router-dom';
-import { getRelatedPages } from '@/lib/internal-linking';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
 
@@ -24,6 +22,7 @@ export default function MethodologyPage() {
         ogDescription={seo.ogDescription}
       />
       <Header />
+      <main>
 
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
@@ -85,7 +84,7 @@ export default function MethodologyPage() {
               <p className="font-paragraph text-lg text-gray-700">
                 <strong>Transparenz ist unser Grundprinzip:</strong> Wir nutzen die in unserem Vergleich/Rechner hinterlegten Tarif- und Anbieterinformationen sowie öffentlich verfügbare Anbieter-Preisblätter und Produktinformationen. Es gibt keine versteckten Datenquellen.
               </p>
-
+              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                 <Card>
                   <CardHeader>
@@ -296,13 +295,12 @@ export default function MethodologyPage() {
                 </button>
               </Link>
             </motion.div>
-
-            <RelatedPages pages={getRelatedPages('/methodik')} />
           </div>
         </div>
       </section>
 
-      <Footer />
+      </main>
+      <DeferredFooter />
     </div>
   );
 }

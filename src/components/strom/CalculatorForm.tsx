@@ -324,27 +324,27 @@ export default function CalculatorForm() {
           <div className="mt-4 sm:mt-5 space-y-2 sm:space-y-3">
             <h3 className="font-heading text-base sm:text-lg md:text-xl font-bold">Verfügbare Tarife</h3>
             {searchState.tariffs.map((tariff, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <Card key={index} className="hover:shadow-lg transition-shadow">
                 <CardContent className="p-3 sm:p-4">
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-3 mb-3 sm:mb-4">
                     <div className="min-w-0">
-                      <h4 className="font-heading font-semibold text-sm sm:text-base">{tariff.provider}</h4>
-                      <p className="text-gray-600 text-xs truncate">{tariff.name}</p>
+                      <h4 className="font-heading font-semibold text-sm sm:text-base">{tariff.providerName}</h4>
+                      <p className="text-gray-600 text-xs truncate">{tariff.tariffName}</p>
                     </div>
-                    <Badge variant="default" className="w-fit whitespace-nowrap text-xs sm:text-sm">{formatMoney(tariff.monthlyPrice)}/Monat</Badge>
+                    <Badge variant="default" className="w-fit whitespace-nowrap text-xs sm:text-sm">{formatMoney(tariff.monthlyCost)}/Monat</Badge>
                   </div>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 text-xs sm:text-sm">
                     <div>
                       <p className="text-gray-600 text-xs">Jahrespreis</p>
-                      <p className="font-semibold text-sm">{formatMoney(tariff.annualPrice)}</p>
+                      <p className="font-semibold text-sm">{formatMoney(tariff.annualCost)}</p>
                     </div>
                     <div>
                       <p className="text-gray-600 text-xs">Grundgebühr</p>
-                      <p className="font-semibold text-sm">{formatMoney(tariff.baseFee)}/Monat</p>
+                      <p className="font-semibold text-sm">{formatMoney(tariff.basePriceMonthly)}/Monat</p>
                     </div>
                     <div>
                       <p className="text-gray-600 text-xs">Arbeitspreis</p>
-                      <p className="font-semibold text-sm">{tariff.workPrice.toFixed(2)}¢/kWh</p>
+                      <p className="font-semibold text-sm">{tariff.workPriceCt.toFixed(2)}¢/kWh</p>
                     </div>
                     <div>
                       <p className="text-gray-600 text-xs">Vertragslaufzeit</p>

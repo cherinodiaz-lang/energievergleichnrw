@@ -25,16 +25,13 @@ export default {
             colors: {
                 primary: "#2C6E49",
                 "primary-foreground": "#FFFFFF",
-                secondary: "#E6A800",
+                secondary: "#ebb630ff",
                 "secondary-foreground": "#000000",
                 background: "#F5F7F9",
                 "light-grey": "#EAEAEA",
                 destructive: "#D32F2F",
                 "destructive-foreground": "#FFFFFF",
                 foreground: "#000000"
-            },
-            lineHeight: {
-                mobile: '1.6',
             },
         },
     },
