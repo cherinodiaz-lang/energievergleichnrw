@@ -1,3 +1,4 @@
+const test = ;
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import eslintPluginAstro from 'eslint-plugin-astro';
