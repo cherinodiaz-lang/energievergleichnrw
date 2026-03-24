@@ -16,6 +16,8 @@ jobs:
   audit:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
     steps:
       - name: Checkout repository
@@ -30,8 +32,6 @@ jobs:
         run: npm install -g @openai/codex
 
       - name: Ensure OPENAI_API_KEY exists
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           if [ -z "${OPENAI_API_KEY}" ]; then
             echo "Missing OPENAI_API_KEY secret"
@@ -39,8 +39,6 @@ jobs:
           fi
 
       - name: Run nightly Codex audit
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           codex exec \
             --full-auto \
