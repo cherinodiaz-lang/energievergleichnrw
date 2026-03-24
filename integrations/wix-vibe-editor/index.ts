@@ -1,22 +1,22 @@
-// Wix Vibe Editor Integration
+// Wix Vibe Editor integration exports
+export { default as WixVibeEditorBridge } from './editor-bridge';
 
-// Exports for editor bridge components
-export { default as EditorBridge } from './components/EditorBridge';
+type UIStateValue = Record<string, unknown>;
 
-// UI state management
 export class UIState {
-    constructor() {
-        this.state = {};
-    }
+  private state: UIStateValue;
 
-    setState(newState) {
-        this.state = {...this.state, ...newState};
-    }
+  constructor() {
+    this.state = {};
+  }
 
-    getState() {
-        return this.state;
-    }
+  setState(newState: UIStateValue): void {
+    this.state = { ...this.state, ...newState };
+  }
+
+  getState(): UIStateValue {
+    return this.state;
+  }
 }
 
-// Export an instance of UIState
 export const uiState = new UIState();
