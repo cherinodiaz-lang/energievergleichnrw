@@ -46,8 +46,8 @@ jobs:
             Fix the root cause of the failure in this repository.
 
             Requirements:
-            - Follow AGENTS.md
-            - Use the repo instructions and skills
+            - Follow .github/copilot-instructions.md
+            - Follow any matching files under .github/instructions/
             - Fix the actual failing issue, not unrelated code
             - Keep diffs minimal
             - Do not introduce breaking changes
