@@ -6,68 +6,69 @@ on:
     types: [completed]
 
 permissions:
-  actions: read
   contents: write
-
-concurrency:
-  group: codex-autofix-${{ github.event.workflow_run.id }}
-  cancel-in-progress: false
+  pull-requests: write
 
 jobs:
   autofix:
     if: >
       github.event.workflow_run.conclusion == 'failure' &&
-      github.event.workflow_run.head_branch == 'main' &&
-      github.event.workflow_run.actor.login != 'github-actions[bot]'
+      github.event.workflow_run.head_branch == 'main'
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+
     env:
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      WIX_CLIENT_ID: ${{ secrets.WIX_CLIENT_ID }}
+      WIX_CLIENT_SECRET: ${{ secrets.WIX_CLIENT_SECRET }}
+      WIX_CLIENT_INSTANCE_ID: ${{ secrets.WIX_CLIENT_INSTANCE_ID }}
+      WIX_CLIENT_PUBLIC_KEY: ${{ secrets.WIX_CLIENT_PUBLIC_KEY }}
 
     steps:
       - name: Checkout failed revision
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.event.workflow_run.head_sha }}
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v5
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
       - name: Install dependencies
         run: npm install
 
-      - name: Install Codex CLI
-        run: npm install -g @openai/codex
+      - name: Run Codex
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          prompt: |
+            The CI workflow failed on the current commit.
+            Fix the root cause of the failure in this repository.
 
-      - name: Ensure OPENAI_API_KEY exists
-        run: |
-          if [ -z "${OPENAI_API_KEY}" ]; then
-            echo "Missing OPENAI_API_KEY secret"
-            exit 1
-          fi
+            Requirements:
+            - Follow AGENTS.md
+            - Use the repo instructions and skills
+            - Fix the actual failing issue, not unrelated code
+            - Keep diffs minimal
+            - Do not introduce breaking changes
 
-      - name: Run Codex auto-fix
-        run: |
-          OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}" codex exec \
-            --full-auto \
-            --sandbox workspace-write \
-            --model gpt-5.3-codex \
-            --cd . \
-            "Fix all failing tests and build errors using AGENTS.md and p0-fix skill"
+            After making changes, run:
+            - npm run check
+            - npm run test:run
+            - npm run build
+
+            Only stop when those commands pass, or explain clearly in the output what still blocks success.
+          sandbox: workspace-write
+          codex-args: --full-auto
 
       - name: Commit and push fixes
         run: |
-          if git diff --quiet; then
-            echo "No changes produced by Codex."
-            exit 0
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git config user.name "codex-bot"
+            git config user.email "codex-bot@users.noreply.github.com"
+            git add .
+            git commit -m "auto-fix: codex resolved CI failure"
+            git push origin HEAD:main
+          else
+            echo "No changes to commit"
           fi
-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "chore: codex auto-fix CI failures [codex-autofix]"
-          git push origin HEAD:main
