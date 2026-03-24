@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { BaseCrudService } from '@/integrations';
-import { BlogPosts, Categories, Authors } from '@/entities/index';
+import { BlogPosts, Categories } from '@/entities/index';
 import { Image } from '@/components/ui/image';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
@@ -38,11 +38,6 @@ export default function BlogPage() {
         setCategories(categoriesResult.items || []);
 
         // Load posts with pagination and category filter
-        let query: any[] = [];
-        if (selectedCategory) {
-          query = [{ fieldName: 'category', value: selectedCategory }];
-        }
-
         const postsResult = await BaseCrudService.getAll<BlogPosts>(
           'blogposts',
           {

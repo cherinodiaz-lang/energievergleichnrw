@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, type SyntheticEvent } from 'react';
 import { motion } from 'framer-motion';
-import { Zap, CheckCircle, TrendingDown, Shield, Clock, Send, ArrowRight, AlertCircle, Globe, DollarSign, MapPin, BarChart3, Rocket } from 'lucide-react';
+import { Zap, CheckCircle, Send, ArrowRight, AlertCircle, Globe, DollarSign, MapPin, BarChart3, Rocket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import Header from '@/components/Header';
@@ -12,18 +11,14 @@ import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
-import TrustRow from '@/components/TrustRow';
 import RelatedPages from '@/components/RelatedPages';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
 import { validateFormFields, FORM_CONFIGS } from '@/lib/form-validation';
-import FormSubmissionDialog from '@/components/FormSubmissionDialog';
-import { trackMethodikClick } from '@/services/form-submission';
 import { getRelatedPages } from '@/lib/internal-linking';
 
 export default function StromvergleichNrwPage() {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     postleitzahl: '',
     verbrauch: '',
@@ -33,8 +28,7 @@ export default function StromvergleichNrwPage() {
   });
   const [showResults, setShowResults] = useState(false);
   const [calculatedConsumption, setCalculatedConsumption] = useState(0);
-  const [showFormDialog, setShowFormDialog] = useState(false);
-  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  const [, setFormErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
     const faqSchema = {
@@ -142,7 +136,7 @@ export default function StromvergleichNrwPage() {
     };
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     // Validate required fields for private form
@@ -164,27 +158,6 @@ export default function StromvergleichNrwPage() {
 
     setCalculatedConsumption(consumption);
     setShowResults(true);
-  };
-
-  const handleFormSubmit = () => {
-    setShowFormDialog(true);
-  };
-
-  const handleFormSuccess = () => {
-    // Reset form
-    setFormData({
-      postleitzahl: '',
-      verbrauch: '',
-      name: '',
-      email: '',
-      phone: '',
-    });
-    setShowResults(false);
-    setFormErrors({});
-    // Redirect to thank you page
-    setTimeout(() => {
-      navigate('/danke');
-    }, 2000);
   };
 
   const seo = getPageSEO('stromvergleich');

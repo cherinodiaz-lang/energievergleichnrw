@@ -14,7 +14,7 @@
  * - Events only tracked AFTER Analytics consent is granted
  */
 
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Settings, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';

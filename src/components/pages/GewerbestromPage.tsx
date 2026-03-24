@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type SyntheticEvent } from 'react';
 import { motion } from 'framer-motion';
 import { Zap, Building2, TrendingDown, Shield, Clock, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -13,7 +13,6 @@ import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
-import TrustRow from '@/components/TrustRow';
 import RelatedPages from '@/components/RelatedPages';
 import { Link } from 'react-router-dom';
 import { getPageSEO } from '@/lib/seo-config';
@@ -34,7 +33,7 @@ export default function GewerbestromPage() {
   const [companyType, setCompanyType] = useState('');
   const [message, setMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitSuccess(true);
     // Reset form

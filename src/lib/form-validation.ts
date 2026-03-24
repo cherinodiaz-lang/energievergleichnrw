@@ -27,7 +27,7 @@ const ERROR_MESSAGES: Record<string, string> = {
  * Validate a single field
  */
 export function validateField(
-  fieldName: string,
+  _fieldName: string,
   value: any,
   fieldType: 'email' | 'phone' | 'plz' | 'number' | 'text' = 'text'
 ): { valid: boolean; error?: string } {

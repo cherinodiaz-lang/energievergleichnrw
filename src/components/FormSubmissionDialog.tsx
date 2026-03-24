@@ -7,7 +7,7 @@
  * - GA4 tracking (consent-safe)
  */
 
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, AlertCircle, Loader } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -84,7 +84,7 @@ export default function FormSubmissionDialog({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, submitted]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Check privacy consent

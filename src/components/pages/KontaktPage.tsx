@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState, type SyntheticEvent } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Clock } from 'lucide-react';
+import { Mail, Phone, Send, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -28,7 +28,7 @@ export default function KontaktPage() {
   });
   const [showDialog, setShowDialog] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Track CTA click
     trackCTAClick('Kontaktformular');

@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, type SyntheticEvent } from 'react';
 import { motion } from 'framer-motion';
-import { Flame, CheckCircle, TrendingDown, Shield, Clock, Send, ArrowRight, Globe, DollarSign, MapPin, BarChart3, Rocket, AlertCircle } from 'lucide-react';
+import { Flame, CheckCircle, Send, ArrowRight, Globe, DollarSign, MapPin, BarChart3, Rocket, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import NativeSelect from '@/components/ui/native-select';
@@ -11,12 +10,10 @@ import Header from '@/components/Header';
 import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
-import ResponsiveEmbed from '@/components/ui/ResponsiveEmbed';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
-import TrustRow from '@/components/TrustRow';
 import RelatedPages from '@/components/RelatedPages';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
 import { validateFormFields, FORM_CONFIGS } from '@/lib/form-validation';
@@ -24,7 +21,6 @@ import { trackMethodikClick } from '@/services/form-submission';
 import { getRelatedPages } from '@/lib/internal-linking';
 
 export default function GasvergleichNrwPage() {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     postleitzahl: '',
     wohnfläche: '',
@@ -35,7 +31,7 @@ export default function GasvergleichNrwPage() {
   });
   const [showResults, setShowResults] = useState(false);
   const [calculatedConsumption, setCalculatedConsumption] = useState(0);
-  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  const [, setFormErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
     const faqSchema = {
@@ -143,7 +139,7 @@ export default function GasvergleichNrwPage() {
     };
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     // Validate required fields for private form

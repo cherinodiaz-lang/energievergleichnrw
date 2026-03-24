@@ -33,7 +33,7 @@ export const getImageLoading = (imageType: 'hero' | 'card' | 'icon' | 'thumbnail
  * Optimize image URL for WebP/AVIF support
  * Note: Wix CDN handles format negotiation automatically
  */
-export const optimizeImageUrl = (url: string, width?: number, height?: number): string => {
+export const optimizeImageUrl = (url: string, _width?: number, _height?: number): string => {
   if (!url) return '';
   
   // If it's a Wix static URL, it's already optimized

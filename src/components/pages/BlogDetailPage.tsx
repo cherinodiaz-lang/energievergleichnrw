@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { BaseCrudService } from '@/integrations';
-import { BlogPosts, Authors, Categories } from '@/entities/index';
+import { BlogPosts } from '@/entities/index';
 import { Image } from '@/components/ui/image';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';

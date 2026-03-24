@@ -4,7 +4,6 @@
  * Filters by targetMoneyPage, supplements with Wechselwissen if needed
  */
 
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Clock, ArrowRight } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';

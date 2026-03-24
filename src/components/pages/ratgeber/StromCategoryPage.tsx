@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Zap, Clock, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -9,7 +8,7 @@ import SEOHead from '@/components/SEOHead';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { Link } from 'react-router-dom';
-import { ratgeberArticles, getArticlesByCategory } from '@/lib/ratgeber-map';
+import { getArticlesByCategory } from '@/lib/ratgeber-map';
 import { ROUTES } from '@/lib/routes';
 
 export default function StromCategoryPage() {

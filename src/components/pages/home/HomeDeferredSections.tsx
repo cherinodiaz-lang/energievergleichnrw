@@ -1,5 +1,5 @@
 // HPI 1.6-G - PHASE 6: Core Web Vitals Optimized
-import React, { lazy, Suspense, useState, useEffect, useRef } from 'react';
+import { lazy, Suspense, useState, useEffect, useRef, type FC, type SyntheticEvent, type ReactNode } from 'react';
 import { CheckCircle, Sun, Download, ChevronDown, Send, ArrowRight, Leaf, Home, Building2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -17,13 +17,13 @@ import { ROUTES } from '@/lib/routes';
 const LazyFormSubmissionDialog = lazy(() => import('@/components/FormSubmissionDialog'));
 
 type AnimatedElementProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   delay?: number;
 };
 
 // Respect prefers-reduced-motion
-const AnimatedElement: React.FC<AnimatedElementProps> = ({ children, className, delay = 0 }) => {
+const AnimatedElement: FC<AnimatedElementProps> = ({ children, className, delay = 0 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
@@ -83,7 +83,7 @@ export default function HomeDeferredSections() {
   const [pvHausnummer, setPvHausnummer] = useState('');
   const [pvPlz, setPvPlz] = useState('');
   const [pvOrt, setPvOrt] = useState('');
-  const [pvFoto, setPvFoto] = useState<File | null>(null);
+  const [, setPvFoto] = useState<File | null>(null);
   const [pvName, setPvName] = useState('');
   const [pvEmail, setPvEmail] = useState('');
   const [pvTelefon, setPvTelefon] = useState('');
@@ -119,7 +119,7 @@ export default function HomeDeferredSections() {
   const [showContactDialog, setShowContactDialog] = useState(false);
   const [showPvDialog, setShowPvDialog] = useState(false);
 
-  const handleContactSubmit = (e: React.FormEvent) => {
+  const handleContactSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     setShowContactDialog(true);
   };
@@ -131,7 +131,7 @@ export default function HomeDeferredSections() {
     setContactMessage('');
   };
 
-  const handlePvSubmit = (e: React.FormEvent) => {
+  const handlePvSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     setShowPvDialog(true);
   };

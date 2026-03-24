@@ -1,4 +1,3 @@
-import React from 'react';
 import Header from '@/components/Header';
 import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';

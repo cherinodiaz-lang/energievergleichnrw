@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState, type SyntheticEvent } from 'react';
 import { motion } from 'framer-motion';
-import { Sun, CheckCircle, TrendingUp, Leaf, Zap, Send, ArrowRight, Home } from 'lucide-react';
+import { Sun, CheckCircle, TrendingUp, Leaf, Zap, Send, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -12,7 +12,6 @@ import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
-import TrustRow from '@/components/TrustRow';
 import RelatedPages from '@/components/RelatedPages';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
@@ -35,7 +34,7 @@ export default function PhotovoltaikNrwPage() {
     phone: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitSuccess(true);
     setFormData({
