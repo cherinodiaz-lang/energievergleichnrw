@@ -50,6 +50,9 @@ jobs:
             exit 1
           fi
 
+      - name: Authenticate Codex
+        run: printenv OPENAI_API_KEY | codex login --with-api-key
+
       - name: Run Codex auto-fix
         run: |
           codex exec \
