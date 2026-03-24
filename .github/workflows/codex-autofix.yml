@@ -1,0 +1,76 @@
+name: Codex AutoFix
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: codex-autofix-${{ github.event.workflow_run.id }}
+  cancel-in-progress: false
+
+jobs:
+  autofix:
+    if: >
+      github.event.workflow_run.conclusion == 'failure' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_branch == 'main' &&
+      github.event.workflow_run.actor.login != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout failed revision
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Codex CLI
+        run: npm install -g @openai/codex
+
+      - name: Ensure OPENAI_API_KEY exists
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ -z "${OPENAI_API_KEY}" ]; then
+            echo "Missing OPENAI_API_KEY secret"
+            exit 1
+          fi
+
+      - name: Run Codex auto-fix
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          codex exec \
+            --full-auto \
+            --sandbox workspace-write \
+            --model gpt-5.3-codex \
+            --cd . \
+            "Fix all failing tests and build errors using AGENTS.md and p0-fix skill"
+
+      - name: Commit and push fixes
+        run: |
+          if git diff --quiet; then
+            echo "No changes produced by Codex."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "chore: codex auto-fix CI failures [codex-autofix]"
+          git push origin HEAD:main
