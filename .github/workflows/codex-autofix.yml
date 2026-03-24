@@ -50,10 +50,9 @@ jobs:
             exit 1
           fi
 
-      - name: Authenticate Codex
-        run: codex login --api-key "$OPENAI_API_KEY"
-
       - name: Run Codex auto-fix
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           codex exec \
             --full-auto \
