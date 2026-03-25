@@ -87,7 +87,6 @@ const robots = noindex
 
     {schemas.map((schema, index) => (
       <script
-        is:inline
         type="application/ld+json"
         set:html={JSON.stringify(schema)}
         data-schema-index={index}

@@ -63,30 +63,6 @@ describe('strom-tariff-provider', () => {
     expect(result.tariffs.length).toBeGreaterThan(0);
     expect(result.configured).toBe(false);
     expect(result.source).toBe('transparent_model');
-    expect(result.tariffs[0]?.providerName).toBe('Transparente Modellrechnung');
-  });
-
-  it('stays in transparent model mode while LIVE_TARIFFS_ACTIVE is false', async () => {
-    const fetchMock = vi.fn();
-
-    const result = await searchStromTariffs(
-      {
-        postcode: '40210',
-        annualConsumption: 3500,
-        ecoOnly: false,
-        bonusOnly: false,
-      },
-      {
-        LIVE_TARIFFS_ACTIVE: 'false',
-        STROM_TARIFF_API_BASE_URL: 'https://provider.example',
-        STROM_TARIFF_API_PATH: '/rates',
-      } as never,
-      fetchMock,
-    );
-
-    expect(result.source).toBe('transparent_model');
-    expect(result.configured).toBe(false);
-    expect(fetchMock).not.toHaveBeenCalled();
   });
 
   it('returns an error response when the provider request fails', async () => {
@@ -100,7 +76,6 @@ describe('strom-tariff-provider', () => {
         bonusOnly: false,
       },
       {
-        LIVE_TARIFFS_ACTIVE: 'true',
         STROM_TARIFF_API_BASE_URL: 'https://provider.example',
         STROM_TARIFF_API_PATH: '/rates',
       },

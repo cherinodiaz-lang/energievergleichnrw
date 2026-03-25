@@ -17,7 +17,7 @@ export const IMAGE_SIZES = {
 export const shouldLazyLoad = (imageType: 'hero' | 'card' | 'icon' | 'thumbnail' | 'default'): boolean => {
   // Hero images are above-the-fold and should use priority loading
   if (imageType === 'hero') return false;
-  
+
   // All other images can be lazy-loaded
   return true;
 };
@@ -35,11 +35,11 @@ export const getImageLoading = (imageType: 'hero' | 'card' | 'icon' | 'thumbnail
  */
 export const optimizeImageUrl = (url: string, _width?: number, _height?: number): string => {
   if (!url) return '';
-  
+
   // If it's a Wix static URL, it's already optimized
   if (url.includes('wixstatic.com')) {
     return url;
   }
-  
+
   return url;
 };

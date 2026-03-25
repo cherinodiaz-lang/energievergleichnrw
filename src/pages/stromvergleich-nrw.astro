@@ -1,6 +1,6 @@
 ---
-import HydratedMarketingPage from "@/components/HydratedMarketingPage";
-import LighthousePageFallback from "@/components/LighthousePageFallback.astro";
+import HydratedRoutePage from "@/components/HydratedRoutePage";
+import StromvergleichNrwPage from "@/components/pages/StromvergleichNrwPage";
 import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
 import { getPageSEO } from "@/lib/seo-config";
 
@@ -15,12 +15,5 @@ const seo = getPageSEO("stromvergleich");
   ogTitle={seo.ogTitle}
   ogDescription={seo.ogDescription}
 >
-  <HydratedMarketingPage path={Astro.url.pathname} page="stromvergleich" client:only="react">
-    <LighthousePageFallback
-      slot="fallback"
-      title="Stromvergleich NRW"
-      description="Erhalten Sie eine unverbindliche Tarif-Orientierung fuer Ihren Haushalt in NRW mit transparenten Beispielwerten."
-      highlights={["Stromtarife transparent", "Beispielwerte zur Einordnung", "Unverbindliche Anfrage moeglich"]}
-    />
-  </HydratedMarketingPage>
+  <HydratedRoutePage path={Astro.url.pathname} Page={StromvergleichNrwPage} client:load />
 </SeoPageLayout>

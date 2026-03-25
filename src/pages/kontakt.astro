@@ -1,6 +1,6 @@
 ---
-import HydratedMarketingPage from "@/components/HydratedMarketingPage";
-import LighthousePageFallback from "@/components/LighthousePageFallback.astro";
+import AstroRouterProvider from "@/components/AstroRouterProvider";
+import KontaktPage from "@/components/pages/KontaktPage";
 import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
 import { getPageSEO } from "@/lib/seo-config";
 
@@ -15,12 +15,7 @@ const seo = getPageSEO("kontakt");
   ogTitle={seo.ogTitle}
   ogDescription={seo.ogDescription}
 >
-  <HydratedMarketingPage path={Astro.url.pathname} page="kontakt" client:only="react">
-    <LighthousePageFallback
-      slot="fallback"
-      title="Kontakt"
-      description="Kontaktieren Sie ENERGIEVERGLEICH NRW fuer Fragen zu Strom, Gas oder Photovoltaik in NRW."
-      highlights={["E-Mail: support@energievergleich.nrw", "Region: NRW", "Unverbindliche Anfrage"]}
-    />
-  </HydratedMarketingPage>
+  <AstroRouterProvider path={Astro.url.pathname} client:load>
+    <KontaktPage />
+  </AstroRouterProvider>
 </SeoPageLayout>

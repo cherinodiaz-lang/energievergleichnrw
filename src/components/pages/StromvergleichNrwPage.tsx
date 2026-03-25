@@ -18,6 +18,83 @@ import { getPageSEO } from '@/lib/seo-config';
 import { validateFormFields, FORM_CONFIGS } from '@/lib/form-validation';
 import { getRelatedPages } from '@/lib/internal-linking';
 
+interface StromvergleichExampleStateProps {
+  postcode: string;
+  annualConsumption: number;
+  usedDefaultConsumption: boolean;
+}
+
+export function StromvergleichExampleState({
+  postcode,
+  annualConsumption,
+  usedDefaultConsumption,
+}: StromvergleichExampleStateProps) {
+  const formattedConsumption = annualConsumption.toLocaleString('de-DE');
+
+  return (
+    <div className="space-y-6">
+      <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 sm:p-6">
+        <div className="flex items-start gap-3">
+          <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-700" />
+          <div className="space-y-2">
+            <p className="font-heading text-lg font-semibold text-amber-900">Beispielmodus</p>
+            <p className="font-paragraph text-sm text-amber-950 sm:text-base">
+              Aktuell ist auf dieser Seite keine Live-Tarifquelle aktiv. Deshalb zeigen wir hier keine echten
+              Anbieter, Tarifnamen oder Wechselpreise an.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <Card className="h-full border-gray-200">
+          <CardHeader>
+            <CardTitle className="font-heading text-xl text-primary">Ihre Eingaben im Überblick</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <dl className="space-y-3 text-sm text-gray-700 sm:text-base">
+              <div className="flex items-start justify-between gap-4 border-b border-gray-100 pb-3">
+                <dt className="font-semibold text-primary">Postleitzahl</dt>
+                <dd>{postcode}</dd>
+              </div>
+              <div className="flex items-start justify-between gap-4">
+                <dt className="font-semibold text-primary">Verbrauch für diese Ansicht</dt>
+                <dd>{formattedConsumption} kWh/Jahr</dd>
+              </div>
+            </dl>
+
+            {usedDefaultConsumption && (
+              <p className="rounded-lg bg-blue-50 p-3 text-sm text-gray-700">
+                Für diese Beispielansicht verwenden wir 3.500 kWh/Jahr, weil kein Jahresverbrauch eingetragen wurde.
+              </p>
+            )}
+          </CardContent>
+        </Card>
+
+        <Card className="h-full border-gray-200">
+          <CardHeader>
+            <CardTitle className="font-heading text-xl text-primary">So geht es ehrlich weiter</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <ul className="space-y-3 text-sm text-gray-700 sm:text-base">
+              <li>• Diese Seite zeigt aktuell nur eine unverbindliche Beispielansicht.</li>
+              <li>• Für echte Tarifoptionen ist derzeit eine individuelle Prüfung nötig.</li>
+              <li>• Wenn Sie Hilfe möchten, kontaktieren Sie uns für den nächsten Schritt.</li>
+            </ul>
+
+            <Link to={ROUTES.kontakt} className="inline-flex">
+              <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
+                Kontakt aufnehmen
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}
+
 export default function StromvergleichNrwPage() {
   const [formData, setFormData] = useState({
     postleitzahl: '',
@@ -282,79 +359,13 @@ export default function StromvergleichNrwPage() {
                   transition={{ duration: 0.5 }}
                   className="mt-12"
                 >
-                  <h2 className="font-heading text-2xl font-bold text-primary mb-8">Tarifvorschau für {formData.postleitzahl}</h2>
-                  
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-                    {[
-                      {
-                        name: 'Tarif Option A',
-                        pricePerKwh: 0.28,
-                        baseFee: 12.50,
-                      },
-                      {
-                        name: 'Tarif Option B',
-                        pricePerKwh: 0.26,
-                        baseFee: 14.00,
-                      },
-                      {
-                        name: 'Tarif Option C',
-                        pricePerKwh: 0.24,
-                        baseFee: 16.50,
-                      },
-                    ].map((tariff, index) => {
-                      const monthlyConsumption = calculatedConsumption / 12;
-                      const monthlyPrice = (monthlyConsumption * tariff.pricePerKwh) + tariff.baseFee;
-                      const yearlyPrice = monthlyPrice * 12;
+                  <h2 className="font-heading text-2xl font-bold text-primary mb-8">Beispielstatus für {formData.postleitzahl}</h2>
 
-                      return (
-                        <motion.div
-                          key={index}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: index * 0.1 }}
-                        >
-                          <Card className="h-full flex flex-col shadow-lg hover:shadow-xl transition-shadow">
-                            <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10">
-                              <CardTitle className="font-heading text-xl text-primary">{tariff.name}</CardTitle>
-                            </CardHeader>
-                            <CardContent className="p-6 flex-1 flex flex-col justify-between">
-                              <div className="space-y-4 mb-6">
-                                <div>
-                                  <p className="font-paragraph text-sm text-gray-600 mb-1">Arbeitspreis</p>
-                                  <p className="font-heading text-lg font-bold text-primary">{tariff.pricePerKwh.toFixed(2)} €/kWh</p>
-                                </div>
-                                <div>
-                                  <p className="font-paragraph text-sm text-gray-600 mb-1">Grundgebühr</p>
-                                  <p className="font-heading text-lg font-bold text-primary">{tariff.baseFee.toFixed(2)} €/Monat</p>
-                                </div>
-                                <div className="border-t pt-4">
-                                  <p className="font-paragraph text-sm text-gray-600 mb-1">Geschätzte monatliche Kosten</p>
-                                  <p className="font-heading text-2xl font-bold text-secondary">{monthlyPrice.toFixed(2)} €</p>
-                                </div>
-                                <div>
-                                  <p className="font-paragraph text-sm text-gray-600 mb-1">Geschätzte jährliche Kosten</p>
-                                  <p className="font-heading text-lg font-bold text-primary">{yearlyPrice.toFixed(2)} €/Jahr</p>
-                                </div>
-                              </div>
-                              <Link to={ROUTES.kontakt} className="w-full">
-                                <Button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-11 font-bold rounded-lg">
-                                  Angebot anfordern
-                                  <ArrowRight className="w-4 h-4 ml-2" />
-                                </Button>
-                              </Link>
-                            </CardContent>
-                          </Card>
-                        </motion.div>
-                      );
-                    })}
-                  </div>
-
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start gap-3">
-                    <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                    <p className="font-paragraph text-sm text-gray-700">
-                      <strong>Hinweis:</strong> Vorschau basiert auf Beispielrechnung. Finale Tarife nach Anbieterabfrage.
-                    </p>
-                  </div>
+                  <StromvergleichExampleState
+                    postcode={formData.postleitzahl}
+                    annualConsumption={calculatedConsumption}
+                    usedDefaultConsumption={!formData.verbrauch.trim()}
+                  />
                 </motion.div>
               )}
             </div>

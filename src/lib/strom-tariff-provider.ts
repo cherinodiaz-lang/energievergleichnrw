@@ -196,8 +196,7 @@ export function validateStromTariffInput(input: Record<string, unknown>): {
 }
 
 export function hasStromTariffProviderConfig(env: ImportMetaEnv | NodeJS.ProcessEnv = import.meta.env): boolean {
-  const liveTariffsActive = String((env as Record<string, unknown>).LIVE_TARIFFS_ACTIVE ?? '').toLowerCase() === 'true';
-  return liveTariffsActive && Boolean(env.STROM_TARIFF_API_BASE_URL);
+  return Boolean(env.STROM_TARIFF_API_BASE_URL);
 }
 
 function calculateScenarioAnnualCost(annualConsumption: number, workPriceCt: number, basePriceMonthly: number, bonus: number | null = null) {
@@ -281,7 +280,7 @@ function buildTransparentModelTariffs(input: StromTariffSearchInput): StromTarif
     );
 
     return {
-      providerName: 'Transparente Modellrechnung',
+      providerName: 'Modellrechnung NRW',
       tariffName: scenario.tariffName,
       annualCost,
       monthlyCost: annualCost / 12,
@@ -293,7 +292,6 @@ function buildTransparentModelTariffs(input: StromTariffSearchInput): StromTarif
       bonus: scenario.bonus,
       ctaUrl: null,
       notes: [
-        'Beispielrechnung, kein echter Anbieter und kein Live-Tarif.',
         `Berechnet fuer ${annualConsumption} kWh/Jahr und ${householdSize} Person${householdSize === 1 ? '' : 'en'}.`,
         ...scenario.notes,
       ],

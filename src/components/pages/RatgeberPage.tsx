@@ -65,7 +65,7 @@ export default function RatgeberPage() {
 
   const filteredCategories = useMemo(() => {
     if (!searchQuery.trim()) return categories;
-    
+
     const query = searchQuery.toLowerCase();
     return categories.filter(category =>
       category.title.toLowerCase().includes(query) ||

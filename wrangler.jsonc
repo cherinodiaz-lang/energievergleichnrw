@@ -8,4 +8,15 @@
     "directory": "./dist",
     "binding": "ASSETS"
   }
+  // Production requirement:
+  // The built Cloudflare worker includes Astro session storage with binding "SESSION".
+  // Add the kv_namespaces block below once real Cloudflare KV namespace IDs exist.
+  //
+  // "kv_namespaces": [
+  //   {
+  //     "binding": "SESSION",
+  //     "id": "YOUR_PRODUCTION_KV_NAMESPACE_ID",
+  //     "preview_id": "YOUR_PREVIEW_KV_NAMESPACE_ID"
+  //   }
+  // ]
 }

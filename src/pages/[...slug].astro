@@ -1,110 +1,48 @@
 ---
+import { SEO } from '@wix/seo/components';
+import { loadSEOTagsServiceConfig } from '@wix/seo/services';
 import AppRouter from "@/components/Router";
-import { getServerSeo } from "@/lib/seo-ssr";
-import {
-  buildMissingWixRuntimeEnvMessage,
-  getMissingWixRuntimeEnvKeys,
-} from "@/lib/runtime-env-guard";
 import "@/styles/global.css";
 
 // CRITICAL: Exclude API routes from catch-all route
 // These are handled by dedicated endpoint files (sitemap.xml.ts, robots.txt.ts)
 const pathname = new URL(Astro.request.url).pathname;
 const excludedPaths = ['/sitemap.xml', '/robots.txt'];
+const spaPrefixes = ['/blog', '/danke', '/thank-you'];
+const isAllowedSpaRoute = spaPrefixes.some((prefix) =>
+  pathname === prefix || pathname.startsWith(`${prefix}/`)
+);
 
 if (excludedPaths.includes(pathname)) {
   // Return 404 to allow Astro to serve the API endpoint
   return new Response(null, { status: 404 });
 }
 
-if (pathname === '/thank-you') {
-  return Astro.redirect('/danke', 308);
+if (!isAllowedSpaRoute) {
+  return new Response(null, { status: 404 });
 }
 
-const missingWixRuntimeEnv = getMissingWixRuntimeEnvKeys();
-if (missingWixRuntimeEnv.length > 0) {
-  const message = buildMissingWixRuntimeEnvMessage(missingWixRuntimeEnv);
-  console.error(`[runtime-env-guard] ${message} (path: ${pathname})`);
+// Derive a readable page name from the current path for Wix SEO service
+const segments = pathname.split('/').filter(Boolean);
+const pageName = segments.length === 0
+  ? 'Home'
+  : segments.map(s => s.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())).join(' - ');
 
-  return new Response(
-    `${message}\nSet the variables in Wix runtime configuration and redeploy.`,
-    {
-      status: 500,
-      headers: {
-        "content-type": "text/plain; charset=utf-8",
-        "cache-control": "no-store",
-        "x-runtime-env-guard": "missing-wix-auth-env",
-      },
-    },
-  );
-}
-
-const seo = getServerSeo(pathname);
-const isHomePath = pathname === '/';
-const HOME_HERO_IMAGE_ID = '32e7c0_5f85b8d9458c4ccbafdde2a4f3bc3cce~mv2.png';
-const HOME_HERO_ASPECT_RATIO = 1024 / 1920;
-const HOME_HERO_WIDTHS = [640, 960, 1280, 1536, 1920];
-const getHomeHeroUrl = (width: number) => {
-  const height = Math.round(width * HOME_HERO_ASPECT_RATIO);
-  return `https://static.wixstatic.com/media/${HOME_HERO_IMAGE_ID}/v1/fill/w_${width},h_${height},al_c,q_82,enc_auto/${HOME_HERO_IMAGE_ID}`;
-};
-const homeHeroSrcSet = HOME_HERO_WIDTHS.map((width) => `${getHomeHeroUrl(width)} ${width}w`).join(', ');
-const homeHeroFallbackSrc = getHomeHeroUrl(960);
+const seoTagsServiceConfig = await loadSEOTagsServiceConfig({
+  pageUrl: Astro.url.href,
+  itemData: {
+    pageName,
+  },
+});
 ---
 
 <html lang="de" class="w-full h-full">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{seo.title}</title>
-    <meta name="description" content={seo.description} />
-    {seo.keywords && <meta name="keywords" content={seo.keywords} />}
-    <meta name="robots" content={seo.robots} />
-    <meta name="author" content="energievergleich.shop" />
-    <link rel="canonical" href={seo.canonicalUrl} />
-
-    <meta property="og:title" content={seo.ogTitle} />
-    <meta property="og:description" content={seo.ogDescription} />
-    <meta property="og:image" content={seo.ogImage} />
-    <meta property="og:url" content={seo.ogUrl} />
-    <meta property="og:type" content={seo.ogType} />
-    <meta property="og:site_name" content="energievergleich.shop" />
-    <meta property="og:locale" content="de_DE" />
-
-    <meta name="twitter:card" content={seo.twitterCard} />
-    <meta name="twitter:title" content={seo.ogTitle} />
-    <meta name="twitter:description" content={seo.ogDescription} />
-    <meta name="twitter:image" content={seo.ogImage} />
-    {seo.verificationCode && (
-      <meta name="google-site-verification" content={seo.verificationCode} />
-    )}
-    {isHomePath && (
-      <>
-        <link rel="preconnect" href="https://static.wixstatic.com" crossorigin />
-        <link rel="dns-prefetch" href="//static.wixstatic.com" />
-        <link
-          rel="preload"
-          as="image"
-          href={homeHeroFallbackSrc}
-          imagesrcset={homeHeroSrcSet}
-          imagesizes="100vw"
-          fetchpriority="high"
-        />
-      </>
-    )}
-
-    {seo.schemaEntries.map((entry) => (
-      <script
-        id={entry.id}
-        type="application/ld+json"
-        is:inline
-        set:html={JSON.stringify(entry.payload)}
-      />
-    ))}
+    <SEO.Tags seoTagsServiceConfig={seoTagsServiceConfig} slot="seo-tags" />
   </head>
   <body class="w-full h-full">
     <div id="root" class="w-full h-full">
-      <AppRouter pathname={pathname} client:load />
+      <AppRouter client:only="react" />
     </div>
   </body>
 </html>

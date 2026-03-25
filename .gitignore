@@ -42,3 +42,17 @@ docs/*
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+.env.local
+.aider*
+
+# local AI/tooling artifacts
+.ai/
+.codex/
+.cursor/
+.llm/
+CLAUDE.md
+ai-agent.sh
+AUDIT_REPORT.md
+
+# local config backups
+wrangler.jsonc.backup.*

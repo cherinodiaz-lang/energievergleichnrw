@@ -141,7 +141,7 @@ export default function GasvergleichNrwPage() {
 
   const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     // Validate required fields for private form
     const validation = validateFormFields(formData, FORM_CONFIGS.private);
     if (!validation.valid) {
@@ -333,7 +333,7 @@ export default function GasvergleichNrwPage() {
                   className="mt-12"
                 >
                   <h2 className="font-heading text-2xl font-bold text-primary mb-8">Tarifvorschau für {formData.postleitzahl}</h2>
-                  
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                     {[
                       {
@@ -442,7 +442,7 @@ export default function GasvergleichNrwPage() {
           <div className="space-y-8">
             <div>
               <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Gasvergleich für NRW</h2>
-              
+
               <p className="font-paragraph text-lg text-gray-700 mb-6">
                 Mit unserer Gas-Tariforientierung erhalten Sie in wenigen Minuten eine erste Einordnung für Nordrhein-Westfalen. Die Vorschau ist kostenlos und unverbindlich: Sie geben Postleitzahl und Gasverbrauch ein und sehen Beispielwerte als Grundlage für Ihre weitere Entscheidung.
               </p>
@@ -941,11 +941,11 @@ export default function GasvergleichNrwPage() {
             <h2 className="font-heading text-3xl sm:text-4xl font-semibold tracking-tight text-primary">
               Warum energievergleich.shop?
             </h2>
-            
+
             <p className="font-paragraph text-lg text-gray-700 leading-relaxed">
               Bei energievergleich.shop erhalten Sie Transparenz und Unabhängigkeit in der Erstorientierung zu Gastarifen. Wir zeigen Beispielwerte nach Preis und Vertragsbedingungen als Grundlage für Ihre Entscheidung. Unser Service ist kostenlos und unverbindlich. Ersparnis hängt von Verbrauch, Region und Tarif ab. Erfahren Sie mehr über unsere Methodik und wie wir arbeiten: <Link to="/methodik" className="text-primary font-semibold hover:underline">So vergleichen wir (Methodik)</Link>. Bei Fragen stehen wir Ihnen jederzeit zur Verfügung – <Link to="/kontakt" className="text-primary font-semibold hover:underline">Kontakt</Link>.
             </p>
-            
+
             <p className="font-paragraph text-sm text-gray-500 italic">
               Stand: Februar 2026
             </p>

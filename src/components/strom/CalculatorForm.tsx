@@ -324,7 +324,7 @@ export default function CalculatorForm() {
           <div className="mt-4 sm:mt-5 space-y-2 sm:space-y-3">
             <h3 className="font-heading text-base sm:text-lg md:text-xl font-bold">Verfügbare Tarife</h3>
             {searchState.tariffs.map((tariff, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
+              <Card key={index} className="hover:shadow-lg transition-shadow">
                 <CardContent className="p-3 sm:p-4">
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-3 mb-3 sm:mb-4">
                     <div className="min-w-0">

@@ -1,6 +1,6 @@
 ---
-import HydratedMarketingPage from "@/components/HydratedMarketingPage";
-import LighthousePageFallback from "@/components/LighthousePageFallback.astro";
+import HydratedRoutePage from "@/components/HydratedRoutePage";
+import HomePage from "@/components/pages/HomePage";
 import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
 import { getPageSEO } from "@/lib/seo-config";
 
@@ -15,12 +15,5 @@ const seo = getPageSEO("home");
   ogTitle={seo.ogTitle}
   ogDescription={seo.ogDescription}
 >
-  <HydratedMarketingPage path={Astro.url.pathname} page="home" client:only="react">
-    <LighthousePageFallback
-      slot="fallback"
-      title="Energievergleich NRW 2026"
-      description="Erhalten Sie eine unverbindliche Strom- und Gas-Tariforientierung in NRW mit transparenten Beispielwerten fuer Privat- und Gewerbekunden."
-      highlights={["Unverbindliche Orientierung", "Beispielwerte fuer NRW", "Anfrage moeglich"]}
-    />
-  </HydratedMarketingPage>
+  <HydratedRoutePage path={Astro.url.pathname} Page={HomePage} client:load />
 </SeoPageLayout>

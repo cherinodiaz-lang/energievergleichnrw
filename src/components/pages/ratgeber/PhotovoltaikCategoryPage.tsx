@@ -78,7 +78,7 @@ export default function PhotovoltaikCategoryPage() {
               <p className="font-paragraph text-base sm:text-lg text-gray-700 mb-8 leading-relaxed">
                 Solaranlagen bieten eine nachhaltige Möglichkeit, Ihren Energiebedarf zu decken und langfristig Kosten zu sparen. Ob Sie sich fragen, ob eine Solaranlage wirtschaftlich ist, wie die Einspeisevergütung funktioniert oder welche Förderungen es gibt – unser Ratgeber beantwortet Ihre wichtigsten Fragen. Erfahren Sie, worauf Sie bei der Planung und beim Vergleich von Angeboten achten sollten, und treffen Sie eine informierte Entscheidung für Ihre Energiezukunft.
               </p>
-              
+
               <div className="mb-10">
                 <h3 className="font-heading text-lg font-semibold text-gray-900 mb-4">
                   Häufig gestellte Fragen:

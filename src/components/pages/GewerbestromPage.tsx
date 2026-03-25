@@ -118,7 +118,7 @@ export default function GewerbestromPage() {
           <div className="space-y-8">
             <div>
               <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Gewerbestrom-Anfrage für NRW</h2>
-              
+
               <p className="font-paragraph text-lg text-gray-700 mb-6">
                 Mit unserem kostenlosen Gewerbestrom-Service finden Sie in wenigen Minuten den günstigsten Stromtarif für Ihr Unternehmen in Nordrhein-Westfalen. Die Anfrage ist völlig kostenlos und unverbindlich – Sie geben nur Ihre Verbrauchsdaten ein und erhalten sofort individualisierte Angebote. Sparen Sie bis zu 30% Ihrer Stromkosten durch optimierte Gewerbestromtarife und profitieren Sie von persönlicher Beratung durch unsere Experten.
               </p>
@@ -437,7 +437,7 @@ export default function GewerbestromPage() {
                   <h3 className="font-heading text-xl font-semibold text-foreground">
                     Unternehmensinformationen
                   </h3>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="company-name" className="font-paragraph">Firmenname *</Label>
@@ -479,7 +479,7 @@ export default function GewerbestromPage() {
                   <h3 className="font-heading text-xl font-semibold text-foreground">
                     Ansprechpartner
                   </h3>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="contact-person" className="font-paragraph">Name *</Label>
@@ -525,7 +525,7 @@ export default function GewerbestromPage() {
                   <h3 className="font-heading text-xl font-semibold text-foreground">
                     Standort
                   </h3>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="address" className="font-paragraph">Straße und Hausnummer *</Label>
                     <Input
@@ -538,7 +538,7 @@ export default function GewerbestromPage() {
                       className="font-paragraph"
                     />
                   </div>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="postcode" className="font-paragraph">Postleitzahl *</Label>
@@ -572,7 +572,7 @@ export default function GewerbestromPage() {
                   <h3 className="font-heading text-xl font-semibold text-foreground">
                     Verbrauchsinformationen
                   </h3>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="consumption" className="font-paragraph">
                       Jährlicher Stromverbrauch (kWh) *
@@ -629,7 +629,7 @@ export default function GewerbestromPage() {
         <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-6">
             <h2 className="font-heading text-3xl font-bold text-primary">Warum energievergleich.shop?</h2>
-            
+
             <p className="font-paragraph text-lg text-gray-700 leading-relaxed">
               Bei der Wahl eines Gewerbestrom-Anbieters vertrauen Sie auf Transparenz und Unabhängigkeit. energievergleich.shop bietet Ihnen einen kostenlosen, unabhängigen Vergleich von Gewerbestromtarifen – ohne versteckte Gebühren oder Provisionen. Wir vergleichen Tarife nach Preis und Vertragsbedingungen, um Ihnen die beste Lösung für Ihr Unternehmen zu zeigen. Unsere Daten sind aktuell und werden regelmäßig aktualisiert. Stand: Februar 2026.
             </p>

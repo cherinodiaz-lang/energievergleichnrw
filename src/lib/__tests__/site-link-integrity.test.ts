@@ -3,7 +3,11 @@
 import { JSDOM } from "jsdom";
 import path from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { ensurePreviewBuild, startPreviewWorker } from "@/test-utils/preview-worker";
+import {
+  ensurePreviewBuild,
+  getPreviewPrerequisiteIssue,
+  startPreviewWorker,
+} from "@/test-utils/preview-worker";
 
 const SITE_ORIGIN = "https://www.energievergleich.shop";
 const REQUIRED_ROUTES = ["/", "/stromvergleich-nrw", "/robots.txt"] as const;
@@ -79,28 +83,15 @@ function normalizePagePath(href: string, baseUrl: string): string | null {
 }
 
 async function fetchRoute(baseUrl: string, route: string): Promise<{ response: Response; body: string }> {
-  const targetUrl = new URL(route, baseUrl);
-  let lastError: unknown;
+  const response = await fetch(new URL(route, baseUrl), {
+    headers: {
+      "user-agent": "Vitest Link Integrity Runner",
+    },
+  });
 
-  for (let attempt = 1; attempt <= 3; attempt += 1) {
-    try {
-      const response = await fetch(targetUrl, {
-        headers: {
-          "user-agent": "Vitest Link Integrity Runner",
-        },
-      });
+  const body = await response.text();
 
-      const body = await response.text();
-      return { response, body };
-    } catch (error) {
-      lastError = error;
-      if (attempt < 3) {
-        await new Promise((resolve) => setTimeout(resolve, 250 * attempt));
-      }
-    }
-  }
-
-  throw lastError instanceof Error ? lastError : new Error(String(lastError));
+  return { response, body };
 }
 
 async function fetchSitemapRoutes(baseUrl: string): Promise<string[]> {
@@ -117,8 +108,16 @@ async function fetchSitemapRoutes(baseUrl: string): Promise<string[]> {
     .filter((value): value is string => Boolean(value));
 }
 
-describe.sequential("site link integrity", () => {
-  const cwd = path.resolve(process.cwd());
+const cwd = path.resolve(process.cwd());
+const previewPrerequisiteIssue = getPreviewPrerequisiteIssue(cwd);
+
+if (previewPrerequisiteIssue) {
+  console.warn(`Skipping site link integrity tests: ${previewPrerequisiteIssue}.`);
+}
+
+const describeSiteLinkIntegrity = previewPrerequisiteIssue ? describe.skip : describe.sequential;
+
+describeSiteLinkIntegrity("site link integrity", () => {
   let baseUrl = "";
   let stopPreview: (() => Promise<void>) | null = null;
 

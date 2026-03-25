@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from "astro/config";
+import { fileURLToPath } from "node:url";
 import tailwind from "@astrojs/tailwind";
 import cloudProviderFetchAdapter from "@wix/cloud-provider-fetch-adapter";
 import wix from "@wix/astro";
@@ -9,8 +10,10 @@ import sourceAttrsPlugin from "@wix/babel-plugin-jsx-source-attrs";
 import dynamicDataPlugin from "@wix/babel-plugin-jsx-dynamic-data";
 import customErrorOverlayPlugin from "./vite-error-overlay-plugin.js";
 import postcssPseudoToData from "@wix/postcss-pseudo-to-data";
+import { bootstrapWixLocalEnv } from "./wix-local-env.mjs";
 
 const isBuild = process.env.NODE_ENV == "production";
+const { hasRealWixAuth } = bootstrapWixLocalEnv();
 
 // https://astro.build/config
 export default defineConfig({
@@ -32,8 +35,8 @@ export default defineConfig({
     },
     tailwind(),
     wix({
-      htmlEmbeds: false,
-      auth: true,
+      htmlEmbeds: isBuild,
+      auth: hasRealWixAuth,
       robots: false,
     }),
     ...(isBuild ? [monitoring()] : []),
@@ -44,6 +47,18 @@ export default defineConfig({
   vite: {
     plugins: [customErrorOverlayPlugin()],
     cacheDir: 'node_modules/.cache/.vite',
+    resolve: {
+      alias: [
+        {
+          find: /^react-router$/,
+          replacement: fileURLToPath(new URL("./node_modules/react-router/dist/development/index.mjs", import.meta.url)),
+        },
+        {
+          find: /^react-router-dom$/,
+          replacement: fileURLToPath(new URL("./node_modules/react-router-dom/dist/index.mjs", import.meta.url)),
+        },
+      ],
+    },
     optimizeDeps: {
       include: [
         'react',
@@ -75,10 +90,16 @@ export default defineConfig({
     domains: ["static.wixstatic.com"],
   },
   server: {
-    allowedHosts: true,
+    allowedHosts: ["energievergleich.shop", "localhost"],
     host: true,
+    headers: {
+      "X-Frame-Options": "DENY",
+      "X-Content-Type-Options": "nosniff",
+      "Referrer-Policy": "strict-origin-when-cross-origin",
+      "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+    },
   },
   security: {
-    checkOrigin: false
+    checkOrigin: true
   }
 });

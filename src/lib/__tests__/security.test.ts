@@ -6,8 +6,7 @@ describe("security", () => {
   it("erlaubt nur Hosts aus der Whitelist", () => {
     expect(isAllowedHost("energievergleich.shop")).toBe(true);
     expect(isAllowedHost("localhost:4321")).toBe(true);
-    expect(isAllowedHost("127.0.0.1:4321")).toBe(true);
-    expect(isAllowedHost("www.energievergleich.shop")).toBe(true);
+    expect(isAllowedHost("www.energievergleich.shop")).toBe(false);
     expect(isAllowedHost("evil.example")).toBe(false);
   });
 

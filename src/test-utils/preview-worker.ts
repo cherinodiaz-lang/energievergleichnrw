@@ -1,9 +1,12 @@
 import { execFileSync, spawn, type ChildProcessWithoutNullStreams } from "node:child_process";
 import { once } from "node:events";
+import fs from "node:fs";
+import path from "node:path";
 
 const DEFAULT_BASE_URL = "http://127.0.0.1:4321";
 const READY_PATTERN = /Ready on http:\/\/127\.0\.0\.1:4321/;
 const NPM_COMMAND = process.platform === "win32" ? "npm.cmd" : "npm";
+const LOCAL_ASTRO_BIN = process.platform === "win32" ? "astro.cmd" : "astro";
 
 function wait(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -16,6 +19,16 @@ async function isReachable(url: string): Promise<boolean> {
   } catch {
     return false;
   }
+}
+
+export function getPreviewPrerequisiteIssue(cwd: string): string | null {
+  const astroBinPath = path.join(cwd, "node_modules", ".bin", LOCAL_ASTRO_BIN);
+
+  if (!fs.existsSync(astroBinPath)) {
+    return "missing local Astro CLI binary at node_modules/.bin/astro";
+  }
+
+  return null;
 }
 
 export function ensurePreviewBuild(cwd: string) {
@@ -34,7 +47,7 @@ export async function startPreviewWorker(cwd: string): Promise<{
   process: ChildProcessWithoutNullStreams;
   stop: () => Promise<void>;
 }> {
-  const server = spawn(NPM_COMMAND, ["run", "preview:worker"], {
+  const server = spawn(NPM_COMMAND, ["run", "preview", "--", "--host", "127.0.0.1", "--port", "4321"], {
     cwd,
     env: process.env,
     stdio: ["ignore", "pipe", "pipe"],

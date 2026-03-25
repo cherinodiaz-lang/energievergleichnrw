@@ -1,5 +1,6 @@
 ---
-import HydratedMarketingPage from "@/components/HydratedMarketingPage";
+import HydratedRoutePage from "@/components/HydratedRoutePage";
+import ImpressumPage from "@/components/pages/ImpressumPage";
 import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
 import { getPageSEO } from "@/lib/seo-config";
 
@@ -14,5 +15,5 @@ const seo = getPageSEO("impressum");
   ogTitle={seo.ogTitle}
   ogDescription={seo.ogDescription}
 >
-  <HydratedMarketingPage path={Astro.url.pathname} page="impressum" client:idle />
+  <HydratedRoutePage path={Astro.url.pathname} Page={ImpressumPage} client:load />
 </SeoPageLayout>
