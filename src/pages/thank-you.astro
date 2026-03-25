@@ -1,0 +1,20 @@
+---
+const redirectPath = "/danke";
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0;url=${redirectPath}`} />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Weiterleitung ...</title>
+    <link rel="canonical" href={`https://www.energievergleich.shop${redirectPath}`} />
+  </head>
+  <body>
+    <p>Weiterleitung zu <a href={redirectPath}>{redirectPath}</a> ...</p>
+    <script>
+      window.location.replace("/danke");
+    </script>
+  </body>
+</html>

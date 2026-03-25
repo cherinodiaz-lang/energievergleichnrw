@@ -1,8 +1,6 @@
 // @ts-check
 import { defineConfig } from "astro/config";
-import { fileURLToPath } from "node:url";
 import tailwind from "@astrojs/tailwind";
-import cloudProviderFetchAdapter from "@wix/cloud-provider-fetch-adapter";
 import wix from "@wix/astro";
 import monitoring from "@wix/monitoring-astro";
 import react from "@astrojs/react";
@@ -10,14 +8,12 @@ import sourceAttrsPlugin from "@wix/babel-plugin-jsx-source-attrs";
 import dynamicDataPlugin from "@wix/babel-plugin-jsx-dynamic-data";
 import customErrorOverlayPlugin from "./vite-error-overlay-plugin.js";
 import postcssPseudoToData from "@wix/postcss-pseudo-to-data";
-import { bootstrapWixLocalEnv } from "./wix-local-env.mjs";
 
 const isBuild = process.env.NODE_ENV == "production";
-const { hasRealWixAuth } = bootstrapWixLocalEnv();
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
+  output: "static",
   integrations: [
     {
       name: "framewire",
@@ -35,9 +31,12 @@ export default defineConfig({
     },
     tailwind(),
     wix({
-      htmlEmbeds: isBuild,
-      auth: hasRealWixAuth,
+      htmlEmbeds: false,
+      auth: false,
+      backendExtensions: false,
+      backofficeExtensions: false,
       robots: false,
+      wixSitePages: false,
     }),
     ...(isBuild ? [monitoring()] : []),
     react(isBuild ? {} : {
@@ -47,18 +46,6 @@ export default defineConfig({
   vite: {
     plugins: [customErrorOverlayPlugin()],
     cacheDir: 'node_modules/.cache/.vite',
-    resolve: {
-      alias: [
-        {
-          find: /^react-router$/,
-          replacement: fileURLToPath(new URL("./node_modules/react-router/dist/development/index.mjs", import.meta.url)),
-        },
-        {
-          find: /^react-router-dom$/,
-          replacement: fileURLToPath(new URL("./node_modules/react-router-dom/dist/index.mjs", import.meta.url)),
-        },
-      ],
-    },
     optimizeDeps: {
       include: [
         'react',
@@ -82,7 +69,6 @@ export default defineConfig({
       },
     } : undefined,
   },
-  ...(isBuild && { adapter: cloudProviderFetchAdapter({}) }),
   devToolbar: {
     enabled: false,
   },
@@ -90,16 +76,10 @@ export default defineConfig({
     domains: ["static.wixstatic.com"],
   },
   server: {
-    allowedHosts: ["energievergleich.shop", "localhost"],
+    allowedHosts: true,
     host: true,
-    headers: {
-      "X-Frame-Options": "DENY",
-      "X-Content-Type-Options": "nosniff",
-      "Referrer-Policy": "strict-origin-when-cross-origin",
-      "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
-    },
   },
   security: {
-    checkOrigin: true
+    checkOrigin: false
   }
 });

@@ -1,0 +1,18 @@
+---
+import AstroRouterProvider from "@/components/AstroRouterProvider";
+import ThankYouPage from "@/components/pages/ThankYouPage";
+import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
+---
+
+<SeoPageLayout
+  title="Danke | Energievergleich"
+  description="Vielen Dank fuer Ihre Anfrage. Unser Team meldet sich kurzfristig bei Ihnen."
+  canonicalPath="/danke"
+  noindex={true}
+  ogTitle="Danke | Energievergleich"
+  ogDescription="Vielen Dank fuer Ihre Anfrage. Unser Team meldet sich kurzfristig bei Ihnen."
+>
+  <AstroRouterProvider path={Astro.url.pathname} client:load>
+    <ThankYouPage />
+  </AstroRouterProvider>
+</SeoPageLayout>

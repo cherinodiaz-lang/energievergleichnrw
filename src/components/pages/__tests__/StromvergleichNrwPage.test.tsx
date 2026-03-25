@@ -1,46 +1,130 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { describe, expect, it } from 'vitest';
-import { StromvergleichExampleState } from '@/components/pages/StromvergleichNrwPage';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import CalculatorForm from '@/components/strom/CalculatorForm';
+import * as stromTariffProvider from '@/lib/strom-tariff-provider';
 
-function renderExampleState(props: {
-  postcode: string;
-  annualConsumption: number;
-  usedDefaultConsumption: boolean;
-}) {
+function renderCalculator() {
   return render(
     <MemoryRouter>
-      <StromvergleichExampleState {...props} />
+      <CalculatorForm />
     </MemoryRouter>,
   );
 }
 
-describe('StromvergleichExampleState', () => {
-  it('renders an honest example mode state without fake tariffs', () => {
-    renderExampleState({
-      postcode: '40210',
-      annualConsumption: 4200,
-      usedDefaultConsumption: false,
-    });
-
-    expect(screen.getByText(/beispielmodus/i)).toBeInTheDocument();
-    expect(screen.getByText(/keine live-tarifquelle aktiv/i)).toBeInTheDocument();
-    expect(screen.getByText('40210')).toBeInTheDocument();
-    expect(screen.getByText(/4\.200 kwh\/jahr/i)).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /kontakt aufnehmen/i })).toHaveAttribute('href', '/kontakt');
-    expect(screen.queryByText(/tarif option a/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/angebot anfordern/i)).not.toBeInTheDocument();
+describe('StromTarifCalculator', () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
   });
 
-  it('discloses when the default consumption is used for the example state', () => {
-    renderExampleState({
-      postcode: '44135',
-      annualConsumption: 3500,
-      usedDefaultConsumption: true,
-    });
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
 
-    expect(
-      screen.getByText(/für diese beispielansicht verwenden wir 3\.500 kwh\/jahr, weil kein jahresverbrauch eingetragen wurde/i),
-    ).toBeInTheDocument();
+  it('shows validation errors for invalid input', async () => {
+    renderCalculator();
+
+    fireEvent.click(screen.getByRole('button', { name: /tarife vergleichen/i }));
+
+    expect(await screen.findByText(/bitte pruefen sie die markierten eingaben/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/gueltige deutsche postleitzahl/i).length).toBeGreaterThan(0);
+  });
+
+  it('renders normalized results for valid provider data', async () => {
+    vi.spyOn(stromTariffProvider, 'searchStromTariffs').mockResolvedValue({
+        status: 'success',
+        message: '1 Stromtarif gefunden.',
+        source: 'provider_api',
+        configured: true,
+        tariffs: [
+          {
+            providerName: 'Tarifwerk',
+            tariffName: 'Fix 12',
+            annualCost: 1188,
+            monthlyCost: 99,
+            basePriceMonthly: 12,
+            workPriceCt: 29.5,
+            contractMonths: 12,
+            priceGuaranteeMonths: 12,
+            eco: true,
+            bonus: 120,
+            ctaUrl: 'https://anbieter.example/fix-12',
+          },
+        ],
+      });
+
+    renderCalculator();
+
+    fireEvent.change(screen.getByLabelText(/postleitzahl/i), { target: { value: '40210' } });
+    fireEvent.change(screen.getByLabelText(/jahresverbrauch/i), { target: { value: '3500' } });
+    fireEvent.click(screen.getByRole('button', { name: /tarife vergleichen/i }));
+
+    expect(await screen.findByText('Tarifwerk')).toBeInTheDocument();
+    expect(screen.getByText('Fix 12')).toBeInTheDocument();
+    expect(screen.getByText(/1 Stromtarif gefunden/i)).toBeInTheDocument();
+    expect(screen.getByText(/Jahrespreis/i)).toBeInTheDocument();
+  });
+
+  it('renders transparent model results when no live provider is configured', async () => {
+    vi.spyOn(stromTariffProvider, 'searchStromTariffs').mockResolvedValue({
+        status: 'success',
+        source: 'transparent_model',
+        message: 'Es werden transparente Stromkosten-Szenarien auf Basis Ihrer Eingaben berechnet, weil aktuell keine Live-Tarifquelle aktiv ist.',
+        configured: false,
+        tariffs: [
+          {
+            providerName: 'Transparente Modellrechnung',
+            tariffName: 'Kostenkorridor Ausgewogen',
+            annualCost: 1234,
+            monthlyCost: 102.83,
+            basePriceMonthly: 12,
+            workPriceCt: 30.6,
+            contractMonths: 12,
+            priceGuaranteeMonths: 12,
+            eco: false,
+            bonus: null,
+            ctaUrl: null,
+            notes: ['Transparente Modellrechnung'],
+          },
+        ],
+      });
+
+    renderCalculator();
+
+    fireEvent.change(screen.getByLabelText(/postleitzahl/i), { target: { value: '40210' } });
+    fireEvent.change(screen.getByLabelText(/jahresverbrauch/i), { target: { value: '3500' } });
+    fireEvent.click(screen.getByRole('button', { name: /tarife vergleichen/i }));
+
+    expect(await screen.findByText(/Kostenkorridor Ausgewogen/i)).toBeInTheDocument();
+    expect(screen.getByText(/transparente stromkosten-szenarien/i)).toBeInTheDocument();
+    expect(screen.queryByText(/tarif option/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/gruenerstrom nrw/i)).not.toBeInTheDocument();
+  });
+
+  it('renders the error state for provider failures', async () => {
+    vi.spyOn(stromTariffProvider, 'searchStromTariffs').mockResolvedValue({
+        status: 'error',
+        source: 'provider_api',
+        message: 'Die Tarifdaten konnten gerade nicht geladen werden.',
+        configured: true,
+        tariffs: [],
+      });
+
+    renderCalculator();
+
+    fireEvent.change(screen.getByLabelText(/postleitzahl/i), { target: { value: '40210' } });
+    fireEvent.change(screen.getByLabelText(/jahresverbrauch/i), { target: { value: '3500' } });
+    fireEvent.click(screen.getByRole('button', { name: /tarife vergleichen/i }));
+
+    expect(await screen.findByText(/die tarifdaten konnten gerade nicht geladen werden/i)).toBeInTheDocument();
+  });
+
+  it('does not render fake tariffs before any successful lookup', async () => {
+    renderCalculator();
+
+    await waitFor(() => {
+      expect(screen.queryByText(/tarif option/i)).not.toBeInTheDocument();
+      expect(screen.queryByText(/gruenerstrom nrw/i)).not.toBeInTheDocument();
+    });
   });
 });

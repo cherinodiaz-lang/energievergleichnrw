@@ -8,6 +8,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import {
+  searchStromTariffs,
   type StromTariffResult,
   type StromTariffSearchErrors,
   type StromTariffSearchResponse,
@@ -120,33 +121,8 @@ export default function CalculatorForm() {
     });
 
     try {
-      const response = await fetch('/api/stromtarife', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(validation.data),
-      });
-
-      const payload = await response.json() as {
-        status?: SearchState['status'];
-        message?: string;
-        tariffs?: StromTariffResult[];
-        configured?: boolean;
-        source?: StromTariffSearchResponse['source'];
-        errors?: StromTariffSearchErrors;
-      };
-
-      if (response.status === 400) {
-        setFormErrors(payload.errors ?? {});
-        setSearchState({
-          ...INITIAL_STATE,
-          status: 'error',
-          message: payload.message ?? 'Bitte pruefen Sie die Eingaben.',
-          source: null,
-        });
-        return;
-      }
-
-      const nextStatus = payload.status ?? 'error';
+      const payload = await searchStromTariffs(validation.data);
+      const nextStatus = payload.status;
       const nextState: SearchState = {
         status: nextStatus,
         message: payload.message ?? 'Es ist ein unerwarteter Fehler aufgetreten.',
@@ -164,7 +140,7 @@ export default function CalculatorForm() {
     } catch {
       setSearchState({
         status: 'error',
-        message: 'Die Anfrage konnte nicht gesendet werden.',
+        message: 'Die Tarifberechnung konnte nicht ausgefuehrt werden.',
         tariffs: [],
         configured: false,
         source: null,

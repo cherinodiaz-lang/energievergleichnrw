@@ -29,9 +29,6 @@ import UmzugGasvertragArticle from "@/components/pages/ratgeber/articles/UmzugGa
 import UmzugStromvertragArticle from "@/components/pages/ratgeber/articles/UmzugStromvertragArticle";
 import WechselSchiefgehtArticle from "@/components/pages/ratgeber/articles/WechselSchiefgehtArticle";
 
-const slug = `ratgeber/${Astro.params.category}/${Astro.params.article}`;
-const articleMeta = ratgeberArticles.find((article) => article.slug === slug);
-
 const articleComponents = {
   "ratgeber/strom/grundversorgung": StromGrundversorgungArticle,
   "ratgeber/strom/sofortige-sparmoeglichkeiten": SofortSparmoeglichkeitenArticle,
@@ -61,6 +58,24 @@ const articleComponents = {
   "ratgeber/wechselwissen/was-tun-wenn-wechsel-schiefgeht": WechselSchiefgehtArticle,
 } as const;
 
+export function getStaticPaths() {
+  return ratgeberArticles.map((article) => {
+    const [, category, entry] = article.slug.split("/");
+
+    return {
+      params: {
+        category,
+        article: entry,
+      },
+      props: {
+        articleMeta: article,
+        slug: article.slug,
+      },
+    };
+  });
+}
+
+const { articleMeta, slug } = Astro.props;
 const ArticleComponent = articleComponents[slug as keyof typeof articleComponents];
 
 if (!articleMeta || !ArticleComponent) {
