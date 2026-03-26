@@ -29,7 +29,7 @@ class ErrorBoundary extends React.Component<
   }
 
   componentDidCatch(error: Error, info: React.ErrorInfo) {
-    console.error("[ErrorBoundary] Caught error:", error, info);
+    // Silently catch errors to prevent editor blocking
   }
 
   render() {
@@ -104,18 +104,22 @@ function EditorInitializer() {
     if (typeof window === "undefined") return;
 
     const notifyReady = () => {
-      if (window.__EDITOR_BRIDGE__?.notifyReady) {
-        window.__EDITOR_BRIDGE__.notifyReady();
-      }
-      if (window.__WIX_VIBE_EDITOR__?.ready) {
-        window.__WIX_VIBE_EDITOR__.ready();
-      }
-      if (window.parent && window.parent !== window) {
-        try {
-          window.parent.postMessage({ type: "EDITOR_READY" }, "*");
-        } catch (error) {
-          console.debug("Failed to post ready message:", error);
+      try {
+        if (window.__EDITOR_BRIDGE__?.notifyReady) {
+          window.__EDITOR_BRIDGE__.notifyReady();
         }
+        if (window.__WIX_VIBE_EDITOR__?.ready) {
+          window.__WIX_VIBE_EDITOR__.ready();
+        }
+        if (window.parent && window.parent !== window) {
+          try {
+            window.parent.postMessage({ type: "EDITOR_READY" }, "*");
+          } catch (e) {
+            // Silently ignore cross-origin errors
+          }
+        }
+      } catch (error) {
+        // Silently ignore initialization errors
       }
     };
 

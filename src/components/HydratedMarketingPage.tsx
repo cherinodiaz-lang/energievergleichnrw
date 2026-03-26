@@ -29,18 +29,22 @@ function EditorInitializer() {
 
     // Signal to Wix Vibe that the page is ready
     const notifyReady = () => {
-      if (window.__EDITOR_BRIDGE__?.notifyReady) {
-        window.__EDITOR_BRIDGE__.notifyReady();
-      }
-      if (window.__WIX_VIBE_EDITOR__?.ready) {
-        window.__WIX_VIBE_EDITOR__.ready();
-      }
-      if (window.parent && window.parent !== window) {
-        try {
-          window.parent.postMessage({ type: "EDITOR_READY" }, "*");
-        } catch (error) {
-          console.debug("Failed to post ready message:", error);
+      try {
+        if (window.__EDITOR_BRIDGE__?.notifyReady) {
+          window.__EDITOR_BRIDGE__.notifyReady();
         }
+        if (window.__WIX_VIBE_EDITOR__?.ready) {
+          window.__WIX_VIBE_EDITOR__.ready();
+        }
+        if (window.parent && window.parent !== window) {
+          try {
+            window.parent.postMessage({ type: "EDITOR_READY" }, "*");
+          } catch (e) {
+            // Silently ignore cross-origin errors
+          }
+        }
+      } catch (error) {
+        // Silently ignore initialization errors
       }
     };
 

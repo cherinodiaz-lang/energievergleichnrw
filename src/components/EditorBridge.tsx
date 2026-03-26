@@ -25,35 +25,28 @@ export default function EditorBridge() {
 
     // Initialize the editor bridge if available
     const initializeBridge = () => {
-      const bridge = window.__EDITOR_BRIDGE__;
-      const vibeBridge = window.__WIX_VIBE_EDITOR__;
+      try {
+        const bridge = window.__EDITOR_BRIDGE__;
+        const vibeBridge = window.__WIX_VIBE_EDITOR__;
 
-      if (bridge) {
-        try {
-          bridge.init?.();
-          bridge.ready?.();
-          bridge.notifyReady?.();
-        } catch (error) {
-          console.debug('Editor bridge initialization:', error);
+        if (bridge?.notifyReady) {
+          bridge.notifyReady();
         }
-      }
 
-      if (vibeBridge) {
-        try {
-          vibeBridge.init?.();
-          vibeBridge.ready?.();
-        } catch (error) {
-          console.debug('Vibe editor initialization:', error);
+        if (vibeBridge?.ready) {
+          vibeBridge.ready();
         }
-      }
 
-      // Signal to parent that we're ready
-      if (window.parent && window.parent !== window) {
-        try {
-          window.parent.postMessage({ type: 'EDITOR_READY' }, '*');
-        } catch (error) {
-          console.debug('Failed to post ready message:', error);
+        // Signal to parent that we're ready
+        if (window.parent && window.parent !== window) {
+          try {
+            window.parent.postMessage({ type: 'EDITOR_READY' }, '*');
+          } catch (e) {
+            // Silently ignore cross-origin errors
+          }
         }
+      } catch (error) {
+        // Silently ignore initialization errors
       }
     };
 
@@ -61,7 +54,7 @@ export default function EditorBridge() {
     initializeBridge();
 
     // Also try after a short delay in case the bridge is injected asynchronously
-    const timeoutId = setTimeout(initializeBridge, 100);
+    const timeoutId = setTimeout(initializeBridge, 50);
 
     return () => clearTimeout(timeoutId);
   }, []);
