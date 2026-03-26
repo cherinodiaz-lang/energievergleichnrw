@@ -1,4 +1,5 @@
 import type { ComponentType } from "react";
+import { useEffect } from "react";
 import { BrowserRouter, StaticRouter } from "react-router-dom";
 import HomePage from "@/components/pages/HomePage";
 import GasvergleichNrwPage from "@/components/pages/GasvergleichNrwPage";
@@ -22,6 +23,37 @@ const PAGE_COMPONENTS = {
   stromvergleich: StromvergleichNrwPage,
 } satisfies Record<MarketingPageKey, ComponentType>;
 
+function EditorInitializer() {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // Signal to Wix Vibe that the page is ready
+    const notifyReady = () => {
+      if (window.__EDITOR_BRIDGE__?.notifyReady) {
+        window.__EDITOR_BRIDGE__.notifyReady();
+      }
+      if (window.__WIX_VIBE_EDITOR__?.ready) {
+        window.__WIX_VIBE_EDITOR__.ready();
+      }
+      if (window.parent && window.parent !== window) {
+        try {
+          window.parent.postMessage({ type: "EDITOR_READY" }, "*");
+        } catch (error) {
+          console.debug("Failed to post ready message:", error);
+        }
+      }
+    };
+
+    // Notify immediately and after a short delay
+    notifyReady();
+    const timeoutId = setTimeout(notifyReady, 50);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  return null;
+}
+
 export default function HydratedMarketingPage({ path, page }: HydratedMarketingPageProps) {
   const Page = PAGE_COMPONENTS[page];
 
@@ -36,6 +68,7 @@ export default function HydratedMarketingPage({ path, page }: HydratedMarketingP
   return (
     <>
       <EditorBridge />
+      <EditorInitializer />
       <BrowserRouter>
         <Page />
       </BrowserRouter>

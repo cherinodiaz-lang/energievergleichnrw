@@ -15,6 +15,36 @@ import { initializeGA4 } from '@/services/ga4-tracking';
 import EditorBridge from '@/components/EditorBridge';
 import HomePage from '@/components/pages/HomePage';
 
+// Editor initialization component
+function EditorInitializer() {
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const notifyReady = () => {
+      if (window.__EDITOR_BRIDGE__?.notifyReady) {
+        window.__EDITOR_BRIDGE__.notifyReady();
+      }
+      if (window.__WIX_VIBE_EDITOR__?.ready) {
+        window.__WIX_VIBE_EDITOR__.ready();
+      }
+      if (window.parent && window.parent !== window) {
+        try {
+          window.parent.postMessage({ type: 'EDITOR_READY' }, '*');
+        } catch (error) {
+          console.debug('Failed to post ready message:', error);
+        }
+      }
+    };
+
+    notifyReady();
+    const timeoutId = setTimeout(notifyReady, 50);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  return null;
+}
+
 // Fallback component for lazy-loaded routes
 const LazyFallback = () => <div className="min-h-screen flex items-center justify-center" />;
 
@@ -93,6 +123,7 @@ function Layout() {
   return (
     <div className="min-w-0 overflow-x-hidden">
       <EditorBridge />
+      <EditorInitializer />
       <ScrollToTop />
       {location.pathname === '/' ? (
         <Outlet />
