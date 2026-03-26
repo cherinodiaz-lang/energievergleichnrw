@@ -13,6 +13,7 @@ const isBuild = process.env.NODE_ENV == "production";
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://energievergleich.shop',
   output: "static",
   integrations: [
     {
@@ -22,8 +23,7 @@ export default defineConfig({
           if (command === "dev") {
             injectScript(
               "page",
-              `import loadFramewire from "framewire.js";
-              loadFramewire(true);`
+              `import loadFramewire from "framewire.js"; loadFramewire(true);`
             );
           }
         },
@@ -76,10 +76,10 @@ export default defineConfig({
     domains: ["static.wixstatic.com"],
   },
   server: {
-    allowedHosts: true,
+    allowedHosts: ['energievergleich.shop', 'www.energievergleich.shop', 'localhost'],
     host: true,
   },
   security: {
-    checkOrigin: false
+    checkOrigin: true,
   }
 });
