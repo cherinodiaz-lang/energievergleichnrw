@@ -50,8 +50,13 @@ export default function DatenschutzPage() {
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 font-paragraph text-slate-900 break-words">
                 <div>
                   <p className="font-bold mb-2">Verantwortlicher (Art. 4 Abs. 7 DSGVO):</p>
-                  <p>ENERGIEVERGLEICH NRW<br />59302 Oelde, NRW</p>
-                  <p className="text-sm text-gray-500 mt-2">Die vollstaendige ladungsfaehige Strassenanschrift ist im aktuellen Projektstand intern noch nicht final freigegeben und muss vor einer rechtlichen Endfreigabe nachgezogen werden.</p>
+                  <p>
+                    ENERGIEVERGLEICH NRW
+                    <br />
+                    59302 Oelde, NRW
+                    <br />
+                    Deutschland
+                  </p>
                 </div>
 
                 <div className="border-t pt-4">
@@ -329,7 +334,13 @@ export default function DatenschutzPage() {
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Postanschrift:</p>
-                  <p>ENERGIEVERGLEICH NRW<br />59302 Oelde, NRW</p>
+                  <p>
+                    ENERGIEVERGLEICH NRW
+                    <br />
+                    59302 Oelde, NRW
+                    <br />
+                    Deutschland
+                  </p>
                 </div>
 
                 <div className="border-t pt-4">

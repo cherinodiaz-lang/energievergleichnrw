@@ -1,6 +1,6 @@
 import { useState, type SyntheticEvent } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, Send, Clock } from 'lucide-react';
+import { Mail, Phone, Send, Clock, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -77,7 +77,7 @@ export default function KontaktPage() {
       {/* Contact Information Section */}
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -134,6 +134,31 @@ export default function KontaktPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
+            >
+              <Card className="h-full">
+                <CardHeader>
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                    <MapPin className="w-6 h-6 text-primary" />
+                  </div>
+                  <CardTitle className="font-heading text-xl text-primary">Postanschrift</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="font-paragraph text-gray-600 mb-2">
+                    ENERGIEVERGLEICH NRW
+                    <br />
+                    59302 Oelde, NRW
+                    <br />
+                    Deutschland
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
             >
               <Card className="h-full">
                 <CardHeader>
