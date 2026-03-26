@@ -1,15 +1,18 @@
-import type { ReactNode } from 'react';
-import { BrowserRouter, StaticRouter } from 'react-router';
+import type { ComponentType, ReactNode } from 'react';
+import { BrowserRouter, StaticRouter } from 'react-router-dom';
 
 interface AstroRouterProviderProps {
   path: string;
-  children: ReactNode;
+  Page?: ComponentType;
+  children?: ReactNode;
 }
 
-export default function AstroRouterProvider({ path, children }: AstroRouterProviderProps) {
-  if (import.meta.env.SSR) {
-    return <StaticRouter location={path}>{children}</StaticRouter>;
+export default function AstroRouterProvider({ path, Page, children }: AstroRouterProviderProps) {
+  const content = Page ? <Page /> : children;
+
+  if (typeof window === 'undefined') {
+    return <StaticRouter location={path}>{content}</StaticRouter>;
   }
 
-  return <BrowserRouter>{children}</BrowserRouter>;
+  return <BrowserRouter>{content}</BrowserRouter>;
 }

@@ -90,7 +90,5 @@ if (!articleMeta || !ArticleComponent) {
   ogTitle={articleMeta.title}
   ogDescription={articleMeta.teaser}
 >
-  <AstroRouterProvider path={Astro.url.pathname} client:load>
-    <ArticleComponent />
-  </AstroRouterProvider>
+  <AstroRouterProvider path={Astro.url.pathname} Page={ArticleComponent} client:load />
 </SeoPageLayout>
