@@ -1,0 +1,46 @@
+queue_rules:
+  - name: default
+    conditions:
+      - check-success=ci
+
+pull_request_rules:
+  # Auto-merge Dependabot patch/minor updates after CI passes
+  - name: Auto-merge Dependabot patch and minor updates
+    conditions:
+      - author=dependabot[bot]
+      - check-success=ci
+      - label!=do-not-merge
+      - title~=^chore\(deps
+    actions:
+      review:
+        type: APPROVE
+        message: "Auto-approved: Dependabot patch/minor update ✅"
+      merge:
+        method: squash
+        commit_message_template: |
+          {{ title }} (#{{ number }})
+
+  # Auto-merge GitHub Actions updates
+  - name: Auto-merge Dependabot GitHub Actions updates
+    conditions:
+      - author=dependabot[bot]
+      - check-success=ci
+      - title~=^chore\(actions
+    actions:
+      review:
+        type: APPROVE
+        message: "Auto-approved: GitHub Actions update ✅"
+      merge:
+        method: squash
+
+  # Block major version bumps — require manual review
+  - name: Label major updates for manual review
+    conditions:
+      - author=dependabot[bot]
+      - title~=bump.*from.*[0-9]+\.[0-9]+.*to [0-9]+\.
+    actions:
+      label:
+        add:
+          - needs-manual-review
+      comment:
+        message: "⚠️ Major version bump detected — bitte manuell prüfen!"
