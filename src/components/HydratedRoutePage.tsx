@@ -12,7 +12,10 @@ interface HydratedRoutePageProps {
 export default function HydratedRoutePage({ path, Page }: HydratedRoutePageProps) {
   const pageWithGlobalUi = (
     <>
-      <AnalyticsBootstrap measurementId={SEO_CONFIG.googleAnalyticsId} />
+      <AnalyticsBootstrap
+        measurementId={SEO_CONFIG.googleAnalyticsId}
+        clarityProjectId={SEO_CONFIG.clarityProjectId}
+      />
       <Page />
       <ConsentBanner />
     </>

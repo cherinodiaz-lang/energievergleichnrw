@@ -46,6 +46,7 @@ export const SEO_CONFIG = {
   // Search Console & Analytics (add your IDs here)
   googleSearchConsoleVerification: '', // Add your verification code
   googleAnalyticsId: 'G-X60BTL057V', // GA4 Measurement ID for www.energievergleich.shop
+  clarityProjectId: import.meta.env.PUBLIC_CLARITY_ID ?? '', // Microsoft Clarity Project ID
 
   // Robots Meta
   robots: 'index, follow',

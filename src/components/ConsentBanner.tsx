@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { updateConsent, sendDebugTestPing } from '@/services/ga4-tracking';
+import { updateClarityConsent } from '@/services/clarity-tracking';
 
 const CONSENT_STORAGE_KEY = 'energievergleich_consent';
 
@@ -49,11 +50,13 @@ export default function ConsentBanner() {
 
     if (!savedConsent) {
       updateConsent(false, false);
+      updateClarityConsent(false);
       setIsVisible(true);
       return;
     }
 
     updateConsent(savedConsent.analytics, savedConsent.marketing);
+    updateClarityConsent(savedConsent.analytics);
     if (savedConsent.analytics) {
       sendDebugTestPing();
     }
@@ -73,6 +76,7 @@ export default function ConsentBanner() {
   const applyConsent = (consent: ConsentState) => {
     persistConsent(consent);
     updateConsent(consent.analytics, consent.marketing);
+    updateClarityConsent(consent.analytics);
 
     if (consent.analytics) {
       sendDebugTestPing();

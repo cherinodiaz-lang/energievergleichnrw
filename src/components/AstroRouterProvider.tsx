@@ -13,7 +13,10 @@ interface AstroRouterProviderProps {
 export default function AstroRouterProvider({ path, Page, children }: AstroRouterProviderProps) {
   const content = (
     <>
-      <AnalyticsBootstrap measurementId={SEO_CONFIG.googleAnalyticsId} />
+      <AnalyticsBootstrap
+        measurementId={SEO_CONFIG.googleAnalyticsId}
+        clarityProjectId={SEO_CONFIG.clarityProjectId}
+      />
       {Page ? <Page /> : children}
       <ConsentBanner />
     </>
