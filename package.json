@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "wix dev",
     "build": "wix build",
-    "deploy": "wix deploy",
+    "deploy": "wix release",
     "preview": "wix preview",
     "release": "wix release",
     "env": "wix env pull",
