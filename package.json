@@ -29,7 +29,7 @@
     "@radix-ui/react-label": "^2.1.8",
     "@radix-ui/react-tabs": "^1.1.13",
     "@radix-ui/react-toast": "^1.2.15",
-    "@wix/astro": "^2.31.0", // No upgrade needed
+    "@wix/astro": "^2.36.0", // No upgrade needed
     "@wix/babel-plugin-jsx-dynamic-data": "^1.0.17",
     "@wix/babel-plugin-jsx-source-attrs": "^1.3.6",
     "@wix/data": "^1.0.409",
