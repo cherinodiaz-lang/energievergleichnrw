@@ -1,6 +1,6 @@
-# Wixstro - Wix Astro Template
+# energievergleich.shop
 
-A modern, full-featured Wix Astro template built with React, TypeScript, and Tailwind CSS. This template provides a solid foundation for building dynamic, interactive websites with Wix's powerful ecosystem.
+Astro- und React-basiertes Wix-Headless-Projekt fuer `energievergleich.shop`. Der produktive Build ist statisch und wird ueber die Wix CLI als Wix-Vibe-Projekt veroeffentlicht.
 
 ## 🚀 Features
 
@@ -10,8 +10,8 @@ A modern, full-featured Wix Astro template built with React, TypeScript, and Tai
 - **Tailwind CSS** - Utility-first CSS framework with custom components
 - **Wix Integration** - Seamless integration with Wix services and APIs
 - **Modern UI Components** - Radix UI components with custom styling
-- **Authentication** - Built-in member authentication and protected routes
-- **CMS Integration** - Content management system integration
+- **Wix Headless Build/Release** - Statischer Build mit `wix build` und Release mit `wix release`
+- **CMS Integration** - Content- und Datenanbindung ueber Wix-Services, soweit im Projekt verwendet
 - **Client-side Routing** - React Router for seamless navigation
 - **Responsive Design** - Mobile-first responsive design
 - **Testing** - Vitest testing framework setup
@@ -24,18 +24,17 @@ A modern, full-featured Wix Astro template built with React, TypeScript, and Tai
 - **Styling**: Tailwind CSS 3.4.14
 - **Language**: TypeScript 5.8.3
 - **UI Components**: Radix UI
-- **State Management**: Zustand
-- **Forms**: React Hook Form with Zod validation
+- **Forms**: React-Formulare mit projektbezogener Validierung
 - **Testing**: Vitest
 - **Build Tool**: Vite
-- **Deployment**: Cloudflare
+- **Deployment**: Wix static hosting / Wix Vibe release
 
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js (version 18 or higher)
+- Node.js (version 20 or higher)
 - npm or yarn package manager
 - Wix account and site
 
@@ -51,11 +50,9 @@ A modern, full-featured Wix Astro template built with React, TypeScript, and Tai
    npm run env
    ```
 
-   Required Wix runtime variables:
-   - `WIX_CLIENT_ID`
-   - `WIX_CLIENT_INSTANCE_ID`
-   - `WIX_CLIENT_PUBLIC_KEY`
-   - `WIX_CLIENT_SECRET`
+   Hinweis:
+   - Das Projekt baut statisch fuer Wix.
+   - Historische Cloudflare-/Worker-Dateien im Repo sind Legacy-Artefakte und nicht der produktive Deploy-Pfad.
 
 3. **Start development server**:
    ```bash
@@ -69,19 +66,17 @@ The development server will start and you can view your site at `http://localhos
 ```
 main/
 ├── src/
-│   ├── components/          # React components
+│   ├── components/          # React-Komponenten fuer Seiten und UI
 │   │   ├── ui/             # Reusable UI components
-│   │   ├── Head.tsx        # Page head component
-│   │   └── Router.tsx      # Routing component
+│   │   ├── pages/          # Seitenspezifische React-Komponenten
+│   │   └── ConsentBanner.tsx
 │   ├── hooks/              # Custom React hooks
 │   ├── lib/                # Utility functions
-│   ├── pages/              # Astro pages
+│   ├── pages/              # Astro Entry Pages / SEO Layout wiring
 │   └── styles/             # Global styles
-├── integrations/           # Wix integrations
-│   ├── cms/               # CMS integration
-│   └── members/           # Member authentication
+├── integrations/           # Projektintegrationen
 ├── public/                # Static assets
-└── eslint-rules/          # Custom ESLint rules
+└── scripts/               # Audit- und Hilfsskripte
 ```
 
 ## 🎨 UI Components
@@ -98,33 +93,34 @@ This template includes a comprehensive set of UI components built with Radix UI 
 
 ## 🔧 Available Scripts
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run release` - Release to Wix
-- `npm run env` - Pull environment variables
-- `npm run check` - Type check with Astro
-- `npm run test:run` - Run tests
-- `npm run install-template` - Install dependencies
-- `npm run validate:runtime-env` - Verify required Wix runtime env/secret variables
-- `npm run smoke:runtime` - Smoke-check live runtime (`200`, no `x-astro-noop`, `<main>`, canonical)
+- `npm run dev` - Startet die lokale Wix-Entwicklung
+- `npm run build` - Baut den statischen Produktionsstand via `wix build`
+- `npm run preview` - Wix-Preview
+- `npm run release` - Veroeffentlicht den aktuellen Build via Wix
+- `npm run deploy` - Alias fuer `wix release`
+- `npm run env` - Zieht Wix-Umgebungswerte
+- `npm run check` - Fuehrt `astro check` aus
+- `npm run lint` - Alias fuer `astro check`
+- `npm run typecheck` - Alias fuer `astro check`
+- `npm run test` - Fuehrt Vitest aus
+- `npm run test:run` - Fuehrt Vitest aus
+- `npm run validate:seo` - Prueft SEO-Artefakte
+- `npm run smoke:runtime` - Smoke-Check fuer eine laufende Preview/Release-URL
 
-## Runtime Guard
+## Release Path
 
-This project includes a runtime env guard in the catch-all route (`src/pages/[...slug].astro`).
-If required Wix auth variables are missing, it fails fast with:
-- clear server log message
-- explicit `500` plain-text response
-- `x-runtime-env-guard: missing-wix-auth-env`
-
-Recommended release sequence:
+Produktiver Deploy-Pfad:
 
 ```bash
-npm run validate:runtime-env
 npm run build
 npm run release
 npm run smoke:runtime -- --base-url https://www.energievergleich.shop
 ```
+
+Aktuelle Einordnung:
+- Primaere Domain im Code ist `https://www.energievergleich.shop`
+- Canonicals, `robots.txt` und `sitemap.xml` muessen auf diese Domain zeigen
+- Aeltere Cloudflare-/Worker-Dokumente im Repo sind nicht Source of Truth fuer den aktuellen Deploy-Prozess
 
 ## 🧪 Testing
 
@@ -143,13 +139,21 @@ The template is built with a mobile-first approach and includes:
 - Optimized images
 - Flexible layouts
 
-## 🚀 Deployment
+## Wix / Editor / Design
 
-The template is configured for deployment on Cloudflare:
+Dieses Projekt ist kein klassisches visuelles Wix-Editor-Projekt, sondern ein codezentriertes Wix-Headless-/Astro-Projekt. Designaenderungen erfolgen primaer im Repo, nicht direkt ueber frei editierbare Wix-Sections.
 
-```bash
-npm run build
-```
+Fuer den naechsten Design-Schritt sind diese Dateien zentral:
+- `src/components/pages/HomePage.tsx`
+- `src/components/Header.tsx`
+- `src/components/Footer.tsx`
+- `src/components/pages/StromvergleichNrwPage.tsx`
+- `src/components/pages/GasvergleichNrwPage.tsx`
+- `src/components/pages/GewerbestromPage.tsx`
+- `src/components/pages/GewerbegasPage.tsx`
+- `src/components/pages/PhotovoltaikNrwPage.tsx`
+- `src/lib/seo-config.ts`
+- `src/styles/global.css`
 
 ## 🤝 Contributing
 
@@ -169,4 +173,4 @@ For support and questions:
 
 ---
 
-Built with ❤️ using Wix Vibe, Astro, and modern web technologies.
+Built for Wix Vibe, Astro and React.

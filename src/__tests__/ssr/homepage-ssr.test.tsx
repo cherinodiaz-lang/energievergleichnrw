@@ -1,14 +1,14 @@
 // @vitest-environment node
 import { describe, expect, it } from 'vitest';
 import { renderToString } from 'react-dom/server';
-import { StaticRouter } from 'react-router';
+import { MemoryRouter } from 'react-router-dom';
 import HomePage from '@/components/pages/HomePage';
 
 function renderHomePageSsr() {
   return renderToString(
-    <StaticRouter location="/">
+    <MemoryRouter initialEntries={['/']}>
       <HomePage />
-    </StaticRouter>,
+    </MemoryRouter>,
   );
 }
 
@@ -21,6 +21,6 @@ describe('HomePage SSR', () => {
     const html = renderHomePageSsr();
 
     expect(html).toContain('<main');
-    expect(html).toContain('Energie einordnen.');
+    expect(html).toContain('Energie wechseln.');
   });
 });

@@ -51,6 +51,7 @@ export default function ImpressumPage() {
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Anschrift:</p>
                   <p>ENERGIEVERGLEICH NRW<br />59302 Oelde, NRW</p>
+                  <p className="text-sm text-gray-500 mt-2">Die vollstaendige ladungsfaehige Strassenanschrift ist im aktuellen Projektstand intern noch nicht final freigegeben und muss vor einer rechtlichen Endfreigabe nachgezogen werden.</p>
                 </div>
 
                 <div className="border-t pt-4">
@@ -158,21 +159,6 @@ export default function ImpressumPage() {
             {/* 9. Hinweis nach § 36 VSBG */}
             <div>
               <h2 className="font-heading text-2xl font-bold text-primary mb-4">9. Hinweis nach § 36 VSBG (Verbraucherstreitbeilegungsgesetz)</h2>
-
-              <div className="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-6 font-paragraph text-slate-900 break-words">
-                <p className="font-bold mb-4">Teilnahme an Verbraucherstreitbeilegung:</p>
-                <p className="mb-4">
-                  <strong>NEIN</strong> – ENERGIEVERGLEICH NRW nimmt nicht an einem Verbraucherstreitbeilegungsverfahren teil.
-                </p>
-                <p className="text-sm text-gray-700">
-                  ENERGIEVERGLEICH NRW ist nicht verpflichtet und nicht bereit, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen. Für Beschwerden und Reklamationen kontaktieren Sie uns bitte direkt unter <a href="mailto:support@energievergleich.nrw" className="text-primary hover:underline font-bold">support@energievergleich.nrw</a>.
-                </p>
-              </div>
-            </div>
-
-            {/* 11. Verbraucherstreitbeilegung */}
-            <div>
-              <h2 className="font-heading text-2xl font-bold text-primary mb-4">11. Verbraucherstreitbeilegung / Universalschiedsverfahren</h2>
 
               <div className="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-6 font-paragraph text-slate-900 break-words">
                 <p className="font-bold mb-4">Teilnahme an Verbraucherstreitbeilegung:</p>

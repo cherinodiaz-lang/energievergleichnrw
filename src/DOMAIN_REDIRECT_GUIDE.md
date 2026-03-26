@@ -1,3 +1,5 @@
+> Statushinweis: Historisches Arbeitsdokument. Nicht als Source of Truth verwenden. Maßgeblich sind README.md, package.json, astro.config.mjs, src/lib/seo-config.ts, wix.config.json und die aktuellen dist-Artefakte.
+
 # DOMAIN REDIRECT SETUP GUIDE
 ## energievergleich.nrw → energievergleich.shop (301 Redirect)
 

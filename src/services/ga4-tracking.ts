@@ -30,6 +30,7 @@ let debugMode = false;
 let debugTestPingSent = false;
 let measurementIdGlobal = '';
 let scriptLoaded = false;
+let initializedMeasurementId = '';
 
 /**
  * Initialize GA4 with consent mode
@@ -38,9 +39,14 @@ let scriptLoaded = false;
  * CRITICAL: gtag('config') is NOT called here - it's called AFTER consent is granted
  */
 export function initializeGA4(measurementId: string) {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined' || !measurementId) return;
+
+  if (initializedMeasurementId === measurementId) {
+    return;
+  }
 
   measurementIdGlobal = measurementId;
+  initializedMeasurementId = measurementId;
 
   // Check for debug mode via URL parameter (?debug=1)
   debugMode = new URLSearchParams(window.location.search).get('debug') === '1';
@@ -70,6 +76,7 @@ export function initializeGA4(measurementId: string) {
   // Load GA4 script - ASYNC
   const script = document.createElement('script');
   script.async = true;
+  script.dataset.ga4MeasurementId = measurementId;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
 
   // Mark script as loaded when it completes

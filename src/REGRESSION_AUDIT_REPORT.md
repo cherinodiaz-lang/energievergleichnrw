@@ -1,3 +1,5 @@
+> Statushinweis: Historisches Arbeitsdokument. Nicht als Source of Truth verwenden. Maßgeblich sind README.md, package.json, astro.config.mjs, src/lib/seo-config.ts, wix.config.json und die aktuellen dist-Artefakte.
+
 # REGRESSION AUDIT REPORT - energievergleich.shop
 **Date:** 2026-02-17
 **Status:** AUDIT COMPLETE + AUTO-FIXES APPLIED

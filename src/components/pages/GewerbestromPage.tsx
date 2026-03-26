@@ -120,7 +120,7 @@ export default function GewerbestromPage() {
               <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Gewerbestrom-Anfrage für NRW</h2>
 
               <p className="font-paragraph text-lg text-gray-700 mb-6">
-                Mit unserem kostenlosen Gewerbestrom-Service finden Sie in wenigen Minuten den günstigsten Stromtarif für Ihr Unternehmen in Nordrhein-Westfalen. Die Anfrage ist völlig kostenlos und unverbindlich – Sie geben nur Ihre Verbrauchsdaten ein und erhalten sofort individualisierte Angebote. Sparen Sie bis zu 30% Ihrer Stromkosten durch optimierte Gewerbestromtarife und profitieren Sie von persönlicher Beratung durch unsere Experten.
+                Mit unserem kostenlosen Gewerbestrom-Service bereiten Sie eine unverbindliche Anfrage fuer Ihr Unternehmen in Nordrhein-Westfalen vor. Sie geben Ihre Verbrauchsdaten ein und erhalten eine erste Orientierung zu passenden Tarifkriterien, bevor konkrete Angebote individuell geprueft werden.
               </p>
             </div>
 
@@ -130,8 +130,8 @@ export default function GewerbestromPage() {
                 <li><strong>Jahresverbrauch eingeben:</strong> Geben Sie Ihren jährlichen Stromverbrauch in kWh ein (zu finden auf Ihrer letzten Stromrechnung)</li>
                 <li><strong>Zähler- und Marktlokation (falls vorhanden):</strong> Tragen Sie diese Nummern ein, falls Sie diese bereits haben – sie ermöglichen präzisere Angebote</li>
                 <li><strong>Leistung und Lastprofil:</strong> Geben Sie die maximale Leistung und das Lastprofil an (falls vorhanden)</li>
-                <li><strong>Postleitzahl und Branche:</strong> Nennen Sie Ihren Standort und Ihre Branche für maßgeschneiderte Tarife</li>
-                <li><strong>Angebote vergleichen und wählen:</strong> Erhalten Sie mehrere Angebote, vergleichen Sie Preise, Laufzeiten und Konditionen und wählen Sie das beste Angebot</li>
+                <li><strong>Postleitzahl und Branche:</strong> Nennen Sie Ihren Standort und Ihre Branche fuer eine passende Einordnung</li>
+                <li><strong>Anfrage absenden:</strong> Auf Basis Ihrer Angaben pruefen wir passende Optionen und melden uns zum weiteren Ablauf</li>
               </ol>
             </div>
 
@@ -218,13 +218,13 @@ export default function GewerbestromPage() {
             <div>
               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Gewerbestrom in NRW</h3>
               <p className="font-paragraph text-gray-700 mb-4">
-                Nordrhein-Westfalen ist das wirtschaftsstärkste Bundesland Deutschlands mit über 800.000 Unternehmen aller Größen. Von Einzelhändlern über Handwerksbetriebe bis zu Produktionsunternehmen – alle profitieren von optimierten Gewerbestromtarifen. Die Strompreise für Gewerbekunden variieren je nach Verbrauch, Standort und Branche. Unser Vergleich berücksichtigt diese regionalen und branchenspezifischen Unterschiede und zeigt Ihnen die besten Tarife für Ihr Unternehmen – ob in Düsseldorf, Köln, Essen, Dortmund oder einer anderen Stadt in NRW.
+                Nordrhein-Westfalen ist ein grosser und heterogener Energiemarkt fuer Unternehmen. Strompreise fuer Gewerbekunden variieren je nach Verbrauch, Standort und Branche. Unsere Anfrage hilft dabei, regionale und branchenspezifische Unterschiede strukturiert zu erfassen und passende Optionen fuer die naechsten Schritte einzugrenzen.
               </p>
             </div>
 
             <div className="bg-secondary/10 border-l-4 border-secondary p-6 rounded">
               <p className="font-paragraph text-gray-700 italic">
-                Jetzt unverbindlich Angebot anfordern und sparen Sie ab sofort bei Ihren Stromkosten!
+                Jetzt unverbindlich Anfrage stellen und passende Gewerbestrom-Optionen fuer Ihr Unternehmen pruefen.
               </p>
             </div>
           </div>
@@ -263,7 +263,7 @@ export default function GewerbestromPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="font-paragraph text-foreground/80">
-                    Bis zu 30% Einsparung durch optimierte Gewerbestromtarife
+                    Transparente Einordnung fuer Verbrauch, Laufzeit und Preisstruktur
                   </p>
                 </CardContent>
               </Card>
@@ -382,7 +382,7 @@ export default function GewerbestromPage() {
                     Regionale Expertise
                   </h3>
                   <p className="font-paragraph text-foreground/80">
-                    Als Experten für den NRW-Markt kennen wir die regionalen Besonderheiten und können Ihnen die besten Tarife für Ihren Standort anbieten.
+                    Wir beruecksichtigen regionale Besonderheiten in NRW und strukturieren Ihre Anfrage fuer einen sauberen Angebotsvergleich.
                   </p>
                 </div>
               </div>
@@ -631,7 +631,7 @@ export default function GewerbestromPage() {
             <h2 className="font-heading text-3xl font-bold text-primary">Warum energievergleich.shop?</h2>
 
             <p className="font-paragraph text-lg text-gray-700 leading-relaxed">
-              Bei der Wahl eines Gewerbestrom-Anbieters vertrauen Sie auf Transparenz und Unabhängigkeit. energievergleich.shop bietet Ihnen einen kostenlosen, unabhängigen Vergleich von Gewerbestromtarifen – ohne versteckte Gebühren oder Provisionen. Wir vergleichen Tarife nach Preis und Vertragsbedingungen, um Ihnen die beste Lösung für Ihr Unternehmen zu zeigen. Unsere Daten sind aktuell und werden regelmäßig aktualisiert. Stand: Februar 2026.
+              Bei der Wahl eines Gewerbestrom-Anbieters zaehlen Transparenz und belastbare Kriterien. energievergleich.shop unterstuetzt Sie mit einer kostenlosen Erstorientierung zu Preisbestandteilen, Vertragsbedingungen und Anfragedaten. Diese Seite erhebt keinen Anspruch auf eine Live-Marktuebersicht; verbindliche Angebote werden erst im individuellen Prozess geprueft.
             </p>
 
             <p className="font-paragraph text-base text-gray-700">

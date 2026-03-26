@@ -259,7 +259,7 @@ export default function GasanbieterWechselnNrwArticle() {
                   </CardContent>
                 </Card>
               </Link>
-              <Link to="/ratgeber/gas/preiserhoehung-gas-rechte" className="group">
+              <Link to="/ratgeber/gas/preiserhoeung-gas-rechte" className="group">
                 <Card className="h-full hover:shadow-lg transition-shadow">
                   <CardHeader>
                     <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">

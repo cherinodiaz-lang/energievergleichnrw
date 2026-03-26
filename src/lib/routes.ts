@@ -31,7 +31,7 @@ export type RouteKey =
 
 /**
  * Zentrale Pfade (keine hardcodierten Strings mehr in Header/Footer/Buttons/CTAs).
- * Domain bleibt vorerst energievergleich.shop (Routing-Pfade sind davon unabhängig).
+ * Die kanonische Domain ist https://www.energievergleich.shop (Routing-Pfade sind davon unabhaengig).
  */
 export const ROUTES: Record<RouteKey, string> = {
   home: "/",

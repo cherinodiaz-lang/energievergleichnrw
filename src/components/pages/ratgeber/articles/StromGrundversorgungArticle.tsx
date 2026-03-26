@@ -248,30 +248,30 @@ export default function StromGrundversorgungArticle() {
         <div className="max-w-4xl mx-auto px-6 lg:px-12">
           <h2 className="font-heading text-2xl font-bold text-primary mb-8">Verwandte Artikel</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <Link to="/ratgeber/strom/preisgarantie" className="group">
+            <Link to="/ratgeber/strom/stromtarif-vertragslaufzeit" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">
-                    Preisgarantie bei Stromtarifen
+                    Stromtarif und Vertragslaufzeit
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="font-paragraph text-sm text-gray-600">
-                    Wie lange sind Sie vor Preiserhöhungen geschützt?
+                    Welche Laufzeit und Vertragslogik fuer Ihren Tarif sinnvoll sein kann.
                   </p>
                 </CardContent>
               </Card>
             </Link>
-            <Link to="/ratgeber/strom/laufzeit-kündigung" className="group">
+            <Link to="/ratgeber/wechselwissen/kuendigungsfristen-strom-gas" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">
-                    Laufzeit und Kündigung
+                    Kuendigungsfristen bei Strom und Gas
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="font-paragraph text-sm text-gray-600">
-                    Wie lange sind Sie an einen Vertrag gebunden?
+                    Welche Fristen Sie bei Wechsel oder Sonderkuendigung beachten sollten.
                   </p>
                 </CardContent>
               </Card>

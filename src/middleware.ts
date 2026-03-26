@@ -23,8 +23,8 @@ function withSecurityHeaders(response: Response): Response {
   });
 }
 
-export const onRequest = defineMiddleware(async ({ isPrerendered, request, url }, next) => {
-  if (!isPrerendered && !isAllowedHost(request.headers.get("host"))) {
+export const onRequest = defineMiddleware(async ({ isPrerendered, url }, next) => {
+  if (!isPrerendered && !isAllowedHost(url.hostname)) {
     return withSecurityHeaders(
       new Response("Unzulaessiger Host-Header.", { status: 400 })
     );

@@ -1,3 +1,5 @@
+> Statushinweis: Historisches Arbeitsdokument. Nicht als Source of Truth verwenden. Maßgeblich sind README.md, package.json, astro.config.mjs, src/lib/seo-config.ts, wix.config.json und die aktuellen dist-Artefakte.
+
 # Google Tag Manager (GTM) Implementation Guide
 
 This guide walks you through setting up Google Tag Manager with Consent Mode, GA4 integration, and proper event tracking without PII.

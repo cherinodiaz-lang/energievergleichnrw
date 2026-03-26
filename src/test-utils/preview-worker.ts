@@ -47,7 +47,7 @@ export async function startPreviewWorker(cwd: string): Promise<{
   process: ChildProcessWithoutNullStreams;
   stop: () => Promise<void>;
 }> {
-  const server = spawn(NPM_COMMAND, ["run", "preview", "--", "--host", "127.0.0.1", "--port", "4321"], {
+  const server = spawn(NPM_COMMAND, ["run", "preview:worker"], {
     cwd,
     env: process.env,
     stdio: ["ignore", "pipe", "pipe"],

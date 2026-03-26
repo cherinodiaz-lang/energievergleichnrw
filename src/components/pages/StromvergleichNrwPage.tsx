@@ -415,7 +415,7 @@ export default function StromvergleichNrwPage() {
                 <li><strong>Postleitzahl eingeben:</strong> Geben Sie Ihre PLZ ein, um Tarife für Ihren Netzbereich zu sehen</li>
                 <li><strong>Stromverbrauch angeben:</strong> Tragen Sie Ihren jährlichen Verbrauch in kWh ein (zu finden auf der Stromrechnung)</li>
                 <li><strong>Tarife vergleichen:</strong> Sehen Sie Beispielangebote mit Preis, Laufzeit und Preisgarantie</li>
-                <li><strong>Wunsch-Tarif wählen:</strong> Entscheiden Sie sich für den besten Tarif nach Ihren Kriterien</li>
+                <li><strong>Passende Option markieren:</strong> Nutzen Sie die Beispielvorschau fuer eine erste Priorisierung nach Ihren Kriterien</li>
                 <li><strong>Anfrage abschließen:</strong> Senden Sie Ihre Anfrage für eine konkrete Rückmeldung zum weiteren Vorgehen</li>
               </ol>
             </div>
@@ -650,7 +650,7 @@ export default function StromvergleichNrwPage() {
           <ol className="font-paragraph text-gray-700 space-y-4 list-decimal list-inside">
             <li><strong>Postleitzahl und Verbrauch eingeben:</strong> Nutzen Sie unseren Vergleichsrechner mit Ihren Basisdaten.</li>
             <li><strong>Tarife vergleichen:</strong> Sehen Sie Beispielangebote sortiert nach Preis und Konditionen.</li>
-            <li><strong>Wunsch-Tarif wählen:</strong> Entscheiden Sie sich für den Tarif, der am besten zu Ihnen passt.</li>
+            <li><strong>Passende Option markieren:</strong> Nutzen Sie die Beispielvorschau fuer eine erste Priorisierung.</li>
             <li><strong>Angebot anfordern:</strong> Kontaktieren Sie den Anbieter oder lassen Sie sich von uns beraten.</li>
             <li><strong>Anfrage abschließen:</strong> Sie erhalten eine konkrete Rückmeldung zum weiteren Ablauf.</li>
           </ol>
@@ -710,7 +710,7 @@ export default function StromvergleichNrwPage() {
                 Bei energievergleich.shop erhalten Sie eine transparente und unabhängige Erstorientierung zu Stromtarifen. Wir zeigen Beispielwerte als Grundlage für Ihre Entscheidung und unterstützen Sie bei der nächsten Kontaktaufnahme.
               </p>
               <p>
-                Wir vergleichen nicht nur Preise, sondern auch Laufzeiten, Preisgarantien und Kündigungsfristen. So finden Sie den Tarif, der wirklich zu Ihnen passt – nicht nur der billigste. Alle Informationen auf dieser Seite sind aktuell und wurden zuletzt im Februar 2026 überprüft.
+                Wir betrachten nicht nur Preise, sondern auch Laufzeiten, Preisgarantien und Kuendigungsfristen. Die Seite dient als transparente Erstorientierung und nicht als Live-Marktuebersicht.
               </p>
               <p>
                 Mehr über unsere Vergleichsmethode erfahren Sie unter{' '}

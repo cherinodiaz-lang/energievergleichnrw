@@ -1,3 +1,5 @@
+> Statushinweis: Historisches Arbeitsdokument. Nicht als Source of Truth verwenden. Maßgeblich sind README.md, package.json, astro.config.mjs, src/lib/seo-config.ts, wix.config.json und die aktuellen dist-Artefakte.
+
 # Wix Privacy Center & Form Submissions Setup Guide
 
 This guide walks you through setting up the Wix Privacy Center (Usercentrics) and configuring the form submissions collection with automations.

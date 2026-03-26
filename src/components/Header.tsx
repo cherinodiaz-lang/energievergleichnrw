@@ -32,23 +32,24 @@ export default function Header() {
       return;
     }
 
-    previousFocusedElementRef.current =
-      document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    if (!previousFocusedElementRef.current) {
+      previousFocusedElementRef.current =
+        document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    }
 
     const originalBodyOverflow = document.body.style.overflow;
     const originalHtmlOverflow = document.documentElement.style.overflow;
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
 
-    const focusFrame = window.requestAnimationFrame(() => {
+    const focusTimeout = window.setTimeout(() => {
       mobileMenuCloseRef.current?.focus();
-    });
+    }, 0);
 
     const handleKeydown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         event.preventDefault();
-        setMobileMenuOpen(false);
-        setOpenSubmenu(null);
+        closeMobileMenu(true);
         return;
       }
 
@@ -82,19 +83,10 @@ export default function Header() {
     document.addEventListener('keydown', handleKeydown);
 
     return () => {
-      window.cancelAnimationFrame(focusFrame);
+      window.clearTimeout(focusTimeout);
       document.body.style.overflow = originalBodyOverflow;
       document.documentElement.style.overflow = originalHtmlOverflow;
       document.removeEventListener('keydown', handleKeydown);
-
-      const elementToRestore =
-        previousFocusedElementRef.current && document.contains(previousFocusedElementRef.current)
-          ? previousFocusedElementRef.current
-          : mobileMenuTriggerRef.current;
-
-      window.requestAnimationFrame(() => {
-        elementToRestore?.focus();
-      });
     };
   }, [mobileMenuOpen]);
 
@@ -119,9 +111,23 @@ export default function Header() {
     setOpenSubmenu(null);
   };
 
-  const closeMobileMenu = () => {
+  const closeMobileMenu = (restoreFocus = false) => {
     setMobileMenuOpen(false);
     setOpenSubmenu(null);
+
+    if (!restoreFocus) {
+      return;
+    }
+
+    const elementToRestore =
+      previousFocusedElementRef.current && document.contains(previousFocusedElementRef.current)
+        ? previousFocusedElementRef.current
+        : mobileMenuTriggerRef.current;
+
+    window.setTimeout(() => {
+      elementToRestore?.focus();
+      previousFocusedElementRef.current = null;
+    }, 0);
   };
 
   // Get breadcrumb items for current page (only show on non-homepage)
@@ -205,10 +211,11 @@ export default function Header() {
               ref={mobileMenuTriggerRef}
               onClick={() => {
                 if (mobileMenuOpen) {
-                  closeMobileMenu();
+                  closeMobileMenu(true);
                   return;
                 }
 
+                previousFocusedElementRef.current = mobileMenuTriggerRef.current;
                 setMobileMenuOpen(true);
               }}
               className="lg:hidden p-2 text-foreground hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary rounded transition-colors min-h-12 min-w-12"
@@ -227,7 +234,7 @@ export default function Header() {
           <button
             type="button"
             className="absolute inset-0 border-0 bg-black/45 p-0"
-            onClick={closeMobileMenu}
+            onClick={() => closeMobileMenu(true)}
             tabIndex={-1}
             aria-label="Dialog schließen durch Klick außerhalb"
           />
@@ -248,7 +255,7 @@ export default function Header() {
               <button
                 ref={mobileMenuCloseRef}
                 type="button"
-                onClick={closeMobileMenu}
+                onClick={() => closeMobileMenu(true)}
                 className="inline-flex min-h-12 min-w-12 items-center justify-center rounded text-foreground transition-colors hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary"
                 aria-label="Navigation schließen"
               >
@@ -265,7 +272,7 @@ export default function Header() {
                         <div className="flex items-center justify-between py-3 sm:py-4 px-3 sm:px-4 min-h-12">
                           <Link
                             to={item.to}
-                            onClick={closeMobileMenu}
+                            onClick={() => closeMobileMenu(true)}
                             className={`font-paragraph font-medium text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset rounded transition-colors ${
                               isActiveLink(item.to)
                                 ? 'text-primary'
@@ -290,7 +297,7 @@ export default function Header() {
                       ) : (
                         <Link
                           to={item.to}
-                          onClick={closeMobileMenu}
+                          onClick={() => closeMobileMenu(true)}
                           className={`block w-full text-left font-paragraph font-medium text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset transition-colors py-3 sm:py-4 px-3 sm:px-4 min-h-12 ${
                             isActiveLink(item.to)
                               ? 'text-primary bg-primary/5'
@@ -307,7 +314,7 @@ export default function Header() {
                             <li key={subitem.key}>
                               <Link
                                 to={subitem.to}
-                                onClick={closeMobileMenu}
+                                onClick={() => closeMobileMenu(true)}
                                 className={`block font-paragraph text-sm font-medium transition-colors py-3 sm:py-4 px-6 sm:px-8 min-h-12 flex items-center ${
                                   isActiveLink(subitem.to)
                                     ? 'text-primary bg-primary/10'

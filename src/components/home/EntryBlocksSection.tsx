@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { Zap, Flame, Sun, Building2, ArrowRight } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
 const blocks = [

@@ -122,8 +122,8 @@ export default function KontaktPage() {
                   <p className="font-paragraph text-gray-600 mb-2">
                     Rufen Sie uns an und sprechen Sie direkt mit unseren Experten.
                   </p>
-                  <a href="tel:+492111234567" className="font-bold text-primary hover:underline">
-                    +49 211 1234567
+                  <a href="tel:+492011033939" className="font-bold text-primary hover:underline">
+                    +49 (0) 2 01 - 1 03 - 39 39
                   </a>
                 </CardContent>
               </Card>
@@ -198,7 +198,7 @@ export default function KontaktPage() {
                         <Input
                           id="phone"
                           type="tel"
-                          placeholder="+49 211 1234 5678"
+                          placeholder="+49 (0) 2 01 - 1 03 - 39 39"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           className="font-paragraph w-full"

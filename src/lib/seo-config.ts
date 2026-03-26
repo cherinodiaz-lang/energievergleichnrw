@@ -4,27 +4,27 @@
  */
 export const SEO_CONFIG = {
   // Site Information
-  // PRIMARY DOMAIN: https://energievergleich.shop
+  // PRIMARY DOMAIN: https://www.energievergleich.shop
   siteName: 'energievergleich.shop',
-  siteUrl: 'https://energievergleich.shop',
-  siteDescription: 'Vergleichen Sie Strom- und Gastarife in Nordrhein-Westfalen. Finden Sie die besten Angebote für Privat- und Gewerbekunden. Kostenlos und unabhängig.',
+  siteUrl: 'https://www.energievergleich.shop',
+  siteDescription: 'Erstorientierung zu Strom, Gas und Photovoltaik in Nordrhein-Westfalen. Transparente Beispielrechner, Beratung und unverbindliche Anfragen.',
 
   // Organization Information (complete details for schema)
   organization: {
     name: 'energievergleich.shop',
     legalName: 'energievergleich.shop',
-    url: 'https://energievergleich.shop',
+    url: 'https://www.energievergleich.shop',
     logo: 'https://static.wixstatic.com/media/32e7c0_8cede5e338be484bb8dcaad81c053c82~mv2.png?originWidth=1920&originHeight=1024',
     areaServed: 'Nordrhein-Westfalen',
     contact: {
-      email: 'info@energievergleich.nrw',
+      email: 'support@energievergleich.nrw',
       telephone: '+49 (0) 2 01 - 1 03 - 39 39',
     },
     address: {
-      streetAddress: 'Energiestraße 1',
-      addressLocality: 'Düsseldorf',
+      streetAddress: '',
+      addressLocality: 'Oelde',
       addressRegion: 'NRW',
-      postalCode: '40210',
+      postalCode: '59302',
       addressCountry: 'DE',
     },
   },
@@ -45,7 +45,7 @@ export const SEO_CONFIG = {
 
   // Search Console & Analytics (add your IDs here)
   googleSearchConsoleVerification: '', // Add your verification code
-  googleAnalyticsId: 'G-X60BTL057V', // GA4 Measurement ID for energievergleich.shop
+  googleAnalyticsId: 'G-X60BTL057V', // GA4 Measurement ID for www.energievergleich.shop
 
   // Robots Meta
   robots: 'index, follow',
@@ -70,46 +70,46 @@ export function getPageSEO(page: 'home' | 'gewerbestrom' | 'gewerbegas' | 'strom
 
   const pageConfigs = {
     home: {
-      title: 'Stromvergleich NRW 2026 | Bis 30% bei Strom & Gas sparen',
-      description: 'Stromvergleich & Gasvergleich NRW: Finden Sie günstige Tarife für Privat- und Gewerbekunden. Kostenlos, unabhängig und sicher wechseln. Sparen Sie bis zu 30%.',
+      title: 'Energievergleich NRW | Strom, Gas & Photovoltaik Orientierung 2026',
+      description: 'Erstorientierung für Strom, Gas und Photovoltaik in NRW. Transparente Beispielrechner, Methodik und unverbindliche Anfragen für Privat- und Gewerbekunden.',
       keywords: SEO_CONFIG.keywords.home,
-      ogTitle: 'Stromvergleich NRW 2026 | Bis 30% bei Strom & Gas sparen',
-      ogDescription: 'Vergleichen Sie Strom- und Gastarife in NRW. Sparen Sie bis zu 30%. Kostenlos und unabhängig.',
+      ogTitle: 'Energievergleich NRW | Strom, Gas & Photovoltaik Orientierung 2026',
+      ogDescription: 'Transparente Erstorientierung zu Strom, Gas und Photovoltaik in NRW. Kostenlos und unverbindlich.',
     },
     stromvergleich: {
-      title: 'Stromvergleich NRW | Günstige Stromtarife vergleichen 2026',
-      description: 'Stromvergleich NRW 2026: Vergleichen Sie Stromtarife kostenlos und sparen Sie monatlich. Wechsel in 5 Minuten - TÜV-zertifiziert und unabhängig.',
+      title: 'Stromvergleich NRW | Tarif-Orientierung 2026',
+      description: 'Stromvergleich NRW 2026: Transparente Tarif-Orientierung mit Beispielvorschau, Methodik und unverbindlichem nächsten Schritt für Ihren Haushalt.',
       keywords: 'Stromvergleich NRW, Stromtarife 2026, günstige Stromangebote, Strom sparen, Stromanbieter wechseln',
-      ogTitle: 'Stromvergleich NRW | Günstige Stromtarife vergleichen 2026',
-      ogDescription: 'Vergleichen Sie Stromtarife in NRW und sparen Sie bis zu 30%. Kostenlos und unabhängig.',
+      ogTitle: 'Stromvergleich NRW | Tarif-Orientierung 2026',
+      ogDescription: 'Transparente Erstorientierung zu Stromtarifen in NRW mit Beispielvorschau und Methodik.',
     },
     gasvergleich: {
-      title: 'Gasvergleich NRW | Günstige Gastarife im Februar 2026',
-      description: 'Gasvergleich NRW Februar 2026: Finden Sie günstige Gastarife und sparen Sie monatlich. Kostenlos vergleichen, schnell wechseln - TÜV-zertifiziert.',
+      title: 'Gasvergleich NRW | Tarif-Orientierung 2026',
+      description: 'Gasvergleich NRW 2026: Erste Tarif-Orientierung mit Beispielvorschau, Methodik und unverbindlicher Anfrage für Ihren nächsten Schritt.',
       keywords: 'Gasvergleich NRW, Gastarife 2026, günstige Gasangebote, Gas sparen, Gasanbieter wechseln',
-      ogTitle: 'Gasvergleich NRW | Günstige Gastarife im Februar 2026',
-      ogDescription: 'Vergleichen Sie Gastarife in NRW und sparen Sie bis zu 25%. Kostenlos und unabhängig.',
+      ogTitle: 'Gasvergleich NRW | Tarif-Orientierung 2026',
+      ogDescription: 'Transparente Erstorientierung zu Gastarifen in NRW mit Beispielvorschau und Methodik.',
     },
     photovoltaik: {
-      title: 'Photovoltaik NRW | Solaranlage Kosten & Förderung 2026',
-      description: 'Photovoltaik NRW 2026: Erfahren Sie Kosten, Förderung und Einspeisevergütung für Solaranlagen. Kostenloser Ratgeber & Checkliste.',
+      title: 'Photovoltaik NRW | Beratung & Angebotsvergleich 2026',
+      description: 'Photovoltaik NRW 2026: Orientierung zu Kosten, Förderung und Angebotsvergleich mit unverbindlicher Beratung für Ihr Dach.',
       keywords: 'Photovoltaik NRW, Solaranlage, PV-Anlage, Solarförderung, Einspeisevergütung, Solarkosten',
-      ogTitle: 'Photovoltaik NRW | Solaranlage Kosten & Förderung 2026',
-      ogDescription: 'Alles über Photovoltaik in NRW: Kosten, Förderung und Rentabilität. Kostenloser Ratgeber.',
+      ogTitle: 'Photovoltaik NRW | Beratung & Angebotsvergleich 2026',
+      ogDescription: 'Orientierung zu Photovoltaik in NRW mit Kosten, Förderung und unverbindlicher Beratung.',
     },
     gewerbestrom: {
-      title: 'Gewerbestrom NRW | Stromtarife für Unternehmen 2026',
-      description: 'Gewerbestrom NRW 2026: Sparen Sie bis zu 30% mit maßgeschneiderten Stromtarifen. Kostenlose Beratung für Ihr Unternehmen.',
+      title: 'Gewerbestrom NRW | Anfrage & Orientierung 2026',
+      description: 'Gewerbestrom NRW 2026: Unverbindliche Anfrage und transparente Orientierung für Unternehmen in NRW, inklusive Methodik und persönlicher Beratung.',
       keywords: SEO_CONFIG.keywords.gewerbestrom,
-      ogTitle: 'Gewerbestrom NRW | Stromtarife für Unternehmen 2026',
-      ogDescription: 'Sparen Sie bis zu 30% bei Gewerbestrom. Kostenlose Beratung für Unternehmen in NRW.',
+      ogTitle: 'Gewerbestrom NRW | Anfrage & Orientierung 2026',
+      ogDescription: 'Transparente Orientierung und unverbindliche Anfrage für Gewerbestrom in NRW.',
     },
     gewerbegas: {
-      title: 'Gewerbegas NRW | Gastarife für Unternehmen 2026',
-      description: 'Gewerbegas NRW 2026: Günstige Gastarife mit Planungssicherheit. Sparen Sie bis zu 25% - kostenlose Beratung für Betriebe.',
+      title: 'Gewerbegas NRW | Anfrage & Orientierung 2026',
+      description: 'Gewerbegas NRW 2026: Unverbindliche Anfrage und transparente Orientierung für Betriebe in NRW, inklusive Methodik und Beratung.',
       keywords: SEO_CONFIG.keywords.gewerbegas,
-      ogTitle: 'Gewerbegas NRW | Gastarife für Unternehmen 2026',
-      ogDescription: 'Sparen Sie bis zu 25% bei Gewerbegas. Kostenlose Beratung für Unternehmen in NRW.',
+      ogTitle: 'Gewerbegas NRW | Anfrage & Orientierung 2026',
+      ogDescription: 'Transparente Orientierung und unverbindliche Anfrage für Gewerbegas in NRW.',
     },
     kontakt: {
       title: 'Kontakt | Energievergleich NRW Support & Beratung',
@@ -141,10 +141,10 @@ export function getPageSEO(page: 'home' | 'gewerbestrom' | 'gewerbegas' | 'strom
     },
     methodik: {
       title: 'Methodik | Wie wir Strom- & Gastarife vergleichen',
-      description: 'Methodik: Erfahren Sie, wie wir Strom- und Gastarife unabhängig, transparent und TÜV-zertifiziert vergleichen.',
-      keywords: 'Methodik, Vergleichskriterien, Transparenz, Unabhängigkeit, TÜV-zertifiziert',
+      description: 'Methodik: Erfahren Sie, wie wir Strom- und Gastarife transparent einordnen und welche Kriterien wir für Orientierung und Anfrage nutzen.',
+      keywords: 'Methodik, Vergleichskriterien, Transparenz, Unabhängigkeit, Tarif-Orientierung',
       ogTitle: 'Methodik | Wie wir Strom- & Gastarife vergleichen',
-      ogDescription: 'Erfahren Sie, wie wir Energietarife unabhängig und transparent vergleichen.',
+      ogDescription: 'Erfahren Sie, wie wir Energietarife transparent einordnen und welche Kriterien wir verwenden.',
     },
   };
 

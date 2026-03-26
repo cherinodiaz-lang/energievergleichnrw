@@ -1,5 +1,5 @@
 // HPI 1.7 - PHASE 7: Performance Optimized (LCP, CLS, Mobile)
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, type SyntheticEvent } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Zap, Flame, CheckCircle, Sun, Download, ChevronDown, Send, ArrowRight, Leaf, Home, Building2, ShieldCheck, MousePointerClick, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -118,7 +118,7 @@ export default function HomePage() {
   const [pvHausnummer, setPvHausnummer] = useState('');
   const [pvPlz, setPvPlz] = useState('');
   const [pvOrt, setPvOrt] = useState('');
-  const [pvFoto, setPvFoto] = useState<File | null>(null);
+  const [, setPvFoto] = useState<File | null>(null);
   const [pvName, setPvName] = useState('');
   const [pvEmail, setPvEmail] = useState('');
   const [pvTelefon, setPvTelefon] = useState('');
@@ -218,7 +218,7 @@ export default function HomePage() {
     strom: [
       {
         id: 1,
-        provider: 'GrünerStrom NRW',
+        provider: 'Beispieltarif Strom A',
         logo: '⚡',
         jahreskosten: 1245,
         arbeitspreis: 0.32,
@@ -228,7 +228,7 @@ export default function HomePage() {
       },
       {
         id: 2,
-        provider: 'EnergiePlus Rheinland',
+        provider: 'Beispieltarif Strom B',
         logo: '🔋',
         jahreskosten: 1189,
         arbeitspreis: 0.30,
@@ -238,7 +238,7 @@ export default function HomePage() {
       },
       {
         id: 3,
-        provider: 'NRW Energie AG',
+        provider: 'Beispieltarif Strom C',
         logo: '⚙️',
         jahreskosten: 1312,
         arbeitspreis: 0.35,
@@ -250,7 +250,7 @@ export default function HomePage() {
     gas: [
       {
         id: 1,
-        provider: 'WärmeWechsel NRW',
+        provider: 'Beispieltarif Gas A',
         logo: '🔥',
         jahreskosten: 1890,
         arbeitspreis: 0.085,
@@ -260,7 +260,7 @@ export default function HomePage() {
       },
       {
         id: 2,
-        provider: 'KlimaGas Westfalen',
+        provider: 'Beispieltarif Gas B',
         logo: '♻️',
         jahreskosten: 1756,
         arbeitspreis: 0.078,
@@ -270,7 +270,7 @@ export default function HomePage() {
       },
       {
         id: 3,
-        provider: 'Heizenergie Plus',
+        provider: 'Beispieltarif Gas C',
         logo: '🌡️',
         jahreskosten: 1945,
         arbeitspreis: 0.092,
@@ -282,7 +282,7 @@ export default function HomePage() {
     kombi: [
       {
         id: 1,
-        provider: 'AllEnergy NRW',
+        provider: 'Beispieltarif Kombi A',
         logo: '⚡',
         jahreskosten: 3089,
         arbeitspreis: 0.32,
@@ -292,7 +292,7 @@ export default function HomePage() {
       },
       {
         id: 2,
-        provider: 'DualPower Rheinland',
+        provider: 'Beispieltarif Kombi B',
         logo: '🔋',
         jahreskosten: 2945,
         arbeitspreis: 0.30,
@@ -302,7 +302,7 @@ export default function HomePage() {
       },
       {
         id: 3,
-        provider: 'Kombi Energie AG',
+        provider: 'Beispieltarif Kombi C',
         logo: '⚙️',
         jahreskosten: 3257,
         arbeitspreis: 0.35,
@@ -329,7 +329,7 @@ export default function HomePage() {
   const [showContactDialog, setShowContactDialog] = useState(false);
   const [showPvDialog, setShowPvDialog] = useState(false);
 
-  const handleContactSubmit = (e: React.FormEvent) => {
+  const handleContactSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     setShowContactDialog(true);
   };
@@ -341,7 +341,7 @@ export default function HomePage() {
     setContactMessage('');
   };
 
-  const handlePvSubmit = (e: React.FormEvent) => {
+  const handlePvSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     setShowPvDialog(true);
   };
@@ -416,6 +416,7 @@ export default function HomePage() {
         }
       `}</style>
       <Header />
+      <main>
       {/* --- HERO SECTION --- */}
       <section className="hero-section relative w-full min-h-screen md:min-h-screen flex items-center justify-center overflow-hidden bg-primary">
         {/* Parallax Background */}
@@ -453,7 +454,7 @@ export default function HomePage() {
 
             <AnimatedElement delay={200}>
               <p className="font-paragraph text-base sm:text-lg md:text-xl text-white/95 mb-6 sm:mb-7 md:mb-8 max-w-2xl leading-relaxed">
-                Der einfache Weg zu günstigerem Strom und Gas in NRW. Mit unserem Vergleichsrechner finden Sie schnell die besten Tarife.
+                Transparente Orientierung zu Strom, Gas und Photovoltaik in NRW. Unsere Rechner zeigen Beispielwerte und helfen bei den nächsten Schritten.
               </p>
             </AnimatedElement>
 
@@ -553,10 +554,10 @@ export default function HomePage() {
               <AnimatedElement>
                 <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary mb-4 sm:mb-6">
                   Ihr Weg zum <br/>
-                  <span className="text-secondary">besten Tarif.</span>
+                  <span className="text-secondary">passenden Angebot.</span>
                 </h2>
                 <p className="font-paragraph text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed">
-                  Unser Vergleichsrechner findet schnell die passenden Angebote in Ihrer Region.
+                  Unsere Rechner liefern eine erste Orientierung fuer Ihre Region und bereiten eine Anfrage sauber vor.
                 </p>
 
                 <div className="space-y-4 hidden lg:block">
@@ -572,15 +573,15 @@ export default function HomePage() {
                     <div className="w-8 h-8 rounded-full bg-white border-2 border-primary text-primary flex items-center justify-center font-bold text-sm mt-1 flex-shrink-0">2</div>
                     <div>
                       <h4 className="font-bold text-gray-900 text-sm">Angebote vergleichen</h4>
-                      <p className="text-xs text-gray-500">Übersichtliche Liste der besten Tarife.</p>
+                      <p className="text-xs text-gray-500">Uebersichtliche Vorschau mit Beispielwerten und Tarifdetails.</p>
                     </div>
                   </div>
                   <div className="w-px h-6 bg-gray-200 ml-4" />
                   <div className="flex items-start gap-3">
                     <div className="w-8 h-8 rounded-full bg-white border-2 border-primary text-primary flex items-center justify-center font-bold text-sm mt-1 flex-shrink-0">3</div>
                     <div>
-                      <h4 className="font-bold text-gray-900 text-sm">Online wechseln</h4>
-                      <p className="text-xs text-gray-500">Wir übernehmen den Papierkram.</p>
+                      <h4 className="font-bold text-gray-900 text-sm">Naechste Schritte klaeren</h4>
+                      <p className="text-xs text-gray-500">Auf Wunsch begleiten wir die Anfrage und den weiteren Ablauf.</p>
                     </div>
                   </div>
                 </div>
@@ -592,7 +593,7 @@ export default function HomePage() {
                 <Card className="border-none shadow-2xl overflow-hidden">
                   <div className="bg-primary p-4 sm:p-6 text-white">
                     <h3 className="font-heading text-xl sm:text-2xl font-bold">Tarifrechner NRW</h3>
-                    <p className="text-white/80 text-xs sm:text-sm">Aktuelle Konditionen für {new Date().getFullYear()}</p>
+                    <p className="text-white/80 text-xs sm:text-sm">Beispielorientierung fuer {new Date().getFullYear()}</p>
                   </div>
 
                   <Tabs defaultValue="strom" className="w-full">
@@ -673,13 +674,13 @@ export default function HomePage() {
                               onClick={() => handleCalculate('Strom')}
                               className="w-full bg-secondary text-black hover:bg-[#D49700] h-12 sm:h-14 text-sm sm:text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all active:scale-95"
                             >
-                              Stromtarife vergleichen
+                              Strom-Orientierung starten
                             </Button>
                           </>
                         ) : (
                           <>
                             <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
-                              <p className="text-xs sm:text-sm text-blue-800 font-medium">ℹ️ Dies sind Beispielwerte. Eine echte API-Verbindung wird in Kürze implementiert.</p>
+                              <p className="text-xs sm:text-sm text-blue-800 font-medium">ℹ️ Dies sind unverbindliche Beispielwerte. Eine Live-Tarifquelle ist derzeit nicht aktiv.</p>
                             </div>
                             <div className="space-y-3 sm:space-y-4">
                               {stromResults.map((tariff) => (
@@ -689,7 +690,7 @@ export default function HomePage() {
                                       <div className="text-2xl sm:text-4xl flex-shrink-0">{tariff.logo}</div>
                                       <div className="min-w-0">
                                         <h4 className="font-bold text-sm sm:text-lg text-gray-900 truncate">{tariff.provider}</h4>
-                                        <p className="text-xs sm:text-sm text-gray-500">Stromversorger</p>
+                                        <p className="text-xs sm:text-sm text-gray-500">Beispielprofil</p>
                                       </div>
                                     </div>
                                     <div className="text-right flex-shrink-0">
@@ -716,7 +717,7 @@ export default function HomePage() {
                                     </div>
                                   </div>
                                   <Button className="w-full bg-secondary text-black hover:bg-secondary/90 h-10 sm:h-12 font-bold rounded-lg text-sm sm:text-base">
-                                    Tarif wählen
+                                    Anfrage vorbereiten
                                   </Button>
                                 </div>
                               ))}</div>
@@ -775,13 +776,13 @@ export default function HomePage() {
                               onClick={() => handleCalculate('Gas')}
                               className="w-full bg-secondary text-secondary-foreground hover:bg-[#D49700] h-12 sm:h-14 text-sm sm:text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all active:scale-95"
                             >
-                              Gastarife vergleichen
+                              Gas-Orientierung starten
                             </Button>
                           </>
                         ) : (
                           <>
                             <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
-                              <p className="text-xs sm:text-sm text-blue-800 font-medium">ℹ️ Dies sind Beispielwerte. Eine echte API-Verbindung wird in Kürze implementiert.</p>
+                              <p className="text-xs sm:text-sm text-blue-800 font-medium">ℹ️ Dies sind unverbindliche Beispielwerte. Eine Live-Tarifquelle ist derzeit nicht aktiv.</p>
                             </div>
                             <div className="space-y-3 sm:space-y-4">
                               {gasResults.map((tariff) => (
@@ -791,7 +792,7 @@ export default function HomePage() {
                                       <div className="text-2xl sm:text-4xl flex-shrink-0">{tariff.logo}</div>
                                       <div className="min-w-0">
                                         <h4 className="font-bold text-sm sm:text-lg text-gray-900 truncate">{tariff.provider}</h4>
-                                        <p className="text-xs sm:text-sm text-gray-500">Gasversorger</p>
+                                        <p className="text-xs sm:text-sm text-gray-500">Beispielprofil</p>
                                       </div>
                                     </div>
                                     <div className="text-right flex-shrink-0">
@@ -818,7 +819,7 @@ export default function HomePage() {
                                     </div>
                                   </div>
                                   <Button className="w-full bg-secondary text-black hover:bg-secondary/90 h-10 sm:h-12 font-bold rounded-lg text-sm sm:text-base">
-                                    Tarif wählen
+                                    Anfrage vorbereiten
                                   </Button>
                                 </div>
                               ))}</div>
@@ -874,13 +875,13 @@ export default function HomePage() {
                               onClick={() => handleCalculate('Kombi')}
                               className="w-full bg-secondary text-secondary-foreground hover:bg-[#D49700] h-12 sm:h-14 text-sm sm:text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all active:scale-95"
                             >
-                              Kombitarife vergleichen
+                              Kombi-Orientierung starten
                             </Button>
                           </>
                         ) : (
                           <>
                             <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
-                              <p className="text-xs sm:text-sm text-blue-800 font-medium">ℹ️ Dies sind Beispielwerte. Eine echte API-Verbindung wird in Kürze implementiert.</p>
+                              <p className="text-xs sm:text-sm text-blue-800 font-medium">ℹ️ Dies sind unverbindliche Beispielwerte. Eine Live-Tarifquelle ist derzeit nicht aktiv.</p>
                             </div>
                             <div className="space-y-3 sm:space-y-4">
                               {kombiResults.map((tariff) => (
@@ -890,7 +891,7 @@ export default function HomePage() {
                                       <div className="text-2xl sm:text-4xl flex-shrink-0">{tariff.logo}</div>
                                       <div className="min-w-0">
                                         <h4 className="font-bold text-sm sm:text-lg text-gray-900 truncate">{tariff.provider}</h4>
-                                        <p className="text-xs sm:text-sm text-gray-500">Kombi-Angebot</p>
+                                        <p className="text-xs sm:text-sm text-gray-500">Beispielprofil</p>
                                       </div>
                                     </div>
                                     <div className="text-right flex-shrink-0">
@@ -917,7 +918,7 @@ export default function HomePage() {
                                     </div>
                                   </div>
                                   <Button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-10 sm:h-12 font-bold rounded-lg text-sm sm:text-base">
-                                    Tarif wählen
+                                    Anfrage vorbereiten
                                   </Button>
                                 </div>
                               ))}</div>
@@ -1423,7 +1424,7 @@ export default function HomePage() {
                     </div>
                     <div>
                       <p className="text-xs sm:text-sm text-white/60 uppercase tracking-wider font-bold">Anschrift</p>
-                      <p className="text-base sm:text-xl font-medium">Musterstraße 123, 40210 Düsseldorf</p>
+                      <p className="text-base sm:text-xl font-medium">59302 Oelde, NRW</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4 sm:gap-6">
@@ -1432,7 +1433,7 @@ export default function HomePage() {
                     </div>
                     <div>
                       <p className="text-xs sm:text-sm text-white/60 uppercase tracking-wider font-bold">E-Mail</p>
-                      <p className="text-base sm:text-xl font-medium">kontakt@energievergleich.nrw</p>
+                      <p className="text-base sm:text-xl font-medium">support@energievergleich.nrw</p>
                     </div>
                   </div>
                 </div>
@@ -1509,6 +1510,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      </main>
       {/* Contact Form Dialog */}
       <FormSubmissionDialog
         isOpen={showContactDialog}

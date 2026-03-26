@@ -234,7 +234,7 @@ export default function StromtarifVertragslaufzeitArticle() {
                   </CardContent>
                 </Card>
               </Link>
-              <Link to="/ratgeber/strom/neukundenbonus-fallen" className="group">
+              <Link to="/ratgeber/strom/neukundenboni-fallen" className="group">
                 <Card className="h-full hover:shadow-lg transition-shadow">
                   <CardHeader>
                     <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">

@@ -1,3 +1,5 @@
+> Statushinweis: Historisches Arbeitsdokument. Nicht als Source of Truth verwenden. Maßgeblich sind README.md, package.json, astro.config.mjs, src/lib/seo-config.ts, wix.config.json und die aktuellen dist-Artefakte.
+
 # Phase 3 - Link Verification & Repair Report
 **Date:** January 10, 2026
 **Status:** ✅ COMPLETE - 0 Broken Internal Links

@@ -51,11 +51,12 @@ export default function DatenschutzPage() {
                 <div>
                   <p className="font-bold mb-2">Verantwortlicher (Art. 4 Abs. 7 DSGVO):</p>
                   <p>ENERGIEVERGLEICH NRW<br />59302 Oelde, NRW</p>
+                  <p className="text-sm text-gray-500 mt-2">Die vollstaendige ladungsfaehige Strassenanschrift ist im aktuellen Projektstand intern noch nicht final freigegeben und muss vor einer rechtlichen Endfreigabe nachgezogen werden.</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Kontakt:</p>
-                  <p>E-Mail: support@energievergleich.nrw<br />Telefon: +49 (0) 2 01 - 1 03 - 39 39<br />Website: energievergleich.shop</p>
+                  <p>E-Mail: support@energievergleich.nrw<br />Telefon: +49 (0) 2 01 - 1 03 - 39 39<br />Website: https://www.energievergleich.shop</p>
                 </div>
 
                 <div className="border-t pt-4">
@@ -95,7 +96,7 @@ export default function DatenschutzPage() {
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Speicherdauer:</p>
-                  <p>Server-Logs: in der Regel 7-30 Tage (Musterwert)</p>
+                  <p>Server-Logs: genaue Speicherdauer richtet sich nach dem Hosting-Setup bei Wix und ist aktuell intern zu bestaetigen.</p>
                 </div>
 
                 <div className="border-t pt-4">
@@ -125,7 +126,7 @@ export default function DatenschutzPage() {
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Speicherdauer:</p>
-                  <p>Bis zur vollständigen Bearbeitung der Anfrage, danach 12 Monate (Musterwert für Archivierung)</p>
+                  <p>Bis zur vollstaendigen Bearbeitung der Anfrage; anschliessende Aufbewahrungsfristen richten sich nach dem konkreten Geschaeftsvorfall und sind intern noch final zu bestaetigen.</p>
                 </div>
 
                 <div className="border-t pt-4">
@@ -155,7 +156,7 @@ export default function DatenschutzPage() {
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Speicherdauer:</p>
-                  <p>12 Monate nach letztem Kontakt (Musterwert)</p>
+                  <p>So lange, wie es fuer die Bearbeitung und Anschlusskommunikation erforderlich ist; konkrete Aufbewahrungsfristen sind intern noch final zu bestaetigen.</p>
                 </div>
               </div>
 
@@ -180,12 +181,12 @@ export default function DatenschutzPage() {
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Speicherdauer:</p>
-                  <p>Abhängig vom Cookie-Typ, in der Regel bis zum Ende der Browsersitzung oder bis zur Löschung (Musterwert)</p>
+                  <p>Technisch notwendige Eintraege und Consent-Einstellungen bleiben nur so lange gespeichert, wie sie fuer den Betrieb oder die dokumentierte Auswahl erforderlich sind.</p>
                 </div>
 
                 <div className="border-t pt-4">
                   <p className="text-sm text-gray-500">
-                    Hinweis: Weitere Informationen zu Cookies finden Sie in unserem Cookie-Banner auf der Website. Sie können Ihre Cookie-Einstellungen jederzeit über die Datenschutzeinstellungen ändern.
+                    Hinweis: Sie koennen Ihre Auswahl jederzeit ueber den Footer unter "Cookie-Einstellungen" erneut oeffnen und aendern.
                   </p>
                 </div>
               </div>
@@ -241,7 +242,7 @@ export default function DatenschutzPage() {
                 <h3 className="font-bold text-lg text-primary">2.6 Eingebettete externe Inhalte</h3>
 
                 <div className="bg-blue-50 border border-blue-200 rounded p-4 mb-4">
-                  <p className="text-sm text-blue-800 font-bold">Status: Nicht im Einsatz (Musterangabe)</p>
+                  <p className="text-sm text-blue-800 font-bold">Status: Derzeit nicht im Einsatz</p>
                   <p className="text-sm text-blue-700 mt-2">Derzeit werden keine externen Dienste eingebettet.</p>
                 </div>
 
@@ -345,7 +346,8 @@ export default function DatenschutzPage() {
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 font-paragraph text-slate-900 break-words">
                 <p className="mb-4">Die zuständige Datenschutzbehörde ist:</p>
                 <p className="font-bold mb-4">Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW)</p>
-                <p className="text-sm text-gray-500">Diese Angabe ist eine Musterangabe für Unternehmen in NRW.</p>
+                <p>Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen<br />Kavalleriestr. 2-4<br />40213 Düsseldorf</p>
+                <p className="mt-4">E-Mail: <a href="mailto:poststelle@ldi.nrw.de" className="text-primary hover:underline">poststelle@ldi.nrw.de</a><br />Website: <a href="https://www.ldi.nrw.de/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline break-all">https://www.ldi.nrw.de/</a></p>
               </div>
             </div>
 
@@ -361,7 +363,7 @@ export default function DatenschutzPage() {
             {/* Hinweis */}
             <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-6 mt-8">
               <p className="font-paragraph text-sm text-slate-900">
-                <strong>Hinweis:</strong> Diese Datenschutzerklärung ist ein Muster und muss an die spezifischen Anforderungen und Praktiken Ihres Unternehmens angepasst werden. Bitte konsultieren Sie einen Rechtsanwalt, um sicherzustellen, dass Ihre Datenschutzerklärung vollständig und konform mit der DSGVO ist.
+                <strong>Hinweis:</strong> Diese Datenschutzerklärung bildet den aktuell im Code und im statischen Build verifizierbaren Stand ab. Für die rechtliche Endfreigabe empfehlen wir weiterhin eine anwaltliche Prüfung.
               </p>
             </div>
           </div>

@@ -127,7 +127,7 @@ export default function GewerbegasPage() {
               <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Gewerbegas-Anfrage für NRW</h2>
 
               <p className="font-paragraph text-lg text-gray-700 mb-6">
-                Mit unserem kostenlosen Gewerbegas-Service finden Sie in wenigen Minuten den günstigsten Gastarif für Ihr Unternehmen in Nordrhein-Westfalen. Die Anfrage ist völlig kostenlos und unverbindlich – Sie geben nur Ihre Verbrauchsdaten ein und erhalten sofort individualisierte Angebote. Sparen Sie bis zu 25% Ihrer Gaskosten durch optimierte Gewerbegas-Tarife und profitieren Sie von persönlicher Beratung durch unsere Experten.
+                Mit unserem kostenlosen Gewerbegas-Service bereiten Sie eine unverbindliche Anfrage fuer Ihr Unternehmen in Nordrhein-Westfalen vor. Sie uebermitteln Ihre Verbrauchsdaten und erhalten eine erste Orientierung zu passenden Tarifkriterien, bevor konkrete Angebote individuell geprueft werden.
               </p>
             </div>
 
@@ -137,8 +137,8 @@ export default function GewerbegasPage() {
                 <li><strong>Jahresverbrauch eingeben:</strong> Geben Sie Ihren jährlichen Gasverbrauch in kWh ein (zu finden auf Ihrer letzten Gasrechnung)</li>
                 <li><strong>Zählernummer/Marktlokation (falls vorhanden):</strong> Tragen Sie diese Nummern ein, falls Sie diese bereits haben – sie ermöglichen präzisere Angebote</li>
                 <li><strong>Heizungsart und Prozesse:</strong> Geben Sie an, wofür Sie Gas nutzen (Heizung, Herd, Produktion)</li>
-                <li><strong>Postleitzahl und Laufzeitwunsch:</strong> Nennen Sie Ihren Standort und Ihre gewünschte Vertragslaufzeit</li>
-                <li><strong>Angebote vergleichen und wählen:</strong> Erhalten Sie mehrere Angebote, vergleichen Sie Preise, Laufzeiten und Konditionen und wählen Sie das beste Angebot</li>
+                <li><strong>Postleitzahl und Laufzeitwunsch:</strong> Nennen Sie Ihren Standort und Ihre gewuenschte Vertragslaufzeit</li>
+                <li><strong>Anfrage absenden:</strong> Auf Basis Ihrer Angaben pruefen wir passende Optionen und melden uns zum weiteren Ablauf</li>
               </ol>
             </div>
 
@@ -259,13 +259,13 @@ export default function GewerbegasPage() {
             <div>
               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Gewerbegas in NRW</h3>
               <p className="font-paragraph text-gray-700 mb-4">
-                Nordrhein-Westfalen ist das wirtschaftsstärkste Bundesland Deutschlands mit über 800.000 Unternehmen aller Größen. Von Gastronomiebetrieben über Handwerksbetriebe bis zu Produktionsunternehmen – alle profitieren von optimierten Gewerbegas-Tarifen. Die Gaspreise für Gewerbekunden variieren je nach Verbrauch, Standort und Heizungsart. Unser Vergleich berücksichtigt diese regionalen und branchenspezifischen Unterschiede und zeigt Ihnen die besten Tarife für Ihr Unternehmen – ob in Düsseldorf, Köln, Essen, Dortmund oder einer anderen Stadt in NRW.
+                Nordrhein-Westfalen ist ein grosser und heterogener Energiemarkt fuer Unternehmen. Gaspreise fuer Gewerbekunden variieren je nach Verbrauch, Standort und Nutzungsart. Unsere Anfrage hilft dabei, regionale und betriebliche Unterschiede strukturiert zu erfassen und passende Optionen fuer die naechsten Schritte einzugrenzen.
               </p>
             </div>
 
             <div className="bg-secondary/10 border-l-4 border-secondary p-6 rounded">
               <p className="font-paragraph text-gray-700 italic">
-                Jetzt unverbindlich Angebot anfordern und sparen Sie ab sofort bei Ihren Gaskosten!
+                Jetzt unverbindlich Anfrage stellen und passende Gewerbegas-Optionen fuer Ihr Unternehmen pruefen.
               </p>
             </div>
           </div>
@@ -304,7 +304,7 @@ export default function GewerbegasPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="font-paragraph text-foreground/80">
-                    Bis zu 25% Einsparung durch optimierte Gewerbegas-Tarife
+                    Transparente Einordnung fuer Verbrauch, Laufzeit und Preisstruktur
                   </p>
                 </CardContent>
               </Card>
@@ -693,7 +693,7 @@ export default function GewerbegasPage() {
               Warum energievergleich.shop?
             </h2>
             <p className="font-paragraph text-lg text-gray-700 leading-relaxed">
-              Wir bieten Ihnen einen unabhängigen und kostenlosen Gewerbegas-Vergleich speziell für Ihre Anforderungen. Unsere Transparenz ist unser Versprechen: Wir vergleichen Gastarife nicht nur nach Preis, sondern auch nach Vertragsbedingungen, Preisgarantie und Kündigungsfristen. So finden Sie den Tarif, der wirklich zu Ihrem Unternehmen passt. Alle Informationen sind aktuell und entsprechen dem Stand Februar 2026. Haben Sie Fragen zu unserer Methodik?{' '}
+              Wir bieten Ihnen eine unabhaengige und kostenlose Erstorientierung fuer Gewerbegas-Anfragen. Im Fokus stehen Preisbestandteile, Vertragsbedingungen, Preisgarantie und Kuendigungsfristen. Diese Seite erhebt keinen Anspruch auf eine Live-Marktuebersicht; verbindliche Angebote werden erst im individuellen Prozess geprueft. Haben Sie Fragen zu unserer Methodik?{' '}
               <a
                 href="/methodik"
                 className="text-primary font-semibold hover:underline transition-colors"

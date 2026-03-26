@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Zap, ArrowRight, TrendingDown } from 'lucide-react';
+import { ArrowRight, TrendingDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
@@ -20,7 +20,7 @@ export default function HeroSection() {
         >
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-3 sm:mb-4 md:mb-6 border border-white/20">
             <TrendingDown className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-secondary flex-shrink-0" />
-            <span className="text-xs sm:text-sm font-medium text-white">Bis zu 30% sparen</span>
+            <span className="text-xs sm:text-sm font-medium text-white">Transparente Orientierung fuer NRW</span>
           </div>
 
           <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 sm:mb-4 md:mb-6 leading-tight">
@@ -29,7 +29,7 @@ export default function HeroSection() {
           </h1>
 
           <p className="font-paragraph text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-2xl mx-auto mb-5 sm:mb-6 md:mb-8 leading-relaxed">
-            Vergleichen Sie Strom-, Gas- und Photovoltaikangebote in NRW. Finden Sie die beste Lösung für Ihr Zuhause oder Gewerbe.
+            Vergleichen Sie Strom-, Gas- und Photovoltaikangebote in NRW. Finden Sie eine passende Orientierung fuer Zuhause oder Gewerbe.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 md:gap-4 justify-center">

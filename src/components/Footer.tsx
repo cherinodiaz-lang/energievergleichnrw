@@ -15,10 +15,10 @@ function FooterOptionalActions() {
     <button
       onClick={() => {
         localStorage.removeItem('energievergleich_consent');
-        window.location.reload();
+        window.dispatchEvent(new CustomEvent('energievergleich:open-consent'));
       }}
       className="font-paragraph opacity-80 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-foreground rounded px-1 py-0.5 transition-opacity"
-      aria-label="Cookie-Einstellungen zurücksetzen"
+      aria-label="Cookie-Einstellungen öffnen"
     >
       Cookie-Einstellungen
     </button>
@@ -41,7 +41,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="font-paragraph text-xs sm:text-sm opacity-90 leading-relaxed">
-              Ihr vertrauenswürdiger Partner für Energievergleiche in Nordrhein-Westfalen. Sparen Sie Geld und schützen Sie die Umwelt.
+              Unabhängige Orientierung zu Strom, Gas und Photovoltaik in Nordrhein-Westfalen.
             </p>
           </div>
 

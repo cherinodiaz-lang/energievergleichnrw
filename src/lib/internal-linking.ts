@@ -152,7 +152,7 @@ const RELATED_PAGES_BY_CATEGORY: Record<InternalLinkItem["category"], RelatedPag
     {
       title: "Gasvergleich NRW",
       path: "/gasvergleich-nrw",
-      description: "Vergleichen Sie Gastarife und sparen Sie sofort."
+      description: "Pruefen Sie Gastarife fuer eine erste Orientierung in NRW."
     },
     {
       title: "Photovoltaik NRW",
@@ -186,7 +186,7 @@ const RELATED_PAGES_BY_CATEGORY: Record<InternalLinkItem["category"], RelatedPag
     {
       title: "Gasvergleich NRW",
       path: "/gasvergleich-nrw",
-      description: "Gastarife prüfen und direkt wechseln."
+      description: "Gastarife pruefen und die naechsten Schritte vorbereiten."
     },
     {
       title: "Ratgeber",
