@@ -109,14 +109,14 @@ export default function PhotovoltaikCategoryPage() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href="https://www.energievergleich.shop/photovoltaik-nrw"
+                  href="https://energievergleich.shop/photovoltaik-nrw"
                   className="inline-flex items-center justify-center px-6 py-3 bg-secondary text-secondary-foreground font-bold rounded-lg hover:bg-secondary/90 transition-colors"
                 >
                   Photovoltaik-Angebote anfordern
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </a>
                 <a
-                  href="https://www.energievergleich.shop/kontakt"
+                  href="https://energievergleich.shop/kontakt"
                   className="inline-flex items-center justify-center px-6 py-3 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary/5 transition-colors"
                 >
                   Kontakt aufnehmen

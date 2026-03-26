@@ -254,7 +254,7 @@ export default function FormSubmissionDialog({
                       >
                         Mit Absenden akzeptierst du die{' '}
                         <Link
-                          to="https://www.energievergleich.shop/datenschutz"
+                          to="https://energievergleich.shop/datenschutz"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-primary hover:underline font-bold"

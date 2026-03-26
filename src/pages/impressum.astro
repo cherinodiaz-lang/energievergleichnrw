@@ -15,5 +15,5 @@ const seo = getPageSEO("impressum");
   ogTitle={seo.ogTitle}
   ogDescription={seo.ogDescription}
 >
-  <HydratedRoutePage path={Astro.url.pathname} Page={ImpressumPage} client:load />
+  <HydratedRoutePage path={Astro.url.pathname} Page={ImpressumPage} client:idle />
 </SeoPageLayout>

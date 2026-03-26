@@ -12,5 +12,5 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogTitle="FAQ | Energievergleich"
   ogDescription="Häufige Fragen zu Strom, Gas, Photovoltaik und Anbieterwechsel"
 >
-  <AstroRouterProvider path={Astro.url.pathname} Page={FaqPage} client:load />
+  <AstroRouterProvider path={Astro.url.pathname} Page={FaqPage} client:visible />
 </SeoPageLayout>

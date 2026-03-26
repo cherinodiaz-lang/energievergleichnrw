@@ -721,7 +721,7 @@ export default function GewerbegasPage() {
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <h2 className="font-heading text-2xl font-bold text-primary mb-12">Für Unternehmen wichtig</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <a href="https://www.energievergleich.shop/gewerbestrom" className="group">
+            <a href="https://energievergleich.shop/gewerbestrom" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Gewerbestrom vergleichen</CardTitle>
@@ -732,7 +732,7 @@ export default function GewerbegasPage() {
                 </CardContent>
               </Card>
             </a>
-            <a href="https://www.energievergleich.shop/gasvergleich-nrw" className="group">
+            <a href="https://energievergleich.shop/gasvergleich-nrw" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Gasvergleich NRW</CardTitle>
@@ -743,7 +743,7 @@ export default function GewerbegasPage() {
                 </CardContent>
               </Card>
             </a>
-            <a href="https://www.energievergleich.shop/ratgeber/gewerbe" className="group">
+            <a href="https://energievergleich.shop/ratgeber/gewerbe" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Ratgeber: Energie fürs Gewerbe</CardTitle>
@@ -754,7 +754,7 @@ export default function GewerbegasPage() {
                 </CardContent>
               </Card>
             </a>
-            <a href="https://www.energievergleich.shop/kontakt" className="group">
+            <a href="https://energievergleich.shop/kontakt" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">Kontakt für Gewerbe-Angebote</CardTitle>
@@ -765,7 +765,7 @@ export default function GewerbegasPage() {
                 </CardContent>
               </Card>
             </a>
-            <a href="https://www.energievergleich.shop/methodik" className="group">
+            <a href="https://energievergleich.shop/methodik" className="group">
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="font-heading text-lg group-hover:text-primary transition-colors">So vergleichen wir: Methodik & Transparenz</CardTitle>

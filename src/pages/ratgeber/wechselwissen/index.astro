@@ -12,5 +12,5 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogTitle="Wechselwissen | Ratgeber"
   ogDescription="Alles über Anbieterwechsel und Kündigungsfristen"
 >
-  <AstroRouterProvider path={Astro.url.pathname} Page={WechselwissenCategoryPage} client:load />
+  <AstroRouterProvider path={Astro.url.pathname} Page={WechselwissenCategoryPage} client:visible />
 </SeoPageLayout>

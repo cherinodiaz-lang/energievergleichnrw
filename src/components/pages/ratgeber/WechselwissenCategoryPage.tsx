@@ -79,7 +79,7 @@ export default function WechselwissenCategoryPage() {
             </div>
 
             <p className="font-paragraph text-base text-gray-700">
-              Nutzen Sie unsere Vergleichsrechner für <a href="https://www.energievergleich.shop/stromvergleich-nrw" className="text-primary font-semibold hover:underline">Stromvergleich NRW</a> und <a href="https://www.energievergleich.shop/gasvergleich-nrw" className="text-primary font-semibold hover:underline">Gasvergleich NRW</a>, um die besten Tarife zu finden.
+              Nutzen Sie unsere Vergleichsrechner für <a href="https://energievergleich.shop/stromvergleich-nrw" className="text-primary font-semibold hover:underline">Stromvergleich NRW</a> und <a href="https://energievergleich.shop/gasvergleich-nrw" className="text-primary font-semibold hover:underline">Gasvergleich NRW</a>, um die besten Tarife zu finden.
             </p>
           </motion.div>
         </div>

@@ -100,13 +100,13 @@ export default function GasCategoryPage() {
 
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
                 <a
-                  href="https://www.energievergleich.shop/gasvergleich-nrw"
+                  href="https://energievergleich.shop/gasvergleich-nrw"
                   className="font-paragraph text-primary hover:text-primary/80 font-semibold underline transition-colors"
                 >
                   Gasvergleich NRW starten →
                 </a>
                 <a
-                  href="https://www.energievergleich.shop/methodik"
+                  href="https://energievergleich.shop/methodik"
                   className="font-paragraph text-primary hover:text-primary/80 font-semibold underline transition-colors"
                 >
                   So vergleichen wir (Methodik) →

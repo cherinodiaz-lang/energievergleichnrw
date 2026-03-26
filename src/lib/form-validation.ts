@@ -28,18 +28,17 @@ const ERROR_MESSAGES: Record<string, string> = {
  */
 export function validateField(
   _fieldName: string,
-  value: any,
+  value: unknown,
   fieldType: 'email' | 'phone' | 'plz' | 'number' | 'text' = 'text'
 ): { valid: boolean; error?: string } {
   // Check if empty
-  if (!value || value.toString().trim() === '') {
+  const trimmedValue = value != null ? String(value).trim() : '';
+  if (trimmedValue === '') {
     return {
       valid: false,
       error: ERROR_MESSAGES.required
     };
   }
-
-  const trimmedValue = value.toString().trim();
 
   // Email validation
   if (fieldType === 'email') {
@@ -91,7 +90,7 @@ export function validateField(
  * Validate entire form
  */
 export function validateFormFields(
-  formData: Record<string, any>,
+  formData: Record<string, unknown>,
   fieldConfigs: FormFieldConfig[]
 ): ValidationResult {
   const errors: Record<string, string> = {};

@@ -25,7 +25,7 @@ export default function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
         '@type': 'ListItem',
         position: index + 1,
         name: item.name,
-        item: `https://www.energievergleich.shop${item.url}`,
+        item: `https://energievergleich.shop${item.url}`,
       })),
     };
 

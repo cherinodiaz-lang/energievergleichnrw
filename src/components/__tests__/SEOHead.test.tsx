@@ -39,7 +39,7 @@ describe('SEOHead', () => {
       )
       expect(document.head.querySelector('link[rel="canonical"]')).toHaveAttribute(
         'href',
-        'https://www.energievergleich.shop/stromvergleich-nrw'
+        'https://energievergleich.shop/stromvergleich-nrw'
       )
       expect(document.head.querySelector('meta[property="og:title"]')).toHaveAttribute(
         'content',
@@ -51,7 +51,7 @@ describe('SEOHead', () => {
       )
       expect(document.head.querySelector('meta[property="og:url"]')).toHaveAttribute(
         'content',
-        'https://www.energievergleich.shop/stromvergleich-nrw'
+        'https://energievergleich.shop/stromvergleich-nrw'
       )
       expect(document.head.querySelector('meta[name="twitter:card"]')).toHaveAttribute(
         'content',
@@ -85,7 +85,7 @@ describe('SEOHead', () => {
       )
       expect(document.head.querySelector('link[rel="canonical"]')).toHaveAttribute(
         'href',
-        'https://www.energievergleich.shop/danke'
+        'https://energievergleich.shop/danke'
       )
     })
   })

@@ -26,9 +26,9 @@ describe('SEO schema components', () => {
       const websiteJson = JSON.parse(websiteSchema?.textContent ?? '{}')
 
       expect(organizationJson['@type']).toBe('Organization')
-      expect(organizationJson.url).toBe('https://www.energievergleich.shop')
+      expect(organizationJson.url).toBe('https://energievergleich.shop')
       expect(websiteJson['@type']).toBe('WebSite')
-      expect(websiteJson.url).toBe('https://www.energievergleich.shop')
+      expect(websiteJson.url).toBe('https://energievergleich.shop')
     })
   })
 
@@ -46,9 +46,9 @@ describe('SEO schema components', () => {
       const breadcrumbJson = JSON.parse(breadcrumbSchema?.textContent ?? '{}')
       expect(breadcrumbJson['@type']).toBe('BreadcrumbList')
       expect(breadcrumbJson.itemListElement).toHaveLength(3)
-      expect(breadcrumbJson.itemListElement[0].item).toBe('https://www.energievergleich.shop/')
+      expect(breadcrumbJson.itemListElement[0].item).toBe('https://energievergleich.shop/')
       expect(breadcrumbJson.itemListElement[2].item).toBe(
-        'https://www.energievergleich.shop/ratgeber/strom'
+        'https://energievergleich.shop/ratgeber/strom'
       )
     })
   })

@@ -5,16 +5,16 @@
  */
 export const SEO_CONFIG = {
   // Site Information
-  // PRIMARY DOMAIN: https://www.energievergleich.shop
+  // PRIMARY DOMAIN: https://energievergleich.shop
   siteName: 'energievergleich.shop',
-  siteUrl: 'https://www.energievergleich.shop',
+  siteUrl: 'https://energievergleich.shop',
   siteDescription: 'Erstorientierung zu Strom, Gas und Photovoltaik in Nordrhein-Westfalen. Transparente Beispielrechner, Beratung und unverbindliche Anfragen.',
 
   // Organization Information (complete details for schema)
   organization: {
     name: 'energievergleich.shop',
     legalName: 'energievergleich.shop',
-    url: 'https://www.energievergleich.shop',
+    url: 'https://energievergleich.shop',
     logo: 'https://static.wixstatic.com/media/32e7c0_8cede5e338be484bb8dcaad81c053c82~mv2.png?originWidth=1920&originHeight=1024',
     areaServed: 'Nordrhein-Westfalen',
     contact: {
@@ -46,7 +46,7 @@ export const SEO_CONFIG = {
 
   // Search Console & Analytics (add your IDs here)
   googleSearchConsoleVerification: '', // Add your verification code
-  googleAnalyticsId: 'G-X60BTL057V', // GA4 Measurement ID for www.energievergleich.shop
+  googleAnalyticsId: 'G-X60BTL057V', // GA4 Measurement ID for energievergleich.shop
   clarityProjectId: import.meta.env.PUBLIC_CLARITY_ID ?? '', // Microsoft Clarity Project ID
 
   // Robots Meta

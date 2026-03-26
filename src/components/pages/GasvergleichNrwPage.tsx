@@ -803,7 +803,7 @@ export default function GasvergleichNrwPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <motion.a
-              href="https://www.energievergleich.shop/stromvergleich-nrw"
+              href="https://energievergleich.shop/stromvergleich-nrw"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -827,7 +827,7 @@ export default function GasvergleichNrwPage() {
             </motion.a>
 
             <motion.a
-              href="https://www.energievergleich.shop/photovoltaik-nrw"
+              href="https://energievergleich.shop/photovoltaik-nrw"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -852,7 +852,7 @@ export default function GasvergleichNrwPage() {
             </motion.a>
 
             <motion.a
-              href="https://www.energievergleich.shop/gewerbegas"
+              href="https://energievergleich.shop/gewerbegas"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -877,7 +877,7 @@ export default function GasvergleichNrwPage() {
             </motion.a>
 
             <motion.a
-              href="https://www.energievergleich.shop/ratgeber/gas"
+              href="https://energievergleich.shop/ratgeber/gas"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -902,7 +902,7 @@ export default function GasvergleichNrwPage() {
             </motion.a>
 
             <motion.a
-              href="https://www.energievergleich.shop/methodik"
+              href="https://energievergleich.shop/methodik"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

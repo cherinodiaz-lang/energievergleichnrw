@@ -105,14 +105,14 @@ export default function StromCategoryPage() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href="https://www.energievergleich.shop/stromvergleich-nrw"
+                  href="https://energievergleich.shop/stromvergleich-nrw"
                   className="font-paragraph font-semibold text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-2 group"
                 >
                   Stromvergleich NRW starten
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </a>
                 <a
-                  href="https://www.energievergleich.shop/methodik"
+                  href="https://energievergleich.shop/methodik"
                   className="font-paragraph font-semibold text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-2 group"
                 >
                   So vergleichen wir (Methodik)

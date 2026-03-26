@@ -9,7 +9,7 @@ import {
   startPreviewWorker,
 } from "@/test-utils/preview-worker";
 
-const SITE_ORIGIN = "https://www.energievergleich.shop";
+const SITE_ORIGIN = "https://energievergleich.shop";
 const REQUIRED_ROUTES = ["/", "/stromvergleich-nrw", "/robots.txt"] as const;
 const HTML_CONTENT_TYPE = "text/html";
 const TEXT_CONTENT_TYPE = "text/plain";

@@ -109,7 +109,7 @@ export default function GewerbeCategoryPage() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href="https://www.energievergleich.shop/gewerbestrom"
+                  href="https://energievergleich.shop/gewerbestrom"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-primary font-semibold hover:text-primary/80 transition-colors underline"
@@ -118,7 +118,7 @@ export default function GewerbeCategoryPage() {
                   <ArrowRight className="w-4 h-4" />
                 </a>
                 <a
-                  href="https://www.energievergleich.shop/gewerbegas"
+                  href="https://energievergleich.shop/gewerbegas"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-primary font-semibold hover:text-primary/80 transition-colors underline"

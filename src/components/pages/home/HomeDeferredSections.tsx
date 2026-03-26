@@ -152,7 +152,7 @@ export default function HomeDeferredSections() {
 
   const normalizeDownloadUrl = (url?: string) => {
     if (!url) return '';
-    return url.replace(/https?:\/\/(www\.)?energievergleich\.nrw/gi, 'https://www.energievergleich.shop').trim();
+    return url.replace(/https?:\/\/(www\.)?energievergleich\.nrw/gi, 'https://energievergleich.shop').trim();
   };
 
   return (
