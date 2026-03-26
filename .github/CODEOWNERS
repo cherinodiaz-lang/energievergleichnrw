@@ -1,0 +1,14 @@
+# Global owner — alle PRs brauchen Review von cherinodiaz-lang
+* @cherinodiaz-lang
+
+# CI/CD & Infra
+.github/ @cherinodiaz-lang
+.mergify.yml @cherinodiaz-lang
+
+# Source Code
+src/ @cherinodiaz-lang
+
+# Config
+astro.config.mjs @cherinodiaz-lang
+tailwind.config.mjs @cherinodiaz-lang
+package.json @cherinodiaz-lang
