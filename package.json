@@ -36,7 +36,7 @@
     "@wix/members": "^1.0.431",
     "@wix/monitoring-astro": "^2.13.0",
     "@wix/postcss-pseudo-to-data": "^1.0.0",
-    "@wix/seo": "^1.0.41",
+    "@wix/seo": "^1.0.43",
     "@wix/stores": "^1.0.704",
     "astro": "^6.0.0", // Upgraded from 5.18.0
     "class-variance-authority": "^0.7.1",
