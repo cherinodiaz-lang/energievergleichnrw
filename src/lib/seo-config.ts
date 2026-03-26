@@ -2,19 +2,18 @@
  * SEO Configuration
  * Centralized SEO settings and metadata
  */
-
 export const SEO_CONFIG = {
   // Site Information
-  // PRIMARY DOMAIN: https://www.energievergleich.shop
-  siteName: 'www.energievergleich.shop',
-  siteUrl: 'https://www.energievergleich.shop',
+  // PRIMARY DOMAIN: https://energievergleich.shop
+  siteName: 'energievergleich.shop',
+  siteUrl: 'https://energievergleich.shop',
   siteDescription: 'Vergleichen Sie Strom- und Gastarife in Nordrhein-Westfalen. Finden Sie die besten Angebote für Privat- und Gewerbekunden. Kostenlos und unabhängig.',
 
   // Organization Information (complete details for schema)
   organization: {
     name: 'energievergleich.shop',
     legalName: 'energievergleich.shop',
-    url: 'https://www.energievergleich.shop',
+    url: 'https://energievergleich.shop',
     logo: 'https://static.wixstatic.com/media/32e7c0_8cede5e338be484bb8dcaad81c053c82~mv2.png?originWidth=1920&originHeight=1024',
     areaServed: 'Nordrhein-Westfalen',
     contact: {
