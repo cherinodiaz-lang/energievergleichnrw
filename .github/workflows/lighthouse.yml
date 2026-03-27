@@ -7,11 +7,20 @@ on:
   pull_request:
     branches: [main]
 
+concurrency:
+  group: lighthouse-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
 jobs:
   lighthouse:
+    name: Lighthouse
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
+      ASTRO_TELEMETRY_DISABLED: "1"
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
       SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
       SENTRY_PROJECT_FRONTEND: ${{ secrets.SENTRY_PROJECT_FRONTEND }}
@@ -26,9 +35,9 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
         with:
-          node-version: 22
+          node-version: 20
       - id: chrome
-        uses: browser-actions/setup-chrome@v1
+        uses: browser-actions/setup-chrome@v2
       - run: npm ci
       - run: npm install -g @wix/cli
       - run: npm run build
@@ -75,4 +84,9 @@ jobs:
           fi
       - name: Show Wrangler preview log
         if: failure()
-        run: cat wrangler-preview.log
+        run: |
+          if [ -f wrangler-preview.log ]; then
+            cat wrangler-preview.log
+          else
+            echo "wrangler-preview.log not found"
+          fi
