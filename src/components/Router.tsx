@@ -15,8 +15,10 @@ import { initializeGA4 } from '@/services/ga4-tracking';
 import EditorBridge from '@/components/EditorBridge';
 import HomePage from '@/components/pages/HomePage';
 
+// ... keep existing code (imports and other components) ...
+
 // Fallback component for lazy-loaded routes
-const LazyFallback = () => <div className="min-h-screen flex items-center justify-center" />;
+const LazyFallback = () => <div className="min-h-screen flex items-center justify-center bg-background" />;
 
 // Lazy load non-critical pages for code-splitting
 const GewerbestromPage = lazy(() => import('@/components/pages/GewerbestromPage'));

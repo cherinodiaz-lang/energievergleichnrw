@@ -1,0 +1,68 @@
+name: Auto-Merge Copilot PRs
+
+on:
+  pull_request:
+    types: [labeled, opened, synchronize, reopened]
+
+permissions:
+  pull-requests: write
+  contents: write
+
+concurrency:
+  group: auto-merge-copilot-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    # Only auto-merge PRs targeting `develop` that carry the `automerge: true` label
+    if: |
+      github.event.pull_request.base.ref == 'develop' &&
+      contains(github.event.pull_request.labels.*.name, 'automerge: true')
+
+    steps:
+      - name: Enable GitHub native auto-merge (squash)
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNodeId = context.payload.pull_request.node_id;
+            const prNumber = context.payload.pull_request.number;
+
+            // Enable auto-merge via GraphQL – waits for all required checks before merging
+            try {
+              await github.graphql(`
+                mutation EnableAutoMerge($pullRequestId: ID!) {
+                  enablePullRequestAutoMerge(input: {
+                    pullRequestId: $pullRequestId,
+                    mergeMethod: SQUASH
+                  }) {
+                    pullRequest { number }
+                  }
+                }
+              `, { pullRequestId: prNodeId });
+              console.log(`Auto-merge (squash) enabled on PR #${prNumber}.`);
+            } catch (err) {
+              core.warning(`Could not enable auto-merge: ${err.message}. Verify that "Allow auto-merge" is enabled in repository settings.`);
+            }
+
+      - name: Comment on PR
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: [
+                "🤖 **Auto-merge enabled.**",
+                "",
+                "This PR will be squash-merged automatically once all required status checks pass.",
+                "",
+                "| Condition | Status |",
+                "|-----------|--------|",
+                "| Target branch | `develop` ✅ |",
+                "| Label `automerge: true` | ✅ |",
+                "| Merge method | Squash ✅ |",
+              ].join("\n"),
+            });

@@ -53,6 +53,9 @@ interface CurrencyActions {
 
 type CurrencyStore = CurrencyState & { actions: CurrencyActions };
 
+// Wix SDK cart generics can exceed TypeScript's recursion limits in CI.
+const getCurrentCart = currentCart.getCurrentCart as unknown as () => Promise<currentCart.Cart | null>;
+
 /**
  * Zustand store for site currency state.
  * Fetches currency from the cart API (which reflects Business Manager config).
@@ -69,7 +72,7 @@ const useCurrencyStore = create<CurrencyStore>((set, get) => ({
 
       set({ isLoading: true, error: null });
       try {
-        const cart = await currentCart.getCurrentCart();
+        const cart = await getCurrentCart();
         set({
           currency: cart.currency || null,
           isLoading: false,
