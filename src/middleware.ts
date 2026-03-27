@@ -32,7 +32,9 @@ function withSecurityHeaders(response: Response): Response {
   // X-Frame-Options policy would block the editor before the page can boot.
   headers.delete("X-Frame-Options");
 
-  for (const [key, value] of Object.entries(getSecurityHeaders())) {
+  for (const [key, value] of Object.entries(SECURITY_HEADERS) as Array<
+    [string, string]
+  >) {
     headers.set(key, value);
   }
 
