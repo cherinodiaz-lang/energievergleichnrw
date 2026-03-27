@@ -154,22 +154,26 @@ export default function HomePage() {
 
   const loadData = async () => {
     try {
+      setLoading(true);
       const [faqData, vorteileData, materialsData] = await Promise.all([
-        BaseCrudService.getAll<HufiggestellteFragen>('faq'),
-        BaseCrudService.getAll<Wechselvorteile>('wechselvorteile'),
-        BaseCrudService.getAll<Informationsmaterial>('informationsmaterial'),
+        BaseCrudService.getAll<HufiggestellteFragen>('faq').catch(() => ({ items: [] })),
+        BaseCrudService.getAll<Wechselvorteile>('wechselvorteile').catch(() => ({ items: [] })),
+        BaseCrudService.getAll<Informationsmaterial>('informationsmaterial').catch(() => ({ items: [] })),
       ]);
 
-      const sortedFaqs = faqData.items.sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
-      const sortedVorteile = vorteileData.items
+      const sortedFaqs = (faqData?.items || []).sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
+      const sortedVorteile = (vorteileData?.items || [])
         .filter(v => v.isActive)
         .sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
 
       setFaqs(sortedFaqs);
       setVorteile(sortedVorteile);
-      setMaterials(materialsData.items);
+      setMaterials(materialsData?.items || []);
     } catch (error) {
       console.error('Error loading data:', error);
+      setFaqs([]);
+      setVorteile([]);
+      setMaterials([]);
     } finally {
       setLoading(false);
     }
