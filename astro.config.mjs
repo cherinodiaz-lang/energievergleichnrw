@@ -50,7 +50,6 @@ export default defineConfig({
       include: [
         'react',
         'react-dom',
-        'zustand',
         'framer-motion',
         'date-fns',
         'clsx',

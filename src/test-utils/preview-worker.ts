@@ -28,6 +28,23 @@ export function getPreviewPrerequisiteIssue(cwd: string): string | null {
     return "missing local Astro CLI binary at node_modules/.bin/astro";
   }
 
+  const wixBinName = process.platform === "win32" ? "wix.cmd" : "wix";
+  const wixLocalBin = path.join(cwd, "node_modules", ".bin", wixBinName);
+
+  if (!fs.existsSync(wixLocalBin)) {
+    let wixGloballyAvailable = false;
+    try {
+      execFileSync("wix", ["--version"], { stdio: "pipe" });
+      wixGloballyAvailable = true;
+    } catch {
+      wixGloballyAvailable = false;
+    }
+
+    if (!wixGloballyAvailable) {
+      return "missing wix CLI – install @wix/cli globally or run in a Wix workspace";
+    }
+  }
+
   return null;
 }
 

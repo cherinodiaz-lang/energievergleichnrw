@@ -1,0 +1,42 @@
+---
+import { getServerSeo } from "@/lib/seo-ssr";
+import { SEO_CONFIG } from "@/lib/seo-config";
+
+export function getStaticPaths() {
+  return [];
+}
+
+const seo = getServerSeo(Astro.url.pathname);
+---
+
+<!doctype html>
+<html lang="de" class="w-full h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{seo.title}</title>
+    <meta name="description" content={seo.description} />
+    {seo.keywords && <meta name="keywords" content={seo.keywords} />}
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="author" content={SEO_CONFIG.siteName} />
+    <link rel="canonical" href={seo.canonicalUrl} />
+
+    <meta property="og:title" content={seo.ogTitle} />
+    <meta property="og:description" content={seo.ogDescription} />
+    <meta property="og:image" content={seo.ogImage} />
+    <meta property="og:url" content={seo.ogUrl} />
+    <meta property="og:type" content={seo.ogType} />
+    <meta property="og:site_name" content={SEO_CONFIG.siteName} />
+    <meta property="og:locale" content="de_DE" />
+
+    <meta name="twitter:card" content={seo.twitterCard} />
+    <meta name="twitter:title" content={seo.ogTitle} />
+    <meta name="twitter:description" content={seo.ogDescription} />
+    <meta name="twitter:image" content={seo.ogImage} />
+  </head>
+  <body class="w-full h-full">
+    <main>
+      <p>Diese Seite wurde nicht gefunden.</p>
+    </main>
+  </body>
+</html>
