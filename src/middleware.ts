@@ -1,9 +1,12 @@
 import { defineMiddleware } from "astro:middleware";
-import { isAllowedHost, PLZSchema } from "@/lib/security";
+import {
+  getFrameAncestorsDirective,
+  isAllowedHost,
+  PLZSchema,
+} from "@/lib/security";
 
 const PLZ_QUERY_KEYS = ["plz", "zip", "postcode", "postleitzahl"] as const;
 const SECURITY_HEADERS = {
-  "X-Frame-Options": "DENY",
   "X-Content-Type-Options": "nosniff",
   "Referrer-Policy": "strict-origin-when-cross-origin",
   "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
@@ -18,13 +21,18 @@ const SECURITY_HEADERS = {
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
+    getFrameAncestorsDirective(),
   ].join("; "),
 } as const;
 
 function withSecurityHeaders(response: Response): Response {
   const headers = new Headers(response.headers);
 
-  for (const [key, value] of Object.entries(SECURITY_HEADERS)) {
+  // Wix Editor renders the site inside a cross-origin iframe, so a legacy
+  // X-Frame-Options policy would block the editor before the page can boot.
+  headers.delete("X-Frame-Options");
+
+  for (const [key, value] of Object.entries(getSecurityHeaders())) {
     headers.set(key, value);
   }
 
