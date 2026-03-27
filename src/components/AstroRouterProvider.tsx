@@ -1,7 +1,8 @@
 import type { ComponentType, ReactNode } from 'react';
-import { BrowserRouter, StaticRouter } from 'react-router-dom';
+import { BrowserRouter, StaticRouter, useLocation } from 'react-router-dom';
 import AnalyticsBootstrap from '@/components/AnalyticsBootstrap';
 import ConsentBanner from '@/components/ConsentBanner';
+import { resolvePageComponent } from '@/lib/page-registry';
 import { SEO_CONFIG } from '@/lib/seo-config';
 
 interface AstroRouterProviderProps {
@@ -10,14 +11,25 @@ interface AstroRouterProviderProps {
   children?: ReactNode;
 }
 
-export default function AstroRouterProvider({ path, Page, children }: AstroRouterProviderProps) {
+function ResolvedRouteContent({ children }: { children?: ReactNode }) {
+  const location = useLocation();
+  const Page = resolvePageComponent(location.pathname);
+
+  if (!Page && children) {
+    return <>{children}</>;
+  }
+
+  return <Page />;
+}
+
+export default function AstroRouterProvider({ path, children }: AstroRouterProviderProps) {
   const content = (
     <>
       <AnalyticsBootstrap
         measurementId={SEO_CONFIG.googleAnalyticsId}
         clarityProjectId={SEO_CONFIG.clarityProjectId}
       />
-      {Page ? <Page /> : children}
+      <ResolvedRouteContent>{children}</ResolvedRouteContent>
       <ConsentBanner />
     </>
   );

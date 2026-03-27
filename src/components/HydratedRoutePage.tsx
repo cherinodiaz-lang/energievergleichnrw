@@ -1,13 +1,14 @@
 import type { ComponentType } from "react";
 import React, { useEffect } from "react";
-import { BrowserRouter, StaticRouter } from "react-router-dom";
+import { BrowserRouter, StaticRouter, useLocation } from "react-router-dom";
 import AnalyticsBootstrap from "@/components/AnalyticsBootstrap";
 import ConsentBanner from "@/components/ConsentBanner";
+import { resolvePageComponent } from "@/lib/page-registry";
 import { SEO_CONFIG } from "@/lib/seo-config";
 
 interface HydratedRoutePageProps {
   path: string;
-  Page: ComponentType;
+  Page?: ComponentType;
 }
 
 interface ErrorBoundaryState {
@@ -132,10 +133,13 @@ function EditorInitializer() {
   return null;
 }
 
-export default function HydratedRoutePage({
-  path,
-  Page,
-}: HydratedRoutePageProps) {
+function ResolvedRoutePage() {
+  const location = useLocation();
+  const Page = resolvePageComponent(location.pathname);
+  return <Page />;
+}
+
+export default function HydratedRoutePage({ path }: HydratedRoutePageProps) {
   const pageWithGlobalUi = (
     <ErrorBoundary>
       <>
@@ -144,7 +148,7 @@ export default function HydratedRoutePage({
           clarityProjectId={SEO_CONFIG.clarityProjectId}
         />
         <EditorInitializer />
-        <Page />
+        <ResolvedRoutePage />
         <ConsentBanner />
       </>
     </ErrorBoundary>

@@ -1,4 +1,4 @@
-import { type FittingType, getPlaceholder, type ImageTransformOptions, sdk, STATIC_MEDIA_URL } from '@wix/image-kit'
+import { type FittingType, type ImageTransformOptions, sdk, STATIC_MEDIA_URL } from '@wix/image-kit'
 import { forwardRef, type ImgHTMLAttributes, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import { useSize } from '@/hooks/use-size'
 import './image.css'
@@ -83,17 +83,18 @@ const WixImage = forwardRef<HTMLImageElement, WixImageProps>(
     useImperativeHandle(parentRef, () => ref.current as HTMLImageElement)
 
     if (!size) {
-      if (typeof window === 'undefined') {
-        const targetWidth = getNumericDimension(imgProps.width, width)
-        const targetHeight = getNumericDimension(imgProps.height, height)
-        const src = scale(data.id, data.width, data.height, targetWidth, targetHeight, transformOptions)
+      const targetWidth = getNumericDimension(imgProps.width, width)
+      const targetHeight = getNumericDimension(imgProps.height, height)
+      const src = scale(
+        data.id,
+        data.width,
+        data.height,
+        targetWidth,
+        targetHeight,
+        transformOptions,
+      )
 
-        return <img ref={ref} {...imgProps} src={src} />
-      }
-
-      const { uri, ...placeholder } = getPlaceholder(fittingType ?? 'fit', data, { htmlTag: 'img' })
-      // @ts-expect-error placeholder.css.img properties are not typed correctly.
-      return <img ref={ref} src={`${STATIC_MEDIA_URL}${uri}`} style={placeholder.css.img} {...placeholder.attr}  {...imgProps} />
+      return <img ref={ref} {...imgProps} src={src} />
     }
 
     const targetHeight = size.height || height * (size.width / width) || height

@@ -293,31 +293,6 @@ export default function HomePage() {
       <HowToSchema />
       <ReviewSchema />
       <FAQPageSchema />
-      <style>{`
-        .animate-reveal {
-          opacity: 0;
-          transform: translateY(20px);
-          transition: none;
-        }
-        .animate-reveal-visible {
-          opacity: 1;
-          transform: translateY(0);
-          animation: revealIn 0.4s ease-out forwards;
-        }
-        @keyframes revealIn {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .animate-reveal, .animate-reveal-visible {
-            transition: none;
-            animation: none;
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        img[loading="lazy"] { content-visibility: auto; }
-      `}</style>
       <Header />
       <main>
       {/* --- HERO SECTION --- */}
