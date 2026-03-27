@@ -31,20 +31,26 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install Codex CLI
-        run: npm install -g @openai/codex
-
-      - name: Ensure OPENAI_API_KEY exists
+      - name: Check OPENAI_API_KEY availability
+        id: openai_key
         run: |
-          if [ -z "${OPENAI_API_KEY}" ]; then
-            echo "Missing OPENAI_API_KEY secret"
-            exit 1
+          if [ -n "${OPENAI_API_KEY}" ]; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "OPENAI_API_KEY not configured; skipping Codex review."
           fi
 
+      - name: Install Codex CLI
+        if: steps.openai_key.outputs.available == 'true'
+        run: npm install -g @openai/codex
+
       - name: Fetch base branch
+        if: steps.openai_key.outputs.available == 'true'
         run: git fetch origin "${{ github.base_ref }}":"refs/remotes/origin/${{ github.base_ref }}"
 
       - name: Run Codex review
+        if: steps.openai_key.outputs.available == 'true'
         run: |
           codex review \
             --base "origin/${{ github.base_ref }}" \
@@ -52,6 +58,7 @@ jobs:
             > codex-review.md
 
       - name: Post review comment
+        if: steps.openai_key.outputs.available == 'true'
         uses: actions/github-script@v7
         with:
           script: |

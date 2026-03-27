@@ -38,10 +38,38 @@ jobs:
         run: npm install
 
       - name: Type and config checks
+        id: typecheck
+        continue-on-error: true
         run: npm run check
 
       - name: Run tests
+        id: tests
+        continue-on-error: true
         run: npm run test:run
 
       - name: Build
+        id: build
+        continue-on-error: true
         run: npm run build
+
+      - name: Report step outcomes
+        if: always()
+        run: |
+          echo "## CI Results" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Step | Result |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|------|--------|" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Type and config checks | ${{ steps.typecheck.outcome }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Run tests              | ${{ steps.tests.outcome }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Build                  | ${{ steps.build.outcome }} |" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Fail if any step failed
+        if: |
+          always() && (
+            steps.typecheck.outcome == 'failure' ||
+            steps.tests.outcome == 'failure' ||
+            steps.build.outcome == 'failure'
+          )
+        run: |
+          echo "::error::One or more CI steps failed – see table above for details."
+          exit 1
