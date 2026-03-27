@@ -14,14 +14,14 @@
 
 declare global {
   interface Window {
-    dataLayer?: any[];
-    gtag?: (...args: any[]) => void;
+    dataLayer?: object[];
+    gtag?: (...args: unknown[]) => void;
   }
 }
 
 interface QueuedEvent {
   eventName: string;
-  eventData: Record<string, any>;
+  eventData: Record<string, unknown>;
 }
 
 let eventQueue: QueuedEvent[] = [];
@@ -161,7 +161,7 @@ export function updateConsent(analyticsConsent: boolean, marketingConsent: boole
  * Events are queued if consent is not yet determined
  * If debug mode is active, adds debug_mode: true to all events
  */
-export function trackEvent(eventName: string, eventData: Record<string, any> = {}) {
+export function trackEvent(eventName: string, eventData: Record<string, unknown> = {}) {
   if (typeof window === 'undefined') return;
 
   // If consent not yet determined, queue the event

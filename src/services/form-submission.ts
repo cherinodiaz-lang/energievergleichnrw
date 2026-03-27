@@ -20,7 +20,7 @@ export interface FormSubmissionData {
   message?: string;
   postleitzahl?: string;
   verbrauch?: string;
-  [key: string]: any;
+  [key: string]: unknown;
   _createdDate?: Date;
   _updatedDate?: Date;
 }
@@ -117,11 +117,11 @@ export function trackMethodikClick() {
  */
 export function validateField(
   fieldName: string,
-  value: any,
+  value: unknown,
   required: boolean = true,
   customErrorMessage?: string
 ): { valid: boolean; error?: string } {
-  if (required && (!value || value.toString().trim() === '')) {
+  if (required && (!value || String(value).trim() === '')) {
     return {
       valid: false,
       error: customErrorMessage || `${fieldName} ist erforderlich`
@@ -131,7 +131,7 @@ export function validateField(
   // Email validation
   if (fieldName.toLowerCase().includes('email') && value) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(value)) {
+    if (!emailRegex.test(String(value))) {
       return {
         valid: false,
         error: 'Bitte eine gültige E-Mail-Adresse eingeben.'
@@ -142,7 +142,7 @@ export function validateField(
   // Phone validation (optional, but if provided should be valid)
   if (fieldName.toLowerCase().includes('phone') && value) {
     const phoneRegex = /^[\d\s\-\+\(\)]+$/;
-    if (!phoneRegex.test(value)) {
+    if (!phoneRegex.test(String(value))) {
       return {
         valid: false,
         error: 'Bitte eine gültige Telefonnummer eingeben.'
@@ -153,7 +153,7 @@ export function validateField(
   // Postleitzahl validation
   if (fieldName.toLowerCase().includes('plz') && value) {
     const plzRegex = /^\d{5}$/;
-    if (!plzRegex.test(value.toString())) {
+    if (!plzRegex.test(String(value))) {
       return {
         valid: false,
         error: 'Bitte eine gültige PLZ eingeben.'
@@ -163,7 +163,7 @@ export function validateField(
 
   // Verbrauch validation (kWh)
   if (fieldName.toLowerCase().includes('verbrauch') && value) {
-    const verbrauchNum = parseFloat(value);
+    const verbrauchNum = parseFloat(String(value));
     if (isNaN(verbrauchNum) || verbrauchNum <= 0) {
       return {
         valid: false,
@@ -179,7 +179,7 @@ export function validateField(
  * Validate entire form
  */
 export function validateForm(
-  formData: Record<string, any>,
+  formData: Record<string, unknown>,
   requiredFields: string[]
 ): { valid: boolean; errors: Record<string, string> } {
   const errors: Record<string, string> = {};
