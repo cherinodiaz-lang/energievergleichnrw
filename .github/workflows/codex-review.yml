@@ -22,14 +22,15 @@ jobs:
 
     steps:
       - name: Checkout pull request
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
       - name: Install Codex CLI
         run: npm install -g @openai/codex
