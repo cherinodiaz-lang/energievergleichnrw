@@ -13,7 +13,7 @@ Restore visible, usable rendering without rewriting product logic and without ha
 
 ## Recovery Workflow
 
-Use [.github/workflows/recovery-rollback.yml](/Users/joelcherinodiaz/Desktop/04_PROJEKTE/CLEAN/.github/workflows/recovery-rollback.yml) to:
+Use [.github/workflows/recovery-rollback.yml](../../.github/workflows/recovery-rollback.yml) to:
 
 1. Branch from a chosen base ref.
 2. Optionally revert a single commit on the recovery branch.
