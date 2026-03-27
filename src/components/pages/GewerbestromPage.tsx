@@ -508,8 +508,8 @@ export default function GewerbestromPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <div className="bg-primary/10 rounded-2xl p-12 flex items-center justify-center">
-                <Zap className="w-64 h-64 text-primary" />
+              <div className="bg-primary/10 rounded-2xl p-6 sm:p-12 flex items-center justify-center overflow-hidden">
+                <Zap className="h-40 w-40 text-primary sm:h-64 sm:w-64" />
               </div>
             </motion.div>
           </div>

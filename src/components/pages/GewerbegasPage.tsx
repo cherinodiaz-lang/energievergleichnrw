@@ -438,7 +438,7 @@ export default function GewerbegasPage() {
       </section>
 
       {/* Info Section */}
-      <section id="info" className="w-full bg-cover bg-center ox-hidden py-24" style={{ backgroundImage: 'linear-gradient(rgba(44, 110, 73, 0.85), rgba(44, 110, 73, 0.85))' }}>
+      <section id="info" className="w-full bg-cover bg-center overflow-x-hidden py-24" style={{ backgroundImage: 'linear-gradient(rgba(44, 110, 73, 0.85), rgba(44, 110, 73, 0.85))' }}>
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -447,8 +447,8 @@ export default function GewerbegasPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <div className="bg-primary/10 rounded-2xl p-12 flex items-center justify-center">
-                <Flame className="w-64 h-64 text-primary" />
+              <div className="bg-primary/10 rounded-2xl p-6 sm:p-12 flex items-center justify-center overflow-hidden">
+                <Flame className="h-40 w-40 text-primary sm:h-64 sm:w-64" />
               </div>
             </motion.div>
 
