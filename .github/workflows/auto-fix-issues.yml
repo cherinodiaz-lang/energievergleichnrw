@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - name: Ensure auto-fix label exists
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             try {
@@ -38,7 +38,7 @@ jobs:
 
       - name: Check for duplicate open auto-fix issue
         id: dedup
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const issues = await github.rest.issues.listForRepo({
@@ -77,7 +77,7 @@ jobs:
 
       - name: Create auto-fix issue for Copilot
         if: steps.dedup.outputs.skip == 'false'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const runUrl    = "${{ steps.details.outputs.run_url }}";
