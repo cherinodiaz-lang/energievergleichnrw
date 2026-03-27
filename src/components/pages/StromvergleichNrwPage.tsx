@@ -1,10 +1,8 @@
-import { useState, useEffect, type SyntheticEvent } from 'react';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Zap, CheckCircle, Send, ArrowRight, AlertCircle, Globe, DollarSign, MapPin, BarChart3, Rocket } from 'lucide-react';
+import { Zap, CheckCircle, Globe, DollarSign, MapPin, BarChart3, Rocket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Label } from '@/components/ui/label';
 import Header from '@/components/Header';
 import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
@@ -12,101 +10,13 @@ import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import RelatedPages from '@/components/RelatedPages';
+import VerivoxCalculatorEmbed from '@/components/VerivoxCalculatorEmbed';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
-import { validateFormFields, FORM_CONFIGS } from '@/lib/form-validation';
 import { getRelatedPages } from '@/lib/internal-linking';
 
-interface StromvergleichExampleStateProps {
-  postcode: string;
-  annualConsumption: number;
-  usedDefaultConsumption: boolean;
-}
-
-export function StromvergleichExampleState({
-  postcode,
-  annualConsumption,
-  usedDefaultConsumption,
-}: StromvergleichExampleStateProps) {
-  const formattedConsumption = annualConsumption.toLocaleString('de-DE');
-
-  return (
-    <div className="space-y-6">
-      <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 sm:p-6">
-        <div className="flex items-start gap-3">
-          <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-700" />
-          <div className="space-y-2">
-            <p className="font-heading text-lg font-semibold text-amber-900">Beispielmodus</p>
-            <p className="font-paragraph text-sm text-amber-950 sm:text-base">
-              Aktuell ist auf dieser Seite keine Live-Tarifquelle aktiv. Deshalb zeigen wir hier keine echten
-              Anbieter, Tarifnamen oder Wechselpreise an.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        <Card className="h-full border-gray-200">
-          <CardHeader>
-            <CardTitle className="font-heading text-xl text-primary">Ihre Eingaben im Überblick</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <dl className="space-y-3 text-sm text-gray-700 sm:text-base">
-              <div className="flex items-start justify-between gap-4 border-b border-gray-100 pb-3">
-                <dt className="font-semibold text-primary">Postleitzahl</dt>
-                <dd>{postcode}</dd>
-              </div>
-              <div className="flex items-start justify-between gap-4">
-                <dt className="font-semibold text-primary">Verbrauch für diese Ansicht</dt>
-                <dd>{formattedConsumption} kWh/Jahr</dd>
-              </div>
-            </dl>
-
-            {usedDefaultConsumption && (
-              <p className="rounded-lg bg-blue-50 p-3 text-sm text-gray-700">
-                Für diese Beispielansicht verwenden wir 3.500 kWh/Jahr, weil kein Jahresverbrauch eingetragen wurde.
-              </p>
-            )}
-          </CardContent>
-        </Card>
-
-        <Card className="h-full border-gray-200">
-          <CardHeader>
-            <CardTitle className="font-heading text-xl text-primary">So geht es ehrlich weiter</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <ul className="space-y-3 text-sm text-gray-700 sm:text-base">
-              <li>• Diese Seite zeigt aktuell nur eine unverbindliche Beispielansicht.</li>
-              <li>• Für echte Tarifoptionen ist derzeit eine individuelle Prüfung nötig.</li>
-              <li>• Wenn Sie Hilfe möchten, kontaktieren Sie uns für den nächsten Schritt.</li>
-            </ul>
-
-            <Link to={ROUTES.kontakt} className="inline-flex">
-              <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
-                Kontakt aufnehmen
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-          </CardContent>
-        </Card>
-      </div>
-    </div>
-  );
-}
-
 export default function StromvergleichNrwPage() {
-  const [formData, setFormData] = useState({
-    postleitzahl: '',
-    verbrauch: '',
-    name: '',
-    email: '',
-    phone: '',
-  });
-  const [showResults, setShowResults] = useState(false);
-  const [calculatedConsumption, setCalculatedConsumption] = useState(0);
-  const [, setFormErrors] = useState<Record<string, string>>({});
-
   useEffect(() => {
     const faqSchema = {
       '@context': 'https://schema.org',
@@ -157,7 +67,7 @@ export default function StromvergleichNrwPage() {
           name: 'Wie viel kann ich durch einen Stromwechsel sparen?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Mögliche Einsparungen hängen von Verbrauch, Region und Tarifdetails ab. Die Seite zeigt zunächst eine unverbindliche Beispielvorschau.'
+            text: 'Moegliche Einsparungen haengen von Verbrauch, Region und Tarifdetails ab. Der Live-Rechner zeigt aktuelle Tarife fuer Ihre Postleitzahl und Ihren Verbrauch.'
           }
         },
         {
@@ -189,7 +99,7 @@ export default function StromvergleichNrwPage() {
           name: 'Wie funktioniert der Vergleichsrechner?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Geben Sie Postleitzahl und Stromverbrauch ein. Der Rechner zeigt eine Beispielvorschau mit typischen Kennzahlen wie Arbeitspreis, Grundpreis, Laufzeit und Preisgarantie.'
+            text: 'Geben Sie Postleitzahl und Stromverbrauch ein. Der Live-Rechner zeigt aktuelle Tarife mit Kennzahlen wie Arbeitspreis, Grundpreis, Laufzeit und Preisgarantie.'
           }
         },
         {
@@ -212,30 +122,6 @@ export default function StromvergleichNrwPage() {
       document.head.removeChild(script);
     };
   }, []);
-
-  const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    
-    // Validate required fields for private form
-    const validation = validateFormFields(formData, FORM_CONFIGS.private);
-    if (!validation.valid) {
-      setFormErrors(validation.errors);
-      return;
-    }
-
-    setFormErrors({});
-
-    // Use custom value or default
-    let consumption = 0;
-    if (formData.verbrauch && parseInt(formData.verbrauch) > 0) {
-      consumption = parseInt(formData.verbrauch);
-    } else {
-      consumption = 3500; // Default value
-    }
-
-    setCalculatedConsumption(consumption);
-    setShowResults(true);
-  };
 
   const seo = getPageSEO('stromvergleich');
 
@@ -276,14 +162,15 @@ export default function StromvergleichNrwPage() {
               Stromvergleich für NRW
             </h1>
             <p className="font-paragraph text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
-              Erhalten Sie eine unverbindliche Tarif-Orientierung für Ihre Region. Kostenlos und transparent.
+              Vergleichen Sie aktuelle Stromtarife für Ihre Region direkt im Live-Rechner von Verivox. Kostenlos,
+              transparent und ohne Umwege.
             </p>
             <div className="flex flex-col gap-4">
               <Button
                 onClick={() => document.getElementById('vergleich')?.scrollIntoView({ behavior: 'smooth' })}
                 className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 px-8 rounded-full text-lg font-semibold shadow-lg"
               >
-                Jetzt vergleichen
+                Zum Live-Rechner
               </Button>
               <Link to="/methodik" className="text-white/80 hover:text-white transition-colors text-sm font-medium underline">
                 So vergleichen wir (Methodik)
@@ -296,101 +183,48 @@ export default function StromvergleichNrwPage() {
       {/* Comparison Tool Section */}
       <section id="vergleich" className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
-            <div className="lg:col-span-2">
-              <Card className="shadow-xl">
-                <CardHeader className="bg-primary text-white">
-                  <CardTitle className="font-heading text-2xl">Stromtarife vergleichen</CardTitle>
-                </CardHeader>
-                <CardContent className="p-8 ox-hidden">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <Label htmlFor="plz" className="font-paragraph">Postleitzahl *</Label>
-                        <Input
-                          id="plz"
-                          placeholder="z.B. 40210"
-                          value={formData.postleitzahl}
-                          onChange={(e) => setFormData({ ...formData, postleitzahl: e.target.value })}
-                          required
-                          className="font-paragraph w-full"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="verbrauch" className="font-paragraph">Jahresverbrauch (kWh) <span className="text-gray-400 text-sm">(optional)</span></Label>
-                        <Input
-                          id="verbrauch"
-                          type="number"
-                          placeholder="z.B. 3500"
-                          value={formData.verbrauch}
-                          onChange={(e) => setFormData({ ...formData, verbrauch: e.target.value })}
-                          className="font-paragraph w-full"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="name" className="font-paragraph">Name *</Label>
-                      <Input
-                        id="name"
-                        placeholder="Max Mustermann"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        required
-                        className="font-paragraph w-full"
-                      />
-                    </div>
-
-                    <div className="flex justify-stretch sm:justify-start">
-                      <Button type="submit" className="w-full sm:w-auto bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 font-bold text-lg rounded-lg">
-                        <Send className="w-5 h-5 mr-2" />
-                        Tarife vergleichen
-                      </Button>
-                    </div>
-                  </form>
-                </CardContent>
-              </Card>
-
-              {/* Results Section */}
-              {showResults && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="mt-12"
-                >
-                  <h2 className="font-heading text-2xl font-bold text-primary mb-8">Beispielstatus für {formData.postleitzahl}</h2>
-
-                  <StromvergleichExampleState
-                    postcode={formData.postleitzahl}
-                    annualConsumption={calculatedConsumption}
-                    usedDefaultConsumption={!formData.verbrauch.trim()}
-                  />
-                </motion.div>
-              )}
-            </div>
-
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1.7fr)_minmax(280px,0.9fr)] lg:items-start">
+            <VerivoxCalculatorEmbed
+              title="Live-Stromtarife für NRW vergleichen"
+              description="Geben Sie Ihre Postleitzahl und Ihren Jahresverbrauch ein. Der Rechner zeigt aktuelle Tarife, Preisgarantien, Boni und Laufzeiten direkt von Verivox im sichtbaren Hauptbereich."
+              target="Energie_Strom_Privat_Rechner"
+              wmid="104"
+              campaignId="stromvergleich_nrw"
+              trackingProductId="93"
+            />
             <div className="space-y-6">
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                <h3 className="font-heading font-bold text-primary mb-4">Warum mit uns vergleichen?</h3>
+              <div className="rounded-[1.75rem] border border-blue-100 bg-blue-50 p-6 shadow-sm">
+                <h3 className="font-heading text-xl font-semibold text-primary mb-4">Warum dieser Rechner Sinn macht</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-sm">100% unabhängig und kostenlos</span>
+                    <span className="font-paragraph text-sm">Aktuelle Tarifdaten direkt aus dem Verivox-Partnerrechner.</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-sm">Unverbindliche Orientierung für NRW</span>
+                    <span className="font-paragraph text-sm">Für private Haushalte in Nordrhein-Westfalen optimiert.</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-sm">Transparente Tarifdetails</span>
+                    <span className="font-paragraph text-sm">Preisgarantie, Laufzeit, Bonus und Gesamtkosten im Blick.</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-sm">Begleitung ab der Anfrage</span>
+                    <span className="font-paragraph text-sm">Kostenlos, unverbindlich und ohne sichtbare Platzhalterlogik.</span>
                   </li>
                 </ul>
+              </div>
+
+              <div className="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-6 shadow-sm">
+                <h3 className="font-heading text-xl font-semibold text-primary mb-3">Vor dem Start hilfreich</h3>
+                <p className="font-paragraph text-sm leading-7 text-slate-600 mb-4">
+                  Halten Sie am besten Ihre letzte Stromrechnung bereit. Mit Postleitzahl und Jahresverbrauch erhalten
+                  Sie die belastbarsten Ergebnisse.
+                </p>
+                <p className="font-paragraph text-sm leading-7 text-slate-600">
+                  Falls Sie Ihren Verbrauch nicht kennen, finden Sie ihn meist auf der letzten Jahresabrechnung in
+                  kWh. Für einen typischen Haushalt sind oft rund 3.500 kWh ein realistischer Richtwert.
+                </p>
               </div>
             </div>
           </div>
@@ -405,7 +239,9 @@ export default function StromvergleichNrwPage() {
               <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Stromvergleich für NRW</h2>
               
               <p className="font-paragraph text-lg text-gray-700 mb-6">
-                Mit unserem Stromvergleich erhalten Sie in wenigen Minuten eine erste Tarif-Orientierung für Nordrhein-Westfalen. Die Vorschau ist kostenlos und unverbindlich: Sie geben Postleitzahl und Stromverbrauch ein und sehen Beispielwerte als Grundlage für Ihre weitere Entscheidung.
+                Mit unserem Stromvergleich greifen Sie direkt auf den Live-Rechner von Verivox für Nordrhein-Westfalen
+                zu. Sie geben Postleitzahl und Stromverbrauch ein und sehen aktuelle Tarife als Grundlage für Ihre
+                weitere Entscheidung.
               </p>
             </div>
 
@@ -414,9 +250,9 @@ export default function StromvergleichNrwPage() {
               <ol className="font-paragraph text-gray-700 space-y-3 mb-6 list-decimal list-inside">
                 <li><strong>Postleitzahl eingeben:</strong> Geben Sie Ihre PLZ ein, um Tarife für Ihren Netzbereich zu sehen</li>
                 <li><strong>Stromverbrauch angeben:</strong> Tragen Sie Ihren jährlichen Verbrauch in kWh ein (zu finden auf der Stromrechnung)</li>
-                <li><strong>Tarife vergleichen:</strong> Sehen Sie Beispielangebote mit Preis, Laufzeit und Preisgarantie</li>
-                <li><strong>Passende Option markieren:</strong> Nutzen Sie die Beispielvorschau fuer eine erste Priorisierung nach Ihren Kriterien</li>
-                <li><strong>Anfrage abschließen:</strong> Senden Sie Ihre Anfrage für eine konkrete Rückmeldung zum weiteren Vorgehen</li>
+                <li><strong>Live-Tarife vergleichen:</strong> Sehen Sie aktuelle Angebote mit Preis, Laufzeit und Preisgarantie</li>
+                <li><strong>Details prüfen:</strong> Vergleichen Sie Bonus, Vertragslaufzeit, Ökostrom-Optionen und Monatskosten</li>
+                <li><strong>Passenden Tarif auswählen:</strong> Entscheiden Sie auf Basis transparenter Tarifdetails und leiten Sie den nächsten Schritt ein</li>
               </ol>
             </div>
 
@@ -437,7 +273,7 @@ export default function StromvergleichNrwPage() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">•</span>
-                  <span><strong>Name und E-Mail:</strong> Für die Kontaktaufnahme durch Anbieter</span>
+                  <span><strong>Vertragsdaten (optional):</strong> Zählernummer oder aktueller Anbieter helfen später beim Wechselprozess</span>
                 </li>
               </ul>
             </div>
@@ -485,13 +321,16 @@ export default function StromvergleichNrwPage() {
             <div>
               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Stromvergleich speziell für NRW</h3>
               <p className="font-paragraph text-gray-700 mb-4">
-                Nordrhein-Westfalen ist das bevölkerungsreichste Bundesland Deutschlands mit großer Vielfalt bei Stromanbietern und Tarifen. Die Strompreise variieren je nach Postleitzahl und Netzbetreiber – in Düsseldorf können die Tarife anders ausfallen als in Köln, Essen oder Dortmund. Unsere Vorschau hilft bei einer ersten regionalen Einordnung für Ihren Standort in NRW.
+                Nordrhein-Westfalen ist das bevölkerungsreichste Bundesland Deutschlands mit großer Vielfalt bei
+                Stromanbietern und Tarifen. Die Strompreise variieren je nach Postleitzahl und Netzbetreiber, etwa
+                zwischen Düsseldorf, Köln, Essen oder Dortmund. Der Live-Rechner hilft bei einer belastbaren
+                regionalen Einordnung für Ihren Standort in NRW.
               </p>
             </div>
 
             <div className="bg-secondary/10 border-l-4 border-secondary p-6 rounded">
               <p className="font-paragraph text-gray-700 italic">
-                Jetzt unverbindlich orientieren und passende nächste Schritte für Ihren Stromvertrag prüfen.
+                Jetzt live vergleichen und passende nächste Schritte für Ihren Stromvertrag transparent prüfen.
               </p>
             </div>
           </div>
@@ -617,7 +456,7 @@ export default function StromvergleichNrwPage() {
                 </div>
                 <h3 className="font-heading text-2xl font-bold text-primary mb-4">Tarife vergleichen</h3>
                 <p className="font-paragraph text-gray-600">
-                  Sehen Sie eine Beispielvorschau mit Preis, Laufzeit und Preisgarantie auf einen Blick.
+                  Vergleichen Sie aktuelle Tarife mit Preis, Laufzeit und Preisgarantie auf einen Blick.
                 </p>
               </div>
             </motion.div>
@@ -633,9 +472,10 @@ export default function StromvergleichNrwPage() {
                 <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl mb-6">
                   3
                 </div>
-                <h3 className="font-heading text-2xl font-bold text-primary mb-4">Anfrage abschließen</h3>
+                <h3 className="font-heading text-2xl font-bold text-primary mb-4">Tarif auswählen</h3>
                 <p className="font-paragraph text-gray-600">
-                  Wählen Sie einen passenden Tarif als Grundlage und senden Sie Ihre Anfrage für die nächsten Schritte.
+                  Wählen Sie einen passenden Tarif und starten Sie den nächsten Schritt direkt auf Basis transparenter
+                  Tarifdetails.
                 </p>
               </div>
             </motion.div>
@@ -649,10 +489,10 @@ export default function StromvergleichNrwPage() {
           <h3 className="font-heading text-2xl font-bold text-primary mb-8">Stromanbieter-Orientierung in 5 Schritten</h3>
           <ol className="font-paragraph text-gray-700 space-y-4 list-decimal list-inside">
             <li><strong>Postleitzahl und Verbrauch eingeben:</strong> Nutzen Sie unseren Vergleichsrechner mit Ihren Basisdaten.</li>
-            <li><strong>Tarife vergleichen:</strong> Sehen Sie Beispielangebote sortiert nach Preis und Konditionen.</li>
-            <li><strong>Passende Option markieren:</strong> Nutzen Sie die Beispielvorschau fuer eine erste Priorisierung.</li>
-            <li><strong>Angebot anfordern:</strong> Kontaktieren Sie den Anbieter oder lassen Sie sich von uns beraten.</li>
-            <li><strong>Anfrage abschließen:</strong> Sie erhalten eine konkrete Rückmeldung zum weiteren Ablauf.</li>
+            <li><strong>Tarife vergleichen:</strong> Sehen Sie aktuelle Angebote sortiert nach Preis und Konditionen.</li>
+            <li><strong>Passende Option markieren:</strong> Ordnen Sie Tarife nach Preisgarantie, Bonus und Laufzeit ein.</li>
+            <li><strong>Tarif auswählen:</strong> Wechseln Sie direkt oder holen Sie sich bei Bedarf eine zusätzliche Beratung.</li>
+            <li><strong>Nächsten Schritt gehen:</strong> Sie erhalten einen klaren Übergang in den weiteren Wechselprozess.</li>
           </ol>
         </div>
       </section>
@@ -707,10 +547,12 @@ export default function StromvergleichNrwPage() {
             </h2>
             <div className="space-y-4 font-paragraph text-gray-700 leading-relaxed">
               <p>
-                Bei energievergleich.shop erhalten Sie eine transparente und unabhängige Erstorientierung zu Stromtarifen. Wir zeigen Beispielwerte als Grundlage für Ihre Entscheidung und unterstützen Sie bei der nächsten Kontaktaufnahme.
+                Bei energievergleich.shop erhalten Sie einen transparenten Zugriff auf aktuelle Stromtarife über den
+                integrierten Verivox-Rechner. So sehen Sie reale Tarifdetails als Grundlage für Ihre Entscheidung.
               </p>
               <p>
-                Wir betrachten nicht nur Preise, sondern auch Laufzeiten, Preisgarantien und Kuendigungsfristen. Die Seite dient als transparente Erstorientierung und nicht als Live-Marktuebersicht.
+                Im Fokus stehen nicht nur Preise, sondern auch Laufzeiten, Preisgarantien, Boni und
+                Kündigungsfristen. Das hilft, günstige Tarife nicht isoliert, sondern im Gesamtbild zu bewerten.
               </p>
               <p>
                 Mehr über unsere Vergleichsmethode erfahren Sie unter{' '}
@@ -771,7 +613,7 @@ export default function StromvergleichNrwPage() {
               },
               {
                 q: 'Wie funktioniert der Vergleichsrechner?',
-                a: 'Geben Sie Postleitzahl und Verbrauch ein. Der Rechner zeigt eine Beispielvorschau mit Arbeitspreis, Grundpreis, Laufzeit und Garantie.'
+                a: 'Geben Sie Postleitzahl und Verbrauch ein. Der Rechner zeigt aktuelle Tarife mit Arbeitspreis, Grundpreis, Laufzeit und Garantie.'
               },
               {
                 q: 'Gibt es versteckte Gebühren?',

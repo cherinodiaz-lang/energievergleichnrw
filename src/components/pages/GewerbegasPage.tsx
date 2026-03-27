@@ -13,6 +13,7 @@ import SEOHead from '@/components/SEOHead';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
+import VerivoxCalculatorEmbed from '@/components/VerivoxCalculatorEmbed';
 import { Link } from 'react-router-dom';
 import { getPageSEO } from '@/lib/seo-config';
 import { ROUTES } from '@/lib/routes';
@@ -102,10 +103,10 @@ export default function GewerbegasPage() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
               <Button
-                onClick={() => document.getElementById('anfrage')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => document.getElementById('vergleich')?.scrollIntoView({ behavior: 'smooth' })}
                 className="bg-secondary text-secondary-foreground hover:bg-secondary/90 min-h-[44px] h-12 sm:h-14 px-6 sm:px-8 rounded-full text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 w-full sm:w-auto"
               >
-                Jetzt Angebot anfordern
+                Jetzt Gewerbegas vergleichen
               </Button>
               <Link
                 to="/methodik"
@@ -119,26 +120,71 @@ export default function GewerbegasPage() {
         </div>
       </section>
 
+      {/* Live Calculator Section */}
+      <section id="vergleich" className="w-full bg-white py-20">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1.7fr)_minmax(280px,0.9fr)] lg:items-start">
+            <VerivoxCalculatorEmbed
+              badge="Live-Gewerbevergleich"
+              title="Gewerbegas live vergleichen"
+              description="Vergleichen Sie aktuelle Gewerbegastarife direkt im Verivox-Rechner. Für viele kleine und mittlere Unternehmen liefert der Live-Marktüberblick bereits eine belastbare Vorauswahl."
+              target="Energie_Gas_Gewerbe_Rechner"
+              wmid="101"
+              campaignId="gewerbegas"
+              trackingProductId="99"
+            />
+
+            <div className="space-y-6">
+              <div className="rounded-[1.75rem] border border-orange-100 bg-orange-50 p-6 shadow-sm">
+                <h2 className="font-heading text-xl font-semibold text-primary mb-4">Wann der Rechner besonders hilft</h2>
+                <ul className="space-y-3 font-paragraph text-sm leading-7 text-slate-700">
+                  <li>• Für einen schnellen Marktüberblick zu Preis, Bonus, Laufzeit und Preisgarantie.</li>
+                  <li>• Für Unternehmen mit nachvollziehbarem Jahresverbrauch und klarer Nutzungssituation.</li>
+                  <li>• Für eine belastbare Vorauswahl vor einer tieferen individuellen Prüfung.</li>
+                </ul>
+              </div>
+
+              <div className="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-6 shadow-sm">
+                <h3 className="font-heading text-xl font-semibold text-primary mb-3">Komplexere Gewerbefälle?</h3>
+                <p className="font-paragraph text-sm leading-7 text-slate-600 mb-4">
+                  Bei mehreren Standorten, besonderen Verbrauchsschwankungen oder zusätzlichen Vertragsfragen
+                  unterstützen wir Sie danach persönlich weiter.
+                </p>
+                <Button
+                  variant="outline"
+                  onClick={() => document.getElementById('anfrage')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="w-full sm:w-auto"
+                >
+                  Persönliche Unterstützung anfragen
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Content Section */}
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-8">
             <div>
-              <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Gewerbegas-Anfrage für NRW</h2>
+              <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Gewerbegasvergleich für NRW</h2>
 
               <p className="font-paragraph text-lg text-gray-700 mb-6">
-                Mit unserem kostenlosen Gewerbegas-Service bereiten Sie eine unverbindliche Anfrage fuer Ihr Unternehmen in Nordrhein-Westfalen vor. Sie uebermitteln Ihre Verbrauchsdaten und erhalten eine erste Orientierung zu passenden Tarifkriterien, bevor konkrete Angebote individuell geprueft werden.
+                Mit unserem Gewerbegasvergleich erhalten Sie einen direkten Live-Marktüberblick für Ihr Unternehmen in
+                Nordrhein-Westfalen. Für komplexere Verbrauchsprofile oder Rückfragen können Sie im zweiten Schritt
+                zusätzlich unser Anfrageformular nutzen.
               </p>
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4">So funktioniert die Anfrage – 5 Schritte</h3>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">So funktioniert der Vergleich – 5 Schritte</h3>
               <ol className="font-paragraph text-gray-700 space-y-3 mb-6 list-decimal list-inside">
                 <li><strong>Jahresverbrauch eingeben:</strong> Geben Sie Ihren jährlichen Gasverbrauch in kWh ein (zu finden auf Ihrer letzten Gasrechnung)</li>
-                <li><strong>Zählernummer/Marktlokation (falls vorhanden):</strong> Tragen Sie diese Nummern ein, falls Sie diese bereits haben – sie ermöglichen präzisere Angebote</li>
-                <li><strong>Heizungsart und Prozesse:</strong> Geben Sie an, wofür Sie Gas nutzen (Heizung, Herd, Produktion)</li>
-                <li><strong>Postleitzahl und Laufzeitwunsch:</strong> Nennen Sie Ihren Standort und Ihre gewuenschte Vertragslaufzeit</li>
-                <li><strong>Anfrage absenden:</strong> Auf Basis Ihrer Angaben pruefen wir passende Optionen und melden uns zum weiteren Ablauf</li>
+                <li><strong>Live-Tarife prüfen:</strong> Vergleichen Sie aktuelle Angebote nach Preis, Bonus, Laufzeit und Preisgarantie</li>
+                <li><strong>Optionen einordnen:</strong> Bewerten Sie Tarifdetails passend zu Ihrem Verbrauchsprofil</li>
+                <li><strong>Sonderfälle ergänzen:</strong> Nutzen Sie bei Bedarf unser Formular für mehrere Standorte oder spezielle Anforderungen</li>
+                <li><strong>Nächsten Schritt starten:</strong> Treffen Sie auf Basis transparenter Tarifdaten eine belastbare Vorauswahl</li>
               </ol>
             </div>
 
@@ -239,7 +285,7 @@ export default function GewerbegasPage() {
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Häufige Fehler bei der Gewerbegas-Anfrage</h3>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Häufige Fehler beim Gewerbegasvergleich</h3>
               <ul className="font-paragraph text-gray-700 space-y-3 mb-6">
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">✗</span>
@@ -259,13 +305,16 @@ export default function GewerbegasPage() {
             <div>
               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Gewerbegas in NRW</h3>
               <p className="font-paragraph text-gray-700 mb-4">
-                Nordrhein-Westfalen ist ein grosser und heterogener Energiemarkt fuer Unternehmen. Gaspreise fuer Gewerbekunden variieren je nach Verbrauch, Standort und Nutzungsart. Unsere Anfrage hilft dabei, regionale und betriebliche Unterschiede strukturiert zu erfassen und passende Optionen fuer die naechsten Schritte einzugrenzen.
+                Nordrhein-Westfalen ist ein grosser und heterogener Energiemarkt fuer Unternehmen. Gaspreise fuer
+                Gewerbekunden variieren je nach Verbrauch, Standort und Nutzungsart. Der Live-Vergleich hilft dabei,
+                regionale und betriebliche Unterschiede strukturiert sichtbar zu machen und passende Optionen fuer die
+                naechsten Schritte einzugrenzen.
               </p>
             </div>
 
             <div className="bg-secondary/10 border-l-4 border-secondary p-6 rounded">
               <p className="font-paragraph text-gray-700 italic">
-                Jetzt unverbindlich Anfrage stellen und passende Gewerbegas-Optionen fuer Ihr Unternehmen pruefen.
+                Jetzt live vergleichen und fuer komplexe Gewerbefaelle bei Bedarf persoenliche Unterstuetzung anfragen.
               </p>
             </div>
           </div>
@@ -426,7 +475,9 @@ export default function GewerbegasPage() {
                     Wie funktioniert der Wechsel?
                   </h3>
                   <p className="font-paragraph text-foreground/80">
-                    Der Wechsel ist einfach und unkompliziert. Füllen Sie unser Anfrageformular aus, wir erstellen Ihnen ein individuelles Angebot und kümmern uns um alle Formalitäten. Ihre Gasversorgung bleibt während des gesamten Prozesses gesichert.
+                    Für viele Unternehmen beginnt der Wechsel direkt mit dem Live-Rechner. Bei komplexeren Anforderungen
+                    begleiten wir Sie anschließend persönlich weiter. Ihre Gasversorgung bleibt während des gesamten
+                    Prozesses gesichert.
                   </p>
                 </div>
                 <div>
@@ -434,7 +485,8 @@ export default function GewerbegasPage() {
                     Klimaneutrales Gas
                   </h3>
                   <p className="font-paragraph text-foreground/80">
-                    Wir bieten klimaneutrales Gas an, bei dem die CO₂-Emissionen durch zertifizierte Klimaschutzprojekte ausgeglichen werden. So heizen Sie nachhaltig und tragen aktiv zum Klimaschutz bei.
+                    Auch bei Gewerbegastarifen lohnt sich ein Blick auf nachhaltige Optionen. Im Live-Vergleich lassen
+                    sich entsprechende Tarifmerkmale und Preisstrukturen deutlich besser gegeneinander abwägen.
                   </p>
                 </div>
               </div>
@@ -448,10 +500,11 @@ export default function GewerbegasPage() {
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary mb-4">
-              Jetzt Angebot anfordern
+              Persönliche Unterstützung nach dem Vergleich
             </h2>
             <p className="font-paragraph text-lg text-foreground/80 max-w-3xl mx-auto">
-              Füllen Sie das Formular aus und erhalten Sie ein individuelles Angebot für Gewerbegas
+              Nutzen Sie das Formular, wenn Ihr Gewerbeprofil vertieft geprüft werden soll oder der Live-Rechner nicht
+              alle Anforderungen abbildet.
             </p>
           </div>
 
@@ -693,7 +746,9 @@ export default function GewerbegasPage() {
               Warum energievergleich.shop?
             </h2>
             <p className="font-paragraph text-lg text-gray-700 leading-relaxed">
-              Wir bieten Ihnen eine unabhaengige und kostenlose Erstorientierung fuer Gewerbegas-Anfragen. Im Fokus stehen Preisbestandteile, Vertragsbedingungen, Preisgarantie und Kuendigungsfristen. Diese Seite erhebt keinen Anspruch auf eine Live-Marktuebersicht; verbindliche Angebote werden erst im individuellen Prozess geprueft. Haben Sie Fragen zu unserer Methodik?{' '}
+              Wir bieten Ihnen eine unabhaengige und kostenlose Kombination aus Live-Vergleich und persoenlicher
+              Unterstuetzung fuer Gewerbegas. Im Fokus stehen Preisbestandteile, Vertragsbedingungen, Preisgarantie
+              und Kuendigungsfristen. Haben Sie Fragen zu unserer Methodik?{' '}
               <a
                 href="/methodik"
                 className="text-primary font-semibold hover:underline transition-colors"

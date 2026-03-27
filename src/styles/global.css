@@ -19,6 +19,28 @@ iframe { max-width: 100%; }
 /* Horizontal overflow guard */
 .ox-hidden { overflow-x: hidden; }
 
+/* Verivox calculators */
+.verivox-calculator-slot {
+  width: 100%;
+  min-height: 560px;
+}
+
+.verivox-calculator-slot > iframe {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-height: 560px;
+  border: 0;
+  background: #fff;
+}
+
+.verivox-tracking-pixel {
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* Tap target helper (min 48px) */
 .tap-target { min-width: 48px; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; }
 
@@ -108,6 +130,11 @@ button, a[role="button"] {
   button, a, input[type="button"], input[type="submit"] {
     min-height: 44px;
     min-width: 44px;
+  }
+
+  .verivox-calculator-slot,
+  .verivox-calculator-slot > iframe {
+    min-height: 620px;
   }
 }
 

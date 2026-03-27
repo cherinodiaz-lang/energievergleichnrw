@@ -1,11 +1,8 @@
-import { useState, useEffect, type SyntheticEvent } from 'react';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Flame, CheckCircle, Send, ArrowRight, Globe, DollarSign, MapPin, BarChart3, Rocket, AlertCircle } from 'lucide-react';
+import { Flame, CheckCircle, Globe, DollarSign, MapPin, BarChart3, Rocket, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Label } from '@/components/ui/label';
-import NativeSelect from '@/components/ui/native-select';
 import Header from '@/components/Header';
 import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
@@ -13,26 +10,14 @@ import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import RelatedPages from '@/components/RelatedPages';
+import VerivoxCalculatorEmbed from '@/components/VerivoxCalculatorEmbed';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
-import { validateFormFields, FORM_CONFIGS } from '@/lib/form-validation';
 import { trackMethodikClick } from '@/services/form-submission';
 import { getRelatedPages } from '@/lib/internal-linking';
 
 export default function GasvergleichNrwPage() {
-  const [formData, setFormData] = useState({
-    postleitzahl: '',
-    wohnfläche: '',
-    verbrauch: '',
-    name: '',
-    email: '',
-    phone: '',
-  });
-  const [showResults, setShowResults] = useState(false);
-  const [calculatedConsumption, setCalculatedConsumption] = useState(0);
-  const [, setFormErrors] = useState<Record<string, string>>({});
-
   useEffect(() => {
     const faqSchema = {
       '@context': 'https://schema.org',
@@ -83,7 +68,7 @@ export default function GasvergleichNrwPage() {
           name: 'Wie viel kann ich durch einen Gaswechsel sparen?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Mögliche Einsparungen hängen von Verbrauch, Region und Tarifdetails ab. Die Seite zeigt zunächst eine unverbindliche Beispielvorschau.'
+            text: 'Moegliche Einsparungen haengen von Verbrauch, Region und Tarifdetails ab. Der Live-Rechner zeigt aktuelle Tarife fuer Ihre Postleitzahl und Ihren Verbrauch.'
           }
         },
         {
@@ -115,7 +100,7 @@ export default function GasvergleichNrwPage() {
           name: 'Wie funktioniert der Gasvergleichsrechner?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Geben Sie Postleitzahl und Wohnfläche oder Verbrauch ein. Der Rechner zeigt eine Beispielvorschau mit typischen Kennzahlen wie Arbeitspreis, Grundpreis, Laufzeit und Preisgarantie.'
+            text: 'Geben Sie Postleitzahl und Verbrauch ein. Der Live-Rechner zeigt aktuelle Tarife mit typischen Kennzahlen wie Arbeitspreis, Grundpreis, Laufzeit und Preisgarantie.'
           }
         },
         {
@@ -138,36 +123,6 @@ export default function GasvergleichNrwPage() {
       document.head.removeChild(script);
     };
   }, []);
-
-  const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    // Validate required fields for private form
-    const validation = validateFormFields(formData, FORM_CONFIGS.private);
-    if (!validation.valid) {
-      setFormErrors(validation.errors);
-      return;
-    }
-
-    setFormErrors({});
-
-    // Calculate consumption based on living area or use custom value
-    let consumption = 0;
-    if (formData.verbrauch && parseInt(formData.verbrauch) > 0) {
-      consumption = parseInt(formData.verbrauch);
-    } else {
-      const areaMap: { [key: string]: number } = {
-        '50': 5000,
-        '100': 10000,
-        '150': 15000,
-        '200': 20000,
-      };
-      consumption = areaMap[formData.wohnfläche] || 15000;
-    }
-
-    setCalculatedConsumption(consumption);
-    setShowResults(true);
-  };
 
   const seo = getPageSEO('gasvergleich');
 
@@ -208,14 +163,15 @@ export default function GasvergleichNrwPage() {
               Gasvergleich für NRW
             </h1>
             <p className="font-paragraph text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
-              Erhalten Sie eine unverbindliche Tarif-Orientierung für Ihre Region. Kostenlos und transparent.
+              Vergleichen Sie aktuelle Gastarife für Ihre Region direkt im Live-Rechner von Verivox. Kostenlos,
+              transparent und mobil sauber nutzbar.
             </p>
             <div className="flex flex-col gap-4">
               <Button
                 onClick={() => document.getElementById('vergleich')?.scrollIntoView({ behavior: 'smooth' })}
                 className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 px-8 rounded-full text-lg font-semibold shadow-lg"
               >
-                Zur Orientierung starten
+                Zum Live-Rechner
               </Button>
               <Link to="/methodik" onClick={trackMethodikClick} className="text-white/80 hover:text-white transition-colors text-sm font-medium underline">
                 So vergleichen wir (Methodik)
@@ -228,208 +184,48 @@ export default function GasvergleichNrwPage() {
       {/* Comparison Tool Section */}
       <section id="vergleich" className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
-            <div className="lg:col-span-2">
-              <Card className="shadow-xl">
-                <CardHeader className="bg-primary text-white">
-                  <CardTitle className="font-heading text-2xl">Gastarif-Orientierung</CardTitle>
-                </CardHeader>
-                <CardContent className="p-8">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <Label htmlFor="plz" className="font-paragraph">Postleitzahl *</Label>
-                        <Input
-                          id="plz"
-                          placeholder="z.B. 40210"
-                          value={formData.postleitzahl}
-                          onChange={(e) => setFormData({ ...formData, postleitzahl: e.target.value })}
-                          required
-                          className="font-paragraph"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="wohnflaeche" className="font-paragraph">Wohnfläche (m²) *</Label>
-                        <NativeSelect
-                          id="wohnflaeche"
-                          value={formData.wohnfläche}
-                          onValueChange={(value) => setFormData({ ...formData, wohnfläche: value })}
-                          options={[
-                            { value: '50', label: 'bis 50 m² (ca. 5.000 kWh)' },
-                            { value: '100', label: '50-100 m² (ca. 10.000 kWh)' },
-                            { value: '150', label: '100-150 m² (ca. 15.000 kWh)' },
-                            { value: '200', label: 'über 150 m² (ca. 20.000 kWh)' },
-                          ]}
-                          placeholder="Wählen Sie..."
-                          required
-                          className="font-paragraph"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="verbrauch" className="font-paragraph">Jahresverbrauch (kWh) <span className="text-gray-400 text-sm">(optional)</span></Label>
-                      <Input
-                        id="verbrauch"
-                        type="number"
-                        placeholder="z.B. 15000"
-                        value={formData.verbrauch}
-                        onChange={(e) => setFormData({ ...formData, verbrauch: e.target.value })}
-                        className="font-paragraph"
-                      />
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      <div className="space-y-2">
-                        <Label htmlFor="name" className="font-paragraph">Name *</Label>
-                        <Input
-                          id="name"
-                          placeholder="Max Mustermann"
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          required
-                          className="font-paragraph"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="email" className="font-paragraph">E-Mail *</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="max@beispiel.de"
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          required
-                          className="font-paragraph"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="phone" className="font-paragraph">Telefon</Label>
-                        <Input
-                          id="phone"
-                          type="tel"
-                          placeholder="+49 211 1234 5678"
-                          value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="font-paragraph"
-                        />
-                      </div>
-                    </div>
-
-                    <Button type="submit" className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 font-bold text-lg rounded-lg">
-                      <Send className="w-5 h-5 mr-2" />
-                      Orientierung anzeigen
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
-
-              {/* Results Section */}
-              {showResults && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="mt-12"
-                >
-                  <h2 className="font-heading text-2xl font-bold text-primary mb-8">Tarifvorschau für {formData.postleitzahl}</h2>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-                    {[
-                      {
-                        name: 'Tarif Option A',
-                        pricePerKwh: 0.08,
-                        baseFee: 18.50,
-                      },
-                      {
-                        name: 'Tarif Option B',
-                        pricePerKwh: 0.075,
-                        baseFee: 22.00,
-                      },
-                      {
-                        name: 'Tarif Option C',
-                        pricePerKwh: 0.07,
-                        baseFee: 25.50,
-                      },
-                    ].map((tariff, index) => {
-                      const monthlyConsumption = calculatedConsumption / 12;
-                      const monthlyPrice = (monthlyConsumption * tariff.pricePerKwh) + tariff.baseFee;
-                      const yearlyPrice = monthlyPrice * 12;
-
-                      return (
-                        <motion.div
-                          key={index}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: index * 0.1 }}
-                        >
-                          <Card className="h-full flex flex-col shadow-lg hover:shadow-xl transition-shadow">
-                            <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10">
-                              <CardTitle className="font-heading text-xl text-primary">{tariff.name}</CardTitle>
-                            </CardHeader>
-                            <CardContent className="p-6 flex-1 flex flex-col justify-between">
-                              <div className="space-y-4 mb-6">
-                                <div>
-                                  <p className="font-paragraph text-sm text-gray-600 mb-1">Arbeitspreis</p>
-                                  <p className="font-heading text-lg font-bold text-primary">{tariff.pricePerKwh.toFixed(2)} €/kWh</p>
-                                </div>
-                                <div>
-                                  <p className="font-paragraph text-sm text-gray-600 mb-1">Grundgebühr</p>
-                                  <p className="font-heading text-lg font-bold text-primary">{tariff.baseFee.toFixed(2)} €/Monat</p>
-                                </div>
-                                <div className="border-t pt-4">
-                                  <p className="font-paragraph text-sm text-gray-600 mb-1">Geschätzte monatliche Kosten</p>
-                                  <p className="font-heading text-2xl font-bold text-secondary">{monthlyPrice.toFixed(2)} €</p>
-                                </div>
-                                <div>
-                                  <p className="font-paragraph text-sm text-gray-600 mb-1">Geschätzte jährliche Kosten</p>
-                                  <p className="font-heading text-lg font-bold text-primary">{yearlyPrice.toFixed(2)} €/Jahr</p>
-                                </div>
-                              </div>
-                              <Link to={ROUTES.KONTAKT} className="w-full">
-                                <Button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-11 font-bold rounded-lg">
-                                  Angebot anfordern
-                                  <ArrowRight className="w-4 h-4 ml-2" />
-                                </Button>
-                              </Link>
-                            </CardContent>
-                          </Card>
-                        </motion.div>
-                      );
-                    })}
-                  </div>
-
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start gap-3">
-                    <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                    <p className="font-paragraph text-sm text-gray-700">
-                      <strong>Hinweis:</strong> Vorschau basiert auf Beispielrechnung. Finale Tarife nach Anbieterabfrage.
-                    </p>
-                  </div>
-                </motion.div>
-              )}
-            </div>
-
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1.7fr)_minmax(280px,0.9fr)] lg:items-start">
+            <VerivoxCalculatorEmbed
+              title="Live-Gastarife für NRW vergleichen"
+              description="Geben Sie Ihre Postleitzahl und Ihren Jahresverbrauch ein. Der Rechner zeigt aktuelle Gastarife, Preisgarantien, Boni und Laufzeiten direkt von Verivox."
+              target="Energie_Gas_Privat_Rechner"
+              wmid="102"
+              campaignId="gasvergleich_nrw"
+              trackingProductId="99"
+            />
             <div className="space-y-6">
-              <div className="bg-orange-50 border border-orange-200 rounded-lg p-6">
-                <h3 className="font-heading font-bold text-primary mb-4">Warum diese Orientierung nutzen?</h3>
+              <div className="rounded-[1.75rem] border border-orange-100 bg-orange-50 p-6 shadow-sm">
+                <h3 className="font-heading text-xl font-semibold text-primary mb-4">Warum dieser Rechner Sinn macht</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-sm">100% unabhängig und kostenlos</span>
+                    <span className="font-paragraph text-sm">Aktuelle Tarifdaten direkt aus dem Verivox-Partnerrechner.</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-sm">Unverbindliche Orientierung für NRW</span>
+                    <span className="font-paragraph text-sm">Für private Haushalte in Nordrhein-Westfalen optimiert.</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-sm">Transparente Tarifdetails</span>
+                    <span className="font-paragraph text-sm">Preisgarantie, Bonus und Gesamtkosten sauber vergleichbar.</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="font-paragraph text-sm">Begleitung ab der Anfrage</span>
+                    <span className="font-paragraph text-sm">Kostenlos, unverbindlich und ohne alte Beispieltarif-Logik.</span>
                   </li>
                 </ul>
+              </div>
+
+              <div className="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-6 shadow-sm">
+                <h3 className="font-heading text-xl font-semibold text-primary mb-3">Vor dem Start hilfreich</h3>
+                <p className="font-paragraph text-sm leading-7 text-slate-600 mb-4">
+                  Für den verlässlichsten Vergleich brauchen Sie vor allem Postleitzahl und Jahresverbrauch. Die
+                  Werte finden Sie in der Regel auf Ihrer letzten Gasabrechnung.
+                </p>
+                <p className="font-paragraph text-sm leading-7 text-slate-600">
+                  Wenn Ihr Jahresverbrauch nicht direkt vorliegt, hilft oft die letzte Jahresabrechnung oder ein Blick
+                  auf die Abschläge und den gemessenen Verbrauchszeitraum.
+                </p>
               </div>
             </div>
           </div>
@@ -444,29 +240,31 @@ export default function GasvergleichNrwPage() {
               <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Gasvergleich für NRW</h2>
 
               <p className="font-paragraph text-lg text-gray-700 mb-6">
-                Mit unserer Gas-Tariforientierung erhalten Sie in wenigen Minuten eine erste Einordnung für Nordrhein-Westfalen. Die Vorschau ist kostenlos und unverbindlich: Sie geben Postleitzahl und Gasverbrauch ein und sehen Beispielwerte als Grundlage für Ihre weitere Entscheidung.
+                Mit unserem Gasvergleich greifen Sie direkt auf den Live-Rechner von Verivox für Nordrhein-Westfalen
+                zu. Sie geben Postleitzahl und Gasverbrauch ein und sehen aktuelle Tarife als Grundlage für Ihre
+                weitere Entscheidung.
               </p>
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4">So funktioniert die Orientierung – 5 einfache Schritte</h3>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">So funktioniert der Vergleich – 5 einfache Schritte</h3>
               <ol className="font-paragraph text-gray-700 space-y-3 mb-6 list-decimal list-inside">
-                <li><strong>Postleitzahl eingeben:</strong> Geben Sie Ihre PLZ ein, um Beispielwerte für Ihren Netzbereich zu sehen</li>
+                <li><strong>Postleitzahl eingeben:</strong> Geben Sie Ihre PLZ ein, um Tarife für Ihren Netzbereich zu sehen</li>
                 <li><strong>Wohnfläche oder Verbrauch angeben:</strong> Tragen Sie Ihre Wohnfläche ein oder geben Sie Ihren jährlichen Verbrauch in kWh an (zu finden auf der Gasrechnung)</li>
-                <li><strong>Beispielübersicht ansehen:</strong> Sehen Sie Beispielangebote mit Preis, Laufzeit und Preisgarantie</li>
-                <li><strong>Optionen einordnen:</strong> Ordnen Sie die gezeigten Beispielangebote nach Ihren Kriterien ein</li>
-                <li><strong>Unverbindliche Anfrage senden:</strong> Senden Sie Ihre Anfrage für eine Rückmeldung zum weiteren Vorgehen</li>
+                <li><strong>Live-Tarife vergleichen:</strong> Sehen Sie aktuelle Angebote mit Preis, Laufzeit und Preisgarantie</li>
+                <li><strong>Optionen einordnen:</strong> Ordnen Sie die gezeigten Tarife nach Bonus, Preisgarantie und Vertragslaufzeit ein</li>
+                <li><strong>Passenden Tarif auswählen:</strong> Gehen Sie auf Basis transparenter Tarifdetails direkt zum nächsten Schritt</li>
               </ol>
             </div>
 
             <div>
-              <h3 className="font-heading text-xl font-bold text-primary mb-4">Gasanbieter-Orientierung in 5 Schritten</h3>
+              <h3 className="font-heading text-xl font-bold text-primary mb-4">Gasanbietervergleich in 5 Schritten</h3>
               <ol className="font-paragraph text-gray-700 space-y-3 mb-6 list-decimal list-inside">
                 <li><strong>Aktuelle Gasrechnung bereitstellen:</strong> Suchen Sie Ihre letzte Gasrechnung heraus, um Ihren Verbrauch und Ihre Zählernummer zu finden.</li>
-                <li><strong>Optionen prüfen:</strong> Nutzen Sie unseren Rechner für eine erste Orientierung zu passenden Optionen.</li>
-                <li><strong>Anfrage senden:</strong> Geben Sie Ihre Daten ein und senden Sie eine unverbindliche Anfrage für die nächsten Schritte.</li>
+                <li><strong>Optionen prüfen:</strong> Nutzen Sie unseren Live-Rechner für aktuelle Angebote und Konditionen.</li>
+                <li><strong>Tarifdetails vergleichen:</strong> Prüfen Sie Preis, Laufzeit, Bonus und Preisgarantie im direkten Vergleich.</li>
                 <li><strong>Vertragsfristen prüfen:</strong> Prüfen Sie Ihre Vertragsfristen und Details beim aktuellen Anbieter.</li>
-                <li><strong>Rückmeldung erhalten:</strong> Danach erhalten Sie Informationen zum weiteren Ablauf.</li>
+                <li><strong>Nächsten Schritt starten:</strong> Wechseln Sie direkt oder holen Sie sich bei Bedarf zusätzliche Beratung.</li>
               </ol>
             </div>
 
@@ -487,7 +285,7 @@ export default function GasvergleichNrwPage() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">•</span>
-                  <span><strong>Name und E-Mail:</strong> Für die Rückmeldung zu Ihrer Anfrage</span>
+                  <span><strong>Vertragsdaten (optional):</strong> Zählernummer oder aktueller Anbieter helfen später beim Wechselprozess</span>
                 </li>
               </ul>
             </div>
@@ -535,13 +333,16 @@ export default function GasvergleichNrwPage() {
             <div>
               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Gasvergleich speziell für NRW</h3>
               <p className="font-paragraph text-gray-700 mb-4">
-                Nordrhein-Westfalen ist das bevölkerungsreichste Bundesland Deutschlands mit großer Vielfalt bei Gasanbietern und Tarifen. Die Gaspreise variieren je nach Postleitzahl und Netzbetreiber – in Düsseldorf können die Tarife anders ausfallen als in Köln, Essen oder Dortmund. Unsere Vorschau hilft bei einer ersten regionalen Einordnung für Ihren Standort in NRW.
+                Nordrhein-Westfalen ist das bevölkerungsreichste Bundesland Deutschlands mit großer Vielfalt bei
+                Gasanbietern und Tarifen. Die Gaspreise variieren je nach Postleitzahl und Netzbetreiber, etwa zwischen
+                Düsseldorf, Köln, Essen oder Dortmund. Der Live-Rechner hilft bei einer belastbaren regionalen
+                Einordnung für Ihren Standort in NRW.
               </p>
             </div>
 
             <div className="bg-secondary/10 border-l-4 border-secondary p-6 rounded">
               <p className="font-paragraph text-gray-700 italic">
-                Jetzt unverbindlich orientieren und passende nächste Schritte für Ihren Gasvertrag prüfen.
+                Jetzt live vergleichen und passende nächste Schritte für Ihren Gasvertrag transparent prüfen.
               </p>
             </div>
           </div>
@@ -558,10 +359,10 @@ export default function GasvergleichNrwPage() {
             className="text-center mb-16"
           >
             <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-primary mb-4">
-              Warum diese Orientierung?
+              Warum dieser Vergleich?
             </h2>
             <p className="font-paragraph text-lg text-gray-600 max-w-2xl mx-auto">
-              Das bringt Ihnen eine unverbindliche Tarif-Einordnung – klar & einfach erklärt.
+              Das bringt Ihnen einen klaren Marktüberblick mit aktuellen Tarifdetails.
             </p>
           </motion.div>
 
@@ -570,7 +371,7 @@ export default function GasvergleichNrwPage() {
               {
                 icon: Flame,
                 title: 'Schnell & unkompliziert',
-                description: 'Schnelle Erstorientierung auf einen Blick.'
+                description: 'Schneller Live-Vergleich auf einen Blick.'
               },
               {
                 icon: Globe,
@@ -595,7 +396,7 @@ export default function GasvergleichNrwPage() {
               {
                 icon: Rocket,
                 title: 'Nächste Schritte klar',
-                description: 'Konkrete Rückmeldung nach Ihrer Anfrage.'
+                description: 'Direkter Übergang vom Vergleich zum nächsten Schritt.'
               },
             ].map((item, index) => {
               const IconComponent = item.icon;
@@ -633,7 +434,7 @@ export default function GasvergleichNrwPage() {
       <section className="w-full py-24 bg-background">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary mb-16 text-center">
-            So funktioniert die Gas-Tariforientierung
+            So funktioniert der Gasvergleich
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -649,7 +450,7 @@ export default function GasvergleichNrwPage() {
                 </div>
                 <h3 className="font-heading text-2xl font-bold text-primary mb-4">Daten eingeben</h3>
                 <p className="font-paragraph text-gray-600">
-                  Geben Sie Ihre Postleitzahl und Ihre Wohnfläche ein. Das dauert nur wenige Sekunden.
+                  Geben Sie Ihre Postleitzahl und Ihren Verbrauch ein. Das dauert nur wenige Sekunden.
                 </p>
               </div>
             </motion.div>
@@ -665,9 +466,9 @@ export default function GasvergleichNrwPage() {
                 <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl mb-6">
                   2
                 </div>
-                <h3 className="font-heading text-2xl font-bold text-primary mb-4">Beispielangebote einordnen</h3>
+                <h3 className="font-heading text-2xl font-bold text-primary mb-4">Live-Tarife einordnen</h3>
                 <p className="font-paragraph text-gray-600">
-                  Sehen Sie eine Beispielvorschau mit Preis, Laufzeit und Preisgarantie auf einen Blick.
+                  Sehen Sie aktuelle Tarife mit Preis, Laufzeit und Preisgarantie auf einen Blick.
                 </p>
               </div>
             </motion.div>
@@ -683,9 +484,10 @@ export default function GasvergleichNrwPage() {
                 <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl mb-6">
                   3
                 </div>
-                <h3 className="font-heading text-2xl font-bold text-primary mb-4">Unverbindliche Anfrage senden</h3>
+                <h3 className="font-heading text-2xl font-bold text-primary mb-4">Tarif auswählen</h3>
                 <p className="font-paragraph text-gray-600">
-                  Markieren Sie eine passende Option als Grundlage und senden Sie Ihre Anfrage für die nächsten Schritte.
+                  Wählen Sie eine passende Option auf Basis transparenter Tarifdetails und starten Sie den nächsten
+                  Schritt.
                 </p>
               </div>
             </motion.div>
@@ -693,11 +495,11 @@ export default function GasvergleichNrwPage() {
         </div>
       </section>
 
-      {/* Gasanbieter-Orientierung in 5 Schritten Section */}
+      {/* Gasvergleich in 5 Schritten Section */}
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary mb-12 text-center">
-            Gas-Tariforientierung in 5 Schritten
+            Gasvergleich in 5 Schritten
           </h2>
 
           <div className="max-w-3xl mx-auto">
@@ -710,23 +512,23 @@ export default function GasvergleichNrwPage() {
                 },
                 {
                   step: 2,
-                  title: 'Beispielangebote ansehen',
-                  description: 'Nutzen Sie unseren Orientierungsrechner. Geben Sie Ihre Postleitzahl und Ihren Verbrauch ein und sehen Sie eine Beispielvorschau.'
+                  title: 'Live-Tarife ansehen',
+                  description: 'Nutzen Sie unseren Vergleichsrechner. Geben Sie Ihre Postleitzahl und Ihren Verbrauch ein und sehen Sie aktuelle Tarife.'
                 },
                 {
                   step: 3,
                   title: 'Passende Option vormerken',
-                  description: 'Ordnen Sie Preis, Laufzeit und Preisgarantie ein und markieren Sie eine passende Option zur Orientierung.'
+                  description: 'Ordnen Sie Preis, Laufzeit und Preisgarantie ein und markieren Sie eine passende Option.'
                 },
                 {
                   step: 4,
-                  title: 'Anfrage senden',
-                  description: 'Geben Sie Ihre Daten ein und senden Sie eine unverbindliche Anfrage für die nächsten Schritte.'
+                  title: 'Tarif auswählen',
+                  description: 'Gehen Sie vom Vergleich direkt in den nächsten Schritt oder holen Sie sich zusätzliche Beratung.'
                 },
                 {
                   step: 5,
-                  title: 'Rückmeldung erhalten',
-                  description: 'Danach erhalten Sie Informationen zum weiteren Ablauf.'
+                  title: 'Wechsel strukturieren',
+                  description: 'Prüfen Sie Fristen, Vertragsdetails und die Angaben für einen reibungslosen Wechsel.'
                 }
               ].map((item, index) => (
                 <motion.div
@@ -943,7 +745,10 @@ export default function GasvergleichNrwPage() {
             </h2>
 
             <p className="font-paragraph text-lg text-gray-700 leading-relaxed">
-              Bei energievergleich.shop erhalten Sie Transparenz und Unabhängigkeit in der Erstorientierung zu Gastarifen. Wir zeigen Beispielwerte nach Preis und Vertragsbedingungen als Grundlage für Ihre Entscheidung. Unser Service ist kostenlos und unverbindlich. Ersparnis hängt von Verbrauch, Region und Tarif ab. Erfahren Sie mehr über unsere Methodik und wie wir arbeiten: <Link to="/methodik" className="text-primary font-semibold hover:underline">So vergleichen wir (Methodik)</Link>. Bei Fragen stehen wir Ihnen jederzeit zur Verfügung – <Link to="/kontakt" className="text-primary font-semibold hover:underline">Kontakt</Link>.
+              Bei energievergleich.shop erhalten Sie Transparenz und Unabhängigkeit beim Live-Vergleich von
+              Gastarifen. Im Fokus stehen Preis, Vertragsbedingungen, Preisgarantie und tatsächliche Tarifdetails als
+              Grundlage für Ihre Entscheidung. Unser Service ist kostenlos und unverbindlich. Erfahren Sie mehr über
+              unsere Methodik und wie wir arbeiten: <Link to="/methodik" className="text-primary font-semibold hover:underline">So vergleichen wir (Methodik)</Link>. Bei Fragen stehen wir Ihnen jederzeit zur Verfügung – <Link to="/kontakt" className="text-primary font-semibold hover:underline">Kontakt</Link>.
             </p>
 
             <p className="font-paragraph text-sm text-gray-500 italic">
@@ -996,7 +801,7 @@ export default function GasvergleichNrwPage() {
               },
               {
                 q: 'Wie funktioniert der Vergleichsrechner?',
-                a: 'Geben Sie Postleitzahl und Verbrauch ein. Der Rechner zeigt eine Beispielvorschau mit Arbeitspreis, Grundpreis, Laufzeit und Garantie.'
+                a: 'Geben Sie Postleitzahl und Verbrauch ein. Der Rechner zeigt aktuelle Tarife mit Arbeitspreis, Grundpreis, Laufzeit und Garantie.'
               },
               {
                 q: 'Gibt es versteckte Gebühren?',

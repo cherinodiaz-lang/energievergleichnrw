@@ -14,6 +14,7 @@ import PassendeRatgeber from '@/components/PassendeRatgeber';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import RelatedPages from '@/components/RelatedPages';
+import VerivoxCalculatorEmbed from '@/components/VerivoxCalculatorEmbed';
 import { Link } from 'react-router-dom';
 import { getPageSEO } from '@/lib/seo-config';
 import { ROUTES } from '@/lib/routes';
@@ -99,10 +100,10 @@ export default function GewerbestromPage() {
             </p>
             <div className="flex flex-col gap-4 mt-8">
               <Button
-                onClick={() => document.getElementById('anfrage')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => document.getElementById('vergleich')?.scrollIntoView({ behavior: 'smooth' })}
                 className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-14 px-8 rounded-full text-lg font-semibold shadow-lg"
               >
-                Jetzt Angebot anfordern
+                Jetzt Gewerbestrom vergleichen
               </Button>
               <Link to="/methodik" onClick={trackMethodikClick} className="text-white/80 hover:text-white transition-colors text-sm font-medium underline">
                 So vergleichen wir (Methodik)
@@ -112,26 +113,71 @@ export default function GewerbestromPage() {
         </div>
       </section>
 
+      {/* Live Calculator Section */}
+      <section id="vergleich" className="w-full bg-white py-20">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1.7fr)_minmax(280px,0.9fr)] lg:items-start">
+            <VerivoxCalculatorEmbed
+              badge="Live-Gewerbevergleich"
+              title="Gewerbestrom live vergleichen"
+              description="Vergleichen Sie aktuelle Gewerbestromtarife direkt im Verivox-Rechner. Für viele kleine und mittlere Unternehmen reicht der Live-Marktüberblick bereits für eine belastbare Vorauswahl."
+              target="Energie_Strom_Gewerbe_Rechner"
+              wmid="103"
+              campaignId="gewerbestrom"
+              trackingProductId="93"
+            />
+
+            <div className="space-y-6">
+              <div className="rounded-[1.75rem] border border-blue-100 bg-blue-50 p-6 shadow-sm">
+                <h2 className="font-heading text-xl font-semibold text-primary mb-4">Wann der Rechner besonders hilft</h2>
+                <ul className="space-y-3 font-paragraph text-sm leading-7 text-slate-700">
+                  <li>• Für einen schnellen Marktüberblick zu Preis, Bonus, Laufzeit und Preisgarantie.</li>
+                  <li>• Für Unternehmen mit klar erkennbarem Jahresverbrauch und normaler Versorgungssituation.</li>
+                  <li>• Für eine saubere Vorauswahl, bevor komplexere Details individuell geklärt werden.</li>
+                </ul>
+              </div>
+
+              <div className="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-6 shadow-sm">
+                <h3 className="font-heading text-xl font-semibold text-primary mb-3">Komplexere Gewerbefälle?</h3>
+                <p className="font-paragraph text-sm leading-7 text-slate-600 mb-4">
+                  Bei mehreren Standorten, besonderen Lastprofilen oder zusätzlichen Vertragsfragen begleiten wir Sie
+                  danach persönlich weiter.
+                </p>
+                <Button
+                  variant="outline"
+                  onClick={() => document.getElementById('anfrage')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="w-full sm:w-auto"
+                >
+                  Persönliche Unterstützung anfragen
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Content Section */}
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-8">
             <div>
-              <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Gewerbestrom-Anfrage für NRW</h2>
+              <h2 className="font-heading text-3xl font-bold text-primary mb-6">Kurz erklärt: Gewerbestromvergleich für NRW</h2>
 
               <p className="font-paragraph text-lg text-gray-700 mb-6">
-                Mit unserem kostenlosen Gewerbestrom-Service bereiten Sie eine unverbindliche Anfrage fuer Ihr Unternehmen in Nordrhein-Westfalen vor. Sie geben Ihre Verbrauchsdaten ein und erhalten eine erste Orientierung zu passenden Tarifkriterien, bevor konkrete Angebote individuell geprueft werden.
+                Mit unserem Gewerbestromvergleich erhalten Sie einen direkten Live-Marktüberblick für Ihr Unternehmen
+                in Nordrhein-Westfalen. Für komplexere Verbrauchsprofile oder Rückfragen können Sie im zweiten Schritt
+                zusätzlich unser Anfrageformular nutzen.
               </p>
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4">So funktioniert die Anfrage – 5 Schritte</h3>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">So funktioniert der Vergleich – 5 Schritte</h3>
               <ol className="font-paragraph text-gray-700 space-y-3 mb-6 list-decimal list-inside">
                 <li><strong>Jahresverbrauch eingeben:</strong> Geben Sie Ihren jährlichen Stromverbrauch in kWh ein (zu finden auf Ihrer letzten Stromrechnung)</li>
-                <li><strong>Zähler- und Marktlokation (falls vorhanden):</strong> Tragen Sie diese Nummern ein, falls Sie diese bereits haben – sie ermöglichen präzisere Angebote</li>
-                <li><strong>Leistung und Lastprofil:</strong> Geben Sie die maximale Leistung und das Lastprofil an (falls vorhanden)</li>
-                <li><strong>Postleitzahl und Branche:</strong> Nennen Sie Ihren Standort und Ihre Branche fuer eine passende Einordnung</li>
-                <li><strong>Anfrage absenden:</strong> Auf Basis Ihrer Angaben pruefen wir passende Optionen und melden uns zum weiteren Ablauf</li>
+                <li><strong>Live-Tarife prüfen:</strong> Vergleichen Sie aktuelle Angebote nach Preis, Bonus, Laufzeit und Preisgarantie</li>
+                <li><strong>Optionen einordnen:</strong> Bewerten Sie Tarifdetails passend zu Ihrem Verbrauchsprofil</li>
+                <li><strong>Sonderfälle ergänzen:</strong> Nutzen Sie bei Bedarf unser Formular für RLM, mehrere Standorte oder spezielle Anforderungen</li>
+                <li><strong>Nächsten Schritt starten:</strong> Treffen Sie auf Basis transparenter Tarifdaten eine belastbare Vorauswahl</li>
               </ol>
             </div>
 
@@ -146,7 +192,69 @@ export default function GewerbestromPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="hover:bg-gray-50 transition-colors\">\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Jahresverbrauch (kWh)</td>\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. 120.000</td>\n                    </tr>\n                    <tr className="bg-gray-50 hover:bg-gray-100 transition-colors\">\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">PLZ/Ort</td>\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. 40210 Düsseldorf</td>\n                    </tr>\n                    <tr className="hover:bg-gray-50 transition-colors\">\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Zählernummer/Marktlokation</td>\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. DE… / falls vorhanden</td>\n                    </tr>\n                    <tr className="bg-gray-50 hover:bg-gray-100 transition-colors\">\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Leistung (kW)</td>\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. 85</td>\n                    </tr>\n                    <tr className="hover:bg-gray-50 transition-colors\">\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Lastprofil (SLP/RLM)</td>\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. RLM</td>\n                    </tr>\n                    <tr className="bg-gray-50 hover:bg-gray-100 transition-colors\">\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Vertragslaufzeit</td>\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. 12 Monate</td>\n                    </tr>\n                    <tr className="hover:bg-gray-50 transition-colors\">\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">Branche/Nutzung</td>\n                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">z.B. Produktion</td>\n                    </tr>\n                  </tbody>\n                </table>\n              </div>\n            </div>\n\n            <div>\n              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Welche Angaben du brauchst</h3>
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">
+                        Jahresverbrauch (kWh)
+                      </td>
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">
+                        z.B. 120.000
+                      </td>
+                    </tr>
+                    <tr className="bg-gray-50 hover:bg-gray-100 transition-colors">
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">
+                        PLZ/Ort
+                      </td>
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">
+                        z.B. 40210 Düsseldorf
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">
+                        Zählernummer/Marktlokation
+                      </td>
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">
+                        z.B. DE… / falls vorhanden
+                      </td>
+                    </tr>
+                    <tr className="bg-gray-50 hover:bg-gray-100 transition-colors">
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">
+                        Leistung (kW)
+                      </td>
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">
+                        z.B. 85
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">
+                        Lastprofil (SLP/RLM)
+                      </td>
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">
+                        z.B. RLM
+                      </td>
+                    </tr>
+                    <tr className="bg-gray-50 hover:bg-gray-100 transition-colors">
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">
+                        Vertragslaufzeit
+                      </td>
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">
+                        z.B. 12 Monate
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph font-semibold text-foreground">
+                        Branche/Nutzung
+                      </td>
+                      <td className="border border-gray-300 p-3 md:p-4 font-paragraph text-gray-700">
+                        z.B. Produktion
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Welche Angaben du brauchst</h3>
               <ul className="font-paragraph text-gray-700 space-y-2 mb-6">
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">•</span>
@@ -198,7 +306,7 @@ export default function GewerbestromPage() {
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Häufige Fehler bei der Gewerbestrom-Anfrage</h3>
+              <h3 className="font-heading text-2xl font-bold text-primary mb-4">Häufige Fehler beim Gewerbestromvergleich</h3>
               <ul className="font-paragraph text-gray-700 space-y-3 mb-6">
                 <li className="flex items-start gap-3">
                   <span className="text-secondary font-bold flex-shrink-0">✗</span>
@@ -218,13 +326,16 @@ export default function GewerbestromPage() {
             <div>
               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Gewerbestrom in NRW</h3>
               <p className="font-paragraph text-gray-700 mb-4">
-                Nordrhein-Westfalen ist ein grosser und heterogener Energiemarkt fuer Unternehmen. Strompreise fuer Gewerbekunden variieren je nach Verbrauch, Standort und Branche. Unsere Anfrage hilft dabei, regionale und branchenspezifische Unterschiede strukturiert zu erfassen und passende Optionen fuer die naechsten Schritte einzugrenzen.
+                Nordrhein-Westfalen ist ein grosser und heterogener Energiemarkt fuer Unternehmen. Strompreise fuer
+                Gewerbekunden variieren je nach Verbrauch, Standort und Branche. Der Live-Vergleich hilft dabei,
+                regionale und branchenspezifische Unterschiede strukturiert sichtbar zu machen und passende Optionen
+                fuer die naechsten Schritte einzugrenzen.
               </p>
             </div>
 
             <div className="bg-secondary/10 border-l-4 border-secondary p-6 rounded">
               <p className="font-paragraph text-gray-700 italic">
-                Jetzt unverbindlich Anfrage stellen und passende Gewerbestrom-Optionen fuer Ihr Unternehmen pruefen.
+                Jetzt live vergleichen und fuer komplexe Gewerbefaelle bei Bedarf persoenliche Unterstuetzung anfragen.
               </p>
             </div>
           </div>
@@ -374,7 +485,9 @@ export default function GewerbestromPage() {
                     Wie funktioniert der Wechsel?
                   </h3>
                   <p className="font-paragraph text-foreground/80">
-                    Der Wechsel ist einfach und unkompliziert. Füllen Sie unser Anfrageformular aus, wir erstellen Ihnen ein individuelles Angebot und kümmern uns um alle Formalitäten. Ihre Stromversorgung bleibt während des gesamten Prozesses gesichert.
+                    Für viele Unternehmen beginnt der Wechsel direkt mit dem Live-Rechner. Bei komplexeren Anforderungen
+                    begleiten wir Sie anschließend persönlich weiter. Ihre Stromversorgung bleibt während des gesamten
+                    Prozesses gesichert.
                   </p>
                 </div>
                 <div>
@@ -382,7 +495,8 @@ export default function GewerbestromPage() {
                     Regionale Expertise
                   </h3>
                   <p className="font-paragraph text-foreground/80">
-                    Wir beruecksichtigen regionale Besonderheiten in NRW und strukturieren Ihre Anfrage fuer einen sauberen Angebotsvergleich.
+                    Wir berücksichtigen regionale Besonderheiten in NRW und kombinieren den Live-Marktüberblick mit
+                    persönlicher Unterstützung, wenn Ihr Gewerbefall mehr Tiefe braucht.
                   </p>
                 </div>
               </div>
@@ -407,10 +521,11 @@ export default function GewerbestromPage() {
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-primary mb-4">
-              Jetzt Angebot anfordern
+              Persönliche Unterstützung nach dem Vergleich
             </h2>
             <p className="font-paragraph text-lg text-foreground/80 max-w-3xl mx-auto">
-              Füllen Sie das Formular aus und erhalten Sie ein individuelles Angebot für Gewerbestrom
+              Nutzen Sie das Formular, wenn Ihr Gewerbeprofil vertieft geprüft werden soll oder der Live-Rechner nicht
+              alle Anforderungen abbildet.
             </p>
           </div>
 
@@ -630,9 +745,12 @@ export default function GewerbestromPage() {
           <div className="space-y-6">
             <h2 className="font-heading text-3xl font-bold text-primary">Warum energievergleich.shop?</h2>
 
-            <p className="font-paragraph text-lg text-gray-700 leading-relaxed">
-              Bei der Wahl eines Gewerbestrom-Anbieters zaehlen Transparenz und belastbare Kriterien. energievergleich.shop unterstuetzt Sie mit einer kostenlosen Erstorientierung zu Preisbestandteilen, Vertragsbedingungen und Anfragedaten. Diese Seite erhebt keinen Anspruch auf eine Live-Marktuebersicht; verbindliche Angebote werden erst im individuellen Prozess geprueft.
-            </p>
+              <p className="font-paragraph text-lg text-gray-700 leading-relaxed">
+              Bei der Wahl eines Gewerbestrom-Anbieters zählen Transparenz und belastbare Kriterien.
+              energievergleich.shop verbindet einen Live-Vergleich über Verivox mit persönlicher Unterstützung für
+              komplexere Gewerbefälle. So sehen Sie aktuelle Tarifdetails und haben bei Bedarf dennoch einen direkten
+              Ansprechpartner.
+              </p>
 
             <p className="font-paragraph text-base text-gray-700">
               Erfahren Sie mehr über unsere Vergleichskriterien in unserer <Link to="/methodik" className="text-primary hover:underline font-semibold">So vergleichen wir (Methodik)</Link> oder kontaktieren Sie uns direkt unter <Link to="/kontakt" className="text-primary hover:underline font-semibold">Kontakt</Link>.
