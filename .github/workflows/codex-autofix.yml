@@ -78,11 +78,27 @@ jobs:
             git add .
             git commit -m "auto-fix: codex resolved CI failure"
             git push origin "$BRANCH"
-            gh pr create \
+
+            # Ensure the automerge label exists before creating the PR
+            if gh api "repos/${{ github.repository }}/labels/automerge%3A%20true" 2>/dev/null; then
+              echo "Label 'automerge: true' already exists."
+            else
+              gh api "repos/${{ github.repository }}/labels" \
+                --method POST \
+                -f name="automerge: true" \
+                -f color="0075ca" \
+                -f description="Automatically merge this PR after all checks pass" \
+                || echo "Warning: failed to create 'automerge: true' label – check permissions."
+            fi
+
+            PR_URL=$(gh pr create \
               --base main \
               --head "$BRANCH" \
               --title "auto-fix: codex resolved CI failure" \
-              --body "Automated fix proposed by Codex AutoFix workflow for a CI failure on main. Review and merge via this PR — do not push directly to main."
+              --body "Automated fix proposed by Codex AutoFix workflow for a CI failure on main. Review and merge via this PR — do not push directly to main." \
+              --label "automerge: true")
+
+            echo "PR created: $PR_URL"
           else
             echo "No changes to commit"
           fi
