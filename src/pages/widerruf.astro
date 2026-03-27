@@ -12,5 +12,5 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogTitle="Widerrufsbelehrung | energievergleich.shop"
   ogDescription="Informationen zum Widerrufsrecht bei energievergleich.shop"
 >
-  <AstroRouterProvider path={Astro.url.pathname} Page={WiderrufPage} />
+  <AstroRouterProvider client:load path={Astro.url.pathname} Page={WiderrufPage} />
 </SeoPageLayout>

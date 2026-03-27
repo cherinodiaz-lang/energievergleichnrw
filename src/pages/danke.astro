@@ -12,5 +12,5 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogTitle="Danke | Energievergleich"
   ogDescription="Vielen Dank fuer Ihre Anfrage. Unser Team meldet sich kurzfristig bei Ihnen."
 >
-  <AstroRouterProvider path={Astro.url.pathname} Page={ThankYouPage} />
+  <AstroRouterProvider client:load path={Astro.url.pathname} Page={ThankYouPage} />
 </SeoPageLayout>

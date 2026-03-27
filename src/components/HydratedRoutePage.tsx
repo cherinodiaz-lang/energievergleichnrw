@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import { BrowserRouter, StaticRouter } from "react-router-dom";
 import AnalyticsBootstrap from "@/components/AnalyticsBootstrap";
 import ConsentBanner from "@/components/ConsentBanner";
+import NotFoundPage from "@/components/pages/NotFoundPage";
 import { SEO_CONFIG } from "@/lib/seo-config";
 import { resolveHydratedPage } from "@/lib/hydrated-page-resolver";
 
@@ -11,7 +12,7 @@ interface HydratedRoutePageProps {
 }
 
 export default function HydratedRoutePage({ path, Page }: HydratedRoutePageProps) {
-  const ResolvedPage = resolveHydratedPage(path) ?? Page;
+  const ResolvedPage = resolveHydratedPage(path) ?? Page ?? NotFoundPage;
   const pageWithGlobalUi = (
     <>
       <AnalyticsBootstrap measurementId={SEO_CONFIG.googleAnalyticsId} />

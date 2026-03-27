@@ -1,0 +1,16 @@
+---
+import AstroRouterProvider from "@/components/AstroRouterProvider";
+import NotFoundPage from "@/components/pages/NotFoundPage";
+import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
+---
+
+<SeoPageLayout
+  title="Seite nicht gefunden | energievergleich.shop"
+  description="Die angeforderte Seite wurde nicht gefunden."
+  canonicalPath="/404"
+  keywords=""
+  ogTitle="Seite nicht gefunden | energievergleich.shop"
+  ogDescription="Die angeforderte Seite wurde nicht gefunden."
+>
+  <AstroRouterProvider client:load path={Astro.url.pathname} Page={NotFoundPage} />
+</SeoPageLayout>

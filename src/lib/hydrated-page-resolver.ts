@@ -9,7 +9,6 @@ import HomePage from "@/components/pages/HomePage";
 import ImpressumPage from "@/components/pages/ImpressumPage";
 import KontaktPage from "@/components/pages/KontaktPage";
 import MethodologyPage from "@/components/pages/MethodologyPage";
-import NotFoundPage from "@/components/pages/NotFoundPage";
 import PhotovoltaikNrwPage from "@/components/pages/PhotovoltaikNrwPage";
 import RatgeberPage from "@/components/pages/RatgeberPage";
 import SitemapPage from "@/components/pages/SitemapPage";
@@ -19,7 +18,6 @@ import WiderrufPage from "@/components/pages/WiderrufPage";
 import GasCategoryPage from "@/components/pages/ratgeber/GasCategoryPage";
 import GewerbeCategoryPage from "@/components/pages/ratgeber/GewerbeCategoryPage";
 import PhotovoltaikCategoryPage from "@/components/pages/ratgeber/PhotovoltaikCategoryPage";
-import RatgeberArticlePage from "@/components/pages/ratgeber/RatgeberArticlePage";
 import StromCategoryPage from "@/components/pages/ratgeber/StromCategoryPage";
 import WechselwissenCategoryPage from "@/components/pages/ratgeber/WechselwissenCategoryPage";
 
@@ -51,17 +49,7 @@ const STATIC_PAGE_COMPONENTS = {
   "/widerruf": WiderrufPage,
 } satisfies Record<string, ComponentType>;
 
-export function resolveHydratedPage(pathname: string): ComponentType {
+export function resolveHydratedPage(pathname: string): ComponentType | undefined {
   const normalizedPath = normalizePath(pathname);
-  const staticPage = STATIC_PAGE_COMPONENTS[normalizedPath];
-
-  if (staticPage) {
-    return staticPage;
-  }
-
-  if (/^\/ratgeber\/[^/]+\/[^/]+$/.test(normalizedPath)) {
-    return RatgeberArticlePage;
-  }
-
-  return NotFoundPage;
+  return STATIC_PAGE_COMPONENTS[normalizedPath];
 }

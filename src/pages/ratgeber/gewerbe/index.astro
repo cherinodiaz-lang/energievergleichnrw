@@ -12,5 +12,5 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogTitle="Gewerbeenergie | Ratgeber"
   ogDescription="Ratgeber für Gewerbekunden und Unternehmen"
 >
-  <AstroRouterProvider path={Astro.url.pathname} Page={GewerbeCategoryPage} />
+  <AstroRouterProvider client:load path={Astro.url.pathname} Page={GewerbeCategoryPage} />
 </SeoPageLayout>

@@ -15,5 +15,5 @@ const seo = getPageSEO("gewerbestrom");
   ogTitle={seo.ogTitle}
   ogDescription={seo.ogDescription}
 >
-  <AstroRouterProvider path={Astro.url.pathname} Page={GewerbestromPage} />
+  <AstroRouterProvider client:load path={Astro.url.pathname} Page={GewerbestromPage} />
 </SeoPageLayout>
