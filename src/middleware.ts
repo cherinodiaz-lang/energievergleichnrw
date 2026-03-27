@@ -7,6 +7,18 @@ const SECURITY_HEADERS = {
   "X-Content-Type-Options": "nosniff",
   "Referrer-Policy": "strict-origin-when-cross-origin",
   "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+  "Content-Security-Policy": [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://static.wixstatic.com",
+    "style-src 'self' 'unsafe-inline' https://static.wixstatic.com https://fonts.googleapis.com",
+    "img-src 'self' data: https://static.wixstatic.com https://www.googletagmanager.com https://www.google-analytics.com",
+    "font-src 'self' https://static.wixstatic.com https://fonts.gstatic.com",
+    "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://*.wix.com https://*.wixsite.com",
+    "frame-src 'none'",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+  ].join("; "),
 } as const;
 
 function withSecurityHeaders(response: Response): Response {
