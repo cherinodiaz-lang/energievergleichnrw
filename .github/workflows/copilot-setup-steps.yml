@@ -1,0 +1,46 @@
+name: Copilot Setup Steps
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+concurrency:
+  group: copilot-setup-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  ASTRO_TELEMETRY_DISABLED: "1"
+  CI: true
+
+jobs:
+  copilot-agent-setup:
+    name: Copilot Agent Setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Disable Astro telemetry
+        run: npx astro telemetry disable || true
+
+      - name: Record available tool versions
+        run: |
+          node --version
+          npm --version
+          npx astro --version
+          npx vitest --version
+          npx tsx --version

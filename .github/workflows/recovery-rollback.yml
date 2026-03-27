@@ -1,0 +1,90 @@
+name: Recovery Rollback
+
+on:
+  workflow_dispatch:
+    inputs:
+      recovery_base_ref:
+        description: Base ref to branch from for recovery work
+        required: true
+        default: main
+      rollback_commit:
+        description: Optional commit SHA to revert on the recovery branch
+        required: false
+      reason:
+        description: Human-readable recovery reason
+        required: true
+
+concurrency:
+  group: recovery-rollback
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  CI: true
+
+jobs:
+  create-recovery-branch:
+    name: Recovery Branch Rollback
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: ${{ inputs.recovery_base_ref }}
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Derive recovery branch name
+        id: vars
+        run: |
+          base_ref="${{ inputs.recovery_base_ref }}"
+          safe_ref="$(printf '%s' "$base_ref" | tr '/:@ ' '-' | tr -cd '[:alnum:]._-')"
+          branch_name="recovery/${safe_ref}-${{ github.run_id }}"
+          echo "branch_name=$branch_name" >> "$GITHUB_OUTPUT"
+          {
+            echo "Recovery reason: ${{ inputs.reason }}"
+            echo "Base ref: $base_ref"
+            echo "Rollback commit: ${{ inputs.rollback_commit }}"
+            echo "Generated recovery branch: $branch_name"
+            echo "Main branch hard reset: not performed"
+          } > recovery-summary.txt
+
+      - name: Create recovery branch
+        run: git checkout -b "${{ steps.vars.outputs.branch_name }}"
+
+      - name: Revert requested commit on recovery branch
+        if: ${{ inputs.rollback_commit != '' }}
+        run: git revert --no-edit "${{ inputs.rollback_commit }}"
+
+      - name: Push recovery branch
+        run: git push origin "HEAD:${{ steps.vars.outputs.branch_name }}"
+
+      - name: Upload recovery summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: recovery-summary-${{ github.run_id }}
+          path: recovery-summary.txt
+
+      - name: Write recovery summary
+        run: |
+          {
+            echo "## Recovery branch created"
+            echo ""
+            echo "- Recovery branch: \`${{ steps.vars.outputs.branch_name }}\`"
+            echo "- Base ref: \`${{ inputs.recovery_base_ref }}\`"
+            if [ -n "${{ inputs.rollback_commit }}" ]; then
+              echo "- Reverted commit: \`${{ inputs.rollback_commit }}\`"
+            else
+              echo "- Reverted commit: none"
+            fi
+            echo "- Main branch was not hard-reset."
+          } >> "$GITHUB_STEP_SUMMARY"

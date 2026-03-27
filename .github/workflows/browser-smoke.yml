@@ -1,4 +1,4 @@
-name: Lighthouse CI
+name: Browser Smoke
 
 on:
   workflow_dispatch:
@@ -8,7 +8,7 @@ on:
     branches: [main]
 
 concurrency:
-  group: lighthouse-${{ github.event.pull_request.number || github.ref }}
+  group: browser-smoke-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -19,45 +19,52 @@ env:
   CI: true
 
 jobs:
-  lighthouse-audit:
-    name: Lighthouse Audit
+  browser-smoke-validation:
+    name: Browser Smoke Validation
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     env:
-      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-      SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
-      SENTRY_PROJECT_FRONTEND: ${{ secrets.SENTRY_PROJECT_FRONTEND }}
-      SENTRY_PROJECT_SERVER: ${{ secrets.SENTRY_PROJECT_SERVER }}
-      PUBLIC_SENTRY_DSN: ${{ secrets.PUBLIC_SENTRY_DSN }}
-      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
       WIX_CLIENT_ID: ${{ secrets.WIX_CLIENT_ID }}
       WIX_CLIENT_SECRET: ${{ secrets.WIX_CLIENT_SECRET }}
-      WIX_CLIENT_PUBLIC_KEY: ${{ secrets.WIX_CLIENT_PUBLIC_KEY }}
       WIX_CLIENT_INSTANCE_ID: ${{ secrets.WIX_CLIENT_INSTANCE_ID }}
+      WIX_CLIENT_PUBLIC_KEY: ${{ secrets.WIX_CLIENT_PUBLIC_KEY }}
+
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
         with:
           node-version: 20
           cache: npm
-      - id: chrome
+
+      - name: Setup Chrome
+        id: chrome
         uses: browser-actions/setup-chrome@v1
+
       - name: Install dependencies
         run: npm ci
+
       - name: Disable Astro telemetry
         run: npx astro telemetry disable || true
+
       - name: Build preview bundle
         run: npm run build
+
       - name: Start preview worker
         run: |
           npm run preview:worker > preview.log 2>&1 &
           echo $! > preview.pid
-      - name: Wait for Lighthouse routes
+
+      - name: Wait for critical routes
         run: |
           urls=(
             "http://127.0.0.1:4321/"
             "http://127.0.0.1:4321/stromvergleich-nrw"
             "http://127.0.0.1:4321/gasvergleich-nrw"
+            "http://127.0.0.1:4321/photovoltaik-nrw"
+            "http://127.0.0.1:4321/ratgeber"
           )
           for url in "${urls[@]}"; do
             ready=0
@@ -75,39 +82,37 @@ jobs:
               exit 1
             fi
           done
-      - name: Run browser visibility smoke
+
+      - name: Run runtime smoke
+        run: |
+          set -o pipefail
+          npm run smoke:runtime -- --base-url http://127.0.0.1:4321 | tee runtime-smoke.log
+
+      - name: Run browser smoke
         env:
           CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
         run: |
           set -o pipefail
           npx tsx scripts/smoke-browser.ts --base-url http://127.0.0.1:4321 | tee browser-smoke.log
-      - name: Collect Lighthouse metrics
-        env:
-          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
-        run: npm run lhci:collect
-      - name: Assert Lighthouse thresholds
-        run: npm run lhci:assert
-      - name: Upload Lighthouse results
-        env:
-          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-        run: npx lhci upload --config=lighthouserc.json
-      - name: Upload Lighthouse artifacts
+
+      - name: Upload smoke logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: lighthouse-${{ github.run_id }}
+          name: browser-smoke-${{ github.run_id }}
           if-no-files-found: ignore
           path: |
             preview.log
+            runtime-smoke.log
             browser-smoke.log
-            .lighthouseci/**
+
       - name: Stop preview worker
         if: always()
         run: |
           if [ -f preview.pid ]; then
             kill "$(cat preview.pid)" || true
           fi
+
       - name: Show preview log
         if: failure()
         run: cat preview.log

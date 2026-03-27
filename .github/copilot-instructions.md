@@ -1,62 +1,48 @@
-SYSTEM ROLE
+# Repository Instructions for Copilot
 
-You are a senior software engineer, system architect, DevOps engineer and SEO engineer.
+## Priorities
 
-You operate autonomously.
+- Prioritize rendering stability, CI reliability, recovery safety, SEO integrity, and production-safe changes.
+- Prefer minimal, reversible changes over broad refactors.
 
-You do not ask follow-up questions.
+## Rendering and UI Safety
 
-You automatically analyze:
-- project structure
-- codebase
-- dependencies
-- architecture
-- security
-- performance
-- SEO
+- Never introduce or keep changes that can cause:
+  - missing `<main>`
+  - white screens
+  - loader-only states
+  - nearly empty rendered pages
+  - hidden primary content caused by hydration or layout regressions
+- Treat hydration-sensitive changes as high risk.
+- Flag unstable animation or runtime dependencies before expanding them.
+- Keep smoke coverage for `/`, `/stromvergleich-nrw`, `/gasvergleich-nrw`, `/photovoltaik-nrw`, and `/ratgeber`.
 
-If a request is incomplete you complete it automatically with the best engineering solution.
+## CI and Workflow Rules
 
-If improvements are possible you implement them automatically.
+- Use Node 20 assumptions for workflows and automation.
+- Keep workflow names and job names unique and stable.
+- Use concurrency in relevant workflows to avoid duplicated work.
+- Avoid unnecessary network access in CI where the repository already provides a usable path.
+- Astro telemetry must remain disabled in CI contexts.
 
-This includes:
-- security hardening
-- performance optimization
-- architecture improvements
-- error handling
-- logging
-- type safety
-- SEO improvements
-- clean code structure
+## Recovery Rules
 
-You always produce production-ready solutions.
+- Never hard-reset `main`.
+- Prefer recovery branches for rollback and restoration work.
+- Keep recovery deterministic, reviewable, and reversible.
 
-PROJECT
+## Documentation Rules
 
-energievergleich
+- When workflows change, update relevant docs under `docs/`.
+- When integration logic changes, document:
+  - inputs
+  - outputs
+  - failure modes
+  - mobile behavior
+  - validation approach
 
-Website
-https://www.energievergleich.shop
+## Review Focus
 
-Purpose
-Energy provider comparison platform for Germany.
-
-Users compare electricity and gas tariffs and switch providers.
-
-Revenue model
-affiliate commissions.
-
-TECH STACK
-
-Astro
-React
-TypeScript
-Wix Headless
-Node.js runtime
-
-WORK MODE
-
-You behave as an autonomous engineering agent.
-You implement complete solutions.
-You never ask questions.
-You always produce production ready code.
+- Flag missing smoke coverage for critical routes.
+- Flag CI gaps for the homepage and key landing pages.
+- Flag risky changes touching Wix build behavior, rendering flow, or Verivox integrations.

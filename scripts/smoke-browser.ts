@@ -11,6 +11,15 @@ type BrowserRouteCheck = {
 
 const DEFAULT_BASE_URL = "http://127.0.0.1:4321";
 const DEFAULT_TIMEOUT_MS = 30_000;
+const LOADER_PATTERNS = [
+  /\bloading\b/i,
+  /\bwird geladen\b/i,
+  /\bgeladen\b/i,
+  /\bplease wait\b/i,
+  /\bbitte warten\b/i,
+  /\binitializing\b/i,
+  /\bpreparing\b/i,
+];
 const ROUTE_CHECKS: BrowserRouteCheck[] = [
   { path: "/", expectedText: "Energie wechseln.", minBodyTextLength: 400 },
   { path: "/stromvergleich-nrw", expectedText: "Stromvergleich für NRW", minBodyTextLength: 250 },
@@ -78,6 +87,14 @@ function getBodyText(html: string): string {
   );
 }
 
+function isLoaderOnly(bodyText: string, html: string, minBodyTextLength: number): boolean {
+  const normalizedText = bodyText.trim().toLowerCase();
+  const loaderMarkupPresent = /(progressbar|spinner|skeleton|aria-busy=["']true["'])/i.test(html);
+  const shortText = normalizedText.length > 0 && normalizedText.length < Math.min(minBodyTextLength, 200);
+
+  return shortText && (loaderMarkupPresent || LOADER_PATTERNS.some((pattern) => pattern.test(normalizedText)));
+}
+
 function dumpDom(chromePath: string, url: string): { html: string; stderr: string } {
   const result = spawnSync(
     chromePath,
@@ -130,14 +147,17 @@ async function run(): Promise<void> {
     const bodyTextLength = bodyText.length;
     const hasMain = /<main[\s>]/i.test(html);
     const hasExpectedText = bodyText.includes(routeCheck.expectedText);
-    const routePassed = hasMain && hasExpectedText && bodyTextLength >= routeCheck.minBodyTextLength;
+    const whiteScreen = bodyTextLength === 0;
+    const nearlyEmpty = bodyTextLength < routeCheck.minBodyTextLength;
+    const loaderOnly = isLoaderOnly(bodyText, html, routeCheck.minBodyTextLength);
+    const routePassed = hasMain && hasExpectedText && !whiteScreen && !nearlyEmpty && !loaderOnly;
 
     if (!routePassed) {
       hasFailures = true;
     }
 
     console.log(
-      `${routePassed ? "PASS" : "FAIL"} ${routeCheck.path} | <main>=${hasMain} | expected="${routeCheck.expectedText}"=${hasExpectedText} | bodyTextLength=${bodyTextLength}`,
+      `${routePassed ? "PASS" : "FAIL"} ${routeCheck.path} | <main>=${hasMain} | expected="${routeCheck.expectedText}"=${hasExpectedText} | whiteScreen=${whiteScreen} | loaderOnly=${loaderOnly} | nearlyEmpty=${nearlyEmpty} | bodyTextLength=${bodyTextLength}`,
     );
 
     if (!routePassed) {
