@@ -1,4 +1,4 @@
-import { execFileSync, spawn, type ChildProcessWithoutNullStreams } from "node:child_process";
+import { execFileSync, spawn, spawnSync, type ChildProcessWithoutNullStreams } from "node:child_process";
 import { once } from "node:events";
 import fs from "node:fs";
 import path from "node:path";
@@ -26,6 +26,11 @@ export function getPreviewPrerequisiteIssue(cwd: string): string | null {
 
   if (!fs.existsSync(astroBinPath)) {
     return "missing local Astro CLI binary at node_modules/.bin/astro";
+  }
+
+  const wixCheck = spawnSync("wix", ["--version"], { stdio: "pipe" });
+  if (wixCheck.error || wixCheck.status !== 0) {
+    return "wix CLI is not available on PATH (required for npm run build and preview)";
   }
 
   return null;

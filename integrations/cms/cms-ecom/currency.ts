@@ -69,6 +69,7 @@ const useCurrencyStore = create<CurrencyStore>((set, get) => ({
 
       set({ isLoading: true, error: null });
       try {
+        // @ts-expect-error TS2589: Wix SDK types exceed TypeScript's type instantiation depth
         const cart = await currentCart.getCurrentCart();
         set({
           currency: cart.currency || null,

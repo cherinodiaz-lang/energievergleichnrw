@@ -149,6 +149,7 @@ export const useCartStore = create<CartStore>((set, get) => ({
       set({ addingItemId: input.itemId, error: null });
 
       try {
+        // @ts-expect-error TS2589/TS2859: Wix SDK types exceed TypeScript's type instantiation depth
         const result = await currentCart.addToCurrentCart({
           lineItems: [{
             catalogReference: {
@@ -188,6 +189,7 @@ export const useCartStore = create<CartStore>((set, get) => ({
       set({ items: items.filter(i => i.id !== item.id) });
 
       // Server call (fire and forget, rollback on error)
+      // @ts-expect-error TS2589: Wix SDK types exceed TypeScript's type instantiation depth
       currentCart.removeLineItemsFromCurrentCart([item.id]).catch((error) => {
         console.error('Remove from cart failed:', error);
         // Rollback - add item back
@@ -201,6 +203,7 @@ export const useCartStore = create<CartStore>((set, get) => ({
         if (quantity <= 0) {
           await currentCart.removeLineItemsFromCurrentCart([lineItemId]);
         } else {
+          // @ts-expect-error TS2589: Wix SDK types exceed TypeScript's type instantiation depth
           await currentCart.updateCurrentCartLineItemQuantity([{ _id: lineItemId, quantity }]);
         }
       } catch (error) {

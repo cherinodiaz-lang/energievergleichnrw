@@ -13,7 +13,7 @@ describe("bootstrapWixLocalEnv", () => {
 
     const result = bootstrapWixLocalEnv(
       env,
-      "/Users/joelcherinodiaz/Desktop/energievergleichnrw Kopie"
+      process.cwd()
     );
 
     expect(result.hasRealWixAuth).toBe(false);
