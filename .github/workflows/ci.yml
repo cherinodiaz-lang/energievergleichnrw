@@ -21,6 +21,7 @@ jobs:
       WIX_CLIENT_SECRET: ${{ secrets.WIX_CLIENT_SECRET }}
       WIX_CLIENT_INSTANCE_ID: ${{ secrets.WIX_CLIENT_INSTANCE_ID }}
       WIX_CLIENT_PUBLIC_KEY: ${{ secrets.WIX_CLIENT_PUBLIC_KEY }}
+      ASTRO_TELEMETRY_DISABLED: "1"
     timeout-minutes: 20
 
     steps:

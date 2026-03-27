@@ -9,6 +9,10 @@ permissions:
   contents: write
   pull-requests: write
 
+concurrency:
+  group: codex-autofix
+  cancel-in-progress: true
+
 jobs:
   autofix:
     if: >
@@ -17,6 +21,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      ASTRO_TELEMETRY_DISABLED: "1"
       WIX_CLIENT_ID: ${{ secrets.WIX_CLIENT_ID }}
       WIX_CLIENT_SECRET: ${{ secrets.WIX_CLIENT_SECRET }}
       WIX_CLIENT_INSTANCE_ID: ${{ secrets.WIX_CLIENT_INSTANCE_ID }}
@@ -24,13 +29,13 @@ jobs:
 
     steps:
       - name: Checkout failed revision
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.event.workflow_run.head_sha }}
           fetch-depth: 0
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 20
 
@@ -61,14 +66,23 @@ jobs:
           sandbox: workspace-write
           codex-args: --full-auto
 
-      - name: Commit and push fixes
+      - name: Commit and push fixes to recovery branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [[ -n "$(git status --porcelain)" ]]; then
             git config user.name "codex-bot"
             git config user.email "codex-bot@users.noreply.github.com"
+            BRANCH="recovery/codex-autofix-$(date +%Y%m%d-%H%M%S)"
+            git checkout -b "$BRANCH"
             git add .
             git commit -m "auto-fix: codex resolved CI failure"
-            git push origin HEAD:main
+            git push origin "$BRANCH"
+            gh pr create \
+              --base main \
+              --head "$BRANCH" \
+              --title "auto-fix: codex resolved CI failure" \
+              --body "Automated fix proposed by Codex AutoFix workflow for a CI failure on main. Review and merge via this PR — do not push directly to main."
           else
             echo "No changes to commit"
           fi
