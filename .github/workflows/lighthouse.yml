@@ -37,7 +37,7 @@ jobs:
         with:
           node-version: 20
       - id: chrome
-        uses: browser-actions/setup-chrome@v1
+        uses: browser-actions/setup-chrome@v2
       - run: npm ci
       - run: npm install -g @wix/cli
       - run: npm run build
@@ -84,4 +84,9 @@ jobs:
           fi
       - name: Show Wrangler preview log
         if: failure()
-        run: cat wrangler-preview.log
+        run: |
+          if [ -f wrangler-preview.log ]; then
+            cat wrangler-preview.log
+          else
+            echo "wrangler-preview.log not found"
+          fi
