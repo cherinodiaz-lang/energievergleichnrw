@@ -31,11 +31,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install dependencies
         run: npm install
+
+      - name: Install Wix CLI
+        run: npm install -g @wix/cli
 
       - name: Type and config checks
         id: typecheck
