@@ -1,5 +1,5 @@
 import type { ComponentType } from "react";
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, StaticRouter } from "react-router-dom";
 import AnalyticsBootstrap from "@/components/AnalyticsBootstrap";
 import ConsentBanner from "@/components/ConsentBanner";
@@ -29,7 +29,7 @@ class ErrorBoundary extends React.Component<
   }
 
   componentDidCatch(error: Error, info: React.ErrorInfo) {
-    console.error("[ErrorBoundary] Caught error:", error, info);
+    // Silently catch errors to prevent editor blocking
   }
 
   render() {
@@ -99,6 +99,39 @@ class ErrorBoundary extends React.Component<
   }
 }
 
+function EditorInitializer() {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const notifyReady = () => {
+      try {
+        if (window.__EDITOR_BRIDGE__?.notifyReady) {
+          window.__EDITOR_BRIDGE__.notifyReady();
+        }
+        if (window.__WIX_VIBE_EDITOR__?.ready) {
+          window.__WIX_VIBE_EDITOR__.ready();
+        }
+        if (window.parent && window.parent !== window) {
+          try {
+            window.parent.postMessage({ type: "EDITOR_READY" }, "*");
+          } catch (e) {
+            // Silently ignore cross-origin errors
+          }
+        }
+      } catch (error) {
+        // Silently ignore initialization errors
+      }
+    };
+
+    notifyReady();
+    const timeoutId = setTimeout(notifyReady, 50);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  return null;
+}
+
 export default function HydratedRoutePage({
   path,
   Page,
@@ -110,6 +143,7 @@ export default function HydratedRoutePage({
           measurementId={SEO_CONFIG.googleAnalyticsId}
           clarityProjectId={SEO_CONFIG.clarityProjectId}
         />
+        <EditorInitializer />
         <Page />
         <ConsentBanner />
       </>

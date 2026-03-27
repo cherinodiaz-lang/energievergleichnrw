@@ -4,6 +4,22 @@ queue_rules:
       - check-success=ci
 
 pull_request_rules:
+  # Auto-merge Copilot / bot fix PRs to develop after CI passes
+  - name: Auto-merge Copilot fixes to develop
+    conditions:
+      - base=develop
+      - label=automerge: true
+      - -draft
+      - -conflict
+      - check-success=CI / Validate
+    actions:
+      merge:
+        method: squash
+        commit_message_template: |
+          {{ title }} (#{{ number }})
+
+          {{ body }}
+
   # Auto-merge Dependabot patch/minor updates after CI passes
   - name: Auto-merge Dependabot patch and minor updates
     conditions:
