@@ -21,11 +21,28 @@ async function isReachable(url: string): Promise<boolean> {
   }
 }
 
+function isWixCliAvailable(): boolean {
+  try {
+    execFileSync("wix", ["--version"], { stdio: "pipe" });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export function getPreviewPrerequisiteIssue(cwd: string): string | null {
   const astroBinPath = path.join(cwd, "node_modules", ".bin", LOCAL_ASTRO_BIN);
 
   if (!fs.existsSync(astroBinPath)) {
     return "missing local Astro CLI binary at node_modules/.bin/astro";
+  }
+
+  if (!isWixCliAvailable()) {
+    return "wix CLI is not available (required for npm run build)";
+  }
+
+  if (!process.env.WIX_CLIENT_ID) {
+    return "WIX_CLIENT_ID environment variable is not set (required for npm run build)";
   }
 
   return null;

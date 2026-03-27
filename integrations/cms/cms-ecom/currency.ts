@@ -69,6 +69,7 @@ const useCurrencyStore = create<CurrencyStore>((set, get) => ({
 
       set({ isLoading: true, error: null });
       try {
+        // @ts-ignore ts(2589) – @wix/ecom generic types exceed TS instantiation depth limit
         const cart = await currentCart.getCurrentCart();
         set({
           currency: cart.currency || null,

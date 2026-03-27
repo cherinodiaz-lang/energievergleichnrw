@@ -11,10 +11,7 @@ describe("bootstrapWixLocalEnv", () => {
   it("falls back to wix.config.json appId and disables auth placeholders for local flows", () => {
     const env = {};
 
-    const result = bootstrapWixLocalEnv(
-      env,
-      "/Users/joelcherinodiaz/Desktop/energievergleichnrw Kopie"
-    );
+    const result = bootstrapWixLocalEnv(env, process.cwd());
 
     expect(result.hasRealWixAuth).toBe(false);
     expect(result.hasWixClientId).toBe(true);

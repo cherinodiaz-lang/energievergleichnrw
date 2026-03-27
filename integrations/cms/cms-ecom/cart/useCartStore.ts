@@ -149,6 +149,7 @@ export const useCartStore = create<CartStore>((set, get) => ({
       set({ addingItemId: input.itemId, error: null });
 
       try {
+        // @ts-ignore ts(2589) – @wix/ecom generic types exceed TS instantiation depth limit
         const result = await currentCart.addToCurrentCart({
           lineItems: [{
             catalogReference: {
@@ -188,6 +189,7 @@ export const useCartStore = create<CartStore>((set, get) => ({
       set({ items: items.filter(i => i.id !== item.id) });
 
       // Server call (fire and forget, rollback on error)
+      // @ts-ignore ts(2589) – @wix/ecom generic types exceed TS instantiation depth limit
       currentCart.removeLineItemsFromCurrentCart([item.id]).catch((error) => {
         console.error('Remove from cart failed:', error);
         // Rollback - add item back
@@ -199,8 +201,10 @@ export const useCartStore = create<CartStore>((set, get) => ({
     _sendQuantityUpdate: async (lineItemId: string, quantity: number) => {
       try {
         if (quantity <= 0) {
+          // @ts-ignore ts(2589) – @wix/ecom generic types exceed TS instantiation depth limit
           await currentCart.removeLineItemsFromCurrentCart([lineItemId]);
         } else {
+          // @ts-ignore ts(2589) – @wix/ecom generic types exceed TS instantiation depth limit
           await currentCart.updateCurrentCartLineItemQuantity([{ _id: lineItemId, quantity }]);
         }
       } catch (error) {

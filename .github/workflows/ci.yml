@@ -36,6 +36,22 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Bootstrap Wix env (fallback from wix.config.json)
+        run: |
+          if [ -z "$WIX_CLIENT_ID" ]; then
+            APP_ID=$(node -e "console.log(require('./wix.config.json').appId)")
+            echo "WIX_CLIENT_ID=$APP_ID" >> $GITHUB_ENV
+          fi
+          if [ -z "$WIX_CLIENT_INSTANCE_ID" ]; then
+            echo "WIX_CLIENT_INSTANCE_ID=local-preview-instance-id" >> $GITHUB_ENV
+          fi
+          if [ -z "$WIX_CLIENT_PUBLIC_KEY" ]; then
+            echo "WIX_CLIENT_PUBLIC_KEY=local-preview-public-key" >> $GITHUB_ENV
+          fi
+          if [ -z "$WIX_CLIENT_SECRET" ]; then
+            echo "WIX_CLIENT_SECRET=local-preview-secret" >> $GITHUB_ENV
+          fi
+
       - name: Type and config checks
         run: npm run check
 
