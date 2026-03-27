@@ -215,16 +215,16 @@ async function validateSitemap(): Promise<CheckResult> {
 }
 
 async function validateCanonicals(): Promise<CheckResult> {
-  const astroPage = await readFile('src/pages/[...slug].astro');
+  const seoLayout = await readFile('src/layouts/SeoPageLayout.astro');
   const seoSsr = await readFile('src/lib/seo-ssr.ts');
   const findings: Finding[] = [];
 
-  if (!astroPage.content.includes('<link rel="canonical" href={seo.canonicalUrl} />')) {
+  if (!seoLayout.content.includes('<link rel="canonical" href={canonicalUrl.toString()} />')) {
     findings.push(
       createFinding(
-        astroPage,
+        seoLayout,
         /canonical/,
-        'Canonical-Link muss serverseitig im Astro-Head auf seo.canonicalUrl gesetzt werden.',
+        'Canonical-Link muss zentral im SeoPageLayout serverseitig gesetzt werden.',
       ),
     );
   }
@@ -239,7 +239,7 @@ async function validateCanonicals(): Promise<CheckResult> {
     );
   }
 
-  findings.push(...findInvalidDomainLines(astroPage, (line) => /canonical/i.test(line)));
+  findings.push(...findInvalidDomainLines(seoLayout, (line) => /canonical/i.test(line)));
   findings.push(...findInvalidDomainLines(seoSsr, (line) => /canonicalUrl|siteUrl|toAbsoluteUrl/i.test(line)));
 
   return {
@@ -271,16 +271,16 @@ async function validateRobots(): Promise<CheckResult> {
 }
 
 async function validateOgUrls(): Promise<CheckResult> {
-  const astroPage = await readFile('src/pages/[...slug].astro');
+  const seoLayout = await readFile('src/layouts/SeoPageLayout.astro');
   const seoSsr = await readFile('src/lib/seo-ssr.ts');
   const findings: Finding[] = [];
 
-  if (!astroPage.content.includes('<meta property="og:url" content={seo.ogUrl} />')) {
+  if (!seoLayout.content.includes('<meta property="og:url" content={canonicalUrl.toString()} />')) {
     findings.push(
       createFinding(
-        astroPage,
+        seoLayout,
         /og:url/,
-        'og:url muss serverseitig im Astro-Head gesetzt werden.',
+        'og:url muss zentral im SeoPageLayout serverseitig gesetzt werden.',
       ),
     );
   }
@@ -295,7 +295,7 @@ async function validateOgUrls(): Promise<CheckResult> {
     );
   }
 
-  findings.push(...findInvalidDomainLines(astroPage, (line) => /og:url|og:site_name/i.test(line)));
+  findings.push(...findInvalidDomainLines(seoLayout, (line) => /og:url|og:site_name/i.test(line)));
   findings.push(...findInvalidDomainLines(seoSsr, (line) => /ogUrl|canonicalUrl/i.test(line)));
 
   const sourceFiles = await walk('src');

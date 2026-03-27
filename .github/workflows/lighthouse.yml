@@ -84,4 +84,9 @@ jobs:
           fi
       - name: Show Wrangler preview log
         if: failure()
-        run: cat wrangler-preview.log
+        run: |
+          if [ -f wrangler-preview.log ]; then
+            cat wrangler-preview.log
+          else
+            echo "wrangler-preview.log not found"
+          fi
