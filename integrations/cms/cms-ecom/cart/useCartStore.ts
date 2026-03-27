@@ -65,6 +65,30 @@ interface CartActions {
 
 type CartStore = CartState & { actions: CartActions };
 
+type AddToCurrentCartPayload = {
+  lineItems: Array<{
+    catalogReference: {
+      catalogItemId: string;
+      appId: string;
+      options?: { collectionId?: string };
+    };
+    quantity: number;
+  }>;
+};
+
+type CurrentCartApi = {
+  getCurrentCart: () => Promise<currentCart.Cart | null>;
+  addToCurrentCart: (payload: AddToCurrentCartPayload) => Promise<{ cart?: currentCart.Cart | null } | null>;
+  removeLineItemsFromCurrentCart: (lineItemIds: string[]) => Promise<unknown>;
+  updateCurrentCartLineItemQuantity: (
+    updates: Array<{ _id: string; quantity: number }>
+  ) => Promise<unknown>;
+  deleteCurrentCart: () => Promise<unknown>;
+};
+
+// Wix SDK cart generics can exceed TypeScript's recursion limits in CI.
+const cartApi = currentCart as unknown as CurrentCartApi;
+
 /** Check if error is a Wix "not found" error */
 const isCartNotFoundError = (error: unknown): boolean => {
   if (!error || typeof error !== 'object') return false;
@@ -123,7 +147,7 @@ export const useCartStore = create<CartStore>((set, get) => ({
 
       set({ isLoading: true, error: null });
       try {
-        const cart = await currentCart.getCurrentCart();
+        const cart = await cartApi.getCurrentCart();
         set({
           items: mapCartToItems(cart),
           isLoading: false,
@@ -149,7 +173,7 @@ export const useCartStore = create<CartStore>((set, get) => ({
       set({ addingItemId: input.itemId, error: null });
 
       try {
-        const result = await currentCart.addToCurrentCart({
+        const result = await cartApi.addToCurrentCart({
           lineItems: [{
             catalogReference: {
               catalogItemId: input.itemId,
@@ -188,7 +212,7 @@ export const useCartStore = create<CartStore>((set, get) => ({
       set({ items: items.filter(i => i.id !== item.id) });
 
       // Server call (fire and forget, rollback on error)
-      currentCart.removeLineItemsFromCurrentCart([item.id]).catch((error) => {
+      cartApi.removeLineItemsFromCurrentCart([item.id]).catch((error) => {
         console.error('Remove from cart failed:', error);
         // Rollback - add item back
         set((state) => ({ items: [...state.items, item] }));
@@ -199,9 +223,9 @@ export const useCartStore = create<CartStore>((set, get) => ({
     _sendQuantityUpdate: async (lineItemId: string, quantity: number) => {
       try {
         if (quantity <= 0) {
-          await currentCart.removeLineItemsFromCurrentCart([lineItemId]);
+          await cartApi.removeLineItemsFromCurrentCart([lineItemId]);
         } else {
-          await currentCart.updateCurrentCartLineItemQuantity([{ _id: lineItemId, quantity }]);
+          await cartApi.updateCurrentCartLineItemQuantity([{ _id: lineItemId, quantity }]);
         }
       } catch (error) {
         console.error('Update quantity failed:', error);
@@ -251,7 +275,7 @@ export const useCartStore = create<CartStore>((set, get) => ({
       set({ items: [] });
 
       // Server call
-      currentCart.deleteCurrentCart().catch((error) => {
+      cartApi.deleteCurrentCart().catch((error) => {
         console.error('Clear cart failed:', error);
         // Rollback
         set({ items: previousItems });
