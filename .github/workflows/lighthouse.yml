@@ -59,6 +59,10 @@ jobs:
               exit 1
             fi
           done
+      - name: Run browser visibility smoke
+        run: npx tsx scripts/smoke-browser.ts --base-url http://127.0.0.1:4321
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
       - run: npm run lhci:collect
         env:
           CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}

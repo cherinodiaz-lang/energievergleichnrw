@@ -3,6 +3,7 @@ import { BrowserRouter, StaticRouter } from 'react-router-dom';
 import AnalyticsBootstrap from '@/components/AnalyticsBootstrap';
 import ConsentBanner from '@/components/ConsentBanner';
 import { SEO_CONFIG } from '@/lib/seo-config';
+import { resolveHydratedPage } from '@/lib/hydrated-page-resolver';
 
 interface AstroRouterProviderProps {
   path: string;
@@ -11,10 +12,11 @@ interface AstroRouterProviderProps {
 }
 
 export default function AstroRouterProvider({ path, Page, children }: AstroRouterProviderProps) {
+  const ResolvedPage = resolveHydratedPage(path);
   const content = (
     <>
       <AnalyticsBootstrap measurementId={SEO_CONFIG.googleAnalyticsId} />
-      {Page ? <Page /> : children}
+      {ResolvedPage ? <ResolvedPage /> : Page ? <Page /> : children}
       <ConsentBanner />
     </>
   );

@@ -35,6 +35,9 @@
       "@/integrations": [
         "integrations"
       ],
+      "framer-motion": [
+        "src/lib/stable-framer-motion.tsx"
+      ],
       "@wix/codegen-framework-packages": [
         "integrations"
       ],

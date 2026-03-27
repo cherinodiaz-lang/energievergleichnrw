@@ -15,5 +15,5 @@ const seo = getPageSEO("ratgeber");
   ogTitle={seo.ogTitle}
   ogDescription={seo.ogDescription}
 >
-  <AstroRouterProvider path={Astro.url.pathname} Page={RatgeberPage} client:load />
+  <AstroRouterProvider path={Astro.url.pathname} Page={RatgeberPage} />
 </SeoPageLayout>

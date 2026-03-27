@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from "astro/config";
+import { fileURLToPath } from "node:url";
 import tailwind from "@astrojs/tailwind";
 import wix from "@wix/astro";
 import monitoring from "@wix/monitoring-astro";
@@ -44,6 +45,11 @@ export default defineConfig({
     }),
   ],
   vite: {
+    resolve: {
+      alias: {
+        "framer-motion": fileURLToPath(new URL("./src/lib/stable-framer-motion.tsx", import.meta.url)),
+      },
+    },
     plugins: [customErrorOverlayPlugin()],
     cacheDir: 'node_modules/.cache/.vite',
     optimizeDeps: {
@@ -51,7 +57,6 @@ export default defineConfig({
         'react',
         'react-dom',
         'zustand',
-        'framer-motion',
         'date-fns',
         'clsx',
         'class-variance-authority',

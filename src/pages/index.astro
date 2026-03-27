@@ -15,5 +15,5 @@ const seo = getPageSEO("home");
   ogTitle={seo.ogTitle}
   ogDescription={seo.ogDescription}
 >
-  <HydratedRoutePage path={Astro.url.pathname} Page={HomePage} client:load />
+  <HydratedRoutePage path={Astro.url.pathname} Page={HomePage} />
 </SeoPageLayout>

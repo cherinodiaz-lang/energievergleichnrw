@@ -38,7 +38,7 @@ type AnimatedElementProps = {
 const AnimatedElement: React.FC<AnimatedElementProps> = ({ children, className, delay = 0 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -88,14 +88,86 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({ children, className, 
   );
 };
 
+const FALLBACK_FAQS: HufiggestellteFragen[] = [
+  {
+    _id: 'fallback-faq-1',
+    question: 'Wie funktioniert die Energie-Orientierung auf dieser Website?',
+    answer:
+      'Sie geben Ihre Basisdaten ein und erhalten eine erste transparente Orientierung zu Strom, Gas oder Photovoltaik in NRW.',
+    displayOrder: 1,
+  },
+  {
+    _id: 'fallback-faq-2',
+    question: 'Sind die Angaben verbindliche Tarifangebote?',
+    answer:
+      'Nein. Die Website zeigt eine unverbindliche Erstorientierung. Konkrete Angebote werden im nächsten Schritt individuell geprüft.',
+    displayOrder: 2,
+  },
+  {
+    _id: 'fallback-faq-3',
+    question: 'Was benötige ich für einen Vergleich?',
+    answer:
+      'Für die Orientierung reichen in der Regel Postleitzahl und Verbrauchsdaten. Für Photovoltaik helfen außerdem Angaben zu Gebäude und Dach.',
+    displayOrder: 3,
+  },
+];
+
+const FALLBACK_VORTEILE: Wechselvorteile[] = [
+  {
+    _id: 'fallback-vorteil-1',
+    title: 'Transparente Orientierung',
+    description: 'Klare Erstinformationen zu Strom, Gas und Photovoltaik ohne komplizierte Einstiegshürden.',
+    displayOrder: 1,
+    isActive: true,
+  },
+  {
+    _id: 'fallback-vorteil-2',
+    title: 'Schneller Überblick',
+    description: 'Wichtige Tarif- und Bedarfsfaktoren werden kompakt dargestellt, damit Sie zügig weiterkommen.',
+    displayOrder: 2,
+    isActive: true,
+  },
+  {
+    _id: 'fallback-vorteil-3',
+    title: 'NRW-Fokus',
+    description: 'Die Inhalte sind auf Haushalte und Eigentümerinnen und Eigentümer in Nordrhein-Westfalen ausgerichtet.',
+    displayOrder: 3,
+    isActive: true,
+  },
+];
+
+const FALLBACK_MATERIALS: Informationsmaterial[] = [
+  {
+    _id: 'fallback-material-1',
+    title: 'Strom-Ratgeber',
+    description: 'Grundlagen, Wechselwissen und wichtige Fragen rund um Stromtarife in NRW.',
+    fileUrl: '/ratgeber/strom',
+    publicationDate: '2026-01-09',
+  },
+  {
+    _id: 'fallback-material-2',
+    title: 'Gas-Ratgeber',
+    description: 'Orientierung zu Heizkosten, Gaswechsel und Tarifverständnis für Haushalte in NRW.',
+    fileUrl: '/ratgeber/gas',
+    publicationDate: '2026-01-09',
+  },
+  {
+    _id: 'fallback-material-3',
+    title: 'Photovoltaik-Ratgeber',
+    description: 'Wissen zu Solaranlagen, Wirtschaftlichkeit und Planung für Wohngebäude in NRW.',
+    fileUrl: '/ratgeber/photovoltaik',
+    publicationDate: '2026-01-09',
+  },
+];
+
 // --- Main Component ---
 
 export default function HomePage() {
   // --- Data Fidelity Protocol: Canonical Data Sources ---
-  const [faqs, setFaqs] = useState<HufiggestellteFragen[]>([]);
-  const [vorteile, setVorteile] = useState<Wechselvorteile[]>([]);
-  const [materials, setMaterials] = useState<Informationsmaterial[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [faqs, setFaqs] = useState<HufiggestellteFragen[]>(FALLBACK_FAQS);
+  const [vorteile, setVorteile] = useState<Wechselvorteile[]>(FALLBACK_VORTEILE);
+  const [materials, setMaterials] = useState<Informationsmaterial[]>(FALLBACK_MATERIALS);
+  const [loading, setLoading] = useState(false);
 
   // Calculator states
   const [stromVerbrauch, setStromVerbrauch] = useState('');
