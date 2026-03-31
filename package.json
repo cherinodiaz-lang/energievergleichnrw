@@ -38,7 +38,7 @@
     "@wix/postcss-pseudo-to-data": "^1.0.0",
     "@wix/seo": "^1.0.43",
     "@wix/stores": "^1.0.735",
-    "astro": "^6.0.0",
+    "astro": "^6.1.2",
     "class-variance-authority": "^0.7.1",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.35.0",
