@@ -48,6 +48,7 @@ docs/*
 # local AI/tooling artifacts
 .ai/
 .codex/
+!.codex/skills/
 .cursor/
 .llm/
 CLAUDE.md
