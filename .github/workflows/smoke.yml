@@ -20,7 +20,7 @@ permissions:
 
 jobs:
   smoke:
-    name: Smoke
+    name: smoke-test
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:

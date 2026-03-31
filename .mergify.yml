@@ -1,9 +1,31 @@
 queue_rules:
   - name: default
     conditions:
-      - check-success=ci
+      - check-success=build / typecheck
+      - check-success=Lighthouse CI / Lighthouse
+      - check-success=PR Validation / seo-validation
+      - check-success=Browser Smoke / smoke-test
 
 pull_request_rules:
+  # Auto-merge Copilot / bot fix PRs to main after all required checks pass
+  - name: Auto-merge Copilot fixes to main
+    conditions:
+      - base=main
+      - label=automerge: true
+      - -draft
+      - -conflict
+      - check-success=build / typecheck
+      - check-success=Lighthouse CI / Lighthouse
+      - check-success=PR Validation / seo-validation
+      - check-success=Browser Smoke / smoke-test
+    actions:
+      merge:
+        method: squash
+        commit_message_template: |
+          {{ title }} (#{{ number }})
+
+          {{ body }}
+
   # Auto-merge Copilot / bot fix PRs to develop after CI passes
   - name: Auto-merge Copilot fixes to develop
     conditions:
@@ -11,7 +33,7 @@ pull_request_rules:
       - label=automerge: true
       - -draft
       - -conflict
-      - check-success=CI / Validate
+      - check-success=build / typecheck
     actions:
       merge:
         method: squash
@@ -24,9 +46,12 @@ pull_request_rules:
   - name: Auto-merge Dependabot patch and minor updates
     conditions:
       - author=dependabot[bot]
-      - check-success=ci
+      - check-success=build / typecheck
+      - check-success=PR Validation / seo-validation
+      - check-success=Browser Smoke / smoke-test
       - label!=do-not-merge
       - title~=^chore\(deps
+      - -title~=bump.*from [0-9]+\.[0-9]+.*to [0-9]+\.
     actions:
       review:
         type: APPROVE
@@ -40,7 +65,7 @@ pull_request_rules:
   - name: Auto-merge Dependabot GitHub Actions updates
     conditions:
       - author=dependabot[bot]
-      - check-success=ci
+      - check-success=build / typecheck
       - title~=^chore\(actions
     actions:
       review:
@@ -53,7 +78,7 @@ pull_request_rules:
   - name: Label major updates for manual review
     conditions:
       - author=dependabot[bot]
-      - title~=bump.*from.*[0-9]+\.[0-9]+.*to [0-9]+\.
+      - title~=bump.*from [0-9]+\.[0-9]+.*to [0-9]+\.
     actions:
       label:
         add:

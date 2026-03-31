@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   seo-validation:
-    name: SEO Validation
+    name: seo-validation
     runs-on: ubuntu-latest
     env:
       ASTRO_TELEMETRY_DISABLED: "1"

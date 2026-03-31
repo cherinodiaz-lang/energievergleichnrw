@@ -1,4 +1,4 @@
-name: CI
+name: build
 
 on:
   push:
@@ -13,8 +13,8 @@ permissions:
   contents: read
 
 jobs:
-  validate:
-    name: Validate
+  typecheck:
+    name: typecheck
     runs-on: ubuntu-latest
     env:
       WIX_CLIENT_ID: ${{ secrets.WIX_CLIENT_ID }}
