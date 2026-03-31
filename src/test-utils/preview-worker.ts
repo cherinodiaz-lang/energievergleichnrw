@@ -7,6 +7,7 @@ const DEFAULT_BASE_URL = "http://127.0.0.1:4321";
 const READY_PATTERN = /Ready on http:\/\/127\.0\.0\.1:4321/;
 const NPM_COMMAND = process.platform === "win32" ? "npm.cmd" : "npm";
 const LOCAL_ASTRO_BIN = process.platform === "win32" ? "astro.cmd" : "astro";
+const WIX_COMMAND = process.platform === "win32" ? "wix.cmd" : "wix";
 
 function wait(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -29,9 +30,13 @@ export function getPreviewPrerequisiteIssue(cwd: string): string | null {
   }
 
   try {
-    execFileSync("wix", ["--version"], { stdio: "ignore" });
-  } catch {
-    return "wix CLI not found in PATH (install with: npm install -g @wix/cli)";
+    execFileSync(WIX_COMMAND, ["--version"], { stdio: "ignore" });
+  } catch (err) {
+    const code = (err as NodeJS.ErrnoException).code;
+    if (code === "ENOENT") {
+      return "wix CLI not found in PATH (install with: npm install -g @wix/cli)";
+    }
+    return `wix CLI check failed: ${(err as Error).message}`;
   }
 
   return null;
