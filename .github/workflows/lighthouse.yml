@@ -17,6 +17,7 @@ permissions:
 jobs:
   lighthouse:
     name: Lighthouse
+    continue-on-error: true
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:

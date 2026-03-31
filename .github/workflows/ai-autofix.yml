@@ -1,0 +1,106 @@
+name: AI AutoFix
+
+on:
+  workflow_run:
+    workflows: ["build"]
+    types: [completed]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: ai-autofix-${{ github.event.workflow_run.head_sha }}
+  cancel-in-progress: true
+
+jobs:
+  autofix:
+    name: autofix
+    runs-on: ubuntu-latest
+    if: |
+      github.event.workflow_run.conclusion == 'failure' &&
+      github.event.workflow_run.event == 'pull_request'
+
+    steps:
+      - name: Checkout failed revision
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Check retry count
+        id: retry
+        run: |
+          COUNT=$(git log --oneline -20 | grep -c 'fix: AI resolved' || true)
+          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+          echo "Retry count: $COUNT"
+          if [ "$COUNT" -ge 3 ]; then
+            echo "MAX RETRIES reached – escalating to human review."
+          fi
+
+      - name: Create escalation issue if max retries reached
+        if: steps.retry.outputs.count >= '3'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH="${{ github.event.workflow_run.head_branch }}"
+          SHA="${{ github.event.workflow_run.head_sha }}"
+          SHORT_SHA="${SHA::7}"
+          RUN_URL="${{ github.event.workflow_run.html_url }}"
+
+          gh issue create \
+            --title "🚨 AI AutoFix fehlgeschlagen nach 3 Versuchen – \`${BRANCH}\` (${SHORT_SHA})" \
+            --body "## 🚨 Manueller Eingriff erforderlich
+
+Der AI AutoFix Workflow hat dreimal versucht den CI-Fehler auf Branch \`${BRANCH}\` zu beheben und ist gescheitert.
+
+| Field | Value |
+|-------|-------|
+| **Branch** | \`${BRANCH}\` |
+| **Commit** | \`${SHORT_SHA}\` |
+| **Workflow Run** | [View logs](${RUN_URL}) |
+
+Bitte analysiere den Fehler manuell und implementiere einen Fix." \
+            --label "needs-human-review"
+
+      - name: Stop if max retries reached
+        if: steps.retry.outputs.count >= '3'
+        run: |
+          echo "Max retries reached. Stopping AI AutoFix."
+          exit 0
+
+      - name: Setup Node.js
+        if: steps.retry.outputs.count < '3'
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        if: steps.retry.outputs.count < '3'
+        run: npm ci
+
+      - name: Run Codex fix
+        if: steps.retry.outputs.count < '3'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY1 }}
+        run: |
+          npx --yes @openai/codex \
+            "Fix the failing CI. Run npm run build and npm run check. Only make minimal changes. Do not touch .env files, API keys, or secrets."
+
+      - name: Commit and push fix
+        if: steps.retry.outputs.count < '3'
+        run: |
+          git config user.name "ai-agent"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          COUNT="${{ steps.retry.outputs.count }}"
+          NEXT=$((COUNT + 1))
+          if git diff --cached --quiet; then
+            echo "No changes made by AI – nothing to commit."
+          else
+            git commit -m "fix: AI resolved CI failure [retry ${NEXT}/3]"
+            git push
+          fi

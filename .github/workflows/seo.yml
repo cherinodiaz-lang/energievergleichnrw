@@ -1,18 +1,18 @@
-name: PR Validation
+name: validate-seo
 
 on:
   pull_request:
 
 concurrency:
-  group: pr-validation-${{ github.ref }}
+  group: validate-seo-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
   contents: read
 
 jobs:
-  seo-validation:
-    name: seo-validation
+  validate-seo:
+    name: validate-seo
     runs-on: ubuntu-latest
     env:
       ASTRO_TELEMETRY_DISABLED: "1"

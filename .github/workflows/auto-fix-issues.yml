@@ -2,7 +2,7 @@ name: Auto-Fix Issues Detection
 
 on:
   workflow_run:
-    workflows: ["CI"]
+    workflows: ["build"]
     types: [completed]
 
 permissions:
@@ -20,43 +20,42 @@ jobs:
     if: github.event.workflow_run.conclusion == 'failure'
 
     steps:
-      - name: Ensure auto-fix label exists
+      - name: Ensure labels exist
         uses: actions/github-script@v8
         with:
           script: |
-            try {
-              await github.rest.issues.createLabel({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                name: 'auto-fix',
-                color: 'e11d48',
-                description: 'Automatically detected issue requiring a fix',
-              });
-            } catch {
-              // Label already exists – ignore
+            const labels = [
+              { name: 'auto-fix', color: 'e11d48', description: 'Automatically detected issue requiring a fix' },
+              { name: 'needs-human-review', color: 'b91c1c', description: 'Auto-fix failed 3 times – needs human intervention' },
+            ];
+            for (const label of labels) {
+              try {
+                await github.rest.issues.createLabel({ owner: context.repo.owner, repo: context.repo.repo, ...label });
+              } catch {
+                // Label already exists – ignore
+              }
             }
 
-      - name: Check for duplicate open auto-fix issue
-        id: dedup
+      - name: Count existing auto-fix attempts for this branch
+        id: retry
         uses: actions/github-script@v8
         with:
           script: |
-            const issues = await github.rest.issues.listForRepo({
+            const branch = "${{ github.event.workflow_run.head_branch }}";
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
               owner: context.repo.owner,
               repo: context.repo.repo,
               labels: 'auto-fix',
               state: 'open',
-              per_page: 5,
+              per_page: 100,
             });
-            const hasDuplicate = issues.data.length > 0;
-            core.setOutput('skip', hasDuplicate ? 'true' : 'false');
-            if (hasDuplicate) {
-              console.log(`Duplicate open issue found (#${issues.data[0].number}) – skipping creation.`);
-            }
+            const forBranch = issues.filter(i => i.title.includes(`\`${branch}\``));
+            core.setOutput('count', String(forBranch.length));
+            core.setOutput('branch', branch);
+            console.log(`Existing auto-fix issues for branch '${branch}': ${forBranch.length}`);
 
       - name: Get failed step details
         id: details
-        if: steps.dedup.outputs.skip == 'false'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -75,14 +74,49 @@ jobs:
           SHA="${{ github.event.workflow_run.head_sha }}"
           echo "sha=${SHA::7}" >> "$GITHUB_OUTPUT"
 
+      - name: Escalate to human review after 3 failed attempts
+        if: steps.retry.outputs.count >= '3'
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const branch = "${{ steps.details.outputs.branch }}";
+            const sha    = "${{ steps.details.outputs.sha }}";
+            const runUrl = "${{ steps.details.outputs.run_url }}";
+
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🚨 Auto-Fix fehlgeschlagen nach 3 Versuchen – \`${branch}\` (${sha})`,
+              body: [
+                "## 🚨 Manueller Eingriff erforderlich",
+                "",
+                `Der automatische Fix-Workflow hat für Branch \`${branch}\` dreimal versagt.`,
+                "Auto-Fix wurde gestoppt um Endlosschleifen zu verhindern.",
+                "",
+                `| Field | Value |`,
+                `|-------|-------|`,
+                `| **Branch** | \`${branch}\` |`,
+                `| **Commit** | \`${sha}\` |`,
+                `| **Workflow Run** | [View logs](${runUrl}) |`,
+                "",
+                "## Aufgaben",
+                "- [ ] Root cause manuell analysieren",
+                "- [ ] Fix implementieren",
+                "- [ ] Alle open `auto-fix` Issues für diesen Branch schließen",
+              ].join("\n"),
+              labels: ['needs-human-review'],
+            });
+            console.log(`Escalation issue #${issue.data.number} created: ${issue.data.html_url}`);
+
       - name: Create auto-fix issue for Copilot
-        if: steps.dedup.outputs.skip == 'false'
+        if: steps.retry.outputs.count < '3'
         uses: actions/github-script@v8
         with:
           script: |
             const runUrl    = "${{ steps.details.outputs.run_url }}";
             const branch    = "${{ steps.details.outputs.branch }}";
             const sha       = "${{ github.event.workflow_run.head_sha }}".slice(0, 7);
+            const attempt   = Number("${{ steps.retry.outputs.count }}") + 1;
             const rawSteps  = `${{ steps.details.outputs.failed_steps }}`;
 
             let failureSection = "";
@@ -107,6 +141,7 @@ jobs:
               `|-------|-------|`,
               `| **Branch** | \`${branch}\` |`,
               `| **Commit** | \`${sha}\` |`,
+              `| **Attempt** | ${attempt} / 3 |`,
               `| **Workflow Run** | [View logs](${runUrl}) |`,
               "",
               "## Failed Steps",
@@ -122,6 +157,8 @@ jobs:
               "4. Create a PR targeting the `develop` branch",
               "5. Label the PR with `automerge: true`",
               "",
+              "> ⚠️ After 3 failed attempts this issue will be escalated to `needs-human-review`.",
+              "",
               "### Definition of Done",
               "- [ ] Root cause identified",
               "- [ ] Fix implemented",
@@ -134,7 +171,7 @@ jobs:
             const issue = await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: `🤖 Auto-Fix: CI failure on \`${branch}\` (${sha})`,
+              title: `🤖 Auto-Fix: CI failure on \`${branch}\` (${sha}) – attempt ${attempt}/3`,
               body,
               labels: ['auto-fix', 'type:bug'],
               assignees: ['copilot'],

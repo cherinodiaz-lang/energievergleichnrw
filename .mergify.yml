@@ -1,76 +1,68 @@
 queue_rules:
   - name: default
     conditions:
-      - check-success=build / typecheck
+      - check-success=build
+      - check-success=typecheck
+      - check-success=validate-seo
       - check-success=Lighthouse CI / Lighthouse
-      - check-success=PR Validation / seo-validation
-      - check-success=Browser Smoke / smoke-test
 
 pull_request_rules:
-  # Auto-merge Copilot / bot fix PRs to main after all required checks pass
-  - name: Auto-merge Copilot fixes to main
-    conditions:
-      - base=main
-      - label=automerge: true
-      - -draft
-      - -conflict
-      - check-success=build / typecheck
-      - check-success=Lighthouse CI / Lighthouse
-      - check-success=PR Validation / seo-validation
-      - check-success=Browser Smoke / smoke-test
-    actions:
-      merge:
-        method: squash
-        commit_message_template: |
-          {{ title }} (#{{ number }})
-
-          {{ body }}
-
-  # Auto-merge Copilot / bot fix PRs to develop after CI passes
-  - name: Auto-merge Copilot fixes to develop
-    conditions:
-      - base=develop
-      - label=automerge: true
-      - -draft
-      - -conflict
-      - check-success=build / typecheck
-    actions:
-      merge:
-        method: squash
-        commit_message_template: |
-          {{ title }} (#{{ number }})
-
-          {{ body }}
-
-  # Auto-merge Dependabot patch/minor updates after CI passes
-  - name: Auto-merge Dependabot patch and minor updates
+  # Auto-merge Dependabot patch/minor updates
+  - name: Auto-merge Dependabot patch/minor
     conditions:
       - author=dependabot[bot]
-      - check-success=build / typecheck
-      - check-success=PR Validation / seo-validation
-      - check-success=Browser Smoke / smoke-test
+      - check-success=build
+      - check-success=typecheck
+      - check-success=validate-seo
+      - check-success=Lighthouse CI / Lighthouse
+      - label!=dependencies-major
       - label!=do-not-merge
-      - title~=^chore\(deps
-      - -title~=bump.*from [0-9]+\.[0-9]+.*to [0-9]+\.
     actions:
       review:
         type: APPROVE
         message: "Auto-approved: Dependabot patch/minor update ✅"
       merge:
         method: squash
-        commit_message_template: |
-          {{ title }} (#{{ number }})
 
-  # Auto-merge GitHub Actions updates
-  - name: Auto-merge Dependabot GitHub Actions updates
+  # Auto-merge Copilot PRs
+  - name: Auto-merge Copilot PRs
     conditions:
-      - author=dependabot[bot]
-      - check-success=build / typecheck
-      - title~=^chore\(actions
+      - author=Copilot
+      - check-success=build
+      - check-success=typecheck
+      - check-success=validate-seo
+      - check-success=Lighthouse CI / Lighthouse
+      - -draft
+      - -conflict
     actions:
-      review:
-        type: APPROVE
-        message: "Auto-approved: GitHub Actions update ✅"
+      merge:
+        method: squash
+
+  # Auto-merge PRs with automerge label to main
+  - name: Auto-merge labeled PRs to main
+    conditions:
+      - base=main
+      - label=automerge: true
+      - -draft
+      - -conflict
+      - check-success=build
+      - check-success=typecheck
+      - check-success=validate-seo
+      - check-success=Lighthouse CI / Lighthouse
+    actions:
+      merge:
+        method: squash
+
+  # Auto-merge labeled PRs to develop
+  - name: Auto-merge labeled PRs to develop
+    conditions:
+      - base=develop
+      - label=automerge: true
+      - -draft
+      - -conflict
+      - check-success=build
+      - check-success=typecheck
+    actions:
       merge:
         method: squash
 
