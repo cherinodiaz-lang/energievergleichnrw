@@ -28,6 +28,12 @@ export function getPreviewPrerequisiteIssue(cwd: string): string | null {
     return "missing local Astro CLI binary at node_modules/.bin/astro";
   }
 
+  try {
+    execFileSync("wix", ["--version"], { stdio: "ignore" });
+  } catch {
+    return "wix CLI not found in PATH (install with: npm install -g @wix/cli)";
+  }
+
   return null;
 }
 
