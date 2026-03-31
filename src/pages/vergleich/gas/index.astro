@@ -1,0 +1,16 @@
+---
+import AstroRouterProvider from "@/components/AstroRouterProvider";
+import VergleichGasHubPage from "@/components/pages/VergleichGasHubPage";
+import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
+---
+
+<SeoPageLayout
+  title="Gasvergleich NRW – Alle Angebote & Tarife 2026 | energievergleich.shop"
+  description="Der vollstaendige Gasvergleich fuer NRW 2026: Alle Gasanbieter, Tarife und Sparmoelichkeiten auf einen Blick. Jetzt vergleichen und Gaskosten senken."
+  canonicalPath="/vergleich/gas"
+  keywords="Gasvergleich NRW Hub, Gasangebote NRW, alle Gasanbieter NRW, Gastarife Uebersicht NRW 2026"
+  ogTitle="Gasvergleich NRW – Alle Angebote & Tarife 2026"
+  ogDescription="Vollstaendiger Gasvergleich NRW: Alle Anbieter, Tarife und Sparmoelichkeiten 2026."
+>
+  <AstroRouterProvider path={Astro.url.pathname} Page={VergleichGasHubPage} client:load />
+</SeoPageLayout>

@@ -21,6 +21,14 @@ export type RouteKey =
   | "widerruf"
   | "sitemap"
   | "faq"
+  | "blog"
+  | "blogStrompreiseNrw2026"
+  | "blogGaspreiseVergleichenNrw"
+  | "blogEnergievergleichKostenTipps"
+  | "blogStromanbieterWechselnNrw"
+  | "blogOekostromNrwAnbieter"
+  | "vergleichStrom"
+  | "vergleichGas"
   // Legacy uppercase variants (for backward compatibility with existing code)
   | "STROMVERGLEICH_NRW"
   | "GASVERGLEICH_NRW"
@@ -54,6 +62,14 @@ export const ROUTES: Record<RouteKey, string> = {
   widerruf: "/widerruf",
   sitemap: "/sitemap",
   faq: "/faq",
+  blog: "/blog",
+  blogStrompreiseNrw2026: "/blog/strompreise-nrw-2026",
+  blogGaspreiseVergleichenNrw: "/blog/gaspreise-vergleichen-nrw",
+  blogEnergievergleichKostenTipps: "/blog/energievergleich-kosten-tipps",
+  blogStromanbieterWechselnNrw: "/blog/stromanbieter-wechseln-nrw",
+  blogOekostromNrwAnbieter: "/blog/oekostrom-nrw-anbieter",
+  vergleichStrom: "/vergleich/strom",
+  vergleichGas: "/vergleich/gas",
   // Legacy uppercase variants (for backward compatibility)
   STROMVERGLEICH_NRW: "/stromvergleich-nrw",
   GASVERGLEICH_NRW: "/gasvergleich-nrw",

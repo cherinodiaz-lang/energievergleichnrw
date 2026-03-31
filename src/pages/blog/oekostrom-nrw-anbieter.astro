@@ -1,0 +1,17 @@
+---
+import AstroRouterProvider from "@/components/AstroRouterProvider";
+import OekostromNrwAnbieterArticle from "@/components/pages/blog/OekostromNrwAnbieterArticle";
+import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
+---
+
+<SeoPageLayout
+  title="Oekostrom NRW – Die besten Anbieter 2026 | energievergleich.shop"
+  description="Die besten Oekostromanbieter in NRW 2026: Vergleich, Preise und Empfehlungen fuer klimafreundlichen Strom aus erneuerbaren Energien in Nordrhein-Westfalen."
+  canonicalPath="/blog/oekostrom-nrw-anbieter"
+  keywords="Oekostrom NRW 2026, Oekostrom Anbieter NRW, Gruener Strom NRW, Erneuerbarer Strom NRW"
+  ogTitle="Oekostrom NRW – Die besten Anbieter 2026"
+  ogDescription="Die besten Oekostromanbieter fuer NRW-Haushalte 2026 im Vergleich."
+  ogType="article"
+>
+  <AstroRouterProvider path={Astro.url.pathname} Page={OekostromNrwAnbieterArticle} client:load />
+</SeoPageLayout>

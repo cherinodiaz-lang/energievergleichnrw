@@ -1,0 +1,17 @@
+---
+import AstroRouterProvider from "@/components/AstroRouterProvider";
+import GaspreiseVergleichenNrwArticle from "@/components/pages/blog/GaspreiseVergleichenNrwArticle";
+import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
+---
+
+<SeoPageLayout
+  title="Gaspreise vergleichen NRW – So sparst du 2026 | energievergleich.shop"
+  description="Gaspreise in NRW vergleichen und 2026 sparen: Tipps zum Gasanbieter wechseln, aktuelle Preisentwicklungen und Spartricks fuer Haushalte in Nordrhein-Westfalen."
+  canonicalPath="/blog/gaspreise-vergleichen-nrw"
+  keywords="Gaspreise NRW 2026, Gaspreisvergleich NRW, Gaskosten senken, Gasanbieter NRW"
+  ogTitle="Gaspreise vergleichen NRW – So sparst du 2026"
+  ogDescription="Gaspreise in NRW vergleichen und sparen – aktuelle Tipps und Preisentwicklungen."
+  ogType="article"
+>
+  <AstroRouterProvider path={Astro.url.pathname} Page={GaspreiseVergleichenNrwArticle} client:load />
+</SeoPageLayout>

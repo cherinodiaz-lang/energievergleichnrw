@@ -1,0 +1,16 @@
+---
+import AstroRouterProvider from "@/components/AstroRouterProvider";
+import BlogHubPage from "@/components/pages/blog/BlogHubPage";
+import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
+---
+
+<SeoPageLayout
+  title="Blog | Energie-Ratgeber NRW 2026 – Strom, Gas & Sparen"
+  description="Aktuelle Fachbeitraege und Ratgeber rund um Strompreise, Gaspreise, Anbieterwechsel und Oekostrom in NRW. Tipps zum Energie sparen 2026."
+  canonicalPath="/blog"
+  keywords="Energieblog NRW, Strompreise 2026, Gaspreise NRW, Oekostrom, Energiesparen NRW"
+  ogTitle="Blog | Energie-Ratgeber NRW 2026"
+  ogDescription="Aktuelle Artikel zu Strompreisen, Gaskosten und Energiesparen in NRW."
+>
+  <AstroRouterProvider path={Astro.url.pathname} Page={BlogHubPage} client:load />
+</SeoPageLayout>

@@ -1,0 +1,17 @@
+---
+import AstroRouterProvider from "@/components/AstroRouterProvider";
+import StrompreiseNrw2026Article from "@/components/pages/blog/StrompreiseNrw2026Article";
+import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
+---
+
+<SeoPageLayout
+  title="Strompreise NRW 2026 – Aktueller Überblick | energievergleich.shop"
+  description="Strompreise in NRW 2026: Aktueller Überblick über Entwicklungen, Trends und Sparmöglichkeiten. Wie sich Haushalte jetzt günstig mit Strom versorgen."
+  canonicalPath="/blog/strompreise-nrw-2026"
+  keywords="Strompreise NRW 2026, Stromkosten NRW, Stromtarife 2026, guenstige Stromanbieter NRW"
+  ogTitle="Strompreise NRW 2026 – Aktueller Überblick"
+  ogDescription="Strompreise in NRW 2026: Aktueller Überblick mit Trends und Spartipps."
+  ogType="article"
+>
+  <AstroRouterProvider path={Astro.url.pathname} Page={StrompreiseNrw2026Article} client:load />
+</SeoPageLayout>

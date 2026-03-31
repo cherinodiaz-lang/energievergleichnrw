@@ -1,0 +1,16 @@
+---
+import AstroRouterProvider from "@/components/AstroRouterProvider";
+import VergleichStromHubPage from "@/components/pages/VergleichStromHubPage";
+import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
+---
+
+<SeoPageLayout
+  title="Stromvergleich NRW – Alle Angebote & Tarife 2026 | energievergleich.shop"
+  description="Der vollstaendige Stromvergleich fuer NRW 2026: Alle Stromanbieter, Tarife und Sparmoelichkeiten auf einen Blick. Jetzt vergleichen und Stromkosten senken."
+  canonicalPath="/vergleich/strom"
+  keywords="Stromvergleich NRW Hub, Stromangebote NRW, alle Stromanbieter NRW, Stromtarife Uebersicht NRW 2026"
+  ogTitle="Stromvergleich NRW – Alle Angebote & Tarife 2026"
+  ogDescription="Vollstaendiger Stromvergleich NRW: Alle Anbieter, Tarife und Sparmoelichkeiten 2026."
+>
+  <AstroRouterProvider path={Astro.url.pathname} Page={VergleichStromHubPage} client:load />
+</SeoPageLayout>
