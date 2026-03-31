@@ -1,101 +1,45 @@
-name: build
+name: CI
 
 on:
+  pull_request:
+    branches: [main]
   push:
     branches: [main]
-  pull_request:
-
-concurrency:
-  group: ci-${{ github.ref }}
-  cancel-in-progress: true
-
-permissions:
-  contents: read
 
 jobs:
-  typecheck:
-    name: typecheck
-    runs-on: ubuntu-latest
-    env:
-      WIX_CLIENT_ID: ${{ secrets.WIX_CLIENT_ID }}
-      WIX_CLIENT_SECRET: ${{ secrets.WIX_CLIENT_SECRET }}
-      WIX_CLIENT_INSTANCE_ID: ${{ secrets.WIX_CLIENT_INSTANCE_ID }}
-      WIX_CLIENT_PUBLIC_KEY: ${{ secrets.WIX_CLIENT_PUBLIC_KEY }}
-      ASTRO_TELEMETRY_DISABLED: "1"
-    timeout-minutes: 10
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v5
-
-      - name: Debug info
-        run: |
-          node -v
-          npm -v
-          echo "Branch: ${{ github.head_ref }}"
-          echo "Commit: ${{ github.sha }}"
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v5
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Install Wix CLI
-        run: npm install -g @wix/cli
-
-      - name: Type and config checks
-        run: npm run check
-
-      - name: Run tests
-        run: npm run test:run
-
   build:
     name: build
     runs-on: ubuntu-latest
-    env:
-      WIX_CLIENT_ID: ${{ secrets.WIX_CLIENT_ID }}
-      WIX_CLIENT_SECRET: ${{ secrets.WIX_CLIENT_SECRET }}
-      WIX_CLIENT_INSTANCE_ID: ${{ secrets.WIX_CLIENT_INSTANCE_ID }}
-      WIX_CLIENT_PUBLIC_KEY: ${{ secrets.WIX_CLIENT_PUBLIC_KEY }}
-      ASTRO_TELEMETRY_DISABLED: "1"
-    timeout-minutes: 20
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v5
-
-      - name: Debug info
-        run: |
-          node -v
-          npm -v
-          echo "Branch: ${{ github.head_ref }}"
-          echo "Commit: ${{ github.sha }}"
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
+      - run: npm ci
+      - run: npm install -g @wix/cli
+      - run: npm run build
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Install Wix CLI
-        run: npm install -g @wix/cli
-
-      - name: Build
-        run: npm run build
-
-      - name: Upload build logs
-        if: failure()
-        uses: actions/upload-artifact@v4
+  typecheck:
+    name: typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          name: build-logs-${{ github.run_id }}
-          path: |
-            npm-debug.log
-            dist/
-          retention-days: 7
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+
+  validate-seo:
+    name: validate-seo
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run validate:seo

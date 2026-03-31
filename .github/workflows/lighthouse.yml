@@ -1,93 +1,19 @@
 name: Lighthouse CI
 
 on:
-  workflow_dispatch:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
-concurrency:
-  group: lighthouse-${{ github.ref }}
-  cancel-in-progress: true
-
-permissions:
-  contents: read
-
 jobs:
-  lighthouse:
+  Lighthouse:
     name: Lighthouse
-    continue-on-error: true
     runs-on: ubuntu-latest
-    timeout-minutes: 20
-    env:
-      ASTRO_TELEMETRY_DISABLED: "1"
-      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-      SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
-      SENTRY_PROJECT_FRONTEND: ${{ secrets.SENTRY_PROJECT_FRONTEND }}
-      SENTRY_PROJECT_SERVER: ${{ secrets.SENTRY_PROJECT_SERVER }}
-      PUBLIC_SENTRY_DSN: ${{ secrets.PUBLIC_SENTRY_DSN }}
-      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
-      WIX_CLIENT_ID: ${{ secrets.WIX_CLIENT_ID }}
-      WIX_CLIENT_SECRET: ${{ secrets.WIX_CLIENT_SECRET }}
-      WIX_CLIENT_PUBLIC_KEY: ${{ secrets.WIX_CLIENT_PUBLIC_KEY }}
-      WIX_CLIENT_INSTANCE_ID: ${{ secrets.WIX_CLIENT_INSTANCE_ID }}
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
         with:
           node-version: 22
-      - id: chrome
-        uses: browser-actions/setup-chrome@v2
       - run: npm ci
-      - run: npm install -g @wix/cli
       - run: npm run build
-      - name: Start Wrangler preview
-        run: |
-          npm run preview:worker > wrangler-preview.log 2>&1 &
-          echo $! > wrangler-preview.pid
-      - name: Wait for Lighthouse routes
-        run: |
-          urls=(
-            "http://127.0.0.1:4321/"
-            "http://127.0.0.1:4321/stromvergleich-nrw"
-            "http://127.0.0.1:4321/gasvergleich-nrw"
-          )
-          for url in "${urls[@]}"; do
-            ready=0
-            for attempt in {1..30}; do
-              status="$(curl -s -o /dev/null -w '%{http_code}' -A 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36' "$url" || true)"
-              if [ "$status" = "200" ]; then
-                ready=1
-                break
-              fi
-              sleep 2
-            done
-            if [ "$ready" -ne 1 ]; then
-              echo "Preview route failed readiness check: $url"
-              cat wrangler-preview.log
-              exit 1
-            fi
-          done
       - run: npm run lhci:collect
-        env:
-          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
       - run: npm run lhci:assert
-      - run: npx lhci upload --config=lighthouserc.json
-        env:
-          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-      - name: Stop Wrangler preview
-        if: always()
-        run: |
-          if [ -f wrangler-preview.pid ]; then
-            kill "$(cat wrangler-preview.pid)" || true
-          fi
-      - name: Show Wrangler preview log
-        if: failure()
-        run: |
-          if [ -f wrangler-preview.log ]; then
-            cat wrangler-preview.log
-          else
-            echo "wrangler-preview.log not found"
-          fi
