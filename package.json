@@ -18,7 +18,9 @@
     "test:run": "vitest run",
     "preview:worker": "astro preview --host 127.0.0.1 --port 4321",
     "validate:seo": "tsx scripts/validate-seo.ts",
-    "smoke:runtime": "tsx scripts/smoke-runtime.ts"
+    "smoke:runtime": "tsx scripts/smoke-runtime.ts",
+    "lhci:collect": "npx lhci collect --config=lighthouserc.json",
+    "lhci:assert": "npx lhci assert --config=lighthouserc.json"
   },
   "dependencies": {
     "@astrojs/react": "^4.4.2",
