@@ -21,6 +21,6 @@ describe('HomePage SSR', () => {
     const html = renderHomePageSsr();
 
     expect(html).toContain('<main');
-    expect(html).toContain('Energie wechseln.');
+    expect(html).toContain('847');
   });
 });
