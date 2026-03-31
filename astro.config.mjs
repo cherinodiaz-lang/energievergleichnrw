@@ -1,4 +1,6 @@
 // @ts-check
+import { bootstrapWixLocalEnv } from "./wix-local-env.mjs";
+bootstrapWixLocalEnv();
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import wix from "@wix/astro";
