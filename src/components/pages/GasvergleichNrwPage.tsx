@@ -11,6 +11,7 @@ import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import RelatedPages from '@/components/RelatedPages';
 import VerivoxCalculatorEmbed from '@/components/VerivoxCalculatorEmbed';
+import GasCalculatorForm from '@/components/gas/GasCalculatorForm';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
@@ -231,6 +232,9 @@ export default function GasvergleichNrwPage() {
           </div>
         </div>
       </section>
+
+      {/* Internal Gas Tariff Calculator Section */}
+      <GasCalculatorForm />
 
       {/* Content Section */}
       <section className="w-full py-24 bg-white">
