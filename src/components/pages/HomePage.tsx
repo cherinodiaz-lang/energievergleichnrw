@@ -1,5 +1,10 @@
 // HPI 1.8 - PHASE 8: White Screen Fix - framer-motion removed
 import React, { useState, useEffect, useRef, type SyntheticEvent } from 'react';
+import SocialProofBar from '@/components/cro/SocialProofBar';
+import StickyCTA from '@/components/cro/StickyCTA';
+import TrustBadgesEnhanced from '@/components/cro/TrustBadgesEnhanced';
+import HeroSectionV2 from '@/components/home/HeroSectionV2';
+import { useFeatureFlags } from '@/lib/feature-flags';
 import { Zap, Flame, CheckCircle, Sun, Download, ChevronDown, Send, ArrowRight, Leaf, Home, Building2, ShieldCheck, MousePointerClick, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -96,11 +101,18 @@ export default function HomePage() {
   const [materials, setMaterials] = useState<Informationsmaterial[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // Feature flags
+  const flags = useFeatureFlags();
+
   // Calculator states
   const [stromVerbrauch, setStromVerbrauch] = useState('');
   const [gasVerbrauch, setGasVerbrauch] = useState('');
   const [postleitzahl, setPostleitzahl] = useState('');
   const [personenAnzahl, setPersonenAnzahl] = useState('');
+
+  // Hero PLZ quick-start
+  const [heroPlz, setHeroPlz] = useState('');
+  const [heroPlzError, setHeroPlzError] = useState('');
 
   // Contact form states
   const [contactName, setContactName] = useState('');
@@ -279,6 +291,18 @@ export default function HomePage() {
     element?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleHeroCompare = () => {
+    const trimmed = heroPlz.trim();
+    if (trimmed && !/^\d{5}$/.test(trimmed)) {
+      setHeroPlzError('Bitte eine gültige 5-stellige PLZ eingeben.');
+      return;
+    }
+    setHeroPlzError('');
+    if (trimmed) setPostleitzahl(trimmed);
+    trackCTAClick('Jetzt kostenlos vergleichen – Hero PLZ');
+    scrollToSection('vergleichsrechner');
+  };
+
   const seo = getPageSEO('home');
 
   return (
@@ -294,8 +318,17 @@ export default function HomePage() {
       <ReviewSchema />
       <FAQPageSchema />
       <Header />
+      {flags.showSocialProofBar && (
+        <SocialProofBar
+          showCountdown={flags.showCountdown}
+          showUserCounter={flags.showUserCounter}
+        />
+      )}
       <main>
-      {/* --- HERO SECTION --- */}
+      {/* --- HERO SECTION (A/B tested via feature flag) --- */}
+      {flags.heroVariant === 'B' ? (
+        <HeroSectionV2 onCompare={(plz) => { setPostleitzahl(plz); scrollToSection('vergleichsrechner'); }} />
+      ) : (
       <section className="hero-section relative w-full min-h-screen md:min-h-screen flex items-center justify-center overflow-hidden bg-primary">
         {/* Static Background (no framer-motion parallax) */}
         <div className="absolute inset-0 z-0 overflow-hidden">
@@ -322,24 +355,66 @@ export default function HomePage() {
 
             <AnimatedElement delay={100}>
               <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight mb-3 sm:mb-4 md:mb-6">
-                Energie wechseln.<br className="hidden sm:block" />
-                <span className="text-secondary">Zukunft sichern.</span>
+                Spare bis zu{' '}
+                <span className="text-secondary">847€ pro Jahr</span>
+                <br className="hidden sm:block" />
+                {' '}beim Strom
               </h1>
             </AnimatedElement>
 
             <AnimatedElement delay={200}>
-              <p className="font-paragraph text-base sm:text-lg md:text-xl text-white/95 mb-6 sm:mb-7 md:mb-8 max-w-2xl leading-relaxed">
-                Transparente Orientierung zu Strom, Gas und Photovoltaik in NRW. Unsere Rechner zeigen Beispielwerte und helfen bei den nächsten Schritten.
+              <p className="font-paragraph text-base sm:text-lg md:text-xl text-white/95 mb-5 sm:mb-6 md:mb-7 max-w-2xl leading-relaxed">
+                In 2 Minuten – Kostenlos &amp; ohne Anmeldung
               </p>
+            </AnimatedElement>
+
+            {/* PLZ Quick-Start */}
+            <AnimatedElement delay={250}>
+              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-5 max-w-md mb-5 sm:mb-6">
+                <p className="text-white/80 text-xs sm:text-sm font-medium mb-3">
+                  Gib deine Postleitzahl ein für den Sofortvergleich:
+                </p>
+                <div className="flex gap-2">
+                  <Input
+                    id="hero-plz-inline"
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]{5}"
+                    maxLength={5}
+                    placeholder="z.B. 40210"
+                    value={heroPlz}
+                    onChange={(e) => { setHeroPlz(e.target.value); if (heroPlzError) setHeroPlzError(''); }}
+                    onKeyDown={(e) => { if (e.key === 'Enter') handleHeroCompare(); }}
+                    aria-label="Postleitzahl eingeben"
+                    aria-describedby={heroPlzError ? 'hero-plz-inline-error' : undefined}
+                    className="flex-1 h-11 sm:h-12 bg-white text-gray-900 placeholder-gray-400 border-0 focus:ring-2 focus:ring-secondary text-sm sm:text-base rounded-xl"
+                  />
+                  <Button
+                    onClick={handleHeroCompare}
+                    className="h-11 sm:h-12 px-4 sm:px-5 bg-secondary hover:bg-secondary/90 text-black font-bold rounded-xl shadow-lg transition-all active:scale-95 text-sm sm:text-base whitespace-nowrap"
+                    aria-label="Jetzt vergleichen"
+                  >
+                    <span className="hidden sm:inline">Vergleichen</span>
+                    <ArrowRight className="sm:hidden w-5 h-5" aria-hidden="true" />
+                    <ArrowRight className="hidden sm:inline ml-1.5 w-4 h-4" aria-hidden="true" />
+                  </Button>
+                </div>
+                {heroPlzError && (
+                  <p id="hero-plz-inline-error" role="alert" className="mt-2 text-xs text-red-300">
+                    {heroPlzError}
+                  </p>
+                )}
+              </div>
             </AnimatedElement>
 
             <AnimatedElement delay={300}>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pb-4 sm:pb-0">
                 <Button
-                  onClick={() => { trackCTAClick('Jetzt vergleichen'); scrollToSection('vergleichsrechner'); }}
+                  onClick={() => { trackCTAClick('Jetzt kostenlos vergleichen'); handleHeroCompare(); }}
                   className="bg-secondary text-secondary-foreground hover:bg-[#D49700] focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-primary h-12 sm:h-13 md:h-14 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-bold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto active:scale-95"
                 >
-                  Jetzt vergleichen
+                  Jetzt kostenlos vergleichen
+                  <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5" aria-hidden="true" />
                 </Button>
                 <Button
                   onClick={() => { trackCTAClick('Photovoltaik Beratung'); scrollToSection('photovoltaik'); }}
@@ -353,7 +428,13 @@ export default function HomePage() {
             </AnimatedElement>
 
             <AnimatedElement delay={400}>
-              <Link to="/methodik" onClick={trackMethodikClick} className="inline-block text-white/80 hover:text-white transition-colors text-sm sm:text-base font-medium underline">
+              <p className="mt-3 text-white/60 text-xs">
+                ✓ Kostenlos &nbsp;·&nbsp; ✓ Ohne Anmeldung &nbsp;·&nbsp; ✓ Datenschutz nach DSGVO
+              </p>
+            </AnimatedElement>
+
+            <AnimatedElement delay={450}>
+              <Link to="/methodik" onClick={trackMethodikClick} className="inline-block text-white/80 hover:text-white transition-colors text-sm sm:text-base font-medium underline mt-2">
                 So vergleichen wir (Methodik)
               </Link>
             </AnimatedElement>
@@ -368,6 +449,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* --- TRUST & STATS BAR --- */}
       <section className="relative z-20 -mt-16 sm:-mt-20 w-full mb-16 sm:mb-24">
@@ -404,7 +486,11 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="border-t pt-6 sm:pt-8">
-                <TrustRow />
+                {flags.showTrustBadgesEnhanced ? (
+                  <TrustBadgesEnhanced showUserCounter={flags.showUserCounter} />
+                ) : (
+                  <TrustRow />
+                )}
               </div>
             </div>
           </AnimatedElement>
@@ -1008,6 +1094,12 @@ export default function HomePage() {
         title="Kostenlose PV-Beratung"
       />
       <Footer />
+      {flags.showStickyCTA && (
+        <StickyCTA
+          showExitIntent={flags.showExitIntentPopup}
+          onCTAClick={() => trackCTAClick('StickyCTA – Jetzt Tarife vergleichen')}
+        />
+      )}
     </div>
   );
 }
