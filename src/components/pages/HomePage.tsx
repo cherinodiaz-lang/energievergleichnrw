@@ -20,6 +20,7 @@ import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import FormSubmissionDialog from '@/components/FormSubmissionDialog';
 import TrustRow from '@/components/TrustRow';
+import VerivoxCalculatorEmbed from '@/components/VerivoxCalculatorEmbed';
 import HowToSchema from '@/components/HowToSchema';
 import ReviewSchema from '@/components/ReviewSchema';
 import FAQPageSchema from '@/components/FAQPageSchema';
@@ -145,19 +146,10 @@ export default function HomePage() {
     vertragslaufzeit: string;
     preisgarantie: string;
   };
-  const [stromResults, setStromResults] = useState<TariffResult[]>([]);
   const [gasResults, setGasResults] = useState<TariffResult[]>([]);
   const [kombiResults, setKombiResults] = useState<TariffResult[]>([]);
-  const [showStromResults, setShowStromResults] = useState(false);
   const [showGasResults, setShowGasResults] = useState(false);
   const [showKombiResults, setShowKombiResults] = useState(false);
-
-  // Mobile detection (no framer-motion needed)
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
-  }, []);
 
   // --- Load Data from CMS ---
   useEffect(() => {
@@ -222,11 +214,6 @@ export default function HomePage() {
 
   // Sample tariff data
   const sampleTariffs = {
-    strom: [
-      { id: 1, provider: 'Beispieltarif Strom A', logo: '⚡', jahreskosten: 1245, arbeitspreis: 0.32, grundpreis: 12.50, vertragslaufzeit: '12 Monate', preisgarantie: '12 Monate' },
-      { id: 2, provider: 'Beispieltarif Strom B', logo: '🔋', jahreskosten: 1189, arbeitspreis: 0.30, grundpreis: 11.99, vertragslaufzeit: '24 Monate', preisgarantie: '24 Monate' },
-      { id: 3, provider: 'Beispieltarif Strom C', logo: '⚙️', jahreskosten: 1312, arbeitspreis: 0.35, grundpreis: 13.00, vertragslaufzeit: '12 Monate', preisgarantie: '6 Monate' },
-    ],
     gas: [
       { id: 1, provider: 'Beispieltarif Gas A', logo: '🔥', jahreskosten: 1890, arbeitspreis: 0.085, grundpreis: 15.00, vertragslaufzeit: '12 Monate', preisgarantie: '12 Monate' },
       { id: 2, provider: 'Beispieltarif Gas B', logo: '♻️', jahreskosten: 1756, arbeitspreis: 0.078, grundpreis: 14.50, vertragslaufzeit: '24 Monate', preisgarantie: '24 Monate' },
@@ -240,14 +227,11 @@ export default function HomePage() {
   };
 
   const handleCalculate = (type: string) => {
-    if (type === 'Strom') {
-      setStromResults(sampleTariffs.strom.sort((a, b) => a.jahreskosten - b.jahreskosten));
-      setShowStromResults(true);
-    } else if (type === 'Gas') {
-      setGasResults(sampleTariffs.gas.sort((a, b) => a.jahreskosten - b.jahreskosten));
+    if (type === 'Gas') {
+      setGasResults([...sampleTariffs.gas].sort((a, b) => a.jahreskosten - b.jahreskosten));
       setShowGasResults(true);
     } else if (type === 'Kombi') {
-      setKombiResults(sampleTariffs.kombi.sort((a, b) => a.jahreskosten - b.jahreskosten));
+      setKombiResults([...sampleTariffs.kombi].sort((a, b) => a.jahreskosten - b.jahreskosten));
       setShowKombiResults(true);
     }
   };
@@ -511,7 +495,7 @@ export default function HomePage() {
                   <span className="text-secondary">passenden Angebot.</span>
                 </h2>
                 <p className="font-paragraph text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed">
-                  Unsere Rechner liefern eine erste Orientierung fuer Ihre Region und bereiten eine Anfrage sauber vor.
+                  Im Strom-Tab greifen Sie direkt auf Live-Tarife zu. Gas und Kombi liefern aktuell eine erste Orientierung fuer Ihre Region und den naechsten sinnvollen Schritt.
                 </p>
                 <div className="space-y-4 hidden lg:block">
                   <div className="flex items-start gap-3">
@@ -526,7 +510,7 @@ export default function HomePage() {
                     <div className="w-8 h-8 rounded-full bg-white border-2 border-primary text-primary flex items-center justify-center font-bold text-sm mt-1 flex-shrink-0">2</div>
                     <div>
                       <h4 className="font-bold text-gray-900 text-sm">Angebote vergleichen</h4>
-                      <p className="text-xs text-gray-500">Uebersichtliche Vorschau mit Beispielwerten und Tarifdetails.</p>
+                      <p className="text-xs text-gray-500">Strom live via Verivox, Gas und Kombi aktuell als Orientierung.</p>
                     </div>
                   </div>
                   <div className="w-px h-6 bg-gray-200 ml-4" />
@@ -546,7 +530,7 @@ export default function HomePage() {
                 <Card className="border-none shadow-2xl overflow-hidden">
                   <div className="bg-primary p-4 sm:p-6 text-white">
                     <h3 className="font-heading text-xl sm:text-2xl font-bold">Tarifrechner NRW</h3>
-                    <p className="text-white/80 text-xs sm:text-sm">Beispielorientierung fuer {new Date().getFullYear()}</p>
+                    <p className="text-white/80 text-xs sm:text-sm">Strom live via Verivox, Gas und Kombi aktuell als Erstorientierung</p>
                   </div>
 
                   <Tabs defaultValue="strom" className="w-full">
@@ -576,68 +560,32 @@ export default function HomePage() {
                     <div className="p-3 sm:p-6 md:p-8 bg-white">
                       {/* STROM TAB */}
                       <TabsContent value="strom" className="mt-0 space-y-4 sm:space-y-6">
-                        {!showStromResults ? (
-                          <>
-                            <div className="grid grid-cols-1 gap-3 sm:gap-4">
-                              <div className="space-y-1.5 sm:space-y-2">
-                                <Label htmlFor="strom-plz" className="text-xs sm:text-sm font-medium">Postleitzahl</Label>
-                                <Input id="strom-plz" placeholder="z.B. 40210" value={postleitzahl} onChange={(e) => setPostleitzahl(e.target.value)} className="h-11 sm:h-12 text-sm" />
-                              </div>
-                              <div className="space-y-1.5 sm:space-y-2">
-                                <Label htmlFor="strom-personen" className="text-xs sm:text-sm font-medium">Haushaltsgröße</Label>
-                                <Select value={personenAnzahl} onValueChange={setPersonenAnzahl}>
-                                  <SelectTrigger id="strom-personen" className="h-11 sm:h-12 text-sm"><SelectValue placeholder="Bitte wählen" /></SelectTrigger>
-                                  <SelectContent>
-                                    <SelectItem value="1">1 Person (ca. 1.500 kWh)</SelectItem>
-                                    <SelectItem value="2">2 Personen (ca. 2.500 kWh)</SelectItem>
-                                    <SelectItem value="3">3 Personen (ca. 3.500 kWh)</SelectItem>
-                                    <SelectItem value="4">4+ Personen (ca. 4.250 kWh)</SelectItem>
-                                  </SelectContent>
-                                </Select>
-                              </div>
-                              <div className="space-y-1.5 sm:space-y-2">
-                                <Label htmlFor="strom-verbrauch" className="text-xs sm:text-sm font-medium">Jahresverbrauch (kWh) <span className="text-gray-400 font-normal text-xs">(Optional)</span></Label>
-                                <Input id="strom-verbrauch" type="number" placeholder="Genauen Verbrauch eingeben" value={stromVerbrauch} onChange={(e) => setStromVerbrauch(e.target.value)} className="h-11 sm:h-12 text-sm" />
-                              </div>
-                            </div>
-                            <Button onClick={() => handleCalculate('Strom')} className="w-full bg-secondary text-black hover:bg-[#D49700] h-12 sm:h-14 text-sm sm:text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all active:scale-95">
-                              Strom-Orientierung starten
-                            </Button>
-                          </>
-                        ) : (
-                          <>
-                            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
-                              <p className="text-xs sm:text-sm text-blue-800 font-medium">ℹ️ Dies sind unverbindliche Beispielwerte. Eine Live-Tarifquelle ist derzeit nicht aktiv.</p>
-                            </div>
-                            <div className="space-y-3 sm:space-y-4">
-                              {stromResults.map((tariff) => (
-                                <div key={tariff.id} className="border rounded-lg p-4 sm:p-6 hover:shadow-lg transition-shadow">
-                                  <div className="flex items-start justify-between mb-3 sm:mb-4 gap-2">
-                                    <div className="flex items-center gap-2 sm:gap-4 min-w-0">
-                                      <div className="text-2xl sm:text-4xl flex-shrink-0">{tariff.logo}</div>
-                                      <div className="min-w-0">
-                                        <h4 className="font-bold text-sm sm:text-lg text-gray-900 truncate">{tariff.provider}</h4>
-                                        <p className="text-xs sm:text-sm text-gray-500">Beispielprofil</p>
-                                      </div>
-                                    </div>
-                                    <div className="text-right flex-shrink-0">
-                                      <p className="text-xl sm:text-3xl font-bold text-primary">{tariff.jahreskosten.toFixed(2)}€</p>
-                                      <p className="text-xs text-gray-500">pro Jahr</p>
-                                    </div>
-                                  </div>
-                                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 mb-4 sm:mb-6 py-3 sm:py-4 border-y border-gray-200">
-                                    <div><p className="text-xs text-gray-500 uppercase font-bold">Arbeitspreis</p><p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.arbeitspreis.toFixed(2)}€/kWh</p></div>
-                                    <div><p className="text-xs text-gray-500 uppercase font-bold">Grundpreis</p><p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.grundpreis.toFixed(2)}€/M</p></div>
-                                    <div><p className="text-xs text-gray-500 uppercase font-bold">Laufzeit</p><p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.vertragslaufzeit}</p></div>
-                                    <div><p className="text-xs text-gray-500 uppercase font-bold">Garantie</p><p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.preisgarantie}</p></div>
-                                  </div>
-                                  <Button className="w-full bg-secondary text-black hover:bg-secondary/90 h-10 sm:h-12 font-bold rounded-lg text-sm sm:text-base">Anfrage vorbereiten</Button>
-                                </div>
-                              ))}
-                            </div>
-                            <Button onClick={() => setShowStromResults(false)} variant="outline" className="w-full mt-4 sm:mt-6">Neue Berechnung</Button>
-                          </>
-                        )}
+                        <div className="rounded-lg border border-emerald-100 bg-emerald-50 p-3 sm:p-4">
+                          <p className="text-xs sm:text-sm font-medium text-emerald-900">
+                            Im Strom-Tab nutzen Sie direkt dieselbe Live-Tarifquelle wie auf unserer Stromvergleich-NRW-Seite.
+                          </p>
+                        </div>
+                        <VerivoxCalculatorEmbed
+                          badge="Live-Stromvergleich"
+                          title="Live-Stromtarife für NRW"
+                          description="Geben Sie Ihre Postleitzahl und Ihren Jahresverbrauch direkt im Verivox-Rechner ein. So sehen Sie aktuelle Tarife ohne vorgeschaltete Beispielwerte."
+                          target="Energie_Strom_Privat_Rechner"
+                          wmid="104"
+                          campaignId="stromvergleich_nrw"
+                          trackingProductId="93"
+                        />
+                        <div className="flex flex-col gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 sm:flex-row sm:items-center sm:justify-between">
+                          <p className="text-sm leading-6 text-slate-600">
+                            Falls Sie mehr Kontext, Methodik und begleitende Hinweise benötigen, öffnen Sie die vollständige Stromseite.
+                          </p>
+                          <Link
+                            to={ROUTES.stromvergleich}
+                            onClick={() => trackCTAClick('Homepage Strom Vollansicht')}
+                            className="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary/90"
+                          >
+                            Stromvergleich NRW öffnen
+                          </Link>
+                        </div>
                       </TabsContent>
 
                       {/* GAS TAB */}

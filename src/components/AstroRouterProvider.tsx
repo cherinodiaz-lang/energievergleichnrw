@@ -1,4 +1,4 @@
-import type { ComponentType, ReactNode } from 'react';
+import type { ComponentType } from 'react';
 import { BrowserRouter, StaticRouter, useLocation } from 'react-router-dom';
 import AnalyticsBootstrap from '@/components/AnalyticsBootstrap';
 import ConsentBanner from '@/components/ConsentBanner';
@@ -7,29 +7,35 @@ import { SEO_CONFIG } from '@/lib/seo-config';
 
 interface AstroRouterProviderProps {
   path: string;
-  Page?: ComponentType;
-  children?: ReactNode;
+  Page?: ComponentType<any>;
+  pageProps?: Record<string, unknown>;
 }
 
-function ResolvedRouteContent({ children }: { children?: ReactNode }) {
-  const location = useLocation();
-  const Page = resolvePageComponent(location.pathname);
-
-  if (!Page && children) {
-    return <>{children}</>;
+function ResolvedRouteContent({
+  PageOverride,
+  pageProps,
+}: {
+  PageOverride?: ComponentType<any>;
+  pageProps?: Record<string, unknown>;
+}) {
+  if (PageOverride) {
+    return <PageOverride {...(pageProps ?? {})} />;
   }
 
-  return <Page />;
+  const location = useLocation();
+  const Page = resolvePageComponent(location.pathname);
+  return <Page {...(pageProps ?? {})} />;
 }
 
-export default function AstroRouterProvider({ path, children }: AstroRouterProviderProps) {
+export default function AstroRouterProvider({
+  path,
+  Page,
+  pageProps,
+}: AstroRouterProviderProps) {
   const content = (
     <>
-      <AnalyticsBootstrap
-        measurementId={SEO_CONFIG.googleAnalyticsId}
-        clarityProjectId={SEO_CONFIG.clarityProjectId}
-      />
-      <ResolvedRouteContent>{children}</ResolvedRouteContent>
+      <AnalyticsBootstrap measurementId={SEO_CONFIG.googleAnalyticsId} />
+      <ResolvedRouteContent PageOverride={Page} pageProps={pageProps} />
       <ConsentBanner />
     </>
   );

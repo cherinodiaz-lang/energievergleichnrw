@@ -20,6 +20,7 @@ declare global {
   interface ImportMetaEnv {
     readonly BASE_NAME: string;
     readonly PUBLIC_CLARITY_ID?: string;
+    readonly PUBLIC_CHECK24_PARTNER_ID?: string;
   }
 }
 

@@ -1,5 +1,6 @@
 ---
 import "@/styles/global.css";
+import MicrosoftClarity from "@/components/MicrosoftClarity.astro";
 import { SEO_CONFIG } from "@/lib/seo-config";
 
 const GOOGLE_FONTS_URL =
@@ -109,6 +110,7 @@ const robots = noindex
     <slot name="head" />
   </head>
   <body class="w-full h-full">
+    <MicrosoftClarity />
     <slot />
   </body>
 </html>

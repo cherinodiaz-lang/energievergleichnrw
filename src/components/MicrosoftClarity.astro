@@ -1,0 +1,8 @@
+---
+import ClarityBootstrap from "@/components/ClarityBootstrap";
+import { SEO_CONFIG } from "@/lib/seo-config";
+
+const projectId = SEO_CONFIG.clarityProjectId;
+---
+
+{projectId && <ClarityBootstrap projectId={projectId} client:load />}
