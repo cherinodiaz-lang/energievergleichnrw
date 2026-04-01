@@ -13,7 +13,18 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
+          cache: npm
       - run: npm ci
       - run: npm run build
+        env:
+          WIX_CLIENT_ID: ${{ secrets.WIX_CLIENT_ID }}
+          WIX_CLIENT_SECRET: ${{ secrets.WIX_CLIENT_SECRET }}
+          WIX_CLIENT_INSTANCE_ID: ${{ secrets.WIX_CLIENT_INSTANCE_ID }}
+          WIX_CLIENT_PUBLIC_KEY: ${{ secrets.WIX_CLIENT_PUBLIC_KEY }}
+          ASTRO_TELEMETRY_DISABLED: "1"
+      - name: Start preview server
+        run: npm run preview -- --port 4321 &
+      - name: Wait for server on port 4321
+        run: npx wait-on http://127.0.0.1:4321 --timeout 60000
       - run: npm run lhci:collect
       - run: npm run lhci:assert
