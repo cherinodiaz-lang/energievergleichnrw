@@ -69,13 +69,13 @@ jobs:
             cat wrangler-preview.log || true
             exit 1
           fi
-      - run: npm run lhci:collect
+      - run: npx --yes @lhci/cli collect --config=lighthouserc.json
         env:
           CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
       - name: Assert Lighthouse scores
-        run: npm run lhci:assert
+        run: npx @lhci/cli assert --config=lighthouserc.json
         continue-on-error: true
-      - run: npx lhci upload --config=lighthouserc.json
+      - run: npx @lhci/cli upload --config=lighthouserc.json
         continue-on-error: true
         env:
           CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
