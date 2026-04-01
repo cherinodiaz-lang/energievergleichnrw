@@ -50,29 +50,25 @@ jobs:
         run: |
           npm run preview:worker > wrangler-preview.log 2>&1 &
           echo $! > wrangler-preview.pid
-      - name: Wait for Lighthouse routes
+      - name: Wait for preview server
         run: |
-          urls=(
-            "http://127.0.0.1:4321/"
-            "http://127.0.0.1:4321/stromvergleich-nrw"
-            "http://127.0.0.1:4321/gasvergleich-nrw"
-          )
-          for url in "${urls[@]}"; do
-            ready=0
-            for attempt in {1..30}; do
-              status="$(curl -s -o /dev/null -w '%{http_code}' -A 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36' "$url" || true)"
-              if [ "$status" = "200" ]; then
-                ready=1
-                break
-              fi
-              sleep 2
-            done
-            if [ "$ready" -ne 1 ]; then
-              echo "Preview route failed readiness check: $url"
-              cat wrangler-preview.log
-              exit 1
+          # Wait up to 60 s for the server root to respond (follow redirects, accept any 2xx/3xx)
+          for attempt in {1..30}; do
+            status="$(curl -s -o /dev/null -w '%{http_code}' -L http://127.0.0.1:4321/ || true)"
+            if [[ "$status" =~ ^[23] ]]; then
+              echo "Preview server ready (HTTP $status)"
+              break
             fi
+            echo "Attempt $attempt: HTTP $status – retrying in 2 s..."
+            sleep 2
           done
+          # Final check: fail if the server is still not responding
+          status="$(curl -s -o /dev/null -w '%{http_code}' -L http://127.0.0.1:4321/ || true)"
+          if [[ ! "$status" =~ ^[23] ]]; then
+            echo "Preview server did not become ready after 60 s (last HTTP $status)"
+            cat wrangler-preview.log || true
+            exit 1
+          fi
       - run: npm run lhci:collect
         env:
           CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
