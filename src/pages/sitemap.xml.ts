@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { ratgeberArticles } from '@/lib/ratgeber-map';
+import { CITIES_NRW } from '@/lib/cities-nrw';
 
 /**
  * Sitemap Generator for Energievergleich.shop
@@ -144,6 +145,15 @@ const pages = [
     priority: '0.7',
     changefreq: 'monthly',
     lastmod: article.lastUpdated?.slice(0, 10) ?? todayISO()
+  })),
+
+  // ===== CITY LANDING PAGES (Priority: 0.8) =====
+  // Automatically generated from cities-nrw.ts
+  ...CITIES_NRW.map(city => ({
+    url: `/${city.slug}`,
+    priority: '0.8',
+    changefreq: 'monthly',
+    lastmod: LASTMOD_STATIC
   })),
 
   // ===== LEGAL PAGES (Priority: 0.5) =====

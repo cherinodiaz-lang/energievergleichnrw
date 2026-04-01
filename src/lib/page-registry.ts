@@ -1,4 +1,6 @@
 import type { ComponentType } from "react";
+import CityStromvergleichPage from "@/components/pages/CityStromvergleichPage";
+import { getAllCitySlugs } from "@/lib/cities-nrw";
 import AgbPage from "@/components/pages/AgbPage";
 import DatenschutzPage from "@/components/pages/DatenschutzPage";
 import FaqPage from "@/components/pages/FaqPage";
@@ -123,9 +125,15 @@ const ARTICLE_PAGE_COMPONENTS = {
     WechselSchiefgehtArticle,
 } satisfies Record<string, ComponentType>;
 
+// Build city page routes dynamically from cities-nrw data
+const CITY_PAGE_COMPONENTS = Object.fromEntries(
+  getAllCitySlugs().map((slug) => [`/${slug}`, CityStromvergleichPage])
+) as Record<string, ComponentType>;
+
 const PAGE_COMPONENTS = {
   ...STATIC_PAGE_COMPONENTS,
   ...ARTICLE_PAGE_COMPONENTS,
+  ...CITY_PAGE_COMPONENTS,
 } satisfies Record<string, ComponentType>;
 
 export function normalizePathname(pathname: string): string {

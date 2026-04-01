@@ -1,0 +1,143 @@
+---
+import AstroRouterProvider from "@/components/AstroRouterProvider";
+import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
+import { CITIES_NRW } from "@/lib/cities-nrw";
+import { SEO_CONFIG } from "@/lib/seo-config";
+
+export function getStaticPaths() {
+  return CITIES_NRW.map((city) => ({
+    params: { stadt: city.slug },
+    props: { city },
+  }));
+}
+
+const { city } = Astro.props;
+
+const title = `Stromvergleich ${city.name} 2026 – Günstige Tarife | Energievergleich NRW`;
+const description =
+  `Strom in ${city.name} (PLZ ${city.plzRange}) günstig vergleichen. ` +
+  `Aktuelle Tarife, Preisgarantien und Wechselboni für ${city.name} 2026.`;
+
+// Truncate description to 160 characters
+const metaDescription = description.length > 160 ? description.slice(0, 157) + "…" : description;
+
+const canonicalPath = `/${city.slug}`;
+const canonicalUrl = `${SEO_CONFIG.siteUrl}/${city.slug}`;
+
+// FAQPage Schema – 5 city-specific questions
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: `Wie viel kann ich mit einem Stromwechsel in ${city.name} sparen?`,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: `Die mögliche Ersparnis hängt von Ihrem Jahresverbrauch, der Postleitzahl in ${city.name} und dem aktuellen Tarif ab. Ein Durchschnittshaushalt in ${city.name} mit rund 3.500 kWh Jahresverbrauch kann durch einen Wechsel vom Grundversorgungstarif zu einem Sondervertrag zwischen 150 und 400 Euro jährlich sparen.`,
+      },
+    },
+    {
+      "@type": "Question",
+      name: `Wer ist der Grundversorger für Strom in ${city.name}?`,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: `Der Grundversorger für Strom in ${city.name} ist ${city.grundversorger}. Wenn Sie keinen aktiven Liefervertrag abgeschlossen haben, werden Sie automatisch über die Grundversorgung zu meist höheren Tarifen beliefert. Mit unserem Vergleich finden Sie günstigere Alternativen.`,
+      },
+    },
+    {
+      "@type": "Question",
+      name: `Wie lange dauert ein Stromanbieter-Wechsel in ${city.name}?`,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: `Ein Anbieterwechsel in ${city.name} dauert in der Regel 2 bis 6 Wochen. Der neue Anbieter übernimmt die Kündigung beim alten Versorger. Ihre Stromversorgung wird nicht unterbrochen – selbst bei Verzögerungen springt der Grundversorger automatisch ein.`,
+      },
+    },
+    {
+      "@type": "Question",
+      name: `Welche Postleitzahl gilt für ${city.name} beim Stromvergleich?`,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: `${city.name} umfasst den PLZ-Bereich ${city.plzRange}. Geben Sie Ihre genaue Postleitzahl ein, da Tarife je nach Netzgebiet leicht variieren können. Für die meisten Stadtteile von ${city.name} stehen gleiche oder sehr ähnliche Angebote zur Verfügung.`,
+      },
+    },
+    {
+      "@type": "Question",
+      name: `Kann ich als Mieter in ${city.name} den Stromanbieter wechseln?`,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: `Ja, als Mieter in ${city.name} können Sie Ihren Stromanbieter jederzeit wechseln – sofern der Strom über Ihren eigenen Zähler läuft und nicht über ein Mieterstrommodell abgerechnet wird. Sie schließen einfach einen neuen Liefervertrag ab, ohne Ihren Vermieter einzubeziehen.`,
+      },
+    },
+  ],
+};
+
+// BreadcrumbList Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Startseite",
+      item: SEO_CONFIG.siteUrl,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Stromvergleich NRW",
+      item: `${SEO_CONFIG.siteUrl}/stromvergleich-nrw`,
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: `Stromvergleich ${city.name}`,
+      item: canonicalUrl,
+    },
+  ],
+};
+
+// LocalBusiness Schema with city coordinates
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: `Energievergleich NRW – Stromvergleich ${city.name}`,
+  description: `Kostenloser Stromvergleich für ${city.name}. Aktuelle Tarife, Preisgarantien und Wechselservice.`,
+  url: canonicalUrl,
+  logo: SEO_CONFIG.defaultOgImage,
+  telephone: SEO_CONFIG.organization.contact.telephone,
+  email: SEO_CONFIG.organization.contact.email,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: city.name,
+    postalCode: city.plz,
+    addressCountry: "DE",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: city.lat,
+    longitude: city.lng,
+  },
+  areaServed: {
+    "@type": "City",
+    name: city.name,
+    containedIn: {
+      "@type": "State",
+      name: "Nordrhein-Westfalen",
+    },
+  },
+};
+---
+
+<SeoPageLayout
+  title={title}
+  description={metaDescription}
+  canonicalPath={canonicalPath}
+  keywords={`Stromvergleich ${city.name}, Stromanbieter ${city.name}, Stromtarife ${city.name}, günstig Strom ${city.name} 2026, Energievergleich ${city.name}`}
+  ogTitle={title}
+  ogDescription={metaDescription}
+  schemas={[faqSchema, breadcrumbSchema, localBusinessSchema]}
+>
+  <AstroRouterProvider path={Astro.url.pathname} client:load />
+</SeoPageLayout>
