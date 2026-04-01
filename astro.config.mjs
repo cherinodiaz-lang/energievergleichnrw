@@ -34,7 +34,6 @@ export default defineConfig({
     tailwind(),
     wix({
       htmlEmbeds: false,
-      auth: false,
       backendExtensions: false,
       backofficeExtensions: false,
       robots: false,
