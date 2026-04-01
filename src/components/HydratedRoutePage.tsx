@@ -8,7 +8,8 @@ import { SEO_CONFIG } from "@/lib/seo-config";
 
 interface HydratedRoutePageProps {
   path: string;
-  Page?: ComponentType;
+  Page?: ComponentType<any>;
+  pageProps?: Record<string, unknown>;
 }
 
 interface ErrorBoundaryState {
@@ -30,6 +31,8 @@ class ErrorBoundary extends React.Component<
   }
 
   componentDidCatch(error: Error, info: React.ErrorInfo) {
+    void error;
+    void info;
     // Silently catch errors to prevent editor blocking
   }
 
@@ -133,22 +136,29 @@ function EditorInitializer() {
   return null;
 }
 
-function ResolvedRoutePage() {
+function ResolvedRoutePage({
+  PageOverride,
+  pageProps,
+}: {
+  PageOverride?: ComponentType<any>;
+  pageProps?: Record<string, unknown>;
+}) {
   const location = useLocation();
-  const Page = resolvePageComponent(location.pathname);
-  return <Page />;
+  const Page = PageOverride ?? resolvePageComponent(location.pathname);
+  return <Page {...(pageProps ?? {})} />;
 }
 
-export default function HydratedRoutePage({ path }: HydratedRoutePageProps) {
+export default function HydratedRoutePage({
+  path,
+  Page,
+  pageProps,
+}: HydratedRoutePageProps) {
   const pageWithGlobalUi = (
     <ErrorBoundary>
       <>
-        <AnalyticsBootstrap
-          measurementId={SEO_CONFIG.googleAnalyticsId}
-          clarityProjectId={SEO_CONFIG.clarityProjectId}
-        />
+        <AnalyticsBootstrap measurementId={SEO_CONFIG.googleAnalyticsId} />
         <EditorInitializer />
-        <ResolvedRoutePage />
+        <ResolvedRoutePage PageOverride={Page} pageProps={pageProps} />
         <ConsentBanner />
       </>
     </ErrorBoundary>

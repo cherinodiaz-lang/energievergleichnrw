@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { CITIES, getGasCityPath, getStromCityPath } from '@/lib/cities';
 import { ratgeberArticles } from '@/lib/ratgeber-map';
 
 /**
@@ -38,6 +39,20 @@ const pages = [
     changefreq: 'weekly',
     lastmod: LASTMOD_STATIC
   },
+  ...CITIES.flatMap((city) => [
+    {
+      url: getStromCityPath(city.slug),
+      priority: '0.7',
+      changefreq: 'monthly',
+      lastmod: LASTMOD_STATIC,
+    },
+    {
+      url: getGasCityPath(city.slug),
+      priority: '0.7',
+      changefreq: 'monthly',
+      lastmod: LASTMOD_STATIC,
+    },
+  ]),
   {
     url: '/photovoltaik-nrw',
     priority: '0.8',

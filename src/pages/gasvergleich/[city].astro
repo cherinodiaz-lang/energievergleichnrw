@@ -1,0 +1,118 @@
+---
+import HydratedRoutePage from "@/components/HydratedRoutePage";
+import CityComparisonPage from "@/components/pages/CityComparisonPage";
+import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
+import {
+  CITIES,
+  calcJahresersparnis,
+  getCityBySlug,
+  getGasCityFaqs,
+  getGasCityPath,
+} from "@/lib/cities";
+import { SEO_CONFIG } from "@/lib/seo-config";
+
+export function getStaticPaths() {
+  return CITIES.map((city) => ({
+    params: { city: city.slug },
+    props: { city },
+  }));
+}
+
+const city = Astro.props.city ?? getCityBySlug(Astro.params.city ?? "");
+
+if (!city) {
+  throw new Error(`Unknown city slug: ${Astro.params.city}`);
+}
+
+const pagePath = getGasCityPath(city.slug);
+const faqItems = getGasCityFaqs(city);
+const savings = calcJahresersparnis(
+  city.gasGrundversorgungCt,
+  city.gasVergleichCt,
+  city.gasSampleConsumptionKwh,
+);
+const title = `Gasvergleich ${city.name} 2026 | Gastarife für ${city.name} vergleichen`;
+const description = `Gasvergleich für ${city.name}: Live-Tarife für ${city.postalCodeHint}, lokale Orientierung zu Grundversorgung, Preisgarantie und Gaskosten. Jetzt Gastarife für ${city.name} prüfen.`;
+const keywords = `Gasvergleich ${city.name}, Gastarife ${city.name}, Gasanbieter ${city.name}, Gaspreis ${city.name}, Gasvergleich NRW`;
+
+const schemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Startseite",
+        item: `${SEO_CONFIG.siteUrl}/`,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Gasvergleich NRW",
+        item: `${SEO_CONFIG.siteUrl}/gasvergleich-nrw`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: `Gasvergleich ${city.name}`,
+        item: `${SEO_CONFIG.siteUrl}${pagePath}`,
+      },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: `Gasvergleich ${city.name}`,
+    serviceType: "Gasvergleich",
+    url: `${SEO_CONFIG.siteUrl}${pagePath}`,
+    description,
+    provider: {
+      "@type": "Organization",
+      name: SEO_CONFIG.siteName,
+      url: SEO_CONFIG.siteUrl,
+    },
+    areaServed: {
+      "@type": "City",
+      name: city.name,
+      containedInPlace: {
+        "@type": "State",
+        name: "Nordrhein-Westfalen",
+      },
+    },
+    offers: {
+      "@type": "Offer",
+      description: `Beispielhafte Orientierung: rund ${savings.toLocaleString("de-DE")} Euro Sparpotenzial pro Jahr bei ${city.gasSampleConsumptionKwh.toLocaleString("de-DE")} kWh.`,
+    },
+  },
+];
+---
+
+<SeoPageLayout
+  title={title}
+  description={description}
+  canonicalPath={pagePath}
+  keywords={keywords}
+  ogTitle={title}
+  ogDescription={description}
+  schemas={schemas}
+>
+  <HydratedRoutePage
+    path={Astro.url.pathname}
+    Page={CityComparisonPage}
+    pageProps={{ city, comparisonType: "gas" }}
+    client:load
+  />
+</SeoPageLayout>
