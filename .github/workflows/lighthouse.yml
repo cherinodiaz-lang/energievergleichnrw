@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   lighthouse:
-    name: Lighthouse
+    name: Lighthouse CI / Lighthouse
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
