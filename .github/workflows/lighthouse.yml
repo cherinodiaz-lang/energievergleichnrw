@@ -22,8 +22,8 @@ jobs:
           WIX_CLIENT_INSTANCE_ID: ${{ secrets.WIX_CLIENT_INSTANCE_ID }}
           WIX_CLIENT_PUBLIC_KEY: ${{ secrets.WIX_CLIENT_PUBLIC_KEY }}
           ASTRO_TELEMETRY_DISABLED: "1"
-      - name: Start preview server
-        run: npm run preview -- --port 4321 &
+      - name: Start local preview server
+        run: npm run preview:worker &
       - name: Wait for server on port 4321
         run: npx wait-on http://127.0.0.1:4321 --timeout 60000
       - run: npm run lhci:collect
