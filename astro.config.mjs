@@ -10,10 +10,6 @@ import sourceAttrsPlugin from "@wix/babel-plugin-jsx-source-attrs";
 import dynamicDataPlugin from "@wix/babel-plugin-jsx-dynamic-data";
 import customErrorOverlayPlugin from "./vite-error-overlay-plugin.js";
 import postcssPseudoToData from "@wix/postcss-pseudo-to-data";
-import { bootstrapWixLocalEnv } from "./wix-local-env.mjs";
-
-bootstrapWixLocalEnv();
-
 const isBuild = process.env.NODE_ENV == "production";
 
 // https://astro.build/config
