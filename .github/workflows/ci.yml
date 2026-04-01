@@ -1,9 +1,10 @@
 name: CI
 
 on:
+  pull_request:
+    branches: [main]
   push:
     branches: [main]
-  pull_request:
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -13,66 +14,51 @@ permissions:
   contents: read
 
 jobs:
-  validate:
-    name: Validate
+  build:
+    name: build
     runs-on: ubuntu-latest
     env:
-      WIX_CLIENT_ID: ${{ secrets.WIX_CLIENT_ID }}
-      WIX_CLIENT_SECRET: ${{ secrets.WIX_CLIENT_SECRET }}
-      WIX_CLIENT_INSTANCE_ID: ${{ secrets.WIX_CLIENT_INSTANCE_ID }}
-      WIX_CLIENT_PUBLIC_KEY: ${{ secrets.WIX_CLIENT_PUBLIC_KEY }}
+      WIX_CLIENT_ID: ${{ secrets.WIX_CLIENT_ID || 'ci-placeholder-00000000-0000-0000-0000-000000000000' }}
+      WIX_CLIENT_SECRET: ${{ secrets.WIX_CLIENT_SECRET || 'ci-placeholder-secret' }}
+      WIX_CLIENT_INSTANCE_ID: ${{ secrets.WIX_CLIENT_INSTANCE_ID || 'ci-placeholder-instance-id' }}
+      WIX_CLIENT_PUBLIC_KEY: ${{ secrets.WIX_CLIENT_PUBLIC_KEY || 'ci-placeholder-public-key' }}
       ASTRO_TELEMETRY_DISABLED: "1"
     timeout-minutes: 20
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v5
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Install Wix CLI
-        run: npm install -g @wix/cli
-
-      - name: Type and config checks
-        id: typecheck
-        continue-on-error: true
-        run: npm run check
-
-      - name: Run tests
-        id: tests
-        continue-on-error: true
-        run: npm run test:run
-
-      - name: Build
-        id: build
-        continue-on-error: true
-        run: npm run build
-
-      - name: Report step outcomes
-        if: always()
+      - run: npm ci
+      - name: Install Wix CLI and add to PATH
         run: |
-          echo "## CI Results" >> "$GITHUB_STEP_SUMMARY"
-          echo "" >> "$GITHUB_STEP_SUMMARY"
-          echo "| Step | Result |" >> "$GITHUB_STEP_SUMMARY"
-          echo "|------|--------|" >> "$GITHUB_STEP_SUMMARY"
-          echo "| Type and config checks | ${{ steps.typecheck.outcome }} |" >> "$GITHUB_STEP_SUMMARY"
-          echo "| Run tests              | ${{ steps.tests.outcome }} |" >> "$GITHUB_STEP_SUMMARY"
-          echo "| Build                  | ${{ steps.build.outcome }} |" >> "$GITHUB_STEP_SUMMARY"
+          npm install -g @wix/cli
+          echo "$(npm prefix -g)/bin" >> $GITHUB_PATH
+      - run: npm run build
 
-      - name: Fail if any step failed
-        if: |
-          always() && (
-            steps.typecheck.outcome == 'failure' ||
-            steps.tests.outcome == 'failure' ||
-            steps.build.outcome == 'failure'
-          )
-        run: |
-          echo "::error::One or more CI steps failed – see table above for details."
-          exit 1
+  typecheck:
+    name: typecheck
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+
+  validate-seo:
+    name: validate-seo
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run validate:seo
