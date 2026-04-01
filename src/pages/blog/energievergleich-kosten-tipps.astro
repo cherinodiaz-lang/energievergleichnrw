@@ -1,0 +1,17 @@
+---
+import AstroRouterProvider from "@/components/AstroRouterProvider";
+import EnergievergleichKostenTippsArticle from "@/components/pages/blog/EnergievergleichKostenTippsArticle";
+import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
+---
+
+<SeoPageLayout
+  title="Energievergleich Kosten – Tipps fuer Haushalte 2026 | energievergleich.shop"
+  description="Energievergleich und Kostenoptimierung fuer Haushalte: Praktische Tipps zum Strom und Gas sparen, Wechsel-Anleitung und Spartricks fuer NRW-Haushalte 2026."
+  canonicalPath="/blog/energievergleich-kosten-tipps"
+  keywords="Energievergleich Tipps, Energiekosten senken, Strom Gas sparen, Haushalt NRW 2026"
+  ogTitle="Energievergleich Kosten – Tipps fuer Haushalte 2026"
+  ogDescription="Praktische Tipps zur Optimierung Ihrer Energiekosten als Haushalt in NRW."
+  ogType="article"
+>
+  <AstroRouterProvider path={Astro.url.pathname} Page={EnergievergleichKostenTippsArticle} client:load />
+</SeoPageLayout>

@@ -1,0 +1,17 @@
+---
+import AstroRouterProvider from "@/components/AstroRouterProvider";
+import StromanbieterWechselnSchritteArticle from "@/components/pages/blog/StromanbieterWechselnSchritteArticle";
+import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
+---
+
+<SeoPageLayout
+  title="Stromanbieter wechseln NRW – Schritt fuer Schritt 2026 | energievergleich.shop"
+  description="Schritt-fuer-Schritt-Anleitung zum Stromanbieter wechseln in NRW 2026. Wann wechseln, worauf achten und wie Sie mit dem Wechsel bis zu 400 Euro sparen."
+  canonicalPath="/blog/stromanbieter-wechseln-nrw"
+  keywords="Stromanbieter wechseln NRW, Stromwechsel Anleitung, Stromanbieter NRW 2026, Strom wechseln Tipps"
+  ogTitle="Stromanbieter wechseln NRW – Schritt fuer Schritt 2026"
+  ogDescription="Schritt-fuer-Schritt: So wechseln Sie Ihren Stromanbieter in NRW einfach und guenstig."
+  ogType="article"
+>
+  <AstroRouterProvider path={Astro.url.pathname} Page={StromanbieterWechselnSchritteArticle} client:load />
+</SeoPageLayout>

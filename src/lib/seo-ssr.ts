@@ -333,6 +333,180 @@ const GEWERBEGAS_FAQ_SCHEMA = {
   ],
 };
 
+const STROM_FAQ_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Wie oft kann ich meinen Stromanbieter wechseln?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sie können Ihren Stromanbieter jederzeit wechseln, sofern Sie die Kündigungsfrist einhalten. Bei den meisten Verträgen beträgt diese 4 Wochen zum Ende eines Kalendermonats.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Ist der Stromwechsel in NRW kostenlos?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Unsere Beratung und Erstorientierung sind kostenlos. Es fallen keine Gebühren für die Kündigung oder Anmeldung an.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Wie lange dauert ein Stromwechsel?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Die tatsächliche Dauer hängt vom gewählten Anbieter und Ihrer Vertragssituation ab. In der Regel dauert ein Wechsel 4–6 Wochen. Ihre Stromversorgung wird dabei nicht unterbrochen.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Kann ich während eines Wechsels ohne Strom sein?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Nein. Ihre Stromversorgung ist gesetzlich geschützt und wird nicht unterbrochen. Im Notfall springt der Grundversorger ein.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Welche Daten benötige ich für einen Stromvergleich?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Für die Erstorientierung genügen Postleitzahl und Jahresverbrauch in kWh. Den Verbrauch finden Sie auf Ihrer letzten Stromrechnung.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Wie viel kann ich durch einen Stromwechsel sparen?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Mögliche Einsparungen hängen von Verbrauch, Region und Tarifdetails ab. Viele Haushalte in NRW können durch einen Anbieterwechsel mehrere Hundert Euro im Jahr sparen.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Was ist der Unterschied zwischen Grundversorgung und Sondervertrag?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Die Grundversorgung ist der gesetzliche Standardtarif, meist der teuerste. Sonderverträge bieten oft günstigere Konditionen. Ein Wechsel in einen Sondervertrag spart in der Regel 10–30%.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Was ist Ökostrom?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Ökostrom ist Strom aus erneuerbaren Energien wie Wind, Sonne oder Wasser. Viele Ökostromanbieter bieten inzwischen wettbewerbsfähige Tarife an, die nicht teurer als konventioneller Strom sind.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Muss ich meinen alten Vertrag selbst kündigen?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Nein. Bei den meisten Anbietern übernimmt der neue Anbieter die Kündigung beim alten Versorger für Sie.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Wie erkenne ich einen seriösen Stromanbieter?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Achten Sie auf transparente Preise, klare Vertragsbedingungen, kurze Laufzeiten und gute Kundenbewertungen. Unser Vergleich zeigt nur geprüfte Angebote.',
+      },
+    },
+  ],
+};
+
+const GAS_FAQ_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Wie oft kann ich meinen Gasanbieter wechseln?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sie können Ihren Gasanbieter jederzeit wechseln, sofern Sie die Kündigungsfrist einhalten. Bei den meisten Verträgen beträgt diese 4 Wochen zum Ende eines Kalendermonats.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Ist der Gaswechsel in NRW kostenlos?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Unsere Beratung und Erstorientierung sind kostenlos. Es fallen keine Gebühren für die Kündigung oder Anmeldung an.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Wie lange dauert ein Gaswechsel?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'In der Regel 4–6 Wochen. Ihre Gasversorgung wird nicht unterbrochen. Der neue Anbieter kümmert sich um alle notwendigen Schritte.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Kann ich während eines Wechsels ohne Gas sein?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Nein. Ihre Gasversorgung ist gesetzlich geschützt und wird nicht unterbrochen. Im Notfall springt der Grundversorger ein.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Welche Daten benötige ich für einen Gasvergleich?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Für die Erstorientierung genügen Postleitzahl und Jahresverbrauch in kWh oder Ihre Wohnfläche. Den Verbrauch finden Sie auf Ihrer letzten Gasrechnung.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Wie viel kann ich durch einen Gaswechsel sparen?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Mögliche Einsparungen hängen von Verbrauch, Region und Tarifdetails ab. Viele Haushalte in NRW können durch einen Anbieterwechsel mehrere Hundert Euro im Jahr sparen.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Was ist Biogas?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Biogas ist ein erneuerbares Gas aus organischen Stoffen. Es ist eine klimafreundliche Alternative zu fossilem Erdgas. Viele Biogastarife sind inzwischen preislich mit konventionellen Tarifen vergleichbar.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Muss ich meinen alten Gasvertrag selbst kündigen?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Nein. Bei den meisten Anbietern übernimmt der neue Gasanbieter die Kündigung beim alten Versorger für Sie.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Was beeinflusst die Gastarife in NRW?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Gastarife werden durch internationale Rohstoffpreise, Netzentgelte, staatliche Abgaben und die Anbietermargen beeinflusst. Durch den Wettbewerb zwischen Anbietern gibt es erhebliche Preisunterschiede.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Lohnt sich ein Gaspreisvergleich?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Ja, ein Gaspreisvergleich lohnt sich fast immer. Wer regelmäßig vergleicht, zahlt in der Regel weniger als Bestandskunden in der Grundversorgung.',
+      },
+    },
+  ],
+};
+
 const ROUTE_LABELS: Record<string, string> = {
   'stromvergleich-nrw': 'Stromvergleich NRW',
   'gasvergleich-nrw': 'Gasvergleich NRW',
@@ -355,6 +529,12 @@ const ROUTE_LABELS: Record<string, string> = {
   faq: 'FAQ',
   blog: 'Blog',
   danke: 'Danke',
+  vergleich: 'Vergleich',
+  'stromanbieter-wechseln-nrw': 'Stromanbieter wechseln NRW',
+  'strompreise-nrw-2026': 'Strompreise NRW 2026',
+  'gaspreise-vergleichen-nrw': 'Gaspreise vergleichen NRW',
+  'energievergleich-kosten-tipps': 'Energievergleich Kosten Tipps',
+  'oekostrom-nrw-anbieter': 'Oekostrom NRW Anbieter',
 };
 
 function normalizePath(pathname: string): string {
@@ -460,10 +640,64 @@ function getStaticMeta(pathname: string): MetaConfig {
       };
     case '/blog':
       return {
-        title: 'Blog | energievergleich.shop',
+        title: 'Blog | Energie-Ratgeber NRW 2026 – Strom, Gas & Sparen',
         description:
-          'Aktuelle Inhalte und Fachbeiträge rund um Strom, Gas, Photovoltaik und Wechselwissen.',
-        keywords: 'Blog, Strom, Gas, Photovoltaik, Wechselwissen',
+          'Aktuelle Fachbeiträge und Ratgeber rund um Strompreise, Gaspreise, Anbieterwechsel und Ökostrom in NRW. Tipps zum Energie sparen 2026.',
+        keywords: 'Energieblog NRW, Strompreise 2026, Gaspreise NRW, Ökostrom, Energiesparen NRW',
+      };
+    case '/blog/strompreise-nrw-2026':
+      return {
+        title: 'Strompreise NRW 2026 – Aktueller Überblick | energievergleich.shop',
+        description:
+          'Strompreise in NRW 2026: Aktueller Überblick über Entwicklungen, Trends und Sparmöglichkeiten. Wie sich Haushalte jetzt günstig mit Strom versorgen.',
+        keywords: 'Strompreise NRW 2026, Stromkosten NRW, Stromtarife 2026, guenstige Stromanbieter NRW',
+        ogType: 'article',
+      };
+    case '/blog/gaspreise-vergleichen-nrw':
+      return {
+        title: 'Gaspreise vergleichen NRW – So sparst du 2026 | energievergleich.shop',
+        description:
+          'Gaspreise in NRW vergleichen und 2026 sparen: Tipps zum Gasanbieter wechseln, aktuelle Preisentwicklungen und Spartricks für Haushalte in Nordrhein-Westfalen.',
+        keywords: 'Gaspreise NRW 2026, Gaspreisvergleich NRW, Gaskosten senken, Gasanbieter NRW',
+        ogType: 'article',
+      };
+    case '/blog/energievergleich-kosten-tipps':
+      return {
+        title: 'Energievergleich Kosten – Tipps für Haushalte 2026 | energievergleich.shop',
+        description:
+          'Energievergleich und Kostenoptimierung für Haushalte: Praktische Tipps zum Strom und Gas sparen, Wechsel-Anleitung und Spartricks für NRW-Haushalte 2026.',
+        keywords: 'Energievergleich Tipps, Energiekosten senken, Strom Gas sparen, Haushalt NRW 2026',
+        ogType: 'article',
+      };
+    case '/blog/stromanbieter-wechseln-nrw':
+      return {
+        title: 'Stromanbieter wechseln NRW – Schritt für Schritt 2026 | energievergleich.shop',
+        description:
+          'Schritt-für-Schritt-Anleitung zum Stromanbieter wechseln in NRW 2026. Wann wechseln, worauf achten und wie Sie mit dem Wechsel bis zu 400 € sparen.',
+        keywords: 'Stromanbieter wechseln NRW, Stromwechsel Anleitung, Stromanbieter NRW 2026, Strom wechseln Tipps',
+        ogType: 'article',
+      };
+    case '/blog/oekostrom-nrw-anbieter':
+      return {
+        title: 'Ökostrom NRW – Die besten Anbieter 2026 | energievergleich.shop',
+        description:
+          'Die besten Ökostromanbieter in NRW 2026: Vergleich, Preise und Empfehlungen für klimafreundlichen Strom aus erneuerbaren Energien in Nordrhein-Westfalen.',
+        keywords: 'Oekostrom NRW 2026, Oekostrom Anbieter NRW, Gruener Strom NRW, Erneuerbarer Strom NRW',
+        ogType: 'article',
+      };
+    case '/vergleich/strom':
+      return {
+        title: 'Stromvergleich NRW – Alle Angebote & Tarife 2026 | energievergleich.shop',
+        description:
+          'Der vollständige Stromvergleich für NRW 2026: Alle Stromanbieter, Tarife und Sparmöglichkeiten auf einen Blick. Jetzt vergleichen und Stromkosten senken.',
+        keywords: 'Stromvergleich NRW Hub, Stromangebote NRW, alle Stromanbieter NRW, Stromtarife Übersicht NRW 2026',
+      };
+    case '/vergleich/gas':
+      return {
+        title: 'Gasvergleich NRW – Alle Angebote & Tarife 2026 | energievergleich.shop',
+        description:
+          'Der vollständige Gasvergleich für NRW 2026: Alle Gasanbieter, Tarife und Sparmöglichkeiten auf einen Blick. Jetzt vergleichen und Gaskosten senken.',
+        keywords: 'Gasvergleich NRW Hub, Gasangebote NRW, alle Gasanbieter NRW, Gastarife Übersicht NRW 2026',
       };
     default: {
       const segments = normalizedPath.split('/').filter(Boolean);
@@ -620,6 +854,14 @@ function buildSchemaEntries(pathname: string): SchemaEntry[] {
 
   if (normalizePath(pathname) === ROUTES.photovoltaik) {
     entries.push({ id: 'photovoltaik-faq-schema', payload: PHOTOVOLTAIK_FAQ_SCHEMA });
+  }
+
+  if (normalizePath(pathname) === ROUTES.stromvergleich) {
+    entries.push({ id: 'strom-faq-schema', payload: STROM_FAQ_SCHEMA });
+  }
+
+  if (normalizePath(pathname) === ROUTES.gasvergleich) {
+    entries.push({ id: 'gas-faq-schema', payload: GAS_FAQ_SCHEMA });
   }
 
   if (normalizePath(pathname) === ROUTES.gewerbestrom) {
