@@ -2,6 +2,7 @@
 import { bootstrapWixLocalEnv } from "./wix-local-env.mjs";
 bootstrapWixLocalEnv();
 import { defineConfig } from "astro/config";
+import node from "@astrojs/node";
 import tailwind from "@astrojs/tailwind";
 import wix from "@wix/astro";
 import monitoring from "@wix/monitoring-astro";
@@ -16,6 +17,7 @@ const isBuild = process.env.NODE_ENV == "production";
 export default defineConfig({
   site: 'https://www.energievergleich.shop',
   output: "static",
+  adapter: node({ mode: "standalone" }),
   integrations: [
     {
       name: "framewire",
