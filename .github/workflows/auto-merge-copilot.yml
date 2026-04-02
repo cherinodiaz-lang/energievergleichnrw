@@ -15,9 +15,9 @@ concurrency:
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
-    # Only auto-merge PRs targeting `develop` that carry the `automerge: true` label
+    # Only auto-merge PRs targeting `main` that carry the `automerge: true` label
     if: |
-      github.event.pull_request.base.ref == 'develop' &&
+      github.event.pull_request.base.ref == 'main' &&
       contains(github.event.pull_request.labels.*.name, 'automerge: true')
 
     steps:
@@ -61,7 +61,7 @@ jobs:
                 "",
                 "| Condition | Status |",
                 "|-----------|--------|",
-                "| Target branch | `develop` ✅ |",
+                "| Target branch | `main` ✅ |",
                 "| Label `automerge: true` | ✅ |",
                 "| Merge method | Squash ✅ |",
               ].join("\n"),
