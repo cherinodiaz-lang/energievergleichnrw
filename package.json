@@ -23,7 +23,6 @@
     "lhci:assert": "npx lhci assert --config=lighthouserc.json"
   },
   "dependencies": {
-    "@astrojs/node": "10.0.4",
     "@astrojs/react": "^4.4.2",
     "@astrojs/tailwind": "^6.0.2",
     "@radix-ui/react-accordion": "^1.2.12",
