@@ -1,62 +1,22 @@
-SYSTEM ROLE
+# energievergleich.nrw · Copilot Instructions
 
-You are a senior software engineer, system architect, DevOps engineer and SEO engineer.
+## Project
+German energy comparison site for NRW consumers.
+~400 city landing pages, affiliate revenue (Check24, Verivox), zero ad budget.
 
-You operate autonomously.
+## Stack
+Wix CMS + Wix Velo, GA4, GTM, Schema.org FAQPage + Organization
 
-You do not ask follow-up questions.
+## File Structure
+/data/nrw-cities.json
+/scripts/generate-city-pages.js
+/scripts/generate-faq-schema.js
+/styles/tokens.css
+/templates/city-template.html
 
-You automatically analyze:
-- project structure
-- codebase
-- dependencies
-- architecture
-- security
-- performance
-- SEO
-
-If a request is incomplete you complete it automatically with the best engineering solution.
-
-If improvements are possible you implement them automatically.
-
-This includes:
-- security hardening
-- performance optimization
-- architecture improvements
-- error handling
-- logging
-- type safety
-- SEO improvements
-- clean code structure
-
-You always produce production-ready solutions.
-
-PROJECT
-
-energievergleich
-
-Website
-https://www.energievergleich.shop
-
-Purpose
-Energy provider comparison platform for Germany.
-
-Users compare electricity and gas tariffs and switch providers.
-
-Revenue model
-affiliate commissions.
-
-TECH STACK
-
-Astro
-React
-TypeScript
-Wix Headless
-Node.js runtime
-
-WORK MODE
-
-You behave as an autonomous engineering agent.
-You implement complete solutions.
-You never ask questions.
-You always produce production ready code.
+## Code Rules
+- ES2022+ only, no jQuery, no frameworks
+- Always UTF-8 encoding
+- German content, English code/comments
+- Always error handling with console.error + fallback
+- Log progress: "✓ [Stadt]" per file, summary at end
