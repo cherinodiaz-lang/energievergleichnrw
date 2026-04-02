@@ -81,11 +81,27 @@ type MotionComponent = React.ForwardRefExoticComponent<Record<string, unknown>>;
 export const motion = new Proxy<Record<string, MotionComponent>>(
   {},
   {
-    get(_target, tagName: string) {
-      return forwardRef<HTMLElement, Record<string, unknown>>(function StableMotionComponent(props, ref) {
+    get(target, key) {
+      if (typeof key !== "string") {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+        return Reflect.get(target, key);
+      }
+
+      const cached = target[key];
+      if (cached) {
+        return cached;
+      }
+
+      const StableMotionComponent = forwardRef<HTMLElement, Record<string, unknown>>(function StableMotionComponent(
+        props,
+        ref,
+      ) {
         const sanitizedProps = sanitizeProps(props);
-        return createElement(tagName, { ...sanitizedProps, ref }, sanitizedProps.children);
+        return createElement(key, { ...sanitizedProps, ref }, sanitizedProps.children);
       });
+
+      target[key] = StableMotionComponent;
+      return StableMotionComponent;
     },
   },
 );
