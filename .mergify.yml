@@ -1,62 +1,110 @@
-queue_rules:
-  - name: default
-    conditions:
-      - check-success=ci
+# ═══════════════════════════════════════════════════════════════════
+# Mergify-Konfiguration fuer energievergleichnrw
+# Erstellt basierend auf Repo-Analyse vom 2026-04-03
+# ═══════════════════════════════════════════════════════════════════
+#
+# Standard-Branch: main
+# CI-Checks (ci.yml): build, typecheck, validate-seo
+# Aktive Bots: Copilot (copilot/), Dependabot (dependabot/), Codex (codex/)
+# Vorhandene Labels: bug, enhancement, documentation, dependencies,
+#   github_actions, javascript, auto-fix, needs-manual-review, good first issue
+#
 
 pull_request_rules:
-  # Auto-merge Copilot / bot fix PRs to develop after CI passes
-  - name: Auto-merge Copilot fixes to develop
+
+  # ─────────────────────────────────────────────────────────────────
+  # Dependabot: Patch/Minor npm-Updates automatisch mergen
+  # Dependabot erstellt PRs mit Prefix "chore(deps" gegen main.
+  # Nach erfolgreichem CI werden sie auto-approved und squash-gemergt.
+  # Major-Updates werden von dependabot.yml bereits ignoriert.
+  # ─────────────────────────────────────────────────────────────────
+  - name: Auto-merge Dependabot npm Patch/Minor-Updates
     conditions:
-      - base=develop
-      - label=automerge: true
+      - author=dependabot[bot]
+      - base=main
       - -draft
       - -conflict
-      - check-success=CI / Validate
-    actions:
-      merge:
-        method: squash
-        commit_message_template: |
-          {{ title }} (#{{ number }})
-
-          {{ body }}
-
-  # Auto-merge Dependabot patch/minor updates after CI passes
-  - name: Auto-merge Dependabot patch and minor updates
-    conditions:
-      - author=dependabot[bot]
-      - check-success=ci
-      - label!=do-not-merge
+      - check-success=build
+      - check-success=typecheck
+      - check-success=validate-seo
       - title~=^chore\(deps
+      - label!=needs-manual-review
     actions:
       review:
         type: APPROVE
-        message: "Auto-approved: Dependabot patch/minor update ✅"
+        message: "✅ Auto-approved: Dependabot Patch/Minor-Update"
       merge:
         method: squash
         commit_message_template: |
           {{ title }} (#{{ number }})
 
-  # Auto-merge GitHub Actions updates
-  - name: Auto-merge Dependabot GitHub Actions updates
+  # ─────────────────────────────────────────────────────────────────
+  # Dependabot: GitHub Actions Updates automatisch mergen
+  # Actions-Updates sind unkritisch und koennen nach CI auto-gemergt werden.
+  # ─────────────────────────────────────────────────────────────────
+  - name: Auto-merge Dependabot GitHub Actions Updates
     conditions:
       - author=dependabot[bot]
-      - check-success=ci
+      - base=main
+      - -draft
+      - -conflict
+      - check-success=build
+      - check-success=typecheck
+      - check-success=validate-seo
       - title~=^chore\(actions
+      - label!=needs-manual-review
     actions:
       review:
         type: APPROVE
-        message: "Auto-approved: GitHub Actions update ✅"
+        message: "✅ Auto-approved: GitHub Actions Update"
       merge:
         method: squash
+        commit_message_template: |
+          {{ title }} (#{{ number }})
 
-  # Block major version bumps — require manual review
-  - name: Label major updates for manual review
+  # ─────────────────────────────────────────────────────────────────
+  # Dependabot-PRs automatisch mit "dependencies" labeln
+  # Stellt sicher, dass alle Dependabot-PRs einheitlich gelabelt sind.
+  # ─────────────────────────────────────────────────────────────────
+  - name: Dependabot-PRs automatisch labeln
     conditions:
       - author=dependabot[bot]
-      - title~=bump.*from.*[0-9]+\.[0-9]+.*to [0-9]+\.
+    actions:
+      label:
+        add:
+          - dependencies
+
+  # ─────────────────────────────────────────────────────────────────
+  # Schutz kritischer Konfigurationsdateien
+  # Aenderungen an Mergify, Workflows, Astro-Config und Wix-Config
+  # muessen manuell geprueft werden (ausser von Dependabot).
+  # ─────────────────────────────────────────────────────────────────
+  - name: Schutz kritischer Konfigurationsdateien
+    conditions:
+      - -author=dependabot[bot]
+      - or:
+          - files~=^\.mergify\.yml$
+          - files~=^\.github/workflows/
+          - files~=^astro\.config\.mjs$
+          - files~=^wix\.config\.json$
     actions:
       label:
         add:
           - needs-manual-review
       comment:
-        message: "⚠️ Major version bump detected — bitte manuell prüfen!"
+        message: |
+          🔒 Dieser PR aendert kritische Konfigurationsdateien.
+          Bitte manuell pruefen bevor gemergt wird.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Hinweis bei Merge-Konflikten
+  # PRs mit Konflikten werden automatisch kommentiert.
+  # ─────────────────────────────────────────────────────────────────
+  - name: Hinweis bei Merge-Konflikten
+    conditions:
+      - conflict
+    actions:
+      comment:
+        message: |
+          ⚠️ Dieser PR hat Merge-Konflikte mit `{{ base }}`.
+          Bitte die Konflikte loesen, damit der PR gemergt werden kann.
