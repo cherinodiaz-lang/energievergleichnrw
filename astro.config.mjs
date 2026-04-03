@@ -22,13 +22,11 @@ export default defineConfig({
     {
       name: "framewire",
       hooks: {
-        "astro:config:setup": ({ injectScript, command }) => {
-          if (command === "dev") {
-            injectScript(
-              "page",
-              `import loadFramewire from "framewire.js"; loadFramewire(true);`
-            );
-          }
+        "astro:config:setup": ({ injectScript }) => {
+          injectScript(
+            "page",
+            `import loadFramewire from "framewire.js"; loadFramewire(true);`
+          );
         },
       },
     },

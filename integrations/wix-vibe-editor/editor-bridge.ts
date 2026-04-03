@@ -1,6 +1,12 @@
 // integrations/wix-vibe-editor/editor-bridge.ts
 
-// Initialize the Wix Vibe Editor
+/**
+ * WixVibeEditorBridge
+ * Thin wrapper around the Wix editor instance injected by the @wix/astro
+ * integration. Only methods that are verified to exist on the instance are
+ * called; anything else is intentionally left as a no-op so the bridge never
+ * throws at runtime.
+ */
 class WixVibeEditorBridge {
     private editorInstance: any;
 
@@ -9,41 +15,18 @@ class WixVibeEditorBridge {
         this.initialize();
     }
 
-    // Initialize the editor bridge
     private initialize() {
-        this.setDefaultSettings();
-        this.restoreMissingFunctionality();
         this.setupEventListeners();
     }
 
-    // Set default editor settings
-    private setDefaultSettings() {
-        // Set default configurations here
-        this.editorInstance.setConfig({
-            theme: 'default',
-            layout: 'responsive',
-        });
-    }
-
-    // Restore missing functionality
-    private restoreMissingFunctionality() {
-        // Logic to restore any missing functions
-        if (!this.editorInstance.someImportantFunction) {
-            this.editorInstance.someImportantFunction = () => {
-                console.log('Functionality restored.');
-            };
+    private setupEventListeners() {
+        if (typeof this.editorInstance?.on === 'function') {
+            this.editorInstance.on('ready', this.handleReady.bind(this));
         }
     }
 
-    // Setup necessary event listeners
-    private setupEventListeners() {
-        this.editorInstance.on('someEvent', this.handleEvent);
-    }
-
-    // Event handler function
-    private handleEvent(event: any) {
-        // Handle editor events here
-        console.log('Event triggered:', event);
+    private handleReady() {
+        // Editor instance is ready – additional setup can be triggered here.
     }
 }
 

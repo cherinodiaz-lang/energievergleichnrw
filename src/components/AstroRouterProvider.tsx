@@ -2,6 +2,7 @@ import type { ComponentType } from 'react';
 import { BrowserRouter, StaticRouter, useLocation } from 'react-router-dom';
 import AnalyticsBootstrap from '@/components/AnalyticsBootstrap';
 import ConsentBanner from '@/components/ConsentBanner';
+import EditorBridge from '@/components/EditorBridge';
 import { resolvePageComponent } from '@/lib/page-registry';
 import { SEO_CONFIG } from '@/lib/seo-config';
 
@@ -34,6 +35,7 @@ export default function AstroRouterProvider({
 }: AstroRouterProviderProps) {
   const content = (
     <>
+      <EditorBridge />
       <AnalyticsBootstrap measurementId={SEO_CONFIG.googleAnalyticsId} />
       <ResolvedRouteContent PageOverride={Page} pageProps={pageProps} />
       <ConsentBanner />

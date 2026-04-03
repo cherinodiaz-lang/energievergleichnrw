@@ -1,8 +1,7 @@
 export default async function loadFramewire(withInit) {
-  const isDev = import.meta.env?.DEV ?? false;
   const isIframe = window.self !== window.top;
 
-  if (!isDev || !isIframe) {
+  if (!isIframe) {
     return;
   }
 
