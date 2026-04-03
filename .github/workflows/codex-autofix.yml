@@ -57,9 +57,19 @@ jobs:
             - Keep diffs minimal
             - Do not introduce breaking changes
 
+            DESIGN PROTECTION — NEVER modify these files:
+            - src/styles/fonts.swap.css
+            - src/styles/global.css
+            - src/tailwind.config.mjs
+            - tailwind.config.mjs
+            - src/layouts/SeoPageLayout.astro
+            - postcss.config.mjs
+            - public/fonts/**
+
             After making changes, run:
             - npm run check
             - npm run test:run
+            - npm run validate:design
             - npm run build
 
             Only stop when those commands pass, or explain clearly in the output what still blocks success.
