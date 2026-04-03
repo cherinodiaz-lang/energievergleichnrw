@@ -1,0 +1,122 @@
+name: "City-Page / Local SEO"
+description: "Für lokale Landingpages, City-Cluster, interne Verlinkung, Meta-Daten, Breadcrumbs und FAQ."
+title: "[LOCAL SEO] "
+labels:
+  - seo
+  - city-pages
+  - content
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Bitte die Aufgabe so formulieren, dass die lokale Optimierung direkt umgesetzt werden kann.
+        Relevante City-Pages: Köln, Düsseldorf, Dortmund, Essen, Bochum, Duisburg, Wuppertal, Bielefeld, Bonn, Münster.
+
+  - type: input
+    id: problem
+    attributes:
+      label: Problem / Aufgabe
+      placeholder: Z. B. City-Page-Meta-Daten vereinheitlichen oder interne Verlinkung verbessern
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: staedte
+    attributes:
+      label: Betroffene Städte
+      options:
+        - label: Köln
+        - label: Düsseldorf
+        - label: Dortmund
+        - label: Essen
+        - label: Bochum
+        - label: Duisburg
+        - label: Wuppertal
+        - label: Bielefeld
+        - label: Bonn
+        - label: Münster
+
+  - type: checkboxes
+    id: lokale_themen
+    attributes:
+      label: Betroffene lokale Themen
+      options:
+        - label: Eindeutige Title-Tags
+        - label: Eindeutige Meta-Descriptions
+        - label: Lokale H1
+        - label: Lokales Intro / Differenzierung
+        - label: City-zu-City-Verlinkung
+        - label: Breadcrumbs
+        - label: FAQ
+        - label: FAQ-Schema
+        - label: Duplicate-Content-Risiko
+        - label: Thin-Content-Risiko
+
+  - type: textarea
+    id: betroffene_seiten
+    attributes:
+      label: Betroffene Seiten / Dateien / Konfigurationen
+      placeholder: |
+        z. B.
+        - src/components/pages/StromvergleichKoelnPage.tsx
+        - src/lib/internal-linking.ts
+        - src/pages/**
+    validations:
+      required: true
+
+  - type: textarea
+    id: ziel
+    attributes:
+      label: Ziel
+      placeholder: |
+        - lokale Differenzierung verbessern
+        - interne Verlinkung sinnvoll machen
+        - lokale Meta-Daten sauber halten
+        - FAQ/Breadcrumb korrekt ausgeben
+    validations:
+      required: true
+
+  - type: textarea
+    id: anforderungen
+    attributes:
+      label: Konkrete Anforderungen
+      placeholder: |
+        - Token-Swap-Texte vermeiden
+        - lokale Relevanz sichtbar machen
+        - City-zu-City-Links sinnvoll clustern
+        - redundante oder tote Konfiguration vermeiden
+        - FAQ-Schema nur korrekt und einmalig ausgeben
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: akzeptanz
+    attributes:
+      label: Akzeptanzkriterien
+      options:
+        - label: Betroffene City-Pages haben eindeutige Meta-Daten
+        - label: H1 und Intro sind lokal differenziert
+        - label: Interne Verlinkung ist sinnvoll und ohne Duplikate
+        - label: Breadcrumbs sind korrekt
+        - label: FAQ-Schema ist sauber
+        - label: Kein offensichtliches Thin-Content-Muster
+        - label: Build läuft erfolgreich
+    validations:
+      required: true
+
+  - type: dropdown
+    id: prioritaet
+    attributes:
+      label: Priorität
+      options:
+        - Hoch
+        - Mittel
+        - Niedrig
+    validations:
+      required: true
+
+  - type: textarea
+    id: zusatzinfos
+    attributes:
+      label: Zusatzinfos
+      placeholder: "Optional: Zielseiten, Linkwünsche, lokale Keywords, Hinweise"

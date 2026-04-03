@@ -1,0 +1,110 @@
+name: "Bug / Performance / Core Web Vitals"
+description: "Für Bugs, Layout Shifts, LCP-, CLS-, INP- und Mobile-Performance-Probleme."
+title: "[BUG/CWV] "
+labels:
+  - bug
+  - performance
+  - cwv
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Bitte das Problem so beschreiben, dass es direkt reproduziert und im Code behoben werden kann.
+
+  - type: input
+    id: problem
+    attributes:
+      label: Problem / Fehlerbild
+      description: Was ist das beobachtete Problem?
+      placeholder: Z. B. Hero springt, LCP zu hoch, INP schlecht, mobile Darstellung instabil
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduktion
+    attributes:
+      label: Reproduzierbarkeit
+      description: Auf welchen Seiten oder in welchen Situationen tritt das Problem auf?
+      placeholder: |
+        z. B.
+        - Startseite mobil
+        - stromvergleich-koeln
+        - stromvergleich-dortmund
+        - Safari iPhone / Chrome Android
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: risiken
+    attributes:
+      label: Relevante Performance-Risiken
+      options:
+        - label: LCP
+        - label: CLS
+        - label: INP
+        - label: Hero-Bilder
+        - label: Above-the-fold Rendering
+        - label: Unnötige Hydration
+        - label: Schwere clientseitige Komponenten
+        - label: Animationen / Motion
+        - label: Fehlende feste Maße
+        - label: Sticky-Elemente
+        - label: Mobile Performance
+
+  - type: textarea
+    id: betroffene_dateien
+    attributes:
+      label: Betroffene Seiten / Komponenten / Dateien
+      placeholder: |
+        z. B.
+        - src/components/pages/**
+        - src/components/**
+        - src/layouts/**
+        - src/pages/**
+    validations:
+      required: true
+
+  - type: textarea
+    id: anforderungen
+    attributes:
+      label: Konkrete Anforderungen
+      placeholder: |
+        - Hero-Bild nicht lazy laden, wenn LCP-relevant
+        - Offscreen-Bilder lazy laden
+        - Layout Shifts vermeiden
+        - Above-the-fold JS reduzieren
+        - Nur nötige Komponenten hydratisieren
+        - Mobile zuerst verbessern
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: akzeptanz
+    attributes:
+      label: Akzeptanzkriterien
+      options:
+        - label: Problem wurde reproduziert und behoben
+        - label: LCP-/CLS-/INP-Risiken wurden reduziert
+        - label: Mobile UX wurde verbessert
+        - label: Keine sichtbare Regression in SEO, Formularen oder Schema
+        - label: Build läuft erfolgreich
+        - label: Geänderte Dateien sind dokumentiert
+    validations:
+      required: true
+
+  - type: dropdown
+    id: prioritaet
+    attributes:
+      label: Priorität
+      options:
+        - Hoch
+        - Mittel
+        - Niedrig
+    validations:
+      required: true
+
+  - type: textarea
+    id: zusatzinfos
+    attributes:
+      label: Zusatzinfos
+      placeholder: "Optional: Lighthouse-Werte, Screenshots, URLs, Logs"

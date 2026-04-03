@@ -1,0 +1,110 @@
+name: "SEO / UX / Conversion"
+description: "Für SEO-, UX-, Mobile-, Accessibility- und Conversion-Optimierungen auf energievergleich.shop."
+title: "[SEO/UX] "
+labels:
+  - seo
+  - ux
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Bitte die Aufgabe so beschreiben, dass sie direkt im Code umgesetzt werden kann.
+        Domain-Vorgabe: https://energievergleich.shop ohne www.
+
+  - type: input
+    id: problem
+    attributes:
+      label: Problem / Aufgabe
+      description: Was soll konkret verbessert oder behoben werden?
+      placeholder: Z. B. Canonicals vereinheitlichen, Hero verbessern, Meta-Daten schärfen
+    validations:
+      required: true
+
+  - type: textarea
+    id: ziel
+    attributes:
+      label: Ziel
+      description: Welches Ergebnis soll erreicht werden?
+      placeholder: Z. B. eindeutige Meta-Daten, bessere Mobile-UX, höhere Conversion
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: seo-bereiche
+    attributes:
+      label: Betroffene SEO-/UX-Bereiche
+      options:
+        - label: Canonical- und Domain-Konsistenz prüfen
+        - label: Title-Tags prüfen oder verbessern
+        - label: Meta-Descriptions prüfen oder verbessern
+        - label: H1-Struktur prüfen
+        - label: lang="de" prüfen
+        - label: noindex / robots prüfen
+        - label: FAQ-Schema prüfen
+        - label: Breadcrumb-Schema prüfen
+        - label: Hero / CTA / Conversion-Einstieg verbessern
+        - label: Mobile UX verbessern
+        - label: Accessibility verbessern
+
+  - type: textarea
+    id: seiten
+    attributes:
+      label: Betroffene Seiten / Bereiche / Dateien
+      description: Welche Seiten, Komponenten oder Dateien sind betroffen?
+      placeholder: |
+        z. B.
+        - src/layouts/BaseLayout.astro
+        - public/robots.txt
+        - src/pages/**
+        - src/components/**
+    validations:
+      required: true
+
+  - type: textarea
+    id: anforderungen
+    attributes:
+      label: Konkrete Anforderungen
+      description: Was soll genau umgesetzt werden?
+      placeholder: |
+        - Nur https://energievergleich.shop ohne www verwenden
+        - FAQ-Schema nur bei sichtbaren FAQs
+        - Doppelte Schema-Ausgaben vermeiden
+        - Genau eine sinnvolle H1 pro Seite
+        - CTAs mobil früh sichtbar machen
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: akzeptanz
+    attributes:
+      label: Akzeptanzkriterien
+      options:
+        - label: Canonical-Domain ist konsistent auf https://energievergleich.shop
+        - label: Titles und Meta-Descriptions sind eindeutig
+        - label: Jede betroffene Seite hat eine sinnvolle H1
+        - label: FAQ-Schema wird nur korrekt und nicht doppelt ausgegeben
+        - label: Breadcrumbs sind technisch korrekt
+        - label: Mobile UX ist sichtbar verbessert
+        - label: Accessibility-Basis ist verbessert
+        - label: Änderungen bauen erfolgreich
+    validations:
+      required: true
+
+  - type: dropdown
+    id: prioritaet
+    attributes:
+      label: Priorität
+      options:
+        - Hoch
+        - Mittel
+        - Niedrig
+    validations:
+      required: true
+
+  - type: textarea
+    id: zusatzinfos
+    attributes:
+      label: Zusatzinfos
+      description: Optionale Hinweise, Screenshots, URLs, Suchbegriffe oder Besonderheiten.
+      placeholder: Weitere Infos optional

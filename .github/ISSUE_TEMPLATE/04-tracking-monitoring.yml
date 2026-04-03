@@ -1,0 +1,124 @@
+name: "Tracking / Analytics / Monitoring"
+description: "Für Event-Tracking, Formular-Events, 404-Tracking, JS-Error-Monitoring und Messlücken."
+title: "[TRACKING] "
+labels:
+  - analytics
+  - tracking
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Bitte die Messanforderung so beschreiben, dass sie direkt technisch umgesetzt werden kann.
+
+  - type: input
+    id: problem
+    attributes:
+      label: Problem / Aufgabe
+      placeholder: Z. B. CTA-Tracking fehlt, 404-Monitoring fehlt, Event-Namen sind uneinheitlich
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: events
+    attributes:
+      label: Betroffene Events / Monitoring-Bereiche
+      options:
+        - label: CTA-Klicks
+        - label: Formular-Start
+        - label: Formular-Erfolg
+        - label: Formular-Fehler
+        - label: Kontakt-Klicks
+        - label: Methodik-Klicks
+        - label: 404-Tracking
+        - label: JavaScript-Error-Monitoring
+        - label: Pageview-Qualität
+        - label: Event-Namenskonvention
+
+  - type: textarea
+    id: trigger
+    attributes:
+      label: Trigger / Auslöser
+      description: Wann soll das Event oder Monitoring ausgelöst werden?
+      placeholder: |
+        z. B.
+        - Klick auf Hero-CTA
+        - Submit des Vergleichsformulars
+        - Aufruf einer 404-Seite
+        - ungefangener JavaScript-Fehler
+    validations:
+      required: true
+
+  - type: textarea
+    id: datenpunkte
+    attributes:
+      label: Benötigte Datenpunkte
+      description: Welche Eigenschaften sollen mitgegeben werden?
+      placeholder: |
+        z. B.
+        - page_path
+        - city
+        - cta_text
+        - form_type
+        - error_message
+        - referrer
+    validations:
+      required: true
+
+  - type: textarea
+    id: betroffene_dateien
+    attributes:
+      label: Betroffene Dateien / Services / Komponenten
+      placeholder: |
+        z. B.
+        - src/lib/**
+        - src/services/**
+        - src/components/forms/**
+        - src/layouts/**
+    validations:
+      required: true
+
+  - type: textarea
+    id: anforderungen
+    attributes:
+      label: Konkrete Anforderungen
+      placeholder: |
+        - konsistente Event-Namen
+        - keine Doppel-Events
+        - keine still geschluckten Fehler
+        - datensensible Umsetzung
+        - Monitoring darf UX nicht verschlechtern
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: akzeptanz
+    attributes:
+      label: Akzeptanzkriterien
+      options:
+        - label: Event-Namen sind konsistent
+        - label: Relevante Conversion-Events sind vorhanden
+        - label: 404-Tracking ist vorhanden oder verbessert
+        - label: JS-Error-Monitoring ist vorhanden oder verbessert
+        - label: Keine offensichtlichen Doppel-Events
+        - label: Build läuft erfolgreich
+        - label: Geänderte Tracking-Pfade sind dokumentiert
+    validations:
+      required: true
+
+  - type: dropdown
+    id: prioritaet
+    attributes:
+      label: Priorität
+      options:
+        - Hoch
+        - Mittel
+        - Niedrig
+    validations:
+      required: true
+
+  - type: textarea
+    id: zusatzinfos
+    attributes:
+      label: Zusatzinfos
+      placeholder: "Optional: Analytics-Tool, Naming-Konventionen, Screenshots, Logs"

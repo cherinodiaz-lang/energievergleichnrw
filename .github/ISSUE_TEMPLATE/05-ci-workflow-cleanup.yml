@@ -1,0 +1,118 @@
+name: "CI / Workflow / Repo Cleanup"
+description: "Für GitHub Actions, pnpm/Corepack, Status-Checks, Branch-Hygiene und stabile Builds."
+title: "[CI] "
+labels:
+  - ci
+  - devops
+  - maintenance
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Bitte die Aufgabe so beschreiben, dass die CI-/Workflow-Anpassung direkt umgesetzt werden kann.
+        Falls möglich, pnpm via Corepack konsistent berücksichtigen.
+
+  - type: input
+    id: problem
+    attributes:
+      label: Problem / Aufgabe
+      placeholder: Z. B. Checks hängen auf pending, npm-/pnpm-Mischbetrieb, unklare Workflow-Jobs
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: ci-themen
+    attributes:
+      label: Betroffene CI-/Workflow-Themen
+      options:
+        - label: GitHub Actions Workflow-Dateien
+        - label: pnpm via Corepack
+        - label: npm-Sonderwege entfernen
+        - label: Status-Checks / Summary-Job
+        - label: Install / Check / Typecheck / Build
+        - label: Branch-Hygiene
+        - label: Manuelle Workflow-Ausführung
+        - label: Pending-Checks
+        - label: Cache-Verhalten
+        - label: Build-Stabilität
+
+  - type: textarea
+    id: betroffene_dateien
+    attributes:
+      label: Betroffene Workflow-Dateien / Konfigurationen
+      placeholder: |
+        z. B.
+        - .github/workflows/ci.yml
+        - package.json
+        - pnpm-lock.yaml
+        - README.md
+    validations:
+      required: true
+
+  - type: textarea
+    id: aktueller_status
+    attributes:
+      label: Aktuelles Fehlerbild / aktueller Zustand
+      placeholder: |
+        z. B.
+        - Checks bleiben auf pending
+        - npm und pnpm gemischt
+        - kein klarer finaler Status-Check
+        - Build läuft lokal anders als in CI
+    validations:
+      required: true
+
+  - type: textarea
+    id: ziel
+    attributes:
+      label: Gewünschter Zielzustand
+      placeholder: |
+        - konsistenter Package-Manager
+        - klare grüne Checks
+        - stabile CI
+        - nachvollziehbarer Workflow
+    validations:
+      required: true
+
+  - type: textarea
+    id: anforderungen
+    attributes:
+      label: Konkrete Anforderungen
+      placeholder: |
+        - pnpm via Corepack sauber verwenden
+        - unnötige npm-Sonderwege entfernen
+        - verlässlichen finalen Status-Check schaffen
+        - Workflow minimal, aber stabil halten
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: akzeptanz
+    attributes:
+      label: Akzeptanzkriterien
+      options:
+        - label: Workflow-Dateien sind bereinigt
+        - label: Package-Manager ist konsistent
+        - label: Wichtige Status-Checks sind klar und nachvollziehbar
+        - label: Keine unnötigen npm-/Token-Konstruktionen mehr
+        - label: Build läuft stabil
+        - label: Änderungen sind dokumentiert
+    validations:
+      required: true
+
+  - type: dropdown
+    id: prioritaet
+    attributes:
+      label: Priorität
+      options:
+        - Hoch
+        - Mittel
+        - Niedrig
+    validations:
+      required: true
+
+  - type: textarea
+    id: zusatzinfos
+    attributes:
+      label: Zusatzinfos
+      placeholder: "Optional: Logs, Screenshots, gewünschte Schutzregeln, Branch-Protection-Hinweise"
