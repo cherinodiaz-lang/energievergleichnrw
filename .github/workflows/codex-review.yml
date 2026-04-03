@@ -52,9 +52,7 @@ jobs:
       - name: Run Codex review
         if: steps.openai_key.outputs.available == 'true'
         run: |
-          codex review --base "origin/${{ github.base_ref }}" \
-            "Review this pull request and report bugs, performance issues, and concrete improvements. Return concise markdown with sections: Bugs, Performance Issues, Improvements." \
-            > codex-review.md
+          codex review --base "origin/${{ github.base_ref }}" > codex-review.md
 
       - name: Post review comment
         if: steps.openai_key.outputs.available == 'true'
