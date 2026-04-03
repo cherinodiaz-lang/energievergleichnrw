@@ -1,0 +1,26 @@
+# Label-Regeln für actions/labeler@v5
+# Nur Labels die im Repository existieren werden verwendet.
+# Fehlende Labels (ux, ci) müssen manuell erstellt werden,
+# um die entsprechenden Regeln zu aktivieren.
+
+seo:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'src/pages/**'
+          - 'src/components/pages/**'
+          - 'public/**'
+
+enhancement:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'src/lib/**'
+          - 'src/services/**'
+          - 'src/layouts/**'
+          - 'src/components/forms/**'
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'package.json'
+          - 'package-lock.json'
+          - '.github/workflows/**'

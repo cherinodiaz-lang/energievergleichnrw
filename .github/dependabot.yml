@@ -6,6 +6,7 @@ updates:
   # ==========================================
   - package-ecosystem: "npm"
     directory: "/"
+    target-branch: "main"
     schedule:
       interval: "weekly"
       day: "monday"
@@ -14,15 +15,14 @@ updates:
     open-pull-requests-limit: 10
     labels:
       - "dependencies"
-      - "security"
     ignore:
       # Major version bumps require manual review
       - dependency-name: "*"
         update-types:
           - "version-update:semver-major"
     commit-message:
-      prefix: "chore(deps)"
-      prefix-development: "chore(deps-dev)"
+      prefix: "chore(deps):"
+      prefix-development: "chore(deps-dev):"
     groups:
       # Wix packages are tightly coupled – always update together
       wix:
@@ -40,12 +40,18 @@ updates:
           - "react-dom"
           - "@types/react"
           - "@types/react-dom"
+      # TypeScript
+      typescript:
+        patterns:
+          - "typescript"
+          - "@types/*"
 
   # ==========================================
   # GitHub Actions
   # ==========================================
   - package-ecosystem: "github-actions"
     directory: "/"
+    target-branch: "main"
     schedule:
       interval: "weekly"
       day: "monday"
@@ -54,6 +60,5 @@ updates:
     open-pull-requests-limit: 5
     labels:
       - "dependencies"
-      - "github-actions"
     commit-message:
-      prefix: "chore(actions)"
+      prefix: "chore(actions):"
