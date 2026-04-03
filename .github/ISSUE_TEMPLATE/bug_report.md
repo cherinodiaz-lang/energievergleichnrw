@@ -24,3 +24,10 @@ assignees: cherinodiaz-lang
 - Browser:
 - OS:
 - URL:
+
+## Systemprüfung
+
+- [ ] Wix-Kompatibilität geprüft (betrifft die Änderung Wix-Config oder Editor?)
+- [ ] Editor-Verhalten geprüft (Wix Vibe KI Editor reagiert normal?)
+- [ ] SEO-Auswirkungen geprüft
+- [ ] Stromrechner / Leadflow betroffen? **ja / nein**
