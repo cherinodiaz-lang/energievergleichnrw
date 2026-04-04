@@ -16,7 +16,7 @@ const isBuild = process.env.NODE_ENV == "production";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.energievergleich.shop',
-  output: "static",
+  output: "server",
   adapter: node({ mode: "standalone" }),
   integrations: [
     {

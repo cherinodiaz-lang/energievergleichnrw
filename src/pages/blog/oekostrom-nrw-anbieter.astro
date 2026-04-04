@@ -13,5 +13,5 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogDescription="Die besten Oekostromanbieter fuer NRW-Haushalte 2026 im Vergleich."
   ogType="article"
 >
-  <AstroRouterProvider path={Astro.url.pathname} Page={OekostromNrwAnbieterArticle} client:load />
+  <AstroRouterProvider path={Astro.url.pathname} Page={OekostromNrwAnbieterArticle} client:idle />
 </SeoPageLayout>
