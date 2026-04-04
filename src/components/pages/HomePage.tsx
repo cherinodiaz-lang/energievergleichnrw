@@ -105,11 +105,8 @@ export default function HomePage() {
   // Feature flags
   const flags = useFeatureFlags();
 
-  // Calculator states
-  const [stromVerbrauch, setStromVerbrauch] = useState('');
-  const [gasVerbrauch, setGasVerbrauch] = useState('');
+  // Calculator states (hero PLZ quick-start only)
   const [postleitzahl, setPostleitzahl] = useState('');
-  const [personenAnzahl, setPersonenAnzahl] = useState('');
 
   // Hero PLZ quick-start
   const [heroPlz, setHeroPlz] = useState('');
@@ -135,21 +132,6 @@ export default function HomePage() {
   const [pvEmail, setPvEmail] = useState('');
   const [pvTelefon, setPvTelefon] = useState('');
 
-  // Tariff results states
-  type TariffResult = {
-    id: number;
-    provider: string;
-    logo: string;
-    jahreskosten: number;
-    arbeitspreis: number;
-    grundpreis: number;
-    vertragslaufzeit: string;
-    preisgarantie: string;
-  };
-  const [gasResults, setGasResults] = useState<TariffResult[]>([]);
-  const [kombiResults, setKombiResults] = useState<TariffResult[]>([]);
-  const [showGasResults, setShowGasResults] = useState(false);
-  const [showKombiResults, setShowKombiResults] = useState(false);
 
   // --- Load Data from CMS ---
   useEffect(() => {
@@ -212,29 +194,7 @@ export default function HomePage() {
     }
   }, [faqs]);
 
-  // Sample tariff data
-  const sampleTariffs = {
-    gas: [
-      { id: 1, provider: 'Beispieltarif Gas A', logo: '🔥', jahreskosten: 1890, arbeitspreis: 0.085, grundpreis: 15.00, vertragslaufzeit: '12 Monate', preisgarantie: '12 Monate' },
-      { id: 2, provider: 'Beispieltarif Gas B', logo: '♻️', jahreskosten: 1756, arbeitspreis: 0.078, grundpreis: 14.50, vertragslaufzeit: '24 Monate', preisgarantie: '24 Monate' },
-      { id: 3, provider: 'Beispieltarif Gas C', logo: '🌡️', jahreskosten: 1945, arbeitspreis: 0.092, grundpreis: 15.50, vertragslaufzeit: '12 Monate', preisgarantie: '6 Monate' },
-    ],
-    kombi: [
-      { id: 1, provider: 'Beispieltarif Kombi A', logo: '⚡', jahreskosten: 3089, arbeitspreis: 0.32, grundpreis: 27.50, vertragslaufzeit: '12 Monate', preisgarantie: '12 Monate' },
-      { id: 2, provider: 'Beispieltarif Kombi B', logo: '🔋', jahreskosten: 2945, arbeitspreis: 0.30, grundpreis: 26.49, vertragslaufzeit: '24 Monate', preisgarantie: '24 Monate' },
-      { id: 3, provider: 'Beispieltarif Kombi C', logo: '⚙️', jahreskosten: 3257, arbeitspreis: 0.35, grundpreis: 28.50, vertragslaufzeit: '12 Monate', preisgarantie: '6 Monate' },
-    ],
-  };
-
-  const handleCalculate = (type: string) => {
-    if (type === 'Gas') {
-      setGasResults([...sampleTariffs.gas].sort((a, b) => a.jahreskosten - b.jahreskosten));
-      setShowGasResults(true);
-    } else if (type === 'Kombi') {
-      setKombiResults([...sampleTariffs.kombi].sort((a, b) => a.jahreskosten - b.jahreskosten));
-      setShowKombiResults(true);
-    }
-  };
+  // Mock data and handleCalculate removed — all tabs now use live Verivox embeds
 
   const [showContactDialog, setShowContactDialog] = useState(false);
   const [showPvDialog, setShowPvDialog] = useState(false);
@@ -530,7 +490,7 @@ export default function HomePage() {
                 <Card className="border-none shadow-2xl overflow-hidden">
                   <div className="bg-primary p-4 sm:p-6 text-white">
                     <h3 className="font-heading text-xl sm:text-2xl font-bold">Tarifrechner NRW</h3>
-                    <p className="text-white/80 text-xs sm:text-sm">Strom live via Verivox, Gas und Kombi aktuell als Erstorientierung</p>
+                    <p className="text-white/80 text-xs sm:text-sm">Strom, Gas und Kombi live via Verivox-Partnerrechner vergleichen</p>
                   </div>
 
                   <Tabs defaultValue="strom" className="w-full">
@@ -590,126 +550,80 @@ export default function HomePage() {
 
                       {/* GAS TAB */}
                       <TabsContent value="gas" className="mt-0 space-y-4 sm:space-y-6">
-                        {!showGasResults ? (
-                          <>
-                            <div className="grid grid-cols-1 gap-3 sm:gap-4">
-                              <div className="space-y-1.5 sm:space-y-2">
-                                <Label htmlFor="gas-plz" className="text-xs sm:text-sm font-medium">Postleitzahl</Label>
-                                <Input id="gas-plz" placeholder="z.B. 40210" value={postleitzahl} onChange={(e) => setPostleitzahl(e.target.value)} className="h-11 sm:h-12 text-sm" />
-                              </div>
-                              <div className="space-y-1.5 sm:space-y-2">
-                                <Label htmlFor="gas-wohnflaeche" className="text-xs sm:text-sm font-medium">Wohnfläche (m²)</Label>
-                                <Select value={personenAnzahl} onValueChange={setPersonenAnzahl}>
-                                  <SelectTrigger id="gas-wohnflaeche" className="h-11 sm:h-12 text-sm"><SelectValue placeholder="Bitte wählen" /></SelectTrigger>
-                                  <SelectContent>
-                                    <SelectItem value="30">30 m²</SelectItem>
-                                    <SelectItem value="50">50 m²</SelectItem>
-                                    <SelectItem value="100">100 m²</SelectItem>
-                                    <SelectItem value="150">150 m²</SelectItem>
-                                  </SelectContent>
-                                </Select>
-                              </div>
-                              <div className="space-y-1.5 sm:space-y-2">
-                                <Label htmlFor="gas-verbrauch" className="text-xs sm:text-sm font-medium">Jahresverbrauch (kWh) <span className="text-gray-400 font-normal text-xs">(Optional)</span></Label>
-                                <Input id="gas-verbrauch" type="number" placeholder="Genauen Verbrauch eingeben" value={gasVerbrauch} onChange={(e) => setGasVerbrauch(e.target.value)} className="h-11 sm:h-12 text-sm" />
-                              </div>
-                            </div>
-                            <Button onClick={() => handleCalculate('Gas')} className="w-full bg-secondary text-secondary-foreground hover:bg-[#D49700] h-12 sm:h-14 text-sm sm:text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all active:scale-95">
-                              Gas-Orientierung starten
-                            </Button>
-                          </>
-                        ) : (
-                          <>
-                            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
-                              <p className="text-xs sm:text-sm text-blue-800 font-medium">ℹ️ Dies sind unverbindliche Beispielwerte. Eine Live-Tarifquelle ist derzeit nicht aktiv.</p>
-                            </div>
-                            <div className="space-y-3 sm:space-y-4">
-                              {gasResults.map((tariff) => (
-                                <div key={tariff.id} className="border rounded-lg p-4 sm:p-6 hover:shadow-lg transition-shadow">
-                                  <div className="flex items-start justify-between mb-3 sm:mb-4 gap-2">
-                                    <div className="flex items-center gap-2 sm:gap-4 min-w-0">
-                                      <div className="text-2xl sm:text-4xl flex-shrink-0">{tariff.logo}</div>
-                                      <div className="min-w-0">
-                                        <h4 className="font-bold text-sm sm:text-lg text-gray-900 truncate">{tariff.provider}</h4>
-                                        <p className="text-xs sm:text-sm text-gray-500">Beispielprofil</p>
-                                      </div>
-                                    </div>
-                                    <div className="text-right flex-shrink-0">
-                                      <p className="text-xl sm:text-3xl font-bold text-primary">{tariff.jahreskosten.toFixed(2)}€</p>
-                                      <p className="text-xs text-gray-500">pro Jahr</p>
-                                    </div>
-                                  </div>
-                                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 mb-4 sm:mb-6 py-3 sm:py-4 border-y border-gray-200">
-                                    <div><p className="text-xs text-gray-500 uppercase font-bold">Arbeitspreis</p><p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.arbeitspreis.toFixed(3)}€/kWh</p></div>
-                                    <div><p className="text-xs text-gray-500 uppercase font-bold">Grundpreis</p><p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.grundpreis.toFixed(2)}€/M</p></div>
-                                    <div><p className="text-xs text-gray-500 uppercase font-bold">Laufzeit</p><p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.vertragslaufzeit}</p></div>
-                                    <div><p className="text-xs text-gray-500 uppercase font-bold">Garantie</p><p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.preisgarantie}</p></div>
-                                  </div>
-                                  <Button className="w-full bg-secondary text-black hover:bg-secondary/90 h-10 sm:h-12 font-bold rounded-lg text-sm sm:text-base">Anfrage vorbereiten</Button>
-                                </div>
-                              ))}
-                            </div>
-                            <Button onClick={() => setShowGasResults(false)} variant="outline" className="w-full mt-4 sm:mt-6">Neue Berechnung</Button>
-                          </>
-                        )}
+                        <div className="rounded-lg border border-emerald-100 bg-emerald-50 p-3 sm:p-4">
+                          <p className="text-xs sm:text-sm font-medium text-emerald-900">
+                            Im Gas-Tab nutzen Sie direkt dieselbe Live-Tarifquelle wie auf unserer Gasvergleich-NRW-Seite.
+                          </p>
+                        </div>
+                        <VerivoxCalculatorEmbed
+                          badge="Live-Gasvergleich"
+                          title="Live-Gastarife für NRW"
+                          description="Geben Sie Ihre Postleitzahl und Ihren Jahresverbrauch direkt im Verivox-Rechner ein. So sehen Sie aktuelle Gastarife ohne vorgeschaltete Beispielwerte."
+                          target="Energie_Gas_Privat_Rechner"
+                          wmid="102"
+                          campaignId="gasvergleich_nrw"
+                          trackingProductId="99"
+                        />
+                        <div className="flex flex-col gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 sm:flex-row sm:items-center sm:justify-between">
+                          <p className="text-sm leading-6 text-slate-600">
+                            Falls Sie mehr Kontext, Methodik und begleitende Hinweise benötigen, öffnen Sie die vollständige Gasseite.
+                          </p>
+                          <Link
+                            to={ROUTES.gasvergleich}
+                            onClick={() => trackCTAClick('Homepage Gas Vollansicht')}
+                            className="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary/90"
+                          >
+                            Gasvergleich NRW öffnen
+                          </Link>
+                        </div>
                       </TabsContent>
 
                       {/* KOMBI TAB */}
                       <TabsContent value="kombi" className="mt-0 space-y-4 sm:space-y-6">
-                        {!showKombiResults ? (
-                          <>
-                            <div className="grid grid-cols-1 gap-3 sm:gap-4">
-                              <div className="space-y-1.5 sm:space-y-2">
-                                <Label htmlFor="kombi-plz" className="text-xs sm:text-sm font-medium">Postleitzahl</Label>
-                                <Input id="kombi-plz" placeholder="z.B. 40210" value={postleitzahl} onChange={(e) => setPostleitzahl(e.target.value)} className="h-11 sm:h-12 text-sm" />
-                              </div>
-                              <div className="space-y-1.5 sm:space-y-2">
-                                <Label htmlFor="kombi-strom" className="text-xs sm:text-sm font-medium">Stromverbrauch (kWh)</Label>
-                                <Input id="kombi-strom" type="number" placeholder="z.B. 3500" value={stromVerbrauch} onChange={(e) => setStromVerbrauch(e.target.value)} className="h-11 sm:h-12 text-sm" />
-                              </div>
-                              <div className="space-y-1.5 sm:space-y-2">
-                                <Label htmlFor="kombi-gas" className="text-xs sm:text-sm font-medium">Gasverbrauch (kWh)</Label>
-                                <Input id="kombi-gas" type="number" placeholder="z.B. 20000" value={gasVerbrauch} onChange={(e) => setGasVerbrauch(e.target.value)} className="h-11 sm:h-12 text-sm" />
-                              </div>
-                            </div>
-                            <Button onClick={() => handleCalculate('Kombi')} className="w-full bg-secondary text-secondary-foreground hover:bg-[#D49700] h-12 sm:h-14 text-sm sm:text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all active:scale-95">
-                              Kombi-Orientierung starten
-                            </Button>
-                          </>
-                        ) : (
-                          <>
-                            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
-                              <p className="text-xs sm:text-sm text-blue-800 font-medium">ℹ️ Dies sind unverbindliche Beispielwerte. Eine Live-Tarifquelle ist derzeit nicht aktiv.</p>
-                            </div>
-                            <div className="space-y-3 sm:space-y-4">
-                              {kombiResults.map((tariff) => (
-                                <div key={tariff.id} className="border rounded-lg p-4 sm:p-6 hover:shadow-lg transition-shadow">
-                                  <div className="flex items-start justify-between mb-3 sm:mb-4 gap-2">
-                                    <div className="flex items-center gap-2 sm:gap-4 min-w-0">
-                                      <div className="text-2xl sm:text-4xl flex-shrink-0">{tariff.logo}</div>
-                                      <div className="min-w-0">
-                                        <h4 className="font-bold text-sm sm:text-lg text-gray-900 truncate">{tariff.provider}</h4>
-                                        <p className="text-xs sm:text-sm text-gray-500">Beispielprofil</p>
-                                      </div>
-                                    </div>
-                                    <div className="text-right flex-shrink-0">
-                                      <p className="text-xl sm:text-3xl font-bold text-primary">{tariff.jahreskosten.toFixed(2)}€</p>
-                                      <p className="text-xs text-gray-500">pro Jahr</p>
-                                    </div>
-                                  </div>
-                                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 mb-4 sm:mb-6 py-3 sm:py-4 border-y border-gray-200">
-                                    <div><p className="text-xs text-gray-500 uppercase font-bold">Arbeitspreis</p><p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.arbeitspreis.toFixed(2)}€/kWh</p></div>
-                                    <div><p className="text-xs text-gray-500 uppercase font-bold">Grundpreis</p><p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.grundpreis.toFixed(2)}€/M</p></div>
-                                    <div><p className="text-xs text-gray-500 uppercase font-bold">Laufzeit</p><p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.vertragslaufzeit}</p></div>
-                                    <div><p className="text-xs text-gray-500 uppercase font-bold">Garantie</p><p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.preisgarantie}</p></div>
-                                  </div>
-                                  <Button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-10 sm:h-12 font-bold rounded-lg text-sm sm:text-base">Anfrage vorbereiten</Button>
-                                </div>
-                              ))}
-                            </div>
-                            <Button onClick={() => setShowKombiResults(false)} variant="outline" className="w-full mt-4 sm:mt-6">Neue Berechnung</Button>
-                          </>
-                        )}
+                        <div className="rounded-lg border border-emerald-100 bg-emerald-50 p-3 sm:p-4">
+                          <p className="text-xs sm:text-sm font-medium text-emerald-900">
+                            Im Kombi-Tab vergleichen Sie Strom und Gas gleichzeitig — beide Live-Rechner direkt von Verivox.
+                          </p>
+                        </div>
+                        <VerivoxCalculatorEmbed
+                          badge="Live-Stromvergleich"
+                          title="Strom — Live-Tarife für NRW"
+                          description="Geben Sie Ihre Postleitzahl und Ihren Jahresverbrauch ein, um aktuelle Stromtarife zu sehen."
+                          target="Energie_Strom_Privat_Rechner"
+                          wmid="104"
+                          campaignId="stromvergleich_nrw"
+                          trackingProductId="93"
+                        />
+                        <VerivoxCalculatorEmbed
+                          badge="Live-Gasvergleich"
+                          title="Gas — Live-Tarife für NRW"
+                          description="Geben Sie Ihre Postleitzahl und Ihren Jahresverbrauch ein, um aktuelle Gastarife zu sehen."
+                          target="Energie_Gas_Privat_Rechner"
+                          wmid="102"
+                          campaignId="gasvergleich_nrw"
+                          trackingProductId="99"
+                        />
+                        <div className="flex flex-col gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 sm:flex-row sm:items-center sm:justify-between">
+                          <p className="text-sm leading-6 text-slate-600">
+                            Für detaillierte Einzelvergleiche nutzen Sie unsere Strom- und Gas-Seiten.
+                          </p>
+                          <div className="flex flex-col gap-2 sm:flex-row">
+                            <Link
+                              to={ROUTES.stromvergleich}
+                              onClick={() => trackCTAClick('Homepage Kombi Strom Vollansicht')}
+                              className="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary/90"
+                            >
+                              Stromvergleich öffnen
+                            </Link>
+                            <Link
+                              to={ROUTES.gasvergleich}
+                              onClick={() => trackCTAClick('Homepage Kombi Gas Vollansicht')}
+                              className="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary/90"
+                            >
+                              Gasvergleich öffnen
+                            </Link>
+                          </div>
+                        </div>
                       </TabsContent>
                     </div>
                   </Tabs>
