@@ -1,5 +1,4 @@
 import { useState, type SyntheticEvent } from 'react';
-import { motion } from 'framer-motion';
 import { Flame, TrendingDown, Shield, Clock, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -82,10 +81,7 @@ export default function GewerbegasPage() {
       {/* Hero Section */}
       <section id="hero" className="w-full bg-primary text-primary-foreground py-32">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          <div
             className="text-center max-w-4xl mx-auto"
           >
             <div className="flex justify-center mb-8">
@@ -116,7 +112,7 @@ export default function GewerbegasPage() {
                 So vergleichen wir (Methodik)
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -334,11 +330,7 @@ export default function GewerbegasPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+            <div
             >
               <Card className="h-full text-center">
                 <CardHeader>
@@ -357,13 +349,9 @@ export default function GewerbegasPage() {
                   </p>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+            <div
             >
               <Card className="h-full text-center">
                 <CardHeader>
@@ -382,13 +370,9 @@ export default function GewerbegasPage() {
                   </p>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+            <div
             >
               <Card className="h-full text-center">
                 <CardHeader>
@@ -407,13 +391,9 @@ export default function GewerbegasPage() {
                   </p>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+            <div
             >
               <Card className="h-full text-center">
                 <CardHeader>
@@ -432,7 +412,7 @@ export default function GewerbegasPage() {
                   </p>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -441,22 +421,14 @@ export default function GewerbegasPage() {
       <section id="info" className="w-full bg-cover bg-center overflow-x-hidden py-24" style={{ backgroundImage: 'linear-gradient(rgba(44, 110, 73, 0.85), rgba(44, 110, 73, 0.85))' }}>
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+            <div
             >
               <div className="bg-primary/10 rounded-2xl p-6 sm:p-12 flex items-center justify-center overflow-hidden">
                 <Flame className="h-40 w-40 text-primary sm:h-64 sm:w-64" />
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+            <div
             >
               <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary mb-6">
                 Maßgeschneiderte Gastarife für Ihr Gewerbe
@@ -490,7 +462,7 @@ export default function GewerbegasPage() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

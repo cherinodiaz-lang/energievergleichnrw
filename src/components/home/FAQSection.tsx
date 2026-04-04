@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { BaseCrudService } from '@/integrations';
 import { HufiggestellteFragen } from '@/entities';
@@ -32,11 +31,7 @@ export default function FAQSection() {
   return (
     <section className="py-16 md:py-24 bg-background">
       <div className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+        <div
           className="text-center mb-12"
         >
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -45,13 +40,9 @@ export default function FAQSection() {
           <p className="font-paragraph text-lg text-gray-600 max-w-2xl mx-auto">
             Finden Sie Antworten auf die wichtigsten Fragen
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+        <div
           className="max-w-3xl mx-auto"
         >
           <Accordion type="single" collapsible className="w-full">
@@ -66,7 +57,7 @@ export default function FAQSection() {
               </AccordionItem>
             ))}
           </Accordion>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
