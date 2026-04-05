@@ -18,7 +18,7 @@ export const SEO_CONFIG = {
     logo: 'https://static.wixstatic.com/media/32e7c0_8cede5e338be484bb8dcaad81c053c82~mv2.png?originWidth=1920&originHeight=1024',
     areaServed: 'Nordrhein-Westfalen',
     contact: {
-      email: 'support@energievergleich.nrw',
+      email: 'support@energievergleich.shop',
       telephone: '+49 (0) 2 01 - 1 03 - 39 39',
     },
     address: {
@@ -45,9 +45,9 @@ export const SEO_CONFIG = {
   language: 'de',
 
   // Search Console & Analytics (add your IDs here)
-  googleSearchConsoleVerification: '', // Add your verification code
-  googleAnalyticsId: 'G-X60BTL057V', // GA4 Measurement ID for www.energievergleich.shop
-  clarityProjectId: import.meta.env.PUBLIC_CLARITY_ID ?? '', // Microsoft Clarity Project ID
+  googleSearchConsoleVerification: import.meta.env.PUBLIC_GSC_VERIFICATION ?? '', // Set in Wix Dashboard → Settings → Environment Variables
+  googleAnalyticsId: import.meta.env.PUBLIC_GA4_ID || 'G-X60BTL057V', // GA4 Measurement ID
+  clarityProjectId: import.meta.env.PUBLIC_CLARITY_ID ?? '', // Set in Wix Dashboard → Settings → Environment Variables
 
   // Robots Meta
   robots: 'index, follow',

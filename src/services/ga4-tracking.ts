@@ -56,21 +56,33 @@ export function initializeGA4(measurementId: string) {
     window.dataLayer = [];
   }
 
-  // Initialize gtag function BEFORE script loads
-  window.gtag = function () {
-    window.dataLayer?.push(arguments);
-  };
+  // Initialize gtag function BEFORE script loads (idempotent — layout may have done this already)
+  if (!window.gtag) {
+    window.gtag = function () {
+      window.dataLayer?.push(arguments);
+    };
+  }
 
-  // Set default consent to 'denied' until user makes a choice
+  // If SeoPageLayout already injected the GA4 script, just register the ID
+  const existingScript = document.querySelector('script[data-ga4-measurement-id]');
+  if (existingScript) {
+    scriptLoaded = true;
+    if (debugMode) {
+      console.log('[GA4 DEBUG] Script already injected by layout, skipping re-injection');
+    }
+    return;
+  }
+
+  // Set default consent to 'denied' until user makes a choice (fallback if layout script missing)
   window.gtag('consent', 'default', {
     'analytics_storage': 'denied',
     'marketing_storage': 'denied',
     'ad_storage': 'denied',
     'ad_user_data': 'denied',
     'ad_personalization': 'denied',
+    'wait_for_update': 2000,
   });
 
-  // Initialize gtag with 'js' command
   window.gtag('js', new Date());
 
   // Load GA4 script - ASYNC
@@ -79,7 +91,6 @@ export function initializeGA4(measurementId: string) {
   script.dataset.ga4MeasurementId = measurementId;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
 
-  // Mark script as loaded when it completes
   script.onload = () => {
     scriptLoaded = true;
     if (debugMode) {
@@ -208,6 +219,11 @@ export function trackFormSubmit(formType: string) {
     'page_path': window.location.pathname,
     'form_type': formType,
   });
+  // Also fire GA4 standard generate_lead event for Google Ads conversion tracking
+  trackEvent('generate_lead', {
+    'page_path': window.location.pathname,
+    'lead_type': formType,
+  });
 }
 
 /**
@@ -230,6 +246,43 @@ export function trackCTAClick(ctaLabel: string) {
 export function trackMethodikClick() {
   trackEvent('methodik_click', {
     'page_path': window.location.pathname,
+  });
+}
+
+/**
+ * Track SPA page views (called on each React-Router navigation)
+ * Event: page_view
+ */
+export function trackPageView(path: string, title?: string) {
+  if (typeof window === 'undefined') return;
+  window.gtag?.('event', 'page_view', {
+    page_path: path,
+    page_title: title ?? document.title,
+    page_location: window.location.href,
+  });
+}
+
+/**
+ * Track Verivox affiliate widget shown (impression = potential revenue)
+ * Event: verivox_widget_view
+ */
+export function trackVerivoxWidgetView(target: string, campaignId: string) {
+  trackEvent('verivox_widget_view', {
+    widget_target: target,
+    campaign_id: campaignId,
+    page_path: window.location.pathname,
+  });
+}
+
+/**
+ * Track Verivox calculator interaction (user starts comparing = high-intent)
+ * Event: verivox_calculator_interact
+ */
+export function trackVerivoxInteract(target: string, campaignId: string) {
+  trackEvent('verivox_calculator_interact', {
+    widget_target: target,
+    campaign_id: campaignId,
+    page_path: window.location.pathname,
   });
 }
 

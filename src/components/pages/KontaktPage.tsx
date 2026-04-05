@@ -88,11 +88,11 @@ export default function KontaktPage() {
                     Schreiben Sie uns eine E-Mail und wir antworten schnellstmöglich.
                   </p>
                   <a
-                    href="mailto:support@energievergleich.nrw"
+                    href="mailto:support@energievergleich.shop"
                     className="font-bold text-primary hover:underline"
-                    aria-label="E-Mail an support@energievergleich.nrw"
+                    aria-label="E-Mail an support@energievergleich.shop"
                   >
-                    support@energievergleich.nrw
+                    support@energievergleich.shop
                   </a>
                 </CardContent>
               </Card>

@@ -574,11 +574,11 @@ export default function HomeDeferredSections() {
                     <div>
                       <p className="text-xs sm:text-sm text-white/60 uppercase tracking-wider font-bold">E-Mail</p>
                       <a
-                        href="mailto:support@energievergleich.nrw"
+                        href="mailto:support@energievergleich.shop"
                         className="text-base sm:text-xl font-medium underline-offset-4 hover:underline"
-                        aria-label="E-Mail an support@energievergleich.nrw"
+                        aria-label="E-Mail an support@energievergleich.shop"
                       >
-                        support@energievergleich.nrw
+                        support@energievergleich.shop
                       </a>
                     </div>
                   </div>

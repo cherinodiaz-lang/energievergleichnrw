@@ -11,7 +11,7 @@ import { lazy, Suspense, useEffect } from 'react';
 import { ScrollToTop } from '@/lib/scroll-to-top';
 import { SEO_CONFIG } from '@/lib/seo-config';
 import { ROUTES } from '@/lib/routes';
-import { initializeGA4 } from '@/services/ga4-tracking';
+import { initializeGA4, trackPageView } from '@/services/ga4-tracking';
 import EditorBridge from '@/components/EditorBridge';
 import HomePage from '@/components/pages/HomePage';
 
@@ -91,6 +91,11 @@ function Layout() {
     const timeoutId = globalThis.setTimeout(runInit, 0);
     return () => globalThis.clearTimeout(timeoutId);
   }, []);
+
+  // Track SPA page navigation in GA4
+  useEffect(() => {
+    trackPageView(location.pathname);
+  }, [location.pathname]);
 
   return (
     <div className="min-w-0 overflow-x-hidden">

@@ -865,7 +865,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex items-center gap-4 sm:gap-6">
                     <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/10 flex items-center justify-center border border-white/20 flex-shrink-0"><Send className="w-5 h-5 sm:w-6 sm:h-6 text-secondary" /></div>
-                    <div><p className="text-xs sm:text-sm text-white/60 uppercase tracking-wider font-bold">E-Mail</p><p className="text-base sm:text-xl font-medium">support@energievergleich.nrw</p></div>
+                    <div><p className="text-xs sm:text-sm text-white/60 uppercase tracking-wider font-bold">E-Mail</p><p className="text-base sm:text-xl font-medium">support@energievergleich.shop</p></div>
                   </div>
                 </div>
               </AnimatedElement>
