@@ -45,7 +45,7 @@ export const SEO_CONFIG = {
   language: 'de',
 
   // Search Console & Analytics (add your IDs here)
-  googleSearchConsoleVerification: import.meta.env.PUBLIC_GSC_VERIFICATION || 'nirROusqBNxCLF7xk8jC0pqhCmu9YNd5f9P9-tj_NPw',
+  googleSearchConsoleVerification: import.meta.env.PUBLIC_GSC_VERIFICATION ?? '',
   googleAnalyticsId: import.meta.env.PUBLIC_GA4_ID || 'G-X60BTL057V', // GA4 Measurement ID
   clarityProjectId: import.meta.env.PUBLIC_CLARITY_ID || 'vsc7jd9d94', // Microsoft Clarity Project ID
 
