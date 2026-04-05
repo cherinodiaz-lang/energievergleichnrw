@@ -81,3 +81,36 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run validate:design
+
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    # Only deploy on push to main — never on PRs
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [build, typecheck, validate-seo, validate-design]
+    env:
+      ASTRO_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install Wix CLI
+        run: |
+          npm install -g @wix/cli
+          echo "$(npm prefix -g)/bin" >> $GITHUB_PATH
+
+      - name: Restore Wix auth credentials
+        run: |
+          mkdir -p ~/.wix/auth
+          echo '${{ secrets.WIX_AUTH_ACCOUNT }}' > ~/.wix/auth/account.json
+          echo '${{ secrets.WIX_AUTH_SITE }}' > ~/.wix/auth/52dd1482-1ebb-4472-90a2-bce2af5d763f.json
+
+      - name: Release to Wix Headless
+        run: wix release --comment "CI auto-deploy from ${{ github.sha }}"
