@@ -1,5 +1,4 @@
 import { useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { Zap, CheckCircle, MapPin, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -36,10 +35,7 @@ export default function CityStromvergleichPage() {
         {/* Hero Section */}
         <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
           <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+            <div
               className="max-w-3xl"
             >
               <div className="flex items-center gap-2 mb-4">
@@ -69,7 +65,7 @@ export default function CityStromvergleichPage() {
                   So vergleichen wir (Methodik)
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
