@@ -57,3 +57,7 @@ AUDIT_REPORT.md
 
 # local config backups
 wrangler.jsonc.backup.*
+
+# generated city pages and FAQ schemas (build artifacts)
+content/cities/*.html
+data/faq-schemas/
