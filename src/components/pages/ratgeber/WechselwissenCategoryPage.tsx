@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { BookOpen, Clock, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -26,10 +25,7 @@ export default function WechselwissenCategoryPage() {
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          <div
             className="max-w-3xl"
           >
             <div className="flex items-center gap-3 mb-6">
@@ -42,18 +38,14 @@ export default function WechselwissenCategoryPage() {
             <p className="font-paragraph text-lg md:text-xl text-white/90">
               Wichtiges über Anbieterwechsel, Fristen und Besonderheiten
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Introductory Section */}
       <section className="w-full py-16 bg-white border-b border-light-grey">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
           >
             <p className="font-paragraph text-base md:text-lg text-gray-700 leading-relaxed mb-8 max-w-3xl">
               Ein Wechsel des Strom- oder Gasanbieters kann erhebliche Einsparungen bringen, erfordert aber auch Wissen über die richtigen Schritte und Fristen. Unser Wechselwissen-Ratgeber bietet Ihnen umfassende Informationen zu allen wichtigen Aspekten eines erfolgreichen Anbieterwechsels – von Kündigungsfristen über den genauen Ablauf bis hin zu häufigen Problemen und deren Lösungen. Hier finden Sie verlässliche Antworten auf Ihre Fragen, damit Sie den Wechsel sicher und informiert durchführen können.
@@ -81,7 +73,7 @@ export default function WechselwissenCategoryPage() {
             <p className="font-paragraph text-base text-gray-700">
               Nutzen Sie unsere Vergleichsrechner für <a href="https://www.energievergleich.shop/stromvergleich-nrw" className="text-primary font-semibold hover:underline">Stromvergleich NRW</a> und <a href="https://www.energievergleich.shop/gasvergleich-nrw" className="text-primary font-semibold hover:underline">Gasvergleich NRW</a>, um die besten Tarife zu finden.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -99,12 +91,8 @@ export default function WechselwissenCategoryPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {articles.map((article, index) => (
-              <motion.div
+              <div
                 key={article.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
               >
                 <Link to={`/${article.slug}`} className="group h-full">
                   <Card className="h-full hover:shadow-lg transition-all duration-300 border-none overflow-hidden flex flex-col">
@@ -129,7 +117,7 @@ export default function WechselwissenCategoryPage() {
                     </CardContent>
                   </Card>
                 </Link>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
