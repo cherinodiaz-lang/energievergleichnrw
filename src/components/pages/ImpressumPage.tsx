@@ -61,7 +61,7 @@ export default function ImpressumPage() {
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Kontaktinformationen:</p>
-                  <p>E-Mail: <a href="mailto:support@energievergleich.shop" className="text-primary hover:underline font-bold">support@energievergleich.shop</a><br />Website: <a href="https://www.energievergleich.shop" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-bold">https://www.energievergleich.shop</a></p>
+                  <p>E-Mail: <a href="mailto:support@energievergleich.nrw" className="text-primary hover:underline font-bold">support@energievergleich.nrw</a><br />Website: <a href="https://www.energievergleich.shop" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-bold">https://www.energievergleich.shop</a></p>
                 </div>
 
                 <div className="border-t pt-4">
@@ -106,7 +106,7 @@ export default function ImpressumPage() {
 
                 <div className="border-t pt-4">
                   <p className="font-bold mb-2">Erreichbarkeit:</p>
-                  <p>E-Mail: <a href="mailto:support@energievergleich.shop" className="text-primary hover:underline font-bold">support@energievergleich.shop</a></p>
+                  <p>E-Mail: <a href="mailto:support@energievergleich.nrw" className="text-primary hover:underline font-bold">support@energievergleich.nrw</a></p>
                 </div>
               </div>
             </div>
@@ -171,7 +171,7 @@ export default function ImpressumPage() {
                   <strong>NEIN</strong> – ENERGIEVERGLEICH NRW nimmt nicht an einem Verbraucherstreitbeilegungsverfahren teil.
                 </p>
                 <p className="text-sm text-gray-700">
-                  ENERGIEVERGLEICH NRW ist nicht verpflichtet und nicht bereit, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen. Für Beschwerden und Reklamationen kontaktieren Sie uns bitte direkt unter <a href="mailto:support@energievergleich.shop" className="text-primary hover:underline font-bold">support@energievergleich.shop</a>.
+                  ENERGIEVERGLEICH NRW ist nicht verpflichtet und nicht bereit, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen. Für Beschwerden und Reklamationen kontaktieren Sie uns bitte direkt unter <a href="mailto:support@energievergleich.nrw" className="text-primary hover:underline font-bold">support@energievergleich.nrw</a>.
                 </p>
               </div>
             </div>

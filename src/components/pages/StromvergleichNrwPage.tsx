@@ -10,7 +10,6 @@ import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import RelatedPages from '@/components/RelatedPages';
 import VerivoxCalculatorEmbed from '@/components/VerivoxCalculatorEmbed';
-import CalculatorForm from '@/components/strom/CalculatorForm';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
@@ -228,8 +227,20 @@ export default function StromvergleichNrwPage() {
         </div>
       </section>
 
-      {/* Internal Tariff Calculator Section */}
-      <CalculatorForm />
+      {/* Second Verivox Calculator — scroll target for CTAs */}
+      <section className="w-full py-12 bg-slate-50" id="vergleichsrechner-2">
+        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+          <VerivoxCalculatorEmbed
+            badge="Stromvergleich NRW 2026"
+            title="Jetzt Stromtarife vergleichen"
+            description="Postleitzahl und Jahresverbrauch eingeben – aktuelle NRW-Tarife, Preisgarantien und Wechselbonus direkt von Verivox."
+            target="Energie_Strom_Privat_Rechner"
+            wmid="104"
+            campaignId="stromvergleich_nrw_2"
+            trackingProductId="93"
+          />
+        </div>
+      </section>
 
       {/* Content Section */}
       <section className="w-full py-24 bg-white">

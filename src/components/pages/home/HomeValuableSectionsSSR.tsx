@@ -240,11 +240,11 @@ export default function HomeValuableSectionsSSR() {
                   <div>
                     <p className="text-xs sm:text-sm text-white/60 uppercase tracking-wider font-bold">E-Mail</p>
                     <a
-                      href="mailto:support@energievergleich.shop"
+                      href="mailto:support@energievergleich.nrw"
                       className="text-base sm:text-xl font-medium underline-offset-4 hover:underline"
-                      aria-label="E-Mail an support@energievergleich.shop"
+                      aria-label="E-Mail an support@energievergleich.nrw"
                     >
-                      support@energievergleich.shop
+                      support@energievergleich.nrw
                     </a>
                   </div>
                 </div>
@@ -257,7 +257,7 @@ export default function HomeValuableSectionsSSR() {
                   Das Formular wird nachgeladen, damit der Initialpfad leicht bleibt.
                 </p>
                 <Button asChild className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-11 sm:h-14 text-sm sm:text-lg font-bold rounded-lg sm:rounded-xl">
-                  <a href="mailto:support@energievergleich.shop">Kontakt aufnehmen</a>
+                  <a href="mailto:support@energievergleich.nrw">Kontakt aufnehmen</a>
                 </Button>
               </CardContent>
             </Card>
