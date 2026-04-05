@@ -15,9 +15,9 @@ const VERIVOX_PARTNER_ID = '6746';
 const VERIVOX_SUB_PARTNER_ID = 'website';
 const VERIVOX_LOADER_SRC = 'https://partner.vxcp.de/_js/helper/vxcp_qualityClickLoader.js';
 
-function createTrackingPixel(wmid: string, trackingProductId: string): HTMLImageElement {
+function createTrackingPixel(wmid: string, trackingProductId: string, campaignId: string): HTMLImageElement {
   const trackingPixel = document.createElement('img');
-  trackingPixel.src = `https://partner.verivox.de/go.cgi?pid=${VERIVOX_PARTNER_ID}&wmid=${wmid}&cpid=1&prid=${trackingProductId}&subid=&view=1`;
+  trackingPixel.src = `https://partner.verivox.de/go.cgi?pid=${VERIVOX_PARTNER_ID}&wmid=${wmid}&cpid=1&prid=${trackingProductId}&subid=${encodeURIComponent(campaignId)}&view=1`;
   trackingPixel.alt = '';
   trackingPixel.width = 1;
   trackingPixel.height = 1;
@@ -64,7 +64,7 @@ export default function VerivoxCalculatorEmbed({
     loaderScript.src = VERIVOX_LOADER_SRC;
     loaderScript.setAttribute('data-verivox-loader', 'true');
 
-    slot.append(container, loaderScript, createTrackingPixel(wmid, trackingProductId));
+    slot.append(container, loaderScript, createTrackingPixel(wmid, trackingProductId, campaignId));
 
     // Track when user interacts with the Verivox iframe (high-intent signal)
     const handleMessage = (e: MessageEvent) => {
