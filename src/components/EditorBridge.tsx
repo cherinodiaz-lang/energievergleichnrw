@@ -21,14 +21,18 @@ declare global {
 
 /**
  * EditorBridge Component
- * Initializes the Wix Vibe editor bridge for visual editing support
- * This component must be rendered at the root level of the application
+ * Signals to the Wix Vibe editor that the page is ready for editing.
+ * Only active when the page is embedded in an editor iframe.
+ * Responds to EDITOR_INIT / VIBE_EDITOR_INIT messages from the parent frame
+ * and also sends a single proactive EDITOR_READY signal after mount.
  */
 export default function EditorBridge() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
+    // Only activate when the page is inside an iframe (Wix editor context)
+    if (window.self === window.top) return;
 
-    const initializeBridge = () => {
+    const signalReady = () => {
       try {
         const bridge = window.__EDITOR_BRIDGE__;
         const vibeBridge = window.__WIX_VIBE_EDITOR__;
@@ -40,37 +44,32 @@ export default function EditorBridge() {
         if (vibeEditor?.ready) vibeEditor.ready();
         if (vibeEditor?.notifyReady) vibeEditor.notifyReady();
 
-        if (window.parent && window.parent !== window) {
-          try {
-            window.parent.postMessage(
-              { type: 'EDITOR_READY', source: 'energievergleich-bridge' },
-              '*'
-            );
-          } catch (e) {
-            // Silently ignore cross-origin errors
-          }
+        try {
+          window.parent.postMessage(
+            { type: 'EDITOR_READY', source: 'energievergleich-bridge' },
+            '*'
+          );
+        } catch {
+          // Silently ignore cross-origin errors
         }
-      } catch (error) {
+      } catch {
         // Silently ignore initialization errors
       }
     };
 
     const handleMessage = (event: MessageEvent) => {
       if (event.data?.type === 'EDITOR_INIT' || event.data?.type === 'VIBE_EDITOR_INIT') {
-        initializeBridge();
+        signalReady();
       }
     };
 
     window.addEventListener('message', handleMessage);
 
-    // Multiple initialization attempts at different intervals
-    initializeBridge();
-    const t1 = setTimeout(initializeBridge, 50);
-    const t2 = setTimeout(initializeBridge, 200);
+    // Single proactive signal after a short delay so the editor has time to attach its listener
+    const t1 = setTimeout(signalReady, 100);
 
     return () => {
       clearTimeout(t1);
-      clearTimeout(t2);
       window.removeEventListener('message', handleMessage);
     };
   }, []);
