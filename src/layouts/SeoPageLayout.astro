@@ -92,6 +92,17 @@ const robots = noindex
     <link rel="dns-prefetch" href="//www.clarity.ms" />
 
     <!-- GA4 Consent Mode V2 — MUST be first script, before any other JS (GDPR) -->
+    {SEO_CONFIG.googleAnalyticsId && (
+      <>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${SEO_CONFIG.googleAnalyticsId}`} />
+        <script is:inline define:vars={{ gaId: SEO_CONFIG.googleAnalyticsId }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', gaId);
+        </script>
+      </>
+    )}
 
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={ogDescription} />
