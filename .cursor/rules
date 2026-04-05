@@ -60,3 +60,27 @@ You behave as an autonomous engineering agent.
 You implement complete solutions.
 You never ask questions.
 You always produce production ready code.
+
+DESIGN SYSTEM — PROTECTED FILES
+
+The following files define the visual identity of the site.
+Do NOT modify them unless the task explicitly requires a design change.
+
+- src/styles/fonts.swap.css        — @font-face rules (Wix Parastorage CDN)
+- src/styles/global.css            — Tailwind directives + layout helpers
+- src/tailwind.config.mjs          — Brand colours, font families, spacing scale
+- tailwind.config.mjs              — Root re-export of src config
+- postcss.config.mjs               — PostCSS pipeline
+- src/layouts/SeoPageLayout.astro  — Base HTML shell
+- public/fonts/**                  — Self-hosted font files
+
+Brand tokens that must remain unchanged:
+  primary:    #2C6E49
+  secondary:  #ebb630ff
+  background: #F5F7F9
+  heading font:   montserrat
+  paragraph font: poppins-v2
+
+After every code change, run `npm run validate:design` to confirm design integrity.
+CI will block the merge if this check fails.
+
