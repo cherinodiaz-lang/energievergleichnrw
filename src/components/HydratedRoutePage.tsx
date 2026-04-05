@@ -7,6 +7,10 @@ import EditorBridge from "@/components/EditorBridge";
 import { resolvePageComponent } from "@/lib/page-registry";
 import { SEO_CONFIG } from "@/lib/seo-config";
 
+const PageLoadingFallback = () => (
+  <div className="min-h-screen w-full bg-background" aria-hidden="true" />
+);
+
 interface HydratedRoutePageProps {
   path: string;
   Page?: ComponentType<any>;
@@ -113,7 +117,11 @@ function ResolvedRoutePage({
 }) {
   const location = useLocation();
   const Page = PageOverride ?? resolvePageComponent(location.pathname);
-  return <Page {...(pageProps ?? {})} />;
+  return (
+    <React.Suspense fallback={<PageLoadingFallback />}>
+      <Page {...(pageProps ?? {})} />
+    </React.Suspense>
+  );
 }
 
 export default function HydratedRoutePage({

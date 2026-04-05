@@ -1,62 +1,72 @@
+import { lazy } from "react";
 import type { ComponentType } from "react";
-import CityStromvergleichPage from "@/components/pages/CityStromvergleichPage";
-import { getAllCitySlugs } from "@/lib/cities-nrw";
-import AgbPage from "@/components/pages/AgbPage";
-import DatenschutzPage from "@/components/pages/DatenschutzPage";
-import FaqPage from "@/components/pages/FaqPage";
-import GasvergleichNrwPage from "@/components/pages/GasvergleichNrwPage";
-import GewerbegasPage from "@/components/pages/GewerbegasPage";
-import GewerbestromPage from "@/components/pages/GewerbestromPage";
-import HomePage from "@/components/pages/HomePage";
-import ImpressumPage from "@/components/pages/ImpressumPage";
-import KontaktPage from "@/components/pages/KontaktPage";
-import MethodologyPage from "@/components/pages/MethodologyPage";
 import NotFoundPage from "@/components/pages/NotFoundPage";
-import PhotovoltaikNrwPage from "@/components/pages/PhotovoltaikNrwPage";
-import RatgeberPage from "@/components/pages/RatgeberPage";
-import SitemapPage from "@/components/pages/SitemapPage";
-import StromvergleichNrwPage from "@/components/pages/StromvergleichNrwPage";
-import ThankYouPage from "@/components/pages/ThankYouPage";
-import VergleichGasHubPage from "@/components/pages/VergleichGasHubPage";
-import VergleichStromHubPage from "@/components/pages/VergleichStromHubPage";
-import WiderrufPage from "@/components/pages/WiderrufPage";
-import BlogHubPage from "@/components/pages/blog/BlogHubPage";
-import EnergievergleichKostenTippsArticle from "@/components/pages/blog/EnergievergleichKostenTippsArticle";
-import GaspreiseVergleichenNrwArticle from "@/components/pages/blog/GaspreiseVergleichenNrwArticle";
-import OekostromNrwAnbieterArticle from "@/components/pages/blog/OekostromNrwAnbieterArticle";
-import StromanbieterWechselnSchritteArticle from "@/components/pages/blog/StromanbieterWechselnSchritteArticle";
-import StrompreiseNrw2026Article from "@/components/pages/blog/StrompreiseNrw2026Article";
-import GasCategoryPage from "@/components/pages/ratgeber/GasCategoryPage";
-import GewerbeCategoryPage from "@/components/pages/ratgeber/GewerbeCategoryPage";
-import PhotovoltaikCategoryPage from "@/components/pages/ratgeber/PhotovoltaikCategoryPage";
-import StromCategoryPage from "@/components/pages/ratgeber/StromCategoryPage";
-import WechselwissenCategoryPage from "@/components/pages/ratgeber/WechselwissenCategoryPage";
-import AngeboteVergleichenArticle from "@/components/pages/ratgeber/articles/AngeboteVergleichenArticle";
-import DachEignungArticle from "@/components/pages/ratgeber/articles/DachEignungArticle";
-import EinspeiseverguetungArticle from "@/components/pages/ratgeber/articles/EinspeiseverguetungArticle";
-import GasanbieterWechselnNrwArticle from "@/components/pages/ratgeber/articles/GasanbieterWechselnNrwArticle";
-import GaspreisgarantieArticle from "@/components/pages/ratgeber/articles/GaspreisgarantieArticle";
-import GewerbegasBeschaffungArticle from "@/components/pages/ratgeber/articles/GewerbegasBeschaffungArticle";
-import GewerbestromVertragArticle from "@/components/pages/ratgeber/articles/GewerbestromVertragArticle";
-import GrundversorgungGasSondervertragArticle from "@/components/pages/ratgeber/articles/GrundversorgungGasSondervertragArticle";
-import GrundversorgungVsSondervertragArticle from "@/components/pages/ratgeber/articles/GrundversorgungVsSondervertragArticle";
-import HeizungsartVerbrauchArticle from "@/components/pages/ratgeber/articles/HeizungsartVerbrauchArticle";
-import KuendigungsfristenArticle from "@/components/pages/ratgeber/articles/KuendigungsfristenArticle";
-import LastprofilLeistungspreisArticle from "@/components/pages/ratgeber/articles/LastprofilLeistungspreisArticle";
-import LieferantenwechselAblaufArticle from "@/components/pages/ratgeber/articles/LieferantenwechselAblaufArticle";
-import MaloIdZaehlernummerArticle from "@/components/pages/ratgeber/articles/MaloIdZaehlernummerArticle";
-import NeukndenbonusFallenArticle from "@/components/pages/ratgeber/articles/NeukndenbonusFallenArticle";
-import PVKostenNrwArticle from "@/components/pages/ratgeber/articles/PVKostenNrwArticle";
-import PVSpeicherArticle from "@/components/pages/ratgeber/articles/PVSpeicherArticle";
-import PreiserhoeungGasRechteArticle from "@/components/pages/ratgeber/articles/PreiserhoeungGasRechteArticle";
-import PreiserhoeungWasTunArticle from "@/components/pages/ratgeber/articles/PreiserhoeungWasTunArticle";
-import SofortSparmoeglichkeitenArticle from "@/components/pages/ratgeber/articles/SofortSparmoeglichkeitenArticle";
-import StromGrundversorgungArticle from "@/components/pages/ratgeber/articles/StromGrundversorgungArticle";
-import StromanbieterwechselnNrwArticle from "@/components/pages/ratgeber/articles/StromanbieterwechselnNrwArticle";
-import StromtarifVertragslaufzeitArticle from "@/components/pages/ratgeber/articles/StromtarifVertragslaufzeitArticle";
-import UmzugGasvertragArticle from "@/components/pages/ratgeber/articles/UmzugGasvertragArticle";
-import UmzugStromvertragArticle from "@/components/pages/ratgeber/articles/UmzugStromvertragArticle";
-import WechselSchiefgehtArticle from "@/components/pages/ratgeber/articles/WechselSchiefgehtArticle";
+import { getAllCitySlugs } from "@/lib/cities-nrw";
+
+// Eagerly load only the 404 fallback — everything else is lazy-loaded on demand.
+// This reduces the initial page-registry chunk from ~924 KB to ~10 KB.
+const HomePage = lazy(() => import("@/components/pages/HomePage"));
+const AgbPage = lazy(() => import("@/components/pages/AgbPage"));
+const DatenschutzPage = lazy(() => import("@/components/pages/DatenschutzPage"));
+const FaqPage = lazy(() => import("@/components/pages/FaqPage"));
+const GasvergleichNrwPage = lazy(() => import("@/components/pages/GasvergleichNrwPage"));
+const GewerbegasPage = lazy(() => import("@/components/pages/GewerbegasPage"));
+const GewerbestromPage = lazy(() => import("@/components/pages/GewerbestromPage"));
+const ImpressumPage = lazy(() => import("@/components/pages/ImpressumPage"));
+const KontaktPage = lazy(() => import("@/components/pages/KontaktPage"));
+const MethodologyPage = lazy(() => import("@/components/pages/MethodologyPage"));
+const PhotovoltaikNrwPage = lazy(() => import("@/components/pages/PhotovoltaikNrwPage"));
+const RatgeberPage = lazy(() => import("@/components/pages/RatgeberPage"));
+const SitemapPage = lazy(() => import("@/components/pages/SitemapPage"));
+const StromvergleichNrwPage = lazy(() => import("@/components/pages/StromvergleichNrwPage"));
+const ThankYouPage = lazy(() => import("@/components/pages/ThankYouPage"));
+const VergleichGasHubPage = lazy(() => import("@/components/pages/VergleichGasHubPage"));
+const VergleichStromHubPage = lazy(() => import("@/components/pages/VergleichStromHubPage"));
+const WiderrufPage = lazy(() => import("@/components/pages/WiderrufPage"));
+const CityStromvergleichPage = lazy(() => import("@/components/pages/CityStromvergleichPage"));
+
+// Blog
+const BlogHubPage = lazy(() => import("@/components/pages/blog/BlogHubPage"));
+const EnergievergleichKostenTippsArticle = lazy(() => import("@/components/pages/blog/EnergievergleichKostenTippsArticle"));
+const GaspreiseVergleichenNrwArticle = lazy(() => import("@/components/pages/blog/GaspreiseVergleichenNrwArticle"));
+const OekostromNrwAnbieterArticle = lazy(() => import("@/components/pages/blog/OekostromNrwAnbieterArticle"));
+const StromanbieterWechselnSchritteArticle = lazy(() => import("@/components/pages/blog/StromanbieterWechselnSchritteArticle"));
+const StrompreiseNrw2026Article = lazy(() => import("@/components/pages/blog/StrompreiseNrw2026Article"));
+
+// Ratgeber categories
+const GasCategoryPage = lazy(() => import("@/components/pages/ratgeber/GasCategoryPage"));
+const GewerbeCategoryPage = lazy(() => import("@/components/pages/ratgeber/GewerbeCategoryPage"));
+const PhotovoltaikCategoryPage = lazy(() => import("@/components/pages/ratgeber/PhotovoltaikCategoryPage"));
+const StromCategoryPage = lazy(() => import("@/components/pages/ratgeber/StromCategoryPage"));
+const WechselwissenCategoryPage = lazy(() => import("@/components/pages/ratgeber/WechselwissenCategoryPage"));
+
+// Ratgeber articles
+const AngeboteVergleichenArticle = lazy(() => import("@/components/pages/ratgeber/articles/AngeboteVergleichenArticle"));
+const DachEignungArticle = lazy(() => import("@/components/pages/ratgeber/articles/DachEignungArticle"));
+const EinspeiseverguetungArticle = lazy(() => import("@/components/pages/ratgeber/articles/EinspeiseverguetungArticle"));
+const GasanbieterWechselnNrwArticle = lazy(() => import("@/components/pages/ratgeber/articles/GasanbieterWechselnNrwArticle"));
+const GaspreisgarantieArticle = lazy(() => import("@/components/pages/ratgeber/articles/GaspreisgarantieArticle"));
+const GewerbegasBeschaffungArticle = lazy(() => import("@/components/pages/ratgeber/articles/GewerbegasBeschaffungArticle"));
+const GewerbestromVertragArticle = lazy(() => import("@/components/pages/ratgeber/articles/GewerbestromVertragArticle"));
+const GrundversorgungGasSondervertragArticle = lazy(() => import("@/components/pages/ratgeber/articles/GrundversorgungGasSondervertragArticle"));
+const GrundversorgungVsSondervertragArticle = lazy(() => import("@/components/pages/ratgeber/articles/GrundversorgungVsSondervertragArticle"));
+const HeizungsartVerbrauchArticle = lazy(() => import("@/components/pages/ratgeber/articles/HeizungsartVerbrauchArticle"));
+const KuendigungsfristenArticle = lazy(() => import("@/components/pages/ratgeber/articles/KuendigungsfristenArticle"));
+const LastprofilLeistungspreisArticle = lazy(() => import("@/components/pages/ratgeber/articles/LastprofilLeistungspreisArticle"));
+const LieferantenwechselAblaufArticle = lazy(() => import("@/components/pages/ratgeber/articles/LieferantenwechselAblaufArticle"));
+const MaloIdZaehlernummerArticle = lazy(() => import("@/components/pages/ratgeber/articles/MaloIdZaehlernummerArticle"));
+const NeukndenbonusFallenArticle = lazy(() => import("@/components/pages/ratgeber/articles/NeukndenbonusFallenArticle"));
+const PVKostenNrwArticle = lazy(() => import("@/components/pages/ratgeber/articles/PVKostenNrwArticle"));
+const PVSpeicherArticle = lazy(() => import("@/components/pages/ratgeber/articles/PVSpeicherArticle"));
+const PreiserhoeungGasRechteArticle = lazy(() => import("@/components/pages/ratgeber/articles/PreiserhoeungGasRechteArticle"));
+const PreiserhoeungWasTunArticle = lazy(() => import("@/components/pages/ratgeber/articles/PreiserhoeungWasTunArticle"));
+const SofortSparmoeglichkeitenArticle = lazy(() => import("@/components/pages/ratgeber/articles/SofortSparmoeglichkeitenArticle"));
+const StromGrundversorgungArticle = lazy(() => import("@/components/pages/ratgeber/articles/StromGrundversorgungArticle"));
+const StromanbieterwechselnNrwArticle = lazy(() => import("@/components/pages/ratgeber/articles/StromanbieterwechselnNrwArticle"));
+const StromtarifVertragslaufzeitArticle = lazy(() => import("@/components/pages/ratgeber/articles/StromtarifVertragslaufzeitArticle"));
+const UmzugGasvertragArticle = lazy(() => import("@/components/pages/ratgeber/articles/UmzugGasvertragArticle"));
+const UmzugStromvertragArticle = lazy(() => import("@/components/pages/ratgeber/articles/UmzugStromvertragArticle"));
+const WechselSchiefgehtArticle = lazy(() => import("@/components/pages/ratgeber/articles/WechselSchiefgehtArticle"));
 
 const STATIC_PAGE_COMPONENTS = {
   "/": HomePage,
