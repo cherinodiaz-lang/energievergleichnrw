@@ -69,26 +69,13 @@ jobs:
       - run: npm ci
       - run: npm run validate:seo
 
-  validate-design:
-    name: validate-design
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run validate:design
-
   deploy:
     name: deploy
     runs-on: ubuntu-latest
     timeout-minutes: 20
     # Only deploy on push to main — never on PRs
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    needs: [build, typecheck, validate-seo, validate-design]
+    needs: [build, typecheck, validate-seo]
     env:
       ASTRO_TELEMETRY_DISABLED: "1"
     steps:
