@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -83,10 +82,7 @@ export default function StromanbieterwechselnNrwArticle() {
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          <div
             className="max-w-3xl"
           >
             <h1 className="font-heading text-5xl md:text-7xl font-bold mb-6 leading-tight">
@@ -95,17 +91,14 @@ export default function StromanbieterwechselnNrwArticle() {
             <p className="font-paragraph text-lg md:text-xl text-white/90">
               Schritt-für-Schritt Anleitung zum Stromanbieterwechsel in Nordrhein-Westfalen
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Content Section */}
       <section className="w-full py-24 bg-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          <div
           >
             {/* Kurzantwort */}
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-12">
@@ -199,7 +192,7 @@ export default function StromanbieterwechselnNrwArticle() {
                 </h2>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* FAQ Section */}
           <div className="space-y-4 mt-12">

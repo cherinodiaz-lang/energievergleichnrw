@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Zap, CheckCircle, ArrowRight, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
@@ -78,10 +77,7 @@ export default function VergleichStromHubPage() {
       <main>
         <section className="w-full py-16 md:py-24 bg-gradient-to-br from-primary to-primary/80">
           <div className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+            <div
               className="text-center"
             >
               <div className="flex items-center justify-center gap-2 text-white/80 text-sm mb-4">
@@ -104,7 +100,7 @@ export default function VergleichStromHubPage() {
                   Jetzt Strom vergleichen
                 </Link>
               </Button>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -118,11 +114,8 @@ export default function VergleichStromHubPage() {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {STROM_LINKS.map((item, index) => (
-                <motion.div
+                <div
                   key={item.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.07 }}
                 >
                   <Link
                     to={item.href}
@@ -137,7 +130,7 @@ export default function VergleichStromHubPage() {
                       Mehr erfahren <ArrowRight className="w-4 h-4" />
                     </span>
                   </Link>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>

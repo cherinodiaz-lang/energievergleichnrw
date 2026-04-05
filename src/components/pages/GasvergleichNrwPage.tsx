@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { Flame, CheckCircle, Globe, DollarSign, MapPin, BarChart3, Rocket, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -154,10 +153,7 @@ export default function GasvergleichNrwPage() {
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          <div
             className="max-w-3xl"
           >
             <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-6 leading-tight max-w-[22ch] sm:max-w-none break-words">
@@ -178,7 +174,7 @@ export default function GasvergleichNrwPage() {
                 So vergleichen wir (Methodik)
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -356,10 +352,7 @@ export default function GasvergleichNrwPage() {
       {/* Why Switch Section */}
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-primary mb-4">
@@ -368,7 +361,7 @@ export default function GasvergleichNrwPage() {
             <p className="font-paragraph text-lg text-gray-600 max-w-2xl mx-auto">
               Das bringt Ihnen einen klaren Marktüberblick mit aktuellen Tarifdetails.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -405,12 +398,8 @@ export default function GasvergleichNrwPage() {
             ].map((item, index) => {
               const IconComponent = item.icon;
               return (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
                 >
                   <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
                     <div className="flex items-start gap-4">
@@ -427,7 +416,7 @@ export default function GasvergleichNrwPage() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -442,10 +431,7 @@ export default function GasvergleichNrwPage() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="relative"
             >
               <div className="bg-white rounded-2xl p-8 shadow-lg h-full">
@@ -457,13 +443,9 @@ export default function GasvergleichNrwPage() {
                   Geben Sie Ihre Postleitzahl und Ihren Verbrauch ein. Das dauert nur wenige Sekunden.
                 </p>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+            <div
               className="relative"
             >
               <div className="bg-white rounded-2xl p-8 shadow-lg h-full">
@@ -475,13 +457,9 @@ export default function GasvergleichNrwPage() {
                   Sehen Sie aktuelle Tarife mit Preis, Laufzeit und Preisgarantie auf einen Blick.
                 </p>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+            <div
               className="relative"
             >
               <div className="bg-white rounded-2xl p-8 shadow-lg h-full">
@@ -494,7 +472,7 @@ export default function GasvergleichNrwPage() {
                   Schritt.
                 </p>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -535,12 +513,8 @@ export default function GasvergleichNrwPage() {
                   description: 'Prüfen Sie Fristen, Vertragsdetails und die Angaben für einen reibungslosen Wechsel.'
                 }
               ].map((item, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
                   className="flex gap-6"
                 >
                   <div className="flex-shrink-0">
@@ -556,7 +530,7 @@ export default function GasvergleichNrwPage() {
                       {item.description}
                     </p>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </ol>
           </div>
@@ -579,12 +553,8 @@ export default function GasvergleichNrwPage() {
               { title: 'Boni & Rabatte', description: 'Transparente Darstellung aller Wechselboni und Rabatte.' },
               { title: 'Öko-Optionen', description: 'Biogas-Tarife mit Nachhaltigkeitszertifikaten sind oft günstiger als gedacht.' },
             ].map((item, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
               >
                 <Card className="h-full">
                   <CardHeader>
@@ -594,7 +564,7 @@ export default function GasvergleichNrwPage() {
                     <p className="font-paragraph text-gray-600">{item.description}</p>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -608,11 +578,8 @@ export default function GasvergleichNrwPage() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <motion.a
+            <a
               href="https://www.energievergleich.shop/stromvergleich-nrw"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
               className="group"
             >
               <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
@@ -630,14 +597,10 @@ export default function GasvergleichNrwPage() {
                   </Button>
                 </CardContent>
               </Card>
-            </motion.a>
+            </a>
 
-            <motion.a
+            <a
               href="https://www.energievergleich.shop/photovoltaik-nrw"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
               className="group"
             >
               <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
@@ -655,14 +618,10 @@ export default function GasvergleichNrwPage() {
                   </Button>
                 </CardContent>
               </Card>
-            </motion.a>
+            </a>
 
-            <motion.a
+            <a
               href="https://www.energievergleich.shop/gewerbegas"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
               className="group"
             >
               <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
@@ -680,14 +639,10 @@ export default function GasvergleichNrwPage() {
                   </Button>
                 </CardContent>
               </Card>
-            </motion.a>
+            </a>
 
-            <motion.a
+            <a
               href="https://www.energievergleich.shop/ratgeber/gas"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
               className="group"
             >
               <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
@@ -705,14 +660,10 @@ export default function GasvergleichNrwPage() {
                   </Button>
                 </CardContent>
               </Card>
-            </motion.a>
+            </a>
 
-            <motion.a
+            <a
               href="https://www.energievergleich.shop/methodik"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
               className="group"
             >
               <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
@@ -730,7 +681,7 @@ export default function GasvergleichNrwPage() {
                   </Button>
                 </CardContent>
               </Card>
-            </motion.a>
+            </a>
           </div>
         </div>
       </section>
@@ -738,10 +689,7 @@ export default function GasvergleichNrwPage() {
       {/* Trust Section - Warum energievergleich.shop? */}
       <section className="w-full py-24 bg-white border-t">
         <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="space-y-6"
           >
             <h2 className="font-heading text-3xl sm:text-4xl font-semibold tracking-tight text-primary">
@@ -758,7 +706,7 @@ export default function GasvergleichNrwPage() {
             <p className="font-paragraph text-sm text-gray-500 italic">
               Stand: Februar 2026
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
