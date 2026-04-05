@@ -32,7 +32,7 @@ export default function BenefitsSection() {
           className="text-center mb-12"
         >
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Warum energievergleich.nrw?
+            Warum energievergleich.shop?
           </h2>
           <p className="font-paragraph text-lg text-gray-600 max-w-2xl mx-auto">
             Vertrauen Sie auf unsere Expertise und Transparenz

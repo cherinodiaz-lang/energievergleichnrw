@@ -5,6 +5,7 @@ import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
+import VerivoxCalculatorEmbed from '@/components/VerivoxCalculatorEmbed';
 
 const STROM_LINKS = [
   {
@@ -101,6 +102,21 @@ export default function VergleichStromHubPage() {
                 </Link>
               </Button>
             </div>
+          </div>
+        </section>
+
+        {/* Live Verivox Stromrechner */}
+        <section className="w-full py-14 bg-slate-50" id="stromrechner">
+          <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+            <VerivoxCalculatorEmbed
+              badge="Live-Stromvergleich NRW 2026"
+              title="Stromtarife direkt vergleichen"
+              description="Postleitzahl und Jahresverbrauch eingeben – aktuelle NRW-Stromtarife, Preisgarantien und Wechselboni direkt von Verivox."
+              target="Energie_Strom_Privat_Rechner"
+              wmid="104"
+              campaignId="stromvergleich_hub_nrw"
+              trackingProductId="93"
+            />
           </div>
         </section>
 

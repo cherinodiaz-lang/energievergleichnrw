@@ -10,7 +10,6 @@ import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import RelatedPages from '@/components/RelatedPages';
 import VerivoxCalculatorEmbed from '@/components/VerivoxCalculatorEmbed';
-import GasCalculatorForm from '@/components/gas/GasCalculatorForm';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
 import { getPageSEO } from '@/lib/seo-config';
@@ -229,8 +228,20 @@ export default function GasvergleichNrwPage() {
         </div>
       </section>
 
-      {/* Internal Gas Tariff Calculator Section */}
-      <GasCalculatorForm />
+      {/* Second Verivox Calculator — scroll target for CTAs */}
+      <section className="w-full py-12 bg-slate-50" id="vergleichsrechner-2">
+        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+          <VerivoxCalculatorEmbed
+            badge="Gasvergleich NRW 2026"
+            title="Jetzt Gastarife vergleichen"
+            description="Postleitzahl und Jahresverbrauch eingeben – aktuelle NRW-Gastarife, Preisgarantien und Wechselbonus direkt von Verivox."
+            target="Energie_Gas_Privat_Rechner"
+            wmid="102"
+            campaignId="gasvergleich_nrw_2"
+            trackingProductId="99"
+          />
+        </div>
+      </section>
 
       {/* Content Section */}
       <section className="w-full py-24 bg-white">

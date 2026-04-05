@@ -5,6 +5,7 @@ import DeferredFooter from '@/components/DeferredFooter';
 import SEOHead from '@/components/SEOHead';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/lib/routes';
+import VerivoxCalculatorEmbed from '@/components/VerivoxCalculatorEmbed';
 
 const GAS_LINKS = [
   {
@@ -101,6 +102,21 @@ export default function VergleichGasHubPage() {
                 </Link>
               </Button>
             </div>
+          </div>
+        </section>
+
+        {/* Live Verivox Gasrechner */}
+        <section className="w-full py-14 bg-orange-50" id="gasrechner">
+          <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+            <VerivoxCalculatorEmbed
+              badge="Live-Gasvergleich NRW 2026"
+              title="Gastarife direkt vergleichen"
+              description="Postleitzahl und Jahresverbrauch eingeben – aktuelle NRW-Gastarife, Preisgarantien und Wechselboni direkt von Verivox."
+              target="Energie_Gas_Privat_Rechner"
+              wmid="102"
+              campaignId="gasvergleich_hub_nrw"
+              trackingProductId="99"
+            />
           </div>
         </section>
 

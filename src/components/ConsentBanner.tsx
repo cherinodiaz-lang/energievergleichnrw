@@ -90,40 +90,42 @@ export default function ConsentBanner() {
   }
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-[110] p-4 sm:p-6">
+    <div className="fixed inset-x-0 bottom-0 z-[110] p-3 sm:p-5">
       <div
         role="dialog"
         aria-live="polite"
         aria-label="Cookie-Einstellungen"
-        className="mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white p-5 shadow-2xl"
+        className="mx-auto max-w-2xl rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 shadow-2xl"
       >
-        <div className="space-y-3">
-          <p className="font-heading text-lg font-semibold text-primary">Cookie-Einstellungen</p>
-          <p className="font-paragraph text-sm text-slate-700">
-            Wir verwenden nur dann Analyse-Cookies, wenn Sie zustimmen. Ohne Einwilligung bleiben
-            nur technisch notwendige Funktionen aktiv.
-          </p>
-          <p className="font-paragraph text-xs text-slate-500">
-            Ihre Auswahl können Sie jederzeit über den Footer unter &quot;Cookie-Einstellungen&quot;
-            erneut öffnen und ändern.
-          </p>
-        </div>
-        <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:justify-end">
-          <Button
-            type="button"
-            variant="outline"
-            className="w-full sm:w-auto"
-            onClick={() => applyConsent({ analytics: false, marketing: false })}
-          >
-            Nur notwendige
-          </Button>
-          <Button
-            type="button"
-            className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 sm:w-auto"
-            onClick={() => applyConsent({ analytics: true, marketing: false })}
-          >
-            Analyse erlauben
-          </Button>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:gap-6">
+          <div className="flex-1 space-y-1">
+            <p className="font-heading text-base font-semibold text-primary">
+              Wir schützen Ihre Privatsphäre 🔒
+            </p>
+            <p className="font-paragraph text-xs text-slate-600">
+              Wir nutzen Analyse-Tools, um unser Angebot besser für Sie zu machen. Keine Werbung,
+              keine Weitergabe an Dritte. Sie können Ihre Auswahl jederzeit im Footer ändern.
+            </p>
+          </div>
+          <div className="mt-3 sm:mt-0 flex flex-col gap-2 sm:flex-shrink-0 sm:flex-row">
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              className="text-xs text-slate-500 hover:text-slate-700"
+              onClick={() => applyConsent({ analytics: false, marketing: false })}
+            >
+              Ablehnen
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              className="bg-primary text-white hover:bg-primary/90 font-semibold px-6"
+              onClick={() => applyConsent({ analytics: true, marketing: false })}
+            >
+              ✓ Akzeptieren &amp; fortfahren
+            </Button>
+          </div>
         </div>
       </div>
     </div>

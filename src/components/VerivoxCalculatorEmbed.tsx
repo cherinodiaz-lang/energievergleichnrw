@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { trackVerivoxWidgetView, trackVerivoxInteract } from '@/services/ga4-tracking';
 
 type VerivoxCalculatorEmbedProps = {
   badge?: string;
@@ -44,6 +45,9 @@ export default function VerivoxCalculatorEmbed({
 
     slot.replaceChildren();
 
+    // Track widget impression (affiliate revenue signal)
+    trackVerivoxWidgetView(target, campaignId);
+
     const container = document.createElement('div');
     container.id = 'vxcp-container';
     container.setAttribute('data-target', target);
@@ -62,8 +66,19 @@ export default function VerivoxCalculatorEmbed({
 
     slot.append(container, loaderScript, createTrackingPixel(wmid, trackingProductId));
 
+    // Track when user interacts with the Verivox iframe (high-intent signal)
+    const handleMessage = (e: MessageEvent) => {
+      if (typeof e.data === 'string' && (e.data.includes('vxcp') || e.data.includes('verivox'))) {
+        trackVerivoxInteract(target, campaignId);
+      } else if (e.data && typeof e.data === 'object' && 'vxcp' in e.data) {
+        trackVerivoxInteract(target, campaignId);
+      }
+    };
+    window.addEventListener('message', handleMessage);
+
     return () => {
       slot.replaceChildren();
+      window.removeEventListener('message', handleMessage);
     };
   }, [campaignId, target, trackingProductId, wmid]);
 
