@@ -99,5 +99,13 @@ jobs:
           echo '${{ secrets.WIX_AUTH_ACCOUNT }}' > ~/.wix/auth/account.json
           echo '${{ secrets.WIX_AUTH_SITE }}' > ~/.wix/auth/52dd1482-1ebb-4472-90a2-bce2af5d763f.json
 
+      - name: Build
+        run: wix build
+        env:
+          WIX_CLIENT_ID: ${{ secrets.WIX_CLIENT_ID || 'ci-placeholder-00000000-0000-0000-0000-000000000000' }}
+          WIX_CLIENT_SECRET: ${{ secrets.WIX_CLIENT_SECRET || 'ci-placeholder-secret' }}
+          WIX_CLIENT_INSTANCE_ID: ${{ secrets.WIX_CLIENT_INSTANCE_ID || 'ci-placeholder-instance-id' }}
+          WIX_CLIENT_PUBLIC_KEY: ${{ secrets.WIX_CLIENT_PUBLIC_KEY || 'ci-placeholder-public-key' }}
+
       - name: Release to Wix Headless
         run: wix release --comment "CI auto-deploy from ${{ github.sha }}"
