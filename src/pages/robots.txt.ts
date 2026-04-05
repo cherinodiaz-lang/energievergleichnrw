@@ -11,6 +11,8 @@ Disallow: /checkout
 Disallow: /cart
 Disallow: /login
 Disallow: /account
+Disallow: /api
+Disallow: /_astro
 
 # Sitemap location
 Sitemap: https://www.energievergleich.shop/sitemap.xml

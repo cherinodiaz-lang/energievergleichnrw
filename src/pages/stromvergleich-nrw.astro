@@ -15,5 +15,5 @@ const seo = getPageSEO("stromvergleich");
   ogTitle={seo.ogTitle}
   ogDescription={seo.ogDescription}
 >
-  <HydratedRoutePage path={Astro.url.pathname} Page={StromvergleichNrwPage} client:load />
+  <HydratedRoutePage path={Astro.url.pathname} Page={StromvergleichNrwPage} client:idle />
 </SeoPageLayout>

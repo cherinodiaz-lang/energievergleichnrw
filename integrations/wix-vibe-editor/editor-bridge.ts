@@ -19,31 +19,34 @@ class WixVibeEditorBridge {
     // Set default editor settings
     private setDefaultSettings() {
         // Set default configurations here
-        this.editorInstance.setConfig({
-            theme: 'default',
-            layout: 'responsive',
-        });
+        if (typeof this.editorInstance?.setConfig === 'function') {
+            this.editorInstance.setConfig({
+                theme: 'default',
+                layout: 'responsive',
+            });
+        }
     }
 
     // Restore missing functionality
     private restoreMissingFunctionality() {
         // Logic to restore any missing functions
-        if (!this.editorInstance.someImportantFunction) {
+        if (this.editorInstance && !this.editorInstance.someImportantFunction) {
             this.editorInstance.someImportantFunction = () => {
-                console.log('Functionality restored.');
+                // noop: placeholder restored
             };
         }
     }
 
     // Setup necessary event listeners
     private setupEventListeners() {
-        this.editorInstance.on('someEvent', this.handleEvent);
+        if (typeof this.editorInstance?.on === 'function') {
+            this.editorInstance.on('someEvent', this.handleEvent.bind(this));
+        }
     }
 
     // Event handler function
-    private handleEvent(event: any) {
-        // Handle editor events here
-        console.log('Event triggered:', event);
+    private handleEvent(_event: any) {
+        // Editor event received; extend as needed
     }
 }
 

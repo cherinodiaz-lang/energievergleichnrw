@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stromvergleich {{CITY_NAME}} – Günstige Stromanbieter {{YEAR}} | energievergleich.shop</title>
+  <meta name="description" content="Stromvergleich {{CITY_NAME}} {{YEAR}}: Jetzt Stromanbieter vergleichen und bis zu {{SAVINGS_ESTIMATE}} € sparen. Kostenlos & unverbindlich mit Check24 und Verivox." />
+  <link rel="canonical" href="https://www.energievergleich.shop/stromvergleich-{{CITY_SLUG}}" />
+
+  <!-- Schema.org: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "energievergleich.shop",
+    "url": "https://www.energievergleich.shop",
+    "logo": "https://www.energievergleich.shop/favicon.svg",
+    "sameAs": []
+  }
+  </script>
+
+  <!-- Schema.org: FAQPage -->
+  <script type="application/ld+json" id="faq-schema">
+  {{FAQ_SCHEMA}}
+  </script>
+
+  <link rel="stylesheet" href="/styles/tokens.css" />
+</head>
+<body>
+  <header>
+    <a href="https://www.energievergleich.shop" aria-label="energievergleich.shop Startseite">
+      <img src="/favicon.svg" alt="energievergleich.shop Logo" width="40" height="40" />
+    </a>
+    <nav aria-label="Hauptnavigation">
+      <a href="/stromvergleich-nrw">Stromvergleich NRW</a>
+      <a href="/gasvergleich-nrw">Gasvergleich NRW</a>
+      <a href="/ratgeber">Ratgeber</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Stromvergleich {{CITY_NAME}} {{YEAR}}</h1>
+      <p>Vergleichen Sie Stromanbieter in {{CITY_NAME}} (PLZ {{CITY_ZIP}}) und finden Sie den günstigsten Tarif. Jetzt kostenlos vergleichen und wechseln.</p>
+      <a href="{{CTA_URL}}" class="cta-button" rel="sponsored noopener noreferrer" target="_blank">
+        Jetzt Strom vergleichen
+      </a>
+    </section>
+
+    <section class="comparison-widget" aria-label="Tarifrechner {{CITY_NAME}}">
+      <!-- Affiliate comparison widget placeholder -->
+      <p>Geben Sie Ihren Jahresverbrauch ein, um Tarife in {{CITY_NAME}} zu vergleichen.</p>
+    </section>
+
+    <section class="content">
+      <h2>Strom in {{CITY_NAME}} – Was Sie wissen sollten</h2>
+      <p>
+        In {{CITY_NAME}} ({{CITY_REGION}}) versorgt der lokale Grundversorger Haushalte mit Strom.
+        Durch einen Anbieterwechsel können Sie jedoch häufig erheblich sparen.
+      </p>
+
+      <h2>Wie viel kostet Strom in {{CITY_NAME}}?</h2>
+      <p>
+        Der Strompreis setzt sich aus Arbeitspreis (ct/kWh) und Grundpreis (€/Monat) zusammen.
+        Vergleichen Sie aktuelle Tarife für {{CITY_NAME}} mit unserem kostenlosen Rechner.
+      </p>
+    </section>
+
+    <section class="faq" aria-label="Häufig gestellte Fragen">
+      <h2>Häufig gestellte Fragen zum Stromvergleich in {{CITY_NAME}}</h2>
+      <div id="faq-items">
+        <!-- FAQ items are injected by generate-faq-schema.js -->
+        {{FAQ_HTML}}
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© {{YEAR}} energievergleich.shop · <a href="/impressum">Impressum</a> · <a href="/datenschutz">Datenschutz</a></p>
+    <p class="disclaimer">*Preisangaben sind Richtwerte. Aktuelle Preise werden beim Partneranbieter angezeigt.</p>
+  </footer>
+</body>
+</html>

@@ -12,5 +12,5 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogTitle="Stromvergleich & Tarife | Ratgeber"
   ogDescription="Umfassender Ratgeber zu Stromtarifen und Stromwechsel in NRW"
 >
-  <AstroRouterProvider path={Astro.url.pathname} Page={StromCategoryPage} client:load />
+  <AstroRouterProvider path={Astro.url.pathname} Page={StromCategoryPage} client:idle />
 </SeoPageLayout>

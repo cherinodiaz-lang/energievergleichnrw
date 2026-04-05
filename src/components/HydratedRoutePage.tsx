@@ -1,8 +1,9 @@
 import type { ComponentType } from "react";
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter, StaticRouter, useLocation } from "react-router-dom";
 import AnalyticsBootstrap from "@/components/AnalyticsBootstrap";
 import ConsentBanner from "@/components/ConsentBanner";
+import EditorBridge from "@/components/EditorBridge";
 import { resolvePageComponent } from "@/lib/page-registry";
 import { SEO_CONFIG } from "@/lib/seo-config";
 
@@ -103,39 +104,6 @@ class ErrorBoundary extends React.Component<
   }
 }
 
-function EditorInitializer() {
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const notifyReady = () => {
-      try {
-        if (window.__EDITOR_BRIDGE__?.notifyReady) {
-          window.__EDITOR_BRIDGE__.notifyReady();
-        }
-        if (window.__WIX_VIBE_EDITOR__?.ready) {
-          window.__WIX_VIBE_EDITOR__.ready();
-        }
-        if (window.parent && window.parent !== window) {
-          try {
-            window.parent.postMessage({ type: "EDITOR_READY" }, "*");
-          } catch (e) {
-            // Silently ignore cross-origin errors
-          }
-        }
-      } catch (error) {
-        // Silently ignore initialization errors
-      }
-    };
-
-    notifyReady();
-    const timeoutId = setTimeout(notifyReady, 50);
-
-    return () => clearTimeout(timeoutId);
-  }, []);
-
-  return null;
-}
-
 function ResolvedRoutePage({
   PageOverride,
   pageProps,
@@ -157,7 +125,7 @@ export default function HydratedRoutePage({
     <ErrorBoundary>
       <>
         <AnalyticsBootstrap measurementId={SEO_CONFIG.googleAnalyticsId} />
-        <EditorInitializer />
+        <EditorBridge />
         <ResolvedRoutePage PageOverride={Page} pageProps={pageProps} />
         <ConsentBanner />
       </>

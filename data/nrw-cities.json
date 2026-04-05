@@ -1,0 +1,22 @@
+[
+  { "slug": "koeln", "name": "Köln", "zip": "50667", "region": "Rheinland" },
+  { "slug": "duesseldorf", "name": "Düsseldorf", "zip": "40213", "region": "Rheinland" },
+  { "slug": "dortmund", "name": "Dortmund", "zip": "44135", "region": "Ruhrgebiet" },
+  { "slug": "essen", "name": "Essen", "zip": "45127", "region": "Ruhrgebiet" },
+  { "slug": "duisburg", "name": "Duisburg", "zip": "47051", "region": "Ruhrgebiet" },
+  { "slug": "bochum", "name": "Bochum", "zip": "44787", "region": "Ruhrgebiet" },
+  { "slug": "wuppertal", "name": "Wuppertal", "zip": "42103", "region": "Bergisches Land" },
+  { "slug": "bielefeld", "name": "Bielefeld", "zip": "33602", "region": "Ostwestfalen-Lippe" },
+  { "slug": "bonn", "name": "Bonn", "zip": "53111", "region": "Rheinland" },
+  { "slug": "muenster", "name": "Münster", "zip": "48143", "region": "Münsterland" },
+  { "slug": "gelsenkirchen", "name": "Gelsenkirchen", "zip": "45879", "region": "Ruhrgebiet" },
+  { "slug": "moenchengladbach", "name": "Mönchengladbach", "zip": "41061", "region": "Rheinland" },
+  { "slug": "aachen", "name": "Aachen", "zip": "52062", "region": "Rheinland" },
+  { "slug": "krefeld", "name": "Krefeld", "zip": "47798", "region": "Rheinland" },
+  { "slug": "oberhausen", "name": "Oberhausen", "zip": "46042", "region": "Ruhrgebiet" },
+  { "slug": "hagen", "name": "Hagen", "zip": "58095", "region": "Märkisches Sauerland" },
+  { "slug": "hamm", "name": "Hamm", "zip": "59065", "region": "Westfalen" },
+  { "slug": "solingen", "name": "Solingen", "zip": "42651", "region": "Bergisches Land" },
+  { "slug": "leverkusen", "name": "Leverkusen", "zip": "51373", "region": "Rheinland" },
+  { "slug": "herne", "name": "Herne", "zip": "44623", "region": "Ruhrgebiet" }
+]
