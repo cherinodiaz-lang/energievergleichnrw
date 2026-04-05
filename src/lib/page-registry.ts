@@ -61,6 +61,12 @@ import WechselSchiefgehtArticle from "@/components/pages/ratgeber/articles/Wechs
 const STATIC_PAGE_COMPONENTS = {
   "/": HomePage,
   "/agb": AgbPage,
+  "/blog": BlogHubPage,
+  "/blog/energievergleich-kosten-tipps": EnergievergleichKostenTippsArticle,
+  "/blog/gaspreise-vergleichen-nrw": GaspreiseVergleichenNrwArticle,
+  "/blog/oekostrom-nrw-anbieter": OekostromNrwAnbieterArticle,
+  "/blog/stromanbieter-wechseln-nrw": StromanbieterWechselnSchritteArticle,
+  "/blog/strompreise-nrw-2026": StrompreiseNrw2026Article,
   "/danke": ThankYouPage,
   "/datenschutz": DatenschutzPage,
   "/faq": FaqPage,

@@ -113,6 +113,44 @@ const pages = [
     lastmod: LASTMOD_STATIC
   },
 
+  // ===== BLOG (Priority: 0.8) =====
+  {
+    url: '/blog',
+    priority: '0.8',
+    changefreq: 'weekly',
+    lastmod: LASTMOD_STATIC
+  },
+  {
+    url: '/blog/strompreise-nrw-2026',
+    priority: '0.7',
+    changefreq: 'monthly',
+    lastmod: LASTMOD_STATIC
+  },
+  {
+    url: '/blog/gaspreise-vergleichen-nrw',
+    priority: '0.7',
+    changefreq: 'monthly',
+    lastmod: LASTMOD_STATIC
+  },
+  {
+    url: '/blog/energievergleich-kosten-tipps',
+    priority: '0.7',
+    changefreq: 'monthly',
+    lastmod: LASTMOD_STATIC
+  },
+  {
+    url: '/blog/stromanbieter-wechseln-nrw',
+    priority: '0.7',
+    changefreq: 'monthly',
+    lastmod: LASTMOD_STATIC
+  },
+  {
+    url: '/blog/oekostrom-nrw-anbieter',
+    priority: '0.7',
+    changefreq: 'monthly',
+    lastmod: LASTMOD_STATIC
+  },
+
   // ===== RATGEBER HUB (Priority: 0.9) =====
   {
     url: '/ratgeber',
