@@ -15,5 +15,5 @@ const seo = getPageSEO("gasvergleich");
   ogTitle={seo.ogTitle}
   ogDescription={seo.ogDescription}
 >
-  <AstroRouterProvider path={Astro.url.pathname} Page={GasvergleichNrwPage} client:load />
+  <AstroRouterProvider path={Astro.url.pathname} Page={GasvergleichNrwPage} client:idle />
 </SeoPageLayout>
