@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { Zap, CheckCircle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -83,10 +82,7 @@ export default function StromGrundversorgungArticle() {
       {/* Article Header */}
       <section className="w-full bg-gradient-to-br from-blue-50 to-blue-100 py-12 md:py-16">
         <div className="max-w-4xl mx-auto px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          <div
           >
             <div className="flex items-center gap-2 mb-4">
               <Zap className="w-5 h-5 text-blue-600" />
@@ -98,17 +94,14 @@ export default function StromGrundversorgungArticle() {
             <p className="font-paragraph text-lg text-gray-600">
               Veröffentlicht: 9. Januar 2026 | Lesezeit: 8 Minuten
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Main Content */}
       <section className="w-full py-12 md:py-16 bg-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+          <div
             className="prose prose-lg max-w-none"
           >
             {/* Kurzantwort */}
@@ -197,7 +190,7 @@ export default function StromGrundversorgungArticle() {
                 </li>
               </ul>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

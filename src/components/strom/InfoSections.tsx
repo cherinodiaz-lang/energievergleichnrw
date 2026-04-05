@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Card, CardContent } from '@/components/ui/card';
 import { CheckCircle, AlertCircle, HelpCircle } from 'lucide-react';
@@ -44,11 +43,7 @@ export default function InfoSections() {
   return (
     <div className="space-y-16">
       {/* Why Compare Section */}
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
+      <section
         className="py-12 bg-background rounded-lg"
       >
         <div className="max-w-4xl mx-auto px-4">
@@ -64,14 +59,10 @@ export default function InfoSections() {
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* What to Consider Section */}
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
+      <section
         className="py-12 bg-white rounded-lg"
       >
         <div className="max-w-4xl mx-auto px-4">
@@ -91,14 +82,10 @@ export default function InfoSections() {
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* FAQ Section */}
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
+      <section
         className="py-12"
       >
         <div className="max-w-4xl mx-auto px-4">
@@ -121,7 +108,7 @@ export default function InfoSections() {
             ))}
           </Accordion>
         </div>
-      </motion.section>
+      </section>
     </div>
   );
 }
