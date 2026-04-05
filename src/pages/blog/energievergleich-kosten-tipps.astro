@@ -13,5 +13,5 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogDescription="Praktische Tipps zur Optimierung Ihrer Energiekosten als Haushalt in NRW."
   ogType="article"
 >
-  <AstroRouterProvider path={Astro.url.pathname} Page={EnergievergleichKostenTippsArticle} client:load />
+  <AstroRouterProvider path={Astro.url.pathname} Page={EnergievergleichKostenTippsArticle} client:idle />
 </SeoPageLayout>

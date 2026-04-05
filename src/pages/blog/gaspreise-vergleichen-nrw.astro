@@ -13,5 +13,5 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogDescription="Gaspreise in NRW vergleichen und sparen – aktuelle Tipps und Preisentwicklungen."
   ogType="article"
 >
-  <AstroRouterProvider path={Astro.url.pathname} Page={GaspreiseVergleichenNrwArticle} client:load />
+  <AstroRouterProvider path={Astro.url.pathname} Page={GaspreiseVergleichenNrwArticle} client:idle />
 </SeoPageLayout>

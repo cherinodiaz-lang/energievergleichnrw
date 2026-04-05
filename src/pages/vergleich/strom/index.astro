@@ -12,5 +12,5 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogTitle="Stromvergleich NRW – Alle Angebote & Tarife 2026"
   ogDescription="Vollstaendiger Stromvergleich NRW: Alle Anbieter, Tarife und Sparmoelichkeiten 2026."
 >
-  <AstroRouterProvider path={Astro.url.pathname} Page={VergleichStromHubPage} client:load />
+  <AstroRouterProvider path={Astro.url.pathname} Page={VergleichStromHubPage} client:idle />
 </SeoPageLayout>

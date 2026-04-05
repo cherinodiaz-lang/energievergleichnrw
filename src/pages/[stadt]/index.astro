@@ -139,5 +139,5 @@ const localBusinessSchema = {
   ogDescription={metaDescription}
   schemas={[faqSchema, breadcrumbSchema, localBusinessSchema]}
 >
-  <AstroRouterProvider path={Astro.url.pathname} client:load />
+  <AstroRouterProvider path={Astro.url.pathname} client:idle />
 </SeoPageLayout>
