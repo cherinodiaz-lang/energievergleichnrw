@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import Header from '@/components/Header';
 import DeferredFooter from '@/components/DeferredFooter';
@@ -72,10 +71,7 @@ export default function BlogHubPage() {
       <main>
         <section className="w-full py-16 md:py-24 bg-gradient-to-br from-primary to-primary/80">
           <div className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+            <div
               className="text-center"
             >
               <h1 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4">
@@ -85,7 +81,7 @@ export default function BlogHubPage() {
                 Aktuelle Artikel und Ratgeber zu Strompreisen, Gaskosten, Anbieterwechsel und
                 Energiesparen in Nordrhein-Westfalen.
               </p>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -93,11 +89,8 @@ export default function BlogHubPage() {
           <div className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {BLOG_ARTICLES.map((article, index) => (
-                <motion.article
+                <article
                   key={article.slug}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.08 }}
                   className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col overflow-hidden border"
                 >
                   <div className="bg-primary/10 p-6 flex items-center gap-3">
@@ -130,7 +123,7 @@ export default function BlogHubPage() {
                       Artikel lesen <ArrowRight className="w-4 h-4" />
                     </Link>
                   </div>
-                </motion.article>
+                </article>
               ))}
             </div>
           </div>

@@ -53,7 +53,6 @@ export default defineConfig({
         'react',
         'react-dom',
         'zustand',
-        'framer-motion',
         'date-fns',
         'clsx',
         'class-variance-authority',
