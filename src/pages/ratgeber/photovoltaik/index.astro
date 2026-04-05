@@ -12,5 +12,5 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogTitle="Photovoltaik & Solar | Ratgeber"
   ogDescription="Umfassender Ratgeber zu Solaranlagen und Photovoltaik in NRW"
 >
-  <AstroRouterProvider path={Astro.url.pathname} Page={PhotovoltaikCategoryPage} client:load />
+  <AstroRouterProvider path={Astro.url.pathname} Page={PhotovoltaikCategoryPage} client:idle />
 </SeoPageLayout>

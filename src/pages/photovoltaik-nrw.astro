@@ -15,5 +15,5 @@ const seo = getPageSEO("photovoltaik");
   ogTitle={seo.ogTitle}
   ogDescription={seo.ogDescription}
 >
-  <AstroRouterProvider path={Astro.url.pathname} Page={PhotovoltaikNrwPage} client:load />
+  <AstroRouterProvider path={Astro.url.pathname} Page={PhotovoltaikNrwPage} client:idle />
 </SeoPageLayout>

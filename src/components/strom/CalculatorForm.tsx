@@ -1,12 +1,13 @@
 import type { ComponentProps } from 'react';
 import { useMemo, useState } from 'react';
-import { AlertCircle, LoaderCircle, CheckCircle } from 'lucide-react';
+import { AlertCircle, LoaderCircle, CheckCircle, Info, Send } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import FormSubmissionDialog from '@/components/FormSubmissionDialog';
 import {
   searchStromTariffs,
   type StromTariffResult,
@@ -66,10 +67,20 @@ function formatMoney(value: number) {
   }).format(value);
 }
 
+type LeadFormData = {
+  leadName: string;
+  leadEmail: string;
+  leadPhone: string;
+};
+
+const INITIAL_LEAD_DATA: LeadFormData = { leadName: '', leadEmail: '', leadPhone: '' };
+
 export default function CalculatorForm() {
   const [formData, setFormData] = useState<CalculatorFormData>(INITIAL_FORM_DATA);
   const [formErrors, setFormErrors] = useState<StromTariffSearchErrors>({});
   const [searchState, setSearchState] = useState<SearchState>(INITIAL_STATE);
+  const [leadData, setLeadData] = useState<LeadFormData>(INITIAL_LEAD_DATA);
+  const [showLeadDialog, setShowLeadDialog] = useState(false);
 
   const validationSummary = useMemo(() => Object.values(formErrors).filter(Boolean), [formErrors]);
 
@@ -298,7 +309,31 @@ export default function CalculatorForm() {
 
         {searchState.tariffs.length > 0 && (
           <div className="mt-4 sm:mt-5 space-y-2 sm:space-y-3">
-            <h3 className="font-heading text-base sm:text-lg md:text-xl font-bold">Verfügbare Tarife</h3>
+            <div className="flex items-center justify-between gap-2">
+              <h3 className="font-heading text-base sm:text-lg md:text-xl font-bold">Verfügbare Tarife</h3>
+              {searchState.source === 'transparent_model' && (
+                <span className="text-xs font-semibold text-amber-700 bg-amber-100 border border-amber-300 rounded-full px-2 py-0.5 whitespace-nowrap">
+                  Beispielwerte
+                </span>
+              )}
+            </div>
+
+            {searchState.source === 'transparent_model' && (
+              <div className="rounded-lg border border-amber-300 bg-amber-50 p-3 sm:p-4" role="note">
+                <div className="flex gap-2 sm:gap-3">
+                  <Info className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                  <div className="min-w-0">
+                    <p className="font-semibold text-xs sm:text-sm text-amber-900">Hinweis: Dies sind Beispielberechnungen</p>
+                    <p className="text-xs text-amber-800 mt-1 leading-relaxed">
+                      Die angezeigten Kostenkorridore stammen aus unserem transparenten Berechnungsmodell und
+                      sind <strong>keine verbindlichen Tarifangebote</strong>. Für ein echtes Angebot fragen Sie
+                      kostenlos und unverbindlich an.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {searchState.tariffs.map((tariff, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">
                 <CardContent className="p-3 sm:p-4">
@@ -330,9 +365,85 @@ export default function CalculatorForm() {
                 </CardContent>
               </Card>
             ))}
+
+            {/* Lead Capture CTA */}
+            <div className="mt-2 rounded-xl border border-primary/20 bg-primary/5 p-4 sm:p-5">
+              <div className="flex items-center gap-2 mb-2">
+                <Send className="w-4 h-4 text-primary flex-shrink-0" aria-hidden="true" />
+                <h4 className="font-heading font-bold text-sm sm:text-base text-primary">
+                  Jetzt unverbindlich Angebot anfordern
+                </h4>
+              </div>
+              <p className="text-xs sm:text-sm text-gray-600 mb-3 leading-relaxed">
+                Hinterlassen Sie Ihre Kontaktdaten und wir schicken Ihnen passende Stromtarife für{' '}
+                {formData.postcode || 'Ihre Region'} zu – kostenlos und ohne Verpflichtung.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mb-3">
+                <div>
+                  <Label htmlFor="lead-name" className="text-xs font-semibold">Name *</Label>
+                  <Input
+                    id="lead-name"
+                    type="text"
+                    placeholder="Max Mustermann"
+                    value={leadData.leadName}
+                    onChange={(e) => setLeadData((d) => ({ ...d, leadName: e.target.value }))}
+                    className="h-9 text-sm mt-1"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="lead-email" className="text-xs font-semibold">E-Mail *</Label>
+                  <Input
+                    id="lead-email"
+                    type="email"
+                    placeholder="max@beispiel.de"
+                    value={leadData.leadEmail}
+                    onChange={(e) => setLeadData((d) => ({ ...d, leadEmail: e.target.value }))}
+                    className="h-9 text-sm mt-1"
+                  />
+                </div>
+                <div className="sm:col-span-2">
+                  <Label htmlFor="lead-phone" className="text-xs font-semibold">
+                    Telefon <span className="text-gray-400 font-normal">(optional)</span>
+                  </Label>
+                  <Input
+                    id="lead-phone"
+                    type="tel"
+                    placeholder="+49 211 1234 5678"
+                    value={leadData.leadPhone}
+                    onChange={(e) => setLeadData((d) => ({ ...d, leadPhone: e.target.value }))}
+                    className="h-9 text-sm mt-1"
+                  />
+                </div>
+              </div>
+              <Button
+                type="button"
+                onClick={() => setShowLeadDialog(true)}
+                className="w-full bg-secondary hover:bg-secondary/90 text-black font-semibold h-10 sm:h-11 text-sm"
+              >
+                Kostenlos anfragen
+                <Send className="w-3.5 h-3.5 ml-2" aria-hidden="true" />
+              </Button>
+            </div>
           </div>
         )}
       </div>
+
+      <FormSubmissionDialog
+        isOpen={showLeadDialog}
+        onClose={() => setShowLeadDialog(false)}
+        formType="stromvergleich"
+        formData={{
+          name: leadData.leadName,
+          email: leadData.leadEmail,
+          phone: leadData.leadPhone,
+          postleitzahl: formData.postcode,
+          verbrauch: formData.annualConsumption,
+          type: 'stromvergleich',
+        }}
+        requiredFields={['name', 'email']}
+        onSuccess={() => setLeadData(INITIAL_LEAD_DATA)}
+        title="Stromtarif-Anfrage senden"
+      />
     </section>
   );
 }

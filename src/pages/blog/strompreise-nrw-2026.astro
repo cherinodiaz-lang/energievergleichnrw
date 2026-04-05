@@ -13,5 +13,5 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogDescription="Strompreise in NRW 2026: Aktueller Überblick mit Trends und Spartipps."
   ogType="article"
 >
-  <AstroRouterProvider path={Astro.url.pathname} Page={StrompreiseNrw2026Article} client:load />
+  <AstroRouterProvider path={Astro.url.pathname} Page={StrompreiseNrw2026Article} client:idle />
 </SeoPageLayout>
