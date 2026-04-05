@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { CheckCircle, Shield, TrendingUp, BarChart3, Zap } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
@@ -26,10 +25,7 @@ export default function MethodologyPage() {
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          <div
             className="max-w-3xl"
           >
             <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-6 leading-tight">
@@ -38,7 +34,7 @@ export default function MethodologyPage() {
             <p className="font-paragraph text-lg md:text-xl text-white/90 mb-4">
               Wie wir arbeiten, welche Daten wir nutzen und wie wir Unabhängigkeit gewährleisten.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -47,10 +43,7 @@ export default function MethodologyPage() {
         <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-12">
             {/* Responsible Person */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="space-y-4"
             >
               <h2 className="font-heading text-3xl font-bold text-primary">Verantwortliche Person</h2>
@@ -70,13 +63,10 @@ export default function MethodologyPage() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
 
             {/* Data Sources */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="space-y-4"
             >
               <h2 className="font-heading text-3xl font-bold text-primary">Datenquellen & Nutzung</h2>
@@ -141,13 +131,10 @@ export default function MethodologyPage() {
                   </CardContent>
                 </Card>
               </div>
-            </motion.div>
+            </div>
 
             {/* Update Frequency */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="space-y-4"
             >
               <h2 className="font-heading text-3xl font-bold text-primary">Aktualisierungshäufigkeit</h2>
@@ -172,13 +159,10 @@ export default function MethodologyPage() {
                   </ul>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
 
             {/* Independence & Commissions */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="space-y-4"
             >
               <h2 className="font-heading text-3xl font-bold text-primary">Unabhängigkeit & Provisionen</h2>
@@ -213,13 +197,10 @@ export default function MethodologyPage() {
                   </CardContent>
                 </Card>
               </div>
-            </motion.div>
+            </div>
 
             {/* Comparison Criteria */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="space-y-4"
             >
               <h2 className="font-heading text-3xl font-bold text-primary">Vergleichskriterien</h2>
@@ -243,13 +224,10 @@ export default function MethodologyPage() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
             {/* Quality Assurance */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="space-y-4"
             >
               <h2 className="font-heading text-3xl font-bold text-primary">Qualitätssicherung</h2>
@@ -275,13 +253,10 @@ export default function MethodologyPage() {
                   </ul>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
 
             {/* CTA Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="bg-secondary/10 border-l-4 border-secondary p-8 rounded mt-12"
             >
               <h3 className="font-heading text-2xl font-bold text-primary mb-4">Haben Sie Fragen zu unserer Methodik?</h3>
@@ -293,7 +268,7 @@ export default function MethodologyPage() {
                   Kontakt aufnehmen
                 </button>
               </Link>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

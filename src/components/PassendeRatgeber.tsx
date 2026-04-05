@@ -4,7 +4,6 @@
  * Filters by targetMoneyPage, supplements with Wechselwissen if needed
  */
 
-import { motion } from 'framer-motion';
 import { Clock, ArrowRight } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -43,12 +42,8 @@ export default function PassendeRatgeber({
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {articles.map((article, index) => (
-            <motion.div
+            <div
               key={article.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
             >
               <Link to={`/${article.slug}`} className="group h-full">
                 <Card className="h-full hover:shadow-lg transition-all duration-300 border-none overflow-hidden flex flex-col">
@@ -76,7 +71,7 @@ export default function PassendeRatgeber({
                   </CardContent>
                 </Card>
               </Link>
-            </motion.div>
+            </div>
           ))}
         </div>
 

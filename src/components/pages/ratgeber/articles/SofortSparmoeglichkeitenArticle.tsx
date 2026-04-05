@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle, Zap, Clock, DollarSign } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -48,10 +47,7 @@ export default function SofortSparmoeglichkeitenArticle() {
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          <div
             className="max-w-3xl"
           >
             <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-6 leading-tight">
@@ -60,7 +56,7 @@ export default function SofortSparmoeglichkeitenArticle() {
             <p className="font-paragraph text-lg md:text-xl text-white/90">
               Praktische Tipps, wie Sie sofort Geld bei Ihrem Stromtarif sparen können – ohne Verzicht auf Komfort.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -69,22 +65,16 @@ export default function SofortSparmoeglichkeitenArticle() {
         <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-12">
             {/* Introduction */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="space-y-4"
             >
               <p className="font-paragraph text-lg text-gray-700 leading-relaxed">
                 Die Strompreise in Nordrhein-Westfalen sind in den letzten Jahren deutlich gestiegen. Viele Haushalte zahlen zu viel für ihren Strom, ohne es zu bemerken. Die gute Nachricht: Es gibt zahlreiche Möglichkeiten, sofort Geld zu sparen – ohne Ihre Lebensqualität zu beeinträchtigen. In diesem Artikel zeigen wir Ihnen praktische Tipps, wie Sie Ihren Stromtarif optimieren und Ihre Energiekosten senken können.
               </p>
-            </motion.div>
+            </div>
 
             {/* Section 1: Spartipps */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="space-y-4"
             >
               <h2 className="font-heading text-3xl font-bold text-primary flex items-center gap-3">
@@ -149,13 +139,10 @@ export default function SofortSparmoeglichkeitenArticle() {
                   </CardContent>
                 </Card>
               </div>
-            </motion.div>
+            </div>
 
             {/* Section 2: Vertragslaufzeiten */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="space-y-4"
             >
               <h2 className="font-heading text-3xl font-bold text-primary flex items-center gap-3">
@@ -233,13 +220,10 @@ export default function SofortSparmoeglichkeitenArticle() {
                   </CardContent>
                 </Card>
               </div>
-            </motion.div>
+            </div>
 
             {/* Section 3: Boni & Rabatte */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="space-y-4"
             >
               <h2 className="font-heading text-3xl font-bold text-primary flex items-center gap-3">
@@ -273,13 +257,10 @@ export default function SofortSparmoeglichkeitenArticle() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
 
             {/* CTA Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="bg-primary text-white p-8 rounded-lg"
             >
               <h3 className="font-heading text-2xl font-bold mb-4">Bereit, Geld zu sparen?</h3>
@@ -292,20 +273,17 @@ export default function SofortSparmoeglichkeitenArticle() {
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </Link>
-            </motion.div>
+            </div>
 
             {/* Conclusion */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="space-y-4 bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500"
             >
               <h3 className="font-heading text-2xl font-bold text-primary">Fazit</h3>
               <p className="font-paragraph text-gray-700">
                 Sofortige Sparmöglichkeiten beim Stromtarif sind einfacher zu nutzen, als viele denken. Mit unserem Stromvergleich, der Wahl der richtigen Vertragslaufzeit und der Nutzung von Neukundenboni können Sie schnell und einfach 200-400 Euro pro Jahr sparen. Der Wechsel ist kostenlos, unkompliziert und dauert nur wenige Minuten. Warum warten? Vergleichen Sie jetzt und sparen Sie ab sofort!
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

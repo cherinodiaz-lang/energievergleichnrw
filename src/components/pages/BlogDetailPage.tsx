@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
 import DeferredFooter from '@/components/DeferredFooter';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, User, Clock } from 'lucide-react';
 import { format } from 'date-fns';
 import { de } from 'date-fns/locale';
@@ -119,44 +118,33 @@ export default function BlogDetailPage() {
         <article className="w-full py-12 md:py-16">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Back Button */}
-            <motion.button
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
+            <button
               onClick={() => navigate('/blog')}
               className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-8 font-paragraph"
             >
               <ArrowLeft className="w-4 h-4" />
               Zurück zum Blog
-            </motion.button>
+            </button>
 
             {/* Category Badge */}
             {category && 'name' in category && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
+              <div
               >
                 <span className="inline-block text-xs font-heading font-semibold text-primary bg-primary/10 px-4 py-2 rounded-full mb-6">
                   {(category as any).name}
                 </span>
-              </motion.div>
+              </div>
             )}
 
             {/* Title */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15 }}
+            <h1
               className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-6"
             >
               {post.title}
-            </motion.h1>
+            </h1>
 
             {/* Meta Information */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
+            <div
               className="flex flex-wrap gap-6 text-sm text-foreground/60 border-b pb-6 mb-8"
             >
               {publishedDate && (
@@ -177,26 +165,20 @@ export default function BlogDetailPage() {
                   <span>{post.readingTime} min Lesezeit</span>
                 </div>
               )}
-            </motion.div>
+            </div>
 
             {/* Excerpt */}
             {post.excerpt && (
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.25 }}
+              <p
                 className="font-paragraph text-lg text-foreground/80 mb-8 italic"
               >
                 {post.excerpt}
-              </motion.p>
+              </p>
             )}
 
             {/* Content */}
             {post.content && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
+              <div
                 className="prose prose-sm md:prose-base max-w-none font-paragraph text-foreground/80 leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
@@ -204,10 +186,7 @@ export default function BlogDetailPage() {
 
             {/* Author Bio */}
             {author && 'authorName' in author && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.35 }}
+              <div
                 className="mt-16 pt-8 border-t"
               >
                 <div className="flex gap-6 items-start">
@@ -236,20 +215,17 @@ export default function BlogDetailPage() {
                     )}
                   </div>
                 </div>
-              </motion.div>
+              </div>
             )}
 
             {/* Back to Blog Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
+            <div
               className="mt-12"
             >
               <Button onClick={() => navigate('/blog')} className="rounded-lg">
                 Mehr Artikel lesen
               </Button>
-            </motion.div>
+            </div>
           </div>
         </article>
       </main>

@@ -6,7 +6,6 @@ import { Image } from '@/components/ui/image';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
 import DeferredFooter from '@/components/DeferredFooter';
-import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const POSTS_PER_PAGE = 9;
@@ -79,10 +78,7 @@ export default function BlogPage() {
         {/* Hero Section */}
         <section className="w-full py-16 md:py-24 bg-gradient-to-br from-primary to-primary/80">
           <div className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+            <div
               className="text-center"
             >
               <h1 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4">
@@ -91,7 +87,7 @@ export default function BlogPage() {
               <p className="font-paragraph text-lg text-white/90 max-w-2xl mx-auto">
                 Aktuelle Tipps, Trends und Wissen rund um Energie, Strom und Gas
               </p>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -132,10 +128,7 @@ export default function BlogPage() {
               </div>
             ) : posts.length > 0 ? (
               <>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.6 }}
+                <div
                   className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                 >
                   {posts.map((post, index) => (
@@ -150,11 +143,8 @@ export default function BlogPage() {
                           : null;
 
                       return (
-                        <motion.article
+                        <article
                           key={post._id}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.4, delay: index * 0.05 }}
                           className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col h-full"
                         >
                           {post.thumbnail && (
@@ -189,11 +179,11 @@ export default function BlogPage() {
                               )}
                             </div>
                           </div>
-                        </motion.article>
+                        </article>
                       );
                     })()
                   ))}
-                </motion.div>
+                </div>
 
                 {/* Pagination */}
                 {totalPages > 1 && (
