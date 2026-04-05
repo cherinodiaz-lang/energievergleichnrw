@@ -50,6 +50,18 @@ function withSecurityHeaders(response: Response): Response {
 }
 
 export const onRequest = defineMiddleware(async ({ isPrerendered, url }, next) => {
+  // 301 permanent redirect: strip trailing slash (except root "/")
+  if (url.pathname !== '/' && url.pathname.endsWith('/')) {
+    const cleanUrl = new URL(url);
+    cleanUrl.pathname = url.pathname.replace(/\/+$/, '');
+    return withSecurityHeaders(
+      new Response(null, {
+        status: 301,
+        headers: { Location: cleanUrl.toString() },
+      })
+    );
+  }
+
   if (!isPrerendered && !isAllowedHost(url.hostname)) {
     return withSecurityHeaders(
       new Response("Unzulaessiger Host-Header.", { status: 400 })
