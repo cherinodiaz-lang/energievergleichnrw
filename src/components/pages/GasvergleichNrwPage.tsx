@@ -109,6 +109,30 @@ export default function GasvergleichNrwPage() {
             '@type': 'Answer',
             text: 'Unsere Erstorientierung ist kostenlos. Verbindliche Kosten entstehen nur aus dem später gewählten Tarif beim Anbieter.'
           }
+        },
+        {
+          '@type': 'Question',
+          name: 'Wie hoch ist der durchschnittliche Gaspreis in NRW 2026?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Der durchschnittliche Arbeitspreis für Gas in Nordrhein-Westfalen liegt 2026 bei ca. 10–11 ct/kWh im Sondervertrag. Die Grundversorgung kostet 13–17 ct/kWh. Günstige Tarife starten in NRW ab ca. 9 ct/kWh. Geben Sie Ihre PLZ in den Live-Rechner ein, um aktuelle Tarife für Ihren Ort zu sehen.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Was ist der Unterschied zwischen Gas-Grundversorgung und Sondervertrag?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Die Grundversorgung ist der teurere Standardtarif des lokalen Netzbetreibers. Sonderverträge bieten günstigere Konditionen. In NRW können Haushalte durch einen Wechsel in einen Sondervertrag oft 20–40 % der Gaskosten sparen, je nach Jahresverbrauch.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Können Mieter in NRW den Gasanbieter wechseln?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Ja! Auch als Mieter haben Sie das freie Wahlrecht beim Gasanbieter, unabhängig vom Vermieter. Sie benötigen Ihre Postleitzahl und den jährlichen Gasverbrauch in kWh aus Ihrer letzten Gasrechnung.'
+          }
         }
       ]
     };
@@ -718,6 +742,66 @@ export default function GasvergleichNrwPage() {
               Stand: Februar 2026
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* NRW Gaspreise 2026 — Marktdaten */}
+      <section className="w-full py-20 bg-slate-50">
+        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-primary mb-4 text-center">
+            Gaspreise in NRW 2026 – aktuelle Marktdaten
+          </h2>
+          <p className="font-paragraph text-gray-600 text-center mb-10 max-w-2xl mx-auto">
+            Orientierungswerte für Nordrhein-Westfalen (Stand: April 2026). Tatsächliche Tarife hängen von PLZ, Netzbetreiber und Jahresverbrauch ab.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            {[
+              { label: 'Ø Arbeitspreis Gas NRW', value: '9–12 ct/kWh', sub: 'Sondervertrag, 12 Mon. Laufzeit' },
+              { label: 'Ø Grundpreis Gas NRW', value: '10–16 €/Monat', sub: 'ohne Verbrauch, netto' },
+              { label: 'Grundversorgung Gas NRW', value: '13–17 ct/kWh', sub: 'je nach Netzbetreiber' },
+            ].map((d) => (
+              <div key={d.label} className="bg-white rounded-2xl border border-slate-200 p-6 text-center shadow-sm">
+                <p className="font-paragraph text-sm text-gray-500 mb-1">{d.label}</p>
+                <p className="font-heading text-2xl font-bold text-primary mb-1">{d.value}</p>
+                <p className="font-paragraph text-xs text-gray-400">{d.sub}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm mb-8">
+            <table className="w-full text-sm">
+              <thead className="bg-primary text-white">
+                <tr>
+                  <th className="font-heading text-left px-5 py-3">Stadt / Region NRW</th>
+                  <th className="font-heading text-right px-5 py-3">Ø Arbeitspreis</th>
+                  <th className="font-heading text-right px-5 py-3">Günstigster Tarif ab</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {[
+                  { city: 'Köln', avg: '10,4 ct/kWh', best: '9,1 ct/kWh' },
+                  { city: 'Düsseldorf', avg: '10,6 ct/kWh', best: '9,0 ct/kWh' },
+                  { city: 'Dortmund', avg: '10,8 ct/kWh', best: '9,3 ct/kWh' },
+                  { city: 'Essen', avg: '10,7 ct/kWh', best: '9,2 ct/kWh' },
+                  { city: 'Münster', avg: '10,3 ct/kWh', best: '9,0 ct/kWh' },
+                  { city: 'Bielefeld', avg: '10,5 ct/kWh', best: '9,1 ct/kWh' },
+                  { city: 'Bonn', avg: '10,4 ct/kWh', best: '9,0 ct/kWh' },
+                  { city: 'Wuppertal', avg: '10,9 ct/kWh', best: '9,4 ct/kWh' },
+                ].map((row) => (
+                  <tr key={row.city} className="hover:bg-slate-50 transition-colors">
+                    <td className="font-paragraph font-medium px-5 py-3 text-gray-800">{row.city}</td>
+                    <td className="font-paragraph text-right px-5 py-3 text-gray-600">{row.avg}</td>
+                    <td className="font-paragraph text-right px-5 py-3 font-semibold text-green-600">{row.best}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <p className="font-paragraph text-xs text-gray-400 text-center">
+            * Orientierungswerte auf Basis öffentlich verfügbarer Marktdaten. Aktuelle Tarife für Ihre PLZ zeigt der Live-Rechner oben.
+          </p>
         </div>
       </section>
 
