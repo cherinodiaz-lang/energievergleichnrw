@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { Zap, CheckCircle, Globe, DollarSign, MapPin, BarChart3, Rocket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -153,10 +152,7 @@ export default function StromvergleichNrwPage() {
       {/* Hero Section - LCP Optimized */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          <div
             className="max-w-3xl"
           >
             <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-6 leading-tight max-w-[22ch] sm:max-w-none break-words">
@@ -177,7 +173,7 @@ export default function StromvergleichNrwPage() {
                 So vergleichen wir (Methodik)
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -344,10 +340,7 @@ export default function StromvergleichNrwPage() {
       {/* Why Switch Section */}
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-primary mb-4">
@@ -356,7 +349,7 @@ export default function StromvergleichNrwPage() {
             <p className="font-paragraph text-lg text-gray-600 max-w-2xl mx-auto">
               Das bringt Ihnen ein Tarifwechsel – klar & einfach erklärt.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -393,12 +386,8 @@ export default function StromvergleichNrwPage() {
             ].map((item, index) => {
               const IconComponent = item.icon;
               return (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
                 >
                   <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
                     <div className="flex items-start gap-4">
@@ -415,7 +404,7 @@ export default function StromvergleichNrwPage() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -430,10 +419,7 @@ export default function StromvergleichNrwPage() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="relative"
             >
               <div className="bg-white rounded-2xl p-8 shadow-lg h-full">
@@ -445,13 +431,9 @@ export default function StromvergleichNrwPage() {
                   Geben Sie Ihre Postleitzahl und Ihren Stromverbrauch ein. Das dauert nur wenige Sekunden.
                 </p>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+            <div
               className="relative"
             >
               <div className="bg-white rounded-2xl p-8 shadow-lg h-full">
@@ -463,13 +445,9 @@ export default function StromvergleichNrwPage() {
                   Vergleichen Sie aktuelle Tarife mit Preis, Laufzeit und Preisgarantie auf einen Blick.
                 </p>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+            <div
               className="relative"
             >
               <div className="bg-white rounded-2xl p-8 shadow-lg h-full">
@@ -482,7 +460,7 @@ export default function StromvergleichNrwPage() {
                   Tarifdetails.
                 </p>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -517,12 +495,8 @@ export default function StromvergleichNrwPage() {
               { title: 'Boni & Rabatte', description: 'Transparente Darstellung aller Wechselboni und Rabatte.' },
               { title: 'Öko-Optionen', description: 'Grüne Tarife mit Ökostrom-Zertifikaten sind oft günstiger als gedacht.' },
             ].map((item, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
               >
                 <Card className="h-full">
                   <CardHeader>
@@ -532,7 +506,7 @@ export default function StromvergleichNrwPage() {
                     <p className="font-paragraph text-gray-600">{item.description}</p>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -541,10 +515,7 @@ export default function StromvergleichNrwPage() {
       {/* Trust Section */}
       <section className="w-full py-24 bg-white">
         <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="font-heading text-2xl sm:text-3xl font-bold text-primary mb-6">
               Warum energievergleich.shop?
@@ -570,7 +541,7 @@ export default function StromvergleichNrwPage() {
                 -Seite.
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

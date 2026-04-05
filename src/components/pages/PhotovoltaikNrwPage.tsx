@@ -1,5 +1,4 @@
 import { useState, type SyntheticEvent } from 'react';
-import { motion } from 'framer-motion';
 import { Sun, CheckCircle, TrendingUp, Leaf, Zap, Send, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -80,10 +79,7 @@ export default function PhotovoltaikNrwPage() {
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          <div
             className="max-w-3xl"
           >
             <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-6 leading-tight max-w-[22ch] sm:max-w-none break-words">
@@ -103,7 +99,7 @@ export default function PhotovoltaikNrwPage() {
                 So vergleichen wir (Methodik)
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -260,12 +256,8 @@ export default function PhotovoltaikNrwPage() {
                 description: 'Nach der Amortisation produzieren Sie kostenlosen Strom.'
               },
             ].map((item, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
               >
                 <Card className="h-full">
                   <CardHeader>
@@ -278,7 +270,7 @@ export default function PhotovoltaikNrwPage() {
                     <p className="font-paragraph text-gray-600">{item.description}</p>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -292,10 +284,7 @@ export default function PhotovoltaikNrwPage() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="relative"
             >
               <div className="bg-white rounded-2xl p-8 shadow-lg h-full">
@@ -307,13 +296,9 @@ export default function PhotovoltaikNrwPage() {
                   Wir analysieren Ihr Dach, Ihren Stromverbrauch und erstellen ein individuelles Angebot.
                 </p>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+            <div
               className="relative"
             >
               <div className="bg-white rounded-2xl p-8 shadow-lg h-full">
@@ -325,13 +310,9 @@ export default function PhotovoltaikNrwPage() {
                   Wir kümmern uns um alle Genehmigungen und die technische Planung.
                 </p>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+            <div
               className="relative"
             >
               <div className="bg-white rounded-2xl p-8 shadow-lg h-full">
@@ -343,7 +324,7 @@ export default function PhotovoltaikNrwPage() {
                   Professionelle Installation und Inbetriebnahme. Danach produzieren Sie Ihren eigenen Strom.
                 </p>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -395,12 +376,8 @@ export default function PhotovoltaikNrwPage() {
               { title: 'Förderungen', description: 'Wir nutzen alle verfügbaren Förderprogramme für Sie.' },
               { title: 'Qualität', description: 'Hochwertige Module mit 25 Jahren Leistungsgarantie.' },
             ].map((item, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
               >
                 <Card className="h-full">
                   <CardHeader>
@@ -410,7 +387,7 @@ export default function PhotovoltaikNrwPage() {
                     <p className="font-paragraph text-gray-600">{item.description}</p>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

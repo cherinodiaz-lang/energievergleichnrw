@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { DollarSign, CheckCircle, ArrowRight, Lightbulb } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
@@ -145,10 +144,7 @@ export default function EnergievergleichKostenTippsArticle() {
       <main>
         <section className="w-full py-12 md:py-20 bg-gradient-to-br from-green-700 to-green-600">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+            <div
             >
               <div className="flex items-center gap-2 text-white/80 text-sm mb-4">
                 <Link to={ROUTES.blog} className="hover:text-white">
@@ -168,7 +164,7 @@ export default function EnergievergleichKostenTippsArticle() {
                 <span>📅 Aktualisiert: März 2026</span>
                 <span>⏱ 7 Min. Lesezeit</span>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
