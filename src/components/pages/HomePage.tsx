@@ -279,6 +279,8 @@ export default function HomePage() {
             className="w-full h-full object-cover"
             width={1920}
             height={1024}
+            loading="eager"
+            fetchpriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background pointer-events-none" />
         </div>

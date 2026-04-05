@@ -77,9 +77,13 @@ const robots = noindex
     <!-- Preconnect & preload for Core Web Vitals (LCP) -->
     <link rel="preconnect" href={GOOGLE_FONTS_URL} crossorigin="" />
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <!-- Hero image served from wixstatic.com — preconnect reduces LCP -->
+    <link rel="preconnect" href="https://static.wixstatic.com" crossorigin="" />
     <link rel="dns-prefetch" href="//static.wixstatic.com" />
     <link rel="dns-prefetch" href="//www.googletagmanager.com" />
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="" />
+    <!-- Verivox calculator partner domain -->
+    <link rel="preconnect" href="https://partner.vxcp.de" crossorigin="" />
 
     <!-- Preconnect Clarity -->
     {SEO_CONFIG.clarityProjectId && (
