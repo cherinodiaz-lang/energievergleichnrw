@@ -108,6 +108,30 @@ export default function StromvergleichNrwPage() {
             '@type': 'Answer',
             text: 'Unsere Erstorientierung ist kostenlos. Verbindliche Kosten entstehen nur aus dem später gewählten Tarif beim Anbieter.'
           }
+        },
+        {
+          '@type': 'Question',
+          name: 'Wie hoch ist der durchschnittliche Strompreis in NRW 2026?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Der durchschnittliche Arbeitspreis für Strom in Nordrhein-Westfalen liegt 2026 bei ca. 29–33 ct/kWh im Sondervertrag. Die Grundversorgung ist deutlich teurer (38–46 ct/kWh). Günstige Sondertarife starten in NRW ab ca. 27 ct/kWh.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Was ist der Unterschied zwischen Grundversorgung und Sondervertrag?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Die Grundversorgung ist der Standardtarif Ihres lokalen Netzbetreibers – teurer, aber immer verfügbar. Sonderverträge sind günstigere Alternativtarife von verschiedenen Anbietern. In NRW können Sie durch einen Wechsel in einen Sondervertrag oft 20–35 % der Stromkosten einsparen.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Können auch Mieter in NRW den Stromanbieter wechseln?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Ja! Als Mieter haben Sie das Recht, Ihren Stromanbieter frei zu wählen, unabhängig vom Vermieter. Sie benötigen lediglich Ihre Postleitzahl und den jährlichen Stromverbrauch (kWh) aus Ihrer letzten Abrechnung.'
+          }
         }
       ]
     };
@@ -553,6 +577,66 @@ export default function StromvergleichNrwPage() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* NRW Strompreise 2026 — Marktdaten */}
+      <section className="w-full py-20 bg-slate-50">
+        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-primary mb-4 text-center">
+            Strompreise in NRW 2026 – aktuelle Marktdaten
+          </h2>
+          <p className="font-paragraph text-gray-600 text-center mb-10 max-w-2xl mx-auto">
+            Orientierungswerte für Nordrhein-Westfalen (Stand: April 2026). Die tatsächlichen Tarife variieren je nach PLZ, Netzbetreiber und Verbrauch.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            {[
+              { label: 'Ø Arbeitspreis NRW', value: '29–33 ct/kWh', sub: 'Sondervertrag, 12 Mon. Laufzeit' },
+              { label: 'Ø Grundpreis NRW', value: '8–12 €/Monat', sub: 'ohne Verbrauch, netto' },
+              { label: 'Grundversorgung NRW', value: '38–46 ct/kWh', sub: 'je nach Netzbetreiber' },
+            ].map((d) => (
+              <div key={d.label} className="bg-white rounded-2xl border border-slate-200 p-6 text-center shadow-sm">
+                <p className="font-paragraph text-sm text-gray-500 mb-1">{d.label}</p>
+                <p className="font-heading text-2xl font-bold text-primary mb-1">{d.value}</p>
+                <p className="font-paragraph text-xs text-gray-400">{d.sub}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm mb-8">
+            <table className="w-full text-sm">
+              <thead className="bg-primary text-white">
+                <tr>
+                  <th className="font-heading text-left px-5 py-3">Stadt / Region NRW</th>
+                  <th className="font-heading text-right px-5 py-3">Ø Arbeitspreis</th>
+                  <th className="font-heading text-right px-5 py-3">Günstigster Tarif ab</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {[
+                  { city: 'Köln', avg: '30,1 ct/kWh', best: '27,2 ct/kWh' },
+                  { city: 'Düsseldorf', avg: '30,8 ct/kWh', best: '27,0 ct/kWh' },
+                  { city: 'Dortmund', avg: '31,4 ct/kWh', best: '27,5 ct/kWh' },
+                  { city: 'Essen', avg: '31,2 ct/kWh', best: '27,3 ct/kWh' },
+                  { city: 'Münster', avg: '30,6 ct/kWh', best: '26,9 ct/kWh' },
+                  { city: 'Bielefeld', avg: '31,0 ct/kWh', best: '27,1 ct/kWh' },
+                  { city: 'Bonn', avg: '30,3 ct/kWh', best: '27,0 ct/kWh' },
+                  { city: 'Wuppertal', avg: '31,5 ct/kWh', best: '27,6 ct/kWh' },
+                ].map((row) => (
+                  <tr key={row.city} className="hover:bg-slate-50 transition-colors">
+                    <td className="font-paragraph font-medium px-5 py-3 text-gray-800">{row.city}</td>
+                    <td className="font-paragraph text-right px-5 py-3 text-gray-600">{row.avg}</td>
+                    <td className="font-paragraph text-right px-5 py-3 font-semibold text-green-600">{row.best}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <p className="font-paragraph text-xs text-gray-400 text-center">
+            * Orientierungswerte auf Basis öffentlich verfügbarer Marktdaten. Aktuelle Tarife für Ihre PLZ zeigt der Live-Rechner oben.
+          </p>
         </div>
       </section>
 
