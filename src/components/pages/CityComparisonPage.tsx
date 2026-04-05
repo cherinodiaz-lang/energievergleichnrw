@@ -4,6 +4,7 @@ import Breadcrumb from '@/components/Breadcrumb';
 import DeferredFooter from '@/components/DeferredFooter';
 import Header from '@/components/Header';
 import PassendeRatgeber from '@/components/PassendeRatgeber';
+import AffiliateCtaBanner from '@/components/AffiliateCtaBanner';
 import VerivoxCalculatorEmbed from '@/components/VerivoxCalculatorEmbed';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
@@ -103,12 +104,18 @@ export default function CityComparisonPage({
 
         <section id="vergleich" className="w-full bg-white py-20">
           <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(280px,0.9fr)] lg:px-8 lg:items-start">
+            <AffiliateCtaBanner
+              citySlug={city.slug}
+              product={comparisonType}
+              cityName={city.name}
+              className="mb-6"
+            />
             <VerivoxCalculatorEmbed
               title={`${isStrom ? 'Strom' : 'Gas'} live für ${city.name} vergleichen`}
               description={`Geben Sie Ihre Postleitzahl aus ${city.postalCodeHint} und Ihren Jahresverbrauch ein. Der Rechner zeigt aktuelle ${isStrom ? 'Strom' : 'Gas'}tarife mit Preisgarantie, Laufzeit und weiteren Tarifmerkmalen für ${city.name}.`}
               target={isStrom ? 'Energie_Strom_Privat_Rechner' : 'Energie_Gas_Privat_Rechner'}
               wmid={isStrom ? '104' : '102'}
-              campaignId={`${comparisonType}_${city.slug}`}
+              campaignId={`ev_${city.slug}_${comparisonType}`}
               trackingProductId={isStrom ? '93' : '99'}
             />
 
