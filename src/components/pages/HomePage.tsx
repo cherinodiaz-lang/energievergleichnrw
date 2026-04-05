@@ -482,7 +482,7 @@ export default function HomePage() {
       </section>
 
       {/* --- CALCULATOR SECTION --- */}
-      <section id="vergleichsrechner" className="w-full py-16 sm:py-24 bg-background relative overflow-hidden">
+      <section id="vergleichsrechner" aria-label="Strom- und Gasrechner für NRW" className="w-full py-16 sm:py-24 bg-background relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -562,13 +562,13 @@ export default function HomePage() {
                       <TabsContent value="strom" className="mt-0 space-y-4 sm:space-y-6">
                         <div className="rounded-lg border border-emerald-100 bg-emerald-50 p-3 sm:p-4">
                           <p className="text-xs sm:text-sm font-medium text-emerald-900">
-                            Im Strom-Tab nutzen Sie direkt dieselbe Live-Tarifquelle wie auf unserer Stromvergleich-NRW-Seite.
+                            Live-Stromtarife direkt via Verivox – keine Beispielwerte, echte aktuelle Angebote für Ihre PLZ in NRW.
                           </p>
                         </div>
                         <VerivoxCalculatorEmbed
                           badge="Live-Stromvergleich"
-                          title="Live-Stromtarife für NRW"
-                          description="Geben Sie Ihre Postleitzahl und Ihren Jahresverbrauch direkt im Verivox-Rechner ein. So sehen Sie aktuelle Tarife ohne vorgeschaltete Beispielwerte."
+                          title="Stromtarife in NRW jetzt vergleichen"
+                          description="PLZ und Jahresverbrauch eingeben und sofort günstige Stromanbieter für Ihren Haushalt in NRW sehen. Aktuelle Tarife 2026, Preisgarantien und Wechselbonus direkt von Verivox."
                           target="Energie_Strom_Privat_Rechner"
                           wmid="104"
                           campaignId="stromvergleich_nrw"
@@ -576,7 +576,7 @@ export default function HomePage() {
                         />
                         <div className="flex flex-col gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 sm:flex-row sm:items-center sm:justify-between">
                           <p className="text-sm leading-6 text-slate-600">
-                            Falls Sie mehr Kontext, Methodik und begleitende Hinweise benötigen, öffnen Sie die vollständige Stromseite.
+                            Mehr Informationen zu Tarifen, Anbietern und Wechselablauf finden Sie auf der vollständigen Vergleichsseite.
                           </p>
                           <Link
                             to={ROUTES.stromvergleich}
@@ -620,8 +620,9 @@ export default function HomePage() {
                           </>
                         ) : (
                           <>
-                            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
-                              <p className="text-xs sm:text-sm text-blue-800 font-medium">ℹ️ Dies sind unverbindliche Beispielwerte. Eine Live-Tarifquelle ist derzeit nicht aktiv.</p>
+                            <div className="rounded-lg border border-amber-300 bg-amber-50 p-3 sm:p-4 mb-4 sm:mb-6" role="note">
+                              <p className="text-xs sm:text-sm text-amber-900 font-semibold">⚠️ Beispielberechnungen – keine verbindlichen Angebote</p>
+                              <p className="text-xs text-amber-800 mt-1">Die Werte stammen aus unserem Berechnungsmodell. Für ein echtes Angebot nutzen Sie die Schaltfläche „Anfrage vorbereiten".</p>
                             </div>
                             <div className="space-y-3 sm:space-y-4">
                               {gasResults.map((tariff) => (
@@ -645,7 +646,15 @@ export default function HomePage() {
                                     <div><p className="text-xs text-gray-500 uppercase font-bold">Laufzeit</p><p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.vertragslaufzeit}</p></div>
                                     <div><p className="text-xs text-gray-500 uppercase font-bold">Garantie</p><p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.preisgarantie}</p></div>
                                   </div>
-                                  <Button className="w-full bg-secondary text-black hover:bg-secondary/90 h-10 sm:h-12 font-bold rounded-lg text-sm sm:text-base">Anfrage vorbereiten</Button>
+                                  <Button
+                                    onClick={() => {
+                                      setContactMessage(`Ich interessiere mich für einen Gastarif ähnlich wie "${tariff.provider}" (ca. ${tariff.jahreskosten.toFixed(0)} €/Jahr). Meine PLZ: ${postleitzahl || 'nicht angegeben'}, Verbrauch: ${gasVerbrauch ? gasVerbrauch + ' kWh' : 'nicht angegeben'}.`);
+                                      scrollToSection('kontakt');
+                                    }}
+                                    className="w-full bg-secondary text-black hover:bg-secondary/90 h-10 sm:h-12 font-bold rounded-lg text-sm sm:text-base"
+                                  >
+                                    Anfrage vorbereiten
+                                  </Button>
                                 </div>
                               ))}
                             </div>
@@ -678,8 +687,9 @@ export default function HomePage() {
                           </>
                         ) : (
                           <>
-                            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
-                              <p className="text-xs sm:text-sm text-blue-800 font-medium">ℹ️ Dies sind unverbindliche Beispielwerte. Eine Live-Tarifquelle ist derzeit nicht aktiv.</p>
+                            <div className="rounded-lg border border-amber-300 bg-amber-50 p-3 sm:p-4 mb-4 sm:mb-6" role="note">
+                              <p className="text-xs sm:text-sm text-amber-900 font-semibold">⚠️ Beispielberechnungen – keine verbindlichen Angebote</p>
+                              <p className="text-xs text-amber-800 mt-1">Die Werte stammen aus unserem Berechnungsmodell. Für ein echtes Angebot nutzen Sie die Schaltfläche „Anfrage vorbereiten".</p>
                             </div>
                             <div className="space-y-3 sm:space-y-4">
                               {kombiResults.map((tariff) => (
@@ -703,7 +713,15 @@ export default function HomePage() {
                                     <div><p className="text-xs text-gray-500 uppercase font-bold">Laufzeit</p><p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.vertragslaufzeit}</p></div>
                                     <div><p className="text-xs text-gray-500 uppercase font-bold">Garantie</p><p className="text-sm sm:text-lg font-bold text-gray-900">{tariff.preisgarantie}</p></div>
                                   </div>
-                                  <Button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-10 sm:h-12 font-bold rounded-lg text-sm sm:text-base">Anfrage vorbereiten</Button>
+                                  <Button
+                                    onClick={() => {
+                                      setContactMessage(`Ich interessiere mich für einen Kombi-Tarif ähnlich wie "${tariff.provider}" (ca. ${tariff.jahreskosten.toFixed(0)} €/Jahr). Meine PLZ: ${postleitzahl || 'nicht angegeben'}, Stromverbrauch: ${stromVerbrauch ? stromVerbrauch + ' kWh' : 'nicht angegeben'}, Gasverbrauch: ${gasVerbrauch ? gasVerbrauch + ' kWh' : 'nicht angegeben'}.`);
+                                      scrollToSection('kontakt');
+                                    }}
+                                    className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-10 sm:h-12 font-bold rounded-lg text-sm sm:text-base"
+                                  >
+                                    Anfrage vorbereiten
+                                  </Button>
                                 </div>
                               ))}
                             </div>
