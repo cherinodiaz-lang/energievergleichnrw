@@ -81,31 +81,13 @@ const robots = noindex
     <link rel="dns-prefetch" href="//www.googletagmanager.com" />
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="" />
 
-    <!-- GA4 Consent Mode V2 — MUST be first script, before any other JS (GDPR) -->
-    {SEO_CONFIG.googleAnalyticsId && (
-      <script is:inline define:vars={{ gaId: SEO_CONFIG.googleAnalyticsId }}>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){window.dataLayer.push(arguments);}
-        if (!window.gtag) window.gtag = gtag;
-        // Default: deny all until explicit user consent (GDPR Art. 6)
-        gtag('consent', 'default', {
-          analytics_storage: 'denied',
-          ad_storage: 'denied',
-          ad_user_data: 'denied',
-          ad_personalization: 'denied',
-          wait_for_update: 2000
-        });
-        gtag('js', new Date());
-        // Load GA4 async — tracking starts only after consent is granted
-        (function(){
-          var s = document.createElement('script');
-          s.async = true;
-          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
-          s.dataset.ga4MeasurementId = gaId;
-          document.head.appendChild(s);
-        })();
-      </script>
+    <!-- Preconnect Clarity -->
+    {SEO_CONFIG.clarityProjectId && (
+      <link rel="preconnect" href="https://www.clarity.ms" crossorigin="" />
     )}
+    <link rel="dns-prefetch" href="//www.clarity.ms" />
+
+    <!-- GA4 Consent Mode V2 — MUST be first script, before any other JS (GDPR) -->
 
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={ogDescription} />

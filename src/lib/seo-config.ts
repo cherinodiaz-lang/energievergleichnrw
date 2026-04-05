@@ -47,7 +47,7 @@ export const SEO_CONFIG = {
   // Search Console & Analytics (add your IDs here)
   googleSearchConsoleVerification: import.meta.env.PUBLIC_GSC_VERIFICATION ?? '', // Set in Wix Dashboard → Settings → Environment Variables
   googleAnalyticsId: import.meta.env.PUBLIC_GA4_ID || 'G-X60BTL057V', // GA4 Measurement ID
-  clarityProjectId: import.meta.env.PUBLIC_CLARITY_ID ?? '', // Set in Wix Dashboard → Settings → Environment Variables
+  clarityProjectId: import.meta.env.PUBLIC_CLARITY_ID || 'vsc7jd9d94', // Microsoft Clarity Project ID
 
   // Robots Meta
   robots: 'index, follow',
