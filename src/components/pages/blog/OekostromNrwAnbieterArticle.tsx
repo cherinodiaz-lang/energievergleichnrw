@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { Leaf, CheckCircle, ArrowRight, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -111,10 +110,7 @@ export default function OekostromNrwAnbieterArticle() {
       <main>
         <section className="w-full py-12 md:py-20 bg-gradient-to-br from-emerald-700 to-green-600">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+            <div
             >
               <div className="flex items-center gap-2 text-white/80 text-sm mb-4">
                 <Link to={ROUTES.blog} className="hover:text-white">
@@ -134,7 +130,7 @@ export default function OekostromNrwAnbieterArticle() {
                 <span>📅 Aktualisiert: März 2026</span>
                 <span>⏱ 5 Min. Lesezeit</span>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 

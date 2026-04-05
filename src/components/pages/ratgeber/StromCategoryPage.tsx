@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Zap, Clock, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -42,10 +41,7 @@ export default function StromCategoryPage() {
       {/* Hero Section */}
       <section className="w-full bg-primary text-primary-foreground py-20 md:py-32">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          <div
             className="max-w-3xl"
           >
             <div className="flex items-center gap-3 mb-6">
@@ -58,18 +54,14 @@ export default function StromCategoryPage() {
             <p className="font-paragraph text-lg md:text-xl text-white/90">
               Alles über Stromtarife, Wechsel und Sparpotenziale in NRW
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Introductory Section */}
       <section className="w-full py-16 bg-white">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
           >
             <div className="max-w-3xl">
               <h2 className="font-heading text-2xl sm:text-3xl font-semibold tracking-tight text-primary mb-6">
@@ -120,7 +112,7 @@ export default function StromCategoryPage() {
                 </a>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -138,12 +130,8 @@ export default function StromCategoryPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {articles.map((article, index) => (
-              <motion.div
+              <div
                 key={article.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
               >
                 <Link to={`/${article.slug}`} className="group h-full">
                   <Card className="h-full hover:shadow-lg transition-all duration-300 border-none overflow-hidden flex flex-col">
@@ -168,7 +156,7 @@ export default function StromCategoryPage() {
                     </CardContent>
                   </Card>
                 </Link>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
