@@ -240,8 +240,7 @@ export default function HomePage() {
       return;
     }
     setHeroPlzError('');
-    if (trimmed) setPostleitzahl(trimmed);
-    trackCTAClick('Jetzt kostenlos vergleichen – Hero PLZ');
+    if (trimmed) trackCTAClick('Jetzt kostenlos vergleichen – Hero PLZ');
     scrollToSection('vergleichsrechner');
   };
 
@@ -269,7 +268,7 @@ export default function HomePage() {
       <main>
       {/* --- HERO SECTION (A/B tested via feature flag) --- */}
       {flags.heroVariant === 'B' ? (
-        <HeroSectionV2 onCompare={(plz) => { setPostleitzahl(plz); scrollToSection('vergleichsrechner'); }} />
+        <HeroSectionV2 onCompare={(plz) => { if (plz) trackCTAClick('Hero PLZ Compare'); scrollToSection('vergleichsrechner'); }} />
       ) : (
       <section className="hero-section relative w-full min-h-screen md:min-h-screen flex items-center justify-center overflow-hidden bg-primary">
         {/* Static Background (no framer-motion parallax) */}
