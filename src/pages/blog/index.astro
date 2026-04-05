@@ -12,5 +12,5 @@ import SeoPageLayout from "@/layouts/SeoPageLayout.astro";
   ogTitle="Blog | Energie-Ratgeber NRW 2026"
   ogDescription="Aktuelle Artikel zu Strompreisen, Gaskosten und Energiesparen in NRW."
 >
-  <AstroRouterProvider path={Astro.url.pathname} Page={BlogHubPage} client:load />
+  <AstroRouterProvider path={Astro.url.pathname} Page={BlogHubPage} client:idle />
 </SeoPageLayout>
