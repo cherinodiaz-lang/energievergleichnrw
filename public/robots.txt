@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Block utility/internal pages
+Disallow: /danke
+Disallow: /thank-you
+Disallow: /api/
+
+Sitemap: https://www.energievergleich.shop/sitemap.xml

@@ -12,12 +12,16 @@ const SECURITY_HEADERS = {
   "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
   "Content-Security-Policy": [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://static.wixstatic.com",
+    // GA4 + Clarity + Verivox loader scripts
+    "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://static.wixstatic.com https://www.clarity.ms https://partner.vxcp.de",
     "style-src 'self' 'unsafe-inline' https://static.wixstatic.com https://fonts.googleapis.com",
-    "img-src 'self' data: https://static.wixstatic.com https://www.googletagmanager.com https://www.google-analytics.com",
+    // Clarity tracking pixel + GA4 img beacon
+    "img-src 'self' data: https://static.wixstatic.com https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://partner.verivox.de",
     "font-src 'self' https://static.wixstatic.com https://fonts.gstatic.com",
-    "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://*.wix.com https://*.wixsite.com",
-    "frame-src 'none'",
+    // GA4 + Clarity + Verivox API connections
+    "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://*.wix.com https://*.wixsite.com https://www.clarity.ms https://*.clarity.ms",
+    // Verivox iframes (partner.vxcp.de renders the calculator iframe)
+    "frame-src https://partner.vxcp.de https://*.verivox.de https://*.verivox.com",
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
